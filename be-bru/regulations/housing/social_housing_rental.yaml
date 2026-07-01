@@ -1,0 +1,1273 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The Brussels-Capital Region Government order of 26 September 1996
+    organizes rental of dwellings managed by the Brussels Regional Housing
+    Company or public-service real-estate companies. This module encodes
+    household-facing social-housing rental surfaces from the consolidated
+    order: social, moderate, and medium admission income bands; priority-title
+    arithmetic; adapted-bedroom comparison and mutation eligibility; rental
+    guarantee bounds; the annual social-rent formula through Article 61 floors
+    and caps; over-adapted and energy rent complements; selected lease-duration
+    protections; and the Article 57 adapted-move rent reduction. It leaves
+    documentary proof, register administration, exact child-room pairing from
+    person-level sex/age arrays, SLRB circular parameters, ministerial
+    definitions, sanctions, and procedure to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/2
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/3
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/7
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/8
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/25
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/26
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/30
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/31
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/37
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/40
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/44
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/46
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/48
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/49
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/51
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/54
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/57
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/58
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/59
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/60
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/61
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/66
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/72
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/80
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/81
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/82
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/83
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/89
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/97
+      - be-bru/regulation/arrete/1996/09/26/1996031386/article/98
+    values:
+      brussels_social_housing_single_admission_base_annual_amount: "21692.84"
+      brussels_social_housing_multi_one_income_admission_base_annual_amount: "24103.17"
+      brussels_social_housing_multi_two_or_more_income_admission_base_annual_amount: "27546.51"
+      brussels_social_housing_dependent_child_admission_increment: "2065.98"
+      brussels_social_housing_adult_disabled_person_admission_increment: "4131.97"
+      brussels_social_housing_priority_convention_income_uplift: "4364.99"
+      brussels_social_housing_reference_income_base_annual_amount: "18791.20"
+      brussels_social_housing_base_rent_minimum_rate: "0.03"
+      brussels_social_housing_base_rent_maximum_rate: "0.10"
+      brussels_social_housing_portfolio_base_rent_minimum_rate: "0.043"
+      brussels_social_housing_portfolio_base_rent_maximum_rate: "0.06"
+      brussels_social_housing_adapted_move_reduction_base_amount: "688.66"
+      brussels_social_housing_overadapted_complement_rate: "0.04"
+      brussels_social_housing_overadapted_complement_base_annual_cap: "603.93"
+      brussels_social_housing_passive_energy_complement_rate: "0.40"
+      brussels_social_housing_low_energy_complement_rate: "0.25"
+      brussels_social_housing_very_low_energy_complement_rate: "0.35"
+      brussels_social_housing_rental_guarantee_base_minimum: "413.42"
+      brussels_social_housing_rental_guarantee_base_maximum: "1240.25"
+      brussels_social_housing_one_bedroom_floor_base_annual_amount: "1375.02"
+      brussels_social_housing_two_bedroom_floor_base_annual_amount: "1680.57"
+      brussels_social_housing_three_bedroom_floor_base_annual_amount: "2138.91"
+      brussels_social_housing_four_plus_bedroom_floor_base_annual_amount: "2444.47"
+      brussels_social_housing_absolute_floor_base_annual_amount: "1032.99"
+      brussels_social_housing_article_61_low_income_cap_rate: "0.20"
+      brussels_social_housing_article_61_middle_income_cap_rate: "0.22"
+      brussels_social_housing_article_61_high_income_cap_rate: "0.24"
+      brussels_social_housing_normal_rental_value_minimum_coefficient: "1.10"
+      brussels_social_housing_normal_rental_value_maximum_coefficient: "3.00"
+      brussels_social_housing_initial_fixed_lease_years: "9"
+      brussels_social_housing_extension_lease_years: "3"
+      brussels_social_housing_lease_termination_notice_months: "6"
+      brussels_social_housing_social_lease_review_income_multiplier: "1.50"
+      brussels_moderate_housing_admission_upper_multiplier: "1.50"
+      brussels_medium_housing_admission_lower_multiplier: "1.50"
+      brussels_medium_housing_admission_upper_multiplier: "2.00"
+      brussels_moderate_housing_lease_extension_multiplier: "2.00"
+      brussels_medium_housing_lease_extension_multiplier: "2.50"
+      brussels_medium_housing_cost_price_rent_cap_rate: "0.065"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_social_housing_single_admission_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 first paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          21692.84
+  - name: brussels_social_housing_multi_one_income_admission_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 second paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          24103.17
+  - name: brussels_social_housing_multi_two_or_more_income_admission_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 third paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          27546.51
+  - name: brussels_social_housing_dependent_child_admission_increment
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 fourth paragraph and article 2 item 10
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          2065.98
+  - name: brussels_social_housing_adult_disabled_person_admission_increment
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 fourth paragraph and article 2 item 9
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          4131.97
+  - name: brussels_social_housing_priority_convention_income_uplift
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 37 section 1 fourth paragraph
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          4364.99
+  - name: brussels_social_housing_reference_income_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 58 section 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          18791.20
+  - name: brussels_social_housing_base_rent_minimum_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.03
+  - name: brussels_social_housing_base_rent_maximum_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.10
+  - name: brussels_social_housing_portfolio_base_rent_minimum_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 5
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.043
+  - name: brussels_social_housing_portfolio_base_rent_maximum_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 5
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.06
+  - name: brussels_social_housing_adapted_move_reduction_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          688.66
+  - name: brussels_social_housing_overadapted_complement_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 second paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.04
+  - name: brussels_social_housing_overadapted_complement_base_annual_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 second paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          603.93
+  - name: brussels_social_housing_passive_energy_complement_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 26 third paragraph item 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.40
+  - name: brussels_social_housing_low_energy_complement_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 26 third paragraph item 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.25
+  - name: brussels_social_housing_very_low_energy_complement_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 26 third paragraph item 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.35
+  - name: brussels_social_housing_rental_guarantee_base_minimum
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 40 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          413.42
+  - name: brussels_social_housing_rental_guarantee_base_maximum
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 40 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1240.25
+  - name: brussels_social_housing_one_bedroom_floor_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1375.02
+  - name: brussels_social_housing_two_bedroom_floor_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1680.57
+  - name: brussels_social_housing_three_bedroom_floor_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          2138.91
+  - name: brussels_social_housing_four_plus_bedroom_floor_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          2444.47
+  - name: brussels_social_housing_absolute_floor_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1032.99
+  - name: brussels_social_housing_article_61_low_income_cap_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.20
+  - name: brussels_social_housing_article_61_middle_income_cap_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 2bis
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          0.22
+  - name: brussels_social_housing_article_61_high_income_cap_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2bis
+    versions:
+      - effective_from: '2023-12-01'
+        formula: |-
+          0.24
+  - name: brussels_social_housing_normal_rental_value_minimum_coefficient
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1.10
+  - name: brussels_social_housing_normal_rental_value_maximum_coefficient
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          3.00
+  - name: brussels_social_housing_initial_fixed_lease_years
+    kind: parameter
+    dtype: Count
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 44
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          9
+  - name: brussels_social_housing_extension_lease_years
+    kind: parameter
+    dtype: Count
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 49, 51, 52, and 53
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          3
+  - name: brussels_social_housing_lease_termination_notice_months
+    kind: parameter
+    dtype: Count
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 48 and 51
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          6
+  - name: brussels_social_housing_social_lease_review_income_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 48 and 49
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1.50
+  - name: brussels_moderate_housing_admission_upper_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 66
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          1.50
+  - name: brussels_medium_housing_admission_lower_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 83
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          1.50
+  - name: brussels_medium_housing_admission_upper_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 83
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          2.00
+  - name: brussels_moderate_housing_lease_extension_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 72
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          2.00
+  - name: brussels_medium_housing_lease_extension_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 89
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          2.50
+  - name: brussels_medium_housing_cost_price_rent_cap_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 97 section 1
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          0.065
+  - name: brussels_social_housing_admission_base_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 first to third paragraphs
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_household_member_count <= 1:
+              brussels_social_housing_single_admission_base_annual_amount
+          else:
+              if brussels_social_housing_household_income_count <= 1:
+                  brussels_social_housing_multi_one_income_admission_base_annual_amount
+              else:
+                  brussels_social_housing_multi_two_or_more_income_admission_base_annual_amount
+  - name: brussels_social_housing_admission_increment_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 fourth paragraph and article 2 items 9 and 10
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_dependent_child_admission_increment * brussels_social_housing_weighted_dependent_child_count + brussels_social_housing_adult_disabled_person_admission_increment * brussels_social_housing_adult_disabled_person_count
+  - name: brussels_social_housing_admission_ceiling_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          (brussels_social_housing_admission_base_annual_amount + brussels_social_housing_admission_increment_annual_amount) * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_selected_admission_income_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31 fifth paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_reference_admission_income_annual_amount > brussels_social_housing_admission_ceiling_annual_amount and brussels_social_housing_current_income_reduced_at_application:
+              brussels_social_housing_current_admission_income_annual_amount
+          else:
+              brussels_social_housing_reference_admission_income_annual_amount
+  - name: brussels_social_housing_admission_eligibility
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 31
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_selected_admission_income_annual_amount <= brussels_social_housing_admission_ceiling_annual_amount:
+              1
+          else:
+              0
+  - name: brussels_social_housing_priority_convention_admission_ceiling_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 37 section 1 fourth paragraph with article 30 indexation
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          brussels_social_housing_admission_ceiling_annual_amount + brussels_social_housing_priority_convention_income_uplift * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_priority_convention_admission_eligibility
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 37 section 1 fourth paragraph
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if brussels_social_housing_priority_convention_applies and brussels_social_housing_selected_admission_income_annual_amount <= brussels_social_housing_priority_convention_admission_ceiling_annual_amount:
+              1
+          else:
+              0
+  - name: brussels_moderate_housing_admission_lower_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 66 first paragraph
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          brussels_social_housing_admission_ceiling_annual_amount
+  - name: brussels_moderate_housing_admission_upper_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 66 first paragraph
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          brussels_social_housing_admission_ceiling_annual_amount * brussels_moderate_housing_admission_upper_multiplier
+  - name: brussels_moderate_housing_admission_eligibility
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 66 first paragraph
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          if brussels_social_housing_selected_admission_income_annual_amount >= brussels_moderate_housing_admission_lower_annual_amount and brussels_social_housing_selected_admission_income_annual_amount <= brussels_moderate_housing_admission_upper_annual_amount:
+              1
+          else:
+              0
+  - name: brussels_medium_housing_admission_lower_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 83 first paragraph
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          brussels_social_housing_admission_ceiling_annual_amount * brussels_medium_housing_admission_lower_multiplier
+  - name: brussels_medium_housing_admission_upper_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 83 first paragraph
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          brussels_social_housing_admission_ceiling_annual_amount * brussels_medium_housing_admission_upper_multiplier
+  - name: brussels_medium_housing_admission_eligibility
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 83 first paragraph
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          if brussels_social_housing_selected_admission_income_annual_amount >= brussels_medium_housing_admission_lower_annual_amount and brussels_social_housing_selected_admission_income_annual_amount <= brussels_medium_housing_admission_upper_annual_amount:
+              1
+          else:
+              0
+  - name: brussels_moderate_housing_three_year_lease_extension
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 72
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          if brussels_moderate_housing_two_year_review_income_annual_amount <= brussels_social_housing_admission_ceiling_annual_amount * brussels_moderate_housing_lease_extension_multiplier:
+              1
+          else:
+              0
+  - name: brussels_medium_housing_three_year_lease_extension
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 89
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          if brussels_medium_housing_two_year_review_income_annual_amount <= brussels_social_housing_admission_ceiling_annual_amount * brussels_medium_housing_lease_extension_multiplier:
+              1
+          else:
+              0
+  - name: brussels_social_housing_waiting_time_priority_titles
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 8 section 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_candidate_waiting_years < 1:
+              0
+          else:
+              1 + 2 * max(0, brussels_social_housing_candidate_waiting_years - 1)
+  - name: brussels_social_housing_priority_title_count
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 8 sections 1 to 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          (if brussels_social_housing_priority_forced_departure_unhealthy_dwelling: 5 else: 0) + 2 * ((if brussels_social_housing_priority_early_lease_termination_not_tenant_fault: 1 else: 0) + (if brussels_social_housing_priority_force_majeure_or_calamity_lost_dwelling: 1 else: 0) + (if brussels_social_housing_priority_single_parent_with_dependent_children: 1 else: 0) + (if brussels_social_housing_priority_household_has_disabled_person: 1 else: 0) + (if brussels_social_housing_priority_family_unit_threatened: 1 else: 0) + (if brussels_social_housing_priority_social_housing_tenant_in_unsuitable_dwelling: 1 else: 0)) + brussels_social_housing_priority_member_age_over_60_count + brussels_social_housing_priority_war_prisoner_invalid_or_widow_count + (if brussels_social_housing_priority_lead_poisoning_child: 1 else: 0) + (if brussels_social_housing_priority_young_household_with_two_children: 1 else: 0) + (if brussels_social_housing_priority_regional_rent_or_relocation_allowance_ending: 1 else: 0) + brussels_social_housing_waiting_time_priority_titles
+  - name: brussels_social_housing_adapted_bedroom_count
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 3 first paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          1 + (if brussels_social_housing_disabled_couple_extra_bedroom_requested: 1 else: 0) + brussels_social_housing_child_bedrooms_required + brussels_social_housing_other_adult_or_couple_bedrooms_required + (if brussels_social_housing_childless_under_35_couple_extra_bedroom_requested: 1 else: 0)
+  - name: brussels_social_housing_bedroom_difference_from_adapted_standard
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 2, 3, 7, and 25
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_actual_bedroom_count - brussels_social_housing_adapted_bedroom_count
+  - name: brussels_social_housing_excess_room_count
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 2, 3, 7, and 25
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          max(0, brussels_social_housing_bedroom_difference_from_adapted_standard)
+  - name: brussels_social_housing_is_overadapted
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 2, 3, 7, and 25
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_bedroom_difference_from_adapted_standard > 0:
+              1
+          else:
+              0
+  - name: brussels_social_housing_is_underadapted
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 7 first paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_bedroom_difference_from_adapted_standard < 0:
+              1
+          else:
+              0
+  - name: brussels_social_housing_mutation_request_eligibility
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 7 second and third paragraphs
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_mutation_conditions_derogated or (brussels_social_housing_years_in_current_society_lease >= 2 and brussels_social_housing_current_dwelling_condition_obligations_met and brussels_social_housing_rent_and_charges_paid_regularly):
+              1
+          else:
+              0
+  - name: brussels_social_housing_mutation_priority_tier
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 7 first paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_is_overadapted == 1:
+              1
+          else:
+              if brussels_social_housing_is_underadapted == 1 and brussels_social_housing_requested_mutation_to_adapted_dwelling:
+                  2
+              else:
+                  if brussels_social_housing_excess_room_count >= 1:
+                      3
+                  else:
+                      0
+  - name: brussels_social_housing_rental_guarantee_minimum
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 40 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_rental_guarantee_base_minimum * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_rental_guarantee_maximum
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 40 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_rental_guarantee_base_maximum * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_selected_rental_guarantee
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 40
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          min(brussels_social_housing_rental_guarantee_maximum, max(brussels_social_housing_rental_guarantee_minimum, brussels_social_housing_proposed_rental_guarantee))
+  - name: brussels_social_housing_base_rent_rate_within_standard_bounds
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_base_rent_derogation_approved or (brussels_social_housing_selected_base_rent_rate >= brussels_social_housing_base_rent_minimum_rate and brussels_social_housing_selected_base_rent_rate <= brussels_social_housing_base_rent_maximum_rate):
+              1
+          else:
+              0
+  - name: brussels_social_housing_base_rent_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 sections 3 and 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_updated_dwelling_cost_price * brussels_social_housing_selected_base_rent_rate
+  - name: brussels_social_housing_reference_income_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 58 section 2 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_reference_income_base_annual_amount * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_income_coefficient
+    kind: derived
+    entity: Household
+    dtype: Rate
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 58 section 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          floor(((brussels_social_housing_rent_calculation_income_annual_amount / brussels_social_housing_reference_income_annual_amount) / 0.01) + 0.5) * 0.01
+  - name: brussels_social_housing_article_58_annual_real_rent
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 58 sections 1 and 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_base_rent_annual_amount * brussels_social_housing_income_coefficient
+  - name: brussels_social_housing_article_59_child_reduction_rate
+    kind: derived
+    entity: Household
+    dtype: Rate
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 59 section 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_dependent_child_count >= 6:
+              0.50
+          else:
+              if brussels_social_housing_dependent_child_count == 5:
+                  0.40
+              else:
+                  if brussels_social_housing_dependent_child_count == 4:
+                      0.30
+                  else:
+                      if brussels_social_housing_dependent_child_count == 3:
+                          0.20
+                      else:
+                          if brussels_social_housing_dependent_child_count == 2:
+                              0.10
+                          else:
+                              if brussels_social_housing_dependent_child_count == 1:
+                                  0.05
+                              else:
+                                  0
+  - name: brussels_social_housing_article_59_child_reduction_before_property_tax
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 59 section 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_base_rent_annual_amount * brussels_social_housing_article_59_child_reduction_rate
+  - name: brussels_social_housing_article_59_child_reduction_after_property_tax
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 59 sections 2 and 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          max(0, brussels_social_housing_article_59_child_reduction_before_property_tax - brussels_social_housing_child_property_tax_reduction_obtained)
+  - name: brussels_social_housing_article_59_disabled_adult_reduction
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 59 section 3bis
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_base_rent_annual_amount * 0.20 * brussels_social_housing_adult_disabled_person_count
+  - name: brussels_social_housing_article_59_annual_real_rent
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 57, 58, and 59
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          max(0, brussels_social_housing_article_58_annual_real_rent - brussels_social_housing_article_59_child_reduction_after_property_tax - brussels_social_housing_article_59_disabled_adult_reduction - brussels_social_housing_approved_annual_rent_deductions)
+  - name: brussels_social_housing_article_61_floor_by_bedrooms_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 1 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_actual_bedroom_count <= 1:
+              brussels_social_housing_one_bedroom_floor_base_annual_amount * brussels_social_housing_current_article_30_index_factor
+          else:
+              if brussels_social_housing_actual_bedroom_count == 2:
+                  brussels_social_housing_two_bedroom_floor_base_annual_amount * brussels_social_housing_current_article_30_index_factor
+              else:
+                  if brussels_social_housing_actual_bedroom_count == 3:
+                      brussels_social_housing_three_bedroom_floor_base_annual_amount * brussels_social_housing_current_article_30_index_factor
+                  else:
+                      brussels_social_housing_four_plus_bedroom_floor_base_annual_amount * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_article_61_half_base_rent_lower_limit
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          min(brussels_social_housing_base_rent_annual_amount / 2, brussels_social_housing_article_61_floor_by_bedrooms_annual_amount)
+  - name: brussels_social_housing_article_61_absolute_minimum_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 1 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_absolute_floor_base_annual_amount * brussels_social_housing_current_article_30_index_factor
+  - name: brussels_social_housing_article_61_minimum_annual_real_rent
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 sections 1 and 2 item 1
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          max(brussels_social_housing_article_61_absolute_minimum_annual_amount, brussels_social_housing_article_61_half_base_rent_lower_limit)
+  - name: brussels_social_housing_article_61_income_cap_applies
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 items 2 and 2bis and section 2bis
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_excess_room_count == 0 or (brussels_social_housing_mutation_request_pending_without_adapted_offer and not brussels_social_housing_refused_qualifying_adapted_offer):
+              1
+          else:
+              0
+  - name: brussels_social_housing_article_61_income_cap_rate
+    kind: derived
+    entity: Household
+    dtype: Rate
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 items 2 and 2bis and section 2bis
+    versions:
+      - effective_from: '2023-12-01'
+        formula: |-
+          if brussels_social_housing_income_for_article_61_caps_annual_amount > brussels_social_housing_admission_ceiling_annual_amount:
+              brussels_social_housing_article_61_high_income_cap_rate
+          else:
+              if brussels_social_housing_income_for_article_61_caps_annual_amount >= brussels_social_housing_reference_income_annual_amount:
+                  brussels_social_housing_article_61_middle_income_cap_rate
+              else:
+                  brussels_social_housing_article_61_low_income_cap_rate
+  - name: brussels_social_housing_article_61_income_cap_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 items 2 and 2bis and section 2bis
+    versions:
+      - effective_from: '2023-12-01'
+        formula: |-
+          brussels_social_housing_income_for_article_61_caps_annual_amount * brussels_social_housing_article_61_income_cap_rate
+  - name: brussels_social_housing_normal_rental_value_coefficient_within_bounds
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_normal_rental_value_coefficient >= brussels_social_housing_normal_rental_value_minimum_coefficient and brussels_social_housing_normal_rental_value_coefficient <= brussels_social_housing_normal_rental_value_maximum_coefficient:
+              1
+          else:
+              0
+  - name: brussels_social_housing_normal_rental_value_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 3
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_base_rent_annual_amount * brussels_social_housing_normal_rental_value_coefficient
+  - name: brussels_social_housing_article_61_annual_real_rent_after_floor_and_income_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 sections 1, 2, and 2bis
+    versions:
+      - effective_from: '2023-12-01'
+        formula: |-
+          if brussels_social_housing_article_61_income_cap_applies == 1:
+              max(brussels_social_housing_article_61_minimum_annual_real_rent, min(max(brussels_social_housing_article_59_annual_real_rent, brussels_social_housing_article_61_minimum_annual_real_rent), brussels_social_housing_article_61_income_cap_annual_amount))
+          else:
+              max(brussels_social_housing_article_59_annual_real_rent, brussels_social_housing_article_61_minimum_annual_real_rent)
+  - name: brussels_social_housing_article_61_annual_real_rent
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 61 section 2 item 3
+    versions:
+      - effective_from: '2023-12-01'
+        formula: |-
+          min(brussels_social_housing_article_61_annual_real_rent_after_floor_and_income_cap, brussels_social_housing_normal_rental_value_annual_amount)
+  - name: brussels_social_housing_monthly_real_rent
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 58 and 61
+    versions:
+      - effective_from: '2023-12-01'
+        formula: |-
+          brussels_social_housing_article_61_annual_real_rent / 12
+  - name: brussels_social_housing_overadapted_complement_exempt
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 third paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_excess_room_under_6_square_meters or brussels_social_housing_household_has_member_age_60_or_older or brussels_social_housing_household_has_disabled_member or brussels_social_housing_requested_mutation_to_adapted_dwelling or brussels_social_housing_grandfathered_adapted_dwelling_on_2016_standard:
+              1
+          else:
+              0
+  - name: brussels_social_housing_overadapted_complement_chargeable_room_count
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 first paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_overadapted_complement_exempt == 1:
+              0
+          else:
+              max(0, brussels_social_housing_excess_room_count - 1)
+  - name: brussels_social_housing_overadapted_complement_per_room_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 second paragraph with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          min(brussels_social_housing_household_income_annual_amount * brussels_social_housing_overadapted_complement_rate, brussels_social_housing_overadapted_complement_base_annual_cap * brussels_social_housing_current_article_30_index_factor)
+  - name: brussels_social_housing_overadapted_complement_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 first and second paragraphs
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_overadapted_complement_per_room_annual_amount * brussels_social_housing_overadapted_complement_chargeable_room_count
+  - name: brussels_social_housing_overadapted_complement_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 25 second paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_overadapted_complement_annual_amount / 12
+  - name: brussels_social_housing_energy_complement_rate
+    kind: derived
+    entity: Household
+    dtype: Rate
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 26 third paragraph item 4
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_dwelling_is_passive_energy:
+              brussels_social_housing_passive_energy_complement_rate
+          else:
+              if brussels_social_housing_dwelling_is_low_energy:
+                  brussels_social_housing_low_energy_complement_rate
+              else:
+                  if brussels_social_housing_dwelling_is_very_low_energy:
+                      brussels_social_housing_very_low_energy_complement_rate
+                  else:
+                      0
+  - name: brussels_social_housing_energy_complement_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 26 third and fifth paragraphs
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_average_annual_gas_consumption_per_square_meter * brussels_social_housing_dwelling_square_meters * brussels_social_housing_previous_year_social_gas_tariff * brussels_social_housing_energy_complement_rate * max(0, 1 - brussels_social_housing_energy_complement_exemption_rate)
+  - name: brussels_social_housing_energy_complement_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 26 fourth paragraph
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          brussels_social_housing_energy_complement_annual_amount / 12
+  - name: brussels_social_housing_initial_lease_indefinite
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 46
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_household_has_disabled_member_at_initial_lease or brussels_social_housing_household_has_member_age_65_or_older_at_initial_lease:
+              1
+          else:
+              0
+  - name: brussels_social_housing_selected_initial_lease_years
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 44 and 46
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_initial_lease_indefinite == 1:
+              0
+          else:
+              brussels_social_housing_initial_fixed_lease_years
+  - name: brussels_social_housing_social_lease_termination_after_income_review
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 48
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_initial_lease_indefinite == 0 and brussels_social_housing_two_year_review_income_annual_amount > brussels_social_housing_admission_ceiling_annual_amount * brussels_social_housing_social_lease_review_income_multiplier:
+              1
+          else:
+              0
+  - name: brussels_social_housing_social_lease_three_year_extension_after_income_review
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 49
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_initial_lease_indefinite == 0 and brussels_social_housing_two_year_review_income_annual_amount <= brussels_social_housing_admission_ceiling_annual_amount * brussels_social_housing_social_lease_review_income_multiplier:
+              1
+          else:
+              0
+  - name: brussels_social_housing_indefinite_lease_offer_due_to_new_disability
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 54
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_household_member_became_disabled_before_term_expiry:
+              1
+          else:
+              0
+  - name: brussels_social_housing_adapted_move_reduction_eligibility
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 2
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_rent_calculation_income_annual_amount < brussels_social_housing_reference_income_annual_amount and not brussels_social_housing_receives_relocation_moving_aid and (brussels_social_housing_adapted_move_required_by_housing_code or brussels_social_housing_adapted_move_due_to_rental_ban or brussels_social_housing_adapted_move_due_to_renovation_plan or brussels_social_housing_adapted_move_due_to_unhealthy_order or brussels_social_housing_adapted_move_requested_by_over_70_or_disabled_tenant):
+              1
+          else:
+              0
+  - name: brussels_social_housing_adapted_move_reduction_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 57 section 2 with article 30 indexation
+    versions:
+      - effective_from: '2016-12-08'
+        formula: |-
+          if brussels_social_housing_adapted_move_reduction_eligibility == 1:
+              brussels_social_housing_adapted_move_reduction_base_amount * brussels_social_housing_current_article_30_index_factor
+          else:
+              0
+  - name: brussels_moderate_housing_annual_rent_after_profitability_floor
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 80 and 81
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          if brussels_moderate_housing_rent_approved_by_slrb:
+              max(brussels_moderate_housing_proposed_annual_rent, brussels_moderate_housing_slrb_minimum_profitability_annual_rent)
+          else:
+              0
+  - name: brussels_medium_housing_cost_price_annual_rent_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 97 section 1
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          brussels_medium_housing_cost_price * brussels_medium_housing_cost_price_rent_cap_rate
+  - name: brussels_medium_housing_annual_rent_within_range
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, article 97 section 1
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          min(brussels_medium_housing_cost_price_annual_rent_cap, max(brussels_medium_housing_proposed_annual_rent, brussels_moderate_housing_annual_rent_after_profitability_floor))
+  - name: brussels_medium_housing_annual_rent_after_profitability_floor
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels-Capital Region Government order of 26 September 1996 on social-housing rental, articles 97 and 98
+    versions:
+      - effective_from: '2018-03-01'
+        formula: |-
+          if brussels_medium_housing_rent_approved_by_slrb:
+              max(brussels_medium_housing_annual_rent_within_range, brussels_medium_housing_slrb_minimum_profitability_annual_rent)
+          else:
+              0

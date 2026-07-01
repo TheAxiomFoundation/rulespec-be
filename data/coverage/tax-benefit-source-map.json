@@ -459,11 +459,26 @@
           "complete": true
         }
       ]
+    },
+    {
+      "run_id": "2026-07-02-be-bru-social-housing-rental",
+      "manifest": "manifests/be-bru-social-housing-rental-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-bru-housing",
+      "provisions_written": 141,
+      "coverage": [
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "regulation",
+          "source_files": 1,
+          "provisions": 141,
+          "complete": true
+        }
+      ]
     }
   ],
   "toolchain_refs": {
-    "axiom_corpus_ref": "6e80d535f3ef4204c9450cd4f2821d75ecb39237",
-    "axiom_encode_ref": "9185b549f86b8a53b8fbdf193286b94048048988",
+    "axiom_corpus_ref": "5456cef620ac4353baf90934b74fc3aaed316e61",
+    "axiom_encode_ref": "e0e5353167c4f8330a4c4bb617c797fd7868f652",
     "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
   },
   "oracle_bridge_modules": [],
@@ -2278,6 +2293,10 @@
       "track_id": "housing-assistance-brussels",
       "rule_surface": [
         "social housing eligibility",
+        "social housing admission income bands",
+        "social housing priority titles and adapted-bedroom matching",
+        "social housing rent formula, floors, caps, and complements",
+        "social, moderate, and medium housing lease-extension interfaces",
         "rent allowance",
         "relocation accompaniment rent intervention and moving grant",
         "income ceilings",
@@ -2291,12 +2310,14 @@
           "works": [
             "Ordonnance du 17 juillet 2003 portant le Code bruxellois du Logement",
             "Arrete du Gouvernement de la Region de Bruxelles-Capitale du 15 juillet 2021 instituant une allocation de loyer",
-            "Arrete du Gouvernement de la Region de Bruxelles-Capitale du 13 octobre 2022 instituant une allocation d'accompagnement au relogement"
+            "Arrete du Gouvernement de la Region de Bruxelles-Capitale du 13 octobre 2022 instituant une allocation d'accompagnement au relogement",
+            "Arrete du Gouvernement de la Region de Bruxelles-Capitale du 26 septembre 1996 organisant la location des habitations gerees par la Societe du Logement de la Region bruxelloise ou par les societes immobilieres de service public"
           ],
           "eli_refs": [
             "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/moniteur",
             "https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/moniteur",
-            "https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/moniteur"
+            "https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/09/26/1996031386/moniteur"
           ],
           "status": "corpus_ingested"
         },
@@ -2307,7 +2328,8 @@
             "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/justel",
             "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel",
             "https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/justel",
-            "https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/justel"
+            "https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/09/26/1996031386/justel"
           ],
           "status": "corpus_ingested"
         },
@@ -2350,6 +2372,16 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:housing"
+          ]
+        },
+        {
+          "id": "brussels-social-housing-rental-source-slice",
+          "destination": "be-bru/regulations/housing/social_housing_rental.yaml",
+          "source_requirements": [
+            "26 September 1996 Brussels social-housing rental Government order"
+          ],
+          "oracle_checks": [
+            "household-level oracle required; BEAMM is not an oracle"
           ]
         }
       ]

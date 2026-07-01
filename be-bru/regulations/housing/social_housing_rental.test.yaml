@@ -1,0 +1,235 @@
+- name: social_admission_current_income_fallback_and_rental_guarantee
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_member_count: 3
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_income_count: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_weighted_dependent_child_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adult_disabled_person_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_article_30_index_factor: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_reference_admission_income_annual_amount: 35000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_income_reduced_at_application: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_admission_income_annual_amount: 30000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_convention_applies: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_moderate_housing_two_year_review_income_annual_amount: 65000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_medium_housing_two_year_review_income_annual_amount: 90000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_proposed_rental_guarantee: 500
+  output:
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_admission_base_annual_amount: 27546.51
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_admission_increment_annual_amount: 6197.95
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_admission_ceiling_annual_amount: 33744.46
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_selected_admission_income_annual_amount: 30000
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_admission_eligibility: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_priority_convention_admission_ceiling_annual_amount: 38109.45
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_priority_convention_admission_eligibility: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_moderate_housing_admission_lower_annual_amount: 33744.46
+    be-bru:regulations/housing/social_housing_rental#brussels_moderate_housing_admission_upper_annual_amount: 50616.69
+    be-bru:regulations/housing/social_housing_rental#brussels_moderate_housing_admission_eligibility: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_admission_lower_annual_amount: 50616.69
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_admission_upper_annual_amount: 67488.92
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_admission_eligibility: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_moderate_housing_three_year_lease_extension: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_three_year_lease_extension: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_rental_guarantee_minimum: 413.42
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_rental_guarantee_maximum: 1240.25
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_selected_rental_guarantee: 500
+
+- name: moderate_and_medium_admission_boundaries
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_member_count: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_income_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_weighted_dependent_child_count: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adult_disabled_person_count: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_article_30_index_factor: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_reference_admission_income_annual_amount: 40000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_income_reduced_at_application: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_admission_income_annual_amount: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_convention_applies: false
+  output:
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_admission_ceiling_annual_amount: 24103.17
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_admission_eligibility: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_moderate_housing_admission_eligibility: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_admission_eligibility: 1
+
+- name: priority_titles_adapted_bedrooms_and_mutation_priority
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_candidate_waiting_years: 3
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_forced_departure_unhealthy_dwelling: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_early_lease_termination_not_tenant_fault: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_force_majeure_or_calamity_lost_dwelling: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_single_parent_with_dependent_children: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_household_has_disabled_person: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_family_unit_threatened: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_social_housing_tenant_in_unsuitable_dwelling: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_member_age_over_60_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_war_prisoner_invalid_or_widow_count: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_lead_poisoning_child: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_young_household_with_two_children: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_priority_regional_rent_or_relocation_allowance_ending: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_disabled_couple_extra_bedroom_requested: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_child_bedrooms_required: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_other_adult_or_couple_bedrooms_required: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_childless_under_35_couple_extra_bedroom_requested: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_actual_bedroom_count: 7
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_mutation_conditions_derogated: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_years_in_current_society_lease: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_dwelling_condition_obligations_met: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_rent_and_charges_paid_regularly: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_requested_mutation_to_adapted_dwelling: false
+  output:
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_waiting_time_priority_titles: 5
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_priority_title_count: 18
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_adapted_bedroom_count: 5
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_bedroom_difference_from_adapted_standard: 2
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_excess_room_count: 2
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_is_overadapted: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_is_underadapted: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_mutation_request_eligibility: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_mutation_priority_tier: 1
+
+- name: social_rent_formula_through_article_61
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_updated_dwelling_cost_price: 100000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_selected_base_rent_rate: 0.05
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_base_rent_derogation_approved: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_article_30_index_factor: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_rent_calculation_income_annual_amount: 20000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_dependent_child_count: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_child_property_tax_reduction_obtained: 100
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adult_disabled_person_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_approved_annual_rent_deductions: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_actual_bedroom_count: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_disabled_couple_extra_bedroom_requested: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_child_bedrooms_required: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_other_adult_or_couple_bedrooms_required: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_childless_under_35_couple_extra_bedroom_requested: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_mutation_request_pending_without_adapted_offer: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_refused_qualifying_adapted_offer: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_income_for_article_61_caps_annual_amount: 20000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_member_count: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_income_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_weighted_dependent_child_count: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_normal_rental_value_coefficient: 1.1
+  output:
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_base_rent_rate_within_standard_bounds: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_base_rent_annual_amount: 5000
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_reference_income_annual_amount: 18791.2
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_income_coefficient: 1.06
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_58_annual_real_rent: 5300
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_59_child_reduction_rate: 0.1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_59_child_reduction_before_property_tax: 500
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_59_child_reduction_after_property_tax: 400
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_59_disabled_adult_reduction: 1000
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_59_annual_real_rent: 3900
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_floor_by_bedrooms_annual_amount: 1680.57
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_half_base_rent_lower_limit: 1680.57
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_absolute_minimum_annual_amount: 1032.99
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_minimum_annual_real_rent: 1680.57
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_income_cap_applies: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_income_cap_rate: 0.22
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_income_cap_annual_amount: 4400
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_normal_rental_value_coefficient_within_bounds: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_normal_rental_value_annual_amount: 5500
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_annual_real_rent_after_floor_and_income_cap: 3900
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_article_61_annual_real_rent: 3900
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_monthly_real_rent: 325
+
+- name: overadapted_and_energy_complements
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_disabled_couple_extra_bedroom_requested: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_child_bedrooms_required: 2
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_other_adult_or_couple_bedrooms_required: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_childless_under_35_couple_extra_bedroom_requested: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_actual_bedroom_count: 6
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_excess_room_under_6_square_meters: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_has_member_age_60_or_older: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_has_disabled_member: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_requested_mutation_to_adapted_dwelling: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_grandfathered_adapted_dwelling_on_2016_standard: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_income_annual_amount: 30000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_article_30_index_factor: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_dwelling_is_passive_energy: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_dwelling_is_low_energy: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_dwelling_is_very_low_energy: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_average_annual_gas_consumption_per_square_meter: 100
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_dwelling_square_meters: 80
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_previous_year_social_gas_tariff: 0.05
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_energy_complement_exemption_rate: 0.1
+  output:
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_adapted_bedroom_count: 3
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_excess_room_count: 3
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_overadapted_complement_exempt: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_overadapted_complement_chargeable_room_count: 2
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_overadapted_complement_per_room_annual_amount: 603.93
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_overadapted_complement_annual_amount: 1207.86
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_overadapted_complement_monthly_amount: 100.655
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_energy_complement_rate: 0.4
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_energy_complement_annual_amount: 144
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_energy_complement_monthly_amount: 12
+
+- name: lease_review_adapted_move_reduction_and_moderate_medium_rents
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_member_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_income_count: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_weighted_dependent_child_count: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adult_disabled_person_count: 0
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_current_article_30_index_factor: 1
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_has_disabled_member_at_initial_lease: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_has_member_age_65_or_older_at_initial_lease: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_two_year_review_income_annual_amount: 40000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_household_member_became_disabled_before_term_expiry: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_rent_calculation_income_annual_amount: 15000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_receives_relocation_moving_aid: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adapted_move_required_by_housing_code: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adapted_move_due_to_rental_ban: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adapted_move_due_to_renovation_plan: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adapted_move_due_to_unhealthy_order: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_social_housing_adapted_move_requested_by_over_70_or_disabled_tenant: false
+    be-bru:regulations/housing/social_housing_rental#input.brussels_moderate_housing_rent_approved_by_slrb: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_moderate_housing_proposed_annual_rent: 5000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_moderate_housing_slrb_minimum_profitability_annual_rent: 5500
+    be-bru:regulations/housing/social_housing_rental#input.brussels_medium_housing_cost_price: 100000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_medium_housing_proposed_annual_rent: 6000
+    be-bru:regulations/housing/social_housing_rental#input.brussels_medium_housing_rent_approved_by_slrb: true
+    be-bru:regulations/housing/social_housing_rental#input.brussels_medium_housing_slrb_minimum_profitability_annual_rent: 5800
+  output:
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_initial_lease_indefinite: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_selected_initial_lease_years: 9
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_social_lease_termination_after_income_review: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_social_lease_three_year_extension_after_income_review: 0
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_indefinite_lease_offer_due_to_new_disability: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_reference_income_annual_amount: 18791.2
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_adapted_move_reduction_eligibility: 1
+    be-bru:regulations/housing/social_housing_rental#brussels_social_housing_adapted_move_reduction_amount: 688.66
+    be-bru:regulations/housing/social_housing_rental#brussels_moderate_housing_annual_rent_after_profitability_floor: 5500
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_cost_price_annual_rent_cap: 6500
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_annual_rent_within_range: 6000
+    be-bru:regulations/housing/social_housing_rental#brussels_medium_housing_annual_rent_after_profitability_floor: 6000
