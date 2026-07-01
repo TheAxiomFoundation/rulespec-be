@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01",
+  "generated_at": "2026-07-02",
   "jurisdiction": "be",
   "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
   "scope": "belgium_tax_benefit",
@@ -434,6 +434,28 @@
           "document_class": "statute",
           "source_files": 1,
           "provisions": 2,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-02-be-bru-apa",
+      "manifest": "manifests/be-bru-apa-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-bru-housing",
+      "provisions_written": 132,
+      "coverage": [
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "regulation",
+          "source_files": 3,
+          "provisions": 95,
+          "complete": true
+        },
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "statute",
+          "source_files": 2,
+          "provisions": 37,
           "complete": true
         }
       ]
@@ -2008,18 +2030,61 @@
           "source_id": "belgian-official-gazette",
           "source_priority_role": "primary_law_or_original_publication",
           "works": [
-            "Loi du 27 fevrier 1987 relative aux allocations aux personnes handicapees"
+            "Loi du 27 fevrier 1987 relative aux allocations aux personnes handicapees",
+            "Ordonnance du 10 decembre 2020 relative a l'allocation pour l'aide aux personnes agees",
+            "Ordonnance du 12 fevrier 2026 portant des dispositions diverses en matiere de Sante, d'Aide aux personnes et de Prestations familiales",
+            "Arrete du College reuni du 28 janvier 2021 portant execution de l'ordonnance du 10 decembre 2020 relative a l'allocation pour l'aide aux personnes agees",
+            "Arrete du College reuni du 22 juin 2023 modifiant l'arrete du 28 janvier 2021 relatif a l'allocation pour l'aide aux personnes agees",
+            "Arrete du College reuni du 18 janvier 2024 modifiant l'arrete du 28 janvier 2021 relatif a l'allocation pour l'aide aux personnes agees"
           ],
           "eli_refs": [
-            "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/moniteur"
+            "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/12/10/2020044279/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2026/02/12/2026001204/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2021/01/28/2021040498/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2023/06/22/2023043248/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2024/01/18/2024000625/moniteur"
           ],
-          "status": "eli_located"
+          "corpus_citation_paths": [
+            "be-bru/statute/ordonnance/2020/12/10/2020044279/article/3",
+            "be-bru/statute/ordonnance/2020/12/10/2020044279/article/4",
+            "be-bru/statute/ordonnance/2020/12/10/2020044279/article/5",
+            "be-bru/statute/ordonnance/2020/12/10/2020044279/article/8",
+            "be-bru/statute/ordonnance/2026/02/12/2026001204/article/7",
+            "be-bru/statute/ordonnance/2026/02/12/2026001204/article/8",
+            "be-bru/statute/ordonnance/2026/02/12/2026001204/article/9",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/2",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/4",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/5",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/6",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/8",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/9",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/10",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/11",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/16",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/17",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/20",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/24",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/43",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/47",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/53",
+            "be-bru/regulation/arrete/2021/01/28/2021040498/article/54",
+            "be-bru/regulation/arrete/2024/01/18/2024000625/article/2",
+            "be-bru/regulation/arrete/2024/01/18/2024000625/article/5",
+            "be-bru/regulation/arrete/2024/01/18/2024000625/article/10"
+          ],
+          "status": "corpus_ingested"
         },
         {
           "source_id": "justel-eli",
           "source_priority_role": "consolidated_locator_not_legal_authority",
           "eli_refs": [
-            "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/justel"
+            "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/justel",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/12/10/2020044279/justel",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2026/02/12/2026001204/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2021/01/28/2021040498/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2023/06/22/2023043248/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2024/01/18/2024000625/justel"
           ],
           "status": "corpus_ingested"
         },
@@ -2059,6 +2124,21 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:disability_allowances"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-elderly-care-allowance",
+          "destination": "be-bru/statutes/disability/elderly_care_allowance.yaml",
+          "source_requirements": [
+            "10 December 2020 Brussels APA ordinance",
+            "28 January 2021 Brussels APA implementing order",
+            "2023, 2024, and 2026 official amendment instruments visible in the current consolidated APA text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:disability_allowances",
+            "belmod:disability_allowances",
+            "household-level external calculator or executable model still required; BEAMM is not an oracle"
           ],
           "status": "encoded"
         }

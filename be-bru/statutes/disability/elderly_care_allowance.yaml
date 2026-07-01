@@ -1,0 +1,655 @@
+format: rulespec/v1
+imports:
+  - be:statutes/disability/allowances#belgium_disability_elderly_care_allowance_min_age_years
+module:
+  summary: |-
+    The Brussels Common Community Commission ordinance of 10 December 2020
+    creates the allowance for assistance to elderly people, and the 28 January
+    2021 implementing order defines autonomy categories, income treatment,
+    household income exemptions, indexation, payment, residence assimilation,
+    and suspension. This module encodes the household-facing annual and monthly
+    award calculation: residence and incompatibility gates, the age bridge to
+    the federal disability-allowance boundary, autonomy category selection,
+    statutory base annual amounts, supplied index-factor bridges, household
+    income exemptions, selected pension/property/capital/deemed-transfer income
+    mechanics, the minimum annual payment, and detention/social-defense payment
+    suspension. It leaves medical-guide evidence scoring, application,
+    notification, recovery, appeal, and other administrative procedure to
+    separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/2
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/3
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/4
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/5
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/6
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/7
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/8
+      - be-bru/statute/ordonnance/2020/12/10/2020044279/article/20
+      - be-bru/statute/ordonnance/2026/02/12/2026001204/article/7
+      - be-bru/statute/ordonnance/2026/02/12/2026001204/article/8
+      - be-bru/statute/ordonnance/2026/02/12/2026001204/article/9
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/2
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/4
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/5
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/6
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/7
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/8
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/9
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/10
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/11
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/13
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/14
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/15
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/16
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/17
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/18
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/19
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/20
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/21
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/22
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/24
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/34
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/36
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/43
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/47
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/53
+      - be-bru/regulation/arrete/2021/01/28/2021040498/article/54
+      - be-bru/regulation/arrete/2024/01/18/2024000625/article/2
+      - be-bru/regulation/arrete/2024/01/18/2024000625/article/5
+      - be-bru/regulation/arrete/2024/01/18/2024000625/article/10
+    values:
+      brussels_apa_category_1_base_annual_amount: "1062.55"
+      brussels_apa_category_2_base_annual_amount: "4056.00"
+      brussels_apa_category_3_base_annual_amount: "4931.45"
+      brussels_apa_category_4_base_annual_amount: "5806.63"
+      brussels_apa_category_5_base_annual_amount: "7132.63"
+      brussels_apa_category_a_income_disregard_base_annual_amount: "14214.53"
+      brussels_apa_category_b_income_disregard_base_annual_amount: "17762.27"
+      brussels_apa_pension_countable_rate: "0.90"
+      brussels_apa_movable_capital_deemed_income_rate: "0.06"
+      brussels_apa_built_property_cadastral_income_exemption: "1500.00"
+      brussels_apa_built_property_cadastral_income_exemption_per_dependent_child: "250.00"
+      brussels_apa_unbuilt_only_cadastral_income_exemption: "60.00"
+      brussels_apa_built_property_cadastral_income_multiplier: "3"
+      brussels_apa_unbuilt_property_cadastral_income_multiplier: "9"
+      brussels_apa_transfer_lookback_years: "10"
+      brussels_apa_transfer_annual_abatement: "1500.00"
+      brussels_apa_minimum_annual_payment_amount: "0.12"
+      brussels_apa_right_opens_after_conditions_met_months: "1"
+      brussels_apa_decision_default_indefinite_validity: "1"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_apa_category_1_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1 item 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          1062.55
+  - name: brussels_apa_category_2_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1 item 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          4056.00
+  - name: brussels_apa_category_3_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1 item 3
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          4931.45
+  - name: brussels_apa_category_4_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1 item 4
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          5806.63
+  - name: brussels_apa_category_5_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1 item 5
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          7132.63
+  - name: brussels_apa_category_a_income_disregard_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 24 section 1 and section 2 item 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          14214.53
+  - name: brussels_apa_category_b_income_disregard_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 24 section 1 and section 2 item 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          17762.27
+  - name: brussels_apa_pension_countable_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 8 section 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          0.90
+  - name: brussels_apa_movable_capital_deemed_income_rate
+    kind: parameter
+    dtype: Rate
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 16 and 17
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          0.06
+  - name: brussels_apa_built_property_cadastral_income_exemption
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 9 first paragraph
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          1500
+  - name: brussels_apa_built_property_cadastral_income_exemption_per_dependent_child
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 9 second paragraph
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          250
+  - name: brussels_apa_unbuilt_only_cadastral_income_exemption
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 10
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          60
+  - name: brussels_apa_built_property_cadastral_income_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 11 item 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          3
+  - name: brussels_apa_unbuilt_property_cadastral_income_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 11 item 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          9
+  - name: brussels_apa_transfer_lookback_years
+    kind: parameter
+    dtype: Count
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 17
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          10
+  - name: brussels_apa_transfer_annual_abatement
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 20
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          1500
+  - name: brussels_apa_minimum_annual_payment_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 43 section 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          0.12
+  - name: brussels_apa_right_opens_after_conditions_met_months
+    kind: parameter
+    dtype: Count
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 34
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          1
+  - name: brussels_apa_decision_default_indefinite_validity
+    kind: parameter
+    dtype: Count
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 36
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          1
+  - name: brussels_apa_household_exists
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 4
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_cohabits_with_person_who_is_not_close_relative and not brussels_apa_household_member_detained_or_in_social_defense:
+              1
+          else:
+              0
+  - name: brussels_apa_scope_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 3, and order of 28 January 2021, article 54
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if (brussels_apa_domiciled_in_bilingual_brussels_region and brussels_apa_permanent_effective_belgium_residence_or_assimilated) or brussels_apa_eu_eea_switzerland_export_condition_met:
+              1
+          else:
+              0
+  - name: brussels_apa_age_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 4 item 1 as amended by ordinance of 12 February 2026, articles 7 to 9
+    versions:
+      - effective_from: '2026-02-20'
+        formula: |-
+          if brussels_apa_age_years >= belgium_disability_elderly_care_allowance_min_age_years:
+              1
+          else:
+              0
+  - name: brussels_apa_autonomy_category
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1, and order of 28 January 2021, article 2 section 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_autonomy_points < 7:
+              0
+          else:
+              if brussels_apa_autonomy_points <= 8:
+                  1
+              else:
+                  if brussels_apa_autonomy_points <= 11:
+                      2
+                  else:
+                      if brussels_apa_autonomy_points <= 14:
+                          3
+                      else:
+                          if brussels_apa_autonomy_points <= 16:
+                              4
+                          else:
+                              5
+  - name: brussels_apa_autonomy_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 4 item 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_autonomy_category > 0:
+              1
+          else:
+              0
+  - name: brussels_apa_base_annual_amount_by_category
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_autonomy_category == 1:
+              brussels_apa_category_1_base_annual_amount
+          else:
+              if brussels_apa_autonomy_category == 2:
+                  brussels_apa_category_2_base_annual_amount
+              else:
+                  if brussels_apa_autonomy_category == 3:
+                      brussels_apa_category_3_base_annual_amount
+                  else:
+                      if brussels_apa_autonomy_category == 4:
+                          brussels_apa_category_4_base_annual_amount
+                      else:
+                          if brussels_apa_autonomy_category == 5:
+                              brussels_apa_category_5_base_annual_amount
+                          else:
+                              0
+  - name: brussels_apa_indexed_maximum_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 8 section 2, and order of 28 January 2021, article 53
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          brussels_apa_base_annual_amount_by_category * brussels_apa_current_index_factor
+  - name: brussels_apa_income_disregard_category_code
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 24 section 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_household_exists == 1:
+              2
+          else:
+              1
+  - name: brussels_apa_income_disregard_base_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 24 section 1
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_income_disregard_category_code == 2:
+              brussels_apa_category_b_income_disregard_base_annual_amount
+          else:
+              brussels_apa_category_a_income_disregard_base_annual_amount
+  - name: brussels_apa_indexed_income_disregard_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 24 section 3
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          brussels_apa_income_disregard_base_annual_amount * brussels_apa_current_index_factor
+  - name: brussels_apa_household_income_split_factor
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 5 section 2
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_household_exists == 1 and brussels_apa_both_household_members_entitled_to_apa:
+              0.5
+          else:
+              1
+  - name: brussels_apa_countable_pension_annual_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 8
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_annual_pension_income_after_article_8_excluded_deductions) * brussels_apa_pension_countable_rate
+  - name: brussels_apa_built_property_cadastral_income_exemption_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 9
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          brussels_apa_built_property_cadastral_income_exemption + brussels_apa_built_property_cadastral_income_exemption_per_dependent_child * brussels_apa_dependent_child_count
+  - name: brussels_apa_built_property_deemed_annual_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 9, 11, 13, and 14
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_built_property_cadastral_income * brussels_apa_built_property_right_fraction - brussels_apa_built_property_cadastral_income_exemption_amount) * brussels_apa_built_property_cadastral_income_multiplier
+  - name: brussels_apa_unbuilt_property_cadastral_income_after_exemption
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 10, 13, and 14
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_built_property_cadastral_income > 0:
+              max(0, brussels_apa_unbuilt_property_cadastral_income * brussels_apa_unbuilt_property_right_fraction)
+          else:
+              max(0, brussels_apa_unbuilt_property_cadastral_income * brussels_apa_unbuilt_property_right_fraction - brussels_apa_unbuilt_only_cadastral_income_exemption)
+  - name: brussels_apa_unbuilt_property_deemed_annual_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 10, 11, 13, and 14
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          brussels_apa_unbuilt_property_cadastral_income_after_exemption * brussels_apa_unbuilt_property_cadastral_income_multiplier
+  - name: brussels_apa_property_deemed_annual_income_before_mortgage_interest
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 11
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          brussels_apa_built_property_deemed_annual_income + brussels_apa_unbuilt_property_deemed_annual_income
+  - name: brussels_apa_property_deemed_annual_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 15
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_property_deemed_annual_income_before_mortgage_interest - brussels_apa_eligible_annual_mortgage_interest)
+  - name: brussels_apa_movable_capital_deemed_annual_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 16
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_movable_capital_amount) * brussels_apa_movable_capital_deemed_income_rate
+  - name: brussels_apa_transfer_abatement_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 20
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          brussels_apa_transfer_annual_abatement * max(0, brussels_apa_transfer_months_from_month_after_transfer_to_decision_start) / 12
+  - name: brussels_apa_transfer_value_after_exclusions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 18, 19, 20, and 21
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_transferred_asset_value * brussels_apa_transferred_asset_right_fraction - brussels_apa_transfer_value_still_in_patrimony - brussels_apa_transfer_personal_debts_paid_from_proceeds - brussels_apa_transfer_abatement_amount)
+  - name: brussels_apa_transfer_deemed_annual_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 17 through 22
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_transfer_in_ten_year_lookback_period:
+              max(brussels_apa_transfer_value_after_exclusions * brussels_apa_movable_capital_deemed_income_rate, brussels_apa_transfer_life_annuity_annual_amount)
+          else:
+              brussels_apa_transfer_life_annuity_annual_amount
+  - name: brussels_apa_annual_income_before_disregard
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, articles 5 through 24
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          (brussels_apa_other_countable_annual_income_after_article_6_exclusions + brussels_apa_countable_pension_annual_income + brussels_apa_property_deemed_annual_income + brussels_apa_movable_capital_deemed_annual_income + brussels_apa_transfer_deemed_annual_income) * brussels_apa_household_income_split_factor
+  - name: brussels_apa_countable_annual_income_after_disregard
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 5, and order of 28 January 2021, article 24
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_annual_income_before_disregard - brussels_apa_indexed_income_disregard_annual_amount)
+  - name: brussels_apa_income_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 5
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if brussels_apa_countable_annual_income_after_disregard <= brussels_apa_indexed_maximum_annual_amount:
+              1
+          else:
+              0
+  - name: brussels_apa_incompatibility_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, articles 7 and 20
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          if not brussels_apa_receives_federal_income_replacement_or_integration_allowance and not brussels_apa_receives_similar_elderly_care_allowance:
+              1
+          else:
+              0
+  - name: brussels_apa_eligibility
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, articles 3 through 7 and 20
+    versions:
+      - effective_from: '2026-02-20'
+        formula: |-
+          if brussels_apa_scope_condition_met == 1 and brussels_apa_age_condition_met == 1 and brussels_apa_autonomy_condition_met == 1 and brussels_apa_required_other_benefit_rights_claimed and brussels_apa_incompatibility_condition_met == 1 and brussels_apa_income_condition_met == 1:
+              1
+          else:
+              0
+  - name: brussels_apa_raw_annual_amount_after_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, articles 5 and 8
+    versions:
+      - effective_from: '2021-01-01'
+        formula: |-
+          max(0, brussels_apa_indexed_maximum_annual_amount - brussels_apa_countable_annual_income_after_disregard)
+  - name: brussels_apa_annual_amount_before_suspension
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 43 section 1
+    versions:
+      - effective_from: '2026-02-20'
+        formula: |-
+          if brussels_apa_eligibility == 1:
+              if brussels_apa_raw_annual_amount_after_income > 0 and brussels_apa_raw_annual_amount_after_income < brussels_apa_minimum_annual_payment_amount:
+                  brussels_apa_minimum_annual_payment_amount
+              else:
+                  brussels_apa_raw_annual_amount_after_income
+          else:
+              0
+  - name: brussels_apa_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Common Community Commission ordinance of 10 December 2020 on APA, article 15, and order of 28 January 2021, article 47
+    versions:
+      - effective_from: '2026-02-20'
+        formula: |-
+          if brussels_apa_detention_or_social_defense_suspension_applies:
+              0
+          else:
+              brussels_apa_annual_amount_before_suspension
+  - name: brussels_apa_monthly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels Common Community Commission order of 28 January 2021 implementing APA, article 43 section 1
+    versions:
+      - effective_from: '2026-02-20'
+        formula: |-
+          brussels_apa_annual_amount / 12
