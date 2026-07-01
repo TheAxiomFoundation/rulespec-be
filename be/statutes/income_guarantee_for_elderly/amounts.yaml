@@ -1,0 +1,64 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal law article 6 for the income guarantee for elderly people sets the
+    maximum annual guarantee amount and applies a 1.50 coefficient for
+    beneficiaries who do not share their principal residence with another
+    person. This module encodes article 6 amount selection only; article 7
+    resource and pension calculations remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/2001/03/22/2001022201/article/6
+    values:
+      belgium_grapa_base_annual_amount: "7449.26"
+      belgium_grapa_isolated_multiplier: "1.5"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_grapa_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6 section 1
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          6765.89
+      - effective_from: '2024-01-01'
+        formula: |-
+          7449.26
+  - name: belgium_grapa_isolated_multiplier
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6 sections 2 and 3
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          1.5
+  - name: belgium_grapa_isolated_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6 section 2
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          belgium_grapa_base_annual_amount * belgium_grapa_isolated_multiplier
+  - name: belgium_grapa_article_6_maximum_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          if shares_principal_residence:
+              belgium_grapa_base_annual_amount
+          else:
+              belgium_grapa_isolated_annual_amount

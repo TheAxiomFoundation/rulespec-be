@@ -1,0 +1,119 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Brussels family benefits ordinance article 7 sets the base monthly family
+    benefit amounts for beneficiary children. This module encodes the article 7
+    base amount only; orphan, social, disability, placement, and eligibility
+    rules remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+    values:
+      brussels_family_benefits_unique_child_without_listed_supplement_monthly_amount: "150"
+      brussels_family_benefits_under_12_monthly_amount: "150"
+      brussels_family_benefits_12_to_17_monthly_amount: "160"
+      brussels_family_benefits_18_to_24_higher_education_monthly_amount: "170"
+      brussels_family_benefits_18_to_24_other_monthly_amount: "160"
+      brussels_family_benefits_age_12_years: "12"
+      brussels_family_benefits_age_18_years: "18"
+      brussels_family_benefits_age_24_years: "24"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_family_benefits_unique_child_without_listed_supplement_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(a)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          150
+  - name: brussels_family_benefits_under_12_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          150
+  - name: brussels_family_benefits_12_to_17_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          160
+  - name: brussels_family_benefits_18_to_24_higher_education_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          170
+  - name: brussels_family_benefits_18_to_24_other_monthly_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          160
+  - name: brussels_family_benefits_age_12_years
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          12
+  - name: brussels_family_benefits_age_18_years
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          18
+  - name: brussels_family_benefits_age_24_years
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b)
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          24
+  - name: brussels_family_benefits_article_7_base_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 7
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          if brussels_family_benefits_single_child_without_article_8_9_or_12_supplement:
+              brussels_family_benefits_unique_child_without_listed_supplement_monthly_amount
+          else:
+              if brussels_family_benefits_child_age_years < brussels_family_benefits_age_12_years:
+                  brussels_family_benefits_under_12_monthly_amount
+              else:
+                  if brussels_family_benefits_child_age_years < brussels_family_benefits_age_18_years:
+                      brussels_family_benefits_12_to_17_monthly_amount
+                  else:
+                      if brussels_family_benefits_child_age_years > brussels_family_benefits_age_24_years:
+                          0
+                      else:
+                          if brussels_family_benefits_child_enrolled_in_higher_education:
+                              brussels_family_benefits_18_to_24_higher_education_monthly_amount
+                          else:
+                              brussels_family_benefits_18_to_24_other_monthly_amount

@@ -1,0 +1,176 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Brussels-Capital Code des droits de succession article 48 sets the current
+    inheritance-tax rate scale. This module encodes the main rate tables for
+    direct-line/partner beneficiaries, siblings, uncle-aunt/nephew-niece
+    beneficiaries, and all other beneficiaries. It does not model exemptions,
+    reduced rates, partner-home rules, filing, debt deductibility, or grouping
+    beyond the relationship-class selector.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
+    values:
+      brussels_inheritance_tax_direct_first_threshold: 50000
+      brussels_inheritance_tax_direct_second_threshold: 100000
+      brussels_inheritance_tax_direct_third_threshold: 175000
+      brussels_inheritance_tax_direct_fourth_threshold: 250000
+      brussels_inheritance_tax_direct_fifth_threshold: 500000
+      brussels_inheritance_tax_direct_first_rate: "0.03"
+      brussels_inheritance_tax_direct_top_rate: "0.30"
+      brussels_inheritance_tax_sibling_first_threshold: 12500
+      brussels_inheritance_tax_sibling_top_rate: "0.65"
+      brussels_inheritance_tax_uncle_aunt_nephew_niece_top_rate: "0.70"
+      brussels_inheritance_tax_other_top_rate: "0.80"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_inheritance_tax_relationship_direct_or_partner
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels succession-duty code article 48 table I
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0
+  - name: brussels_inheritance_tax_relationship_sibling
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels succession-duty code article 48 table II
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          1
+  - name: brussels_inheritance_tax_relationship_uncle_aunt_nephew_niece
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels succession-duty code article 48 table III
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          2
+  - name: brussels_inheritance_tax_relationship_other
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels succession-duty code article 48 table IV
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          3
+  - name: brussels_inheritance_tax_direct_or_partner_tax
+    kind: derived
+    entity: EstateBeneficiary
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels succession-duty code article 48 table I
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if brussels_inheritance_tax_taxable_acquisition <= 50000:
+              brussels_inheritance_tax_taxable_acquisition * 0.03
+          else:
+              if brussels_inheritance_tax_taxable_acquisition <= 100000:
+                  1500 + (brussels_inheritance_tax_taxable_acquisition - 50000) * 0.08
+              else:
+                  if brussels_inheritance_tax_taxable_acquisition <= 175000:
+                      5500 + (brussels_inheritance_tax_taxable_acquisition - 100000) * 0.09
+                  else:
+                      if brussels_inheritance_tax_taxable_acquisition <= 250000:
+                          12250 + (brussels_inheritance_tax_taxable_acquisition - 175000) * 0.18
+                      else:
+                          if brussels_inheritance_tax_taxable_acquisition <= 500000:
+                              25750 + (brussels_inheritance_tax_taxable_acquisition - 250000) * 0.24
+                          else:
+                              85750 + (brussels_inheritance_tax_taxable_acquisition - 500000) * 0.30
+  - name: brussels_inheritance_tax_sibling_tax
+    kind: derived
+    entity: EstateBeneficiary
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels succession-duty code article 48 table II
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if brussels_inheritance_tax_taxable_acquisition <= 12500:
+              brussels_inheritance_tax_taxable_acquisition * 0.20
+          else:
+              if brussels_inheritance_tax_taxable_acquisition <= 25000:
+                  2500 + (brussels_inheritance_tax_taxable_acquisition - 12500) * 0.25
+              else:
+                  if brussels_inheritance_tax_taxable_acquisition <= 50000:
+                      5625 + (brussels_inheritance_tax_taxable_acquisition - 25000) * 0.30
+                  else:
+                      if brussels_inheritance_tax_taxable_acquisition <= 100000:
+                          13125 + (brussels_inheritance_tax_taxable_acquisition - 50000) * 0.40
+                      else:
+                          if brussels_inheritance_tax_taxable_acquisition <= 175000:
+                              33125 + (brussels_inheritance_tax_taxable_acquisition - 100000) * 0.55
+                          else:
+                              if brussels_inheritance_tax_taxable_acquisition <= 250000:
+                                  74375 + (brussels_inheritance_tax_taxable_acquisition - 175000) * 0.60
+                              else:
+                                  119375 + (brussels_inheritance_tax_taxable_acquisition - 250000) * 0.65
+  - name: brussels_inheritance_tax_uncle_aunt_nephew_niece_tax
+    kind: derived
+    entity: EstateBeneficiary
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels succession-duty code article 48 table III
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if brussels_inheritance_tax_taxable_acquisition <= 50000:
+              brussels_inheritance_tax_taxable_acquisition * 0.35
+          else:
+              if brussels_inheritance_tax_taxable_acquisition <= 100000:
+                  17500 + (brussels_inheritance_tax_taxable_acquisition - 50000) * 0.50
+              else:
+                  if brussels_inheritance_tax_taxable_acquisition <= 175000:
+                      42500 + (brussels_inheritance_tax_taxable_acquisition - 100000) * 0.60
+                  else:
+                      87500 + (brussels_inheritance_tax_taxable_acquisition - 175000) * 0.70
+  - name: brussels_inheritance_tax_other_tax
+    kind: derived
+    entity: EstateBeneficiary
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels succession-duty code article 48 table IV
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if brussels_inheritance_tax_taxable_acquisition <= 50000:
+              brussels_inheritance_tax_taxable_acquisition * 0.40
+          else:
+              if brussels_inheritance_tax_taxable_acquisition <= 75000:
+                  20000 + (brussels_inheritance_tax_taxable_acquisition - 50000) * 0.55
+              else:
+                  if brussels_inheritance_tax_taxable_acquisition <= 175000:
+                      33750 + (brussels_inheritance_tax_taxable_acquisition - 75000) * 0.65
+                  else:
+                      98750 + (brussels_inheritance_tax_taxable_acquisition - 175000) * 0.80
+  - name: brussels_inheritance_tax_article_48_tax
+    kind: derived
+    entity: EstateBeneficiary
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels succession-duty code article 48
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if brussels_inheritance_tax_relationship_class == brussels_inheritance_tax_relationship_direct_or_partner:
+              brussels_inheritance_tax_direct_or_partner_tax
+          else:
+              if brussels_inheritance_tax_relationship_class == brussels_inheritance_tax_relationship_sibling:
+                  brussels_inheritance_tax_sibling_tax
+              else:
+                  if brussels_inheritance_tax_relationship_class == brussels_inheritance_tax_relationship_uncle_aunt_nephew_niece:
+                      brussels_inheritance_tax_uncle_aunt_nephew_niece_tax
+                  else:
+                      brussels_inheritance_tax_other_tax

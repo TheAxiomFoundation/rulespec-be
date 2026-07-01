@@ -1,0 +1,142 @@
+- name: base_tax_free_amount_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 10000
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 2727.5
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_tax_free_amount_reduction: 7272.5
+
+- name: tax_free_amount_tax_third_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 5000
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 7031
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_tax_free_amount_reduction: 0
+
+- name: child_tax_credit_cap_with_shared_custody_and_disabled_equivalent_counts
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 1
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_child_tax_credit_cap: 1425
+
+- name: article_134_reduction_uses_article_130_base_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 60000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 2727.5
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction: 20892.5
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_net_federal_tax_after_refundable_child_credit: 20892.5
+
+- name: article_134_refundable_child_credit_caps_unused_reduction
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 1000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 7031
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_child_tax_credit_cap: 1140
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction: 6781
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 1140
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_net_federal_tax_after_refundable_child_credit: -1140
+
+- name: article_134_joint_assessment_assigns_supplements_to_higher_income_spouse
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 40000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_taxable_income: 20000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a: 1
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_initial_tax_free_amount: 13910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_initial_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_excess_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_excess_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_capacity_for_transferred_tax_free_amount: 26090
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_capacity_for_transferred_tax_free_amount: 9090
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_tax_free_amount_transferred_to_spouse_b: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_transferred_to_spouse_a: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation: 13910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation: 10910
+
+- name: article_134_joint_assessment_transfers_supplement_recipient_excess_to_other_spouse_capacity
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 40000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_taxable_income: 10000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_initial_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_initial_tax_free_amount: 13910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_excess_tax_free_amount: 3910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_capacity_for_transferred_tax_free_amount: 29090
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_transferred_to_spouse_a: 3910
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation: 14820
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation: 10000
+
+- name: article_134_joint_refundable_child_credit_cap_is_split_proportionally
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_with_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit: 1000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit: 500
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_child_tax_credit_cap: 1140
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_total_uncapped_refundable_child_credit: 1500
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_refundable_child_credit_after_joint_cap: 760
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap: 380

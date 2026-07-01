@@ -1,0 +1,31 @@
+- name: provincial_agglomeration_and_communal_centimes_apply_to_base_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_base_tax_for_additional_centimes: 100
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 300
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 150
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 1500
+  output:
+    be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_total_additional_centimes: 1950
+    be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_additional_centimes_rate: 19.5
+    be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_additional_centimes_tax: 1950
+    be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_tax_after_additional_centimes: 2050
+
+- name: zero_local_centimes_leave_base_tax_unchanged
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_base_tax_for_additional_centimes: 80
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 0
+  output:
+    be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_additional_centimes_tax: 0
+    be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_tax_after_additional_centimes: 80

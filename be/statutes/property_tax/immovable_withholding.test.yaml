@@ -1,0 +1,174 @@
+- name: ordinary_rate_gross_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_selected_rate: 0.0125
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_gross_tax: 12.50
+
+- name: social_housing_reduced_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 1
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_selected_rate: 0.008
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_gross_tax: 8
+
+- name: new_dwelling_reduction_applies
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 700
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_modest_or_new_dwelling_reduction_rate: 0.50
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_modest_or_new_dwelling_reduction: 6.25
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_tax_after_article_257_core_reductions: 6.25
+
+- name: disability_and_family_reductions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 2
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 1
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_disability_reduction: 3.75
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_family_reduction: 5
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_257_core_reductions: 8.75
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_tax_after_article_257_core_reductions: 3.75
+
+- name: article_259_items_2_3_reductions_deductible_from_rent_for_household_share
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 2
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_259_property_is_rented_to_reduction_beneficiary_household: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_259_non_household_occupied_share: 0.25
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_257_items_2_3_reductions: 8.75
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_259_household_occupied_share: 0.75
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_259_rent_deductible_reduction: 6.5625
+
+- name: article_259_no_rent_deduction_when_not_rented_to_beneficiary_household
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_259_property_is_rented_to_reduction_beneficiary_household: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_259_non_household_occupied_share: 0
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_257_items_2_3_reductions: 2.50
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_259_rent_deductible_reduction: 0
+
+- name: article_258_professional_use_over_quarter_apportions_reduction_base
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 700
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 300
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_258_reduction_base_tax: 8.75
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_modest_or_new_dwelling_reduction: 2.1875
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_tax_after_article_257_core_reductions: 10.3125
+
+- name: article_258_only_one_designated_dwelling_gets_reductions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: true
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 700
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+  output:
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_258_reduction_base_tax: 0
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_modest_or_new_dwelling_reduction: 0
+    be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_tax_after_article_257_core_reductions: 12.50

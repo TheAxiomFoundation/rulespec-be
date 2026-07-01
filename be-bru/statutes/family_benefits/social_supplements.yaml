@@ -1,0 +1,256 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Brussels family benefits ordinance article 9 sets monthly social
+    supplements to the article 7(b) base family benefit. This module encodes
+    the article 9 social supplement amount by household income band, beneficiary
+    child count, child age band, single-parent status, and the cadastral-income
+    exclusion.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+    values:
+      brussels_family_benefits_social_supplement_age_12_years: "12"
+      brussels_family_benefits_social_supplement_age_24_years: "24"
+      brussels_family_benefits_social_supplement_one_child_family_size: "1"
+      brussels_family_benefits_social_supplement_two_child_family_size: "2"
+      brussels_family_benefits_social_supplement_three_child_family_size: "3"
+      brussels_family_benefits_social_supplement_low_income_one_child_under_12_amount: "40"
+      brussels_family_benefits_social_supplement_low_income_one_child_12_to_24_amount: "50"
+      brussels_family_benefits_social_supplement_low_income_two_child_single_parent_under_12_amount: "80"
+      brussels_family_benefits_social_supplement_low_income_two_child_other_under_12_amount: "70"
+      brussels_family_benefits_social_supplement_low_income_two_child_single_parent_12_to_24_amount: "90"
+      brussels_family_benefits_social_supplement_low_income_two_child_other_12_to_24_amount: "80"
+      brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_under_12_amount: "130"
+      brussels_family_benefits_social_supplement_low_income_three_plus_other_under_12_amount: "110"
+      brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_12_to_24_amount: "140"
+      brussels_family_benefits_social_supplement_low_income_three_plus_other_12_to_24_amount: "120"
+      brussels_family_benefits_social_supplement_middle_income_two_child_amount: "25"
+      brussels_family_benefits_social_supplement_middle_income_three_plus_amount: "72"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_family_benefits_social_supplement_low_income_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          31000
+  - name: brussels_family_benefits_social_supplement_middle_income_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(2)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          45000
+  - name: brussels_family_benefits_social_supplement_age_12_years
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          12
+  - name: brussels_family_benefits_social_supplement_age_24_years
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          24
+  - name: brussels_family_benefits_social_supplement_one_child_family_size
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(a)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          1
+  - name: brussels_family_benefits_social_supplement_two_child_family_size
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b) and 9(2)(a)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          2
+  - name: brussels_family_benefits_social_supplement_three_child_family_size
+    kind: parameter
+    dtype: Count
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c) and 9(2)(b)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          3
+  - name: brussels_family_benefits_social_supplement_low_income_one_child_under_12_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(a)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          40
+  - name: brussels_family_benefits_social_supplement_low_income_one_child_12_to_24_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(a)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          50
+  - name: brussels_family_benefits_social_supplement_low_income_two_child_single_parent_under_12_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          80
+  - name: brussels_family_benefits_social_supplement_low_income_two_child_other_under_12_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          70
+  - name: brussels_family_benefits_social_supplement_low_income_two_child_single_parent_12_to_24_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          90
+  - name: brussels_family_benefits_social_supplement_low_income_two_child_other_12_to_24_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          80
+  - name: brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_under_12_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          130
+  - name: brussels_family_benefits_social_supplement_low_income_three_plus_other_under_12_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          110
+  - name: brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_12_to_24_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          140
+  - name: brussels_family_benefits_social_supplement_low_income_three_plus_other_12_to_24_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          120
+  - name: brussels_family_benefits_social_supplement_middle_income_two_child_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(2)(a)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          25
+  - name: brussels_family_benefits_social_supplement_middle_income_three_plus_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(2)(b)
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          72
+  - name: brussels_family_benefits_article_9_social_supplement_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9
+    versions:
+      - effective_from: '2021-09-01'
+        formula: |-
+          if brussels_family_benefits_social_supplement_cadastral_income_cap_exceeded:
+              0
+          else:
+              if brussels_family_benefits_social_supplement_child_age_years > brussels_family_benefits_social_supplement_age_24_years:
+                  0
+              else:
+                  if brussels_family_benefits_social_supplement_household_annual_income < brussels_family_benefits_social_supplement_low_income_upper_bound:
+                      if brussels_family_benefits_social_supplement_beneficiary_child_count == brussels_family_benefits_social_supplement_one_child_family_size:
+                          if brussels_family_benefits_social_supplement_child_age_years < brussels_family_benefits_social_supplement_age_12_years:
+                              brussels_family_benefits_social_supplement_low_income_one_child_under_12_amount
+                          else:
+                              brussels_family_benefits_social_supplement_low_income_one_child_12_to_24_amount
+                      else:
+                          if brussels_family_benefits_social_supplement_beneficiary_child_count == brussels_family_benefits_social_supplement_two_child_family_size:
+                              if brussels_family_benefits_social_supplement_child_age_years < brussels_family_benefits_social_supplement_age_12_years:
+                                  if brussels_family_benefits_social_supplement_child_in_single_parent_family:
+                                      brussels_family_benefits_social_supplement_low_income_two_child_single_parent_under_12_amount
+                                  else:
+                                      brussels_family_benefits_social_supplement_low_income_two_child_other_under_12_amount
+                              else:
+                                  if brussels_family_benefits_social_supplement_child_in_single_parent_family:
+                                      brussels_family_benefits_social_supplement_low_income_two_child_single_parent_12_to_24_amount
+                                  else:
+                                      brussels_family_benefits_social_supplement_low_income_two_child_other_12_to_24_amount
+                          else:
+                              if brussels_family_benefits_social_supplement_child_age_years < brussels_family_benefits_social_supplement_age_12_years:
+                                  if brussels_family_benefits_social_supplement_child_in_single_parent_family:
+                                      brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_under_12_amount
+                                  else:
+                                      brussels_family_benefits_social_supplement_low_income_three_plus_other_under_12_amount
+                              else:
+                                  if brussels_family_benefits_social_supplement_child_in_single_parent_family:
+                                      brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_12_to_24_amount
+                                  else:
+                                      brussels_family_benefits_social_supplement_low_income_three_plus_other_12_to_24_amount
+                  else:
+                      if brussels_family_benefits_social_supplement_household_annual_income < brussels_family_benefits_social_supplement_middle_income_upper_bound:
+                          if brussels_family_benefits_social_supplement_beneficiary_child_count == brussels_family_benefits_social_supplement_two_child_family_size:
+                              brussels_family_benefits_social_supplement_middle_income_two_child_amount
+                          else:
+                              if brussels_family_benefits_social_supplement_beneficiary_child_count >= brussels_family_benefits_social_supplement_three_child_family_size:
+                                  brussels_family_benefits_social_supplement_middle_income_three_plus_amount
+                              else:
+                                  0
+                      else:
+                          0

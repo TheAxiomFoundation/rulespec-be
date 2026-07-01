@@ -1,0 +1,54 @@
+- name: cohabitant_category_base_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: false
+    be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: true
+  output:
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_cohabitant_base_annual_amount: 4400
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_base_consumer_price_index: 103.14
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_14_base_annual_amount: 4400
+
+- name: isolated_category_base_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: false
+    be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
+  output:
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_isolated_base_annual_amount: 6600
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_14_base_annual_amount: 6600
+
+- name: dependent_family_category_base_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
+    be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: true
+  output:
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_dependent_family_base_annual_amount: 8800
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_14_base_annual_amount: 8800
+
+- name: article_15_applies_supplied_current_index_factor
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
+    be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 1.2
+  output:
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_14_base_annual_amount: 8800
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_indexed_annual_amount: 10560
+    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_indexed_monthly_amount: 880

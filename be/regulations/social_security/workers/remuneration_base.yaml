@@ -1,0 +1,374 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The 28 November 1969 implementing royal decree article 19 defines selected
+    inclusions and exclusions for the worker social-security remuneration base.
+    This module encodes narrow, source-grounded Article 19 mechanics for ONVA
+    holiday pay, old fixed mobility indemnity caps, bicycle/kilometric annual
+    excesses, gifts and gift vouchers, employee product or service discounts,
+    and copyright/right-neighbouring compensation. It does not encode every
+    Article 19 exclusion, ONSS administrative safe harbours, quarterly
+    declarations, reductions, or current effective contribution tables.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1969/11/28/1969112813/article/19
+    values:
+      belgium_social_security_article_19_onva_holiday_pay_rate: "0.08"
+      belgium_social_security_article_19_old_mobility_indemnity_per_km_cap: "0.1929"
+      belgium_social_security_article_19_gift_worker_holiday_cap: "40"
+      belgium_social_security_article_19_gift_dependent_child_holiday_cap: "40"
+      belgium_social_security_article_19_gift_honorific_cap: "120"
+      belgium_social_security_article_19_gift_retirement_cap_per_service_year: "40"
+      belgium_social_security_article_19_gift_retirement_minimum_total: "120"
+      belgium_social_security_article_19_gift_retirement_maximum_total: "1000"
+      belgium_social_security_article_19_gift_marriage_or_legal_cohabitation_cap: "245"
+      belgium_social_security_article_19_employee_discount_exempt_rate: "0.30"
+      belgium_social_security_article_19_bicycle_indemnity_annual_cap: "1795"
+      belgium_social_security_article_19_copyright_compensation_cap_rate: "0.30"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_social_security_article_19_onva_holiday_pay_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 1
+    versions:
+      - effective_from: '1975-03-28'
+        formula: |-
+          0.08
+  - name: belgium_social_security_article_19_old_mobility_indemnity_per_km_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 4(c)
+    versions:
+      - effective_from: '2024-07-01'
+        formula: |-
+          0.1929
+  - name: belgium_social_security_article_19_gift_no_covered_event
+    kind: parameter
+    dtype: Count
+    source: Structural selector for no Article 19 gift event
+    versions:
+      - effective_from: '2007-10-01'
+        formula: |-
+          0
+  - name: belgium_social_security_article_19_gift_saint_nicolas_christmas_new_year
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(a)
+    versions:
+      - effective_from: '2007-10-01'
+        formula: |-
+          1
+  - name: belgium_social_security_article_19_gift_honorific_distinction
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(b)
+    versions:
+      - effective_from: '2007-10-01'
+        formula: |-
+          2
+  - name: belgium_social_security_article_19_gift_retirement
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(c)
+    versions:
+      - effective_from: '2007-10-01'
+        formula: |-
+          3
+  - name: belgium_social_security_article_19_gift_marriage_or_legal_cohabitation
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(d)
+    versions:
+      - effective_from: '2007-10-01'
+        formula: |-
+          4
+  - name: belgium_social_security_article_19_gift_worker_holiday_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(a)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          40
+  - name: belgium_social_security_article_19_gift_dependent_child_holiday_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(a)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          40
+  - name: belgium_social_security_article_19_gift_honorific_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(b)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          120
+  - name: belgium_social_security_article_19_gift_retirement_cap_per_service_year
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(c)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          40
+  - name: belgium_social_security_article_19_gift_retirement_minimum_total
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(c)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          120
+  - name: belgium_social_security_article_19_gift_retirement_maximum_total
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(c)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          1000
+  - name: belgium_social_security_article_19_gift_marriage_or_legal_cohabitation_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(d)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          245
+  - name: belgium_social_security_article_19_employee_discount_exempt_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 19
+    versions:
+      - effective_from: '2002-04-01'
+        formula: |-
+          0.30
+  - name: belgium_social_security_article_19_bicycle_indemnity_annual_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 16
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          1795
+  - name: belgium_social_security_article_19_copyright_compensation_cap_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 26(a)
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          0.30
+  - name: belgium_social_security_article_19_onva_holiday_pay_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 1
+    versions:
+      - effective_from: '1975-03-28'
+        formula: |-
+          belgium_social_security_article_19_other_remuneration_for_onva_holiday_pay * belgium_social_security_article_19_onva_holiday_pay_rate
+  - name: belgium_social_security_article_19_old_mobility_indemnity_excluded_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 4(c)
+    versions:
+      - effective_from: '2024-07-01'
+        formula: |-
+          belgium_social_security_article_19_old_mobility_round_trip_km * belgium_social_security_article_19_old_mobility_work_days * belgium_social_security_article_19_old_mobility_indemnity_per_km_cap
+  - name: belgium_social_security_article_19_old_mobility_indemnity_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 4(c)
+    versions:
+      - effective_from: '2024-07-01'
+        formula: |-
+          max(0, belgium_social_security_article_19_old_mobility_indemnity_amount - belgium_social_security_article_19_old_mobility_indemnity_excluded_amount)
+  - name: belgium_social_security_article_19_bicycle_indemnity_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 16
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if belgium_social_security_article_19_bicycle_indemnity_replaces_remuneration:
+              belgium_social_security_article_19_bicycle_indemnity_amount
+          else:
+              max(0, belgium_social_security_article_19_bicycle_indemnity_amount - belgium_social_security_article_19_bicycle_indemnity_annual_cap)
+  - name: belgium_social_security_article_19_holiday_gift_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(a)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_social_security_article_19_gift_worker_holiday_cap + belgium_social_security_article_19_dependent_child_count_for_holiday_gifts * belgium_social_security_article_19_gift_dependent_child_holiday_cap
+  - name: belgium_social_security_article_19_retirement_gift_service_year_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(c)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_social_security_article_19_gift_complete_service_years * belgium_social_security_article_19_gift_retirement_cap_per_service_year
+  - name: belgium_social_security_article_19_retirement_gift_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14(c)
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          if belgium_social_security_article_19_retirement_gift_service_year_cap < belgium_social_security_article_19_gift_retirement_minimum_total:
+              0
+          else:
+              min(belgium_social_security_article_19_retirement_gift_service_year_cap, belgium_social_security_article_19_gift_retirement_maximum_total)
+  - name: belgium_social_security_article_19_selected_gift_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          if belgium_social_security_article_19_gift_event_code == belgium_social_security_article_19_gift_saint_nicolas_christmas_new_year:
+              belgium_social_security_article_19_holiday_gift_cap
+          else:
+              if belgium_social_security_article_19_gift_event_code == belgium_social_security_article_19_gift_honorific_distinction:
+                  belgium_social_security_article_19_gift_honorific_cap
+              else:
+                  if belgium_social_security_article_19_gift_event_code == belgium_social_security_article_19_gift_retirement:
+                      belgium_social_security_article_19_retirement_gift_cap
+                  else:
+                      if belgium_social_security_article_19_gift_event_code == belgium_social_security_article_19_gift_marriage_or_legal_cohabitation:
+                          belgium_social_security_article_19_gift_marriage_or_legal_cohabitation_cap
+                      else:
+                          0
+  - name: belgium_social_security_article_19_gift_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 14
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          max(0, belgium_social_security_article_19_gift_amount - belgium_social_security_article_19_selected_gift_cap)
+  - name: belgium_social_security_article_19_employee_product_discount_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 19
+    versions:
+      - effective_from: '2002-04-01'
+        formula: |-
+          max(0, belgium_social_security_article_19_employee_product_normal_price - belgium_social_security_article_19_employee_product_worker_price)
+  - name: belgium_social_security_article_19_employee_product_discount_exempt_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 19
+    versions:
+      - effective_from: '2002-04-01'
+        formula: |-
+          belgium_social_security_article_19_employee_product_normal_price * belgium_social_security_article_19_employee_discount_exempt_rate
+  - name: belgium_social_security_article_19_employee_product_discount_excess
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 19
+    versions:
+      - effective_from: '2002-04-01'
+        formula: |-
+          max(0, belgium_social_security_article_19_employee_product_discount_amount - belgium_social_security_article_19_employee_product_discount_exempt_amount)
+  - name: belgium_social_security_article_19_employee_product_below_cost_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 19
+    versions:
+      - effective_from: '2002-04-01'
+        formula: |-
+          max(0, belgium_social_security_article_19_employee_product_cost_price - belgium_social_security_article_19_employee_product_worker_price)
+  - name: belgium_social_security_article_19_employee_product_discount_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 19
+    versions:
+      - effective_from: '2002-04-01'
+        formula: |-
+          max(belgium_social_security_article_19_employee_product_discount_excess, belgium_social_security_article_19_employee_product_below_cost_amount)
+  - name: belgium_social_security_article_19_copyright_compensation_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 26(a)
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          (belgium_social_security_article_19_social_security_subject_remuneration + belgium_social_security_article_19_copyright_compensation) * belgium_social_security_article_19_copyright_compensation_cap_rate
+  - name: belgium_social_security_article_19_copyright_compensation_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 28 November 1969 implementing the social-security workers law, article 19 section 2 item 26
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          if belgium_social_security_article_19_copyright_compensation_replaces_remuneration:
+              belgium_social_security_article_19_copyright_compensation
+          else:
+              max(0, belgium_social_security_article_19_copyright_compensation - belgium_social_security_article_19_copyright_compensation_cap)

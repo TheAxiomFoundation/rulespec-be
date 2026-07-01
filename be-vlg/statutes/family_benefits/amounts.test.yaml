@@ -1,0 +1,78 @@
+- name: flanders_start_and_base_amounts
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_orphan_status_code: 0
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_disability_tier: 0
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_in_qualifying_foster_care: false
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_family_annual_income: 70000
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_qualifying_children_in_family_count: 1
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_equal_shared_housing: false
+  output:
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_birth_grant_amount: 1100
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_adoption_grant_amount: 1100
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_base_monthly_amount: 160
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_selected_monthly_amount: 160
+
+- name: flanders_orphan_and_disability_supplements
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_orphan_status_code: 2
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_disability_tier: 4
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_in_qualifying_foster_care: false
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_family_annual_income: 70000
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_qualifying_children_in_family_count: 1
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_equal_shared_housing: false
+  output:
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_orphan_supplement_monthly_amount: 160
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_supplement_monthly_amount: 414.28
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_selected_monthly_amount: 734.28
+
+- name: flanders_social_supplement_large_family_shared_housing
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_orphan_status_code: 0
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_disability_tier: 0
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_in_qualifying_foster_care: true
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_family_annual_income: 30386.52
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_qualifying_children_in_family_count: 3
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_equal_shared_housing: true
+  output:
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_foster_care_supplement_monthly_amount: 61.79
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount: 80
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_social_supplement_monthly_amount: 40
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_selected_monthly_amount: 261.79
+
+- name: flanders_universal_participation_age_bands
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_age_on_december_31_years: 17
+  output:
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_participation_17_to_24_annual_amount: 60
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_universal_participation_annual_amount: 60
+
+- name: flanders_universal_participation_outside_age_band
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/family_benefits/amounts#input.flanders_family_benefits_age_on_december_31_years: 25
+  output:
+    be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_universal_participation_annual_amount: 0

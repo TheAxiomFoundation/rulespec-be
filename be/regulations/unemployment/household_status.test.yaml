@@ -1,0 +1,145 @@
+- name: article_110_cohabiting_fallback_when_no_family_charge_or_isolated_status
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input: &article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_forms_de_facto_household_with_partner: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_financially_dependent: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_is_relative_or_allied_to_third_degree: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_is_child_with_family_allowance_claim: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_with_legal_spouse: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_or_assimilated_partner_has_professional_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_or_assimilated_partner_has_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_children: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_can_claim_family_allowances_for_at_least_one_child: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_no_child_has_professional_or_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_children_and_relatives_to_third_degree: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_child_and_relative_household_has_family_allowance_child: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_child_and_relative_household_relatives_have_no_professional_or_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_relatives_to_third_degree: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_relative_household_relatives_have_no_professional_or_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_lives_alone: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_judicial_decision: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_notarial_divorce_or_separation_deed: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_notarial_child_deed: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_authorized_under_civil_code_article_221: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_worker_is_article_28_3: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cct_46_complementary_allowance_condition_met: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_sabena_transitional_condition_met: false
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 0
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_isolated_status_met: 0
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 3
+
+- name: article_110_lives_alone_without_family_charge_is_isolated
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_lives_alone: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_isolated_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 2
+
+- name: article_110_de_facto_partner_without_income_is_family_charge
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_forms_de_facto_household_with_partner: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_financially_dependent: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_de_facto_partner_assimilated_to_spouse: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_spouse_or_assimilated_partner_without_income_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_isolated_status_met: 0
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1
+
+- name: article_110_child_household_with_family_allowance_is_family_charge
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_children: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_can_claim_family_allowances_for_at_least_one_child: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_child_household_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1
+
+- name: article_110_child_and_relative_household_is_family_charge
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_children_and_relatives_to_third_degree: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_child_and_relative_household_has_family_allowance_child: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_child_and_relative_household_relatives_have_no_professional_or_replacement_income: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_child_and_relative_household_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1
+
+- name: article_110_relative_household_without_income_is_family_charge
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_relatives_to_third_degree: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_relative_household_relatives_have_no_professional_or_replacement_income: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_relative_household_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1
+
+- name: article_110_lives_alone_maintenance_and_civil_code_221_are_family_charge
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_lives_alone: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_judicial_decision: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_authorized_under_civil_code_article_221: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_maintenance_payment_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_civil_code_221_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_isolated_status_met: 0
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1
+
+- name: article_110_special_family_charge_status_conditions
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *article_110_false_inputs
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_worker_is_article_28_3: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cct_46_complementary_allowance_condition_met: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_sabena_transitional_condition_met: true
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_special_family_charge_condition: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_family_charge_status_met: 1
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1

@@ -1,0 +1,48 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 17 defines income from capital and movable property as
+    dividends, interest, non-copyright movable-property rental/use/concession
+    income, selected life or temporary annuity income, and qualifying copyright
+    or neighbouring-rights income. Article 18 defines dividend components. This
+    module encodes those top-level category and dividend-component aggregations
+    for supplied amounts. It does not encode special inclusions, exemptions,
+    expense deductions, withholding reconciliation, or net movable income for
+    Article 6.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-60
+      - be/statute/fisconetplus/cir92/revenus-2025/page-61
+    values:
+      belgium_pit_article_17_movable_income_category_count: 5
+rules:
+  - name: belgium_pit_article_17_movable_income_category_count
+    kind: parameter
+    dtype: Count
+    source: CIR 1992 article 17 paragraph 1
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          5
+  - name: belgium_pit_article_18_dividend_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 18, dividend components
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          belgium_pit_article_18_share_advantages + belgium_pit_article_18_taxable_capital_repayments + belgium_pit_article_18_taxable_share_premium_repayments + belgium_pit_article_18_liquidation_or_own_share_acquisition_income + belgium_pit_article_18_legal_construction_distributions + belgium_pit_article_18_attributed_undistributed_legal_construction_profit + belgium_pit_article_18_recharacterized_excess_advance_interest
+  - name: belgium_pit_article_17_gross_movable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 17 paragraph 1
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          belgium_pit_article_18_dividend_income + belgium_pit_article_17_interest_income + belgium_pit_article_17_non_copyright_movable_property_rental_use_or_concession_income + belgium_pit_article_17_life_or_temporary_annuity_movable_income + belgium_pit_article_17_copyright_or_neighboring_rights_income

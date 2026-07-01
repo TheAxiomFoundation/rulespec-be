@@ -1,0 +1,64 @@
+- name: non_leasing_passenger_car_cv_11_new
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_fiscal_power_cv: 11
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_thermal_power_kw: 0
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_vehicle_age_years: 0
+  output:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_power_band_by_fiscal_power: 2
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_power_band_by_thermal_power: 0
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_age_band: 0
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_power_age_band_key: 32
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_base_amount: 634.89
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_amount: 634.89
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_passenger_car_non_leasing_amount: 634.89
+
+- name: higher_thermal_power_band_controls_amount
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_fiscal_power_cv: 8
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_thermal_power_kw: 121
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_vehicle_age_years: 0
+  output:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_power_band_by_fiscal_power: 0
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_power_band_by_thermal_power: 5
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_power_band: 5
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_passenger_car_non_leasing_amount: 3178.28
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_motorcycle_non_leasing_amount: 3178.28
+
+- name: non_leasing_top_band_more_than_15_years_floor
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_fiscal_power_cv: 18
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_thermal_power_kw: 156
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_vehicle_age_years: 15
+  output:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_passenger_car_non_leasing_amount: 78.88
+
+- name: leasing_motorcycle_cv_11_age_13
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_fiscal_power_cv: 11
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_thermal_power_kw: 0
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_vehicle_age_years: 13
+  output:
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_car_or_motorcycle_leasing_base_amount: 74.25
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_car_or_motorcycle_leasing_amount: 74.25
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_passenger_car_leasing_amount: 74.25
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_motorcycle_leasing_amount: 74.25

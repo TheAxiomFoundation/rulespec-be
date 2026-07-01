@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-07-01",
+  "jurisdiction": "be",
+  "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
+  "purpose": "Household-level comparison-oracle and supporting-source references for Belgium Axiom coverage. None of these are legal authority.",
+  "oracle_scope": "A RuleSpec oracle must be an executable, pinned external calculator that accepts household-level inputs and returns household-level tax-benefit outputs comparable to Axiom outputs. Aggregate simulators, distributional reports, parameter documentation, and public model summaries are supporting references only, not oracles.",
+  "oracles": [
+    {
+      "id": "openfisca-belgium",
+      "name": "OpenFisca Belgium",
+      "url": "https://github.com/openfisca/openfisca-belgium",
+      "local_path": null,
+      "commit": null,
+      "role": "Candidate OpenFisca comparison surface only if a real Belgium country package or API is found and pinned.",
+      "coverage": [
+        "income_tax",
+        "social_security_contributions",
+        "family_benefits",
+        "social_assistance",
+        "housing_related_support"
+      ],
+      "authority": "candidate_unavailable",
+      "availability_check": {
+        "checked_at": "2026-07-01",
+        "github_repository_status": "repository_not_found",
+        "github_search_status": "no_openfisca_belgium_country_package_found",
+        "pypi_distribution": "openfisca-belgium",
+        "pypi_status": "not_found"
+      }
+    },
+    {
+      "id": "belmod",
+      "name": "BELMOD",
+      "url": "https://socialsecurity.belgium.be/en/belmod",
+      "local_path": null,
+      "commit": null,
+      "role": "Potential Belgian household-level comparison reference only if a pinned executable interface can calculate the same household cases as Axiom.",
+      "coverage": ["tax_benefit_microsimulation", "distributional_outputs"],
+      "authority": "published_reference_unpinned"
+    },
+    {
+      "id": "euromod-belgium",
+      "name": "EUROMOD Belgium country model",
+      "url": "https://euromod-web.jrc.ec.europa.eu/",
+      "local_path": null,
+      "commit": null,
+      "role": "Cross-country household-level tax-benefit comparison reference for Belgium once model version, policy year, and household-case execution path are pinned.",
+      "coverage": ["income_tax", "social_contributions", "cash_benefits", "household_disposable_income"],
+      "authority": "oracle_unpinned"
+    },
+    {
+      "id": "fantasi",
+      "name": "FANTASI",
+      "url": "https://steunpuntfb.ugent.be/2007-2011/index.html",
+      "working_paper_url": "https://steunpuntfb.ugent.be/2007-2011/pdf/SFB_WP_B9_1.pdf",
+      "manifest": "data/oracles/fantasi.yaml",
+      "local_path": null,
+      "commit": null,
+      "role": "Potential detailed personal-income-tax oracle if a runnable Stata model and permitted IPCAL or synthetic input data are obtained. Public references alone are documentary, not executable oracle access.",
+      "coverage": ["personal_income_tax", "IPCAL_tax_return_microdata"],
+      "authority": "documentary_reference_access_required"
+    }
+  ]
+}

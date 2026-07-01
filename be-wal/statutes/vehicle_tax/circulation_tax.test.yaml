@@ -1,0 +1,57 @@
+- name: ten_cv_passenger_car
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_fiscal_power_cv: 10
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_lpg: false
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle: false
+  output:
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount: 432.30
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_additional_lpg_amount: 0
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_car_amount: 432.30
+
+- name: seven_cv_lpg_gets_low_lpg_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_fiscal_power_cv: 7
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_lpg: true
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle: false
+  output:
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount: 253.31
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_additional_lpg_amount: 89.16
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_car_amount: 342.47
+
+- name: above_twenty_cv_lpg_gets_increment_and_high_lpg_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_fiscal_power_cv: 21
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_lpg: true
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle: false
+  output:
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount: 2891.33
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_additional_lpg_amount: 208.20
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_car_amount: 3099.53
+
+- name: oldtimer_uses_forfait_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_fiscal_power_cv: 10
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_lpg: false
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle: true
+  output:
+    be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_car_amount: 48.61

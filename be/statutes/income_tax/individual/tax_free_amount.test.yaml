@@ -1,0 +1,47 @@
+- name: no_dependants_base_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 0
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 10910
+
+- name: three_children_and_one_young_child
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 3
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 11440
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 23090
+
+- name: five_children_disability_and_other_dependants
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 5
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 1
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 25580
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 46400

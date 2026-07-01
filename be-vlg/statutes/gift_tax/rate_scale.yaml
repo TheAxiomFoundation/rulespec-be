@@ -1,0 +1,224 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Vlaamse Codex Fiscaliteit article 2.8.4.1.1 sets Flemish gift-tax
+    rates for immovable and movable gifts. This module encodes the main
+    direct-line/partner and other-person rates. It leaves notarial filing,
+    charitable rates, exemptions, reduced renovation/heritage/nature rates, and
+    anti-avoidance rules to later modules.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.8.4.1.1/version-1461936
+    values:
+      flanders_gift_tax_immovable_direct_first_threshold: 150000
+      flanders_gift_tax_immovable_direct_second_threshold: 250000
+      flanders_gift_tax_immovable_direct_third_threshold: 450000
+      flanders_gift_tax_immovable_direct_first_rate: "0.03"
+      flanders_gift_tax_immovable_direct_second_rate: "0.09"
+      flanders_gift_tax_immovable_direct_third_rate: "0.18"
+      flanders_gift_tax_immovable_direct_top_rate: "0.27"
+      flanders_gift_tax_immovable_other_first_rate: "0.10"
+      flanders_gift_tax_immovable_other_second_rate: "0.20"
+      flanders_gift_tax_immovable_other_third_rate: "0.30"
+      flanders_gift_tax_immovable_other_top_rate: "0.40"
+      flanders_gift_tax_movable_direct_or_partner_rate: "0.03"
+      flanders_gift_tax_movable_other_rate: "0.07"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: flanders_gift_tax_relationship_direct_or_partner
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Vlaamse Codex Fiscaliteit article 2.8.4.1.1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0
+  - name: flanders_gift_tax_relationship_other
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Vlaamse Codex Fiscaliteit article 2.8.4.1.1 table II
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          1
+  - name: flanders_gift_tax_immovable_direct_first_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          150000
+  - name: flanders_gift_tax_immovable_direct_second_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          250000
+  - name: flanders_gift_tax_immovable_direct_third_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          450000
+  - name: flanders_gift_tax_immovable_direct_first_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.03
+  - name: flanders_gift_tax_immovable_direct_second_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.09
+  - name: flanders_gift_tax_immovable_direct_third_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.18
+  - name: flanders_gift_tax_immovable_direct_top_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.27
+  - name: flanders_gift_tax_immovable_other_first_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table II
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.10
+  - name: flanders_gift_tax_immovable_other_second_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table II
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.20
+  - name: flanders_gift_tax_immovable_other_third_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table II
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.30
+  - name: flanders_gift_tax_immovable_other_top_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table II
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.40
+  - name: flanders_gift_tax_movable_direct_or_partner_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 2 item 1
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.03
+  - name: flanders_gift_tax_movable_other_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 2 item 2
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          0.07
+  - name: flanders_gift_tax_immovable_direct_or_partner_tax
+    kind: derived
+    entity: Gift
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table I
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          if flanders_gift_tax_taxable_amount <= flanders_gift_tax_immovable_direct_first_threshold:
+              flanders_gift_tax_taxable_amount * flanders_gift_tax_immovable_direct_first_rate
+          else:
+              if flanders_gift_tax_taxable_amount <= flanders_gift_tax_immovable_direct_second_threshold:
+                  flanders_gift_tax_immovable_direct_first_threshold * flanders_gift_tax_immovable_direct_first_rate + (flanders_gift_tax_taxable_amount - flanders_gift_tax_immovable_direct_first_threshold) * flanders_gift_tax_immovable_direct_second_rate
+              else:
+                  if flanders_gift_tax_taxable_amount <= flanders_gift_tax_immovable_direct_third_threshold:
+                      flanders_gift_tax_immovable_direct_first_threshold * flanders_gift_tax_immovable_direct_first_rate + (flanders_gift_tax_immovable_direct_second_threshold - flanders_gift_tax_immovable_direct_first_threshold) * flanders_gift_tax_immovable_direct_second_rate + (flanders_gift_tax_taxable_amount - flanders_gift_tax_immovable_direct_second_threshold) * flanders_gift_tax_immovable_direct_third_rate
+                  else:
+                      flanders_gift_tax_immovable_direct_first_threshold * flanders_gift_tax_immovable_direct_first_rate + (flanders_gift_tax_immovable_direct_second_threshold - flanders_gift_tax_immovable_direct_first_threshold) * flanders_gift_tax_immovable_direct_second_rate + (flanders_gift_tax_immovable_direct_third_threshold - flanders_gift_tax_immovable_direct_second_threshold) * flanders_gift_tax_immovable_direct_third_rate + (flanders_gift_tax_taxable_amount - flanders_gift_tax_immovable_direct_third_threshold) * flanders_gift_tax_immovable_direct_top_rate
+  - name: flanders_gift_tax_immovable_other_tax
+    kind: derived
+    entity: Gift
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 1 table II
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          if flanders_gift_tax_taxable_amount <= flanders_gift_tax_immovable_direct_first_threshold:
+              flanders_gift_tax_taxable_amount * flanders_gift_tax_immovable_other_first_rate
+          else:
+              if flanders_gift_tax_taxable_amount <= flanders_gift_tax_immovable_direct_second_threshold:
+                  flanders_gift_tax_immovable_direct_first_threshold * flanders_gift_tax_immovable_other_first_rate + (flanders_gift_tax_taxable_amount - flanders_gift_tax_immovable_direct_first_threshold) * flanders_gift_tax_immovable_other_second_rate
+              else:
+                  if flanders_gift_tax_taxable_amount <= flanders_gift_tax_immovable_direct_third_threshold:
+                      flanders_gift_tax_immovable_direct_first_threshold * flanders_gift_tax_immovable_other_first_rate + (flanders_gift_tax_immovable_direct_second_threshold - flanders_gift_tax_immovable_direct_first_threshold) * flanders_gift_tax_immovable_other_second_rate + (flanders_gift_tax_taxable_amount - flanders_gift_tax_immovable_direct_second_threshold) * flanders_gift_tax_immovable_other_third_rate
+                  else:
+                      flanders_gift_tax_immovable_direct_first_threshold * flanders_gift_tax_immovable_other_first_rate + (flanders_gift_tax_immovable_direct_second_threshold - flanders_gift_tax_immovable_direct_first_threshold) * flanders_gift_tax_immovable_other_second_rate + (flanders_gift_tax_immovable_direct_third_threshold - flanders_gift_tax_immovable_direct_second_threshold) * flanders_gift_tax_immovable_other_third_rate + (flanders_gift_tax_taxable_amount - flanders_gift_tax_immovable_direct_third_threshold) * flanders_gift_tax_immovable_other_top_rate
+  - name: flanders_gift_tax_movable_tax
+    kind: derived
+    entity: Gift
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1 paragraph 2
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          if flanders_gift_tax_relationship_class == flanders_gift_tax_relationship_direct_or_partner:
+              flanders_gift_tax_taxable_amount * flanders_gift_tax_movable_direct_or_partner_rate
+          else:
+              flanders_gift_tax_taxable_amount * flanders_gift_tax_movable_other_rate
+  - name: flanders_gift_tax_article_28411_tax
+    kind: derived
+    entity: Gift
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.8.4.1.1
+    versions:
+      - effective_from: '2022-12-30'
+        formula: |-
+          if flanders_gift_tax_is_movable_property:
+              flanders_gift_tax_movable_tax
+          else:
+              if flanders_gift_tax_relationship_class == flanders_gift_tax_relationship_direct_or_partner:
+                  flanders_gift_tax_immovable_direct_or_partner_tax
+              else:
+                  flanders_gift_tax_immovable_other_tax

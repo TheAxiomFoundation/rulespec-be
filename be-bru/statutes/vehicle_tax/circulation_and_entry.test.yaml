@@ -1,0 +1,69 @@
+- name: passenger_car_at_lowest_cv_band
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#input.brussels_vehicle_fiscal_power_cv: 4
+  output:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_circulation_tax_passenger_car_amount: 107.18
+
+- name: passenger_car_at_17_cv
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#input.brussels_vehicle_fiscal_power_cv: 17
+  output:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_circulation_tax_passenger_car_amount: 1742.14
+
+- name: passenger_car_at_top_encoded_cv
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#input.brussels_vehicle_fiscal_power_cv: 20
+  output:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_circulation_tax_passenger_car_amount: 2741.77
+
+- name: motorcycle_250cc_or_less_exempt
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#input.brussels_motorcycle_engine_cc: 250
+  output:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_circulation_tax_motorcycle_amount: 0
+
+- name: motorcycle_above_250cc_uniform_tax
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#input.brussels_motorcycle_engine_cc: 251
+  output:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_circulation_tax_motorcycle_amount: 76.03
+
+- name: entry_tax_public_guardrail_amounts
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input: {}
+  output:
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_entry_into_service_tax_minimum_amount: 78.88
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_entry_into_service_tax_maximum_amount: 6357.85
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_entry_into_service_tax_boat_amount: 3178.28
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_entry_into_service_tax_paramotor_or_remotely_piloted_aircraft_amount: 793.93
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_entry_into_service_tax_ultralight_motor_aircraft_amount: 78.88
+    be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_entry_into_service_tax_other_aircraft_amount: 3178.28

@@ -1,0 +1,3122 @@
+{
+  "generated_at": "2026-07-01",
+  "jurisdiction": "be",
+  "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
+  "scope": "belgium_tax_benefit",
+  "scope_benchmarks": [
+    {
+      "id": "beamm-non-oracle-scope-benchmark",
+      "path": "data/coverage/beamm-non-oracle-scope-benchmark.json",
+      "role": "coverage_benchmark_only",
+      "not_oracle": true
+    }
+  ],
+  "jurisdiction_layers": {
+    "national": {
+      "namespace": "be",
+      "description": "Federal/national Belgium statutes, regulations, and agency policy surfaces."
+    },
+    "regional": [
+      {
+        "namespace": "be-bru",
+        "description": "Brussels-Capital Region and Common Community Commission surfaces."
+      },
+      {
+        "namespace": "be-vlg",
+        "description": "Flemish Region and Flemish Community surfaces where competence is integrated in Flemish institutions."
+      },
+      {
+        "namespace": "be-wal",
+        "description": "Walloon Region surfaces."
+      }
+    ],
+    "community": [
+      {
+        "namespace": "be-dg",
+        "description": "German-speaking Community surfaces promoted after Moniteur/ELI source discovery."
+      },
+      {
+        "namespace_status": "pending",
+        "description": "French Community, COCOF, VGC, and COCOM namespaces are added when source manifests promote those competences."
+      }
+    ]
+  },
+  "purpose": "Machine-readable intake map from Belgium tax-benefit tracks to upstream official source families, comparison references, and first RuleSpec encoding batches.",
+  "source_priority": [
+    "Moniteur belge / Belgisch Staatsblad original publications and ELI Moniteur links",
+    "Justel consolidated legislation only as a non-authentic locator",
+    "Agency rate tables, manuals, calculators, and guidance after upstream law identification",
+    "Pinned executable household-level comparison references for parity and regression tests; aggregate simulators and documentation are supporting benchmarks only"
+  ],
+  "current_blockers": [
+    {
+      "id": "oracle-version-pinning",
+      "description": "OpenFisca Belgium is only a candidate and was not found as a GitHub country package or PyPI distribution on 2026-07-01; BELMOD and EUROMOD Belgium still need executable household-case access and concrete version pins before parity checks."
+    },
+    {
+      "id": "fantasi-access",
+      "description": "FANTASI can only be used as an executable personal-income-tax oracle if access to the runnable Stata do-files plus permitted IPCAL or synthetic input data is obtained; public references are documentary only."
+    },
+    {
+      "id": "eu-euro-conversion-rate-corpus-fetch",
+      "description": "Council Regulation (EC) No 2866/98 is the upstream legal source for the Belgian franc to euro conversion rate, but EUR-Lex and Publications Office direct document endpoints returned WAF/403 responses to shell/corpus fetches on 2026-07-01; do not encode the LGAF third-and-later BEF birth grant until an official EU document can be fetched into corpus."
+    }
+  ],
+  "resolved_blockers": [
+    {
+      "id": "belgian-eli-corpus-adapter",
+      "resolved_at": "2026-06-30",
+      "resolution": "axiom-corpus branch codex/be-eli-corpus-20260630 adds extract-belgian-eli and manifest manifests/be-tax-benefit-eli.yaml; rerun 2026-06-30-be-tax-benefit wrote 3,304 Belgium and regional source provisions with complete coverage, including official Flemish and Walloon family-benefit decree article bodies, 1981/1980 social-security source additions, the 1994 coordinated health-insurance law article slices, its 3 July 1996 implementing decree, Royal Decree No. 38 self-employed social-status articles, Royal Decree No. 33 invalidity/prepension withholding instruments, Royal Decree No. 50 worker pension provisions, and the 23 December 1996 worker-pension implementing decree."
+    },
+    {
+      "id": "belgian-current-consolidated-tax-documents",
+      "resolved_at": "2026-06-30",
+      "resolution": "Official-document manifests now snapshot current CIR 1992 and VAT AR 20 consolidated PDFs into corpus runs 2026-06-30-be-income-tax-consolidated and 2026-06-30-be-vat-consolidated."
+    },
+    {
+      "id": "belgian-current-excise-documents",
+      "resolved_at": "2026-06-30",
+      "resolution": "Official-document manifest manifests/be-excise-official-documents.yaml snapshots current consolidated alcohol, tobacco, and energy-product excise statutes into corpus run 2026-06-30-be-excise-consolidated with article-level rate provisions."
+    },
+    {
+      "id": "vat-code-exemption-documents",
+      "resolved_at": "2026-06-30",
+      "resolution": "Official-document manifest manifests/be-vat-code-official-documents.yaml snapshots the current VAT Code article 41 and article 44 exemption text into corpus run 2026-06-30-be-vat-code-consolidated."
+    },
+    {
+      "id": "brussels-tmc-detailed-public-table",
+      "resolved_at": "2026-06-30",
+      "resolution": "Official Brussels Fiscality MyTax road-tax tariff page is snapshotted in corpus run 2026-06-30-be-bru-vehicle-tax-guidance and exposes detailed car and motorcycle TMC tables valid from 1 July 2025 through 30 June 2026; RuleSpec module be-bru/statutes/vehicle_tax/entry_into_service_detailed.yaml encodes those tables."
+    },
+    {
+      "id": "flemish-fiscal-code-current-articles",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifest manifests/be-vlg-fiscal-code-official-documents.yaml snapshots current Vlaamse Codex Fiscaliteit article-version JSON for Flemish inheritance-tax article 2.7.4.1.1, gift-tax article 2.8.4.1.1, immovable-withholding articles 2.1.4.0.1 and 2.1.5.0.1, and vehicle-tax articles 2.2.4.0.1, 2.2.4.0.4, 2.2.4.0.5, 2.3.4.1.1, 2.3.4.1.2/1, 2.3.4.1.3, and 2.3.5.0.1 into corpus run 2026-07-01-be-vlg-fiscal-code with 24 provisions and complete coverage."
+    },
+    {
+      "id": "brussels-walloon-transfer-tax-fisconet-current-articles",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifests snapshot SPF Finances FisconetPlus article JSON for Brussels and Walloon inheritance/gift tax rate articles into corpus runs 2026-07-01-be-bru-transfer-tax and 2026-07-01-be-wal-transfer-tax with complete coverage."
+    },
+    {
+      "id": "walloon-vehicle-tax-current-tmc-sources",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifest manifests/be-wal-vehicle-tax-official-documents.yaml snapshots Moniteur ELI publication bodies for the Walloon TMC decrees of 7 September 2023 and 30 May 2025, the Wallex current vehicle-tax locator, the SPW Finances 2026-2027 indexed passenger-car TMC table, and the SPW Finances 2026-2027 annual circulation-tax PDF into corpus run 2026-07-01-be-wal-vehicle-tax with 10 provisions and complete coverage."
+    },
+    {
+      "id": "german-speaking-community-family-benefit-law",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifest manifests/be-dg-family-benefits-official-documents.yaml snapshots the German-speaking Community 23 April 2018 family-benefits decree from Moniteur and the current Justel locator into corpus run 2026-07-01-be-dg-family-benefits with 4 provisions and complete coverage."
+    },
+    {
+      "id": "federal-guaranteed-family-benefits-regulation",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifest manifests/be-guaranteed-family-benefits-official-documents.yaml snapshots the 25 October 1971 guaranteed-family-benefits implementing royal decree from the Moniteur original publication PDF and current Justel locator into corpus run 2026-07-01-be-guaranteed-family-benefits with 3 provisions and complete coverage; the 20 July 1971 statute article slices were already present in corpus run 2026-06-30-be-tax-benefit."
+    },
+    {
+      "id": "federal-lgaf-family-allowance-amount-schedule",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifest manifests/be-lgaf-family-allowance-amounts-official-documents.yaml snapshots the 19 December 1939 LGAF original Moniteur publication image and current Justel article ranges for Articles 40, 41, 42, 42bis, 44, 44ter, 50bis, 73bis, 73quater, and 76bis into corpus run 2026-07-01-be-lgaf-family-allowance-amounts with 12 provisions and complete coverage."
+    },
+    {
+      "id": "german-speaking-community-family-benefit-2025-indexation-amendment",
+      "resolved_at": "2026-07-01",
+      "resolution": "Official-document manifest manifests/be-dg-family-benefits-2025-amendments-official-documents.yaml snapshots the German-speaking Community program decree of 22 December 2025 from the Moniteur publication into corpus run 2026-07-01-be-dg-family-benefits-2025-amendments with 2 provisions and complete coverage; block 1 contains article 17 extending the family-benefit indexation freeze through 2027 and article 18 inserting the 62.55 EUR 2025 annual supplement."
+    }
+  ],
+  "corpus_runs": [
+    {
+      "run_id": "2026-06-30-be-tax-benefit",
+      "manifest": "manifests/be-tax-benefit-eli.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 3304,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "statute",
+          "source_files": 13,
+          "provisions": 1181,
+          "complete": true
+        },
+        {
+          "jurisdiction": "be",
+          "document_class": "regulation",
+          "source_files": 12,
+          "provisions": 1379,
+          "complete": true
+        },
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "statute",
+          "source_files": 2,
+          "provisions": 382,
+          "complete": true
+        },
+        {
+          "jurisdiction": "be-vlg",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 227,
+          "complete": true
+        },
+        {
+          "jurisdiction": "be-wal",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 135,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-06-30-be-income-tax-consolidated",
+      "manifest": "manifests/be-income-tax-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 744,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 744,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-06-30-be-vat-consolidated",
+      "manifest": "manifests/be-vat-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 8,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "regulation",
+          "source_files": 2,
+          "provisions": 8,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-06-30-be-vat-code-consolidated",
+      "manifest": "manifests/be-vat-code-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 5,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 5,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-06-30-be-excise-consolidated",
+      "manifest": "manifests/be-excise-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 10,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "statute",
+          "source_files": 3,
+          "provisions": 10,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-06-30-be-vehicle-tax-code",
+      "manifest": "manifests/be-vehicle-tax-code-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 3,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 3,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-06-30-be-bru-vehicle-tax-guidance",
+      "manifest": "manifests/be-bru-vehicle-tax-guidance-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 40,
+      "coverage": [
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "guidance",
+          "source_files": 3,
+          "provisions": 40,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-vlg-fiscal-code",
+      "manifest": "manifests/be-vlg-fiscal-code-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 24,
+      "coverage": [
+        {
+          "jurisdiction": "be-vlg",
+          "document_class": "statute",
+          "source_files": 12,
+          "provisions": 24,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-bru-transfer-tax",
+      "manifest": "manifests/be-bru-transfer-tax-fisconet-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 6,
+      "coverage": [
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "statute",
+          "source_files": 3,
+          "provisions": 6,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-wal-transfer-tax",
+      "manifest": "manifests/be-wal-transfer-tax-fisconet-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 6,
+      "coverage": [
+        {
+          "jurisdiction": "be-wal",
+          "document_class": "statute",
+          "source_files": 3,
+          "provisions": 6,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-wal-vehicle-tax",
+      "manifest": "manifests/be-wal-vehicle-tax-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 10,
+      "coverage": [
+        {
+          "jurisdiction": "be-wal",
+          "document_class": "statute",
+          "source_files": 5,
+          "provisions": 10,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-company-car-tax-benefit-regulation",
+      "manifest": "manifests/be-company-car-tax-benefit-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 2,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "regulation",
+          "source_files": 1,
+          "provisions": 2,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-company-car-tax-benefit-guidance",
+      "manifest": "manifests/be-company-car-tax-benefit-guidance-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 34,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "guidance",
+          "source_files": 1,
+          "provisions": 34,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-bru-mytax-road-tax-current",
+      "manifest": "manifests/be-bru-mytax-road-tax-current-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 16,
+      "coverage": [
+        {
+          "jurisdiction": "be-bru",
+          "document_class": "guidance",
+          "source_files": 1,
+          "provisions": 16,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-vlg-social-protection-decree",
+      "manifest": "manifests/be-vlg-social-protection-decree-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 92,
+      "coverage": [
+        {
+          "jurisdiction": "be-vlg",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 92,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-vlg-social-protection-regulation",
+      "manifest": "manifests/be-vlg-social-protection-regulation-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-be-eli-20260630",
+      "provisions_written": 297,
+      "coverage": [
+        {
+          "jurisdiction": "be-vlg",
+          "document_class": "regulation",
+          "source_files": 1,
+          "provisions": 297,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-guaranteed-family-benefits",
+      "manifest": "manifests/be-guaranteed-family-benefits-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus",
+      "provisions_written": 3,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "regulation",
+          "source_files": 2,
+          "provisions": 3,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-lgaf-family-allowance-amounts",
+      "manifest": "manifests/be-lgaf-family-allowance-amounts-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus",
+      "provisions_written": 12,
+      "coverage": [
+        {
+          "jurisdiction": "be",
+          "document_class": "statute",
+          "source_files": 2,
+          "provisions": 12,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "run_id": "2026-07-01-be-dg-family-benefits-2025-amendments",
+      "manifest": "manifests/be-dg-family-benefits-2025-amendments-official-documents.yaml",
+      "axiom_corpus_worktree": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus",
+      "provisions_written": 2,
+      "coverage": [
+        {
+          "jurisdiction": "be-dg",
+          "document_class": "statute",
+          "source_files": 1,
+          "provisions": 2,
+          "complete": true
+        }
+      ]
+    }
+  ],
+  "toolchain_refs": {
+    "axiom_corpus_ref": "6e80d535f3ef4204c9450cd4f2821d75ecb39237",
+    "axiom_encode_ref": "9185b549f86b8a53b8fbdf193286b94048048988",
+    "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
+  },
+  "oracle_bridge_modules": [],
+  "tracks": [
+    {
+      "track_id": "tax-personal-income",
+      "rule_surface": [
+        "taxable income",
+        "resident individual tax scale",
+        "company-car benefits in kind",
+        "federal tax-free amount and family increments",
+        "tax reductions and credits",
+        "communal additional tax interface"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Arrete royal du 10 avril 1992 portant coordination de dispositions legales relatives aux impots sur les revenus",
+            "Code des impots sur les revenus 1992",
+            "Arrete royal du 17 decembre 2025 modifiant, en ce qui concerne les avantages de toute nature, l'AR/CIR 92 resultant de l'utilisation a des fins personnelles d'un vehicule mis gratuitement a disposition"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/arrete/1992/04/10/1992003456/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2025/12/17/2025009788/moniteur"
+          ],
+          "target_provisions": [
+            "income categories",
+            "taxable income",
+            "personal income tax rate schedule",
+            "tax-free amount",
+            "tax reductions",
+            "company-car benefit in-kind formula",
+            "delegated annual company-car CO2 reference values"
+          ],
+          "status": "eli_located",
+          "corpus_citation_paths": [
+            "be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1"
+          ]
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "works": [
+            "CIR 1992 consolidated text"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/arrete/1992/04/10/1992003456/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "spf-finances",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "current CIR 1992 FisconetPlus consolidated code for income year 2025",
+            "personal income tax rates",
+            "withholding tables",
+            "tax-return guidance",
+            "company-car benefit in kind FAQ"
+          ],
+          "corpus_citation_paths": [
+            "be/statute/fisconetplus/cir92/revenus-2025/page-69",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-73",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-120",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-121",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-122",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-60",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-61",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-181",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-182",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-184",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-185",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-186",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-187",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-193",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-199",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-200",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-225",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-226",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-229",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-231",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-233",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-249",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-250",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-253",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-255",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-256",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-512",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-513",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-514",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-515",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-461",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-686",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-687",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-688",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-95",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-96",
+            "be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1",
+            "be/guidance/spf-finances/company-car-benefit/2026-faq/page-2",
+            "be/guidance/spf-finances/company-car-benefit/2026-faq/page-3",
+            "be/guidance/spf-finances/company-car-benefit/2026-faq/page-27"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "formula, parameter, and entity smoke reference after version pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "published Belgian microsimulation comparison reference after version pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "EUROMOD Belgium disposable-income and tax comparison reference after version pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "fantasi",
+          "role": "Potential detailed personal-income-tax oracle after runnable model and IPCAL or synthetic-input access are pinned.",
+          "files": [
+            "data/oracles/fantasi.yaml"
+          ]
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "resident-income-tax-rate-scale",
+          "destination": "be/statutes/income_tax/individual/rate_scale.yaml",
+          "source_requirements": [
+            "CIR 1992 article 130 upstream ELI locator",
+            "current FisconetPlus consolidated article text after Justel suspended updates"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:income_tax",
+            "belmod:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "tax-free-amount-and-family-increments",
+          "destination": "be/statutes/income_tax/individual/tax_free_amount.yaml",
+          "source_requirements": [
+            "CIR 1992 articles 131 and 132 current FisconetPlus consolidated article text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:tax_free_allowance"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "tax-free-amount-tax-and-refundable-child-credit",
+          "destination": "be/statutes/income_tax/individual/tax_free_amount_tax.yaml",
+          "source_requirements": [
+            "CIR 1992 article 130 current FisconetPlus consolidated article text for the imported base-tax bridge",
+            "CIR 1992 article 134 current FisconetPlus consolidated article text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:tax_free_allowance",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "federal-pit-selected-tax-reductions-and-personal-credits",
+          "destination": "be/statutes/income_tax/individual/tax_reductions_and_credits.yaml",
+          "source_requirements": [
+            "CIR 1992 articles 145/2, 145/7, 145/8, 145/31 through 145/35, 145/48, 145/49, 147, 151, 151/1, 152, 289bis, 289ter, and 289ter/1 current FisconetPlus consolidated article text for income year 2025 / assessment year 2026"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:income_tax",
+            "fantasi:personal_income_tax",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "article-17-18-movable-income-categories",
+          "destination": "be/statutes/income_tax/individual/movable_income.yaml",
+          "source_requirements": [
+            "CIR 1992 article 17 current FisconetPlus consolidated article text",
+            "CIR 1992 article 18 current FisconetPlus consolidated article text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:movable_income",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "movable-withholding-rates",
+          "destination": "be/statutes/income_tax/movable_withholding/rates.yaml",
+          "source_requirements": [
+            "CIR 1992 article 21 current indexed savings-deposit exemption text",
+            "CIR 1992 article 269 current FisconetPlus consolidated article text"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        },
+        {
+          "id": "article-23-professional-income-netting",
+          "destination": "be/statutes/income_tax/individual/professional_income.yaml",
+          "source_requirements": [
+            "CIR 1992 article 23 current FisconetPlus consolidated article text",
+            "CIR 1992 article 49 current FisconetPlus consolidated article text",
+            "CIR 1992 article 51 current FisconetPlus consolidated article text for income year 2025 / assessment year 2026"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:professional_income",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "article-86-89-joint-assessment-professional-income-attribution",
+          "destination": "be/statutes/income_tax/individual/joint_assessment.yaml",
+          "source_requirements": [
+            "CIR 1992 article 86 current FisconetPlus consolidated article text for income year 2025 / assessment year 2026",
+            "CIR 1992 article 87 current FisconetPlus consolidated article text for income year 2025 / assessment year 2026",
+            "CIR 1992 article 88 current FisconetPlus consolidated article text for income year 2025 / assessment year 2026",
+            "CIR 1992 article 89 current FisconetPlus consolidated article text for separately taxed professional income exclusion",
+            "CIR 1992 article 126 current FisconetPlus consolidated article text for joint-assessment establishment and separate-assessment exceptions",
+            "CIR 1992 article 127 current FisconetPlus consolidated article text for joint-assessment income allocation",
+            "CIR 1992 article 129 current FisconetPlus consolidated article text for supplied eligible loss-balance transfer after Article 23/103 limitations",
+            "CIR 1992 current FisconetPlus definition of joint assessment and legal-cohabitant spouse assimilation"
+          ],
+          "oracle_checks": [
+            "fantasi:personal_income_tax",
+            "belmod:personal_income_tax",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "professional-expense-forfaits",
+          "destination": "be/statutes/income_tax/professional_expenses/article_51_forfaits.yaml",
+          "source_requirements": [
+            "CIR 1992 article 51 current FisconetPlus consolidated article text for income year 2025 / assessment year 2026"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:professional_expenses",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "company-car-benefit-in-kind",
+          "destination": "be/statutes/income_tax/benefits/company_car.yaml",
+          "source_requirements": [
+            "CIR 1992 article 36 paragraph 2 current consolidated article text",
+            "Royal Decree of 17 December 2025 setting 2026 AR/CIR 92 reference CO2 values",
+            "SPF Finances 2026 FAQ for indexed minimum annual benefit and administrative edge-case interpretation"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:company_car_benefit",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "communal-and-agglomeration-additional-pit",
+          "destination": "be/statutes/income_tax/individual/communal_additions.yaml",
+          "source_requirements": [
+            "CIR 1992 articles 465 to 468 current FisconetPlus consolidated article text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:municipal_tax",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "final-federal-local-pit-and-supplied-withholding-settlement",
+          "destination": "be/statutes/income_tax/individual/final_tax.yaml",
+          "source_requirements": [
+            "CIR 1992 article 134 final federal tax after refundable child-credit bridge",
+            "CIR 1992 articles 465 to 468 local additions",
+            "CIR 1992 article 269 movable withholding rates"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:income_tax",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "article-6-taxable-income-aggregation",
+          "destination": "be/statutes/income_tax/individual/taxable_income.yaml",
+          "source_requirements": [
+            "CIR 1992 article 6 current consolidated article text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:taxable_income",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "article-6-to-final-tax-liability-pipeline",
+          "destination": "be/statutes/income_tax/individual/tax_liability_pipeline.yaml",
+          "source_requirements": [
+            "CIR 1992 article 6 taxable-income aggregation",
+            "CIR 1992 article 130 ordinary rate scale",
+            "CIR 1992 article 134 tax-free-amount reduction and refundable child-credit cap",
+            "CIR 1992 articles 465 to 468 supplied local-rate additions",
+            "CIR 1992 article 269 movable withholding rates"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:income_tax",
+            "fantasi:personal_income_tax"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "payroll-social-contributions",
+      "rule_surface": [
+        "employee contribution base",
+        "employee contribution rates",
+        "employer contribution interfaces",
+        "work bonus and contribution reductions",
+        "self-employed contribution interfaces",
+        "non-labour pension contribution interfaces",
+        "Flemish Social Protection annual premium"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi du 27 juin 1969 revisant l'arreteloi du 28 decembre 1944 concernant la securite sociale des travailleurs",
+            "Arrete royal du 28 novembre 1969 pris en execution de la loi du 27 juin 1969",
+            "Loi du 30 mars 1994 portant des dispositions sociales",
+            "Loi relative a l'assurance obligatoire soins de sante et indemnites coordonnee le 14 juillet 1994",
+            "Loi du 17 mars 2019 concernant l'instauration d'un budget mobilite",
+            "Loi du 29 juin 1981 etablissant les principes generaux de la securite sociale des travailleurs salaries",
+            "Loi du 1 septembre 1980 relative a l'octroi et au paiement d'une prime syndicale a certains membres du personnel du secteur public",
+            "Arrete royal no 38 du 27 juillet 1967 organisant le statut social des travailleurs independants",
+            "Arrete royal no 33 du 30 mars 1982 relatif a une retenue sur des indemnites d'invalidite et des prepensions",
+            "Arrete royal du 24 septembre 1982 portant execution de l'arrete royal no 33",
+            "Arrete ministeriel du 29 septembre 1982 portant execution de l'arrete royal du 24 septembre 1982"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1969/06/27/1969062710/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1969/11/28/1969112813/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1994/03/30/1994021117/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/2019/03/17/2019030319/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1981/06/29/1981001048/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1980/09/01/1980090102/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/moniteur"
+          ],
+          "legal_authority_refs": [
+            "https://www.ejustice.just.fgov.be/mopdf/1982/04/01_1.pdf#Page28",
+            "https://www.ejustice.just.fgov.be/mopdf/1982/10/06_1.pdf#Page2",
+            "https://www.ejustice.just.fgov.be/mopdf/1982/10/07_1.pdf#Page5"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1969/06/27/1969062710/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1969/11/28/1969112813/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1994/03/30/1994021117/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/2019/03/17/2019030319/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1981/06/29/1981001048/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1980/09/01/1980090102/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1982/03/30/1982000477/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1982/09/24/1982001524/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1982/09/29/1982001527/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "onss-rsz",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "administrative instructions",
+            "contribution rate tables"
+          ],
+          "status": "ready_for_agency_inventory"
+        },
+        {
+          "source_id": "vlaamse-codex",
+          "source_priority_role": "official_consolidated_flemish_code",
+          "works": [
+            "Decreet van 18 mei 2018 houdende de Vlaamse sociale bescherming",
+            "Besluit van de Vlaamse Regering van 30 november 2018 houdende de uitvoering van het decreet van 18 mei 2018 houdende de Vlaamse sociale bescherming"
+          ],
+          "urls": [
+            "https://codex.vlaanderen.be/PrintDocument.ashx?geannoteerd=false&id=1029649",
+            "https://codex.vlaanderen.be/PrintDocument.ashx?datum=&geannoteerd=false&id=1030063&print=true"
+          ],
+          "legal_authority_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decreet/2018/05/18/2018031109/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/besluit/2018/11/30/2018032451/moniteur"
+          ],
+          "target_provisions": [
+            "care-fund affiliation",
+            "annual premium obligation",
+            "2026 ordinary and reduced premium amounts"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-22",
+            "be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-23",
+            "be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25"
+          ]
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "contribution formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "microsimulation contribution reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "EUROMOD contribution reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "employee-social-security-contribution",
+          "destination": "be/regulations/social_security/workers/employee_contributions.yaml",
+          "source_requirements": [
+            "1981 social-security principles law article 38 section 2 worker contribution rate",
+            "1969 workers social-security law and 1969 implementing royal decree contribution-base provisions, supplied until full Article 19 base integration is encoded"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "worker-social-security-article-17-component-rates-and-amounts",
+          "destination": "be/statutes/social_security/workers/contribution_rates.yaml",
+          "source_requirements": [
+            "1969 social-security workers law article 17"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "article-19-selected-remuneration-base-inclusions-and-exclusions",
+          "destination": "be/regulations/social_security/workers/remuneration_base.yaml",
+          "source_requirements": [
+            "1969 social-security workers implementing royal decree article 19 current consolidated locator"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "articles-106-to-110-special-social-security-contribution",
+          "destination": "be/statutes/social_security/special_contribution.yaml",
+          "source_requirements": [
+            "1994 social provisions law articles 106 to 110"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "mobility-budget-cash-balance-special-contribution",
+          "destination": "be/statutes/social_security/mobility_budget.yaml",
+          "source_requirements": [
+            "2019 mobility-budget law articles 8, 22, and 23"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "chapter-10-special-social-security-contributions",
+          "destination": "be/statutes/social_security/chapter_10_special_contributions.yaml",
+          "source_requirements": [
+            "1981 social-security principles law article 38 sections 3ter, 3quater, 3sexies, 3septies, 3novies, and 3terdecies",
+            "1981 social-security principles law articles 39, 39ter, and 39quater",
+            "1969 social-security workers law article 5/2 and 1980 public-sector union-premium law locator for local public union-premium collection"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "self-employed-core-social-security-contributions",
+          "destination": "be/regulations/social_security/self_employed/contributions.yaml",
+          "source_requirements": [
+            "Royal Decree No. 38 of 27 July 1967 articles 11, 12, 12bis, 13, 13bis, and 14"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "pension-solidarity-non-labour-income-contribution",
+          "destination": "be/statutes/social_security/non_labour_income_contributions.yaml",
+          "source_requirements": [
+            "1994 social provisions law article 68 pension solidarity withholding table and complementary-pension capital withholding",
+            "1994 social provisions law articles 68ter and 68quinquies payment, communication, and penalty context",
+            "1994 coordinated health-insurance law article 191 pension health-insurance withholding",
+            "Royal Decree No. 33 of 30 March 1982 article 1 invalidity and prepension withholding and floors",
+            "Royal Decree of 24 September 1982 articles 3 and 10 paid-day and gross-base mechanics"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_security_contributions",
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "flemish-social-protection-annual-premium",
+          "destination": "be-vlg/regulations/social_security/flemish_social_protection/premium.yaml",
+          "source_requirements": [
+            "Flemish Social Protection decree articles 42 and 45",
+            "Flemish Government implementing order article 68 for 2026 ordinary and reduced premium amounts"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "family-benefits-federal-guaranteed",
+      "rule_surface": [
+        "principal-maintenance and Belgium-residence predicates",
+        "child residence and other-benefit conditions",
+        "resource-test exemptions and quarterly ceiling",
+        "regular monthly allowance amount schedule and indexation interface",
+        "public-placement special allowance",
+        "birth and adoption grant gates",
+        "advance-payment interface"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi du 20 juillet 1971 instituant des prestations familiales garanties",
+            "Arrete royal du 25 octobre 1971 portant execution de la loi du 20 juillet 1971 instituant des prestations familiales garanties",
+            "Loi generale relative aux allocations familiales (LGAF) du 19 decembre 1939"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1971/07/20/1971072007/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/moniteur"
+          ],
+          "legal_authority_refs": [
+            "https://www.ejustice.just.fgov.be/mopdf/1971/11/05_1.pdf#page=59",
+            "https://www.ejustice.just.fgov.be/mopdf/1939/12/22_1.pdf#page=6"
+          ],
+          "target_provisions": [
+            "principal maintenance and residence",
+            "child residence and other-benefit condition",
+            "resource-test exemptions",
+            "delegated amount authority",
+            "advance payments",
+            "claim windows",
+            "public-placement exceptions",
+            "implementing resource ceiling",
+            "LGAF rank-based monthly allowance amounts",
+            "LGAF social, single-parent, age, and orphan amount surfaces",
+            "LGAF amount indexation",
+            "birth and adoption grant gates"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be/statute/loi/1971/07/20/1971072007/article/1",
+            "be/statute/loi/1971/07/20/1971072007/article/2",
+            "be/statute/loi/1971/07/20/1971072007/article/3",
+            "be/statute/loi/1971/07/20/1971072007/article/3bis",
+            "be/statute/loi/1971/07/20/1971072007/article/4",
+            "be/statute/loi/1971/07/20/1971072007/article/7",
+            "be/statute/loi/1971/07/20/1971072007/article/10",
+            "be/regulation/moniteur/1971-11-05/mopdf/page-59/1971102528/guaranteed-family-benefits",
+            "be/statute/moniteur/1939-12-22/mopdf/page-6/1939121901/lgaf"
+          ]
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1971/07/20/1971072007/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/justel"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be/statute/loi/1971/07/20/1971072007/article/1",
+            "be/statute/loi/1971/07/20/1971072007/article/2",
+            "be/statute/loi/1971/07/20/1971072007/article/3",
+            "be/statute/loi/1971/07/20/1971072007/article/3bis",
+            "be/statute/loi/1971/07/20/1971072007/article/4",
+            "be/statute/loi/1971/07/20/1971072007/article/7",
+            "be/statute/loi/1971/07/20/1971072007/article/10",
+            "be/regulation/justel/arrete-1971-10-25/1971102528/guaranteed-family-benefits-current/block-1",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 40",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 41",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 42",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 42bis",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 44",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 44ter",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 50bis",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 73bis",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 73quater",
+            "be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 76bis"
+          ]
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "Only if a real Belgium country package or API is found and pinned; unavailable as of 2026-07-01.",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "Potential household-level family-benefit comparison reference after executable access, version pinning, and household-case execution path are obtained.",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "EUROMOD Belgium cash-benefit comparison reference after model version and household-case execution path are pinned.",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "federal-guaranteed-family-benefits-eligibility-and-payment-interface",
+          "destination": "be/statutes/family_benefits/guaranteed_family_benefits.yaml",
+          "source_requirements": [
+            "1971 guaranteed family benefits law articles 1, 2, 3, 3bis, 4, 7, and 10",
+            "1971 implementing royal decree articles 3, 5, 6, 7, and 8",
+            "LGAF coordinated-law amount schedule now supplies the family-allowance amount interface"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "lgaf-coordinated-family-allowance-amount-schedule",
+          "destination": "be/statutes/family_benefits/lgaf_amounts.yaml",
+          "source_requirements": [
+            "1939 LGAF original Moniteur publication image",
+            "LGAF current consolidated Justel Articles 40, 41, 42, 42bis, 44, 44ter, 50bis, 73bis, 73quater, and 76bis after upstream Moniteur identification"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "family-benefits-brussels",
+      "rule_surface": [
+        "child eligibility",
+        "basic benefit",
+        "age supplement",
+        "social supplement",
+        "orphan and disability supplements",
+        "birth and adoption grants"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Ordonnance du 25 avril 2019 reglant l'octroi des prestations familiales"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "famiris",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "current family-benefit rates",
+            "eligibility guidance",
+            "family-benefit calculator"
+          ],
+          "status": "ready_for_agency_inventory"
+        },
+        {
+          "source_id": "iriscare",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "Brussels family-benefit implementation guidance"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "family-benefit parameter and formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "family-benefit microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "family-benefit disposable-income reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "brussels-family-benefit-basic-amounts",
+          "destination": "be-bru/statutes/family_benefits/basic_amounts.yaml",
+          "source_requirements": [
+            "2019 Brussels family-benefits ordinance",
+            "delegated rate instruments before Famiris guidance"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:brussels_family_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-family-benefit-social-supplements",
+          "destination": "be-bru/statutes/family_benefits/social_supplements.yaml",
+          "source_requirements": [
+            "2019 Brussels family-benefits ordinance article 9"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:brussels_family_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-family-benefit-selected-monthly-amount",
+          "destination": "be-bru/statutes/family_benefits/selected_amount.yaml",
+          "source_requirements": [
+            "2019 Brussels family-benefits ordinance articles 7 and 9"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:brussels_family_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-family-benefit-core-child-entitlement",
+          "destination": "be-bru/statutes/family_benefits/eligibility.yaml",
+          "source_requirements": [
+            "2019 Brussels family-benefits ordinance articles 4 and 25 after upstream Moniteur identification"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-family-benefit-regional-routing",
+          "destination": "be/statutes/family_benefits/regional_routing.yaml",
+          "source_requirements": [
+            "Encoded Brussels, Flemish, Walloon, and German-speaking Community family-benefit amount and core eligibility surfaces"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "family-benefits-flanders",
+      "rule_surface": [
+        "child eligibility",
+        "basic benefit",
+        "universal participation supplement",
+        "social supplement",
+        "orphan, disability, and foster-care supplements",
+        "birth and adoption grants"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Decreet van 27 april 2018 tot regeling van de toelagen in het kader van het gezinsbeleid"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=nl&caller=summary&pub_date=2018-07-31&numac=2018040369"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decreet/2018/04/27/2018040369/justel"
+          ],
+          "status": "located"
+        },
+        {
+          "source_id": "groeipakket",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "current family-benefit rates",
+            "eligibility guidance"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "Flemish family-benefit parameter and formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "Flemish family-benefit microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "Flemish family-benefit disposable-income reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "flanders-family-benefit-amounts",
+          "destination": "be-vlg/statutes/family_benefits/amounts.yaml",
+          "source_requirements": [
+            "2018 Flemish Groeipakket decree official article body"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:flanders_family_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "flanders-family-benefit-core-child-entitlement",
+          "destination": "be-vlg/statutes/family_benefits/eligibility.yaml",
+          "source_requirements": [
+            "2018 Flemish Groeipakket decree article 8 official article body"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "family-benefits-wallonia",
+      "rule_surface": [
+        "child eligibility",
+        "basic benefit",
+        "annual age supplement",
+        "social supplement",
+        "single-parent and large-family supplements",
+        "orphan, disability, and foster-care supplements",
+        "birth and adoption grants"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Decret du 8 fevrier 2018 relatif a la gestion et au paiement des prestations familiales"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=fr&caller=summary&pub_date=2018-03-01&numac=2018201006"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2018/02/08/2018201006/justel"
+          ],
+          "status": "located"
+        },
+        {
+          "source_id": "aviq",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "current family-benefit rates",
+            "eligibility guidance"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "Walloon family-benefit parameter and formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "Walloon family-benefit microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "Walloon family-benefit disposable-income reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "wallonia-family-benefit-amounts",
+          "destination": "be-wal/statutes/family_benefits/amounts.yaml",
+          "source_requirements": [
+            "2018 Walloon family-benefit decree official article body"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:wallonia_family_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "wallonia-family-benefit-core-child-entitlement",
+          "destination": "be-wal/statutes/family_benefits/eligibility.yaml",
+          "source_requirements": [
+            "2018 Walloon family-benefit decree articles 4, 5, and 6 official article bodies"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "family-benefits-german-speaking-community",
+      "rule_surface": [
+        "child eligibility",
+        "basic benefit",
+        "annual supplement",
+        "large-family supplement",
+        "social supplement",
+        "orphan and disability supplements",
+        "birth and adoption premiums",
+        "2025-2027 indexation freeze",
+        "2025 annual supplement override"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "German-speaking Community decree of 23 April 2018 on family benefits",
+            "German-speaking Community program decree of 22 December 2025"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/decret/2025/12/22/2026001207/moniteur"
+          ],
+          "legal_authority_refs": [
+            "https://www.ejustice.just.fgov.be/mopdf/2018/06/12_1.pdf#page=93",
+            "https://www.ejustice.just.fgov.be/mopdf/2026/03/02_1.pdf#page=170"
+          ],
+          "target_provisions": [
+            "basic child benefit",
+            "annual supplement",
+            "large-family supplement",
+            "social supplement",
+            "disability supplement",
+            "orphan supplements",
+            "birth and adoption premiums",
+            "2025-2027 family-benefit indexation freeze",
+            "2025 annual supplement"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits",
+            "be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1"
+          ]
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current"
+          ]
+        },
+        {
+          "source_id": "ostbelgien",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "current family-benefit rates",
+            "eligibility guidance",
+            "application and administrative forms"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "Only if a real Belgium country package or API is found and pinned; unavailable as of 2026-07-01.",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "Potential household-level family-benefit comparison reference after executable access, version pinning, and household-case execution path are obtained.",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "EUROMOD Belgium cash-benefit comparison reference after model version and household-case execution path are pinned.",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "german-speaking-community-family-benefit-core-amounts",
+          "destination": "be-dg/statutes/family_benefits/amounts.yaml",
+          "source_requirements": [
+            "German-speaking Community decree of 23 April 2018 articles 8, 15, 17, 19, 21, 23, 25, 30, 34, and 38 official Moniteur publication plus current Justel consolidation locator"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "german-speaking-community-family-benefit-2025-freeze-and-supplement",
+          "destination": "be-dg/statutes/family_benefits/amounts.yaml",
+          "source_requirements": [
+            "German-speaking Community program decree of 22 December 2025 article 17 indexation-freeze amendment and article 18 annual-supplement insertion, official Moniteur publication"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "german-speaking-community-family-benefit-core-child-entitlement",
+          "destination": "be-dg/statutes/family_benefits/eligibility.yaml",
+          "source_requirements": [
+            "German-speaking Community decree of 23 April 2018 articles 6 and 9 through 14 official Moniteur publication plus current Justel consolidation locator"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "social-integration-minimum-income",
+      "rule_surface": [
+        "right to social integration",
+        "minimum income categories",
+        "resource test",
+        "residence and nationality predicates",
+        "CPAS Brussels interfaces"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi du 26 mai 2002 concernant le droit a l'integration sociale",
+            "Arrete royal du 11 juillet 2002 portant reglement general en matiere de droit a l'integration sociale",
+            "Loi organique des CPAS, forme valable dans la Region de Bruxelles-Capitale"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/2002/05/26/2002022559/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1976/07/08/1976D70810/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/2002/05/26/2002022559/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1976/07/08/1976D70810/justel"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be/statute/loi/2002/05/26/2002022559/article/3",
+            "be/statute/loi/2002/05/26/2002022559/article/4",
+            "be/statute/loi/2002/05/26/2002022559/article/7",
+            "be/statute/loi/2002/05/26/2002022559/article/14",
+            "be/statute/loi/2002/05/26/2002022559/article/15",
+            "be/regulation/arrete/2002/07/11/2002022564/article/2",
+            "be/regulation/arrete/2002/07/11/2002022564/article/22",
+            "be/regulation/arrete/2002/07/11/2002022564/article/23",
+            "be/regulation/arrete/2002/07/11/2002022564/article/24",
+            "be/regulation/arrete/2002/07/11/2002022564/article/25",
+            "be/regulation/arrete/2002/07/11/2002022564/article/26",
+            "be/regulation/arrete/2002/07/11/2002022564/article/27",
+            "be/regulation/arrete/2002/07/11/2002022564/article/28",
+            "be/regulation/arrete/2002/07/11/2002022564/article/29",
+            "be/regulation/arrete/2002/07/11/2002022564/article/30",
+            "be/regulation/arrete/2002/07/11/2002022564/article/31",
+            "be/regulation/arrete/2002/07/11/2002022564/article/32",
+            "be/regulation/arrete/2002/07/11/2002022564/article/33",
+            "be/regulation/arrete/2002/07/11/2002022564/article/34",
+            "be/regulation/arrete/2002/07/11/2002022564/article/35"
+          ]
+        },
+        {
+          "source_id": "spp-social-integration",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "RIS / leefloon rates",
+            "CPAS implementation guidance"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "social-assistance formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "minimum-income microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "social-assistance comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "ris-article-3-4-7-eligibility",
+          "destination": "be/statutes/social_integration/eligibility.yaml",
+          "source_requirements": [
+            "2002 social integration law articles 3, 4, and 7",
+            "2002 social integration implementing royal decree article 2"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_integration_income",
+            "belmod:social_assistance"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "ris-category-rates-and-resource-test",
+          "destination": "be/statutes/social_integration/minimum_income_amounts.yaml",
+          "source_requirements": [
+            "2002 social integration law articles 14 and 15",
+            "2002 implementing royal decree",
+            "supplied current index factor pending delegated current-rate source"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_integration_income"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "ris-earned-income-disregards",
+          "destination": "be/regulations/social_integration/earned_income_disregards.yaml",
+          "source_requirements": [
+            "2002 social integration implementing royal decree article 35"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_integration_income"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "ris-article-22-through-35-resource-calculation",
+          "destination": "be/regulations/social_integration/resource_calculation.yaml",
+          "source_requirements": [
+            "2002 social integration implementing royal decree articles 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, and 35"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_integration_income",
+            "belmod:social_assistance"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "ris-article-14-payable-amount-bridge",
+          "destination": "be/statutes/social_integration/payable_amount.yaml",
+          "source_requirements": [
+            "2002 social integration law articles 3, 4, 7, 14, and 15",
+            "2002 social integration implementing royal decree articles 22 through 35"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:social_integration_income",
+            "belmod:social_assistance"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "unemployment-insurance",
+      "rule_surface": [
+        "eligibility",
+        "family category",
+        "benefit phase",
+        "previous wage base",
+        "degressivity"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Arrete royal du 25 novembre 1991 portant reglementation du chomage"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/arrete/1991/11/25/1991013192/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/arrete/1991/11/25/1991013192/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "onem-rva",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "unemployment benefit rates",
+            "administrative instructions"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "unemployment formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "unemployment microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "unemployment comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "unemployment-article-110-household-status",
+          "destination": "be/regulations/unemployment/household_status.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 110 worker with family charge, isolated worker, and cohabiting worker status classification"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "unemployment-articles-30-and-33-admission",
+          "destination": "be/regulations/unemployment/admission.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 30 full-time worker admission stage and reference-period extension rules",
+            "1991 unemployment royal decree article 33 voluntary part-time worker weekly-hours and half-day stage rules"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "unemployment-wage-caps-and-holiday-allowance",
+          "destination": "be/regulations/unemployment/benefit_amount.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 111 wage caps",
+            "1991 unemployment royal decree article 131ter youth and senior holiday allowance"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "unemployment-minimum-daily-amounts",
+          "destination": "be/regulations/unemployment/minimum_daily_amounts.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 110 household status classification",
+            "1991 unemployment royal decree article 115"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "unemployment-article-114-duration-and-degressivity",
+          "destination": "be/regulations/unemployment/benefit_amount.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 30 full-time worker admission stage",
+            "1991 unemployment royal decree article 33 voluntary part-time worker admission stage",
+            "1991 unemployment royal decree article 114 ordinary unemployment duration, rate, cap-selection, and temporary-unemployment replacement-rate rules",
+            "1991 unemployment royal decree article 116 non-running periods, extensions, income-guarantee continuation, and readmission gates"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "unemployment-ordinary-payable-amount-bridge",
+          "destination": "be/regulations/unemployment/payable_amount.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 110 household status classification",
+            "1991 unemployment royal decree article 114 ordinary unemployment daily amount",
+            "1991 unemployment royal decree article 111 wage caps",
+            "1991 unemployment royal decree article 115 ordinary minimum daily amounts"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "unemployment-temporary-payable-amount-bridge",
+          "destination": "be/regulations/unemployment/payable_amount.yaml",
+          "source_requirements": [
+            "1991 unemployment royal decree article 114 temporary-unemployment daily amount",
+            "1991 unemployment royal decree article 115 temporary-unemployment minimum daily amounts"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:unemployment"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "sickness-disability-health-insurance",
+      "rule_surface": [
+        "sickness indemnity",
+        "invalidity indemnity",
+        "replacement rates",
+        "ceilings",
+        "dependant status"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi relative a l'assurance obligatoire soins de sante et indemnites coordonnee le 14 juillet 1994",
+            "Arrete royal du 3 juillet 1996 portant execution de la loi relative a l'assurance obligatoire soins de sante et indemnites"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/justel"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be/statute/loi/1994/07/14/1994071451/article/32",
+            "be/statute/loi/1994/07/14/1994071451/article/86",
+            "be/statute/loi/1994/07/14/1994071451/article/87",
+            "be/statute/loi/1994/07/14/1994071451/article/93",
+            "be/statute/loi/1994/07/14/1994071451/article/112",
+            "be/statute/loi/1994/07/14/1994071451/article/113",
+            "be/statute/loi/1994/07/14/1994071451/article/114",
+            "be/statute/loi/1994/07/14/1994071451/article/114bis",
+            "be/statute/loi/1994/07/14/1994071451/article/128",
+            "be/statute/loi/1994/07/14/1994071451/article/131",
+            "be/statute/loi/1994/07/14/1994071451/article/130",
+            "be/regulation/arrete/1996/07/03/1996022344/article/203",
+            "be/regulation/arrete/1996/07/03/1996022344/article/203-1",
+            "be/regulation/arrete/1996/07/03/1996022344/article/205-1",
+            "be/regulation/arrete/1996/07/03/1996022344/article/206",
+            "be/regulation/arrete/1996/07/03/1996022344/article/206-1",
+            "be/regulation/arrete/1996/07/03/1996022344/article/207",
+            "be/regulation/arrete/1996/07/03/1996022344/article/207-1",
+            "be/regulation/arrete/1996/07/03/1996022344/article/207-2",
+            "be/regulation/arrete/1996/07/03/1996022344/article/211",
+            "be/regulation/arrete/1996/07/03/1996022344/article/212",
+            "be/regulation/arrete/1996/07/03/1996022344/article/213",
+            "be/regulation/arrete/1996/07/03/1996022344/article/214",
+            "be/regulation/arrete/1996/07/03/1996022344/article/216",
+            "be/regulation/arrete/1996/07/03/1996022344/article/217",
+            "be/regulation/arrete/1996/07/03/1996022344/article/219bis",
+            "be/regulation/arrete/1996/07/03/1996022344/article/222"
+          ]
+        },
+        {
+          "source_id": "socialsecurity-belgium",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "sickness and invalidity guidance",
+            "rate tables"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "sickness/disability formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "health-insurance indemnity reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "health-insurance comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "article-86-112-health-insurance-holder-status",
+          "destination": "be/statutes/health_insurance/insured_status.yaml",
+          "source_requirements": [
+            "1994 coordinated health insurance law article 32 item 3 controlled unemployment and item 5 domestic-work status",
+            "1994 coordinated health insurance law article 86 holder categories for incapacity indemnities",
+            "1994 coordinated health insurance law article 112 maternity-indemnity reference to Article 86 holders",
+            "1994 coordinated health insurance law article 131 thirty-day holder/incapacity continuity condition"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "sickness-invalidity-replacement-rate",
+          "destination": "be/regulations/health_insurance/incapacity/indemnity_rates.yaml",
+          "source_requirements": [
+            "1994 coordinated health insurance law articles 87 and 93",
+            "3 July 1996 implementing royal decree articles 211, 212, 213, and 214"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:sickness_benefits",
+            "belmod:sickness_invalidity"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "health-insurance-waiting-stage-and-continuing-entitlement",
+          "destination": "be/regulations/health_insurance/waiting_stage.yaml",
+          "source_requirements": [
+            "1994 coordinated health insurance law articles 113, 128, and 130",
+            "3 July 1996 implementing royal decree articles 203, 203/1, 205/1, 206, 206/1, 207, 207/1, and 207/2"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:sickness_benefits",
+            "openfisca-belgium:maternity_benefits",
+            "belmod:health_insurance"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "maternity-protection-periods",
+          "destination": "be/statutes/health_insurance/maternity/protection_periods.yaml",
+          "source_requirements": [
+            "1994 coordinated health insurance law articles 113, 114, 114bis, and 116/1 through 116/6"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:maternity_benefits",
+            "belmod:maternity_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "maternity-indemnity-rates",
+          "destination": "be/regulations/health_insurance/maternity/indemnity_rates.yaml",
+          "source_requirements": [
+            "1994 coordinated health insurance law article 113",
+            "3 July 1996 implementing royal decree articles 216, 217, 219bis, and 222"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:maternity_benefits",
+            "belmod:maternity_benefits"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "long-term-care-and-disability-brussels",
+      "rule_surface": [
+        "disability allowances",
+        "income replacement allowance",
+        "integration allowance",
+        "elderly care interfaces",
+        "Brussels care supports"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi du 27 fevrier 1987 relative aux allocations aux personnes handicapees"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "iriscare",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "Brussels disability and care-support guidance"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "disability allowance formula reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "disability benefit microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "disability benefit comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "disability-income-replacement-allowance",
+          "destination": "be/statutes/disability/allowances.yaml",
+          "source_requirements": [
+            "1987 disability allowances law",
+            "implementing decrees after Moniteur/Justel ELI corpus"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:disability_allowances"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "pensions-and-income-guarantee",
+      "rule_surface": [
+        "retirement pension interfaces",
+        "survivor pension interfaces",
+        "GRAPA / IGO eligibility",
+        "resource test",
+        "household category"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi du 22 mars 2001 instituant la garantie de revenus aux personnes agees",
+            "Arrete royal no 50 du 24 octobre 1967 relatif a la pension de retraite et de survie des travailleurs salaries",
+            "Arrete royal du 23 decembre 1996 portant execution des articles 15, 16 et 17 de la loi du 26 juillet 1996 portant modernisation de la securite sociale et assurant la viabilite des regimes legaux des pensions"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/2001/03/22/2001022201/moniteur",
+            "https://www.ejustice.just.fgov.be/mopdf/1967/10/27_1.pdf#Page64",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/12/23/1997022010/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/2001/03/22/2001022201/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1967/10/24/1967102410/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/12/23/1997022010/justel"
+          ],
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be/statute/loi/2001/03/22/2001022201/article/6",
+            "be/statute/loi/2001/03/22/2001022201/article/7",
+            "be/statute/loi/2001/03/22/2001022201/article/11",
+            "be/regulation/arrete/1967/10/24/1967102410/article/7",
+            "be/regulation/arrete/1996/12/23/1997022010/article/2",
+            "be/regulation/arrete/1996/12/23/1997022010/article/4",
+            "be/regulation/arrete/1996/12/23/1997022010/article/5",
+            "be/regulation/arrete/1996/12/23/1997022010/article/7",
+            "be/regulation/arrete/1996/12/23/1997022010/article/7bis",
+            "be/regulation/arrete/1996/12/23/1997022010/article/8"
+          ]
+        },
+        {
+          "source_id": "socialsecurity-belgium",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "pension and GRAPA guidance",
+            "rate tables"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "pension and GRAPA reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "pension microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "pension and minimum-income comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "grapa-income-guarantee",
+          "destination": "be/statutes/income_guarantee_for_elderly/amounts.yaml",
+          "source_requirements": [
+            "2001 GRAPA law",
+            "implementing royal decrees and rate tables after legal source check"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:grapa"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "grapa-resource-selection-and-offset",
+          "destination": "be/statutes/income_guarantee_for_elderly/resources.yaml",
+          "source_requirements": [
+            "2001 GRAPA law articles 7 and 11",
+            "delegated Article 11 exemption amount supplied by royal-decree module or input"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:grapa",
+            "belmod:grapa"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "grapa-payable-amount-after-resources",
+          "destination": "be/statutes/income_guarantee_for_elderly/payable_amount.yaml",
+          "source_requirements": [
+            "2001 GRAPA law article 6 maximum amount",
+            "2001 GRAPA law article 7 resource and pension selection",
+            "2001 GRAPA law article 11 resource offset"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:grapa",
+            "belmod:grapa"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "worker-retirement-survivor-transition-pension",
+          "destination": "be/regulations/pensions/workers/retirement_and_survivor.yaml",
+          "source_requirements": [
+            "Royal Decree No. 50 article 7",
+            "Royal Decree of 23 December 1996 articles 2, 4, 5, 7, 7bis, and 8"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:pensions",
+            "belmod:pensions",
+            "euromod-belgium:pensions"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "housing-assistance-brussels",
+      "rule_surface": [
+        "social housing eligibility",
+        "rent allowance",
+        "income ceilings",
+        "household composition",
+        "housing cost inputs"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Ordonnance du 17 juillet 2003 portant le Code bruxellois du Logement"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/justel",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "brussels-housing",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "rent allowance guidance",
+            "social housing eligibility",
+            "income ceiling tables"
+          ],
+          "status": "ready_for_agency_inventory"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "housing support reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "housing support microsimulation reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "housing comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "brussels-rent-allowance-source-slice",
+          "destination": "be-bru/statutes/housing/rent_allowance.yaml",
+          "source_requirements": [
+            "Brussels Housing Code",
+            "delegated rent-allowance instruments before agency guidance"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:housing"
+          ]
+        }
+      ]
+    },
+    {
+      "track_id": "student-support",
+      "rule_surface": [
+        "student grant eligibility",
+        "household income test",
+        "community competence",
+        "Brussels residence interface"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "community decrees and implementing orders on student grants"
+          ],
+          "eli_refs": [],
+          "status": "needs_source_discovery"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "works": [
+            "student-support legal locators"
+          ],
+          "status": "needs_source_discovery"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "student-support reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "student-support microsimulation reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "student-grant-source-inventory",
+          "destination": "data/corpus/inventory/be/student-support-source-locators.json",
+          "source_requirements": [
+            "official community decree and order locators"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:student_support"
+          ]
+        }
+      ]
+    },
+    {
+      "track_id": "consumption-and-indirect-tax",
+      "rule_surface": [
+        "standard VAT rate",
+        "reduced VAT rates",
+        "exempt treatment",
+        "consumption interfaces",
+        "excise interfaces"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Loi du 3 juillet 1969 creant le Code de la taxe sur la valeur ajoutee",
+            "Arrete royal no. 20 du 20 juillet 1970 fixant les taux de la taxe sur la valeur ajoutee",
+            "Loi du 7 janvier 1998 concernant la structure et les taux des droits d'accise sur l'alcool et les boissons alcoolisees",
+            "Loi du 3 avril 1997 relative au regime fiscal des tabacs manufactures",
+            "Loi-programme du 27 decembre 2004, produits energetiques et electricite"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1998/01/07/1998003047/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1997/04/03/1997003241/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/2004/12/27/2004021170/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/justel"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "justel-excise-current",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "works": [
+            "current alcohol excise law",
+            "current manufactured tobacco excise law",
+            "current energy-product excise provisions"
+          ],
+          "corpus_citation_paths": [
+            "be/statute/justel/excise/alcohol/1998003047/Article 5",
+            "be/statute/justel/excise/alcohol/1998003047/Article 9",
+            "be/statute/justel/excise/alcohol/1998003047/Article 12",
+            "be/statute/justel/excise/alcohol/1998003047/Article 15",
+            "be/statute/justel/excise/alcohol/1998003047/Article 17",
+            "be/statute/justel/excise/tobacco/1997003241/Article 3",
+            "be/statute/justel/excise/energy-products/2004021170/Article 419"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "spf-finances",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "current FisconetPlus VAT Code consolidation",
+            "current FisconetPlus VAT royal-decrees consolidation",
+            "VAT rate guidance",
+            "VAT manuals"
+          ],
+          "corpus_citation_paths": [
+            "be/statute/fisconetplus/vat-code/Article 41",
+            "be/statute/fisconetplus/vat-code/Article 44",
+            "be/regulation/fisconetplus/vat/royal-decree-20/Article 1",
+            "be/regulation/fisconetplus/vat/royal-decree-20/TABLEAU A",
+            "be/regulation/fisconetplus/vat/royal-decree-20/TABLEAU B",
+            "be/regulation/fisconetplus/vat/royal-decree-20/TABLEAU C"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "VAT parameter reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "belmod",
+          "role": "indirect tax reference after pinning",
+          "files": []
+        },
+        {
+          "oracle_id": "euromod-belgium",
+          "role": "VAT comparison reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "vat-rate-scale",
+          "destination": "be/regulations/vat/rates.yaml",
+          "source_requirements": [
+            "VAT Code article 37 source family and Royal Decree no. 20 article 1",
+            "Royal Decree no. 20 annex Tables A, B, and C for selected household consumption category mapping",
+            "VAT Code articles 41 and 44 for supplied-predicate exemption override handling"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:vat"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "excise-rates",
+          "destination": "be/statutes/excise/rates.yaml",
+          "source_requirements": [
+            "current alcohol, tobacco, and energy-product excise rate articles from consolidated Justel law after Moniteur ELI locators"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "regional-inheritance-tax",
+      "rule_surface": [
+        "regional inheritance-tax routing",
+        "beneficiary relationship classes",
+        "Flemish progressive inheritance-tax rate schedule",
+        "Brussels-Capital progressive inheritance-tax rate schedule",
+        "Walloon current and future 2028 progressive inheritance-tax rate schedules",
+        "estate and acquisition base interfaces"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Decreet van 13 december 2013 houdende de Vlaamse Codex Fiscaliteit"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2013/12/13/2013036154/moniteur"
+          ],
+          "target_provisions": [
+            "Vlaamse Codex Fiscaliteit article 2.7.4.1.1"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "vlaamse-codex",
+          "source_priority_role": "official_consolidated_article_api_after_original_publication",
+          "works": [
+            "Vlaamse Codex Fiscaliteit article-version API"
+          ],
+          "eli_refs": [
+            "https://codex.opendata.api.vlaanderen.be/api/WetgevingArtikelVersie/1344092"
+          ],
+          "target_provisions": [
+            "current article 2.7.4.1.1 rate tables"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "vlaamse-belastingdienst",
+          "source_priority_role": "agency_guidance_after_legal_source_identification",
+          "works": [
+            "Vlaamse Belastingdienst inheritance-tax guidance"
+          ],
+          "eli_refs": [],
+          "target_provisions": [
+            "public explanation and calculators after legal text check"
+          ],
+          "status": "supporting_reference"
+        },
+        {
+          "source_id": "fisconetplus",
+          "source_priority_role": "official_consolidated_tax_article_text_after_original_publication_or_official_locator",
+          "works": [
+            "Brussels-Capital and Walloon Code des droits de succession article 48"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2023/07/06/2023045579/moniteur",
+            "https://wallex.wallonie.be/eli/loi-decret/1936/03/31/1111111111"
+          ],
+          "target_provisions": [
+            "Brussels-Capital succession-duty code article 48",
+            "Walloon succession-duty code article 48 current and future 2028 tables"
+          ],
+          "corpus_citation_paths": [
+            "be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1",
+            "be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "status": "not_pinned"
+        },
+        {
+          "oracle_id": "belmod",
+          "status": "not_pinned"
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "flanders-inheritance-tax-rate-scale",
+          "destination": "be-vlg/statutes/inheritance_tax/rate_scale.yaml",
+          "source_requirements": [
+            "Vlaamse Codex Fiscaliteit article 2.7.4.1.1 current article-version text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:inheritance_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-inheritance-tax-rate-scale",
+          "destination": "be-bru/statutes/inheritance_tax/rate_scale.yaml",
+          "source_requirements": [
+            "Brussels-Capital succession-duty code article 48 current FisconetPlus article text after Moniteur ordinance identifier"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:inheritance_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "wallonia-inheritance-tax-rate-scale",
+          "destination": "be-wal/statutes/inheritance_tax/rate_scale.yaml",
+          "source_requirements": [
+            "Walloon succession-duty code article 48 current and future 2028 FisconetPlus article text after Wallex code locator"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:inheritance_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-inheritance-tax-regional-routing",
+          "destination": "be/statutes/inheritance_tax/regional_routing.yaml",
+          "source_requirements": [
+            "Encoded Flemish, Brussels-Capital, and Walloon inheritance-tax statutory rate schedules"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "regional-gift-tax",
+      "rule_surface": [
+        "regional gift-tax routing",
+        "movable and immovable gift classification",
+        "relationship classes",
+        "Flemish gift-tax rate schedule",
+        "Brussels-Capital gift-tax rate schedule",
+        "Brussels-Capital article-131bis movable-gift exemption",
+        "Brussels and Walloon movable-gift donor-death condition or term exclusions",
+        "Walloon current and future 2028 gift-tax rate schedules"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Decreet van 13 december 2013 houdende de Vlaamse Codex Fiscaliteit"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2013/12/13/2013036154/moniteur"
+          ],
+          "target_provisions": [
+            "Vlaamse Codex Fiscaliteit article 2.8.4.1.1"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "vlaamse-codex",
+          "source_priority_role": "official_consolidated_article_api_after_original_publication",
+          "works": [
+            "Vlaamse Codex Fiscaliteit article-version API"
+          ],
+          "eli_refs": [
+            "https://codex.opendata.api.vlaanderen.be/api/WetgevingArtikelVersie/1461936"
+          ],
+          "target_provisions": [
+            "current article 2.8.4.1.1 rate tables"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "vlaamse-belastingdienst",
+          "source_priority_role": "agency_guidance_after_legal_source_identification",
+          "works": [
+            "Vlaamse Belastingdienst gift-tax guidance"
+          ],
+          "eli_refs": [],
+          "target_provisions": [
+            "public explanation and calculators after legal text check"
+          ],
+          "status": "supporting_reference"
+        },
+        {
+          "source_id": "fisconetplus",
+          "source_priority_role": "official_consolidated_tax_article_text_after_original_publication_or_official_locator",
+          "works": [
+            "Brussels-Capital and Walloon Code des droits d'enregistrement articles 131 and 131bis"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2023/07/06/2023045579/moniteur",
+            "https://wallex.wallonie.be/eli/loi-decret/1939/11/29/193913002"
+          ],
+          "target_provisions": [
+            "Brussels-Capital registration-duty code article 131",
+            "Brussels-Capital registration-duty code article 131bis",
+            "Walloon registration-duty code articles 131 and 131bis"
+          ],
+          "corpus_citation_paths": [
+            "be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1",
+            "be-bru/statute/fisconetplus/registration-code/article-131bis/guid-f7c88ad4-32bc-4599-adcd-2409f7c71192/block-1",
+            "be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1",
+            "be-wal/statute/fisconetplus/registration-code/article-131bis/guid-9bac3e5f-2e86-4a74-a79e-6466f91b104d/block-1"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "status": "not_pinned"
+        },
+        {
+          "oracle_id": "belmod",
+          "status": "not_pinned"
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "flanders-gift-tax-rate-scale",
+          "destination": "be-vlg/statutes/gift_tax/rate_scale.yaml",
+          "source_requirements": [
+            "Vlaamse Codex Fiscaliteit article 2.8.4.1.1 current article-version text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:gift_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-gift-tax-rate-scale",
+          "destination": "be-bru/statutes/gift_tax/rate_scale.yaml",
+          "source_requirements": [
+            "Brussels-Capital registration-duty code articles 131 and 131bis current FisconetPlus article text after Moniteur ordinance identifier, including article-131 death-condition exclusion and article-131bis successoral-pact movable-gift exemption text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:gift_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "wallonia-gift-tax-rate-scale",
+          "destination": "be-wal/statutes/gift_tax/rate_scale.yaml",
+          "source_requirements": [
+            "Walloon registration-duty code articles 131 and 131bis current and future 2028 FisconetPlus article text after Wallex code locator, including article-131bis donor-death condition and term exclusions"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:gift_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-gift-tax-regional-routing",
+          "destination": "be/statutes/gift_tax/regional_routing.yaml",
+          "source_requirements": [
+            "Encoded Flemish, Brussels-Capital, and Walloon gift-tax statutory rate schedules"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "regional-real-property-tax",
+      "rule_surface": [
+        "regional immovable-withholding-tax rates",
+        "CIR 1992 Brussels/Walloon base rates, article-257 reductions, article-258 reduction-base mechanics, and article-259 rent pass-through",
+        "Flemish immovable-withholding rates and reductions",
+        "cadastral-income interfaces",
+        "family and disability reductions",
+        "municipal and provincial surcharge interfaces"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Decreet van 13 december 2013 houdende de Vlaamse Codex Fiscaliteit"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2013/12/13/2013036154/moniteur"
+          ],
+          "target_provisions": [
+            "Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "vlaamse-codex",
+          "source_priority_role": "official_consolidated_article_api_after_original_publication",
+          "works": [
+            "Vlaamse Codex Fiscaliteit article-version API"
+          ],
+          "eli_refs": [
+            "https://codex.opendata.api.vlaanderen.be/api/WetgevingArtikelVersie/1536885",
+            "https://codex.opendata.api.vlaanderen.be/api/WetgevingArtikelVersie/1521170"
+          ],
+          "target_provisions": [
+            "current articles 2.1.4.0.1 and 2.1.5.0.1"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "vlaamse-belastingdienst",
+          "source_priority_role": "agency_guidance_after_legal_source_identification",
+          "works": [
+            "Vlaamse Belastingdienst immovable-withholding-tax guidance"
+          ],
+          "eli_refs": [],
+          "target_provisions": [
+            "public explanation and calculators after legal text check"
+          ],
+          "status": "supporting_reference"
+        },
+        {
+          "source_id": "fisconetplus",
+          "source_priority_role": "official_consolidated_tax_code_after_moniteur_eli_and_justel_locator",
+          "works": [
+            "Code des impots sur les revenus 1992, articles 255, 257, 258, and 259"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel"
+          ],
+          "target_provisions": [
+            "CIR 1992 article 255 immovable-withholding rates",
+            "CIR 1992 article 257 reductions",
+            "CIR 1992 article 258 reduction timing, cumulation, single-dwelling, and professional-use apportionment limits",
+            "CIR 1992 article 259 rent deduction pass-through for article-257 items 2 and 3",
+            "CIR 1992 article 464/1 additional centimes"
+          ],
+          "corpus_citation_paths": [
+            "be/statute/fisconetplus/cir92/revenus-2025/page-446",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-447",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-448",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-686"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "status": "not_pinned"
+        },
+        {
+          "oracle_id": "belmod",
+          "status": "not_pinned"
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "flanders-immovable-withholding-rate-and-core-reductions",
+          "destination": "be-vlg/statutes/property_tax/immovable_withholding.yaml",
+          "source_requirements": [
+            "Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1 current article-version text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:property_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "immovable-withholding-additional-centimes",
+          "destination": "be/statutes/property_tax/additional_centimes.yaml",
+          "source_requirements": [
+            "CIR 1992 article 464/1 current FisconetPlus consolidated text for income year 2025 / assessment year 2026"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:property_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-cir92-immovable-withholding-base-and-reductions",
+          "destination": "be/statutes/property_tax/immovable_withholding.yaml",
+          "source_requirements": [
+            "CIR 1992 articles 255, 257, 258, and 259 current FisconetPlus consolidated text for income year 2025 / assessment year 2026, including article-258 designated-dwelling/professional-use apportionment limits and article-259 rent deduction pass-through"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:property_tax"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-immovable-withholding-regional-routing",
+          "destination": "be/statutes/property_tax/regional_routing.yaml",
+          "source_requirements": [
+            "Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1 current article-version text",
+            "CIR 1992 articles 255, 257, 258, 259, and 464/1 current FisconetPlus consolidated text"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:property_tax"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "vehicle-tax-brussels",
+      "rule_surface": [
+        "circulation tax",
+        "tax on entry into service",
+        "vehicle-characteristic rate interfaces",
+        "Brussels regional competence"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Code des taxes assimilees aux impots sur les revenus",
+            "Brussels ordinances and delegated instruments governing taxe de circulation and taxe de mise en circulation"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "works": [
+            "Code des taxes assimilees aux impots sur les revenus"
+          ],
+          "corpus_citation_paths": [
+            "be/statute/justel/code-taxes-assimilees/1965112350"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "brussels-fiscality",
+          "source_priority_role": "agency_guidance_after_law",
+          "documents": [
+            "Taxe de circulation fiscal sheet, index 2026",
+            "Taxe de mise en circulation fiscal sheet, index 2026",
+            "MyTax road-tax tariffs, valid 1 July 2025 to 30 June 2026",
+            "MyTax road-tax tariffs retrieved on 1 July 2026"
+          ],
+          "corpus_citation_paths": [
+            "be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1",
+            "be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5",
+            "be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6",
+            "be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-7",
+            "be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-1",
+            "be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-2025-2026/block-1",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-2025-2026/block-6",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-2025-2026/block-7",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-2025-2026/block-14",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-2025-2026/block-15",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-1",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-6",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-7",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-14",
+            "be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-15"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [],
+      "first_rule_batches": [
+        {
+          "id": "brussels-circulation-and-entry-tax",
+          "destination": "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml",
+          "source_requirements": [
+            "Code des taxes assimilees aux impots sur les revenus checked before Brussels Fiscality 2026 rate sheets"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-entry-into-service-detailed-tax",
+          "destination": "be-bru/statutes/vehicle_tax/entry_into_service_detailed.yaml",
+          "source_requirements": [
+            "Code des taxes assimilees aux impots sur les revenus checked before Brussels Fiscality MyTax current 1 July 2026 tariff table"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-passenger-car-regional-tax-routing",
+          "destination": "be/statutes/vehicle_tax/regional_routing.yaml",
+          "source_requirements": [
+            "Encoded Brussels, Flemish, and Walloon passenger-car annual circulation-tax and entry-into-service tax surfaces"
+          ],
+          "oracle_checks": [
+            "household-level external calculator or model still required; BEAMM is not an oracle"
+          ],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "vehicle-tax-flanders",
+      "rule_surface": [
+        "annual circulation tax",
+        "tax on entry into service",
+        "additional LPG circulation tax",
+        "municipal decime",
+        "post-2020 CO2 and euronorm adjustments",
+        "electric and hydrogen BIV amount",
+        "Flemish regional competence"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Vlaamse Codex Fiscaliteit of 13 December 2013"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2013/12/13/2013036154/moniteur"
+          ],
+          "status": "eli_located"
+        },
+        {
+          "source_id": "vlaamse-codex",
+          "source_priority_role": "official_consolidated_article_text_after_moniteur_eli",
+          "documents": [
+            "Vlaamse Codex Fiscaliteit article 2.2.4.0.1 current circulation-tax rates",
+            "Vlaamse Codex Fiscaliteit article 2.2.4.0.4 current additional LPG circulation tax",
+            "Vlaamse Codex Fiscaliteit article 2.2.4.0.5 current municipal decime",
+            "Vlaamse Codex Fiscaliteit article 2.3.4.1.1 current BIV vehicle scope and electric/hydrogen amount",
+            "Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 current post-2020 BIV formula",
+            "Vlaamse Codex Fiscaliteit article 2.3.4.1.3 current BIV minimum and maximum",
+            "Vlaamse Codex Fiscaliteit article 2.3.5.0.1 current natural-gas BIV reduction"
+          ],
+          "corpus_citation_paths": [
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910",
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374",
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.5/version-1422880",
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918",
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224",
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227",
+            "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [],
+      "first_rule_batches": [
+        {
+          "id": "flemish-circulation-and-entry-tax-core",
+          "destination": "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml",
+          "source_requirements": [
+            "Moniteur ELI for the Vlaamse Codex Fiscaliteit checked before Codex Open Data current article-version JSON"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "vehicle-tax-wallonia",
+      "rule_surface": [
+        "annual circulation tax",
+        "additional LPG circulation tax",
+        "tax on entry into service",
+        "base amount by engine power",
+        "CO2, mass, and energy coefficients",
+        "vehicle-age degressivity",
+        "large-family and single-parent reductions",
+        "oldtimer amount",
+        "Walloon regional competence"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Walloon decree of 7 September 2023 modifying the Code des taxes assimilees for the TMC formula",
+            "Walloon decree of 30 May 2025 adapting the TMC fuel coefficients and reductions"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/decret/2023/09/07/2023046826/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/decret/2025/05/30/2025004290/moniteur"
+          ],
+          "corpus_citation_paths": [
+            "be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1",
+            "be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "wallex",
+          "source_priority_role": "official_walloon_legislation_locator_after_moniteur",
+          "documents": [
+            "Wallex current Code des taxes assimilees vehicle-tax locator"
+          ],
+          "corpus_citation_paths": [
+            "be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "spw-finances",
+          "source_priority_role": "agency_indexed_parameter_source_after_law",
+          "documents": [
+            "SPW Finances indexed TMC passenger-car table valid 1 July 2026 to 30 June 2027",
+            "SPW Finances indexed annual circulation-tax table valid 1 July 2026 to 30 June 2027"
+          ],
+          "corpus_citation_paths": [
+            "be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1",
+            "be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1"
+          ],
+          "status": "corpus_ingested"
+        }
+      ],
+      "oracle_surfaces": [],
+      "first_rule_batches": [
+        {
+          "id": "walloon-entry-into-service-passenger-car-tax",
+          "destination": "be-wal/statutes/vehicle_tax/entry_into_service.yaml",
+          "source_requirements": [
+            "Moniteur ELI decrees checked before Wallex locator and SPW Finances indexed 2026-2027 passenger-car table"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        },
+        {
+          "id": "walloon-annual-circulation-passenger-car-tax",
+          "destination": "be-wal/statutes/vehicle_tax/circulation_tax.yaml",
+          "source_requirements": [
+            "Code des taxes assimilees and Walloon vehicle-tax locator checked before SPW Finances indexed 2026-2027 annual circulation-tax PDF"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        }
+      ]
+    },
+    {
+      "track_id": "residency-nationality-immigration",
+      "rule_surface": [
+        "legal residence",
+        "habitual residence",
+        "Brussels domicile",
+        "EU and non-EU status",
+        "program-specific residence tests"
+      ],
+      "official_source_refs": [
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "nationality, residence, and foreigner-status laws",
+            "program-specific residence provisions"
+          ],
+          "eli_refs": [],
+          "status": "needs_source_discovery"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "consolidated_locator_not_legal_authority",
+          "works": [
+            "residency and nationality legal locators"
+          ],
+          "status": "needs_source_discovery"
+        }
+      ],
+      "oracle_surfaces": [
+        {
+          "oracle_id": "openfisca-belgium",
+          "role": "entity and residence predicate reference after pinning",
+          "files": []
+        }
+      ],
+      "first_rule_batches": [
+        {
+          "id": "brussels-residence-predicate-source-inventory",
+          "destination": "data/corpus/inventory/be/residency-source-locators.json",
+          "source_requirements": [
+            "official residence, nationality, and domicile source locators"
+          ],
+          "oracle_checks": [
+            "openfisca-belgium:residence"
+          ]
+        }
+      ]
+    }
+  ]
+}

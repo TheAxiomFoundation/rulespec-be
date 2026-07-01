@@ -1,0 +1,114 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_selected_monthly_amount
+  - be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_eligible_monthly_amount
+  - be-bru:statutes/family_benefits/selected_amount#brussels_family_benefits_selected_monthly_amount
+  - be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_eligible_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_selected_monthly_amount
+  - be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_eligible_monthly_amount
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_selected_monthly_amount
+  - be-dg:statutes/family_benefits/eligibility#german_speaking_community_family_benefits_eligible_monthly_amount
+module:
+  summary: |-
+    This module provides a Belgian-facing routing bridge over the encoded
+    Brussels, Flemish, Walloon, and German-speaking Community family-benefit
+    monthly amount and eligibility-gated amount surfaces. It leaves pre-2019
+    federal rules, delegated current indexation, residual proof predicates, and
+    payment interfaces to later modules.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/4
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/25
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/8
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
+      - be-wal/statute/decret/2018/02/08/2018201006/article/4
+      - be-wal/statute/decret/2018/02/08/2018201006/article/5
+      - be-wal/statute/decret/2018/02/08/2018201006/article/6
+      - be-wal/statute/decret/2018/02/08/2018201006/article/9
+      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+    values:
+      belgium_family_benefits_region_flanders: 0
+      belgium_family_benefits_region_brussels: 1
+      belgium_family_benefits_region_wallonia: 2
+      belgium_family_benefits_region_german_speaking_community: 3
+rules:
+  - name: belgium_family_benefits_region_flanders
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Flemish family-benefit module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: belgium_family_benefits_region_brussels
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels family-benefit module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: belgium_family_benefits_region_wallonia
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Walloon family-benefit module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          2
+  - name: belgium_family_benefits_region_german_speaking_community
+    kind: parameter
+    dtype: Count
+    source: Structural selector for German-speaking Community family-benefit module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          3
+  - name: belgium_family_benefits_selected_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Regional and community bridge over encoded Belgian family-benefit amount rules
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_family_benefits_region == belgium_family_benefits_region_flanders:
+              flanders_family_benefits_selected_monthly_amount
+          else:
+              if belgium_family_benefits_region == belgium_family_benefits_region_brussels:
+                  brussels_family_benefits_selected_monthly_amount
+              else:
+                  if belgium_family_benefits_region == belgium_family_benefits_region_wallonia:
+                      wallonia_family_benefits_selected_monthly_amount
+                  else:
+                      if belgium_family_benefits_region == belgium_family_benefits_region_german_speaking_community:
+                          german_speaking_community_family_benefits_selected_monthly_amount
+                      else:
+                          0
+  - name: belgium_family_benefits_eligibility_gated_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Regional and community bridge over encoded Belgian family-benefit eligibility-gated amount rules
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_family_benefits_region == belgium_family_benefits_region_flanders:
+              flanders_family_benefits_eligible_monthly_amount
+          else:
+              if belgium_family_benefits_region == belgium_family_benefits_region_brussels:
+                  brussels_family_benefits_eligible_monthly_amount
+              else:
+                  if belgium_family_benefits_region == belgium_family_benefits_region_wallonia:
+                      wallonia_family_benefits_eligible_monthly_amount
+                  else:
+                      if belgium_family_benefits_region == belgium_family_benefits_region_german_speaking_community:
+                          german_speaking_community_family_benefits_eligible_monthly_amount
+                      else:
+                          0

@@ -1,0 +1,140 @@
+- name: article_11_income_base_and_main_capped_contribution
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 1
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 30000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 2000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 1000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 500
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 800
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 700
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_11_excluded_cessation_income: 800
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_11_spouse_helper_added_income: 700
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_11_professional_income_base: 27400
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_first_threshold_indexed: 15831.12
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_second_threshold_indexed: 23330.06
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_main_minimum_income_indexed: 3666.15
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1_main_adjusted_income: 27400
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1_main_annual_contribution: 4307.229504
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 4307.229504
+
+- name: article_12_starter_spouse_helper_and_article_13bis_provisional
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 1
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_starting_category_post_pension_with_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_starting_category_secondary_or_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_starting_category_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_starting_category_main_starter: true
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_starter_minimum_income_indexed: 1893.22
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_spouse_helper_minimum_income_indexed: 1610.54
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1bis_starter_adjusted_income: 1893.22
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1bis_starter_annual_contribution: 388.1101
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1ter_spouse_helper_adjusted_income: 1610.54
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1ter_spouse_helper_annual_contribution: 330.1607
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_13bis_starting_provisional_annual_contribution: 388.1101
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 388.1101
+
+- name: article_12_secondary_and_article_12bis_student
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 1
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 3000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_secondary_exemption_threshold_indexed: 405.6
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_2_secondary_annual_contribution: 615
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12bis_student_annual_contribution: 239.219625
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 239.219625
+
+- name: article_13_pension_age_categories
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 1
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 10000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_13_post_pension_exemption_threshold_indexed: 811.2
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_13_section_1_post_pension_with_pension_annual_contribution: 1470
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_13_section_2_pension_age_without_retirement_pension_annual_contribution: 2050
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_13_section_3_suspended_early_retirement_annual_contribution: 2050
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 1470
+
+- name: article_12_starter_first_quarter_reduction
+  period:
+    period_kind: custom
+    name: calendar_quarter
+    start: '2026-01-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 1
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_section_1bis_first_quarter_reduction: 25.01

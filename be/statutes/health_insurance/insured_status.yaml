@@ -1,0 +1,236 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Article 86 of the coordinated 14 July 1994 health-insurance law identifies
+    the holders entitled to incapacity indemnities, and Article 112 applies
+    those same holders to maternity indemnities. Article 32 supplies the
+    controlled-unemployment and unemployment-ending domestic-work status used
+    by Article 86 item 1 c, while Article 131 limits gaps in holder or
+    incapacity status to thirty uninterrupted days. This module encodes those
+    household-level status bridges from supplied employment, continued-
+    insurance, maternity-rest, incapacity, and transition-allowance predicates.
+    It leaves broader Article 32 health-care beneficiary categories, Article 131
+    date reconstruction, independent-worker delegated insurance, contribution
+    proof, medical recognition, and payment procedure to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1994/07/14/1994071451/article/32
+      - be/statute/loi/1994/07/14/1994071451/article/86
+      - be/statute/loi/1994/07/14/1994071451/article/112
+      - be/statute/loi/1994/07/14/1994071451/article/131
+    values:
+      belgium_health_article_131_max_uninterrupted_gap_days: 30
+rules:
+  - name: belgium_health_article_131_max_uninterrupted_gap_days
+    kind: parameter
+    dtype: Count
+    source: Coordinated health-insurance law of 14 July 1994, article 131
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          30
+  - name: belgium_health_article_32_item_3_controlled_unemployment_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 32 first paragraph item 3
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          if belgium_health_article_32_controlled_unemployment:
+              1
+          else:
+              0
+  - name: belgium_health_article_32_item_5_domestic_work_end_unemployment_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 32 first paragraph item 5
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          if belgium_health_article_32_domestic_work_to_end_unemployment and belgium_health_article_32_retains_habitual_employee_status_for_unemployment:
+              1
+          else:
+              0
+  - name: belgium_health_article_32_items_3_or_5_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 32 first paragraph items 3 and 5
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          if belgium_health_article_32_item_3_controlled_unemployment_holder == 1 or belgium_health_article_32_item_5_domestic_work_end_unemployment_holder == 1:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1a_worker_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 1 a
+    versions:
+      - effective_from: '2016-01-01'
+        formula: |-
+          if belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance or belgium_health_article_86_worker_receives_article_1a_termination_indemnity or belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity or belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1b_maternity_rest_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 1 b
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_health_article_86_item_1a_worker_holder == 1 and belgium_health_article_86_maternity_rest_period_under_article_32_1_4:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1c_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 1 c
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_health_article_86_worker_in_article_32_1_3_or_5_situation or belgium_health_article_32_items_3_or_5_holder == 1:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1d_legacy_maritime_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 1 d
+    versions:
+      - effective_from: '1997-02-26'
+        formula: |-
+          if belgium_health_article_86_legacy_maritime_transport_worker:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1e_successor_maritime_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 1 e
+    versions:
+      - effective_from: '1997-02-26'
+        formula: |-
+          if belgium_health_article_86_successor_company_seagoing_worker:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1_worker_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 1
+    versions:
+      - effective_from: '2016-01-01'
+        formula: |-
+          if belgium_health_article_86_item_1a_worker_holder == 1 or belgium_health_article_86_item_1b_maternity_rest_holder == 1 or belgium_health_article_86_item_1c_holder == 1 or belgium_health_article_86_item_1d_legacy_maritime_holder == 1 or belgium_health_article_86_item_1e_successor_maritime_holder == 1:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_2_lost_item_1a_quality_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 2
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_3_post_continued_insurance_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 3
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_health_article_86_continued_insurance_period_expired and belgium_health_article_86_had_item_1_quality_before_continued_insurance and belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_4_post_transition_allowance_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 item 4
+    versions:
+      - effective_from: '2016-01-01'
+        formula: |-
+          if belgium_health_article_86_transition_allowance_max_period_ended and belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_section_1_holder_for_indemnities
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1
+    versions:
+      - effective_from: '2016-01-01'
+        formula: |-
+          if belgium_health_article_86_item_1_worker_holder == 1 or belgium_health_article_86_item_2_lost_item_1a_quality_holder == 1 or belgium_health_article_86_item_3_post_continued_insurance_holder == 1 or belgium_health_article_86_item_4_post_transition_allowance_holder == 1:
+              1
+          else:
+              0
+  - name: belgium_health_article_86_item_1a_or_1b_holder
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 items 1 a and 1 b
+    versions:
+      - effective_from: '2016-01-01'
+        formula: |-
+          if belgium_health_article_86_item_1a_worker_holder == 1 or belgium_health_article_86_item_1b_maternity_rest_holder == 1:
+              1
+          else:
+              0
+  - name: belgium_health_article_112_maternity_indemnity_beneficiary
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 112
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          belgium_health_article_86_section_1_holder_for_indemnities
+  - name: belgium_health_article_131_continuity_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law of 14 July 1994, article 131
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          if belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status <= belgium_health_article_131_max_uninterrupted_gap_days:
+              1
+          else:
+              0

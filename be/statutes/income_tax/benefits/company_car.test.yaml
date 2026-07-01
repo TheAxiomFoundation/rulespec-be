@@ -1,0 +1,135 @@
+- name: petrol_reference_co2_hits_indexed_minimum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 30000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 12
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 70
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 0
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient: 1
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_reference_co2: 70
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_co2_used: 70
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_co2_percentage: 0.055
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_gross_annual_benefit: "1414.2857142857142857142857142"
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_annual_benefit_before_contribution: 1690
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: 1690
+
+- name: diesel_age_degressivity_and_high_co2_above_minimum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 40000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 30
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 100
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 0
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient: 0.88
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_age_adjusted_catalog_value: 35200
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_reference_co2: 58
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_raw_co2_percentage: 0.097
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_gross_annual_benefit: "2926.6285714285714285714285713"
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: "2926.6285714285714285714285713"
+
+- name: zero_emission_vehicle_uses_minimum_co2_percentage_and_benefit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 50000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 61
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 0
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient: 0.70
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_raw_co2_percentage: -0.015
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_co2_percentage: 0.04
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_gross_annual_benefit: 1200
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: 1690
+
+- name: missing_diesel_co2_uses_default_and_percentage_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 60000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 0
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_reported_or_default_co2: 195
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_raw_co2_percentage: 0.192
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_co2_percentage: 0.18
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: "9257.142857142857142857142857"
+
+- name: beneficiary_contribution_reduces_benefit_after_minimum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 40000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 30
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 100
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 500
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_annual_benefit_before_contribution: "2926.6285714285714285714285713"
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: "2426.6285714285714285714285713"
+
+- name: false_plugin_hybrid_without_corresponding_vehicle_multiplies_reported_co2
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 45000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 20
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 40
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 0
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient: 0.94
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_co2_used: 100
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_raw_co2_percentage: 0.085
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: "3081.8571428571428571428571427"

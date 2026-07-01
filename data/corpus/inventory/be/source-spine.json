@@ -1,0 +1,423 @@
+{
+  "generated_at": "2026-07-01",
+  "jurisdiction": "be",
+  "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
+  "purpose": "Initial official source spine for Belgium RuleSpec coverage.",
+  "source_priority": [
+    "Moniteur belge / Belgisch Staatsblad original publications and ELI Moniteur links",
+    "Justel consolidated legislation only as a non-authentic locator",
+    "Official agency guidance, manuals, calculators, and rate tables after upstream legal source identification",
+    "Executable household-level comparison references for parity, never legal authority"
+  ],
+  "sources": [
+    {
+      "id": "belgian-official-gazette",
+      "name": "Moniteur belge / Belgisch Staatsblad",
+      "url": "https://www.ejustice.just.fgov.be/cgi/welcome.pl?language=fr",
+      "eli_base_url": "https://www.ejustice.just.fgov.be/eli/",
+      "publisher": "Service public federal Justice / Federale Overheidsdienst Justitie",
+      "document_classes": [
+        "official_original_publication",
+        "official_publication_image",
+        "law",
+        "ordinance",
+        "decree",
+        "royal_decree",
+        "ministerial_order"
+      ],
+      "source_tier": 1,
+      "canonical": true,
+      "target_tracks": [
+        "all_source_grounded_tracks"
+      ]
+    },
+    {
+      "id": "justel-eli",
+      "name": "Justel consolidated legislation ELI",
+      "url": "https://www.ejustice.just.fgov.be/cgi_loi/welcome.pl?language=fr",
+      "eli_base_url": "https://www.ejustice.just.fgov.be/eli/",
+      "publisher": "Service public federal Justice / Federale Overheidsdienst Justitie",
+      "document_classes": [
+        "non_authentic_consolidated_law",
+        "eli_locator",
+        "amendment_history",
+        "code_pdf_locator"
+      ],
+      "source_tier": 2,
+      "canonical": false,
+      "notes": "Use as a locator for current consolidated text and ELI identifiers. It is not an authentic official source.",
+      "target_tracks": [
+        "all_source_grounded_tracks"
+      ]
+    },
+    {
+      "id": "vlaamse-codex",
+      "name": "Vlaamse Codex and Codex Open Data API",
+      "jurisdiction": "be-vlg",
+      "source_tier": 2,
+      "canonical": true,
+      "base_url": "https://codex.vlaanderen.be/",
+      "notes": "Official consolidated Flemish legislation and article-version API. Use after Moniteur/Belgisch Staatsblad original publication identifiers."
+    },
+    {
+      "id": "justel-excise-current",
+      "name": "Justel consolidated excise legislation",
+      "url": "https://www.ejustice.just.fgov.be/cgi_loi/welcome.pl?language=fr",
+      "eli_base_url": "https://www.ejustice.just.fgov.be/eli/",
+      "publisher": "Service public federal Justice / Federale Overheidsdienst Justitie",
+      "document_classes": [
+        "non_authentic_consolidated_law",
+        "eli_locator",
+        "excise_rate_article",
+        "amendment_history"
+      ],
+      "source_tier": 2,
+      "canonical": false,
+      "notes": "Use as a current consolidated locator for excise rate articles after Moniteur ELI source identification. It is not an authentic official source.",
+      "target_tracks": [
+        "consumption-and-indirect-tax"
+      ]
+    },
+    {
+      "id": "spf-finances",
+      "name": "SPF Finances / FOD Financien",
+      "url": "https://finances.belgium.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "calculator_guidance",
+        "administrative_circular"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "tax-personal-income",
+        "consumption-and-indirect-tax",
+        "payroll-social-contributions"
+      ]
+    },
+    {
+      "id": "socialsecurity-belgium",
+      "name": "Belgian social security portal",
+      "url": "https://socialsecurity.belgium.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "payroll-social-contributions",
+        "sickness-disability-health-insurance",
+        "pensions-and-income-guarantee"
+      ]
+    },
+    {
+      "id": "onss-rsz",
+      "name": "ONSS / RSZ",
+      "url": "https://www.onss.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "administrative_instruction"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "payroll-social-contributions"
+      ]
+    },
+    {
+      "id": "onem-rva",
+      "name": "ONEM / RVA",
+      "url": "https://www.onem.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "administrative_instruction"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "unemployment-insurance"
+      ]
+    },
+    {
+      "id": "famiris",
+      "name": "Famiris",
+      "url": "https://famiris.brussels/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "calculator_guidance"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "family-benefits-brussels"
+      ]
+    },
+    {
+      "id": "brussels-housing",
+      "name": "Brussels Logement / Brussel Huisvesting",
+      "url": "https://logement.brussels/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "housing-assistance-brussels"
+      ]
+    },
+    {
+      "id": "spp-social-integration",
+      "name": "SPP Integration sociale / POD Maatschappelijke Integratie",
+      "url": "https://www.mi-is.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "social-integration-minimum-income"
+      ]
+    },
+    {
+      "id": "iriscare",
+      "name": "Iriscare",
+      "url": "https://www.iriscare.brussels/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "target_tracks": [
+        "family-benefits-brussels",
+        "sickness-disability-health-insurance",
+        "long-term-care-and-disability-brussels"
+      ]
+    },
+    {
+      "id": "brussels-fiscality",
+      "name": "Brussels Fiscality / Bruxelles Fiscalite",
+      "url": "https://fiscalite.brussels/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "fiscal_sheet",
+        "calculator_guidance"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after the upstream vehicle-tax code and Brussels regional legal basis are identified.",
+      "target_tracks": [
+        "vehicle-tax-brussels"
+      ]
+    },
+    {
+      "id": "vlaamse-overheid",
+      "name": "Vlaamse overheid",
+      "url": "https://www.vlaanderen.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after the governing Flemish decree or delegated instrument is identified through Moniteur/ELI sources.",
+      "target_tracks": [
+        "regional_and_community_surfaces"
+      ]
+    },
+    {
+      "id": "vlaamse-belastingdienst",
+      "name": "Vlaamse Belastingdienst",
+      "url": "https://www.vlaanderen.be/vlaamse-belastingdienst",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "tax_calculator_guidance"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after upstream regional tax legislation is identified.",
+      "target_tracks": [
+        "vehicle-tax-flanders",
+        "gift-tax-flanders",
+        "inheritance-tax-flanders",
+        "real-property-tax-flanders"
+      ]
+    },
+    {
+      "id": "groeipakket",
+      "name": "Groeipakket",
+      "url": "https://www.groeipakket.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after Flemish family-benefit decree and delegated rate instruments are identified.",
+      "target_tracks": [
+        "family-benefits-flanders"
+      ]
+    },
+    {
+      "id": "wallonie",
+      "name": "Service public de Wallonie",
+      "url": "https://www.wallonie.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after the governing Walloon decree or delegated instrument is identified through Moniteur/ELI sources.",
+      "target_tracks": [
+        "regional_and_community_surfaces"
+      ]
+    },
+    {
+      "id": "spw-finances",
+      "name": "Service public de Wallonie Finances",
+      "url": "https://finances.wallonie.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "tax_calculator_guidance"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after upstream regional tax legislation is identified.",
+      "target_tracks": [
+        "vehicle-tax-wallonia",
+        "gift-tax-wallonia",
+        "inheritance-tax-wallonia",
+        "real-property-tax-wallonia"
+      ]
+    },
+    {
+      "id": "aviq",
+      "name": "AVIQ",
+      "url": "https://www.aviq.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after Walloon family-benefit decree and delegated rate instruments are identified.",
+      "target_tracks": [
+        "family-benefits-wallonia"
+      ]
+    },
+    {
+      "id": "federation-wallonie-bruxelles",
+      "name": "Federation Wallonie-Bruxelles",
+      "url": "https://www.federation-wallonie-bruxelles.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after the governing community decree or delegated instrument is identified through Moniteur/ELI sources.",
+      "target_tracks": [
+        "student-support",
+        "community_education_and_family_surfaces"
+      ]
+    },
+    {
+      "id": "ostbelgien",
+      "name": "Deutschsprachige Gemeinschaft Belgiens",
+      "url": "https://ostbelgienlive.be/",
+      "document_classes": [
+        "guidance",
+        "rate_table",
+        "eligibility_page",
+        "administrative_manual"
+      ],
+      "source_tier": 3,
+      "canonical": true,
+      "notes": "Use only after the governing German-speaking Community decree or delegated instrument is identified through Moniteur/ELI sources.",
+      "target_tracks": [
+        "family-benefits-german-speaking-community",
+        "community_education_and_family_surfaces"
+      ]
+    },
+    {
+      "id": "statbel",
+      "name": "Statbel",
+      "url": "https://statbel.fgov.be/",
+      "document_classes": [
+        "definition",
+        "classification",
+        "methodology"
+      ],
+      "source_tier": 4,
+      "canonical": true,
+      "target_tracks": [
+        "all_entity_and_unit_definitions"
+      ]
+    },
+    {
+      "id": "fisconetplus",
+      "name": "SPF Finances FisconetPlus",
+      "url": "https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet",
+      "rest_base_url": "https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/",
+      "publisher": "SPF Finances / FOD Financien",
+      "document_classes": [
+        "official_consolidated_tax_code_article",
+        "article_metadata",
+        "administrative_circular"
+      ],
+      "source_tier": 2,
+      "canonical": true,
+      "notes": "Official SPF Finances consolidated tax-law knowledge base. Use after Moniteur/Wallex source family identification for current tax-code article text.",
+      "target_tracks": [
+        "tax-personal-income",
+        "regional-inheritance-tax",
+        "regional-gift-tax",
+        "regional-real-property-tax",
+        "consumption-and-indirect-tax"
+      ]
+    },
+    {
+      "id": "wallex",
+      "name": "Wallex official Walloon legislation portal",
+      "url": "https://wallex.wallonie.be/",
+      "publisher": "Service public de Wallonie",
+      "document_classes": [
+        "official_walloon_legislation_locator",
+        "walloon_code_locator",
+        "moniteur_publication_metadata"
+      ],
+      "source_tier": 2,
+      "canonical": true,
+      "notes": "Official Walloon legislation portal. For Walloon tax codes it provides code locators and points to FisconetPlus for current consolidated article text.",
+      "target_tracks": [
+        "regional-inheritance-tax",
+        "regional-gift-tax",
+        "regional-real-property-tax",
+        "vehicle-tax-wallonia"
+      ]
+    }
+  ]
+}

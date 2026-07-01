@@ -1,0 +1,86 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The Flemish Social Protection decree requires people affiliated with a
+    care fund to pay an annual premium from the age determined by the Flemish
+    Government. The implementing order sets the 2026 annual premium at EUR 100,
+    or EUR 35 for users entitled to increased health-insurance reimbursement
+    on 1 January of the previous calendar year. This module encodes the
+    household-facing annual premium for 2026. It excludes arrears allocation,
+    payment collection, administrative fines after repeated non-payment,
+    voluntary Brussels affiliation routing, and downstream care-budget
+    entitlement sanctions.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-22
+      - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-23
+      - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25
+    values:
+      flanders_social_protection_premium_age_threshold_exclusive: 25
+      flanders_social_protection_ordinary_annual_premium_2026: 100
+      flanders_social_protection_reduced_annual_premium_2026: 35
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: flanders_social_protection_premium_age_threshold_exclusive
+    kind: parameter
+    dtype: Count
+    source: Flemish Social Protection public rule for annual premium from older than 25 years, implementing Decree article 45
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          25
+  - name: flanders_social_protection_ordinary_annual_premium_2026
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 68, ordinary annual premium for 2026
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          100
+  - name: flanders_social_protection_reduced_annual_premium_2026
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 68, reduced annual premium for 2026
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          35
+  - name: flanders_social_protection_base_annual_premium
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 68
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if flanders_social_protection_has_increased_health_insurance_reimbursement_on_previous_january_1:
+              flanders_social_protection_reduced_annual_premium_2026
+          else:
+              flanders_social_protection_ordinary_annual_premium_2026
+  - name: flanders_social_protection_annual_premium
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Social Protection Decree articles 42 and 45 and implementing order article 68
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if flanders_social_protection_is_subject_to_premium:
+              if flanders_social_protection_age_years > flanders_social_protection_premium_age_threshold_exclusive:
+                  if flanders_social_protection_is_administratively_affiliated_without_premium:
+                      0
+                  else:
+                      flanders_social_protection_base_annual_premium
+              else:
+                  0
+          else:
+              0

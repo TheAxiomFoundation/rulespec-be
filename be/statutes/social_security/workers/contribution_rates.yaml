@@ -1,0 +1,238 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal social-security law article 17 sets component contribution rates
+    for worker and employer contributions by manual and intellectual worker
+    categories. This module encodes those statutory component rates, total
+    uncapped component selectors, and uncapped worker/employer contribution
+    amounts from a supplied Article 17 contribution base. Wage caps, later ONSS
+    administrative current-rate tables, reductions, student/flexi-job
+    categories, and self-employed rules remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1969/06/27/1969062710/article/17
+    values:
+      belgium_worker_manual_pension_rate: "0.06"
+      belgium_worker_manual_indemnities_rate: "0.011"
+      belgium_worker_manual_unemployment_rate: "0.012"
+      belgium_worker_manual_health_care_rate: "0.018"
+      belgium_worker_intellectual_pension_rate: "0.06"
+      belgium_worker_intellectual_indemnities_rate: "0.007"
+      belgium_worker_intellectual_unemployment_rate: "0.012"
+      belgium_worker_intellectual_health_care_rate: "0.018"
+      belgium_employer_manual_pension_rate: "0.08"
+      belgium_employer_manual_indemnities_rate: "0.018"
+      belgium_employer_manual_unemployment_rate: "0.017"
+      belgium_employer_manual_health_care_rate: "0.0375"
+      belgium_employer_manual_family_allowances_rate: "0.0775"
+      belgium_employer_manual_annual_vacation_rate: "0.1475"
+      belgium_employer_intellectual_pension_rate: "0.08"
+      belgium_employer_intellectual_indemnities_rate: "0.018"
+      belgium_employer_intellectual_unemployment_rate: "0.017"
+      belgium_employer_intellectual_health_care_rate: "0.0375"
+      belgium_employer_intellectual_family_allowances_rate: "0.0772"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_worker_manual_pension_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 1(a)
+    versions:
+      - effective_from: '1970-07-01'
+        formula: |-
+          0.06
+  - name: belgium_worker_manual_indemnities_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 1(b)
+    versions:
+      - effective_from: '1974-07-16'
+        formula: |-
+          0.011
+  - name: belgium_worker_manual_unemployment_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 1(c)
+    versions:
+      - effective_from: '1974-12-24'
+        formula: |-
+          0.012
+  - name: belgium_worker_manual_health_care_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 1(d)
+    versions:
+      - effective_from: '1974-12-20'
+        formula: |-
+          0.018
+  - name: belgium_worker_intellectual_pension_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 2(a)
+    versions:
+      - effective_from: '1975-07-01'
+        formula: |-
+          0.06
+  - name: belgium_worker_intellectual_indemnities_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 2(b)
+    versions:
+      - effective_from: '1974-07-16'
+        formula: |-
+          0.007
+  - name: belgium_worker_intellectual_unemployment_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 2(c)
+    versions:
+      - effective_from: '1974-12-24'
+        formula: |-
+          0.012
+  - name: belgium_worker_intellectual_health_care_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1 item 2(d)
+    versions:
+      - effective_from: '1974-12-20'
+        formula: |-
+          0.018
+  - name: belgium_employer_manual_pension_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 1(a)
+    versions:
+      - effective_from: '1970-07-01'
+        formula: |-
+          0.08
+  - name: belgium_employer_manual_indemnities_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 1(b)
+    versions:
+      - effective_from: '1974-07-16'
+        formula: |-
+          0.018
+  - name: belgium_employer_manual_unemployment_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 1(c)
+    versions:
+      - effective_from: '1974-12-24'
+        formula: |-
+          0.017
+  - name: belgium_employer_manual_health_care_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 1(d)
+    versions:
+      - effective_from: '1974-12-20'
+        formula: |-
+          0.0375
+  - name: belgium_employer_manual_family_allowances_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 1(e)
+    versions:
+      - effective_from: '1976-01-05'
+        formula: |-
+          0.0775
+  - name: belgium_employer_manual_annual_vacation_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 1(f)
+    versions:
+      - effective_from: '1977-03-09'
+        formula: |-
+          0.1475
+  - name: belgium_employer_intellectual_pension_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 2(a)
+    versions:
+      - effective_from: '1974-12-24'
+        formula: |-
+          0.08
+  - name: belgium_employer_intellectual_indemnities_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 2(b)
+    versions:
+      - effective_from: '1974-07-16'
+        formula: |-
+          0.018
+  - name: belgium_employer_intellectual_unemployment_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 2(c)
+    versions:
+      - effective_from: '1974-12-24'
+        formula: |-
+          0.017
+  - name: belgium_employer_intellectual_health_care_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 2(d)
+    versions:
+      - effective_from: '1974-12-20'
+        formula: |-
+          0.0375
+  - name: belgium_employer_intellectual_family_allowances_rate
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2 item 2(e)
+    versions:
+      - effective_from: '1976-01-05'
+        formula: |-
+          0.0772
+  - name: belgium_worker_article_17_uncapped_component_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1
+    versions:
+      - effective_from: '1977-03-09'
+        formula: |-
+          if belgium_social_security_worker_is_manual:
+              belgium_worker_manual_pension_rate + belgium_worker_manual_indemnities_rate + belgium_worker_manual_unemployment_rate + belgium_worker_manual_health_care_rate
+          else:
+              belgium_worker_intellectual_pension_rate + belgium_worker_intellectual_indemnities_rate + belgium_worker_intellectual_unemployment_rate + belgium_worker_intellectual_health_care_rate
+  - name: belgium_employer_article_17_uncapped_component_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2
+    versions:
+      - effective_from: '1977-03-09'
+        formula: |-
+          if belgium_social_security_worker_is_manual:
+              belgium_employer_manual_pension_rate + belgium_employer_manual_indemnities_rate + belgium_employer_manual_unemployment_rate + belgium_employer_manual_health_care_rate + belgium_employer_manual_family_allowances_rate + belgium_employer_manual_annual_vacation_rate
+          else:
+              belgium_employer_intellectual_pension_rate + belgium_employer_intellectual_indemnities_rate + belgium_employer_intellectual_unemployment_rate + belgium_employer_intellectual_health_care_rate + belgium_employer_intellectual_family_allowances_rate
+  - name: belgium_worker_article_17_uncapped_component_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 1
+    versions:
+      - effective_from: '1977-03-09'
+        formula: |-
+          belgium_social_security_article_17_uncapped_contribution_base * belgium_worker_article_17_uncapped_component_rate
+  - name: belgium_employer_article_17_uncapped_component_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 27 June 1969 revising the social security decree-law for workers, article 17 section 2
+    versions:
+      - effective_from: '1977-03-09'
+        formula: |-
+          belgium_social_security_article_17_uncapped_contribution_base * belgium_employer_article_17_uncapped_component_rate

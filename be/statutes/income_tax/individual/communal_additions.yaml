@@ -1,0 +1,118 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 articles 465 to 468 authorize municipal and agglomeration
+    additions to personal income tax and define their calculation base. This
+    module encodes the mechanical base, the article-466 subtraction for
+    non-professional movable income, the article-466bis treaty-exempt foreign
+    professional-income hypothetical base, the article-468 agglomeration rate
+    cap, and the household tax amounts when local rates are supplied. It does
+    not maintain municipality-specific rate tables or collection allocations.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+      - be/statute/fisconetplus/cir92/revenus-2025/page-687
+      - be/statute/fisconetplus/cir92/revenus-2025/page-688
+    values:
+      belgium_pit_article_468_agglomeration_additional_tax_rate_cap: "0.01"
+      belgium_pit_article_469_uniform_collection_rate: "0.067"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 468, agglomeration tax may not exceed 1 percent
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          0.01
+  - name: belgium_pit_article_469_uniform_collection_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 469, withholding and prepayment collection rate
+    versions:
+      - effective_from: '2014-05-16'
+        formula: |-
+          0.067
+  - name: belgium_pit_article_466_standard_additional_tax_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 466, total tax less tax share on non-professional movable income
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          max(0, belgium_pit_article_466_total_tax_before_communal_additions - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+  - name: belgium_pit_article_466bis_hypothetical_foreign_professional_income_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 466bis, hypothetical total tax when treaty-exempt foreign professional income is included
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          max(0, belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+  - name: belgium_pit_article_466_466bis_additional_tax_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 466 and 466bis, selected municipal and agglomeration additional-tax base
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          if belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies:
+              belgium_pit_article_466bis_hypothetical_foreign_professional_income_base
+          else:
+              belgium_pit_article_466_standard_additional_tax_base
+  - name: belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 468, agglomeration rate cap
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          min(belgium_pit_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+  - name: belgium_pit_article_465_466_communal_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465, 466, and 468, municipal additional tax at supplied local rate
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_pit_article_466_466bis_additional_tax_base * belgium_pit_communal_additional_tax_rate
+  - name: belgium_pit_article_465_466_agglomeration_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465, 466, and 468, agglomeration additional tax at supplied local rate
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_pit_article_466_466bis_additional_tax_base * belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
+  - name: belgium_pit_article_465_466_total_local_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465 to 468, total municipal and agglomeration additional PIT
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_pit_article_465_466_communal_additional_tax + belgium_pit_article_465_466_agglomeration_additional_tax

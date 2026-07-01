@@ -1,0 +1,59 @@
+- name: article_466_standard_communal_and_agglomeration_additions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 20000
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 1000
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_communal_additional_tax_rate: 0.06
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
+  output:
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_466_standard_additional_tax_base: 19000
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_466_466bis_additional_tax_base: 19000
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap: 0.01
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_communal_additional_tax: 1140
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_agglomeration_additional_tax: 190
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_total_local_additional_tax: 1330
+
+- name: article_466bis_treaty_exempt_foreign_professional_income_base
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 5000
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 500
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 12000
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: true
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_communal_additional_tax_rate: 0.07
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0.015
+  output:
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_466_standard_additional_tax_base: 4500
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_466bis_hypothetical_foreign_professional_income_base: 11500
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_466_466bis_additional_tax_base: 11500
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap: 0.01
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_communal_additional_tax: 805
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_agglomeration_additional_tax: 115
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_total_local_additional_tax: 920
+
+- name: article_466_movable_income_tax_share_cannot_make_base_negative
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 400
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 700
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_communal_additional_tax_rate: 0.06
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0
+  output:
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_466_standard_additional_tax_base: 0
+    be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_total_local_additional_tax: 0

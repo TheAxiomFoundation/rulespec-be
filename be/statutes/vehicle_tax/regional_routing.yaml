@@ -1,0 +1,99 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_car_total
+  - be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_article_23411_tax
+  - be-bru:statutes/vehicle_tax/circulation_and_entry#brussels_circulation_tax_passenger_car_amount
+  - be-bru:statutes/vehicle_tax/entry_into_service_detailed#brussels_entry_into_service_tax_passenger_car_non_leasing_amount
+  - be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_car_amount
+  - be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax
+module:
+  summary: |-
+    This module provides Belgian-facing regional routing over encoded
+    Brussels, Flemish, and Walloon passenger-car vehicle-tax surfaces. It
+    exposes annual circulation tax, entry-into-service tax, and a mechanical
+    first-year sum for supplied passenger-car inputs. It excludes Brussels
+    SmartMove, heavy/commercial and non-passenger vehicle routing, exemptions,
+    leasing-company routing beyond the selected Brussels non-leasing passenger
+    car surface, and household vehicle-ownership inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-1
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
+      - be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+      - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
+    values:
+      belgium_vehicle_tax_region_flanders: 0
+      belgium_vehicle_tax_region_brussels: 1
+      belgium_vehicle_tax_region_wallonia: 2
+rules:
+  - name: belgium_vehicle_tax_region_flanders
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Flemish passenger-car vehicle-tax routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: belgium_vehicle_tax_region_brussels
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels passenger-car vehicle-tax routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: belgium_vehicle_tax_region_wallonia
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Walloon passenger-car vehicle-tax routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          2
+  - name: belgium_vehicle_annual_circulation_tax
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional bridge over encoded passenger-car annual circulation-tax rules
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if belgium_vehicle_tax_region == belgium_vehicle_tax_region_flanders:
+              flanders_circulation_tax_passenger_car_total
+          else:
+              if belgium_vehicle_tax_region == belgium_vehicle_tax_region_brussels:
+                  brussels_circulation_tax_passenger_car_amount
+              else:
+                  wallonia_circulation_tax_passenger_car_amount
+  - name: belgium_vehicle_entry_into_service_tax
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional bridge over encoded passenger-car entry-into-service tax rules
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if belgium_vehicle_tax_region == belgium_vehicle_tax_region_flanders:
+              flanders_biv_article_23411_tax
+          else:
+              if belgium_vehicle_tax_region == belgium_vehicle_tax_region_brussels:
+                  brussels_entry_into_service_tax_passenger_car_non_leasing_amount
+              else:
+                  wallonia_tmc_passenger_car_tax
+  - name: belgium_vehicle_first_year_tax
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Mechanical sum of selected regional passenger-car annual circulation tax and entry-into-service tax
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          belgium_vehicle_annual_circulation_tax + belgium_vehicle_entry_into_service_tax

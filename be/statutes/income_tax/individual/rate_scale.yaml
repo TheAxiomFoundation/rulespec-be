@@ -1,0 +1,102 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 130 sets the ordinary Belgian personal income tax rate
+    scale for income year 2025 / assessment year 2026. This module encodes the
+    indexed federal base-tax brackets before reductions, credits, surcharges,
+    regional tax reductions, and communal additions.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+    values:
+      belgium_pit_article_130_first_bracket_upper_threshold: 16320
+      belgium_pit_article_130_second_bracket_upper_threshold: 28800
+      belgium_pit_article_130_third_bracket_upper_threshold: 49840
+      belgium_pit_article_130_first_bracket_rate: 0.25
+      belgium_pit_article_130_second_bracket_rate: 0.40
+      belgium_pit_article_130_third_bracket_rate: 0.45
+      belgium_pit_article_130_top_bracket_rate: 0.50
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_130_first_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          16320
+  - name: belgium_pit_article_130_second_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          28800
+  - name: belgium_pit_article_130_third_bracket_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          49840
+  - name: belgium_pit_article_130_first_bracket_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.25
+  - name: belgium_pit_article_130_second_bracket_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.40
+  - name: belgium_pit_article_130_third_bracket_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.45
+  - name: belgium_pit_article_130_top_bracket_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.50
+  - name: belgium_pit_article_130_base_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 130, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_taxable_income * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate

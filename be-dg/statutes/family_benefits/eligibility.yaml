@@ -1,0 +1,154 @@
+format: rulespec/v1
+imports:
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_selected_monthly_amount
+module:
+  summary: |-
+    German-speaking Community decree of 23 April 2018 articles 6 and 9 through
+    14 define the core base-child-benefit entitlement gate: domicile in the
+    German-language region with qualifying foreign stay or settlement where
+    applicable, base entitlement from birth to age 18, disability and training
+    extensions, a 12-month extension after Articles 9 conditions lapse,
+    employment suspension for training and extension cases, disappeared-child
+    and abducted-child rules, and a final age-25 cap. Delegated residence,
+    training, employment, and impairment proof rules remain supplied inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+    values:
+      german_speaking_community_family_benefits_standard_age_years: 18
+      german_speaking_community_family_benefits_disability_extension_age_years: 21
+      german_speaking_community_family_benefits_final_age_cap_years: 25
+      german_speaking_community_family_benefits_article_10_extension_months: 12
+      german_speaking_community_family_benefits_disappeared_child_max_months: 60
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: german_speaking_community_family_benefits_standard_age_years
+    kind: parameter
+    dtype: Count
+    source: German-speaking Community family-benefits decree article 9 section 1
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          18
+  - name: german_speaking_community_family_benefits_disability_extension_age_years
+    kind: parameter
+    dtype: Count
+    source: German-speaking Community family-benefits decree article 9 section 2
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          21
+  - name: german_speaking_community_family_benefits_final_age_cap_years
+    kind: parameter
+    dtype: Count
+    source: German-speaking Community family-benefits decree article 14
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          25
+  - name: german_speaking_community_family_benefits_article_10_extension_months
+    kind: parameter
+    dtype: Count
+    source: German-speaking Community family-benefits decree article 10
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          12
+  - name: german_speaking_community_family_benefits_disappeared_child_max_months
+    kind: parameter
+    dtype: Count
+    source: German-speaking Community family-benefits decree article 12
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          60
+  - name: german_speaking_community_family_benefits_article_6_residence_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: German-speaking Community family-benefits decree article 6 residence and foreign-stay condition
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if german_speaking_community_family_benefits_child_domiciled_in_german_language_region or german_speaking_community_family_benefits_government_residence_condition_deemed_met:
+              if german_speaking_community_family_benefits_child_has_foreign_nationality:
+                  if german_speaking_community_family_benefits_foreign_stay_or_settlement_authorized_more_than_three_months:
+                      1
+                  else:
+                      0
+              else:
+                  1
+          else:
+              0
+  - name: german_speaking_community_family_benefits_article_9_10_age_or_status_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: German-speaking Community family-benefits decree articles 9, 10, 11, and 14
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if german_speaking_community_family_benefits_child_age_years < german_speaking_community_family_benefits_standard_age_years:
+              1
+          else:
+              if german_speaking_community_family_benefits_child_age_years < german_speaking_community_family_benefits_disability_extension_age_years and german_speaking_community_family_benefits_impairment_can_open_disability_supplement and german_speaking_community_family_benefits_impairment_started_while_entitled:
+                  1
+              else:
+                  if german_speaking_community_family_benefits_child_age_years < german_speaking_community_family_benefits_final_age_cap_years and german_speaking_community_family_benefits_child_in_training and not german_speaking_community_family_benefits_employment_suspends_training_or_extension_entitlement:
+                      1
+                  else:
+                      if german_speaking_community_family_benefits_child_age_years < german_speaking_community_family_benefits_final_age_cap_years and german_speaking_community_family_benefits_article_10_extension_months_used < german_speaking_community_family_benefits_article_10_extension_months and german_speaking_community_family_benefits_no_current_article_9_entitlement and not german_speaking_community_family_benefits_employment_suspends_training_or_extension_entitlement:
+                          1
+                      else:
+                          0
+  - name: german_speaking_community_family_benefits_article_12_13_missing_or_abducted_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: German-speaking Community family-benefits decree articles 12 and 13 disappeared and abducted child rules
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if german_speaking_community_family_benefits_child_disappeared:
+              if german_speaking_community_family_benefits_child_was_entitled_at_disappearance and german_speaking_community_family_benefits_months_since_disappearance <= german_speaking_community_family_benefits_disappeared_child_max_months and german_speaking_community_family_benefits_child_age_years < german_speaking_community_family_benefits_final_age_cap_years and not german_speaking_community_family_benefits_disappeared_child_found:
+                  1
+              else:
+                  0
+          else:
+              if german_speaking_community_family_benefits_child_abducted and german_speaking_community_family_benefits_child_was_article_9_1_entitled_at_abduction and german_speaking_community_family_benefits_abduction_reported_to_authority and german_speaking_community_family_benefits_child_age_years < german_speaking_community_family_benefits_standard_age_years and not german_speaking_community_family_benefits_abduction_ended:
+                  1
+              else:
+                  0
+  - name: german_speaking_community_family_benefits_statutory_base_entitlement
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: German-speaking Community family-benefits decree articles 6 and 9 through 14
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if german_speaking_community_family_benefits_article_6_residence_condition_met == 1 and (german_speaking_community_family_benefits_article_9_10_age_or_status_condition_met == 1 or german_speaking_community_family_benefits_article_12_13_missing_or_abducted_condition_met == 1):
+              1
+          else:
+              0
+  - name: german_speaking_community_family_benefits_eligible_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: German-speaking Community family-benefits decree entitlement gate applied to encoded amount surfaces
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if german_speaking_community_family_benefits_statutory_base_entitlement == 1:
+              german_speaking_community_family_benefits_selected_monthly_amount
+          else:
+              0

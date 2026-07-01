@@ -1,0 +1,64 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The 17 March 2019 mobility-budget law article 8 pays the worker the unused
+    annual mobility-budget balance in cash, article 22 imposes a 38.07 percent
+    worker special contribution on that cash balance, and article 23 treats the
+    cash balance as remuneration for social-security benefit calculations. This
+    module encodes those cash-balance and contribution mechanics for supplied
+    budget and spending amounts. It leaves company-car eligibility, sustainable
+    transport classification, indexed budget minimum/maximum checks, and
+    employer remittance administration as separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/2019/03/17/2019030319/article/8
+      - be/statute/loi/2019/03/17/2019030319/article/22
+      - be/statute/loi/2019/03/17/2019030319/article/23
+    values:
+      belgium_mobility_budget_cash_balance_special_contribution_rate: "0.3807"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_mobility_budget_cash_balance_special_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 17 March 2019 introducing a mobility budget, article 22
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          0.3807
+  - name: belgium_mobility_budget_article_8_cash_balance
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 17 March 2019 introducing a mobility budget, article 8 section 3
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          max(0, belgium_mobility_budget_annual_amount - belgium_mobility_budget_used_for_company_car_and_sustainable_transport)
+  - name: belgium_mobility_budget_article_22_worker_special_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 17 March 2019 introducing a mobility budget, article 22
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          belgium_mobility_budget_article_8_cash_balance * belgium_mobility_budget_cash_balance_special_contribution_rate
+  - name: belgium_mobility_budget_article_23_social_security_benefit_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 17 March 2019 introducing a mobility budget, article 23
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          belgium_mobility_budget_article_8_cash_balance

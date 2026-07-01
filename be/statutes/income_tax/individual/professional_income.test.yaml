@@ -1,0 +1,99 @@
+- name: article_23_forfait_professional_expenses_and_losses
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_business_profit_income: 20000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_profit_income: 10000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_prior_activity_professional_income: 5000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_worker_remuneration: 30000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_company_director_remuneration: 50000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_assisting_spouse_remuneration: 10000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_other_remuneration: 2000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_pension_annuity_or_equivalent_allowance: 12000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_exempt_professional_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_worker_remuneration_article_51_forfait_base_amount: 30000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_company_director_article_51_forfait_base_amount: 50000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_assisting_spouse_article_51_forfait_base_amount: 10000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_profit_article_51_forfait_base_amount: 10000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_business_profit_article_51_forfait_base_amount: 20000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_49_actual_professional_expenses_are_justified: false
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_49_justified_professional_expenses: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_current_period_professional_losses: 15000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_prior_period_professional_losses: 7000
+  output:
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_gross_professional_income_before_exemptions: 139000
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_professional_income_before_expenses: 139000
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_worker_remuneration_forfait_professional_expenses: 5930
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_company_director_forfait_professional_expenses: 1500
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_assisting_spouse_forfait_professional_expenses: 500
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_profit_uncapped_forfait_professional_expenses: 2409.98
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_profit_forfait_professional_expenses: 2409.98
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_business_profit_forfait_professional_expenses: 5930
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_article_51_total_forfait_professional_expenses: 16269.98
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_49_51_selected_professional_expenses: 16269.98
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_professional_income_after_professional_expenses: 122730.02
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_professional_income_after_current_period_losses: 107730.02
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_net_professional_income: 100730.02
+
+- name: article_49_actual_expenses_selected_when_justified
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_business_profit_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_profit_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_prior_activity_professional_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_worker_remuneration: 30000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_company_director_remuneration: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_assisting_spouse_remuneration: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_other_remuneration: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_pension_annuity_or_equivalent_allowance: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_exempt_professional_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_worker_remuneration_article_51_forfait_base_amount: 30000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_company_director_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_assisting_spouse_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_profit_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_business_profit_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_49_actual_professional_expenses_are_justified: true
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_49_justified_professional_expenses: 10000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_current_period_professional_losses: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_prior_period_professional_losses: 0
+  output:
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_article_51_total_forfait_professional_expenses: 5930
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_49_51_selected_professional_expenses: 10000
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_net_professional_income: 20000
+
+- name: article_23_current_losses_cannot_make_net_professional_income_negative
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_business_profit_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_profit_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_prior_activity_professional_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_worker_remuneration: 20000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_company_director_remuneration: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_assisting_spouse_remuneration: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_other_remuneration: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_pension_annuity_or_equivalent_allowance: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_exempt_professional_income: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_worker_remuneration_article_51_forfait_base_amount: 20000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_company_director_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_assisting_spouse_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_profit_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_business_profit_article_51_forfait_base_amount: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_49_actual_professional_expenses_are_justified: false
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_49_justified_professional_expenses: 0
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_current_period_professional_losses: 20000
+    be:statutes/income_tax/individual/professional_income#input.belgium_pit_article_23_prior_period_professional_losses: 1000
+  output:
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_professional_income_after_professional_expenses: 14070
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_professional_income_after_current_period_losses: 0
+    be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_net_professional_income: 0

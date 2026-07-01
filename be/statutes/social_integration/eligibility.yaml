@@ -1,0 +1,181 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal social-integration law article 3 sets the general eligibility
+    conditions for the right to social integration, article 4 covers asserted
+    maintenance rights when imposed by the CPAS, article 7 assimilates selected
+    minors to adults, and the implementing royal decree article 2 defines
+    effective residence in Belgium. This module encodes those top-level
+    eligibility predicates from supplied residence, status, resource, work, and
+    maintenance-right facts. It does not decide CPAS equity, proof, PIIS
+    contract contents, or payable revenu d'integration amounts.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/2002/05/26/2002022559/article/3
+      - be/statute/loi/2002/05/26/2002022559/article/4
+      - be/statute/loi/2002/05/26/2002022559/article/7
+      - be/regulation/arrete/2002/07/11/2002022564/article/2
+    values:
+      belgium_social_integration_adult_age_years: 18
+      belgium_social_integration_eu_residence_first_months_excluded: 3
+rules:
+  - name: belgium_social_integration_adult_age_years
+    kind: parameter
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 2
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          18
+  - name: belgium_social_integration_eu_residence_first_months_excluded
+    kind: parameter
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 3
+    versions:
+      - effective_from: '2013-07-11'
+        formula: |-
+          3
+  - name: belgium_social_integration_effective_residence_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 2, implementing law article 3 item 1
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if belgium_social_integration_habitually_and_permanently_stays_in_belgium and belgium_social_integration_authorized_to_stay_in_belgium:
+              1
+          else:
+              0
+  - name: belgium_social_integration_minor_assimilated_to_adult_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 7
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if belgium_social_integration_minor_emancipated_by_marriage:
+              1
+          else:
+              if belgium_social_integration_minor_has_dependent_child:
+                  1
+              else:
+                  if belgium_social_integration_minor_is_pregnant:
+                      1
+                  else:
+                      0
+  - name: belgium_social_integration_adult_or_assimilated_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 2 and article 7
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if belgium_social_integration_age_years >= belgium_social_integration_adult_age_years:
+              1
+          else:
+              belgium_social_integration_minor_assimilated_to_adult_condition_met
+  - name: belgium_social_integration_qualifying_status_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 3
+    versions:
+      - effective_from: '2016-12-01'
+        formula: |-
+          if belgium_social_integration_person_has_belgian_nationality:
+              1
+          else:
+              if belgium_social_integration_eu_citizen_or_family_with_residence_over_three_months and belgium_social_integration_eu_residence_months_completed > belgium_social_integration_eu_residence_first_months_excluded:
+                  1
+              else:
+                  if belgium_social_integration_registered_foreigner_in_population_register:
+                      1
+                  else:
+                      if belgium_social_integration_stateless_under_1954_convention:
+                          1
+                      else:
+                          if belgium_social_integration_refugee_under_1980_law:
+                              1
+                          else:
+                              if belgium_social_integration_subsidiary_protection_under_1980_law:
+                                  1
+                              else:
+                                  0
+  - name: belgium_social_integration_resource_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 4
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if belgium_social_integration_has_sufficient_resources:
+              0
+          else:
+              if belgium_social_integration_can_claim_sufficient_resources:
+                  0
+              else:
+                  if belgium_social_integration_can_procure_sufficient_resources_by_efforts_or_other_means:
+                      0
+                  else:
+                      1
+  - name: belgium_social_integration_work_disposition_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 5
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if belgium_social_integration_disposed_to_work:
+              1
+          else:
+              if belgium_social_integration_health_or_equity_prevents_work:
+                  1
+              else:
+                  0
+  - name: belgium_social_integration_maintenance_rights_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 4
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if belgium_social_integration_cpas_requires_maintenance_rights_against_listed_debtor:
+              if belgium_social_integration_maintenance_rights_against_listed_debtor_asserted:
+                  1
+              else:
+                  0
+          else:
+              1
+  - name: belgium_social_integration_article_3_4_general_eligibility_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Federal law of 26 May 2002 concerning the right to social integration, articles 3 and 4
+    versions:
+      - effective_from: '2016-12-01'
+        formula: |-
+          if belgium_social_integration_effective_residence_condition_met == 1:
+              if belgium_social_integration_adult_or_assimilated_condition_met == 1:
+                  if belgium_social_integration_qualifying_status_condition_met == 1:
+                      if belgium_social_integration_resource_condition_met == 1:
+                          if belgium_social_integration_work_disposition_condition_met == 1:
+                              if belgium_social_integration_social_benefit_rights_asserted:
+                                  belgium_social_integration_maintenance_rights_condition_met
+                              else:
+                                  0
+                          else:
+                              0
+                      else:
+                          0
+                  else:
+                      0
+              else:
+                  0
+          else:
+              0

@@ -1,0 +1,84 @@
+- name: replacement_rate_amount_above_minimum_sets_monthly_payable
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 2
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_ordinary_replacement_rate: 0.60
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_monthly_compensable_days: 26
+  output:
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_daily_amount_before_minimum: 52.12362
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_daily_amount_after_minimum: 52.12362
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_monthly_payable_amount: 1355.21412
+
+- name: article_115_minimum_floors_low_replacement_rate_amount
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 40
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 1
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_ordinary_replacement_rate: 0.60
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 2
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 8
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_monthly_compensable_days: 26
+  output:
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_daily_amount_before_minimum: 24
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_daily_amount_after_minimum: 31.76
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_monthly_payable_amount: 825.76
+
+- name: article_114_rate_supplies_ordinary_daily_amount_when_no_override_is_supplied
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 1
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_104_day_tranches: 0
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_admissibility_year: 2026
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_years: 0
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_age_years_at_claim: 40
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_worker_is_article_28_3: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_company_supplement: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_article_78_non_market_allowance: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_safeguard_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_ended_and_article_114bis_flat_rate: false
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_ordinary_replacement_rate: 0
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_monthly_compensable_days: 26
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_daily_amount_before_minimum: 60.05714
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_daily_amount_before_minimum: 60.05714
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_daily_amount_after_minimum: 60.05714
+    be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_monthly_payable_amount: 1561.48564
+
+- name: temporary_unemployment_minimum_floors_article_114_daily_amount
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 50
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_temporary_force_majeure: true
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: true
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_temporary_monthly_compensable_days: 10
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_temporary_daily_amount_before_minimum: 32.5
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_temporary_minimum_daily_amount: 38.72
+    be:regulations/unemployment/payable_amount#belgium_unemployment_temporary_daily_amount_after_minimum: 38.72
+    be:regulations/unemployment/payable_amount#belgium_unemployment_temporary_monthly_payable_amount: 387.2

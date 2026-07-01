@@ -1,0 +1,24 @@
+- name: shared_principal_residence_base_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_guarantee_for_elderly/amounts#input.shares_principal_residence: true
+  output:
+    be:statutes/income_guarantee_for_elderly/amounts#belgium_grapa_base_annual_amount: 7449.26
+    be:statutes/income_guarantee_for_elderly/amounts#belgium_grapa_article_6_maximum_annual_amount: 7449.26
+
+- name: isolated_principal_residence_multiplier
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_guarantee_for_elderly/amounts#input.shares_principal_residence: false
+  output:
+    be:statutes/income_guarantee_for_elderly/amounts#belgium_grapa_isolated_multiplier: 1.5
+    be:statutes/income_guarantee_for_elderly/amounts#belgium_grapa_isolated_annual_amount: 11173.89
+    be:statutes/income_guarantee_for_elderly/amounts#belgium_grapa_article_6_maximum_annual_amount: 11173.89

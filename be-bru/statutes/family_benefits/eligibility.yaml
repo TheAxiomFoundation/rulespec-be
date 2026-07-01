@@ -1,0 +1,102 @@
+format: rulespec/v1
+imports:
+  - be-bru:statutes/family_benefits/selected_amount#brussels_family_benefits_selected_monthly_amount
+module:
+  summary: |-
+    Brussels family-benefits ordinance articles 4 and 25 define the core child
+    entitlement gate: Brussels domicile, Belgian nationality or qualifying
+    residence title, an Article 25 or supplied Article 26 age/status condition,
+    and the post-2025 exclusion for children whose stay authorization is only
+    for study, training, volunteering, or au-pair work unless the right was
+    already open on 31 August 2025. Delegated proof rules and Article 26 detail
+    remain supplied inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/4
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/25
+    values:
+      brussels_family_benefits_article_25_unconditional_age_years: 18
+      brussels_family_benefits_article_25_extended_age_limit_years: 25
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_family_benefits_article_25_unconditional_age_years
+    kind: parameter
+    dtype: Count
+    source: Brussels family-benefits ordinance article 25 section 1
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          18
+  - name: brussels_family_benefits_article_25_extended_age_limit_years
+    kind: parameter
+    dtype: Count
+    source: Brussels family-benefits ordinance article 25 section 2
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          25
+  - name: brussels_family_benefits_article_25_age_or_status_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Brussels family-benefits ordinance article 25 age and post-18 status conditions
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          if brussels_family_benefits_child_age_on_august_31_years < brussels_family_benefits_article_25_unconditional_age_years:
+              1
+          else:
+              if brussels_family_benefits_child_age_years < brussels_family_benefits_article_25_extended_age_limit_years:
+                  if brussels_family_benefits_child_is_apprentice or brussels_family_benefits_child_in_qualifying_education_training_or_stage or brussels_family_benefits_child_prepares_higher_education_thesis or brussels_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship:
+                      1
+                  else:
+                      0
+              else:
+                  0
+  - name: brussels_family_benefits_article_4_temporary_stay_exclusion_applies
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Brussels family-benefits ordinance article 4 temporary stay exclusion from 1 September 2025
+    versions:
+      - effective_from: '2025-09-01'
+        formula: |-
+          if brussels_family_benefits_child_has_foreign_study_training_volunteer_or_au_pair_stay_authorization:
+              if brussels_family_benefits_right_open_on_2025_08_31:
+                  0
+              else:
+                  1
+          else:
+              0
+  - name: brussels_family_benefits_child_entitlement
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Brussels family-benefits ordinance article 4, with Article 25 age/status gate
+    versions:
+      - effective_from: '2025-09-01'
+        formula: |-
+          if brussels_family_benefits_child_domiciled_in_brussels_capital_region and (brussels_family_benefits_child_has_belgian_nationality or brussels_family_benefits_child_has_foreign_residence_title) and (brussels_family_benefits_article_25_age_or_status_condition_met == 1 or brussels_family_benefits_article_26_condition_met) and brussels_family_benefits_article_4_temporary_stay_exclusion_applies == 0:
+              1
+          else:
+              0
+  - name: brussels_family_benefits_eligible_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 4 gate applied to encoded Article 7 and 9 amounts
+    versions:
+      - effective_from: '2025-09-01'
+        formula: |-
+          if brussels_family_benefits_child_entitlement == 1:
+              brussels_family_benefits_selected_monthly_amount
+          else:
+              0

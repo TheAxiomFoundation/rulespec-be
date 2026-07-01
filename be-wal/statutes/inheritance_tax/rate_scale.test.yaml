@@ -1,0 +1,108 @@
+- name: direct_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 600000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 0
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax: 116625
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_current_tax: 116625
+
+- name: sibling_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 1
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax: 89375
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_current_tax: 89375
+
+- name: uncle_aunt_nephew_niece_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 2
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax: 99375
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_current_tax: 99375
+
+- name: other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 3
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax: 138125
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_current_tax: 138125
+
+- name: future_2028_direct_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 600000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 0
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_death_year: 2028
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax: 60125
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_2028_tax: 60125
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_tax: 60125
+
+- name: future_2028_sibling_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 1
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_death_year: 2028
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax: 45125
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_tax: 45125
+
+- name: future_2028_uncle_aunt_nephew_niece_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 2
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_death_year: 2028
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax: 50250
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_tax: 50250
+
+- name: future_2028_other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 3
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_death_year: 2028
+  output:
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax: 69125
+    be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_tax: 69125

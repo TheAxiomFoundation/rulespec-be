@@ -1,0 +1,95 @@
+- name: article_2_legal_pension_age_depends_on_birth_year
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_birth_year: 1961
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years: 66
+
+- name: article_4_current_early_retirement_exception_for_44_year_career
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_age_years: 60
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_for_early_retirement: 44
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years: 60
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_eligible: 1
+
+- name: article_4_current_early_retirement_baseline_requires_age_63_and_42_year_career
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_age_years: 62
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_for_early_retirement: 42
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years: 63
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_eligible: 0
+
+- name: article_5_isolated_worker_pension_uses_sixty_percent_over_45_years
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_spouse_condition_for_family_rate_met: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_minimum_applies_for_year: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_year_fraction: 1
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_revalued_annual_remuneration_after_cap: 45000
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_after_statutory_limit: 40
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_selected_article_5_rate: 0.6
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap: 24000
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount: 24000
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_monthly_amount: 2000
+
+- name: article_5_family_worker_pension_uses_seventy_five_percent_over_45_years
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_spouse_condition_for_family_rate_met: true
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_minimum_applies_for_year: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_year_fraction: 1
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_revalued_annual_remuneration_after_cap: 45000
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_after_statutory_limit: 40
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_selected_article_5_rate: 0.75
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount: 30000
+
+- name: article_8_minimum_right_substitutes_annual_remuneration_for_eligible_year
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_spouse_condition_for_family_rate_met: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_minimum_applies_for_year: true
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_year_fraction: 1
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_revalued_annual_remuneration_after_cap: 10000
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_after_statutory_limit: 1
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_8_minimum_annual_remuneration_for_year: 18819.12
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_selected_annual_remuneration_for_representative_year: 18819.12
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_8_selected_pension_cap: 13153.46
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount: 250.9216
+
+- name: article_7_survivor_pension_after_retirement_is_eighty_percent
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_deceased_retirement_payable_annual_amount_at_household_rate: 20000
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_survivor_pension_from_deceased_retirement_annual_amount: 16000
+
+- name: article_7_survivor_pension_before_retirement_uses_eighty_percent_of_household_rate_pension
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_spouse_condition_for_family_rate_met: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_minimum_applies_for_year: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_year_fraction: 1
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_revalued_annual_remuneration_after_cap: 30000
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_survivor_pension_career_years_after_statutory_limit: 20
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_survivor_pension_denominator_years: 40
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_survivor_pension_from_pre_retirement_career_annual_amount: 9000
+
+- name: article_7bis_transition_allowance_uses_sixty_percent_and_dynamic_denominator
+  period: 2026
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_spouse_condition_for_family_rate_met: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_minimum_applies_for_year: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_year_fraction: 1
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_revalued_annual_remuneration_after_cap: 36000
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_transition_allowance_career_years_after_statutory_limit: 10
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_transition_allowance_denominator_years: 25
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_transition_allowance_annual_amount: 8640

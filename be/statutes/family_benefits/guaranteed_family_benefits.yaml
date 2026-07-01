@@ -1,0 +1,485 @@
+format: rulespec/v1
+imports:
+  - be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_indexed_amount
+  - be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_73bis_birth_allowance_indexed_amount
+  - be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_73quater_adoption_premium_indexed_amount
+module:
+  summary: |-
+    Federal guaranteed family benefits law of 20 July 1971 and its 25 October
+    1971 implementing royal decree define a pre-2019 national guarantee layer:
+    principal maintenance by a Belgium resident, child residence and
+    other-benefit conditions, resource-test exemptions and ceilings, claim
+    windows, placement exceptions, advances, and delegated amount interfaces.
+    This module encodes those eligibility and payment-gating mechanics and
+    imports the LGAF coordinated-law amount schedule when no supplied override
+    is present. It leaves full Article 51/62 child-status predicates,
+    ministerial equity decisions, third-and-later birth-grant BEF conversion,
+    and regional post-transfer systems to separate surfaces or supplied inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1971/07/20/1971072007/article/1
+      - be/statute/loi/1971/07/20/1971072007/article/2
+      - be/statute/loi/1971/07/20/1971072007/article/3
+      - be/statute/loi/1971/07/20/1971072007/article/3bis
+      - be/statute/loi/1971/07/20/1971072007/article/4
+      - be/statute/loi/1971/07/20/1971072007/article/7
+      - be/statute/loi/1971/07/20/1971072007/article/10
+      - be/regulation/moniteur/1971-11-05/mopdf/page-59/1971102528/guaranteed-family-benefits
+      - be/regulation/justel/arrete-1971-10-25/1971102528/guaranteed-family-benefits-current/block-1
+      - be/statute/moniteur/1939-12-22/mopdf/page-6/1939121901/lgaf
+      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 40
+      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 73bis
+      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 73quater
+      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 76bis
+    values:
+      belgium_guaranteed_family_benefits_principal_maintenance_threshold: 0.5
+      belgium_guaranteed_family_benefits_resource_base_quarterly_ceiling: 3079.06
+      belgium_guaranteed_family_benefits_resource_child_increment_rate: 0.20
+      belgium_guaranteed_family_benefits_special_monthly_allowance_base_amount: 45.91
+      belgium_guaranteed_family_benefits_birth_stillbirth_min_pregnancy_days: 180
+      belgium_guaranteed_family_benefits_retroactive_allowance_claim_months: 12
+      belgium_guaranteed_family_benefits_birth_allowance_claim_months: 12
+      belgium_guaranteed_family_benefits_adoption_premium_claim_months: 12
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_guaranteed_family_benefits_principal_maintenance_threshold
+    kind: parameter
+    dtype: Rate
+    source: Guaranteed family benefits law of 20 July 1971, article 1
+    versions:
+      - effective_from: '1998-07-01'
+        formula: |-
+          0.5
+  - name: belgium_guaranteed_family_benefits_resource_base_quarterly_ceiling
+    kind: parameter
+    dtype: Money
+    period: Quarter
+    unit: EUR
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 6
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          3079.06
+  - name: belgium_guaranteed_family_benefits_resource_child_increment_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 6
+    versions:
+      - effective_from: '2001-10-01'
+        formula: |-
+          0.20
+  - name: belgium_guaranteed_family_benefits_special_monthly_allowance_base_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 8 section 2ter
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          45.91
+  - name: belgium_guaranteed_family_benefits_birth_stillbirth_min_pregnancy_days
+    kind: parameter
+    dtype: Count
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 5
+    versions:
+      - effective_from: '1972-01-01'
+        formula: |-
+          180
+  - name: belgium_guaranteed_family_benefits_retroactive_allowance_claim_months
+    kind: parameter
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 7
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          12
+  - name: belgium_guaranteed_family_benefits_birth_allowance_claim_months
+    kind: parameter
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 7
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          12
+  - name: belgium_guaranteed_family_benefits_adoption_premium_claim_months
+    kind: parameter
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 7
+    versions:
+      - effective_from: '2009-01-01'
+        formula: |-
+          12
+  - name: belgium_guaranteed_family_benefits_person_principally_maintains_child
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 1
+    versions:
+      - effective_from: '1998-07-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_child_household_registration_presumption:
+              1
+          else:
+              if belgium_guaranteed_family_benefits_person_in_charge_maintenance_share > belgium_guaranteed_family_benefits_principal_maintenance_threshold:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_article_1_person_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 1
+    versions:
+      - effective_from: '1998-07-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_person_in_charge_resides_in_belgium and belgium_guaranteed_family_benefits_person_principally_maintains_child == 1:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_child_foreign_residence_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 2 item 1 b
+    versions:
+      - effective_from: '1996-04-30'
+        formula: |-
+          if belgium_guaranteed_family_benefits_child_is_foreign_national:
+              if belgium_guaranteed_family_benefits_child_foreign_residence_authorized:
+                  1
+              else:
+                  0
+          else:
+              1
+  - name: belgium_guaranteed_family_benefits_child_residence_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 2 item 1
+    versions:
+      - effective_from: '1996-04-30'
+        formula: |-
+          if belgium_guaranteed_family_benefits_child_effectively_resides_in_belgium and belgium_guaranteed_family_benefits_child_prior_residence_or_family_link_condition_met and belgium_guaranteed_family_benefits_child_foreign_residence_condition_met == 1:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_other_benefits_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 2 item 2, and royal decree of 25 October 1971, article 3
+    versions:
+      - effective_from: '2000-07-01'
+        formula: |-
+          if not belgium_guaranteed_family_benefits_child_receives_other_family_benefits_for_complete_month:
+              1
+          else:
+              if belgium_guaranteed_family_benefits_other_family_benefits_monthly_amount < belgium_guaranteed_family_benefits_monthly_reference_amount:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_resource_test_exempt
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 3
+    versions:
+      - effective_from: '2009-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_person_in_charge_has_social_integration_right:
+              1
+          else:
+              if belgium_guaranteed_family_benefits_guaranteed_elderly_income_exemption_conditions_met:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_resource_quarterly_ceiling
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Quarter
+    unit: EUR
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, articles 6 and 7
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          belgium_guaranteed_family_benefits_resource_base_quarterly_ceiling * belgium_guaranteed_family_benefits_resource_current_index_factor * (1 + belgium_guaranteed_family_benefits_resource_child_increment_rate * max(0, belgium_guaranteed_family_benefits_resource_ceiling_qualifying_child_count - 1))
+  - name: belgium_guaranteed_family_benefits_resource_condition_met
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 3, and royal decree of 25 October 1971, article 6
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_resource_test_exempt == 1:
+              1
+          else:
+              if belgium_guaranteed_family_benefits_countable_quarterly_resources <= belgium_guaranteed_family_benefits_resource_quarterly_ceiling:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_base_conditions_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, articles 1 to 3
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_article_1_person_condition_met == 1 and belgium_guaranteed_family_benefits_child_residence_condition_met == 1 and belgium_guaranteed_family_benefits_other_benefits_condition_met == 1 and belgium_guaranteed_family_benefits_resource_condition_met == 1:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_monthly_allowance_claim_timely
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 7
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_allowance_months_since_claimable_start <= belgium_guaranteed_family_benefits_retroactive_allowance_claim_months:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_regular_monthly_allowance_eligible
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Guaranteed family benefits law of 20 July 1971, articles 1 to 3, 7, and 10
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_base_conditions_met == 1 and belgium_guaranteed_family_benefits_monthly_allowance_claim_timely == 1 and not belgium_guaranteed_family_benefits_child_placed_at_public_expense:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_regular_monthly_allowance_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Guaranteed family benefits law of 20 July 1971, article 4, and royal decree of 25 October 1971, article 8
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_regular_monthly_allowance_eligible == 1:
+              if belgium_guaranteed_family_benefits_supplied_regular_monthly_allowance_amount > 0:
+                  belgium_guaranteed_family_benefits_supplied_regular_monthly_allowance_amount
+              else:
+                  belgium_lgaf_selected_monthly_indexed_amount
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_special_monthly_allowance_indexed_base_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 8 section 2ter
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          belgium_guaranteed_family_benefits_special_monthly_allowance_base_amount * belgium_guaranteed_family_benefits_special_monthly_allowance_index_factor
+  - name: belgium_guaranteed_family_benefits_special_monthly_allowance_eligible
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Guaranteed family benefits law of 20 July 1971, article 10 section 3, and royal decree of 25 October 1971, article 8 section 2ter
+    versions:
+      - effective_from: '2000-07-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_base_conditions_met == 1 and belgium_guaranteed_family_benefits_child_placed_at_public_expense and belgium_guaranteed_family_benefits_special_flat_allowance_conditions_met:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_special_monthly_allowance_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Guaranteed family benefits law of 20 July 1971, article 10 section 3, and royal decree of 25 October 1971, article 8 section 2ter
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_special_monthly_allowance_eligible == 1:
+              if belgium_guaranteed_family_benefits_supplied_special_monthly_allowance_amount > 0:
+                  belgium_guaranteed_family_benefits_supplied_special_monthly_allowance_amount
+              else:
+                  belgium_guaranteed_family_benefits_special_monthly_allowance_indexed_base_amount
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_birth_event_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 5
+    versions:
+      - effective_from: '1972-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_child_born_alive:
+              1
+          else:
+              if belgium_guaranteed_family_benefits_pregnancy_duration_days >= belgium_guaranteed_family_benefits_birth_stillbirth_min_pregnancy_days:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_birth_request_before_probable_birth_allowed
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 5
+    versions:
+      - effective_from: '1989-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_pregnancy_completed_months >= 6 and belgium_guaranteed_family_benefits_months_before_probable_birth_for_request <= 2:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_birth_allowance_claim_timely
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 7
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_birth_months_since_birth <= belgium_guaranteed_family_benefits_birth_allowance_claim_months:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_birth_allowance_placement_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 10 sections 1 and 2
+    versions:
+      - effective_from: '2000-01-10'
+        formula: |-
+          if not belgium_guaranteed_family_benefits_child_placed_at_public_expense:
+              1
+          else:
+              if belgium_guaranteed_family_benefits_birth_allowance_special_discretion_applies:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_birth_allowance_payable_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    unit: EUR
+    source: Guaranteed family benefits law of 20 July 1971, articles 7 and 10, and royal decree of 25 October 1971, articles 5 and 8 section 3
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_birth_allowance_conditions_met and belgium_guaranteed_family_benefits_birth_event_condition_met == 1 and belgium_guaranteed_family_benefits_birth_allowance_claim_timely == 1 and belgium_guaranteed_family_benefits_birth_allowance_placement_condition_met == 1:
+              if belgium_guaranteed_family_benefits_supplied_birth_allowance_amount > 0:
+                  belgium_guaranteed_family_benefits_supplied_birth_allowance_amount
+              else:
+                  belgium_lgaf_article_73bis_birth_allowance_indexed_amount
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_adoption_premium_claim_timely
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 7
+    versions:
+      - effective_from: '2009-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_adoption_months_since_adoption <= belgium_guaranteed_family_benefits_adoption_premium_claim_months:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_adoption_premium_not_duplicate
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 8 section 5
+    versions:
+      - effective_from: '2013-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_adoption_premium_already_paid_for_child:
+              0
+          else:
+              if belgium_guaranteed_family_benefits_birth_allowance_received_by_adopter_household_for_same_child:
+                  0
+              else:
+                  1
+  - name: belgium_guaranteed_family_benefits_adoption_premium_payable_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    unit: EUR
+    source: Guaranteed family benefits law of 20 July 1971, article 7, and royal decree of 25 October 1971, article 8 section 5
+    versions:
+      - effective_from: '2013-01-01'
+        formula: |-
+          if belgium_guaranteed_family_benefits_adoption_premium_conditions_met and belgium_guaranteed_family_benefits_adoption_premium_claim_timely == 1 and belgium_guaranteed_family_benefits_adoption_premium_not_duplicate == 1:
+              if belgium_guaranteed_family_benefits_supplied_adoption_premium_amount > 0:
+                  belgium_guaranteed_family_benefits_supplied_adoption_premium_amount
+              else:
+                  belgium_lgaf_article_73quater_adoption_premium_indexed_amount
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_advance_prerequisites_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 3bis
+    versions:
+      - effective_from: '1996-04-30'
+        formula: |-
+          if belgium_guaranteed_family_benefits_article_1_person_condition_met == 1 and belgium_guaranteed_family_benefits_child_residence_condition_met == 1:
+              1
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_advance_pending_condition
+    kind: derived
+    entity: Child
+    dtype: Count
+    source: Guaranteed family benefits law of 20 July 1971, article 3bis
+    versions:
+      - effective_from: '1996-04-30'
+        formula: |-
+          if not belgium_guaranteed_family_benefits_other_benefits_condition_established:
+              1
+          else:
+              if not belgium_guaranteed_family_benefits_resource_condition_established:
+                  1
+              else:
+                  0
+  - name: belgium_guaranteed_family_benefits_advance_payable_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Guaranteed family benefits law of 20 July 1971, article 3bis
+    versions:
+      - effective_from: '1996-04-30'
+        formula: |-
+          if belgium_guaranteed_family_benefits_advance_prerequisites_met == 1 and belgium_guaranteed_family_benefits_advance_pending_condition == 1:
+              belgium_guaranteed_family_benefits_supplied_monthly_advance_amount
+          else:
+              0
+  - name: belgium_guaranteed_family_benefits_selected_monthly_cash_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Guaranteed family benefits law of 20 July 1971, articles 3bis, 4, and 10
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          belgium_guaranteed_family_benefits_regular_monthly_allowance_amount + belgium_guaranteed_family_benefits_special_monthly_allowance_amount + belgium_guaranteed_family_benefits_advance_payable_amount

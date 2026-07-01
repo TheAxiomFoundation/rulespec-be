@@ -1,0 +1,214 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 articles 255, 257, and 258 set the current non-Flemish
+    immovable-withholding-tax base rates and core reductions used for the
+    Brussels/Walloon base layer. This module encodes the ordinary and social
+    housing rates, the modest-dwelling and new-dwelling reductions, the
+    disability/family percentage reductions, the article-258 professional-use
+    apportionment and designated-dwelling gate for those reductions, and the
+    article-259 rent deduction pass-through for disability and family
+    reductions. It excludes provincial and municipal surcharges, article-15
+    remission mechanics, application procedure, and Flanders, which is encoded
+    separately under the Flemish Fiscal Code.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-446
+      - be/statute/fisconetplus/cir92/revenus-2025/page-447
+      - be/statute/fisconetplus/cir92/revenus-2025/page-448
+    values:
+      belgium_immovable_withholding_ordinary_rate: "0.0125"
+      belgium_immovable_withholding_social_housing_rate: "0.008"
+      belgium_immovable_withholding_modest_dwelling_cadastral_income_cap: 745
+      belgium_immovable_withholding_modest_dwelling_reduction_rate: "0.25"
+      belgium_immovable_withholding_new_dwelling_reduction_rate: "0.50"
+      belgium_immovable_withholding_war_invalid_reduction_rate: "0.20"
+      belgium_immovable_withholding_disabled_person_reduction_rate: "0.10"
+      belgium_immovable_withholding_child_reduction_rate: "0.10"
+      belgium_immovable_withholding_disabled_dependent_reduction_rate: "0.20"
+      belgium_immovable_withholding_article_258_professional_use_threshold_rate: "0.25"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_immovable_withholding_rate_category_ordinary
+    kind: parameter
+    dtype: Count
+    source: Structural selector for CIR 1992 article 255 ordinary rate
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: belgium_immovable_withholding_rate_category_social_housing
+    kind: parameter
+    dtype: Count
+    source: Structural selector for CIR 1992 article 255 social-housing rate
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: belgium_immovable_withholding_selected_rate
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 255
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_rate_category == belgium_immovable_withholding_rate_category_social_housing:
+              0.008
+          else:
+              0.0125
+  - name: belgium_immovable_withholding_gross_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 255
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          belgium_immovable_withholding_taxable_cadastral_income * belgium_immovable_withholding_selected_rate
+  - name: belgium_immovable_withholding_article_258_professional_use_threshold_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 258, professional-use cadastral-income quarter threshold
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.25
+  - name: belgium_immovable_withholding_article_258_reduction_base_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 258, single designated dwelling and professional-use apportionment for article-257 reductions
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_article_257_258_reductions_designated_dwelling:
+              if belgium_immovable_withholding_professional_use_cadastral_income > belgium_immovable_withholding_whole_dwelling_cadastral_income * belgium_immovable_withholding_article_258_professional_use_threshold_rate:
+                  if belgium_immovable_withholding_taxable_cadastral_income > 0:
+                      belgium_immovable_withholding_gross_tax * max(0, belgium_immovable_withholding_taxable_cadastral_income - belgium_immovable_withholding_professional_use_cadastral_income) / belgium_immovable_withholding_taxable_cadastral_income
+                  else:
+                      0
+              else:
+                  belgium_immovable_withholding_gross_tax
+          else:
+              0
+  - name: belgium_immovable_withholding_modest_or_new_dwelling_reduction_rate
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 257 item 1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_new_dwelling_five_year_reduction_applies:
+              0.50
+          else:
+              0.25
+  - name: belgium_immovable_withholding_modest_or_new_dwelling_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 257 item 1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_is_fully_owner_occupied_home and belgium_immovable_withholding_total_belgian_cadastral_income <= 745:
+              belgium_immovable_withholding_article_258_reduction_base_tax * belgium_immovable_withholding_modest_or_new_dwelling_reduction_rate
+          else:
+              0
+  - name: belgium_immovable_withholding_disability_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 257 item 2
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_war_invalid_count > 0 or belgium_immovable_withholding_disabled_person_count > 0:
+              belgium_immovable_withholding_article_258_reduction_base_tax * (0.20 * belgium_immovable_withholding_war_invalid_count + 0.10 * belgium_immovable_withholding_disabled_person_count)
+          else:
+              0
+  - name: belgium_immovable_withholding_family_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 257 item 3
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_family_reduction_eligible:
+              belgium_immovable_withholding_article_258_reduction_base_tax * (0.10 * belgium_immovable_withholding_non_disabled_child_count + 0.20 * belgium_immovable_withholding_disabled_dependent_count)
+          else:
+              0
+  - name: belgium_immovable_withholding_article_257_core_reductions
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 257
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          belgium_immovable_withholding_modest_or_new_dwelling_reduction + belgium_immovable_withholding_disability_reduction + belgium_immovable_withholding_family_reduction
+  - name: belgium_immovable_withholding_article_257_items_2_3_reductions
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 257 items 2 and 3 reductions subject to article 259 rent deduction
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          belgium_immovable_withholding_disability_reduction + belgium_immovable_withholding_family_reduction
+  - name: belgium_immovable_withholding_article_259_household_occupied_share
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 259, exclusion for the part occupied by persons outside the interested household
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          max(0, min(1, 1 - belgium_immovable_withholding_article_259_non_household_occupied_share))
+  - name: belgium_immovable_withholding_article_259_rent_deductible_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 259, article-257 items 2 and 3 reductions deductible from rent
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_immovable_withholding_article_259_property_is_rented_to_reduction_beneficiary_household:
+              belgium_immovable_withholding_article_257_items_2_3_reductions * belgium_immovable_withholding_article_259_household_occupied_share
+          else:
+              0
+  - name: belgium_immovable_withholding_tax_after_article_257_core_reductions
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 255, 257, and 258
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          max(0, belgium_immovable_withholding_gross_tax - belgium_immovable_withholding_article_257_core_reductions)

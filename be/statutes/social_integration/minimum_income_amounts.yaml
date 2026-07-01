@@ -1,0 +1,99 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal social-integration law article 14 sets annual base amounts for the
+    revenu d'integration by household category. Article 15 attaches those
+    amounts to the 103.14 consumer-price index applicable on 1 June 1999 and
+    links them to the 2 August 1971 indexation regime. This module encodes the
+    statutory base amounts, household category selector, and an indexed amount
+    bridge using a supplied current index factor; chapter II resource
+    calculations remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/2002/05/26/2002022559/article/14
+      - be/statute/loi/2002/05/26/2002022559/article/15
+      - be/statute/loi/2002/05/26/2002022559/article/60
+    values:
+      belgium_social_integration_cohabitant_base_annual_amount: "4400"
+      belgium_social_integration_isolated_base_annual_amount: "6600"
+      belgium_social_integration_dependent_family_base_annual_amount: "8800"
+      belgium_social_integration_article_15_base_consumer_price_index: "103.14"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_social_integration_cohabitant_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 1
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          4400
+  - name: belgium_social_integration_isolated_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 2
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          6600
+  - name: belgium_social_integration_dependent_family_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 3
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          8800
+  - name: belgium_social_integration_article_15_base_consumer_price_index
+    kind: parameter
+    dtype: Rate
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 15
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          103.14
+  - name: belgium_social_integration_article_14_base_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          if has_dependent_family:
+              belgium_social_integration_dependent_family_base_annual_amount
+          else:
+              if is_cohabiting:
+                  belgium_social_integration_cohabitant_base_annual_amount
+              else:
+                  belgium_social_integration_isolated_base_annual_amount
+  - name: belgium_social_integration_article_15_indexed_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 26 May 2002 concerning the right to social integration, articles 14 and 15
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          belgium_social_integration_article_14_base_annual_amount * belgium_social_integration_current_index_factor
+  - name: belgium_social_integration_article_15_indexed_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Federal law of 26 May 2002 concerning the right to social integration, articles 14 and 15
+    versions:
+      - effective_from: '2002-10-01'
+        formula: |-
+          belgium_social_integration_article_15_indexed_annual_amount / 12

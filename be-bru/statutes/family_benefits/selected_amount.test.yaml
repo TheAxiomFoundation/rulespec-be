@@ -1,0 +1,17 @@
+- name: brussels_base_plus_social_supplement
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: false
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 13
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: false
+    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_household_annual_income: 30000
+    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_beneficiary_child_count: 2
+    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_child_age_years: 13
+    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_child_in_single_parent_family: false
+    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_cadastral_income_cap_exceeded: false
+  output:
+    be-bru:statutes/family_benefits/selected_amount#brussels_family_benefits_selected_monthly_amount: 240

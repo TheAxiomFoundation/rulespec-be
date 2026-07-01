@@ -1,0 +1,216 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 51 sets indexed professional-expense forfaits for income
+    year 2025 / assessment year 2026 when actual costs are not proved. This
+    module encodes the statutory forfait rates, thresholds, caps, and category
+    selectors only. It does not decide whether the taxpayer may choose actual
+    expenses, nor does it model the extra commuting scale delegated to the King.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-121
+      - be/statute/fisconetplus/cir92/revenus-2025/page-122
+    values:
+      belgium_pit_article_51_employee_forfait_rate: "0.30"
+      belgium_pit_article_51_company_director_forfait_rate: "0.03"
+      belgium_pit_article_51_assisting_spouse_forfait_rate: "0.05"
+      belgium_pit_article_51_profit_first_threshold: 7540
+      belgium_pit_article_51_profit_second_threshold: 14970
+      belgium_pit_article_51_profit_third_threshold: 24920
+      belgium_pit_article_51_profit_first_rate: "0.287"
+      belgium_pit_article_51_profit_second_rate: "0.10"
+      belgium_pit_article_51_profit_third_rate: "0.05"
+      belgium_pit_article_51_profit_top_rate: "0.03"
+      belgium_pit_article_51_employee_and_business_profit_cap: 5930
+      belgium_pit_article_51_company_director_cap: 3130
+      belgium_pit_article_51_assisting_spouse_and_profit_cap: 5210
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_51_employee_forfait_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, employee remuneration forfait
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.30
+  - name: belgium_pit_article_51_company_director_forfait_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, company-director remuneration forfait
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.03
+  - name: belgium_pit_article_51_assisting_spouse_forfait_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, assisting-spouse remuneration forfait
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.05
+  - name: belgium_pit_article_51_profit_first_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait first threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          7540
+  - name: belgium_pit_article_51_profit_second_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait second threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          14970
+  - name: belgium_pit_article_51_profit_third_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait third threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          24920
+  - name: belgium_pit_article_51_profit_first_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait first bracket
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.287
+  - name: belgium_pit_article_51_profit_second_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait second bracket
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.10
+  - name: belgium_pit_article_51_profit_third_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait third bracket
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.05
+  - name: belgium_pit_article_51_profit_top_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, profit forfait top bracket
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.03
+  - name: belgium_pit_article_51_employee_and_business_profit_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, cap for employee remuneration and business profits
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5930
+  - name: belgium_pit_article_51_company_director_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, cap for company-director remuneration
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3130
+  - name: belgium_pit_article_51_assisting_spouse_and_profit_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, cap for assisting-spouse remuneration and profits
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5210
+  - name: belgium_pit_article_51_employee_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, item 1 and cap paragraph
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_51_forfait_base_amount * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)
+  - name: belgium_pit_article_51_company_director_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, item 2 and cap paragraph
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_51_forfait_base_amount * belgium_pit_article_51_company_director_forfait_rate, belgium_pit_article_51_company_director_cap)
+  - name: belgium_pit_article_51_assisting_spouse_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, item 3 and cap paragraph
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_51_forfait_base_amount * belgium_pit_article_51_assisting_spouse_forfait_rate, belgium_pit_article_51_assisting_spouse_and_profit_cap)
+  - name: belgium_pit_article_51_profit_uncapped_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, item 4
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_51_forfait_base_amount <= belgium_pit_article_51_profit_first_threshold:
+              belgium_pit_article_51_forfait_base_amount * belgium_pit_article_51_profit_first_rate
+          else:
+              if belgium_pit_article_51_forfait_base_amount <= belgium_pit_article_51_profit_second_threshold:
+                  belgium_pit_article_51_profit_first_threshold * belgium_pit_article_51_profit_first_rate + (belgium_pit_article_51_forfait_base_amount - belgium_pit_article_51_profit_first_threshold) * belgium_pit_article_51_profit_second_rate
+              else:
+                  if belgium_pit_article_51_forfait_base_amount <= belgium_pit_article_51_profit_third_threshold:
+                      belgium_pit_article_51_profit_first_threshold * belgium_pit_article_51_profit_first_rate + (belgium_pit_article_51_profit_second_threshold - belgium_pit_article_51_profit_first_threshold) * belgium_pit_article_51_profit_second_rate + (belgium_pit_article_51_forfait_base_amount - belgium_pit_article_51_profit_second_threshold) * belgium_pit_article_51_profit_third_rate
+                  else:
+                      belgium_pit_article_51_profit_first_threshold * belgium_pit_article_51_profit_first_rate + (belgium_pit_article_51_profit_second_threshold - belgium_pit_article_51_profit_first_threshold) * belgium_pit_article_51_profit_second_rate + (belgium_pit_article_51_profit_third_threshold - belgium_pit_article_51_profit_second_threshold) * belgium_pit_article_51_profit_third_rate + (belgium_pit_article_51_forfait_base_amount - belgium_pit_article_51_profit_third_threshold) * belgium_pit_article_51_profit_top_rate
+  - name: belgium_pit_article_51_profit_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, item 4 and cap paragraph
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_51_profit_uncapped_forfait_professional_expenses, belgium_pit_article_51_assisting_spouse_and_profit_cap)
+  - name: belgium_pit_article_51_business_profit_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, item 5 and cap paragraph
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_51_forfait_base_amount * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)

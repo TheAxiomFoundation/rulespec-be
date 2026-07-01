@@ -1,0 +1,134 @@
+- name: rank_three_child_uses_article_40_base_amount_and_index_interface
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_single_allocataire_for_rank_group: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_allocataires_same_principal_residence: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_allocataires_qualifying_relationship_or_de_facto_household: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_is_article_50bis_orphan: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_supplied_child_rank_for_amounts: 3
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_41_single_parent_supplement_conditions_met: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_social_supplement_conditions_met: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_third_or_later_allocataire_meets_article_41_first_two_conditions: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_age_years: 4
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_current_index_multiplier: 1.2
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_current_revaluation_coefficient: 1
+  output:
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_42_multiple_allocataire_grouping_condition_met: 1
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_42_effective_child_rank: 3
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_40_base_monthly_amount: 189.02
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_41_single_parent_supplement_base_monthly_amount: 0
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_42bis_social_supplement_base_monthly_amount: 0
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44_monthly_age_supplement_base_amount: 0
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_monthly_base_before_supplements: 189.02
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_base_amount: 189.02
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_indexed_amount: 226.824
+
+- name: single_parent_supplemented_first_child_gets_high_age_supplement
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_single_allocataire_for_rank_group: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_allocataires_same_principal_residence: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_allocataires_qualifying_relationship_or_de_facto_household: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_is_article_50bis_orphan: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_supplied_child_rank_for_amounts: 1
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_41_single_parent_supplement_conditions_met: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_social_supplement_conditions_met: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_third_or_later_allocataire_meets_article_41_first_two_conditions: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_age_years: 12
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement: true
+  output:
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_42_multiple_allocataire_grouping_condition_met: 1
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_41_single_parent_supplement_base_monthly_amount: 34.83
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44_monthly_age_supplement_base_amount: 36.32
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_base_amount: 139.57
+
+- name: article_42bis_third_child_uses_article_41_allocataire_amount_when_applicable
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_is_article_50bis_orphan: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_supplied_child_rank_for_amounts: 3
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_41_single_parent_supplement_conditions_met: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_social_supplement_conditions_met: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_third_or_later_allocataire_meets_article_41_first_two_conditions: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_age_years: 18
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement: true
+  output:
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_42bis_social_supplement_base_monthly_amount: 17.41
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44_monthly_age_supplement_base_amount: 46.18
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_base_amount: 252.61
+
+- name: orphan_amount_replaces_article_40_rank_and_receives_general_annual_age_supplement
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-07-01'
+    end: '2018-07-31'
+  input:
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_is_article_50bis_orphan: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_supplied_child_rank_for_amounts: 1
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_41_single_parent_supplement_conditions_met: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_social_supplement_conditions_met: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_article_42bis_third_or_later_allocataire_meets_article_41_first_two_conditions: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_age_years: 17
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_age_on_december_31_years: 17
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_is_article_62_or_63_beneficiary: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_current_index_multiplier: 1.1
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_current_revaluation_coefficient: 1
+  output:
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_42_effective_child_rank: 0
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_40_base_monthly_amount: 0
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_50bis_orphan_monthly_amount: 262.84
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_monthly_base_before_supplements: 262.84
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_base_amount: 299.16
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_selected_monthly_indexed_amount: 329.076
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44ter_annual_age_supplement_base_amount: 83.68
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44ter_annual_age_supplement_indexed_amount: 92.048
+
+- name: reduced_annual_age_supplement_and_indexed_first_birth_and_adoption_amounts
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2018-01-01'
+    end: '2018-12-31'
+  input:
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_age_on_december_31_years: 11
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_child_is_article_62_or_63_beneficiary: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_multiple_birth: true
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_birth_order_rank: 3
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_supplied_third_and_later_birth_allowance_base_amount: 168.6
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_current_index_multiplier: 1.2
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_current_revaluation_coefficient: 1.1
+  output:
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44ter_annual_age_supplement_base_amount: 45.47
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_73bis_birth_allowance_base_amount: 926.95
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_73bis_birth_allowance_indexed_amount: 1223.574
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_73quater_adoption_premium_indexed_amount: 1223.574
+
+- name: third_and_later_birth_amount_remains_supplied_until_bef_conversion_source_is_ingested
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2018-01-01'
+    end: '2018-12-31'
+  input:
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_multiple_birth: false
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_birth_order_rank: 3
+    be:statutes/family_benefits/lgaf_amounts#input.belgium_lgaf_supplied_third_and_later_birth_allowance_base_amount: 168.6
+  output:
+    be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_73bis_birth_allowance_base_amount: 168.6

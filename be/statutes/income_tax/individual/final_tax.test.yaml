@@ -1,0 +1,52 @@
+- name: final_tax_combines_federal_local_and_withholding
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 60000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 20892.5
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_communal_additional_tax_rate: 0.06
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_general_movable_income_subject_to_withholding: 1000
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_regulated_savings_deposit_gross_interest: 1250
+    be:statutes/income_tax/individual/final_tax#input.belgium_pit_professional_withholding: 5000
+    be:statutes/income_tax/individual/final_tax#input.belgium_pit_prepayments: 1000
+    be:statutes/income_tax/individual/final_tax#input.belgium_pit_other_withholding_or_creditable_tax: 0
+  output:
+    be:statutes/income_tax/individual/final_tax#belgium_pit_federal_and_local_tax_before_withholding: 22354.975
+    be:statutes/income_tax/individual/final_tax#belgium_pit_total_withholding_and_prepayments: 6330
+    be:statutes/income_tax/individual/final_tax#belgium_pit_net_tax_due_after_withholding_and_prepayments: 16024.975
+
+- name: refundable_child_credit_can_flow_to_net_refund
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 1000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_general_movable_income_subject_to_withholding: 0
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_regulated_savings_deposit_gross_interest: 0
+    be:statutes/income_tax/individual/final_tax#input.belgium_pit_professional_withholding: 0
+    be:statutes/income_tax/individual/final_tax#input.belgium_pit_prepayments: 0
+    be:statutes/income_tax/individual/final_tax#input.belgium_pit_other_withholding_or_creditable_tax: 0
+  output:
+    be:statutes/income_tax/individual/final_tax#belgium_pit_federal_and_local_tax_before_withholding: -1140
+    be:statutes/income_tax/individual/final_tax#belgium_pit_net_tax_due_after_withholding_and_prepayments: -1140

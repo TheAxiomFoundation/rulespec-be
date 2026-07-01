@@ -1,0 +1,237 @@
+- name: article_126_married_or_legal_cohabitants_receive_joint_assessment
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_year_of_marriage_or_declaration_exception: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_convention_exempt_professional_income_exception: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_separate_assessment_exception_applies: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_joint_assessment_established: 1
+
+- name: article_126_year_of_marriage_exception_blocks_joint_assessment
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_legal_cohabitants_marry_after_prior_year_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_year_of_marriage_or_declaration_exception: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_separate_assessment_exception_applies: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_joint_assessment_established: 0
+
+- name: article_126_survivor_election_restores_joint_assessment_in_death_year
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: true
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_separate_assessment_exception_applies: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_joint_assessment_established: 1
+
+- name: article_127_allocates_income_categories_under_joint_assessment
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_professional_income_after_articles_86_89: 40000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_professional_income_after_articles_86_89: 15000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_article_90_items_1_to_4_and_12_income: 2000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_article_90_items_1_to_4_and_12_income: 500
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_own_property_law_income_not_in_article_127_items_1_or_2: 3000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_own_property_law_income_not_in_article_127_items_1_or_2: 1000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_article_127_other_income: 10000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_article_127_other_income: 20000
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_127_spouse_a_other_income_half_share: 15000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_127_spouse_b_other_income_half_share: 15000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_127_spouse_a_net_income_under_joint_assessment: 60000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_127_spouse_b_net_income_under_joint_assessment: 31500
+
+- name: article_129_supplied_loss_balance_transfers_to_other_spouse_income
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_professional_income_after_articles_86_89: 10000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_professional_income_after_articles_86_89: 40000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_article_90_items_1_to_4_and_12_income: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_article_90_items_1_to_4_and_12_income: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_own_property_law_income_not_in_article_127_items_1_or_2: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_own_property_law_income_not_in_article_127_items_1_or_2: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_article_127_other_income: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_article_127_other_income: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_article_129_loss_balance_after_own_income_and_statutory_limitations: 25000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_article_129_loss_balance_after_own_income_and_statutory_limitations: 0
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_129_spouse_a_loss_balance_imputed_to_spouse_b: 25000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_129_spouse_b_loss_balance_imputed_to_spouse_a: 0
+
+- name: article_86_assisting_spouse_attribution_uses_normal_remuneration_under_regular_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_is_article_33_company_director: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_effectively_helps_activity: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_distinct_professional_income: 10000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_aided_spouse_activity_income: 60000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_normal_remuneration_for_services: 12000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_manifestly_higher_share_due_to_services: false
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_assisting_spouse_attribution_conditions_met: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_default_maximum_attribution: 18000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_allowed_attribution_cap: 18000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_assisting_spouse_attributed_professional_income: 12000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_aided_spouse_activity_income_after_attribution: 48000
+
+- name: article_86_manifestly_higher_share_can_exceed_30_percent_regular_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_is_article_33_company_director: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_effectively_helps_activity: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_distinct_professional_income: 17480
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_aided_spouse_activity_income: 60000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_assisting_spouse_normal_remuneration_for_services: 25000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_86_manifestly_higher_share_due_to_services: true
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_assisting_spouse_attribution_conditions_met: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_default_maximum_attribution: 18000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_allowed_attribution_cap: 60000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_assisting_spouse_attributed_professional_income: 25000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_86_aided_spouse_activity_income_after_attribution: 35000
+
+- name: article_87_one_earner_imputation_applies_with_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 50000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 0
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_89_spouses_total_professional_income_considered_for_87_88: 50000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_lower_spouse_professional_income_target: 15000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_spouse_a_one_earner_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_spouse_b_one_earner_imputation_received: 13460
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_88_spouse_a_low_earner_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_88_spouse_b_low_earner_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_imputation_received: 13460
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_after_imputation: 36540
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_after_imputation: 13460
+
+- name: article_88_low_earner_imputation_reaches_30_percent_share
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 40000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 10000
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_89_spouses_total_professional_income_considered_for_87_88: 50000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_lower_spouse_professional_income_target: 15000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_spouse_a_one_earner_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_spouse_b_one_earner_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_88_spouse_a_low_earner_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_88_spouse_b_low_earner_imputation_received: 5000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_imputation_received: 5000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_after_imputation: 35000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_after_imputation: 15000
+
+- name: no_tax_increase_guard_blocks_article_87_88_imputation
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 50000
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 0
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_imputation_conditions_met: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_imputation_received: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_after_imputation: 50000
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_after_imputation: 0

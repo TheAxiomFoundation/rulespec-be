@@ -1,0 +1,79 @@
+- name: ordinary_rate_gross_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_rate_category: 0
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_selected_rate: 0.0397
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_gross_tax: 39.70
+
+- name: social_housing_reduced_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_rate_category: 1
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_selected_rate: 0.0254
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_gross_tax: 25.40
+
+- name: material_equipment_2026_indexed_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_rate_category: 3
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_selected_rate: 0.0209
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_gross_tax: 20.90
+
+- name: modest_dwelling_reduction_applies
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_rate_category: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_is_main_residence: true
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_is_family_occupied: false
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_total_flemish_cadastral_income: 700
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_eligible_child_count: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_disabled_child_count: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_disabled_adult_count: 0
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_modest_dwelling_reduction: 9.925
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_tax_after_core_reductions: 29.775
+
+- name: child_and_disability_reductions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_rate_category: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_is_main_residence: false
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_total_flemish_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_is_family_occupied: true
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_eligible_child_count: 2
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_disabled_child_count: 1
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_disabled_adult_count: 1
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_child_equivalent_count: 3
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_child_reduction: 26.40
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_disability_reduction: 17.60
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_article_21501_core_reductions: 44
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_tax_after_core_reductions: 0

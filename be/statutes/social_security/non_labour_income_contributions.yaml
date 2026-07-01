@@ -1,0 +1,423 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The 30 March 1994 social provisions law article 68 establishes a pension
+    solidarity withholding on the total monthly gross amount of legal and
+    complementary pensions, with different tables for isolated beneficiaries
+    and beneficiaries with family charge. The 14 July 1994 coordinated
+    health-insurance law article 191 separately assigns a 3.55 percent
+    withholding on legal and complementary pensions to insurance resources.
+    Royal Decree No. 33 of 30 March 1982 establishes a 3.5 percent
+    pension-sector withholding on invalidity indemnities and prepensions,
+    limited so the benefit is not reduced below the indexed statutory floor.
+    This module encodes the article 68 table, the article 68 indexation
+    interface through a supplied pension-index factor, the article 68 section 5
+    two percent withholding on complementary-pension capital paid after 1996,
+    the article 191 pension health-insurance withholding, and the RD No. 33
+    invalidity/prepension floor-limited withholding. It leaves foreign and
+    international pension allocation, priority ordering across payers, DB2P and
+    Sigedis communication, fictive-rent conversion tables, refunds, penalties,
+    current delegated floor revaluation factors, and post-2027 supplementary
+    capital-withholding procedures to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1994/03/30/1994021117/article/68
+      - be/statute/loi/1994/03/30/1994021117/article/68ter
+      - be/statute/loi/1994/03/30/1994021117/article/68quinquies
+      - be/statute/loi/1994/07/14/1994071451/article/191
+      - be/regulation/arrete/1982/03/30/1982000477/article/1
+      - be/regulation/arrete/1982/09/24/1982001524/article/3
+      - be/regulation/arrete/1982/09/24/1982001524/article/10
+    values:
+      belgium_pension_solidarity_article_68_index_pivot: "114.89"
+      belgium_pension_solidarity_article_68_isolated_first_threshold_base: "1711.72"
+      belgium_pension_solidarity_article_68_isolated_second_threshold_base: "1764.65"
+      belgium_pension_solidarity_article_68_isolated_third_threshold_base: "1895.87"
+      belgium_pension_solidarity_article_68_isolated_fourth_threshold_base: "1915.62"
+      belgium_pension_solidarity_article_68_family_first_threshold_base: "1978.96"
+      belgium_pension_solidarity_article_68_family_second_threshold_base: "2040.15"
+      belgium_pension_solidarity_article_68_family_third_threshold_base: "2168.84"
+      belgium_pension_solidarity_article_68_family_fourth_threshold_base: "2191.43"
+      belgium_pension_solidarity_article_68_phase_in_rate: "0.50"
+      belgium_pension_solidarity_article_68_mid_rate: "0.015"
+      belgium_pension_solidarity_article_68_top_rate: "0.02"
+      belgium_pension_solidarity_article_68_isolated_transition_base_amount: "28.44"
+      belgium_pension_solidarity_article_68_family_transition_base_amount: "32.53"
+      belgium_pension_solidarity_article_68_capital_withholding_rate: "0.02"
+      belgium_health_insurance_article_191_pension_withholding_rate: "0.0355"
+      belgium_rd33_invalidity_prepension_withholding_rate: "0.035"
+      belgium_rd33_base_monthly_floor_without_family_charge: "938.50"
+      belgium_rd33_family_charge_monthly_floor_increment: "191.94"
+      belgium_rd33_invalidity_daily_floor_divisor: "26"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pension_solidarity_article_68_index_pivot
+    kind: parameter
+    dtype: Count
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          114.89
+  - name: belgium_pension_solidarity_article_68_isolated_first_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          1711.72
+  - name: belgium_pension_solidarity_article_68_isolated_second_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          1764.65
+  - name: belgium_pension_solidarity_article_68_isolated_third_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          1895.87
+  - name: belgium_pension_solidarity_article_68_isolated_fourth_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          1915.62
+  - name: belgium_pension_solidarity_article_68_family_first_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          1978.96
+  - name: belgium_pension_solidarity_article_68_family_second_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          2040.15
+  - name: belgium_pension_solidarity_article_68_family_third_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          2168.84
+  - name: belgium_pension_solidarity_article_68_family_fourth_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          2191.43
+  - name: belgium_pension_solidarity_article_68_phase_in_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          0.5
+  - name: belgium_pension_solidarity_article_68_mid_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          0.015
+  - name: belgium_pension_solidarity_article_68_top_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          0.02
+  - name: belgium_pension_solidarity_article_68_isolated_transition_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          28.44
+  - name: belgium_pension_solidarity_article_68_family_transition_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          32.53
+  - name: belgium_pension_solidarity_article_68_capital_withholding_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 30 March 1994 on social provisions, article 68 section 5
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          0.02
+  - name: belgium_health_insurance_article_191_pension_withholding_rate
+    kind: parameter
+    dtype: Rate
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.0355
+  - name: belgium_rd33_invalidity_prepension_withholding_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '1982-04-01'
+        formula: |-
+          0.035
+  - name: belgium_rd33_base_monthly_floor_without_family_charge
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          938.50
+  - name: belgium_rd33_family_charge_monthly_floor_increment
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          191.94
+  - name: belgium_rd33_invalidity_daily_floor_divisor
+    kind: parameter
+    dtype: Count
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '1982-04-01'
+        formula: |-
+          26
+  - name: belgium_pension_solidarity_article_68_total_monthly_gross_pensions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          belgium_pension_solidarity_monthly_gross_legal_pensions + belgium_pension_solidarity_monthly_gross_complementary_pensions + belgium_pension_solidarity_nonmonthly_periodic_pensions_monthly_equivalent + belgium_pension_solidarity_capital_pensions_fictive_monthly_rent
+  - name: belgium_pension_solidarity_article_68_selected_first_threshold
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_pension_solidarity_article_68_family_first_threshold_base * belgium_pension_solidarity_article_68_index_factor
+          else:
+              belgium_pension_solidarity_article_68_isolated_first_threshold_base * belgium_pension_solidarity_article_68_index_factor
+  - name: belgium_pension_solidarity_article_68_selected_second_threshold
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_pension_solidarity_article_68_family_second_threshold_base * belgium_pension_solidarity_article_68_index_factor
+          else:
+              belgium_pension_solidarity_article_68_isolated_second_threshold_base * belgium_pension_solidarity_article_68_index_factor
+  - name: belgium_pension_solidarity_article_68_selected_third_threshold
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_pension_solidarity_article_68_family_third_threshold_base * belgium_pension_solidarity_article_68_index_factor
+          else:
+              belgium_pension_solidarity_article_68_isolated_third_threshold_base * belgium_pension_solidarity_article_68_index_factor
+  - name: belgium_pension_solidarity_article_68_selected_fourth_threshold
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_pension_solidarity_article_68_family_fourth_threshold_base * belgium_pension_solidarity_article_68_index_factor
+          else:
+              belgium_pension_solidarity_article_68_isolated_fourth_threshold_base * belgium_pension_solidarity_article_68_index_factor
+  - name: belgium_pension_solidarity_article_68_selected_transition_base_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_pension_solidarity_article_68_family_transition_base_amount * belgium_pension_solidarity_article_68_index_factor
+          else:
+              belgium_pension_solidarity_article_68_isolated_transition_base_amount * belgium_pension_solidarity_article_68_index_factor
+  - name: belgium_pension_solidarity_article_68_monthly_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          if belgium_pension_solidarity_article_68_total_monthly_gross_pensions <= belgium_pension_solidarity_article_68_selected_first_threshold:
+              0
+          else:
+              if belgium_pension_solidarity_article_68_total_monthly_gross_pensions <= belgium_pension_solidarity_article_68_selected_second_threshold:
+                  (belgium_pension_solidarity_article_68_total_monthly_gross_pensions - belgium_pension_solidarity_article_68_selected_first_threshold) * belgium_pension_solidarity_article_68_phase_in_rate
+              else:
+                  if belgium_pension_solidarity_article_68_total_monthly_gross_pensions <= belgium_pension_solidarity_article_68_selected_third_threshold:
+                      belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_pension_solidarity_article_68_mid_rate
+                  else:
+                      if belgium_pension_solidarity_article_68_total_monthly_gross_pensions <= belgium_pension_solidarity_article_68_selected_fourth_threshold:
+                          belgium_pension_solidarity_article_68_selected_transition_base_amount + (belgium_pension_solidarity_article_68_total_monthly_gross_pensions - belgium_pension_solidarity_article_68_selected_third_threshold) * belgium_pension_solidarity_article_68_phase_in_rate
+                      else:
+                          belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_pension_solidarity_article_68_top_rate
+  - name: belgium_pension_solidarity_article_68_complementary_capital_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law of 30 March 1994 on social provisions, article 68 section 5
+    versions:
+      - effective_from: '2002-01-01'
+        formula: |-
+          belgium_complementary_pension_capital_paid_after_1996 * belgium_pension_solidarity_article_68_capital_withholding_rate
+  - name: belgium_health_insurance_article_191_monthly_pension_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_health_insurance_article_191_pension_withholding_rate
+  - name: belgium_rd33_selected_monthly_floor
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          if belgium_rd33_beneficiary_has_family_charge:
+              (belgium_rd33_base_monthly_floor_without_family_charge + belgium_rd33_family_charge_monthly_floor_increment) * belgium_rd33_floor_revaluation_factor
+          else:
+              belgium_rd33_base_monthly_floor_without_family_charge * belgium_rd33_floor_revaluation_factor
+  - name: belgium_rd33_invalidity_floor_for_paid_days
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1 and Royal Decree of 24 September 1982, article 3
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          belgium_rd33_selected_monthly_floor / belgium_rd33_invalidity_daily_floor_divisor * belgium_rd33_invalidity_paid_days
+  - name: belgium_rd33_invalidity_monthly_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1 and Royal Decree of 24 September 1982, articles 3 and 10
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          min(belgium_rd33_monthly_invalidity_indemnities * belgium_rd33_invalidity_prepension_withholding_rate, max(0, belgium_rd33_monthly_invalidity_indemnities - belgium_rd33_invalidity_floor_for_paid_days))
+  - name: belgium_rd33_prepension_floor
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          belgium_rd33_selected_monthly_floor * belgium_rd33_prepension_floor_fraction
+  - name: belgium_rd33_prepension_monthly_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1 and Royal Decree of 24 September 1982, article 10
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          min(belgium_rd33_monthly_prepension_and_complementary_indemnity * belgium_rd33_invalidity_prepension_withholding_rate, max(0, belgium_rd33_monthly_prepension_and_complementary_indemnity - belgium_rd33_prepension_floor))
+  - name: belgium_rd33_total_monthly_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree No. 33 of 30 March 1982, article 1
+    versions:
+      - effective_from: '2006-04-01'
+        formula: |-
+          belgium_rd33_invalidity_monthly_withholding + belgium_rd33_prepension_monthly_withholding

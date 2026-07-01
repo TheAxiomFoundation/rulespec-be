@@ -1,0 +1,136 @@
+- name: thermal_passenger_car_neutral_factors
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 100
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 136
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 1838
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: false
+  output:
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power: 515.20
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor: 1
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_after_age: 515.20
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_co2_denominator: 136
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_co2_factor: 1
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_mass_factor: 1
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_energy_coefficient: 1
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_large_family_reduction: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_family_reduction: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_amount_after_reduction: 515.20
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_capped_amount: 515.20
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax: 515.20
+
+- name: electric_city_car_hits_minimum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 100
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 1838
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: false
+  output:
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_co2_factor: 1
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_energy_coefficient: 0.01
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_raw_formula_amount: 5.152
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax: 50
+
+- name: fifteen_year_vehicle_uses_uniform_minimum_base
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 100
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 15
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 136
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 1838
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: false
+  output:
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_after_age: 61.50
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax: 61.50
+
+- name: single_parent_reduction_applies_after_formula
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 100
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 136
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 1838
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: false
+  output:
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_single_parent_reduction: 250
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax: 265.20
+
+- name: high_emissions_and_mass_hit_maximum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 200
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 272
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 3676
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: false
+  output:
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_raw_formula_amount: 20637.00
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax: 9000
+
+- name: oldtimer_uses_uniform_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 200
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 31
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 272
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 3676
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: true
+  output:
+    be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_passenger_car_tax: 61.50

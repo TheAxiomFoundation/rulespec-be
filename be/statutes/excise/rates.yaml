@@ -1,0 +1,317 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Current federal Belgian excise rates for tobacco, alcoholic beverages, and
+    car-fuel surfaces. This module encodes statutory base rates from Justel
+    consolidated law.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/justel/excise/alcohol/1998003047/Article 5
+      - be/statute/justel/excise/alcohol/1998003047/Article 9
+      - be/statute/justel/excise/alcohol/1998003047/Article 12
+      - be/statute/justel/excise/alcohol/1998003047/Article 15
+      - be/statute/justel/excise/alcohol/1998003047/Article 17
+      - be/statute/justel/excise/tobacco/1997003241/Article 3
+      - be/statute/justel/excise/energy-products/2004021170/Article 419
+    values:
+      belgium_excise_beer_rate_per_hectolitre_degree_plato: 0.7933
+      belgium_excise_beer_special_rate_per_hectolitre_degree_plato: 1.2110
+      belgium_excise_still_wine_special_rate_per_hectolitre: 74.9086
+      belgium_excise_sparkling_wine_special_rate_per_hectolitre: 256.3223
+      belgium_excise_intermediate_product_rate_per_hectolitre: 66.9313
+      belgium_excise_intermediate_product_special_rate_per_hectolitre: 90.8479
+      belgium_excise_ethyl_alcohol_rate_per_hectolitre_pure_alcohol: 223.1042
+      belgium_excise_ethyl_alcohol_special_rate_per_hectolitre_pure_alcohol: 2769.6886
+      belgium_excise_cigarette_ad_valorem_rate: 0.3150
+      belgium_excise_cigarette_specific_rate_per_1000_pieces: 6.8914
+      belgium_excise_cigarette_special_specific_rate_per_1000_pieces: 182.8889
+      belgium_excise_smoking_tobacco_ad_valorem_rate: 0.3150
+      belgium_excise_smoking_tobacco_special_specific_rate_per_kg: 136.0000
+      belgium_excise_unleaded_low_sulfur_gasoline_rate_per_1000_litres: 245.4146
+      belgium_excise_unleaded_low_sulfur_gasoline_special_rate_per_1000_litres: 181.4842
+      belgium_excise_unleaded_low_sulfur_gasoline_energy_contribution_per_1000_litres: 28.6317
+      belgium_excise_low_sulfur_gasoil_rate_per_1000_litres: 198.3148
+      belgium_excise_low_sulfur_gasoil_special_rate_per_1000_litres: 242.3421
+      belgium_excise_low_sulfur_gasoil_energy_contribution_per_1000_litres: 14.8736
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 4
+rules:
+  - name: belgium_excise_beer_rate_per_hectolitre_degree_plato
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 5 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0.7933
+  - name: belgium_excise_beer_special_rate_per_hectolitre_degree_plato
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 5 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          1.2110
+  - name: belgium_excise_still_wine_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0
+  - name: belgium_excise_still_wine_special_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          74.9086
+  - name: belgium_excise_sparkling_wine_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0
+  - name: belgium_excise_sparkling_wine_special_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          256.3223
+  - name: belgium_excise_other_fermented_still_special_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 12 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          74.9086
+  - name: belgium_excise_other_fermented_sparkling_special_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 12 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          256.3223
+  - name: belgium_excise_intermediate_product_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 15 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          66.9313
+  - name: belgium_excise_intermediate_product_special_rate_per_hectolitre
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 15 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          90.8479
+  - name: belgium_excise_ethyl_alcohol_rate_per_hectolitre_pure_alcohol
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 17
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          223.1042
+  - name: belgium_excise_ethyl_alcohol_special_rate_per_hectolitre_pure_alcohol
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 17
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          2769.6886
+  - name: belgium_excise_cigarette_ad_valorem_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 1 item 2
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0.3150
+  - name: belgium_excise_cigarette_special_ad_valorem_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 1 item 2
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0
+  - name: belgium_excise_cigarette_specific_rate_per_1000_pieces
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item a
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          6.8914
+  - name: belgium_excise_cigarette_special_specific_rate_per_1000_pieces
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item a
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          182.8889
+  - name: belgium_excise_smoking_tobacco_ad_valorem_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 1 item 3
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0.3150
+  - name: belgium_excise_smoking_tobacco_specific_rate_per_kg
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item b
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          0
+  - name: belgium_excise_smoking_tobacco_special_specific_rate_per_kg
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item b
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          136.0000
+  - name: belgium_excise_unleaded_low_sulfur_gasoline_rate_per_1000_litres
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item c
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          245.4146
+  - name: belgium_excise_unleaded_low_sulfur_gasoline_special_rate_per_1000_litres
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item c
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          181.4842
+  - name: belgium_excise_unleaded_low_sulfur_gasoline_energy_contribution_per_1000_litres
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item c
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          28.6317
+  - name: belgium_excise_low_sulfur_gasoil_rate_per_1000_litres
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item f
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          198.3148
+  - name: belgium_excise_low_sulfur_gasoil_special_rate_per_1000_litres
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item f
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          242.3421
+  - name: belgium_excise_low_sulfur_gasoil_energy_contribution_per_1000_litres
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item f
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          14.8736
+  - name: belgium_excise_beer_total_rate_per_hectolitre_degree_plato
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 5 section 1
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          belgium_excise_beer_rate_per_hectolitre_degree_plato + belgium_excise_beer_special_rate_per_hectolitre_degree_plato
+  - name: belgium_excise_ethyl_alcohol_total_rate_per_hectolitre_pure_alcohol
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 7 January 1998 concerning alcohol excise, article 17
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          belgium_excise_ethyl_alcohol_rate_per_hectolitre_pure_alcohol + belgium_excise_ethyl_alcohol_special_rate_per_hectolitre_pure_alcohol
+  - name: belgium_excise_cigarette_specific_total_rate_per_1000_pieces
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item a
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          belgium_excise_cigarette_specific_rate_per_1000_pieces + belgium_excise_cigarette_special_specific_rate_per_1000_pieces
+  - name: belgium_excise_unleaded_low_sulfur_gasoline_total_rate_per_1000_litres
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item c
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          belgium_excise_unleaded_low_sulfur_gasoline_rate_per_1000_litres + belgium_excise_unleaded_low_sulfur_gasoline_special_rate_per_1000_litres + belgium_excise_unleaded_low_sulfur_gasoline_energy_contribution_per_1000_litres
+  - name: belgium_excise_low_sulfur_gasoil_total_rate_per_1000_litres
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Programme Law of 27 December 2004, article 419 item f
+    versions:
+      - effective_from: '2026-06-30'
+        formula: |-
+          belgium_excise_low_sulfur_gasoil_rate_per_1000_litres + belgium_excise_low_sulfur_gasoil_special_rate_per_1000_litres + belgium_excise_low_sulfur_gasoil_energy_contribution_per_1000_litres

@@ -1,0 +1,41 @@
+format: rulespec/v1
+imports:
+  - be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount
+  - be-bru:statutes/family_benefits/social_supplements#brussels_family_benefits_article_9_social_supplement_monthly_amount
+module:
+  summary: |-
+    Brussels family-benefit ordinance article 7 sets base monthly amounts and
+    article 9 sets social supplements. This bridge combines the encoded
+    article 7 base amount and article 9 social supplement into a selected
+    monthly amount for currently encoded Brussels surfaces. It does not add
+    orphan, disability, placement, eligibility, indexation, or payment rules.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+    values:
+      brussels_family_benefits_selected_amount_components: 2
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_family_benefits_selected_amount_components
+    kind: parameter
+    dtype: Count
+    source: Brussels family-benefits bridge over article 7 base and article 9 social supplement
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          2
+  - name: brussels_family_benefits_selected_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels ordinance of 25 April 2019 regulating family benefits, articles 7 and 9
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          brussels_family_benefits_article_7_base_monthly_amount + brussels_family_benefits_article_9_social_supplement_monthly_amount

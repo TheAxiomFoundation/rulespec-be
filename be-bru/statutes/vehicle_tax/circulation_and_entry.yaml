@@ -1,0 +1,502 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Brussels vehicle-tax parameters for the annual circulation tax and public
+    entry-into-service tax guardrails. This module covers the fiscal-power
+    circulation-tax curve for passenger cars, mixed-use cars, and
+    minibuses through 20 CV, plus the public motorcycle and TMC amounts from
+    the Brussels Fiscality 2026 sheets. Detailed MyTax car and motorcycle TMC
+    brackets are encoded in the companion entry_into_service_detailed module.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/justel/code-taxes-assimilees/1965112350
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-7
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-1
+      - be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be/statute/justel/code-taxes-assimilees/1965112350
+      rationale: |-
+        The Code des taxes assimilees aux impots sur les revenus is the
+        upstream legal framework and Justel records the Brussels amendments.
+        The current Brussels Fiscality sheets are the official public source
+        for indexed 2026 Brussels amounts after that Code locator is checked.
+    values:
+      brussels_circulation_tax_cv_0_to_4_amount: 107.18
+      brussels_circulation_tax_cv_5_amount: 134.11
+      brussels_circulation_tax_cv_6_amount: 193.91
+      brussels_circulation_tax_cv_7_amount: 253.31
+      brussels_circulation_tax_cv_8_amount: 313.24
+      brussels_circulation_tax_cv_9_amount: 373.16
+      brussels_circulation_tax_cv_10_amount: 432.30
+      brussels_circulation_tax_cv_11_amount: 561.00
+      brussels_circulation_tax_cv_12_amount: 689.70
+      brussels_circulation_tax_cv_13_amount: 818.14
+      brussels_circulation_tax_cv_14_amount: 946.84
+      brussels_circulation_tax_cv_15_amount: 1075.54
+      brussels_circulation_tax_cv_16_amount: 1408.70
+      brussels_circulation_tax_cv_17_amount: 1742.14
+      brussels_circulation_tax_cv_18_amount: 2075.57
+      brussels_circulation_tax_cv_19_amount: 2408.34
+      brussels_circulation_tax_cv_20_amount: 2741.77
+      brussels_circulation_tax_motorcycle_uniform_amount: 76.03
+      brussels_entry_into_service_tax_minimum_amount: 78.88
+      brussels_entry_into_service_tax_maximum_amount: 6357.85
+      brussels_entry_into_service_tax_boat_amount: 3178.28
+      brussels_entry_into_service_tax_paramotor_or_remotely_piloted_aircraft_amount: 793.93
+      brussels_entry_into_service_tax_ultralight_motor_aircraft_amount: 78.88
+      brussels_entry_into_service_tax_other_aircraft_amount: 3178.28
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_vehicle_tax_zero_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, motorcycles up to 250 cc owe no circulation tax
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          0
+  - name: brussels_circulation_tax_cv_0_to_4_max_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 0 to 4 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          4
+  - name: brussels_circulation_tax_cv_5_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 5 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          5
+  - name: brussels_circulation_tax_cv_6_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 6 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          6
+  - name: brussels_circulation_tax_cv_7_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 7 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          7
+  - name: brussels_circulation_tax_cv_8_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 8 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          8
+  - name: brussels_circulation_tax_cv_9_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 9 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          9
+  - name: brussels_circulation_tax_cv_10_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 10 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          10
+  - name: brussels_circulation_tax_cv_11_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 11 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          11
+  - name: brussels_circulation_tax_cv_12_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 12 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          12
+  - name: brussels_circulation_tax_cv_13_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 13 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          13
+  - name: brussels_circulation_tax_cv_14_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 14 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          14
+  - name: brussels_circulation_tax_cv_15_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 15 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          15
+  - name: brussels_circulation_tax_cv_16_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 16 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          16
+  - name: brussels_circulation_tax_cv_17_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 17 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          17
+  - name: brussels_circulation_tax_cv_18_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 18 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          18
+  - name: brussels_circulation_tax_cv_19_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 19 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          19
+  - name: brussels_circulation_tax_cv_20_fiscal_power
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 20 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          20
+  - name: brussels_circulation_tax_motorcycle_exempt_max_engine_cc
+    kind: parameter
+    dtype: Count
+    source: Brussels Fiscality circulation-tax sheet, motorcycle exemption for cylinder capacity of maximum 250 cubic centimeters
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          250
+  - name: brussels_circulation_tax_cv_0_to_4_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 0 to 4 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          107.18
+  - name: brussels_circulation_tax_cv_5_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 5 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          134.11
+  - name: brussels_circulation_tax_cv_6_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 6 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          193.91
+  - name: brussels_circulation_tax_cv_7_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 7 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          253.31
+  - name: brussels_circulation_tax_cv_8_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 8 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          313.24
+  - name: brussels_circulation_tax_cv_9_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 9 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          373.16
+  - name: brussels_circulation_tax_cv_10_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 10 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          432.30
+  - name: brussels_circulation_tax_cv_11_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 11 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          561.00
+  - name: brussels_circulation_tax_cv_12_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 12 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          689.70
+  - name: brussels_circulation_tax_cv_13_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 13 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          818.14
+  - name: brussels_circulation_tax_cv_14_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 14 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          946.84
+  - name: brussels_circulation_tax_cv_15_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 15 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          1075.54
+  - name: brussels_circulation_tax_cv_16_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 16 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          1408.70
+  - name: brussels_circulation_tax_cv_17_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 17 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          1742.14
+  - name: brussels_circulation_tax_cv_18_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 18 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          2075.57
+  - name: brussels_circulation_tax_cv_19_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 19 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          2408.34
+  - name: brussels_circulation_tax_cv_20_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, tariffs dd. 1 July 2026, passenger cars 20 CV
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          2741.77
+  - name: brussels_circulation_tax_passenger_car_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Code des taxes assimilees aux impots sur les revenus articles 9 and 10, with Brussels Fiscality 2026 tariff sheet for current indexed amounts
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if brussels_vehicle_fiscal_power_cv <= brussels_circulation_tax_cv_0_to_4_max_fiscal_power:
+              brussels_circulation_tax_cv_0_to_4_amount
+          else:
+              if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_5_fiscal_power:
+                  brussels_circulation_tax_cv_5_amount
+              else:
+                  if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_6_fiscal_power:
+                      brussels_circulation_tax_cv_6_amount
+                  else:
+                      if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_7_fiscal_power:
+                          brussels_circulation_tax_cv_7_amount
+                      else:
+                          if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_8_fiscal_power:
+                              brussels_circulation_tax_cv_8_amount
+                          else:
+                              if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_9_fiscal_power:
+                                  brussels_circulation_tax_cv_9_amount
+                              else:
+                                  if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_10_fiscal_power:
+                                      brussels_circulation_tax_cv_10_amount
+                                  else:
+                                      if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_11_fiscal_power:
+                                          brussels_circulation_tax_cv_11_amount
+                                      else:
+                                          if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_12_fiscal_power:
+                                              brussels_circulation_tax_cv_12_amount
+                                          else:
+                                              if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_13_fiscal_power:
+                                                  brussels_circulation_tax_cv_13_amount
+                                              else:
+                                                  if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_14_fiscal_power:
+                                                      brussels_circulation_tax_cv_14_amount
+                                                  else:
+                                                      if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_15_fiscal_power:
+                                                          brussels_circulation_tax_cv_15_amount
+                                                      else:
+                                                          if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_16_fiscal_power:
+                                                              brussels_circulation_tax_cv_16_amount
+                                                          else:
+                                                              if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_17_fiscal_power:
+                                                                  brussels_circulation_tax_cv_17_amount
+                                                              else:
+                                                                  if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_18_fiscal_power:
+                                                                      brussels_circulation_tax_cv_18_amount
+                                                                  else:
+                                                                      if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_19_fiscal_power:
+                                                                          brussels_circulation_tax_cv_19_amount
+                                                                      else:
+                                                                          if brussels_vehicle_fiscal_power_cv == brussels_circulation_tax_cv_20_fiscal_power:
+                                                                              brussels_circulation_tax_cv_20_amount
+                                                                          else:
+                                                                              brussels_vehicle_tax_zero_amount
+  - name: brussels_circulation_tax_motorcycle_uniform_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, motorcycles, tariffs dd. 1 July 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          76.03
+  - name: brussels_circulation_tax_motorcycle_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality circulation-tax sheet, motorcycles, tariffs dd. 1 July 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if brussels_motorcycle_engine_cc <= brussels_circulation_tax_motorcycle_exempt_max_engine_cc:
+              brussels_vehicle_tax_zero_amount
+          else:
+              brussels_circulation_tax_motorcycle_uniform_amount
+  - name: brussels_entry_into_service_tax_minimum_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality entry-into-service tax sheet, index 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          78.88
+  - name: brussels_entry_into_service_tax_maximum_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality entry-into-service tax sheet, index 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          6357.85
+  - name: brussels_entry_into_service_tax_boat_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality entry-into-service tax sheet, boats, index 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          3178.28
+  - name: brussels_entry_into_service_tax_paramotor_or_remotely_piloted_aircraft_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality entry-into-service tax sheet, paramotors and remotely piloted aircraft, index 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          793.93
+  - name: brussels_entry_into_service_tax_ultralight_motor_aircraft_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality entry-into-service tax sheet, ultralight motor aircraft, index 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          78.88
+  - name: brussels_entry_into_service_tax_other_aircraft_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels Fiscality entry-into-service tax sheet, other aircraft, index 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          3178.28

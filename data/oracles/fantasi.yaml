@@ -1,0 +1,34 @@
+oracle: fantasi
+observed_at: '2026-06-30'
+name: FANTASI
+full_name: Fiscal Analysis and Tax Simulation
+index_url: https://steunpuntfb.ugent.be/2007-2011/index.html
+working_paper_url: https://steunpuntfb.ugent.be/2007-2011/pdf/SFB_WP_B9_1.pdf
+authority: documentary_reference_access_required
+legal_authority: false
+executable_oracle_available: false
+notes: |-
+  FANTASI is a Belgian personal-income-tax microsimulation model described in
+  the Steunpunt Fiscaliteit en Begroting working paper for Project B9. The
+  public paper is useful for understanding scope, model structure, parameters,
+  and validation, but it is not itself an executable oracle.
+
+  The paper describes a Stata implementation driven by FANTASI.do, with
+  FANTASI_parameter.do as the user-editable parameter file and FANTASI_calc.do
+  as the calculation module. It also describes IPCAL administrative tax-return
+  data from SPF Finances, initially assessment year 2008/income year 2007 and
+  later assessment year 2010/income year 2009. Because neither the runnable
+  Stata model nor permitted IPCAL or synthetic input data are available in this
+  repository, Axiom validation must not treat FANTASI as callable.
+runnable_requirements:
+  - permitted copy of the FANTASI Stata do-files and supporting ado-files
+  - licensed Stata runtime or a validated compatible execution path
+  - permitted IPCAL microdata or a synthetic fixture with the required tax-return variables
+  - pinned assessment year and parameter file
+  - documented mapping from FANTASI output variables to Axiom oracle assertions
+candidate_coverage:
+  - personal_income_tax_rate_scale
+  - tax_free_amount
+  - tax_reductions_and_credits
+  - regional_personal_income_tax_interfaces
+  - macro_and_micro personal-income-tax validation

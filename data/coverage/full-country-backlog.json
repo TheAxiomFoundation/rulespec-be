@@ -1,0 +1,682 @@
+{
+  "generated_at": "2026-07-01",
+  "jurisdiction": "be",
+  "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
+  "scope": "belgium_tax_benefit",
+  "scope_benchmarks": [
+    {
+      "id": "beamm-non-oracle-scope-benchmark",
+      "path": "data/coverage/beamm-non-oracle-scope-benchmark.json",
+      "role": "coverage_benchmark_only",
+      "not_oracle": true
+    }
+  ],
+  "jurisdiction_layers": {
+    "national": {
+      "namespace": "be",
+      "description": "Federal/national Belgium statutes, regulations, and agency policy surfaces."
+    },
+    "regional": [
+      {
+        "namespace": "be-bru",
+        "description": "Brussels-Capital Region and Common Community Commission surfaces."
+      },
+      {
+        "namespace": "be-vlg",
+        "description": "Flemish Region and Flemish Community surfaces where competence is integrated in Flemish institutions."
+      },
+      {
+        "namespace": "be-wal",
+        "description": "Walloon Region surfaces."
+      }
+    ],
+    "community": [
+      {
+        "namespace": "be-dg",
+        "description": "German-speaking Community surfaces promoted after Moniteur/ELI source discovery."
+      },
+      {
+        "namespace_status": "pending",
+        "description": "French Community, COCOF, VGC, and COCOM namespaces are added when source manifests promote those competences."
+      }
+    ]
+  },
+  "status_terms": {
+    "not_started": "No Axiom corpus or RuleSpec artifact exists yet.",
+    "source_spine": "Official source family identified and ready for corpus ingestion.",
+    "source_ids_seeded": "Official ELI or publication identifiers are identified for first ingestion.",
+    "corpus_ingested": "Official source snapshots, inventories, provisions, and coverage were generated in axiom-corpus.",
+    "oracle_identified": "At least one executable household-level comparison oracle is identified but not necessarily pinned.",
+    "ready_for_ingest": "Official source URLs and target provision families are identified.",
+    "encoded": "RuleSpec exists with companion tests.",
+    "oracle_parity": "Axiom outputs are compared against at least one pinned comparison oracle."
+  },
+  "tracks": [
+    {
+      "id": "tax-personal-income",
+      "title": "Personal income tax",
+      "administered_by": [
+        "SPF Finances"
+      ],
+      "official_source_families": [
+        "Code des impots sur les revenus 1992",
+        "Arrete royal d'execution du Code des impots sur les revenus 1992",
+        "annual tax amendment laws",
+        "SPF Finances rate guidance"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium",
+        "fantasi"
+      ],
+      "components": [
+        "resident and non-resident taxpayer predicates",
+        "professional, replacement, movable, and immovable income categories",
+        "taxable income aggregation",
+        "Article 86-89 spouse professional-income attribution and imputation under joint assessment",
+        "Article 126/127 joint-assessment gate and income allocation",
+        "Article 129 supplied eligible loss-balance transfer bridge",
+        "federal progressive tax brackets and rates",
+        "company-car benefits in kind",
+        "tax-free amount and family increments",
+        "Article 134 paragraph 4 joint tax-free-amount allocation",
+        "tax reductions and credits",
+        "communal additional tax interface for Brussels municipalities",
+        "movable withholding and prepayment interfaces"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "payroll-social-contributions",
+      "title": "Employee, employer, self-employed, and Flemish social protection contributions",
+      "administered_by": [
+        "ONSS / RSZ",
+        "INASTI / RSVZ",
+        "SPF Securite sociale",
+        "Vlaamse sociale bescherming"
+      ],
+      "official_source_families": [
+        "Loi du 27 juin 1969 concernant la securite sociale des travailleurs",
+        "Arrete royal du 28 novembre 1969",
+        "self-employed social status instruments",
+        "ONSS administrative instructions",
+        "Decreet van 18 mei 2018 houdende de Vlaamse sociale bescherming",
+        "Besluit van de Vlaamse Regering van 30 november 2018 houdende de uitvoering van het decreet van 18 mei 2018 houdende de Vlaamse sociale bescherming"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "employee contribution rates",
+        "ordinary Article 38 employee contribution before supplied reductions",
+        "employer contribution bases",
+        "work bonus and low-wage reductions",
+        "student and special employment categories",
+        "self-employed contribution bases and rates",
+        "Flemish Social Protection annual premium"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "family-benefits-federal-guaranteed",
+      "title": "Federal guaranteed family benefits",
+      "administered_by": [
+        "Federal Public Service Social Security",
+        "National family-allowance institutions"
+      ],
+      "official_source_families": [
+        "Loi du 20 juillet 1971 instituant des prestations familiales garanties",
+        "Arrete royal du 25 octobre 1971 portant execution de la loi du 20 juillet 1971 instituant des prestations familiales garanties",
+        "Coordinated family-allowance laws and delegated indexation instruments"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "principal-maintenance and Belgium-residence predicates",
+        "child residence and other-benefit conditions",
+        "resource-test exemptions and quarterly ceiling",
+        "regular monthly allowance amount interface",
+        "coordinated-law monthly and grant amount schedules",
+        "public-placement special allowance",
+        "birth and adoption grant gates",
+        "advance-payment interface"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "family-benefits-brussels",
+      "title": "Brussels family benefits",
+      "administered_by": [
+        "Common Community Commission",
+        "Famiris",
+        "Iriscare"
+      ],
+      "official_source_families": [
+        "Ordonnance du 25 avril 2019 reglant l'octroi des prestations familiales",
+        "Brussels delegated instruments and rate orders",
+        "Famiris rate and eligibility guidance"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "child eligibility and domicile predicates",
+        "basic monthly amount",
+        "age supplements",
+        "income-tested social supplements",
+        "single-parent and large-family interfaces",
+        "orphan and disability supplements",
+        "birth and adoption grants"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "family-benefits-flanders",
+      "title": "Flemish family benefits",
+      "administered_by": [
+        "Flemish Community",
+        "Groeipakket",
+        "Opgroeien"
+      ],
+      "official_source_families": [
+        "Decreet van 27 april 2018 tot regeling van de toelagen in het kader van het gezinsbeleid",
+        "Flemish delegated instruments and rate orders",
+        "Groeipakket rate and eligibility guidance"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "child eligibility and domicile predicates",
+        "basic monthly amount",
+        "universal participation supplements",
+        "income-tested social supplements",
+        "orphan, disability, and foster-care supplements",
+        "birth and adoption grants"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "family-benefits-wallonia",
+      "title": "Walloon family benefits",
+      "administered_by": [
+        "Walloon Region",
+        "AVIQ",
+        "Walloon family-allowance funds"
+      ],
+      "official_source_families": [
+        "Decret du 8 fevrier 2018 relatif a la gestion et au paiement des prestations familiales",
+        "Walloon delegated instruments and rate orders",
+        "AVIQ rate and eligibility guidance"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "child eligibility and domicile predicates",
+        "basic monthly amount",
+        "annual age supplement",
+        "income-tested social supplements",
+        "single-parent and large-family supplements",
+        "orphan, disability, and foster-care supplements",
+        "birth and adoption grants"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "family-benefits-german-speaking-community",
+      "title": "German-speaking Community family benefits",
+      "administered_by": [
+        "Deutschsprachige Gemeinschaft",
+        "Ostbelgien Familie"
+      ],
+      "official_source_families": [
+        "German-speaking Community decree of 23 April 2018 on family benefits",
+        "German-speaking Community program decree of 22 December 2025 family-benefit amendments",
+        "German-speaking Community delegated instruments and current amount guidance",
+        "Ostbelgien Familie rate and eligibility guidance"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "child residence and insured-person predicates",
+        "core base-entitlement gate",
+        "basic monthly amount",
+        "annual supplement",
+        "large-family supplement",
+        "social supplement",
+        "disability supplement",
+        "full-orphan and half-orphan supplements",
+        "birth and adoption premiums",
+        "2025-2027 indexation freeze",
+        "2025 annual supplement override"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "social-integration-minimum-income",
+      "title": "Right to social integration and minimum income",
+      "administered_by": [
+        "SPP Integration sociale",
+        "CPAS / OCMW"
+      ],
+      "official_source_families": [
+        "Loi du 26 mai 2002 concernant le droit a l'integration sociale",
+        "Arrete royal du 11 juillet 2002 portant reglement general en matiere de droit a l'integration sociale",
+        "Loi organique des CPAS, Brussels form"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "age, residence, nationality, and resource predicates",
+        "category rates for cohabitant, single person, and person with family at charge",
+        "resource tests",
+        "Article 14 payable amount bridge",
+        "individualized social integration project interfaces",
+        "CPAS employment interfaces"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "unemployment-insurance",
+      "title": "Unemployment insurance and activation interfaces",
+      "administered_by": [
+        "ONEM / RVA"
+      ],
+      "official_source_families": [
+        "Arrete royal du 25 novembre 1991 portant reglementation du chomage",
+        "ministerial decrees and ONEM administrative instructions"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "employment-history eligibility",
+        "involuntary unemployment predicates",
+        "family category",
+        "benefit amount by phase and previous wage",
+        "degressivity",
+        "activation and sanctions interfaces"
+      ],
+      "status": "encoded",
+      "priority": 1
+    },
+    {
+      "id": "sickness-disability-health-insurance",
+      "title": "Sickness, invalidity, and health insurance indemnities",
+      "administered_by": [
+        "INAMI / RIZIV",
+        "mutualities",
+        "Iriscare"
+      ],
+      "official_source_families": [
+        "Loi relative a l'assurance obligatoire soins de sante et indemnites coordonnee le 14 juillet 1994",
+        "Arrete royal du 3 juillet 1996 portant execution de la loi relative a l'assurance obligatoire soins de sante et indemnites",
+        "INAMI instructions"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "Article 32/86/112/131 holder and continuity status bridge",
+        "sickness indemnity eligibility",
+        "invalidity indemnity eligibility",
+        "replacement rate and ceilings",
+        "household category and dependant predicates",
+        "health-care status interfaces"
+      ],
+      "status": "partial_encoded",
+      "priority": 2
+    },
+    {
+      "id": "long-term-care-and-disability-brussels",
+      "title": "Disability allowances and regional care-related supports",
+      "administered_by": [
+        "SPF Securite sociale",
+        "Iriscare"
+      ],
+      "official_source_families": [
+        "Loi du 27 fevrier 1987 relative aux allocations aux personnes handicapees",
+        "Brussels, Flemish, Walloon, and community long-term-care and mobility-support instruments"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "income replacement allowance",
+        "integration allowance",
+        "elderly care allowance interfaces",
+        "regional and community care interfaces",
+        "medical recognition predicates",
+        "resource tests"
+      ],
+      "status": "source_ids_seeded",
+      "priority": 2
+    },
+    {
+      "id": "pensions-and-income-guarantee",
+      "title": "Pensions and income guarantee for older people",
+      "administered_by": [
+        "Service federal des Pensions",
+        "SPF Securite sociale"
+      ],
+      "official_source_families": [
+        "statutory pension laws and implementing decrees",
+        "Loi du 22 mars 2001 instituant la garantie de revenus aux personnes agees"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "retirement pension interfaces",
+        "survivor pension interfaces",
+        "GRAPA / IGO eligibility",
+        "GRAPA resource test",
+        "cohabitation and household category predicates"
+      ],
+      "status": "encoded",
+      "priority": 2
+    },
+    {
+      "id": "housing-assistance-brussels",
+      "title": "Brussels housing assistance",
+      "administered_by": [
+        "Brussels Logement",
+        "regional housing bodies"
+      ],
+      "official_source_families": [
+        "Code bruxellois du Logement",
+        "Brussels delegated instruments for rent allowance, social housing, and housing supports"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "social housing eligibility",
+        "rent allowance eligibility",
+        "income ceilings",
+        "household composition",
+        "housing cost inputs",
+        "regional priority and exclusion predicates"
+      ],
+      "status": "source_ids_seeded",
+      "priority": 2
+    },
+    {
+      "id": "student-support",
+      "title": "Student support and community education grants",
+      "administered_by": [
+        "Federation Wallonie-Bruxelles",
+        "Flemish Community",
+        "Brussels institutions"
+      ],
+      "official_source_families": [
+        "community decrees and implementing orders on study grants",
+        "Brussels-resident eligibility and mobility interfaces",
+        "Flanders, Wallonia, and community-specific student-support instruments"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod"
+      ],
+      "components": [
+        "student grant eligibility",
+        "household income tests",
+        "study status predicates",
+        "residency and community-competence interfaces",
+        "French Community, Flemish Community, and German-speaking Community routing"
+      ],
+      "status": "encoded",
+      "priority": 3
+    },
+    {
+      "id": "consumption-and-indirect-tax",
+      "title": "VAT and indirect-tax interfaces",
+      "administered_by": [
+        "SPF Finances"
+      ],
+      "official_source_families": [
+        "Code de la taxe sur la valeur ajoutee",
+        "VAT royal decrees and SPF Finances guidance",
+        "federal excise laws and current rate schedules"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod",
+        "euromod-belgium"
+      ],
+      "components": [
+        "standard VAT rate",
+        "reduced VAT rates",
+        "zero or exempt treatment",
+        "household-consumption interfaces",
+        "excise interfaces"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "regional-inheritance-tax",
+      "title": "Regional inheritance tax",
+      "administered_by": [
+        "Vlaamse Belastingdienst",
+        "Brussels Fiscality",
+        "Service public de Wallonie Finances"
+      ],
+      "official_source_families": [
+        "Vlaamse Codex Fiscaliteit inheritance-tax provisions",
+        "Brussels succession-duty provisions",
+        "Walloon succession-duty provisions"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod"
+      ],
+      "components": [
+        "regional routing",
+        "relationship classes",
+    "taxable estate and beneficiary acquisition bases",
+    "progressive rate schedules",
+    "Walloon future 2028 succession-duty table",
+    "exemptions and reduced rates",
+    "estate and household-level transaction inputs"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "regional-gift-tax",
+      "title": "Regional gift tax",
+      "administered_by": [
+        "Vlaamse Belastingdienst",
+        "Brussels Fiscality",
+        "Service public de Wallonie Finances"
+      ],
+      "official_source_families": [
+        "Vlaamse Codex Fiscaliteit gift-tax provisions",
+        "Brussels registration-duty provisions",
+        "Walloon registration-duty provisions"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod"
+      ],
+      "components": [
+        "regional routing",
+        "movable and immovable gift classification",
+        "relationship classes",
+    "progressive real-property gift rates",
+    "flat movable gift rates",
+    "Walloon future 2028 immovable-gift table",
+    "Brussels article-131bis successoral-pact movable-gift exemption",
+    "Brussels and Walloon movable-gift donor-death condition or term exclusions",
+    "exemptions and reduced rates"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "regional-real-property-tax",
+      "title": "Regional real-property tax and reductions",
+      "administered_by": [
+        "Vlaamse Belastingdienst",
+        "Brussels Fiscality",
+        "Service public de Wallonie Finances"
+      ],
+      "official_source_families": [
+        "Vlaamse Codex Fiscaliteit immovable-withholding-tax provisions",
+        "Brussels property-tax provisions",
+        "Walloon property-tax provisions"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium",
+        "belmod"
+      ],
+      "components": [
+        "regional base rates",
+    "cadastral-income interfaces",
+    "municipal and provincial surcharge interfaces",
+    "family and disability reductions",
+    "modest-dwelling reductions",
+    "article-258 designated-dwelling and professional-use apportionment limits",
+    "article-259 rent deduction pass-through for family and disability reductions",
+    "energy-performance reductions and exemptions"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "vehicle-tax-brussels",
+      "title": "Brussels circulation tax and tax on entry into service",
+      "administered_by": [
+        "Brussels Fiscality",
+        "SPF Finances"
+      ],
+      "official_source_families": [
+        "Brussels ordinances and delegated instruments on vehicle taxation",
+        "legacy federal vehicle-tax instruments as regionally applied or amended",
+        "Brussels Fiscality or SPF Finance guidance after upstream law identification"
+      ],
+      "oracle_ids": [],
+      "components": [
+        "circulation tax base and rate schedule",
+        "tax on entry into service base and rate schedule",
+        "vehicle characteristics and age interfaces",
+        "regional exemptions and reductions"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "vehicle-tax-flanders",
+      "title": "Flemish circulation tax and tax on entry into service",
+      "administered_by": [
+        "Vlaamse Belastingdienst",
+        "Vlaamse overheid"
+      ],
+      "official_source_families": [
+        "Vlaamse Codex Fiscaliteit current article-version text after Moniteur ELI identification",
+        "Vlaamse Belastingdienst guidance after upstream law identification"
+      ],
+      "oracle_ids": [],
+      "components": [
+        "annual circulation tax passenger-car rate schedule",
+        "post-2020 CO2 and euronorm adjustments",
+        "additional LPG circulation tax",
+        "municipal decime",
+        "BIV formula, age correction, minimum and maximum",
+        "electric and hydrogen BIV amount",
+        "regional exemptions and detailed vehicle-class routing"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "vehicle-tax-wallonia",
+      "title": "Walloon circulation tax and tax on entry into service",
+      "administered_by": [
+        "SPW Finances",
+        "Service public de Wallonie"
+      ],
+      "official_source_families": [
+        "Walloon decrees published in the Moniteur belge",
+        "Wallex official Walloon legislation locator",
+        "SPW Finances indexed rate tables after upstream law identification"
+      ],
+      "oracle_ids": [],
+      "components": [
+        "tax on entry into service passenger-car formula",
+        "base amount by engine power",
+        "CO2, mass, and energy coefficients",
+        "vehicle-age degressivity",
+        "large-family and single-parent reductions",
+        "annual circulation tax and additional circulation tax",
+        "regional exemptions and detailed vehicle-class routing"
+      ],
+      "status": "encoded",
+      "priority": 4
+    },
+    {
+      "id": "residency-nationality-immigration",
+      "title": "Residency, nationality, and immigration predicates used by fiscal programs",
+      "administered_by": [
+        "SPF Interieur",
+        "Immigration Office",
+        "municipalities",
+        "CPAS / OCMW"
+      ],
+      "official_source_families": [
+        "nationality, residence, and foreigner-status laws",
+        "program-specific residence tests"
+      ],
+      "oracle_ids": [
+        "openfisca-belgium"
+      ],
+      "components": [
+        "legal residence",
+        "habitual residence",
+        "nationality and EU status predicates",
+        "Brussels domicile and municipality predicates",
+        "program-specific minimum residence duration tests"
+      ],
+      "status": "source_spine",
+      "priority": 4
+    }
+  ]
+}

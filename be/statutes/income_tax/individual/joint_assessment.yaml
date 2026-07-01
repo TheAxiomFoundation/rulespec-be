@@ -1,0 +1,452 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 126 establishes when spouses and legal cohabitants receive
+    a joint assessment, subject to separate-assessment exceptions. Article 127
+    then allocates professional, selected miscellaneous, own-property-law, and
+    other income across the two taxpayers for the joint assessment. Article 86
+    attributes a normal remuneration share of one spouse's business profits or
+    profits to an assisting spouse when the statutory helper conditions are
+    met. Articles 87 and 88 impute part of one spouse's professional income to
+    the other spouse, subject to the statutory no-tax-increase guard. Article
+    89 excludes separately taxed professional income from this
+    attribution/imputation base. This module encodes Article 126
+    joint-assessment gating, Article 127 supplied-category income allocation,
+    the Article 86 assisting-spouse attribution bridge, and the Article 87/88
+    spouse imputation bridge, and an Article 129 bridge for supplied eligible
+    loss balances after Article 23/103 limitations. It leaves Article 129
+    delegated modalities, the Article 134 joint tax-free-amount allocation, and
+    final assessment procedure to separate modules or supplied predicates.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-34
+      - be/statute/fisconetplus/cir92/revenus-2025/page-160
+      - be/statute/fisconetplus/cir92/revenus-2025/page-161
+      - be/statute/fisconetplus/cir92/revenus-2025/page-162
+      - be/statute/fisconetplus/cir92/revenus-2025/page-178
+      - be/statute/fisconetplus/cir92/revenus-2025/page-179
+      - be/statute/fisconetplus/cir92/revenus-2025/page-180
+    values:
+      belgium_pit_article_126_convention_exempt_professional_income_threshold: 13460
+      belgium_pit_article_86_distinct_professional_income_limit: 17480
+      belgium_pit_article_86_default_max_share_rate: "0.30"
+      belgium_pit_article_87_88_spouse_professional_income_share_rate: "0.30"
+      belgium_pit_article_87_88_spouse_imputation_cap: 13460
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_126_convention_exempt_professional_income_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 126 section 2 item 4, indexed threshold for income year 2025 / assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          13460
+  - name: belgium_pit_article_86_distinct_professional_income_limit
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 86, indexed assisting-spouse distinct professional-income limit for income year 2025 / assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          17480
+  - name: belgium_pit_article_86_default_max_share_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 86, default maximum share of aided spouse activity income
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          0.30
+  - name: belgium_pit_article_87_88_spouse_professional_income_share_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 articles 87 and 88, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.30
+  - name: belgium_pit_article_87_88_spouse_imputation_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 articles 87 and 88, indexed cap for income year 2025 / assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          13460
+  - name: belgium_pit_article_126_year_of_marriage_or_declaration_exception
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 article 126 section 2 item 1 and following legal-cohabitant marriage sentence
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration:
+              if belgium_pit_article_126_legal_cohabitants_marry_after_prior_year_declaration:
+                  0
+              else:
+                  1
+          else:
+              0
+  - name: belgium_pit_article_126_convention_exempt_professional_income_exception
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 article 126 section 2 item 4
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax > belgium_pit_article_126_convention_exempt_professional_income_threshold:
+              1
+          else:
+              if belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax > belgium_pit_article_126_convention_exempt_professional_income_threshold:
+                  1
+              else:
+                  0
+  - name: belgium_pit_article_126_separate_assessment_exception_applies
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 article 126 section 2, separate-assessment exceptions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_126_year_of_marriage_or_declaration_exception == 1:
+              1
+          else:
+              if belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year:
+                  1
+              else:
+                  if belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation:
+                      1
+                  else:
+                      belgium_pit_article_126_convention_exempt_professional_income_exception
+  - name: belgium_pit_joint_assessment_established
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 article 126 sections 1 through 3
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_126_married_or_legal_cohabiting:
+              if belgium_pit_article_126_separate_assessment_exception_applies == 1:
+                  if belgium_pit_article_126_dissolution_by_death and belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made:
+                      1
+                  else:
+                      0
+              else:
+                  1
+          else:
+              0
+  - name: belgium_pit_article_127_spouse_a_other_income_half_share
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 127 item 4, half of other income of both taxpayers
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          (belgium_pit_spouse_a_article_127_other_income + belgium_pit_spouse_b_article_127_other_income) / 2
+  - name: belgium_pit_article_127_spouse_b_other_income_half_share
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 127 item 4, half of other income of both taxpayers
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_127_spouse_a_other_income_half_share
+  - name: belgium_pit_article_127_spouse_a_net_income_under_joint_assessment
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 127, spouse A income allocation under joint assessment
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_joint_assessment_established == 1:
+              belgium_pit_spouse_a_professional_income_after_articles_86_89 + belgium_pit_spouse_a_article_90_items_1_to_4_and_12_income + belgium_pit_spouse_a_own_property_law_income_not_in_article_127_items_1_or_2 + belgium_pit_article_127_spouse_a_other_income_half_share
+          else:
+              0
+  - name: belgium_pit_article_127_spouse_b_net_income_under_joint_assessment
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 127, spouse B income allocation under joint assessment
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_joint_assessment_established == 1:
+              belgium_pit_spouse_b_professional_income_after_articles_86_89 + belgium_pit_spouse_b_article_90_items_1_to_4_and_12_income + belgium_pit_spouse_b_own_property_law_income_not_in_article_127_items_1_or_2 + belgium_pit_article_127_spouse_b_other_income_half_share
+          else:
+              0
+  - name: belgium_pit_article_129_spouse_a_loss_balance_imputed_to_spouse_b
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 129, supplied spouse A deductible loss balance after Article 23/103 limitations imputed to spouse B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_joint_assessment_established == 1:
+              min(max(0, belgium_pit_spouse_a_article_129_loss_balance_after_own_income_and_statutory_limitations), max(0, belgium_pit_article_127_spouse_b_net_income_under_joint_assessment))
+          else:
+              0
+  - name: belgium_pit_article_129_spouse_b_loss_balance_imputed_to_spouse_a
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 129, supplied spouse B deductible loss balance after Article 23/103 limitations imputed to spouse A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_joint_assessment_established == 1:
+              min(max(0, belgium_pit_spouse_b_article_129_loss_balance_after_own_income_and_statutory_limitations), max(0, belgium_pit_article_127_spouse_a_net_income_under_joint_assessment))
+          else:
+              0
+  - name: belgium_pit_article_86_assisting_spouse_attribution_conditions_met
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 article 86, joint assessment, non-Article-33 spouse, effective help, and distinct professional-income limit
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_joint_assessment_established == 1:
+              if belgium_pit_article_86_assisting_spouse_is_article_33_company_director:
+                  0
+              else:
+                  if belgium_pit_article_86_assisting_spouse_effectively_helps_activity:
+                      if belgium_pit_article_86_assisting_spouse_distinct_professional_income <= belgium_pit_article_86_distinct_professional_income_limit:
+                          1
+                      else:
+                          0
+                  else:
+                      0
+          else:
+              0
+  - name: belgium_pit_article_86_default_maximum_attribution
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 86, default 30 percent cap on aided spouse activity income
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_86_aided_spouse_activity_income) * belgium_pit_article_86_default_max_share_rate
+  - name: belgium_pit_article_86_allowed_attribution_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 86, 30 percent cap unless a greater share is manifest
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_86_manifestly_higher_share_due_to_services:
+              max(0, belgium_pit_article_86_aided_spouse_activity_income)
+          else:
+              belgium_pit_article_86_default_maximum_attribution
+  - name: belgium_pit_article_86_assisting_spouse_attributed_professional_income
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 86, normal remuneration share attributed to assisting spouse
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_86_assisting_spouse_attribution_conditions_met == 1:
+              min(max(0, belgium_pit_article_86_assisting_spouse_normal_remuneration_for_services), belgium_pit_article_86_allowed_attribution_cap)
+          else:
+              0
+  - name: belgium_pit_article_86_aided_spouse_activity_income_after_attribution
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 86, aided spouse activity income net of assisting-spouse attribution
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_86_aided_spouse_activity_income - belgium_pit_article_86_assisting_spouse_attributed_professional_income)
+  - name: belgium_pit_article_89_spouses_total_professional_income_considered_for_87_88
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 89, separately taxed professional income excluded from Article 87/88 base
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_spouse_a_professional_income_after_article_89_exclusions + belgium_pit_spouse_b_professional_income_after_article_89_exclusions
+  - name: belgium_pit_article_87_88_lower_spouse_professional_income_target
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 87 and 88, 30 percent spouse imputation target
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_89_spouses_total_professional_income_considered_for_87_88 * belgium_pit_article_87_88_spouse_professional_income_share_rate
+  - name: belgium_pit_article_87_88_spouse_imputation_conditions_met
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 articles 87 and 88, joint assessment and no-tax-increase condition
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_joint_assessment_established == 1:
+              if belgium_pit_article_87_88_no_tax_increase_condition_met:
+                  1
+              else:
+                  0
+          else:
+              0
+  - name: belgium_pit_article_87_spouse_a_one_earner_imputation_received
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 87, one-spouse professional-income imputation to spouse A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_a_professional_income_after_article_89_exclusions == 0 and belgium_pit_spouse_b_professional_income_after_article_89_exclusions > 0:
+                  min(belgium_pit_spouse_b_professional_income_after_article_89_exclusions * belgium_pit_article_87_88_spouse_professional_income_share_rate, belgium_pit_article_87_88_spouse_imputation_cap)
+              else:
+                  0
+          else:
+              0
+  - name: belgium_pit_article_87_spouse_b_one_earner_imputation_received
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 87, one-spouse professional-income imputation to spouse B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_b_professional_income_after_article_89_exclusions == 0 and belgium_pit_spouse_a_professional_income_after_article_89_exclusions > 0:
+                  min(belgium_pit_spouse_a_professional_income_after_article_89_exclusions * belgium_pit_article_87_88_spouse_professional_income_share_rate, belgium_pit_article_87_88_spouse_imputation_cap)
+              else:
+                  0
+          else:
+              0
+  - name: belgium_pit_article_88_spouse_a_low_earner_imputation_received
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 88, low-earning-spouse professional-income imputation to spouse A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_a_professional_income_after_article_89_exclusions > 0:
+                  if belgium_pit_spouse_a_professional_income_after_article_89_exclusions < belgium_pit_article_87_88_lower_spouse_professional_income_target:
+                      min(belgium_pit_article_87_88_lower_spouse_professional_income_target - belgium_pit_spouse_a_professional_income_after_article_89_exclusions, belgium_pit_article_87_88_spouse_imputation_cap)
+                  else:
+                      0
+              else:
+                  0
+          else:
+              0
+  - name: belgium_pit_article_88_spouse_b_low_earner_imputation_received
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 88, low-earning-spouse professional-income imputation to spouse B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_b_professional_income_after_article_89_exclusions > 0:
+                  if belgium_pit_spouse_b_professional_income_after_article_89_exclusions < belgium_pit_article_87_88_lower_spouse_professional_income_target:
+                      min(belgium_pit_article_87_88_lower_spouse_professional_income_target - belgium_pit_spouse_b_professional_income_after_article_89_exclusions, belgium_pit_article_87_88_spouse_imputation_cap)
+                  else:
+                      0
+              else:
+                  0
+          else:
+              0
+  - name: belgium_pit_article_87_88_spouse_a_professional_income_imputation_received
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 87 and 88, total professional-income imputation received by spouse A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_87_spouse_a_one_earner_imputation_received + belgium_pit_article_88_spouse_a_low_earner_imputation_received
+  - name: belgium_pit_article_87_88_spouse_b_professional_income_imputation_received
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 87 and 88, total professional-income imputation received by spouse B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_87_spouse_b_one_earner_imputation_received + belgium_pit_article_88_spouse_b_low_earner_imputation_received
+  - name: belgium_pit_article_87_88_spouse_a_professional_income_after_imputation
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 87 and 88, spouse A professional income after spouse imputation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_spouse_a_professional_income_after_article_89_exclusions + belgium_pit_article_87_88_spouse_a_professional_income_imputation_received - belgium_pit_article_87_88_spouse_b_professional_income_imputation_received
+  - name: belgium_pit_article_87_88_spouse_b_professional_income_after_imputation
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 87 and 88, spouse B professional income after spouse imputation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_spouse_b_professional_income_after_article_89_exclusions + belgium_pit_article_87_88_spouse_b_professional_income_imputation_received - belgium_pit_article_87_88_spouse_a_professional_income_imputation_received

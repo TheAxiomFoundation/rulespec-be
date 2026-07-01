@@ -1,0 +1,69 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_net_federal_tax_after_refundable_child_credit
+  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_total_local_additional_tax
+  - be:statutes/income_tax/movable_withholding/rates#belgium_general_movable_income_withholding
+  - be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_movable_withholding
+module:
+  summary: |-
+    This module bridges encoded federal personal income tax after the Article
+    134 refundable child tax credit, Articles 465 to 468 local additions, and
+    encoded movable withholding into a supplied-withholding settlement amount.
+    It does not encode professional withholding tables, broader federal or
+    regional reductions and credits, partial-year residency, collection
+    procedure, or assessment notices.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-184
+      - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/fisconetplus/cir92/revenus-2025/page-186
+      - be/statute/fisconetplus/cir92/revenus-2025/page-187
+      - be/statute/fisconetplus/cir92/revenus-2025/page-461
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+      - be/statute/fisconetplus/cir92/revenus-2025/page-687
+      - be/statute/fisconetplus/cir92/revenus-2025/page-688
+    values:
+      belgium_pit_final_tax_components_before_withholding: 2
+rules:
+  - name: belgium_pit_final_tax_components_before_withholding
+    kind: parameter
+    dtype: Count
+    source: Structural bridge over encoded federal tax after Article 134 and local additions under Articles 465 to 468
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2
+  - name: belgium_pit_federal_and_local_tax_before_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130, 134, and 465 to 468
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_net_federal_tax_after_refundable_child_credit + belgium_pit_article_465_466_total_local_additional_tax
+  - name: belgium_pit_total_withholding_and_prepayments
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 269 movable withholding plus supplied professional withholding, prepayments, and other withholding interfaces
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_professional_withholding + belgium_general_movable_income_withholding + belgium_regulated_savings_deposit_movable_withholding + belgium_pit_prepayments + belgium_pit_other_withholding_or_creditable_tax
+  - name: belgium_pit_net_tax_due_after_withholding_and_prepayments
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Settlement bridge after encoded final tax and supplied creditable withholding/prepayments
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_federal_and_local_tax_before_withholding - belgium_pit_total_withholding_and_prepayments

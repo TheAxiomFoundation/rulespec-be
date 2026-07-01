@@ -1,0 +1,28 @@
+- name: cash_paid_mobility_budget_balance_faces_3807_percent_contribution
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/mobility_budget#input.belgium_mobility_budget_annual_amount: 10000
+    be:statutes/social_security/mobility_budget#input.belgium_mobility_budget_used_for_company_car_and_sustainable_transport: 8000
+  output:
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_cash_balance_special_contribution_rate: 0.3807
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_article_8_cash_balance: 2000
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_article_22_worker_special_contribution: 761.4
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_article_23_social_security_benefit_remuneration: 2000
+
+- name: no_cash_balance_when_budget_is_fully_used
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/mobility_budget#input.belgium_mobility_budget_annual_amount: 10000
+    be:statutes/social_security/mobility_budget#input.belgium_mobility_budget_used_for_company_car_and_sustainable_transport: 12000
+  output:
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_article_8_cash_balance: 0
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_article_22_worker_special_contribution: 0
+    be:statutes/social_security/mobility_budget#belgium_mobility_budget_article_23_social_security_benefit_remuneration: 0

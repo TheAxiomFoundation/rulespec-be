@@ -1,0 +1,160 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 articles 131 and 132 set the indexed tax-free amount and dependant
+    increments for income year 2025 / assessment year 2026. This module encodes
+    the statutory parameter surface and a mechanical total before shared-custody,
+    childcare-reduction, resource, and household-composition limitations.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-182
+    values:
+      belgium_pit_base_tax_free_amount: 10910
+      belgium_pit_taxpayer_disability_tax_free_increase: 1980
+      belgium_pit_one_child_tax_free_increase: 1980
+      belgium_pit_two_children_tax_free_increase: 5110
+      belgium_pit_three_children_tax_free_increase: 11440
+      belgium_pit_four_children_tax_free_increase: 18510
+      belgium_pit_article_132_first_additional_child_count: 4
+      belgium_pit_additional_child_after_four_tax_free_increase: 7070
+      belgium_pit_child_under_3_tax_free_increase: 740
+      belgium_pit_dependent_elderly_tax_free_increase: 5950
+      belgium_pit_other_dependent_tax_free_increase: 1980
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_base_tax_free_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 131, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10910
+  - name: belgium_pit_taxpayer_disability_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 131, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1980
+  - name: belgium_pit_one_child_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1980
+  - name: belgium_pit_two_children_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5110
+  - name: belgium_pit_three_children_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          11440
+  - name: belgium_pit_four_children_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          18510
+  - name: belgium_pit_additional_child_after_four_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          7070
+  - name: belgium_pit_article_132_first_additional_child_count
+    kind: parameter
+    dtype: Count
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4
+  - name: belgium_pit_child_under_3_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          740
+  - name: belgium_pit_dependent_elderly_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5950
+  - name: belgium_pit_other_dependent_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1980
+  - name: belgium_pit_article_132_child_tax_free_increase
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_132_child_count <= 0:
+              0
+          else:
+              if belgium_pit_article_132_child_count == 1:
+                  belgium_pit_one_child_tax_free_increase
+              else:
+                  if belgium_pit_article_132_child_count == 2:
+                      belgium_pit_two_children_tax_free_increase
+                  else:
+                      if belgium_pit_article_132_child_count == 3:
+                          belgium_pit_three_children_tax_free_increase
+                      else:
+                          belgium_pit_four_children_tax_free_increase + max(0, belgium_pit_article_132_child_count - belgium_pit_article_132_first_additional_child_count) * belgium_pit_additional_child_after_four_tax_free_increase
+  - name: belgium_pit_articles_131_132_tax_free_amount_before_limitations
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 131 and 132, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_base_tax_free_amount + belgium_pit_taxpayer_disability_tax_free_increase * belgium_pit_taxpayer_disability_count + belgium_pit_article_132_child_tax_free_increase + belgium_pit_child_under_3_tax_free_increase * belgium_pit_children_under_3_without_childcare_reduction_count + belgium_pit_dependent_elderly_tax_free_increase * belgium_pit_dependent_elderly_count + belgium_pit_other_dependent_tax_free_increase * belgium_pit_other_dependent_count

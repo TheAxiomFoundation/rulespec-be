@@ -1,0 +1,461 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Royal Decree No. 38 of 27 July 1967 organizes the social status of
+    self-employed workers. This module encodes the source-backed core
+    contribution surface for BEAMM self-employed social-security scope:
+    Article 11 professional-income construction, Article 12 pre-pension
+    contribution categories, Article 12bis student-independents, Article 13
+    pension-age categories, Article 13bis starting provisional contributions,
+    and Article 14 indexation through a supplied yearly index factor. It leaves
+    caisse administration, waiver decisions, objective-evidence provisional
+    reductions, late-payment sanctions, detailed pension entitlement tests, and
+    runnable household-oracle parity as separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1967/07/27/1967072702/article/11
+      - be/regulation/arrete/1967/07/27/1967072702/article/12
+      - be/regulation/arrete/1967/07/27/1967072702/article/12bis
+      - be/regulation/arrete/1967/07/27/1967072702/article/13
+      - be/regulation/arrete/1967/07/27/1967072702/article/13bis
+      - be/regulation/arrete/1967/07/27/1967072702/article/14
+    values:
+      belgium_self_employed_article_12_first_rate: "0.205"
+      belgium_self_employed_article_12_second_rate: "0.1416"
+      belgium_self_employed_article_12_first_threshold_base: "15831.12"
+      belgium_self_employed_article_12_second_threshold_base: "23330.06"
+      belgium_self_employed_article_12_main_minimum_income_base: "3666.15"
+      belgium_self_employed_article_12_starter_minimum_income_base: "1893.22"
+      belgium_self_employed_article_12_spouse_helper_reference_income_base: "3221.08"
+      belgium_self_employed_article_12_secondary_exemption_threshold_base: "405.60"
+      belgium_self_employed_article_13_post_pension_exemption_threshold_base: "811.20"
+      belgium_self_employed_article_13_post_pension_first_rate: "0.147"
+      belgium_self_employed_article_12_starter_first_quarter_reduction_base: "25.01"
+      belgium_self_employed_article_14_index_base: "142.75"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_self_employed_article_12_first_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 1
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          0.205
+  - name: belgium_self_employed_article_12_second_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 2
+    versions:
+      - effective_from: '2008-01-01'
+        formula: |-
+          0.1416
+  - name: belgium_self_employed_article_13_post_pension_first_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 1 item 1
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          0.147
+  - name: belgium_self_employed_article_12_first_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 1
+    versions:
+      - effective_from: '2008-01-01'
+        formula: |-
+          15831.12
+  - name: belgium_self_employed_article_12_second_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 2
+    versions:
+      - effective_from: '2008-01-01'
+        formula: |-
+          23330.06
+  - name: belgium_self_employed_article_12_main_minimum_income_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 paragraph 2
+    versions:
+      - effective_from: '2003-01-10'
+        formula: |-
+          3666.15
+  - name: belgium_self_employed_article_12_starter_minimum_income_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1bis
+    versions:
+      - effective_from: '2018-04-01'
+        formula: |-
+          1893.22
+  - name: belgium_self_employed_article_12_spouse_helper_reference_income_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1ter
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          3221.08
+  - name: belgium_self_employed_article_12_secondary_exemption_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 2
+    versions:
+      - effective_from: '2003-01-10'
+        formula: |-
+          405.60
+  - name: belgium_self_employed_article_13_post_pension_exemption_threshold_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 1
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          811.20
+  - name: belgium_self_employed_article_12_starter_first_quarter_reduction_base
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1bis
+    versions:
+      - effective_from: '2022-04-01'
+        formula: |-
+          25.01
+  - name: belgium_self_employed_article_14_index_base
+    kind: parameter
+    dtype: Count
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 14 section 1
+    versions:
+      - effective_from: '1994-01-01'
+        formula: |-
+          142.75
+  - name: belgium_self_employed_article_11_excluded_cessation_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 11 section 2
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          if belgium_self_employed_article_28_exclusion_condition_met:
+              belgium_self_employed_article_28_cessation_income
+          else:
+              0
+  - name: belgium_self_employed_article_11_spouse_helper_added_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 11 section 2
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          if belgium_spouse_helper_only_indemnity_sector:
+              belgium_spouse_helper_fiscally_attributed_professional_income
+          else:
+              0
+  - name: belgium_self_employed_article_11_professional_income_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 11 section 2
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          max(0, belgium_self_employed_gross_professional_income - belgium_self_employed_professional_expenses - belgium_self_employed_professional_losses + belgium_self_employed_prior_activity_income_taxed_current_year - belgium_self_employed_article_11_excluded_cessation_income + belgium_self_employed_article_11_spouse_helper_added_income)
+  - name: belgium_self_employed_article_12_first_threshold_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 and 14
+    versions:
+      - effective_from: '2008-01-01'
+        formula: |-
+          belgium_self_employed_article_12_first_threshold_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_12_second_threshold_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 and 14
+    versions:
+      - effective_from: '2008-01-01'
+        formula: |-
+          belgium_self_employed_article_12_second_threshold_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_12_main_minimum_income_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 and 14
+    versions:
+      - effective_from: '2003-01-10'
+        formula: |-
+          belgium_self_employed_article_12_main_minimum_income_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_12_starter_minimum_income_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 and 14
+    versions:
+      - effective_from: '2018-04-01'
+        formula: |-
+          belgium_self_employed_article_12_starter_minimum_income_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_12_spouse_helper_minimum_income_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 and 14
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          belgium_self_employed_article_12_spouse_helper_reference_income_base * belgium_self_employed_article_14_index_factor / 2
+  - name: belgium_self_employed_article_12_secondary_exemption_threshold_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 and 14
+    versions:
+      - effective_from: '2003-01-10'
+        formula: |-
+          belgium_self_employed_article_12_secondary_exemption_threshold_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_13_post_pension_exemption_threshold_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 13 and 14
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          belgium_self_employed_article_13_post_pension_exemption_threshold_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_12_section_1_main_adjusted_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 paragraph 2
+    versions:
+      - effective_from: '2003-01-10'
+        formula: |-
+          max(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_main_minimum_income_indexed)
+  - name: belgium_self_employed_article_12_section_1_main_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          min(belgium_self_employed_article_12_section_1_main_adjusted_income, belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_first_rate + max(0, min(belgium_self_employed_article_12_section_1_main_adjusted_income, belgium_self_employed_article_12_second_threshold_indexed) - belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_second_rate
+  - name: belgium_self_employed_article_12_section_1bis_starter_adjusted_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1bis
+    versions:
+      - effective_from: '2018-04-01'
+        formula: |-
+          max(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_starter_minimum_income_indexed)
+  - name: belgium_self_employed_article_12_section_1bis_starter_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1bis
+    versions:
+      - effective_from: '2018-04-01'
+        formula: |-
+          min(belgium_self_employed_article_12_section_1bis_starter_adjusted_income, belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_first_rate + max(0, min(belgium_self_employed_article_12_section_1bis_starter_adjusted_income, belgium_self_employed_article_12_second_threshold_indexed) - belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_second_rate
+  - name: belgium_self_employed_article_12_section_1bis_first_quarter_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Quarter
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12 section 1bis and 14
+    versions:
+      - effective_from: '2022-04-01'
+        formula: |-
+          belgium_self_employed_article_12_starter_first_quarter_reduction_base * belgium_self_employed_article_14_index_factor
+  - name: belgium_self_employed_article_12_section_1ter_spouse_helper_adjusted_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1ter
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          max(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_spouse_helper_minimum_income_indexed)
+  - name: belgium_self_employed_article_12_section_1ter_spouse_helper_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1ter
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          min(belgium_self_employed_article_12_section_1ter_spouse_helper_adjusted_income, belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_first_rate + max(0, min(belgium_self_employed_article_12_section_1ter_spouse_helper_adjusted_income, belgium_self_employed_article_12_second_threshold_indexed) - belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_second_rate
+  - name: belgium_self_employed_article_12_section_2_secondary_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 2
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_12_secondary_exemption_threshold_indexed:
+              0
+          else:
+              min(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_first_rate + max(0, min(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_second_threshold_indexed) - belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_second_rate
+  - name: belgium_self_employed_article_12bis_student_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12bis
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_12_main_minimum_income_indexed / 2:
+              0
+          else:
+              if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_12_main_minimum_income_indexed:
+                  (belgium_self_employed_article_11_professional_income_base - belgium_self_employed_article_12_main_minimum_income_indexed / 2) * belgium_self_employed_article_12_first_rate
+              else:
+                  belgium_self_employed_article_12_section_1_main_annual_contribution
+  - name: belgium_self_employed_article_13_section_1_post_pension_with_pension_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 1
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_13_post_pension_exemption_threshold_indexed:
+              0
+          else:
+              min(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_13_post_pension_first_rate + max(0, min(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_second_threshold_indexed) - belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_second_rate
+  - name: belgium_self_employed_article_13_section_2_pension_age_without_retirement_pension_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 2
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          belgium_self_employed_article_12_section_1_main_annual_contribution
+  - name: belgium_self_employed_article_13_section_3_suspended_early_retirement_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 3
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_13_post_pension_exemption_threshold_indexed:
+              0
+          else:
+              min(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_first_rate + max(0, min(belgium_self_employed_article_11_professional_income_base, belgium_self_employed_article_12_second_threshold_indexed) - belgium_self_employed_article_12_first_threshold_indexed) * belgium_self_employed_article_12_second_rate
+  - name: belgium_self_employed_article_13bis_starting_provisional_annual_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13bis section 2
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          if belgium_self_employed_starting_category_post_pension_with_pension:
+              belgium_self_employed_article_13_post_pension_exemption_threshold_indexed * belgium_self_employed_article_13_post_pension_first_rate
+          else:
+              if belgium_self_employed_starting_category_secondary_or_student:
+                  belgium_self_employed_article_12_secondary_exemption_threshold_indexed * belgium_self_employed_article_12_first_rate
+              else:
+                  if belgium_self_employed_starting_category_spouse_helper:
+                      belgium_self_employed_article_12_spouse_helper_minimum_income_indexed * belgium_self_employed_article_12_first_rate
+                  else:
+                      if belgium_self_employed_starting_category_main_starter:
+                          belgium_self_employed_article_12_starter_minimum_income_indexed * belgium_self_employed_article_12_first_rate
+                      else:
+                          belgium_self_employed_article_12_main_minimum_income_indexed * belgium_self_employed_article_12_first_rate
+  - name: belgium_self_employed_selected_annual_social_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12, 12bis, and 13
+    versions:
+      - effective_from: '2025-10-01'
+        formula: |-
+          if belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling:
+              belgium_self_employed_article_13_section_3_suspended_early_retirement_annual_contribution
+          else:
+              if belgium_self_employed_is_student:
+                  belgium_self_employed_article_12bis_student_annual_contribution
+              else:
+                  if belgium_self_employed_is_secondary_activity:
+                      belgium_self_employed_article_12_section_2_secondary_annual_contribution
+                  else:
+                      if belgium_self_employed_has_reached_pension_age:
+                          if belgium_self_employed_receives_retirement_or_survivor_pension:
+                              belgium_self_employed_article_13_section_1_post_pension_with_pension_annual_contribution
+                          else:
+                              belgium_self_employed_article_13_section_2_pension_age_without_retirement_pension_annual_contribution
+                      else:
+                          if belgium_self_employed_is_spouse_helper:
+                              belgium_self_employed_article_12_section_1ter_spouse_helper_annual_contribution
+                          else:
+                              if belgium_self_employed_is_starter_main_activity:
+                                  belgium_self_employed_article_12_section_1bis_starter_annual_contribution
+                              else:
+                                  belgium_self_employed_article_12_section_1_main_annual_contribution

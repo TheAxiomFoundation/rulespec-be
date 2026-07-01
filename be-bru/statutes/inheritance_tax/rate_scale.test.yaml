@@ -1,0 +1,63 @@
+- name: direct_partner_second_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_taxable_acquisition: 75000
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_relationship_class: 0
+  output:
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_article_48_tax: 3500
+
+- name: direct_partner_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_taxable_acquisition: 600000
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_relationship_class: 0
+  output:
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_direct_or_partner_tax: 115750
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_article_48_tax: 115750
+
+- name: sibling_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_taxable_acquisition: 300000
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_relationship_class: 1
+  output:
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_sibling_tax: 151875
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_article_48_tax: 151875
+
+- name: uncle_aunt_nephew_niece_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_taxable_acquisition: 200000
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_relationship_class: 2
+  output:
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax: 105000
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_article_48_tax: 105000
+
+- name: other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_taxable_acquisition: 200000
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_relationship_class: 3
+  output:
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_other_tax: 118750
+    be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_article_48_tax: 118750

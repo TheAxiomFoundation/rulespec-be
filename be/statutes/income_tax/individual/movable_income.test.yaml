@@ -1,0 +1,21 @@
+- name: article_18_dividend_components_sum_into_article_17_movable_income
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_share_advantages: 100
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_taxable_capital_repayments: 200
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_taxable_share_premium_repayments: 300
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_liquidation_or_own_share_acquisition_income: 400
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_legal_construction_distributions: 500
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_attributed_undistributed_legal_construction_profit: 600
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_18_recharacterized_excess_advance_interest: 700
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_17_interest_income: 800
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_17_non_copyright_movable_property_rental_use_or_concession_income: 900
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_17_life_or_temporary_annuity_movable_income: 1000
+    be:statutes/income_tax/individual/movable_income#input.belgium_pit_article_17_copyright_or_neighboring_rights_income: 1100
+  output:
+    be:statutes/income_tax/individual/movable_income#belgium_pit_article_18_dividend_income: 2800
+    be:statutes/income_tax/individual/movable_income#belgium_pit_article_17_gross_movable_income: 6600

@@ -1,0 +1,104 @@
+- name: onva_holiday_pay_is_eight_percent_of_other_remuneration
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_other_remuneration_for_onva_holiday_pay: 50000
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_onva_holiday_pay_rate: 0.08
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_onva_holiday_pay_remuneration: 4000
+
+- name: old_mobility_indemnity_excess_is_remuneration
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_old_mobility_round_trip_km: 50
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_old_mobility_work_days: 200
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_old_mobility_indemnity_amount: 2500
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_old_mobility_indemnity_per_km_cap: 0.1929
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_old_mobility_indemnity_excluded_amount: 1929
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_old_mobility_indemnity_remuneration: 571
+
+- name: holiday_gift_cap_counts_worker_and_dependent_children
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_event_code: 1
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_dependent_child_count_for_holiday_gifts: 2
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_complete_service_years: 0
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_amount: 150
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_holiday_gift_cap: 120
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_selected_gift_cap: 120
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_gift_remuneration: 30
+
+- name: retirement_gift_has_service_year_minimum_and_total_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_event_code: 3
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_dependent_child_count_for_holiday_gifts: 0
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_complete_service_years: 30
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_amount: 1300
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_retirement_gift_service_year_cap: 1200
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_retirement_gift_cap: 1000
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_gift_remuneration: 300
+
+- name: employee_discount_uses_excess_over_thirty_percent_or_below_cost
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_employee_product_normal_price: 100
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_employee_product_worker_price: 50
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_employee_product_cost_price: 75
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_employee_discount_exempt_rate: 0.30
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_employee_product_discount_amount: 50
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_employee_product_discount_exempt_amount: 30
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_employee_product_discount_excess: 20
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_employee_product_below_cost_amount: 25
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_employee_product_discount_remuneration: 25
+
+- name: bicycle_indemnity_annual_excess_or_replacement_is_remuneration
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_bicycle_indemnity_amount: 2100
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_bicycle_indemnity_replaces_remuneration: false
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_bicycle_indemnity_annual_cap: 1795
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_bicycle_indemnity_remuneration: 305
+
+- name: copyright_compensation_excess_over_thirty_percent_is_remuneration
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_social_security_subject_remuneration: 70000
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_copyright_compensation: 40000
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_copyright_compensation_replaces_remuneration: false
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_copyright_compensation_cap_rate: 0.30
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_copyright_compensation_cap: 33000
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_copyright_compensation_remuneration: 7000

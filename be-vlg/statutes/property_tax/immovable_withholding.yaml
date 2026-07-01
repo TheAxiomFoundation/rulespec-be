@@ -1,0 +1,228 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1 set the
+    Flemish immovable-withholding-tax base rates and core reductions. This
+    module encodes the current regional base rates, the 2026 material/equipment
+    indexed rate note attached to article 2.1.4.0.1, the 25% modest-dwelling
+    reduction, and the per-child/person-with-disability reductions. It excludes
+    provincial and municipal surcharges, exemptions, application procedures,
+    rental pass-through, energy-performance reductions, and federal cadastral
+    income determinations.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/comment
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170
+    values:
+      flanders_immovable_withholding_ordinary_rate: "0.0397"
+      flanders_immovable_withholding_social_housing_rate: "0.0254"
+      flanders_immovable_withholding_woonmaatschappij_lease_rate: "0.024"
+      flanders_immovable_withholding_material_equipment_2026_rate: "0.0209"
+      flanders_immovable_withholding_modest_dwelling_cadastral_income_cap: 745
+      flanders_immovable_withholding_modest_dwelling_reduction_rate: "0.25"
+      flanders_immovable_withholding_child_reduction_2026_amount: "8.80"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: flanders_immovable_withholding_rate_category_ordinary
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: flanders_immovable_withholding_rate_category_social_housing
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 2
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: flanders_immovable_withholding_rate_category_woonmaatschappij_lease
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 2/1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          2
+  - name: flanders_immovable_withholding_rate_category_material_equipment
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 3
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          3
+  - name: flanders_immovable_withholding_ordinary_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.0397
+  - name: flanders_immovable_withholding_social_housing_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 2
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.0254
+  - name: flanders_immovable_withholding_woonmaatschappij_lease_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 2/1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.024
+  - name: flanders_immovable_withholding_material_equipment_2026_index_coefficient
+    kind: parameter
+    dtype: Rate
+    source: Moniteur notice of 9 January 2026 attached to Vlaamse Codex Fiscaliteit article 2.1.4.0.1 comment
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.5254
+  - name: flanders_immovable_withholding_material_equipment_2026_rate
+    kind: parameter
+    dtype: Rate
+    source: Moniteur notice of 9 January 2026 attached to Vlaamse Codex Fiscaliteit article 2.1.4.0.1 comment
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.0209
+  - name: flanders_immovable_withholding_modest_dwelling_cadastral_income_cap
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1 item 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          745
+  - name: flanders_immovable_withholding_modest_dwelling_reduction_rate
+    kind: parameter
+    dtype: Rate
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1 item 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.25
+  - name: flanders_immovable_withholding_child_reduction_2026_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Moniteur notice of 9 January 2026 attached to Vlaamse Codex Fiscaliteit article 2.1.4.0.1 comment
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          8.80
+  - name: flanders_immovable_withholding_selected_rate
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if flanders_immovable_withholding_rate_category == flanders_immovable_withholding_rate_category_social_housing:
+              flanders_immovable_withholding_social_housing_rate
+          else:
+              if flanders_immovable_withholding_rate_category == flanders_immovable_withholding_rate_category_woonmaatschappij_lease:
+                  flanders_immovable_withholding_woonmaatschappij_lease_rate
+              else:
+                  if flanders_immovable_withholding_rate_category == flanders_immovable_withholding_rate_category_material_equipment:
+                      flanders_immovable_withholding_material_equipment_2026_rate
+                  else:
+                      flanders_immovable_withholding_ordinary_rate
+  - name: flanders_immovable_withholding_gross_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          flanders_immovable_withholding_taxable_cadastral_income * flanders_immovable_withholding_selected_rate
+  - name: flanders_immovable_withholding_modest_dwelling_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1 item 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_immovable_withholding_is_main_residence and flanders_immovable_withholding_total_flemish_cadastral_income <= flanders_immovable_withholding_modest_dwelling_cadastral_income_cap:
+              flanders_immovable_withholding_gross_tax * flanders_immovable_withholding_modest_dwelling_reduction_rate
+          else:
+              0
+  - name: flanders_immovable_withholding_child_equivalent_count
+    kind: derived
+    entity: Property
+    dtype: Count
+    period: Year
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1 item 2
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          flanders_immovable_withholding_eligible_child_count + flanders_immovable_withholding_disabled_child_count
+  - name: flanders_immovable_withholding_child_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1 item 2 and 2026 index notice
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if flanders_immovable_withholding_is_family_occupied and flanders_immovable_withholding_eligible_child_count >= 2:
+              flanders_immovable_withholding_child_reduction_2026_amount * flanders_immovable_withholding_child_equivalent_count
+          else:
+              0
+  - name: flanders_immovable_withholding_disability_reduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1 item 3 and 2026 index notice
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          flanders_immovable_withholding_child_reduction_2026_amount * 2 * flanders_immovable_withholding_disabled_adult_count
+  - name: flanders_immovable_withholding_article_21501_core_reductions
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.5.0.1 paragraph 1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          flanders_immovable_withholding_modest_dwelling_reduction + flanders_immovable_withholding_child_reduction + flanders_immovable_withholding_disability_reduction
+  - name: flanders_immovable_withholding_tax_after_core_reductions
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          max(0, flanders_immovable_withholding_gross_tax - flanders_immovable_withholding_article_21501_core_reductions)

@@ -1,0 +1,279 @@
+{
+  "created_at": "2026-06-30",
+  "jurisdiction": "be",
+  "source_id": "belgian-official-law-eli",
+  "source": {
+    "name": "Belgian official law through ELI, Moniteur belge, and Justel",
+    "publisher": "Service public federal Justice / Federale Overheidsdienst Justitie",
+    "website_url": "https://www.ejustice.just.fgov.be/",
+    "eli_base_url": "https://www.ejustice.just.fgov.be/eli/",
+    "document_classes": ["law", "ordinance", "decree", "royal_decree", "ministerial_order"]
+  },
+  "adapter": {
+    "repository": "TheAxiomFoundation/axiom-corpus",
+    "status": "implemented",
+    "cli": "extract-belgian-eli",
+    "first_manifest": "manifests/be-tax-benefit-eli.yaml",
+    "first_run_id": "2026-06-30-be-tax-benefit",
+    "notes": [
+      "The adapter promotes ELI metadata, Moniteur/Staatsblad legal-authority URLs, Justel consolidation locators, and provision slices into corpus citation paths.",
+      "The 2026-06-30 Belgium tax-benefit run now writes 3,304 provisions with complete coverage across federal, Brussels, Flemish, and Walloon statute/regulation classes, including 1981 social-security principles, 1980 union-premium law locators, the 1994 coordinated health-insurance law, its 3 July 1996 implementing decree, Royal Decree No. 38 self-employed social-status article slices, Royal Decree No. 33 invalidity/prepension withholding instruments, Royal Decree No. 50 worker pension provisions, and the 23 December 1996 worker-pension implementing decree.",
+      "Separate official-document ingestion snapshots current CIR 1992 consolidated text into corpus run 2026-06-30-be-income-tax-consolidated after upstream ELI/Moniteur CIR 1992 locators are identified; the current consolidation is used for article-level income-year 2025 / assessment-year 2026 text because Justel warns that HTML consolidated updates are suspended."
+    ]
+  },
+  "source_acquisition": {
+    "source_priority": [
+      {
+        "rank": 1,
+        "source": "Moniteur belge / Belgisch Staatsblad ELI Moniteur link",
+        "use": "Original publication and official publication image/PDF."
+      },
+      {
+        "rank": 2,
+        "source": "Justel ELI consolidated version",
+        "use": "Current consolidated text locator and amendment navigation only; not authentic legal text."
+      },
+      {
+        "rank": 3,
+        "source": "Agency guidance or calculators",
+        "use": "Operational rates and examples after upstream law is identified."
+      }
+    ],
+    "eli_url_template": "https://www.ejustice.just.fgov.be/eli/<document_type>/<yyyy>/<mm>/<dd>/<numac>/<moniteur|justel>",
+    "status": "corpus_ingested"
+  },
+  "verified_source_examples": [
+    {
+      "id": "income-tax-code-1992-coordination",
+      "title": "10 AVRIL 1992. Arrete royal portant coordination de dispositions legales relatives aux impots sur les revenus",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1992/04/10/1992003456/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1992/04/10/1992003456/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "income-tax-code-1992-code-page",
+      "title": "10 AVRIL 1992. Loi 1992 (CIR)",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "vat-code-1969",
+      "title": "3 JUILLET 1969. Loi creant le Code de la taxe sur la valeur ajoutee",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "social-security-workers-law-1969",
+      "title": "27 JUIN 1969. Loi revisant l'arreteloi du 28 decembre 1944 concernant la securite sociale des travailleurs",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1969/06/27/1969062710/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1969/06/27/1969062710/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "social-security-workers-royal-decree-1969",
+      "title": "28 NOVEMBRE 1969. Arrete royal pris en execution de la loi du 27 juin 1969 revisant l'arreteloi du 28 decembre 1944 concernant la securite sociale des travailleurs",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1969/11/28/1969112813/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1969/11/28/1969112813/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "social-provisions-law-1994",
+      "title": "30 MARS 1994. Loi portant des dispositions sociales",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1994/03/30/1994021117/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1994/03/30/1994021117/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "mobility-budget-law-2019",
+      "title": "17 MARS 2019. Loi concernant l'instauration d'un budget mobilite",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/2019/03/17/2019030319/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/2019/03/17/2019030319/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "social-security-principles-law-1981",
+      "title": "29 JUIN 1981. Loi etablissant les principes generaux de la securite sociale des travailleurs salaries",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1981/06/29/1981001048/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1981/06/29/1981001048/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "public-sector-union-premium-law-1980",
+      "title": "1 SEPTEMBRE 1980. Loi relative a l'octroi et au paiement d'une prime syndicale a certains membres du personnel du secteur public",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1980/09/01/1980090102/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1980/09/01/1980090102/justel",
+      "status": "corpus_ingested_locator_only"
+    },
+    {
+      "id": "self-employed-social-status-royal-decree-38-1967",
+      "title": "27 JUILLET 1967. Arrete royal no 38 organisant le statut social des travailleurs independants",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "invalidity-prepension-withholding-royal-decree-33-1982",
+      "title": "30 MARS 1982. Arrete royal no 33 relatif a une retenue sur des indemnites d'invalidite et des prepensions",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/1982/04/01_1.pdf#Page28",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1982/03/30/1982000477/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "invalidity-prepension-withholding-royal-decree-1982-execution",
+      "title": "24 SEPTEMBRE 1982. Arrete royal portant execution de l'arrete royal no 33 du 30 mars 1982",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/1982/10/06_1.pdf#Page2",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1982/09/24/1982001524/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "invalidity-prepension-withholding-ministerial-order-1982",
+      "title": "29 SEPTEMBRE 1982. Arrete ministeriel portant execution de l'arrete royal du 24 septembre 1982",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/1982/10/07_1.pdf#Page5",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1982/09/29/1982001527/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "brussels-family-benefits-2019",
+      "title": "25 AVRIL 2019. Ordonnance reglant l'octroi des prestations familiales",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "german-speaking-community-family-benefits-2018",
+      "title": "23 APRIL 2018. German-speaking Community decree on family benefits",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/2018/06/12_1.pdf#page=93",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel",
+      "corpus_manifest": "manifests/be-dg-family-benefits-official-documents.yaml",
+      "corpus_run_id": "2026-07-01-be-dg-family-benefits",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "guaranteed-family-benefits-law-1971",
+      "title": "20 JUILLET 1971. Loi instituant des prestations familiales garanties",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1971/07/20/1971072007/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1971/07/20/1971072007/justel",
+      "corpus_manifest": "manifests/be-tax-benefit-eli.yaml",
+      "corpus_run_id": "2026-06-30-be-tax-benefit",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "guaranteed-family-benefits-royal-decree-1971",
+      "title": "25 OCTOBRE 1971. Arrete royal portant execution de la loi du 20 juillet 1971 instituant des prestations familiales garanties",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/moniteur",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/1971/11/05_1.pdf#page=59",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/justel",
+      "corpus_manifest": "manifests/be-guaranteed-family-benefits-official-documents.yaml",
+      "corpus_run_id": "2026-07-01-be-guaranteed-family-benefits",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "lgaf-family-allowance-law-1939",
+      "title": "19 DECEMBRE 1939. Loi generale relative aux allocations familiales (LGAF)",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/moniteur",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/1939/12/22_1.pdf#page=6",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/justel",
+      "corpus_manifest": "manifests/be-lgaf-family-allowance-amounts-official-documents.yaml",
+      "corpus_run_id": "2026-07-01-be-lgaf-family-allowance-amounts",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "social-integration-law-2002",
+      "title": "26 MAI 2002. Loi concernant le droit a l'integration sociale",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/2002/05/26/2002022559/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/2002/05/26/2002022559/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "social-integration-royal-decree-2002",
+      "title": "11 JUILLET 2002. Arrete royal portant reglement general en matiere de droit a l'integration sociale",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "unemployment-royal-decree-1991",
+      "title": "25 NOVEMBRE 1991. Arrete royal portant reglementation du chomage",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1991/11/25/1991013192/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1991/11/25/1991013192/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "health-insurance-law-1994",
+      "title": "14 JUILLET 1994. Loi relative a l'assurance obligatoire soins de sante et indemnites coordonnee le 14 juillet 1994. Partie 1: texte",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "health-insurance-royal-decree-1996",
+      "title": "3 JUILLET 1996. Arrete royal portant execution de la loi relative a l'assurance obligatoire soins de sante et indemnites, coordonnee le 14 juillet 1994",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "disability-allowances-law-1987",
+      "title": "27 FEVRIER 1987. Loi relative aux allocations aux personnes handicapees",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "grapa-law-2001",
+      "title": "22 MARS 2001. Loi instituant la garantie de revenus aux personnes agees",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/2001/03/22/2001022201/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/2001/03/22/2001022201/justel",
+      "status": "eli_located"
+    },
+    {
+      "id": "worker-retirement-survivor-pension-royal-decree-50-1967",
+      "title": "24 OCTOBRE 1967. Arrete royal no 50 relatif a la pension de retraite et de survie des travailleurs salaries",
+      "official_publication_image_url": "https://www.ejustice.just.fgov.be/mopdf/1967/10/27_1.pdf#Page64",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1967/10/24/1967102410/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "worker-retirement-survivor-pension-royal-decree-1996",
+      "title": "23 DECEMBRE 1996. Arrete royal portant execution des articles 15, 16 et 17 de la loi du 26 juillet 1996 portant modernisation de la securite sociale et assurant la viabilite des regimes legaux des pensions",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/arrete/1996/12/23/1997022010/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/arrete/1996/12/23/1997022010/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "brussels-housing-code-2003",
+      "title": "17 JUILLET 2003. Ordonnance portant le Code bruxellois du Logement",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "brussels-housing-code-2013-replaced-text",
+      "title": "17 JUILLET 2003. Ordonnance portant le Code bruxellois du Logement, version 2013",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel",
+      "status": "corpus_ingested"
+    },
+    {
+      "id": "cpas-brussels-organic-law-1976",
+      "title": "8 JUILLET 1976. Loi organique des centres publics d'action sociale. Forme valable dans la Region de Bruxelles-Capitale",
+      "moniteur_url": "https://www.ejustice.just.fgov.be/eli/loi/1976/07/08/1976D70810/moniteur",
+      "justel_url": "https://www.ejustice.just.fgov.be/eli/loi/1976/07/08/1976D70810/justel",
+      "status": "eli_located"
+    }
+  ],
+  "output_paths": {
+    "source_snapshots": "data/corpus/sources/be/<document_class>/<run-id>/...",
+    "inventory": "data/corpus/inventory/be/<document_class>/<run-id>.json",
+    "provisions": "data/corpus/provisions/be/<document_class>/<run-id>.jsonl",
+    "coverage": "data/corpus/coverage/be/<document_class>/<run-id>.json"
+  },
+  "notes": [
+    "Use agency pages only after the relevant law or delegated instrument is identified.",
+    "For legal value, retain the Moniteur publication image/PDF locator rather than relying on text-mode or consolidated HTML.",
+    "RuleSpec source_verification should cite promoted corpus paths, not raw live URLs."
+  ]
+}

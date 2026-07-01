@@ -1,0 +1,120 @@
+- name: immovable_direct_partner_third_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 300000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 0
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: false
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax: 22500
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_tax: 22500
+
+- name: immovable_other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 500000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: false
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax: 115000
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_tax: 115000
+
+- name: movable_direct_partner_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 100000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 0
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_mention_seeks_donation_title: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_movable_tax: 3000
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_tax: 3000
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_articles_131_131bis_tax: 3000
+
+- name: movable_other_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 100000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_mention_seeks_donation_title: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_tax: 7000
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_articles_131_131bis_tax: 7000
+
+- name: article_131bis_exempts_prior_movable_gift_in_successoral_pact
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 100000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_mention_seeks_donation_title: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131bis_successoral_pact_movable_gift_exemption_applies: 1
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_tax: 7000
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_articles_131_131bis_tax: 0
+
+- name: article_131bis_title_declaration_blocks_exemption
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 100000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_mention_seeks_donation_title: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131bis_successoral_pact_movable_gift_exemption_applies: 0
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_articles_131_131bis_tax: 7000
+
+- name: article_131_death_condition_movable_gift_excluded_from_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 100000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_mention_seeks_donation_title: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: true
+  output:
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_movable_death_condition_exclusion_applies: 1
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_article_131_tax: 7000
+    be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_articles_131_131bis_tax: 0

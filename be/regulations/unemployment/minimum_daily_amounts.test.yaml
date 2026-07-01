@@ -1,0 +1,135 @@
+- name: family_charge_first_six_months
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 6
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_minimum_family_charge_first_six_months_daily_amount: 43.11
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount: 43.11
+
+- name: article_110_family_charge_status_can_supply_article_115_minimum
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 0
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_forms_de_facto_household_with_partner: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_financially_dependent: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_is_relative_or_allied_to_third_degree: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_de_facto_partner_is_child_with_family_allowance_claim: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_with_legal_spouse: true
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_or_assimilated_partner_has_professional_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_or_assimilated_partner_has_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_children: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_can_claim_family_allowances_for_at_least_one_child: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_no_child_has_professional_or_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_children_and_relatives_to_third_degree: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_child_and_relative_household_has_family_allowance_child: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_child_and_relative_household_relatives_have_no_professional_or_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cohabits_exclusively_with_relatives_to_third_degree: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_relative_household_relatives_have_no_professional_or_replacement_income: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_lives_alone: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_judicial_decision: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_notarial_divorce_or_separation_deed: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_pays_maintenance_under_notarial_child_deed: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_spouse_authorized_under_civil_code_article_221: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_worker_is_article_28_3: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_cct_46_complementary_allowance_condition_met: false
+    be:regulations/unemployment/household_status#input.belgium_unemployment_article_110_sabena_transitional_condition_met: false
+  output:
+    be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code: 1
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_household_status_code: 1
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount: 43.11
+
+- name: isolated_after_six_months
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 2
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 7
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_minimum_isolated_later_daily_amount: 31.76
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount: 31.76
+
+- name: cohabiting_second_period_lowest_minimum_with_spouse_increment
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 3
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 13
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: true
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_minimum_cohabiting_second_period_condition_not_met_daily_amount: 16.48
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_minimum_two_spouse_increment_daily_amount: 3.12
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount: 19.6
+
+- name: company_supplement_cohabiting_minimum
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 3
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_company_supplement_cohabiting_daily_amount: 27.29
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_company_supplement_minimum_daily_amount: 27.29
+
+- name: temporary_unemployment_force_majeure_minimum
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 2
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: true
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_temporary_force_majeure_daily_amount: 38.72
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_temporary_minimum_daily_amount: 38.72
+
+- name: article_28_3_uses_family_charge_later_amount
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 2
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_28_3_complete_minimum_daily_amount: 39.19

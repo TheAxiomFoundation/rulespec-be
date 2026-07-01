@@ -1,0 +1,275 @@
+format: rulespec/v1
+imports:
+  - be:regulations/unemployment/household_status#belgium_unemployment_article_110_household_status_code
+module:
+  summary: |-
+    Federal unemployment royal decree article 115 sets minimum daily unemployment
+    allowance amounts by household status, indemnification period, unemployment
+    with company supplement, article 28(3) complete-unemployment cases, and
+    temporary-unemployment reason. This module encodes article 115 minimum
+    amount selectors and uses article 110 household-status classification when
+    no positive household-status override is supplied; admission, benefit-base
+    calculation, degressivity outside the minimum schedule, and sanctions remain
+    separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1991/11/25/1991013192/article/110
+      - be/regulation/arrete/1991/11/25/1991013192/article/114
+      - be/regulation/arrete/1991/11/25/1991013192/article/115
+    values:
+      belgium_unemployment_article_110_family_charge_status_code: 1
+      belgium_unemployment_article_110_isolated_status_code: 2
+      belgium_unemployment_article_110_cohabiting_status_code: 3
+      belgium_unemployment_minimum_family_charge_first_six_months_daily_amount: "43.11"
+      belgium_unemployment_minimum_family_charge_later_daily_amount: "39.19"
+      belgium_unemployment_minimum_isolated_first_six_months_daily_amount: "34.94"
+      belgium_unemployment_minimum_isolated_later_daily_amount: "31.76"
+      belgium_unemployment_minimum_cohabiting_first_three_months_daily_amount: "33.63"
+      belgium_unemployment_minimum_cohabiting_months_four_to_six_daily_amount: "31.04"
+      belgium_unemployment_minimum_cohabiting_months_seven_to_twelve_daily_amount: "28.22"
+      belgium_unemployment_minimum_cohabiting_second_period_condition_met_daily_amount: "23.39"
+      belgium_unemployment_minimum_cohabiting_second_period_condition_not_met_daily_amount: "16.48"
+      belgium_unemployment_minimum_two_spouse_increment_daily_amount: "3.12"
+      belgium_unemployment_company_supplement_family_charge_daily_amount: "37.89"
+      belgium_unemployment_company_supplement_isolated_daily_amount: "30.71"
+      belgium_unemployment_company_supplement_cohabiting_daily_amount: "27.29"
+      belgium_unemployment_temporary_force_majeure_daily_amount: "38.72"
+      belgium_unemployment_temporary_other_reason_daily_amount: "35.74"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_unemployment_minimum_family_charge_first_six_months_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 1(a)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          43.11
+  - name: belgium_unemployment_minimum_family_charge_later_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 1(b)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          39.19
+  - name: belgium_unemployment_minimum_isolated_first_six_months_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 2(a)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          34.94
+  - name: belgium_unemployment_minimum_isolated_later_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 2(b)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          31.76
+  - name: belgium_unemployment_minimum_cohabiting_first_three_months_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 3(a)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          33.63
+  - name: belgium_unemployment_minimum_cohabiting_months_four_to_six_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 3(b)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          31.04
+  - name: belgium_unemployment_minimum_cohabiting_months_seven_to_twelve_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 3(c)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          28.22
+  - name: belgium_unemployment_minimum_cohabiting_second_period_condition_met_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 3(d)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          23.39
+  - name: belgium_unemployment_minimum_cohabiting_second_period_condition_not_met_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 item 3(e)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          16.48
+  - name: belgium_unemployment_minimum_two_spouse_increment_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1 second paragraph
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          3.12
+  - name: belgium_unemployment_company_supplement_family_charge_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 2 item 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          37.89
+  - name: belgium_unemployment_company_supplement_isolated_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 2 item 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          30.71
+  - name: belgium_unemployment_company_supplement_cohabiting_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 2 item 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          27.29
+  - name: belgium_unemployment_temporary_force_majeure_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 4 item 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          38.72
+  - name: belgium_unemployment_temporary_other_reason_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 4 item 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          35.74
+  - name: belgium_unemployment_article_115_household_status_code
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Royal Decree of 25 November 1991 on unemployment regulation, articles 110 and 115
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_household_status_code > 0:
+              belgium_unemployment_household_status_code
+          else:
+              belgium_unemployment_article_110_household_status_code
+  - name: belgium_unemployment_article_115_ordinary_minimum_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_115_household_status_code == 1:
+              if belgium_unemployment_indemnification_month_number <= 6:
+                  belgium_unemployment_minimum_family_charge_first_six_months_daily_amount
+              else:
+                  belgium_unemployment_minimum_family_charge_later_daily_amount
+          else:
+              if belgium_unemployment_article_115_household_status_code == 2:
+                  if belgium_unemployment_indemnification_month_number <= 6:
+                      belgium_unemployment_minimum_isolated_first_six_months_daily_amount
+                  else:
+                      belgium_unemployment_minimum_isolated_later_daily_amount
+              else:
+                  if belgium_unemployment_article_115_household_status_code == 3:
+                      if belgium_unemployment_indemnification_month_number <= 3:
+                          belgium_unemployment_minimum_cohabiting_first_three_months_daily_amount
+                      else:
+                          if belgium_unemployment_indemnification_month_number <= 6:
+                              belgium_unemployment_minimum_cohabiting_months_four_to_six_daily_amount
+                          else:
+                              if belgium_unemployment_indemnification_month_number <= 12:
+                                  belgium_unemployment_minimum_cohabiting_months_seven_to_twelve_daily_amount
+                              else:
+                                  if belgium_unemployment_article_114_4_1_condition_met:
+                                      belgium_unemployment_minimum_cohabiting_second_period_condition_met_daily_amount
+                                  else:
+                                      if belgium_unemployment_two_spouses_only_receive_lowest_minimum:
+                                          belgium_unemployment_minimum_cohabiting_second_period_condition_not_met_daily_amount + belgium_unemployment_minimum_two_spouse_increment_daily_amount
+                                      else:
+                                          belgium_unemployment_minimum_cohabiting_second_period_condition_not_met_daily_amount
+                  else:
+                      0
+  - name: belgium_unemployment_article_115_company_supplement_minimum_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_115_household_status_code == 1:
+              belgium_unemployment_company_supplement_family_charge_daily_amount
+          else:
+              if belgium_unemployment_article_115_household_status_code == 2:
+                  belgium_unemployment_company_supplement_isolated_daily_amount
+              else:
+                  if belgium_unemployment_article_115_household_status_code == 3:
+                      belgium_unemployment_company_supplement_cohabiting_daily_amount
+                  else:
+                      0
+  - name: belgium_unemployment_article_28_3_complete_minimum_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_minimum_family_charge_later_daily_amount
+  - name: belgium_unemployment_article_115_temporary_minimum_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 25 November 1991 on unemployment regulation, article 115 section 4
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_temporary_force_majeure:
+              belgium_unemployment_temporary_force_majeure_daily_amount
+          else:
+              belgium_unemployment_temporary_other_reason_daily_amount

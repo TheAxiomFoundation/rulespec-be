@@ -1,0 +1,426 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_base_tax
+module:
+  summary: |-
+    CIR 1992 article 134 converts the tax-free amount into a tax reduction and
+    sets the refundable child tax-credit cap for income year 2025 / assessment
+    year 2026. This module encodes the paragraph 2 tax scale, a mechanical tax
+    after the tax-free-amount reduction, the paragraph 3 child-credit cap, a
+    bridge from the Article 130 base tax to the refundable child credit, and
+    the paragraph 4 joint-assessment tax-free-amount allocation for supplied
+    spouse incomes, base amounts, and Article 132 supplements, and the
+    paragraph 4 joint refundable-credit cap allocation for supplied uncapped
+    spouse credits. It leaves regional reductions, communal additions, and
+    treaty-exempt income exclusions to later household modules.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-184
+      - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/fisconetplus/cir92/revenus-2025/page-186
+      - be/statute/fisconetplus/cir92/revenus-2025/page-187
+    values:
+      belgium_pit_article_134_first_tax_free_amount_threshold: 11460
+      belgium_pit_article_134_second_tax_free_amount_threshold: 16320
+      belgium_pit_article_134_third_tax_free_amount_threshold: 27190
+      belgium_pit_article_134_fourth_tax_free_amount_threshold: 49840
+      belgium_pit_article_134_first_tax_free_amount_rate: "0.25"
+      belgium_pit_article_134_second_tax_free_amount_rate: "0.30"
+      belgium_pit_article_134_third_tax_free_amount_rate: "0.40"
+      belgium_pit_article_134_fourth_tax_free_amount_rate: "0.45"
+      belgium_pit_article_134_top_tax_free_amount_rate: "0.50"
+      belgium_pit_article_134_child_tax_credit_cap_per_child: 570
+      belgium_pit_article_134_shared_custody_child_tax_credit_multiplier: "0.5"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_134_first_tax_free_amount_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          11460
+  - name: belgium_pit_article_134_second_tax_free_amount_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          16320
+  - name: belgium_pit_article_134_third_tax_free_amount_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          27190
+  - name: belgium_pit_article_134_fourth_tax_free_amount_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          49840
+  - name: belgium_pit_article_134_first_tax_free_amount_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.25
+  - name: belgium_pit_article_134_second_tax_free_amount_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.30
+  - name: belgium_pit_article_134_third_tax_free_amount_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.40
+  - name: belgium_pit_article_134_fourth_tax_free_amount_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.45
+  - name: belgium_pit_article_134_top_tax_free_amount_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.50
+  - name: belgium_pit_article_134_child_tax_credit_cap_per_child
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          570
+  - name: belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 134 paragraph 3, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.5
+  - name: belgium_pit_article_134_tax_on_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_article_134_tax_free_amount * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_article_134_tax_after_tax_free_amount_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_134_base_tax_before_tax_free_amount_reduction - belgium_pit_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_article_134_child_tax_credit_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_child_tax_credit_cap_per_child * (belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis + belgium_pit_article_134_shared_custody_child_tax_credit_multiplier * belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis)
+  - name: belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a
+    kind: derived
+    entity: Household
+    dtype: Count
+    source: CIR 1992 article 134 paragraph 4 item 2 and final paragraph, spouse receiving Article 132 supplements
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_assessment_established:
+              if belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax:
+                  if belgium_pit_spouse_a_taxable_income < belgium_pit_spouse_b_taxable_income:
+                      1
+                  else:
+                      0
+              else:
+                  if belgium_pit_spouse_a_taxable_income >= belgium_pit_spouse_b_taxable_income:
+                      1
+                  else:
+                      0
+          else:
+              0
+  - name: belgium_pit_article_134_joint_spouse_a_initial_tax_free_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 1 and 2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_assessment_established:
+              if belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a == 1:
+                  belgium_pit_spouse_a_base_tax_free_amount + belgium_pit_joint_article_132_supplements_tax_free_amount
+              else:
+                  belgium_pit_spouse_a_base_tax_free_amount
+          else:
+              0
+  - name: belgium_pit_article_134_joint_spouse_b_initial_tax_free_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 1 and 2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_assessment_established:
+              if belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a == 1:
+                  belgium_pit_spouse_b_base_tax_free_amount
+              else:
+                  belgium_pit_spouse_b_base_tax_free_amount + belgium_pit_joint_article_132_supplements_tax_free_amount
+          else:
+              0
+  - name: belgium_pit_article_134_joint_spouse_a_excess_tax_free_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 3 and 4
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_134_joint_spouse_a_initial_tax_free_amount - belgium_pit_spouse_a_taxable_income)
+  - name: belgium_pit_article_134_joint_spouse_b_excess_tax_free_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 3 and 4
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_134_joint_spouse_b_initial_tax_free_amount - belgium_pit_spouse_b_taxable_income)
+  - name: belgium_pit_article_134_joint_spouse_a_capacity_for_transferred_tax_free_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 3, other spouse positive taxable-income difference
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_spouse_a_taxable_income - belgium_pit_article_134_joint_spouse_a_initial_tax_free_amount)
+  - name: belgium_pit_article_134_joint_spouse_b_capacity_for_transferred_tax_free_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 3, other spouse positive taxable-income difference
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_spouse_b_taxable_income - belgium_pit_article_134_joint_spouse_b_initial_tax_free_amount)
+  - name: belgium_pit_article_134_joint_spouse_a_tax_free_amount_transferred_to_spouse_b
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 3 and 4, spouse A excess transferred to spouse B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a == 1:
+              min(belgium_pit_article_134_joint_spouse_a_excess_tax_free_amount, belgium_pit_article_134_joint_spouse_b_capacity_for_transferred_tax_free_amount)
+          else:
+              belgium_pit_article_134_joint_spouse_a_excess_tax_free_amount
+  - name: belgium_pit_article_134_joint_spouse_b_tax_free_amount_transferred_to_spouse_a
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 3 and 4, spouse B excess transferred to spouse A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a == 1:
+              belgium_pit_article_134_joint_spouse_b_excess_tax_free_amount
+          else:
+              min(belgium_pit_article_134_joint_spouse_b_excess_tax_free_amount, belgium_pit_article_134_joint_spouse_a_capacity_for_transferred_tax_free_amount)
+  - name: belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 1 through 4
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_joint_spouse_a_initial_tax_free_amount - belgium_pit_article_134_joint_spouse_a_tax_free_amount_transferred_to_spouse_b + belgium_pit_article_134_joint_spouse_b_tax_free_amount_transferred_to_spouse_a
+  - name: belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 1 through 4
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_joint_spouse_b_initial_tax_free_amount - belgium_pit_article_134_joint_spouse_b_tax_free_amount_transferred_to_spouse_a + belgium_pit_article_134_joint_spouse_a_tax_free_amount_transferred_to_spouse_b
+  - name: belgium_pit_article_134_joint_child_tax_credit_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 6, joint cap from paragraph 3 for both spouses together
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_child_tax_credit_cap_per_child * (belgium_pit_article_134_joint_child_credit_equivalent_count_without_article_132bis + belgium_pit_article_134_shared_custody_child_tax_credit_multiplier * belgium_pit_article_134_joint_child_credit_equivalent_count_with_article_132bis)
+  - name: belgium_pit_article_134_joint_total_uncapped_refundable_child_credit
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 6, sum of spouses' uncapped refundable child credits
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit + belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
+  - name: belgium_pit_article_134_joint_spouse_a_refundable_child_credit_after_joint_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 6 and following proportional cap-allocation rule
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_total_uncapped_refundable_child_credit <= belgium_pit_article_134_joint_child_tax_credit_cap:
+              belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit
+          else:
+              if belgium_pit_article_134_joint_total_uncapped_refundable_child_credit > 0:
+                  belgium_pit_article_134_joint_child_tax_credit_cap * belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit / belgium_pit_article_134_joint_total_uncapped_refundable_child_credit
+              else:
+                  0
+  - name: belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 6 and following proportional cap-allocation rule
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_joint_total_uncapped_refundable_child_credit <= belgium_pit_article_134_joint_child_tax_credit_cap:
+              belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
+          else:
+              if belgium_pit_article_134_joint_total_uncapped_refundable_child_credit > 0:
+                  belgium_pit_article_134_joint_child_tax_credit_cap * belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit / belgium_pit_article_134_joint_total_uncapped_refundable_child_credit
+              else:
+                  0
+  - name: belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134 paragraph 2, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_130_base_tax - belgium_pit_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_article_134_unused_tax_free_amount_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraphs 2 and 3, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_134_tax_on_tax_free_amount - belgium_pit_article_130_base_tax)
+  - name: belgium_pit_article_134_refundable_child_tax_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_unused_tax_free_amount_reduction, belgium_pit_article_134_child_tax_credit_cap)
+  - name: belgium_pit_article_134_net_federal_tax_after_refundable_child_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_tax_after_article_130_base_tax_reduction - belgium_pit_article_134_refundable_child_tax_credit

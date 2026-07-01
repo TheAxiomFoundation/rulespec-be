@@ -1,0 +1,252 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal unemployment royal decree article 110 classifies unemployment
+    beneficiaries as workers with family charge, isolated workers, or
+    cohabiting workers. This module encodes the status selection predicates
+    available from supplied household, income, maintenance, and special-case
+    facts. Ministerial definitions of cohabitation, professional income,
+    replacement income, foster-parent status, financial dependence, and proof
+    document contents remain upstream inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1991/11/25/1991013192/article/110
+    values:
+      belgium_unemployment_article_110_family_charge_status_code: 1
+      belgium_unemployment_article_110_isolated_status_code: 2
+      belgium_unemployment_article_110_cohabiting_status_code: 3
+rules:
+  - name: belgium_unemployment_article_110_family_charge_status_code
+    kind: parameter
+    dtype: Count
+    source: Structural code for unemployment royal decree article 110 section 1 worker with family charge
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          1
+  - name: belgium_unemployment_article_110_isolated_status_code
+    kind: parameter
+    dtype: Count
+    source: Structural code for unemployment royal decree article 110 section 2 isolated worker
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          2
+  - name: belgium_unemployment_article_110_cohabiting_status_code
+    kind: parameter
+    dtype: Count
+    source: Structural code for unemployment royal decree article 110 section 3 cohabiting worker
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          3
+  - name: belgium_unemployment_article_110_de_facto_partner_assimilated_to_spouse
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 paragraph assimilating a financially dependent de facto household member to a spouse
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_forms_de_facto_household_with_partner and belgium_unemployment_article_110_de_facto_partner_financially_dependent:
+              if belgium_unemployment_article_110_de_facto_partner_is_relative_or_allied_to_third_degree:
+                  0
+              else:
+                  if belgium_unemployment_article_110_de_facto_partner_is_child_with_family_allowance_claim:
+                      0
+                  else:
+                      1
+          else:
+              0
+  - name: belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 items 1 and 2 and spouse-assimilation paragraph
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_cohabits_with_legal_spouse:
+              1
+          else:
+              belgium_unemployment_article_110_de_facto_partner_assimilated_to_spouse
+  - name: belgium_unemployment_article_110_spouse_or_assimilated_partner_without_income_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner == 0:
+              0
+          else:
+              if belgium_unemployment_article_110_spouse_or_assimilated_partner_has_professional_income:
+                  0
+              else:
+                  if belgium_unemployment_article_110_spouse_or_assimilated_partner_has_replacement_income:
+                      0
+                  else:
+                      1
+  - name: belgium_unemployment_article_110_child_household_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 2(a)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner == 1:
+              0
+          else:
+              if belgium_unemployment_article_110_cohabits_exclusively_with_children:
+                  if belgium_unemployment_article_110_can_claim_family_allowances_for_at_least_one_child or belgium_unemployment_article_110_no_child_has_professional_or_replacement_income:
+                      1
+                  else:
+                      0
+              else:
+                  0
+  - name: belgium_unemployment_article_110_child_and_relative_household_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 2(b)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner == 1:
+              0
+          else:
+              if belgium_unemployment_article_110_cohabits_exclusively_with_children_and_relatives_to_third_degree:
+                  if belgium_unemployment_article_110_child_and_relative_household_has_family_allowance_child and belgium_unemployment_article_110_child_and_relative_household_relatives_have_no_professional_or_replacement_income:
+                      1
+                  else:
+                      0
+              else:
+                  0
+  - name: belgium_unemployment_article_110_relative_household_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 2(c)
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner == 1:
+              0
+          else:
+              if belgium_unemployment_article_110_cohabits_exclusively_with_relatives_to_third_degree:
+                  if belgium_unemployment_article_110_relative_household_relatives_have_no_professional_or_replacement_income:
+                      1
+                  else:
+                      0
+              else:
+                  0
+  - name: belgium_unemployment_article_110_maintenance_payment_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if not belgium_unemployment_article_110_lives_alone:
+              0
+          else:
+              if belgium_unemployment_article_110_pays_maintenance_under_judicial_decision:
+                  1
+              else:
+                  if belgium_unemployment_article_110_pays_maintenance_under_notarial_divorce_or_separation_deed:
+                      1
+                  else:
+                      if belgium_unemployment_article_110_pays_maintenance_under_notarial_child_deed:
+                          1
+                      else:
+                          0
+  - name: belgium_unemployment_article_110_civil_code_221_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 4
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_lives_alone and belgium_unemployment_article_110_spouse_authorized_under_civil_code_article_221:
+              1
+          else:
+              0
+  - name: belgium_unemployment_article_110_special_family_charge_condition
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1 items 5 to 7
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_worker_is_article_28_3:
+              1
+          else:
+              if belgium_unemployment_article_110_cct_46_complementary_allowance_condition_met:
+                  1
+              else:
+                  if belgium_unemployment_article_110_sabena_transitional_condition_met:
+                      1
+                  else:
+                      0
+  - name: belgium_unemployment_article_110_family_charge_status_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_spouse_or_assimilated_partner_without_income_condition == 1:
+              1
+          else:
+              if belgium_unemployment_article_110_child_household_condition == 1:
+                  1
+              else:
+                  if belgium_unemployment_article_110_child_and_relative_household_condition == 1:
+                      1
+                  else:
+                      if belgium_unemployment_article_110_relative_household_condition == 1:
+                          1
+                      else:
+                          if belgium_unemployment_article_110_maintenance_payment_condition == 1:
+                              1
+                          else:
+                              if belgium_unemployment_article_110_civil_code_221_condition == 1:
+                                  1
+                              else:
+                                  belgium_unemployment_article_110_special_family_charge_condition
+  - name: belgium_unemployment_article_110_isolated_status_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_family_charge_status_met == 1:
+              0
+          else:
+              if belgium_unemployment_article_110_lives_alone:
+                  1
+              else:
+                  0
+  - name: belgium_unemployment_article_110_household_status_code
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 110 sections 1 to 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_110_family_charge_status_met == 1:
+              belgium_unemployment_article_110_family_charge_status_code
+          else:
+              if belgium_unemployment_article_110_isolated_status_met == 1:
+                  belgium_unemployment_article_110_isolated_status_code
+              else:
+                  belgium_unemployment_article_110_cohabiting_status_code

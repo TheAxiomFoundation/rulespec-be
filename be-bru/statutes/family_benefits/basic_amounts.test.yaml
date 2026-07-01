@@ -1,0 +1,81 @@
+- name: unique_child_without_article_8_9_or_12_supplement
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: true
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 18
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: true
+  output:
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount: 150
+
+- name: child_age_11_other_case
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: false
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 11
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: false
+  output:
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_under_12_monthly_amount: 150
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount: 150
+
+- name: child_age_12_other_case
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: false
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 12
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: false
+  output:
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_12_to_17_monthly_amount: 160
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount: 160
+
+- name: child_age_18_higher_education
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: false
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 18
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: true
+  output:
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_18_to_24_higher_education_monthly_amount: 170
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount: 170
+
+- name: child_age_24_not_in_higher_education
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: false
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 24
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: false
+  output:
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_18_to_24_other_monthly_amount: 160
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount: 160
+
+- name: child_age_25_outside_article_7_age_band
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: false
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 25
+    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: true
+  output:
+    be-bru:statutes/family_benefits/basic_amounts#brussels_family_benefits_article_7_base_monthly_amount: 0

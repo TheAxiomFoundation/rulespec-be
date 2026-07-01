@@ -1,0 +1,67 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_article_28411_tax
+  - be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_articles_131_131bis_tax
+  - be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_tax
+module:
+  summary: |-
+    This module provides a Belgian-facing regional routing bridge for the main
+    Flemish, Brussels-Capital, and Walloon gift-tax rate schedules already
+    encoded from upstream regional statute text. The Brussels branch includes
+    the article-131bis movable-gift exemption for qualifying prior gifts
+    mentioned in a successoral pact or Civil Code article 4.84 agreement. It
+    does not add other exemptions, special reduced rates, filing rules,
+    anti-avoidance rules, or household transaction classification.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.8.4.1.1/version-1461936
+      - be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+      - be-bru/statute/fisconetplus/registration-code/article-131bis/guid-f7c88ad4-32bc-4599-adcd-2409f7c71192/block-1
+      - be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+      - be-wal/statute/fisconetplus/registration-code/article-131bis/guid-9bac3e5f-2e86-4a74-a79e-6466f91b104d/block-1
+    values:
+      belgium_tax_region_flanders: 0
+      belgium_tax_region_brussels: 1
+      belgium_tax_region_wallonia: 2
+rules:
+  - name: belgium_tax_region_flanders
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Flemish regional tax module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: belgium_tax_region_brussels
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels-Capital regional tax module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: belgium_tax_region_wallonia
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Walloon regional tax module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          2
+  - name: belgium_regional_gift_tax
+    kind: derived
+    entity: Gift
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional gift-tax bridge over the encoded Flemish, Brussels-Capital, and Walloon statutory rate schedules
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_transfer_tax_region == belgium_tax_region_flanders:
+              flanders_gift_tax_article_28411_tax
+          else:
+              if belgium_transfer_tax_region == belgium_tax_region_brussels:
+                  brussels_gift_tax_articles_131_131bis_tax
+              else:
+              wallonia_gift_tax_articles_131_131bis_tax

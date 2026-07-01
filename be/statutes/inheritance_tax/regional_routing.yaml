@@ -1,0 +1,63 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_article_27411_tax
+  - be-bru:statutes/inheritance_tax/rate_scale#brussels_inheritance_tax_article_48_tax
+  - be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_tax
+module:
+  summary: |-
+    This module provides a Belgian-facing regional routing bridge for the main
+    Flemish, Brussels-Capital, and Walloon inheritance-tax rate schedules
+    already encoded from upstream regional statute text. It does not add
+    exemptions, partner-home exclusions, estate grouping, debt deductibility,
+    filing rules, or household beneficiary classification.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092
+      - be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
+      - be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+    values:
+      belgium_tax_region_flanders: 0
+      belgium_tax_region_brussels: 1
+      belgium_tax_region_wallonia: 2
+rules:
+  - name: belgium_tax_region_flanders
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Flemish regional tax module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: belgium_tax_region_brussels
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels-Capital regional tax module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: belgium_tax_region_wallonia
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Walloon regional tax module routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          2
+  - name: belgium_regional_inheritance_tax
+    kind: derived
+    entity: EstateBeneficiary
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional inheritance-tax bridge over the encoded Flemish, Brussels-Capital, and Walloon statutory rate schedules
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_transfer_tax_region == belgium_tax_region_flanders:
+              flanders_inheritance_tax_article_27411_tax
+          else:
+              if belgium_transfer_tax_region == belgium_tax_region_brussels:
+                  brussels_inheritance_tax_article_48_tax
+              else:
+                  wallonia_inheritance_tax_article_48_tax

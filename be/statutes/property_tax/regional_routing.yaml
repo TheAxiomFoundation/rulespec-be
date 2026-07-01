@@ -1,0 +1,92 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_tax_after_core_reductions
+  - be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_tax_after_article_257_core_reductions
+  - be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_additional_centimes_rate
+module:
+  summary: |-
+    This module provides a Belgian-facing regional routing bridge over encoded
+    immovable-withholding-tax surfaces. It routes Flemish properties to the
+    Flemish Fiscal Code base result after core reductions, and routes Brussels
+    and Walloon properties to the CIR 1992 base result after article-257 core
+    reductions plus supplied non-Flemish provincial, agglomeration, and communal
+    additional centimes. It excludes local centime table ingestion, Flemish
+    local surcharges, exemptions, article-15 remissions, cadastral-income
+    determinations, application procedures, and household eligibility
+    predicates beyond the supplied inputs used by the imported modules.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170
+      - be/statute/fisconetplus/cir92/revenus-2025/page-446
+      - be/statute/fisconetplus/cir92/revenus-2025/page-447
+      - be/statute/fisconetplus/cir92/revenus-2025/page-448
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+    values:
+      belgium_property_tax_region_flanders: 0
+      belgium_property_tax_region_brussels: 1
+      belgium_property_tax_region_wallonia: 2
+rules:
+  - name: belgium_property_tax_region_flanders
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Flemish immovable-withholding routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0
+  - name: belgium_property_tax_region_brussels
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Brussels immovable-withholding routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1
+  - name: belgium_property_tax_region_wallonia
+    kind: parameter
+    dtype: Count
+    source: Structural selector for Walloon immovable-withholding routing
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          2
+  - name: belgium_immovable_withholding_selected_regional_base_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional bridge over encoded Flemish and non-Flemish immovable-withholding base rules
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_property_tax_region == belgium_property_tax_region_flanders:
+              flanders_immovable_withholding_tax_after_core_reductions
+          else:
+              belgium_immovable_withholding_tax_after_article_257_core_reductions
+  - name: belgium_immovable_withholding_non_flemish_additional_centimes_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 464/1 additional centimes on routed non-Flemish immovable-withholding base tax
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_property_tax_region == belgium_property_tax_region_flanders:
+              0
+          else:
+              belgium_immovable_withholding_selected_regional_base_tax * belgium_immovable_withholding_additional_centimes_rate
+  - name: belgium_immovable_withholding_routed_tax_after_supplied_local_centimes
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional immovable-withholding bridge after encoded base reductions and supplied non-Flemish additional centimes
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          belgium_immovable_withholding_selected_regional_base_tax + belgium_immovable_withholding_non_flemish_additional_centimes_tax

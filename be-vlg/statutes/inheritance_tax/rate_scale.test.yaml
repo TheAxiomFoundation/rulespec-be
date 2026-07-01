@@ -1,0 +1,50 @@
+- name: direct_partner_second_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_taxable_acquisition: 100000
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_relationship_class: 0
+  output:
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_article_27411_tax: 6000
+
+- name: direct_partner_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_taxable_acquisition: 300000
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_relationship_class: 0
+  output:
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_or_partner_tax: 33000
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_article_27411_tax: 33000
+
+- name: sibling_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_taxable_acquisition: 100000
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_relationship_class: 1
+  output:
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_sibling_tax: 34500
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_article_27411_tax: 34500
+
+- name: unrelated_second_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_taxable_acquisition: 50000
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_relationship_class: 2
+  output:
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_unrelated_tax: 15500
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_article_27411_tax: 15500

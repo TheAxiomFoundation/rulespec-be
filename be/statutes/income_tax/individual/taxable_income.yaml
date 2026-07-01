@@ -1,0 +1,53 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/professional_income#belgium_pit_article_23_net_professional_income
+module:
+  summary: |-
+    CIR 1992 article 6 defines taxable income as total net income less
+    deductible expenses, with total net income equal to the sum of net
+    immovable, movable, professional, and miscellaneous income. This module
+    encodes that Article 6 aggregation and imports the Article 23 professional
+    income netting module for the professional-income category. It expects the
+    other net-income categories and deductible expenses to have already been
+    determined under the category-specific CIR 1992 rules.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-73
+    values:
+      belgium_pit_article_6_income_category_count: 4
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_6_income_category_count
+    kind: parameter
+    dtype: Count
+    source: CIR 1992 article 6, four net-income categories
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          4
+  - name: belgium_pit_article_6_total_net_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 6, total net income categories
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          belgium_pit_net_immovable_income + belgium_pit_net_movable_income + belgium_pit_article_23_net_professional_income + belgium_pit_net_miscellaneous_income
+  - name: belgium_pit_article_6_taxable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 6, taxable income after deductible expenses
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          max(0, belgium_pit_article_6_total_net_income - belgium_pit_article_6_deductible_expenses)

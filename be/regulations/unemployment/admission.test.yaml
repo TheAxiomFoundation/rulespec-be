@@ -1,0 +1,75 @@
+- name: articles_30_and_33_do_not_admit_without_required_stage_or_hours
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input: &admission_default_inputs
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_worker_is_full_time: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_countable_work_days_since_prior_admission_in_extended_reference_period: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_incapacity_or_invalidity_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_uninterrupted_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_no_allowance_granted: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_days_not_countable_as_work_or_assimilated: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_career_interruption_allowance_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_detention_or_deprivation_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_worker_is_voluntary_part_time: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_average_weekly_hours: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_reference_person_average_weekly_hours: 30
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_countable_work_half_days_since_prior_admission: 0
+  output:
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_non_ui_profession_reference_extension_months: 0
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_total_reference_extension_months: 0
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_extended_reference_period_months: 36
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_full_time_stage_condition_met: 0
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_full_time_admission_condition_met: 0
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_weekly_hours_condition_met: 0
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_required_work_half_days: 312
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_voluntary_part_time_stage_condition_met: 0
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_voluntary_part_time_admission_condition_met: 0
+    be:regulations/unemployment/admission#belgium_unemployment_articles_30_or_33_admission_condition_met: 0
+
+- name: article_30_full_time_stage_uses_extended_reference_period
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *admission_default_inputs
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_worker_is_full_time: true
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_countable_work_days_since_prior_admission_in_extended_reference_period: 312
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_incapacity_or_invalidity_extension_months: 2
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_uninterrupted_months: 4
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_no_allowance_granted: true
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_days_not_countable_as_work_or_assimilated: true
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_extension_months: 200
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_career_interruption_allowance_extension_months: 6
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_detention_or_deprivation_extension_months: 1
+  output:
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_non_ui_profession_reference_extension_months: 180
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_total_reference_extension_months: 189
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_extended_reference_period_months: 225
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_full_time_stage_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_full_time_admission_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_articles_30_or_33_admission_condition_met: 1
+
+- name: article_33_voluntary_part_time_stage_uses_one_third_reference_hours
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    <<: *admission_default_inputs
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_worker_is_voluntary_part_time: true
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_average_weekly_hours: 10
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_reference_person_average_weekly_hours: 30
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_countable_work_half_days_since_prior_admission: 312
+  output:
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_weekly_hours_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_required_work_half_days: 312
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_voluntary_part_time_stage_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_article_33_voluntary_part_time_admission_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_articles_30_or_33_admission_condition_met: 1

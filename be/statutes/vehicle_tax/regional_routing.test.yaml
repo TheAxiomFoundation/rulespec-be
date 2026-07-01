@@ -1,0 +1,73 @@
+- name: routes_flemish_vehicle_taxes
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/vehicle_tax/regional_routing#input.belgium_vehicle_tax_region: 0
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_fiscal_power_cv: 10
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_co2_g_per_km: 159
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_is_diesel: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_euro_norm: 3
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_has_particle_filter: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_is_lpg: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_municipal_decime_applies: true
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_is_electric_or_hydrogen_after_2025: true
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_first_put_in_traffic_30_years_ago_or_earlier: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_is_lpg: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_is_natural_gas: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_is_natural_gas_and_petrol_homologated_petrol: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_is_diesel: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_euro_norm: 6
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_has_particle_filter: false
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_co2_g_per_km: 0
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_vehicle_age_months: 0
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_biv_natural_gas_reduction_applies: false
+  output:
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_annual_circulation_tax: 318.55428
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_entry_into_service_tax: 61.50
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_first_year_tax: 380.05428
+
+- name: routes_brussels_vehicle_taxes
+  period:
+    period_kind: custom
+    name: tax_year
+    start: '2026-07-01'
+    end: '2027-06-30'
+  input:
+    be:statutes/vehicle_tax/regional_routing#input.belgium_vehicle_tax_region: 1
+    be-bru:statutes/vehicle_tax/circulation_and_entry#input.brussels_vehicle_fiscal_power_cv: 17
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_fiscal_power_cv: 11
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_thermal_power_kw: 0
+    be-bru:statutes/vehicle_tax/entry_into_service_detailed#input.brussels_entry_into_service_tax_vehicle_age_years: 0
+  output:
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_annual_circulation_tax: 1742.14
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_entry_into_service_tax: 634.89
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_first_year_tax: 2377.03
+
+- name: routes_walloon_vehicle_taxes
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-07-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/vehicle_tax/regional_routing#input.belgium_vehicle_tax_region: 2
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_fiscal_power_cv: 10
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_lpg: false
+    be-wal:statutes/vehicle_tax/circulation_tax#input.wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_engine_power_kw: 100
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_vehicle_age_years: 0
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_g_per_km: 136
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_co2_uses_wltp: true
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_electric_or_hydrogen: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_hybrid: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_max_authorized_mass_kg: 1838
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_large_family_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_single_parent_reduction_applies: false
+    be-wal:statutes/vehicle_tax/entry_into_service#input.wallonia_tmc_is_oldtimer_over_30_years_with_special_plate: false
+  output:
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_annual_circulation_tax: 432.30
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_entry_into_service_tax: 515.20
+    be:statutes/vehicle_tax/regional_routing#belgium_vehicle_first_year_tax: 947.50

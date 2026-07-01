@@ -1,0 +1,12 @@
+- name: excise_current_statutory_totals
+  period:
+    period_kind: custom
+    name: source_snapshot
+    start: '2026-06-30'
+    end: '2026-12-31'
+  output:
+    be:statutes/excise/rates#belgium_excise_beer_total_rate_per_hectolitre_degree_plato: 2.0043
+    be:statutes/excise/rates#belgium_excise_ethyl_alcohol_total_rate_per_hectolitre_pure_alcohol: 2992.7928
+    be:statutes/excise/rates#belgium_excise_cigarette_specific_total_rate_per_1000_pieces: 189.7803
+    be:statutes/excise/rates#belgium_excise_unleaded_low_sulfur_gasoline_total_rate_per_1000_litres: 455.5305
+    be:statutes/excise/rates#belgium_excise_low_sulfur_gasoil_total_rate_per_1000_litres: 455.5305

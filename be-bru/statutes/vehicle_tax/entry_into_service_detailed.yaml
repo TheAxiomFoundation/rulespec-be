@@ -1,0 +1,589 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Brussels tax-on-entry-into-service detailed car and motorcycle table
+    from the MyTax tariff page retrieved on 1 July 2026. The
+    upstream Code locator is checked first; this module uses the official
+    Brussels Fiscality MyTax tariff page for the sourceable public table
+    that the 2026 Brussels Fiscality TMC PDF refers users to.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/justel/code-taxes-assimilees/1965112350
+      - be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-1
+      - be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-6
+      - be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-7
+      - be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-14
+      - be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-15
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be/statute/justel/code-taxes-assimilees/1965112350
+      rationale: |-
+        The Code des taxes assimilees aux impots sur les revenus is the
+        upstream legal framework and Justel records the Brussels amendments.
+        Brussels Fiscality MyTax is used only for the official public
+        current 1 July 2026 rate table after that Code locator is checked.
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_entry_into_service_tax_power_band_id
+    kind: parameter
+    dtype: Count
+    indexed_by: power_band
+    source: Structural MyTax TMC power-band ids
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 0
+          1: 1
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+  - name: brussels_entry_into_service_tax_age_band_id
+    kind: parameter
+    dtype: Count
+    indexed_by: age_band
+    source: Structural MyTax TMC age-band ids
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 0
+          1: 1
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+          7: 7
+          8: 8
+          9: 9
+          10: 10
+          11: 11
+          12: 12
+          13: 13
+          14: 14
+          15: 15
+  - name: brussels_entry_into_service_tax_fiscal_power_band_max_cv
+    kind: parameter
+    dtype: Count
+    indexed_by: power_band
+    source: Brussels Fiscality MyTax TMC table fiscal-power upper bounds
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 8
+          1: 10
+          2: 11
+          3: 14
+          4: 15
+          5: 17
+  - name: brussels_entry_into_service_tax_thermal_power_band_max_kw
+    kind: parameter
+    dtype: Count
+    indexed_by: power_band
+    source: Brussels Fiscality MyTax TMC table thermal-power upper bounds
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 70
+          1: 85
+          2: 100
+          3: 110
+          4: 120
+          5: 155
+  - name: brussels_entry_into_service_tax_age_band_max_years
+    kind: parameter
+    dtype: Count
+    indexed_by: age_band
+    source: Brussels Fiscality MyTax TMC table age-band upper bounds
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 0
+          1: 1
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+          7: 7
+          8: 8
+          9: 9
+          10: 10
+          11: 11
+          12: 12
+          13: 13
+          14: 14
+  - name: brussels_entry_into_service_tax_age_band_count
+    kind: parameter
+    dtype: Count
+    source: Number of MyTax TMC age bands used to flatten the source table
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          16
+  - name: brussels_entry_into_service_tax_power_band_by_fiscal_power
+    kind: derived
+    entity: Vehicle
+    dtype: Count
+    period: Year
+    source: Brussels Fiscality MyTax TMC table fiscal-power bands for cars and motorcycles
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if brussels_entry_into_service_tax_fiscal_power_cv <= brussels_entry_into_service_tax_fiscal_power_band_max_cv[0]:
+              brussels_entry_into_service_tax_power_band_id[0]
+          else:
+              if brussels_entry_into_service_tax_fiscal_power_cv <= brussels_entry_into_service_tax_fiscal_power_band_max_cv[1]:
+                  brussels_entry_into_service_tax_power_band_id[1]
+              else:
+                  if brussels_entry_into_service_tax_fiscal_power_cv <= brussels_entry_into_service_tax_fiscal_power_band_max_cv[2]:
+                      brussels_entry_into_service_tax_power_band_id[2]
+                  else:
+                      if brussels_entry_into_service_tax_fiscal_power_cv <= brussels_entry_into_service_tax_fiscal_power_band_max_cv[3]:
+                          brussels_entry_into_service_tax_power_band_id[3]
+                      else:
+                          if brussels_entry_into_service_tax_fiscal_power_cv <= brussels_entry_into_service_tax_fiscal_power_band_max_cv[4]:
+                              brussels_entry_into_service_tax_power_band_id[4]
+                          else:
+                              if brussels_entry_into_service_tax_fiscal_power_cv <= brussels_entry_into_service_tax_fiscal_power_band_max_cv[5]:
+                                  brussels_entry_into_service_tax_power_band_id[5]
+                              else:
+                                  brussels_entry_into_service_tax_power_band_id[6]
+  - name: brussels_entry_into_service_tax_power_band_by_thermal_power
+    kind: derived
+    entity: Vehicle
+    dtype: Count
+    period: Year
+    source: Brussels Fiscality MyTax TMC table thermal-power bands for cars and motorcycles
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if brussels_entry_into_service_tax_thermal_power_kw <= brussels_entry_into_service_tax_thermal_power_band_max_kw[0]:
+              brussels_entry_into_service_tax_power_band_id[0]
+          else:
+              if brussels_entry_into_service_tax_thermal_power_kw <= brussels_entry_into_service_tax_thermal_power_band_max_kw[1]:
+                  brussels_entry_into_service_tax_power_band_id[1]
+              else:
+                  if brussels_entry_into_service_tax_thermal_power_kw <= brussels_entry_into_service_tax_thermal_power_band_max_kw[2]:
+                      brussels_entry_into_service_tax_power_band_id[2]
+                  else:
+                      if brussels_entry_into_service_tax_thermal_power_kw <= brussels_entry_into_service_tax_thermal_power_band_max_kw[3]:
+                          brussels_entry_into_service_tax_power_band_id[3]
+                      else:
+                          if brussels_entry_into_service_tax_thermal_power_kw <= brussels_entry_into_service_tax_thermal_power_band_max_kw[4]:
+                              brussels_entry_into_service_tax_power_band_id[4]
+                          else:
+                              if brussels_entry_into_service_tax_thermal_power_kw <= brussels_entry_into_service_tax_thermal_power_band_max_kw[5]:
+                                  brussels_entry_into_service_tax_power_band_id[5]
+                              else:
+                                  brussels_entry_into_service_tax_power_band_id[6]
+  - name: brussels_entry_into_service_tax_power_band
+    kind: derived
+    entity: Vehicle
+    dtype: Count
+    period: Year
+    source: Brussels Fiscality MyTax rule that the higher of fiscal-power and thermal-power table amounts applies
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          max(brussels_entry_into_service_tax_power_band_by_fiscal_power, brussels_entry_into_service_tax_power_band_by_thermal_power)
+  - name: brussels_entry_into_service_tax_age_band
+    kind: derived
+    entity: Vehicle
+    dtype: Count
+    period: Year
+    source: Brussels Fiscality MyTax TMC table age bands based on years since first registration
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          if brussels_entry_into_service_tax_vehicle_age_years <= brussels_entry_into_service_tax_age_band_max_years[0]:
+              brussels_entry_into_service_tax_age_band_id[0]
+          else:
+              if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[1]:
+                  brussels_entry_into_service_tax_age_band_id[1]
+              else:
+                  if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[2]:
+                      brussels_entry_into_service_tax_age_band_id[2]
+                  else:
+                      if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[3]:
+                          brussels_entry_into_service_tax_age_band_id[3]
+                      else:
+                          if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[4]:
+                              brussels_entry_into_service_tax_age_band_id[4]
+                          else:
+                              if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[5]:
+                                  brussels_entry_into_service_tax_age_band_id[5]
+                              else:
+                                  if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[6]:
+                                      brussels_entry_into_service_tax_age_band_id[6]
+                                  else:
+                                      if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[7]:
+                                          brussels_entry_into_service_tax_age_band_id[7]
+                                      else:
+                                          if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[8]:
+                                              brussels_entry_into_service_tax_age_band_id[8]
+                                          else:
+                                              if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[9]:
+                                                  brussels_entry_into_service_tax_age_band_id[9]
+                                              else:
+                                                  if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[10]:
+                                                      brussels_entry_into_service_tax_age_band_id[10]
+                                                  else:
+                                                      if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[11]:
+                                                          brussels_entry_into_service_tax_age_band_id[11]
+                                                      else:
+                                                          if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[12]:
+                                                              brussels_entry_into_service_tax_age_band_id[12]
+                                                          else:
+                                                              if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[13]:
+                                                                  brussels_entry_into_service_tax_age_band_id[13]
+                                                              else:
+                                                                  if brussels_entry_into_service_tax_vehicle_age_years == brussels_entry_into_service_tax_age_band_max_years[14]:
+                                                                      brussels_entry_into_service_tax_age_band_id[14]
+                                                                  else:
+                                                                      brussels_entry_into_service_tax_age_band_id[15]
+  - name: brussels_entry_into_service_tax_power_age_band_key
+    kind: derived
+    entity: Vehicle
+    dtype: Count
+    period: Year
+    source: Flattened MyTax TMC source-table key by power band and age band
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_power_band * brussels_entry_into_service_tax_age_band_count + brussels_entry_into_service_tax_age_band
+  - name: brussels_entry_into_service_tax_non_leasing_amount_by_power_age_band
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    indexed_by: power_age_band
+    source: Brussels Fiscality MyTax non-leasing TMC table for cars and motorcycles, retrieved on 1 July 2026
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 78.88
+          1: 78.88
+          2: 78.88
+          3: 78.88
+          4: 78.88
+          5: 78.88
+          6: 78.88
+          7: 78.88
+          8: 78.88
+          9: 78.88
+          10: 78.88
+          11: 78.88
+          12: 78.88
+          13: 78.88
+          14: 78.88
+          15: 78.88
+          16: 157.76
+          17: 141.98
+          18: 126.21
+          19: 110.43
+          20: 94.66
+          21: 86.77
+          22: 78.88
+          23: 78.88
+          24: 78.88
+          25: 78.88
+          26: 78.88
+          27: 78.88
+          28: 78.88
+          29: 78.88
+          30: 78.88
+          31: 78.88
+          32: 634.89
+          33: 571.40
+          34: 507.91
+          35: 444.42
+          36: 380.93
+          37: 349.19
+          38: 317.44
+          39: 285.70
+          40: 253.95
+          41: 222.21
+          42: 190.47
+          43: 158.72
+          44: 126.98
+          45: 95.23
+          46: 78.88
+          47: 78.88
+          48: 1112.01
+          49: 1000.81
+          50: 889.61
+          51: 778.41
+          52: 667.21
+          53: 611.61
+          54: 556.01
+          55: 500.41
+          56: 444.81
+          57: 389.20
+          58: 333.60
+          59: 278.00
+          60: 222.40
+          61: 166.80
+          62: 111.20
+          63: 78.88
+          64: 1589.14
+          65: 1430.23
+          66: 1271.31
+          67: 1112.40
+          68: 953.48
+          69: 874.03
+          70: 794.57
+          71: 715.11
+          72: 635.66
+          73: 556.20
+          74: 476.74
+          75: 397.29
+          76: 317.83
+          77: 238.37
+          78: 158.91
+          79: 78.88
+          80: 3178.28
+          81: 2860.45
+          82: 2542.63
+          83: 2224.80
+          84: 1906.97
+          85: 1748.06
+          86: 1589.14
+          87: 1430.23
+          88: 1271.31
+          89: 1112.40
+          90: 953.48
+          91: 794.57
+          92: 635.66
+          93: 476.74
+          94: 317.83
+          95: 78.88
+          96: 6357.85
+          97: 5722.06
+          98: 5086.28
+          99: 4450.49
+          100: 3814.71
+          101: 3496.82
+          102: 3178.92
+          103: 2861.03
+          104: 2543.14
+          105: 2225.25
+          106: 1907.35
+          107: 1589.46
+          108: 1271.57
+          109: 953.68
+          110: 635.78
+          111: 78.88
+  - name: brussels_entry_into_service_tax_leasing_amount_by_power_age_band
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    indexed_by: power_age_band
+    source: Brussels Fiscality MyTax leasing TMC table for cars and motorcycles, retrieved on 1 July 2026
+    versions:
+      - effective_from: '2026-07-01'
+        values:
+          0: 61.50
+          1: 61.50
+          2: 61.50
+          3: 61.50
+          4: 61.50
+          5: 61.50
+          6: 61.50
+          7: 61.50
+          8: 61.50
+          9: 61.50
+          10: 61.50
+          11: 61.50
+          12: 61.50
+          13: 61.50
+          14: 61.50
+          15: 61.50
+          16: 123.00
+          17: 110.70
+          18: 98.40
+          19: 86.10
+          20: 73.80
+          21: 67.65
+          22: 61.50
+          23: 61.50
+          24: 61.50
+          25: 61.50
+          26: 61.50
+          27: 61.50
+          28: 61.50
+          29: 61.50
+          30: 61.50
+          31: 61.50
+          32: 495.00
+          33: 445.50
+          34: 396.00
+          35: 346.50
+          36: 297.00
+          37: 272.25
+          38: 247.50
+          39: 222.75
+          40: 198.00
+          41: 173.25
+          42: 148.50
+          43: 123.75
+          44: 99.00
+          45: 74.25
+          46: 61.50
+          47: 61.50
+          48: 867.00
+          49: 780.30
+          50: 693.60
+          51: 606.90
+          52: 520.20
+          53: 476.85
+          54: 433.50
+          55: 390.15
+          56: 346.80
+          57: 303.45
+          58: 260.10
+          59: 216.75
+          60: 173.40
+          61: 130.05
+          62: 86.70
+          63: 61.50
+          64: 1239.00
+          65: 1115.10
+          66: 991.20
+          67: 867.30
+          68: 743.40
+          69: 681.45
+          70: 619.50
+          71: 557.55
+          72: 495.60
+          73: 433.65
+          74: 371.70
+          75: 309.75
+          76: 247.80
+          77: 185.85
+          78: 123.90
+          79: 61.50
+          80: 2478.00
+          81: 2230.20
+          82: 1982.40
+          83: 1734.60
+          84: 1486.80
+          85: 1362.90
+          86: 1239.00
+          87: 1115.10
+          88: 991.20
+          89: 867.30
+          90: 743.40
+          91: 619.50
+          92: 495.60
+          93: 371.70
+          94: 247.80
+          95: 61.50
+          96: 4957.00
+          97: 4461.30
+          98: 3965.60
+          99: 3469.90
+          100: 2974.20
+          101: 2726.35
+          102: 2478.50
+          103: 2230.65
+          104: 1982.80
+          105: 1734.95
+          106: 1487.10
+          107: 1239.25
+          108: 991.40
+          109: 743.55
+          110: 495.70
+          111: 61.50
+  - name: brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_base_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax non-leasing TMC table for cars and motorcycles, retrieved on 1 July 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_non_leasing_amount_by_power_age_band[brussels_entry_into_service_tax_power_age_band_key]
+  - name: brussels_entry_into_service_tax_car_or_motorcycle_leasing_base_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax leasing TMC table for cars and motorcycles, retrieved on 1 July 2026
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_leasing_amount_by_power_age_band[brussels_entry_into_service_tax_power_age_band_key]
+  - name: brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax non-leasing TMC table
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_base_amount
+  - name: brussels_entry_into_service_tax_car_or_motorcycle_leasing_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax leasing TMC table
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_car_or_motorcycle_leasing_base_amount
+  - name: brussels_entry_into_service_tax_passenger_car_non_leasing_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax TMC table alias for passenger-car scope
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_amount
+  - name: brussels_entry_into_service_tax_passenger_car_leasing_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax TMC table alias for passenger-car scope
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_car_or_motorcycle_leasing_amount
+  - name: brussels_entry_into_service_tax_motorcycle_non_leasing_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax TMC table alias for motorcycle scope
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_car_or_motorcycle_non_leasing_amount
+  - name: brussels_entry_into_service_tax_motorcycle_leasing_amount
+    kind: derived
+    entity: Vehicle
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels Fiscality MyTax TMC table alias for motorcycle scope
+    versions:
+      - effective_from: '2026-07-01'
+        formula: |-
+          brussels_entry_into_service_tax_car_or_motorcycle_leasing_amount

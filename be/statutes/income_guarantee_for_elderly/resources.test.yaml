@@ -1,0 +1,49 @@
+- name: spouse_or_legal_cohabitant_resources_are_counted
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_shares_principal_residence_with_spouse_or_legal_cohabitant: true
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_personal_resources_and_pensions_after_exclusions: 2000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_spouse_or_legal_cohabitant_resources_and_pensions_after_exclusions: 3000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_article_11_resource_exemption: 1000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_maximum_annual_amount_before_resources: 12000
+  output:
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_article_7_countable_resources_and_pensions: 5000
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_article_11_resource_reduction: 4000
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_payable_annual_amount_after_resources: 8000
+
+- name: other_co_residents_resources_are_not_counted
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_shares_principal_residence_with_spouse_or_legal_cohabitant: false
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_personal_resources_and_pensions_after_exclusions: 2000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_spouse_or_legal_cohabitant_resources_and_pensions_after_exclusions: 3000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_article_11_resource_exemption: 1000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_maximum_annual_amount_before_resources: 12000
+  output:
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_article_7_countable_resources_and_pensions: 2000
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_article_11_resource_reduction: 1000
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_payable_annual_amount_after_resources: 11000
+
+- name: article_11_exemption_can_eliminate_resource_reduction
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_shares_principal_residence_with_spouse_or_legal_cohabitant: false
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_personal_resources_and_pensions_after_exclusions: 800
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_spouse_or_legal_cohabitant_resources_and_pensions_after_exclusions: 0
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_article_11_resource_exemption: 1000
+    be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_maximum_annual_amount_before_resources: 12000
+  output:
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_article_11_resource_reduction: 0
+    be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_payable_annual_amount_after_resources: 12000

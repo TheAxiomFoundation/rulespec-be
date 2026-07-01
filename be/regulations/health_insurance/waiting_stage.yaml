@@ -1,0 +1,423 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Articles 128 and 130 of the coordinated 14 July 1994 health-insurance law
+    require waiting-stage and continuing-entitlement proof for incapacity
+    indemnities, while article 113 and the maternity provisions use parallel
+    delegated waiting-stage rules. The Royal Decree of 3 July 1996 articles
+    203, 203/1, 205/1, 206, 206/1, 207, 207/1, and 207/2 set the current
+    day/hour/month interfaces for ordinary and reduced waiting stages and
+    continuing entitlement. This module encodes those numeric interfaces from
+    supplied worker-status, contribution, transfer, and interruption predicates.
+    It leaves article-86/article-112 category proof, contribution minimums,
+    assimilated-day classification, medical recognition, and documentary proof
+    to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1994/07/14/1994071451/article/113
+      - be/statute/loi/1994/07/14/1994071451/article/128
+      - be/statute/loi/1994/07/14/1994071451/article/130
+      - be/regulation/arrete/1996/07/03/1996022344/article/203
+      - be/regulation/arrete/1996/07/03/1996022344/article/203-1
+      - be/regulation/arrete/1996/07/03/1996022344/article/205-1
+      - be/regulation/arrete/1996/07/03/1996022344/article/206
+      - be/regulation/arrete/1996/07/03/1996022344/article/206-1
+      - be/regulation/arrete/1996/07/03/1996022344/article/207
+      - be/regulation/arrete/1996/07/03/1996022344/article/207-1
+      - be/regulation/arrete/1996/07/03/1996022344/article/207-2
+    values:
+      belgium_health_incapacity_waiting_reference_months: "12"
+      belgium_health_incapacity_waiting_work_days: "180"
+      belgium_health_incapacity_waiting_part_time_hours: "800"
+      belgium_health_incapacity_waiting_part_time_max_reference_months: "36"
+      belgium_health_maternity_waiting_reference_months: "6"
+      belgium_health_maternity_waiting_work_days: "120"
+      belgium_health_maternity_waiting_part_time_hours: "400"
+      belgium_health_maternity_waiting_part_time_impossible_hours: "133"
+      belgium_health_incapacity_self_employed_transfer_reference_months: "6"
+      belgium_health_incapacity_self_employed_transfer_work_days: "90"
+      belgium_health_incapacity_self_employed_transfer_part_time_hours: "400"
+      belgium_health_incapacity_self_employed_transfer_part_time_max_reference_months: "18"
+      belgium_health_maternity_reentry_one_month_work_days: "20"
+      belgium_health_maternity_reentry_one_month_part_time_hours: "67"
+      belgium_health_maternity_reentry_one_month_part_time_max_reference_months: "3"
+      belgium_health_maternity_reentry_three_month_work_days: "60"
+      belgium_health_maternity_reentry_three_month_part_time_hours: "200"
+      belgium_health_maternity_reentry_three_month_part_time_impossible_hours: "67"
+      belgium_health_entitlement_maintenance_work_days: "120"
+      belgium_health_entitlement_maintenance_part_time_hours: "400"
+      belgium_health_entitlement_maintenance_max_interruption_days: "30"
+rules:
+  - name: belgium_health_incapacity_waiting_reference_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          12
+  - name: belgium_health_incapacity_waiting_work_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          180
+  - name: belgium_health_incapacity_waiting_part_time_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203 third paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          800
+  - name: belgium_health_incapacity_waiting_part_time_max_reference_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203 third paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          36
+  - name: belgium_health_maternity_waiting_reference_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203/1 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          6
+  - name: belgium_health_maternity_waiting_work_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203/1 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          120
+  - name: belgium_health_maternity_waiting_part_time_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203/1 second paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          400
+  - name: belgium_health_maternity_waiting_part_time_impossible_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 203/1 second paragraph
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          133
+  - name: belgium_health_incapacity_self_employed_transfer_reference_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 206 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          6
+  - name: belgium_health_incapacity_self_employed_transfer_work_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 206 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          90
+  - name: belgium_health_incapacity_self_employed_transfer_part_time_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 206 second paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          400
+  - name: belgium_health_incapacity_self_employed_transfer_part_time_max_reference_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 206 second paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          18
+  - name: belgium_health_maternity_reentry_one_month_work_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 205/1 section 2
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          20
+  - name: belgium_health_maternity_reentry_one_month_part_time_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 205/1 section 2
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          67
+  - name: belgium_health_maternity_reentry_one_month_part_time_max_reference_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 205/1 section 2
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          3
+  - name: belgium_health_maternity_reentry_three_month_work_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 205/1 section 3
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          60
+  - name: belgium_health_maternity_reentry_three_month_part_time_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 205/1 section 3
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          200
+  - name: belgium_health_maternity_reentry_three_month_part_time_impossible_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 205/1 section 3
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          67
+  - name: belgium_health_entitlement_maintenance_work_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 207 first paragraph
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          120
+  - name: belgium_health_entitlement_maintenance_part_time_hours
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, articles 207 and 207/1
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          400
+  - name: belgium_health_entitlement_maintenance_max_interruption_days
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, articles 207 and 207/1, three-quarter fallback test
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          30
+  - name: belgium_health_incapacity_standard_waiting_stage_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law article 128 and Royal Decree of 3 July 1996 article 203
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_seasonal_intermittent_or_part_time_worker:
+              if belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_incapacity_waiting_part_time_hours and (belgium_health_waiting_stage_reference_months <= belgium_health_incapacity_waiting_reference_months or (belgium_health_waiting_stage_extended_reference_allowed and belgium_health_waiting_stage_reference_months <= belgium_health_incapacity_waiting_part_time_max_reference_months)):
+                  1
+              else:
+                  0
+          else:
+              if belgium_health_waiting_stage_assimilated_work_days >= belgium_health_incapacity_waiting_work_days and belgium_health_waiting_stage_reference_months <= belgium_health_incapacity_waiting_reference_months:
+                  1
+              else:
+                  0
+  - name: belgium_health_maternity_standard_waiting_stage_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law article 113 and Royal Decree of 3 July 1996 article 203/1
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_seasonal_intermittent_or_part_time_worker:
+              if belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_maternity_waiting_part_time_hours and belgium_health_waiting_stage_reference_months <= belgium_health_maternity_waiting_reference_months:
+                  1
+              else:
+                  if belgium_health_waiting_stage_impossible_to_reach_regular_hours and belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_maternity_waiting_part_time_impossible_hours and belgium_health_waiting_stage_reference_months <= belgium_health_maternity_waiting_reference_months:
+                      1
+                  else:
+                      0
+          else:
+              if belgium_health_waiting_stage_assimilated_work_days >= belgium_health_maternity_waiting_work_days and belgium_health_waiting_stage_reference_months <= belgium_health_maternity_waiting_reference_months:
+                  1
+              else:
+                  0
+  - name: belgium_health_incapacity_self_employed_transfer_reduced_waiting_stage_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Royal Decree of 3 July 1996, article 206
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_self_employed_transfer_within_30_days and belgium_health_self_employed_prior_waiting_stage_completed_or_dispensed:
+              if belgium_health_seasonal_intermittent_or_part_time_worker:
+                  if belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_incapacity_self_employed_transfer_part_time_hours and (belgium_health_waiting_stage_reference_months <= belgium_health_incapacity_self_employed_transfer_reference_months or (belgium_health_waiting_stage_extended_reference_allowed and belgium_health_waiting_stage_reference_months <= belgium_health_incapacity_self_employed_transfer_part_time_max_reference_months)):
+                      1
+                  else:
+                      0
+              else:
+                  if belgium_health_waiting_stage_assimilated_work_days >= belgium_health_incapacity_self_employed_transfer_work_days and belgium_health_waiting_stage_reference_months <= belgium_health_incapacity_self_employed_transfer_reference_months:
+                      1
+                  else:
+                      0
+          else:
+              0
+  - name: belgium_health_maternity_self_employed_transfer_waiting_stage_exempt
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Royal Decree of 3 July 1996, article 206/1
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_self_employed_transfer_within_30_days and belgium_health_self_employed_prior_waiting_stage_completed_or_dispensed:
+              1
+          else:
+              0
+  - name: belgium_health_maternity_reentry_one_month_reduced_waiting_stage_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Royal Decree of 3 July 1996, article 205/1 section 2
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_maternity_reentry_childcare_reduced_stage_condition:
+              if belgium_health_seasonal_intermittent_or_part_time_worker:
+                  if belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_maternity_reentry_one_month_part_time_hours and belgium_health_waiting_stage_reference_months <= belgium_health_maternity_reentry_one_month_part_time_max_reference_months:
+                      1
+                  else:
+                      0
+              else:
+                  if belgium_health_waiting_stage_assimilated_work_days >= belgium_health_maternity_reentry_one_month_work_days and belgium_health_waiting_stage_reference_months <= 1:
+                      1
+                  else:
+                      0
+          else:
+              0
+  - name: belgium_health_maternity_reentry_three_month_reduced_waiting_stage_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Royal Decree of 3 July 1996, article 205/1 section 3
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_maternity_reentry_mutuality_membership_condition:
+              if belgium_health_seasonal_intermittent_or_part_time_worker:
+                  if belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_maternity_reentry_three_month_part_time_hours and belgium_health_waiting_stage_reference_months <= 3:
+                      1
+                  else:
+                      if belgium_health_waiting_stage_impossible_to_reach_regular_hours and belgium_health_waiting_stage_assimilated_work_hours >= belgium_health_maternity_reentry_three_month_part_time_impossible_hours and belgium_health_waiting_stage_reference_months <= 3:
+                          1
+                      else:
+                          0
+              else:
+                  if belgium_health_waiting_stage_assimilated_work_days >= belgium_health_maternity_reentry_three_month_work_days and belgium_health_waiting_stage_reference_months <= 3:
+                      1
+                  else:
+                      0
+          else:
+              0
+  - name: belgium_health_incapacity_waiting_stage_satisfied
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law article 128 and Royal Decree of 3 July 1996 articles 203, 205, and 206
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_incapacity_waiting_stage_dispensed:
+              1
+          else:
+              if belgium_health_incapacity_standard_waiting_stage_met == 1 or belgium_health_incapacity_self_employed_transfer_reduced_waiting_stage_met == 1:
+                  1
+              else:
+                  0
+  - name: belgium_health_maternity_waiting_stage_satisfied
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law article 113 and Royal Decree of 3 July 1996 articles 203/1, 205/1, and 206/1
+    versions:
+      - effective_from: '2022-08-02'
+        formula: |-
+          if belgium_health_maternity_waiting_stage_dispensed:
+              1
+          else:
+              if belgium_health_maternity_standard_waiting_stage_met == 1 or belgium_health_maternity_self_employed_transfer_waiting_stage_exempt == 1 or belgium_health_maternity_reentry_one_month_reduced_waiting_stage_met == 1 or belgium_health_maternity_reentry_three_month_reduced_waiting_stage_met == 1:
+                  1
+              else:
+                  0
+  - name: belgium_health_incapacity_continuing_entitlement_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Coordinated health-insurance law article 130 and Royal Decree of 3 July 1996 article 207
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          if belgium_health_currently_indemnified_at_quarter_end:
+              1
+          else:
+              if belgium_health_continuing_entitlement_contributions_condition_met:
+                  if belgium_health_seasonal_intermittent_or_part_time_worker:
+                      if belgium_health_continuing_entitlement_assimilated_work_hours_second_third_quarters >= belgium_health_entitlement_maintenance_part_time_hours:
+                          1
+                      else:
+                          if belgium_health_continuing_entitlement_longest_titular_interruption_days <= belgium_health_entitlement_maintenance_max_interruption_days:
+                              1
+                          else:
+                              0
+                  else:
+                      if belgium_health_continuing_entitlement_titular_work_days_second_third_quarters >= belgium_health_entitlement_maintenance_work_days:
+                          1
+                      else:
+                          0
+              else:
+                  0
+  - name: belgium_health_maternity_continuing_entitlement_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: Royal Decree of 3 July 1996, article 207/1
+    versions:
+      - effective_from: '2017-05-01'
+        formula: |-
+          if belgium_health_currently_indemnified_at_quarter_end:
+              1
+          else:
+              if belgium_health_continuing_entitlement_contributions_condition_met:
+                  if belgium_health_continuing_entitlement_assimilated_work_hours_second_third_quarters >= belgium_health_entitlement_maintenance_part_time_hours:
+                      1
+                  else:
+                      if belgium_health_continuing_entitlement_longest_titular_interruption_days <= belgium_health_entitlement_maintenance_max_interruption_days:
+                          1
+                      else:
+                          0
+              else:
+                  0

@@ -1,0 +1,62 @@
+- name: routes_flemish_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/gift_tax/regional_routing#input.belgium_transfer_tax_region: 0
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_taxable_amount: 200000
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_relationship_class: 0
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_is_movable_property: false
+  output:
+    be:statutes/gift_tax/regional_routing#belgium_regional_gift_tax: 9000
+
+- name: routes_brussels_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/gift_tax/regional_routing#input.belgium_transfer_tax_region: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_taxable_amount: 100000
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_relationship_class: 1
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_is_movable_property: true
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_parties_declare_mention_seeks_donation_title: false
+    be-bru:statutes/gift_tax/rate_scale#input.brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+  output:
+    be:statutes/gift_tax/regional_routing#belgium_regional_gift_tax: 7000
+
+- name: routes_walloon_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/gift_tax/regional_routing#input.belgium_transfer_tax_region: 2
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 100000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 0
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: true
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_movable_gift_suspensive_term_by_donor_death_assimilated_to_legacy: false
+  output:
+    be:statutes/gift_tax/regional_routing#belgium_regional_gift_tax: 3300
+
+- name: routes_walloon_future_2028_immovable_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be:statutes/gift_tax/regional_routing#input.belgium_transfer_tax_region: 2
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 300000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 0
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: false
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_authentic_act_year: 2028
+  output:
+    be:statutes/gift_tax/regional_routing#belgium_regional_gift_tax: 15500

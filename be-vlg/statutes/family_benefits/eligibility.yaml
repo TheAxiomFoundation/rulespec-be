@@ -1,0 +1,152 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_selected_monthly_amount
+module:
+  summary: |-
+    Flemish Groeipakket decree article 8 defines the core child entitlement
+    gate for family allowances: domicile in the Dutch-language region with
+    Belgian nationality proof or qualifying residence authorization, special
+    treatment for disappeared or abducted children, age/status windows through
+    18, 21, or 25 depending on support need or education status, exclusion for
+    certain temporary residence purposes, and exclusion for children raised or
+    studying outside Belgium unless an exemption applies. Delegated proof and
+    implementing conditions remain supplied inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/8
+    values:
+      flanders_family_benefits_standard_age_limit_years: 18
+      flanders_family_benefits_support_need_age_limit_years: 21
+      flanders_family_benefits_student_age_limit_years: 25
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: flanders_family_benefits_standard_age_limit_years
+    kind: parameter
+    dtype: Count
+    source: Flemish Groeipakket decree article 8 section 2 item 1
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          18
+  - name: flanders_family_benefits_support_need_age_limit_years
+    kind: parameter
+    dtype: Count
+    source: Flemish Groeipakket decree article 8 section 2 item 2
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          21
+  - name: flanders_family_benefits_student_age_limit_years
+    kind: parameter
+    dtype: Count
+    source: Flemish Groeipakket decree article 8 section 2 item 3
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          25
+  - name: flanders_family_benefits_residence_and_status_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Flemish Groeipakket decree article 8 section 1 domicile, residence, disappearance, and abduction conditions
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_family_benefits_child_disappeared_or_abducted:
+              if flanders_family_benefits_residence_and_status_condition_met_at_disappearance_or_abduction:
+                  1
+              else:
+                  0
+          else:
+              if flanders_family_benefits_child_domiciled_in_dutch_language_region:
+                  if flanders_family_benefits_child_has_belgian_nationality_proof or flanders_family_benefits_child_has_authorized_residence:
+                      1
+                  else:
+                      0
+              else:
+                  0
+  - name: flanders_family_benefits_age_or_status_condition_met
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Flemish Groeipakket decree article 8 section 2 age and status windows
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_family_benefits_child_age_years < flanders_family_benefits_standard_age_limit_years or flanders_family_benefits_child_in_month_turning_18:
+              1
+          else:
+              if flanders_family_benefits_child_has_specific_support_need and (flanders_family_benefits_child_age_years < flanders_family_benefits_support_need_age_limit_years or flanders_family_benefits_child_in_month_turning_21):
+                  1
+              else:
+                  if flanders_family_benefits_child_is_pupil_student_intern_or_school_leaver and (flanders_family_benefits_child_age_years < flanders_family_benefits_student_age_limit_years or flanders_family_benefits_child_in_month_turning_25):
+                      1
+                  else:
+                      if flanders_family_benefits_book_5_transition_no_age_limit_applies:
+                          1
+                      else:
+                          0
+  - name: flanders_family_benefits_temporary_residence_exclusion_applies
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Flemish Groeipakket decree article 8 section 1 temporary residence-purpose exclusion
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right:
+              if flanders_family_benefits_child_is_child_of_excluded_residence_holder:
+                  0
+              else:
+                  1
+          else:
+              0
+  - name: flanders_family_benefits_outside_belgium_exclusion_applies
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Flemish Groeipakket decree article 8 section 3 outside-Belgium exclusion
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_family_benefits_child_raised_or_studies_outside_belgium:
+              if flanders_family_benefits_outside_belgium_government_exemption_applies:
+                  0
+              else:
+                  1
+          else:
+              0
+  - name: flanders_family_benefits_child_entitlement
+    kind: derived
+    entity: Child
+    dtype: Count
+    period: Month
+    source: Flemish Groeipakket decree article 8 child entitlement gate
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_family_benefits_residence_and_status_condition_met == 1 and flanders_family_benefits_age_or_status_condition_met == 1 and flanders_family_benefits_temporary_residence_exclusion_applies == 0 and flanders_family_benefits_outside_belgium_exclusion_applies == 0:
+              1
+          else:
+              0
+  - name: flanders_family_benefits_eligible_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Groeipakket decree article 8 gate applied to encoded family-benefit amount surfaces
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_family_benefits_child_entitlement == 1:
+              flanders_family_benefits_selected_monthly_amount
+          else:
+              0

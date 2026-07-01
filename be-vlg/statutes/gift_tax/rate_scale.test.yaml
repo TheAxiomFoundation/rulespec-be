@@ -1,0 +1,54 @@
+- name: immovable_direct_partner_third_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_taxable_amount: 300000
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_relationship_class: 0
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_is_movable_property: false
+  output:
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_or_partner_tax: 22500
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_article_28411_tax: 22500
+
+- name: immovable_other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_taxable_amount: 500000
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_relationship_class: 1
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_is_movable_property: false
+  output:
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_other_tax: 115000
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_article_28411_tax: 115000
+
+- name: movable_direct_partner_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_taxable_amount: 100000
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_relationship_class: 0
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_is_movable_property: true
+  output:
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_movable_tax: 3000
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_article_28411_tax: 3000
+
+- name: movable_other_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_taxable_amount: 100000
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_relationship_class: 1
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_is_movable_property: true
+  output:
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_article_28411_tax: 7000

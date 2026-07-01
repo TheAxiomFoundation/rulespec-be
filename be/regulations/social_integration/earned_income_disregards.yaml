@@ -1,0 +1,94 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal social-integration implementing decree article 35 sets earned-income
+    disregards for revenu d'integration resource calculations. This module
+    encodes the standard monthly disregard, the annual disregard for irregular
+    artistic activity, the shortage-profession monthly disregard, and a monthly
+    selector. Eligibility periods, suspension rules, regional shortage attestations,
+    and the full resource test remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/2002/07/11/2002022564/article/35
+    values:
+      belgium_social_integration_standard_earned_income_monthly_disregard: "177.76"
+      belgium_social_integration_irregular_artistic_activity_annual_disregard: "2133.12"
+      belgium_social_integration_shortage_profession_monthly_disregard: "254.75"
+      belgium_social_integration_earned_income_disregard_total_years: "3"
+      belgium_social_integration_earned_income_disregard_outer_limit_years: "6"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_social_integration_standard_earned_income_monthly_disregard
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35 section 1
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          177.76
+  - name: belgium_social_integration_irregular_artistic_activity_annual_disregard
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35 section 1
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          2133.12
+  - name: belgium_social_integration_shortage_profession_monthly_disregard
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35 section 1
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          254.75
+  - name: belgium_social_integration_earned_income_disregard_total_years
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35 section 1
+    versions:
+      - effective_from: '2014-10-01'
+        formula: |-
+          3
+  - name: belgium_social_integration_earned_income_disregard_outer_limit_years
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35 section 1
+    versions:
+      - effective_from: '2014-10-01'
+        formula: |-
+          6
+  - name: belgium_social_integration_irregular_artistic_activity_monthly_equivalent_disregard
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35 section 1
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          belgium_social_integration_irregular_artistic_activity_annual_disregard / 12
+  - name: belgium_social_integration_article_35_monthly_earned_income_disregard
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 35
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if belgium_social_integration_income_from_shortage_profession:
+              min(belgium_social_integration_monthly_net_earned_income, belgium_social_integration_shortage_profession_monthly_disregard)
+          else:
+              if belgium_social_integration_income_from_irregular_artistic_activity:
+                  min(belgium_social_integration_monthly_net_earned_income, belgium_social_integration_irregular_artistic_activity_monthly_equivalent_disregard)
+              else:
+                  min(belgium_social_integration_monthly_net_earned_income, belgium_social_integration_standard_earned_income_monthly_disregard)

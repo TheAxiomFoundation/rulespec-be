@@ -1,0 +1,673 @@
+format: rulespec/v1
+imports:
+  - be:regulations/unemployment/admission#belgium_unemployment_articles_30_or_33_admission_condition_met
+module:
+  summary: |-
+    The unemployment royal decree of 25 November 1991 article 111 sets capped
+    average daily-wage limits used in unemployment-benefit calculations,
+    articles 30 and 33 define full-time and voluntary part-time admission
+    gates,
+    article 114 sets ordinary unemployment duration, degressivity, and
+    temporary-unemployment replacement-rate rules, article 116 sets
+    non-running and extension events for that Article 114 duration, and article
+    131ter sets the youth and senior holiday allowance at 65 percent of the
+    capped average daily wage with a minimum daily amount. This module encodes
+    those wage caps, article-114 rate and duration selectors, selected
+    article-30/33 admission fallback for article-116 readmission, article-116
+    extension and continuation gates, and the article-131ter daily amount. It
+    does not encode sanctions, regional activation, calendar-date
+    recomputation, full employment-history reconstruction, or the article-131ter
+    monthly day-count formula.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1991/11/25/1991013192/article/30
+      - be/regulation/arrete/1991/11/25/1991013192/article/33
+      - be/regulation/arrete/1991/11/25/1991013192/article/111
+      - be/regulation/arrete/1991/11/25/1991013192/article/114
+      - be/regulation/arrete/1991/11/25/1991013192/article/116
+      - be/regulation/arrete/1991/11/25/1991013192/article/131ter
+    values:
+      belgium_unemployment_article_111_wage_cap_a1: "92.3956"
+      belgium_unemployment_article_111_wage_cap_a2: "86.8727"
+      belgium_unemployment_article_111_wage_cap_b: "70.6721"
+      belgium_unemployment_article_111_wage_cap_c: "75.8270"
+      belgium_unemployment_article_111_wage_cap_ax: "65.2262"
+      belgium_unemployment_article_111_wage_cap_az: "63.5679"
+      belgium_unemployment_article_114_first_period_months: 12
+      belgium_unemployment_article_114_days_per_second_period_extension_month: 104
+      belgium_unemployment_article_114_max_second_period_extension_months: 12
+      belgium_unemployment_article_114_first_three_months_replacement_rate: "0.65"
+      belgium_unemployment_article_114_later_first_period_replacement_rate: "0.60"
+      belgium_unemployment_article_114_temporary_force_majeure_replacement_rate: "0.65"
+      belgium_unemployment_article_114_temporary_other_reason_replacement_rate: "0.60"
+      belgium_unemployment_article_114_article_90_dispense_daily_amount: "16.48"
+      belgium_unemployment_article_114_required_professional_past_years_2026: 31
+      belgium_unemployment_article_114_required_professional_past_years_2027: 32
+      belgium_unemployment_article_114_required_professional_past_years_2028: 33
+      belgium_unemployment_article_114_required_professional_past_years_2029: 34
+      belgium_unemployment_article_114_required_professional_past_years_2030: 35
+      belgium_unemployment_article_116_non_ui_profession_min_uninterrupted_months: 3
+      belgium_unemployment_article_116_income_guarantee_min_weekly_hours: 19
+      belgium_unemployment_article_131ter_holiday_allowance_rate: "0.65"
+      belgium_unemployment_article_131ter_holiday_allowance_minimum_daily_amount: "31.18"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_unemployment_article_111_wage_cap_selector_a1
+    kind: parameter
+    dtype: Count
+    source: Structural selector for unemployment royal decree article 111 wage cap A1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          1
+  - name: belgium_unemployment_article_111_wage_cap_selector_a2
+    kind: parameter
+    dtype: Count
+    source: Structural selector for unemployment royal decree article 111 wage cap A2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          2
+  - name: belgium_unemployment_article_111_wage_cap_selector_b
+    kind: parameter
+    dtype: Count
+    source: Structural selector for unemployment royal decree article 111 wage cap B
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          3
+  - name: belgium_unemployment_article_111_wage_cap_selector_c
+    kind: parameter
+    dtype: Count
+    source: Structural selector for unemployment royal decree article 111 wage cap C
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          4
+  - name: belgium_unemployment_article_111_wage_cap_selector_ax
+    kind: parameter
+    dtype: Count
+    source: Structural selector for unemployment royal decree article 111 wage cap AX
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          5
+  - name: belgium_unemployment_article_111_wage_cap_selector_az
+    kind: parameter
+    dtype: Count
+    source: Structural selector for unemployment royal decree article 111 wage cap AZ
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          6
+  - name: belgium_unemployment_article_111_wage_cap_a1
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111, limit A1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          92.3956
+  - name: belgium_unemployment_article_111_wage_cap_a2
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111, limit A2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          86.8727
+  - name: belgium_unemployment_article_111_wage_cap_b
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111, limit B
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          70.6721
+  - name: belgium_unemployment_article_111_wage_cap_c
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111, limit C
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          75.8270
+  - name: belgium_unemployment_article_111_wage_cap_ax
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111, limit AX for youth and senior holiday allowances
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          65.2262
+  - name: belgium_unemployment_article_111_wage_cap_az
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111, limit AZ
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          63.5679
+  - name: belgium_unemployment_article_131ter_holiday_allowance_rate
+    kind: parameter
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 131ter
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          0.65
+  - name: belgium_unemployment_article_131ter_holiday_allowance_minimum_daily_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 131ter
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          31.18
+  - name: belgium_unemployment_article_114_first_period_months
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          12
+  - name: belgium_unemployment_article_114_days_per_second_period_extension_month
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          104
+  - name: belgium_unemployment_article_114_max_second_period_extension_months
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          12
+  - name: belgium_unemployment_article_114_first_three_months_replacement_rate
+    kind: parameter
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 114 section 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0.65
+  - name: belgium_unemployment_article_114_later_first_period_replacement_rate
+    kind: parameter
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 114 section 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0.60
+  - name: belgium_unemployment_article_114_temporary_force_majeure_replacement_rate
+    kind: parameter
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 114 section 6 item 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0.65
+  - name: belgium_unemployment_article_114_temporary_other_reason_replacement_rate
+    kind: parameter
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 114 section 6 item 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0.60
+  - name: belgium_unemployment_article_114_article_90_dispense_daily_amount
+    kind: parameter
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 114 section 5
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          16.48
+  - name: belgium_unemployment_article_114_required_professional_past_years_2026
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          31
+  - name: belgium_unemployment_article_114_required_professional_past_years_2027
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          32
+  - name: belgium_unemployment_article_114_required_professional_past_years_2028
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          33
+  - name: belgium_unemployment_article_114_required_professional_past_years_2029
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          34
+  - name: belgium_unemployment_article_114_required_professional_past_years_2030
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          35
+  - name: belgium_unemployment_article_116_non_ui_profession_min_uninterrupted_months
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 116 section 1 item 6
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          3
+  - name: belgium_unemployment_article_116_income_guarantee_min_weekly_hours
+    kind: parameter
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 116 section 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          19
+  - name: belgium_unemployment_article_114_required_professional_past_years
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_114_admissibility_year >= 2030:
+              belgium_unemployment_article_114_required_professional_past_years_2030
+          else:
+              if belgium_unemployment_article_114_admissibility_year == 2029:
+                  belgium_unemployment_article_114_required_professional_past_years_2029
+              else:
+                  if belgium_unemployment_article_114_admissibility_year == 2028:
+                      belgium_unemployment_article_114_required_professional_past_years_2028
+                  else:
+                      if belgium_unemployment_article_114_admissibility_year == 2027:
+                          belgium_unemployment_article_114_required_professional_past_years_2027
+                      else:
+                          belgium_unemployment_article_114_required_professional_past_years_2026
+  - name: belgium_unemployment_article_114_sufficient_professional_past_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_114_professional_past_years >= belgium_unemployment_article_114_required_professional_past_years:
+              1
+          else:
+              0
+  - name: belgium_unemployment_article_114_unlimited_time_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_114_worker_is_article_28_3:
+              1
+          else:
+              if belgium_unemployment_article_114_age_years_at_claim >= 55 and belgium_unemployment_article_114_sufficient_professional_past_condition_met == 1:
+                  1
+              else:
+                  if belgium_unemployment_article_114_receives_company_supplement:
+                      1
+                  else:
+                      if belgium_unemployment_article_114_receives_article_78_non_market_allowance:
+                          1
+                      else:
+                          if belgium_unemployment_article_114_safeguard_allowance_maintained:
+                              1
+                          else:
+                              if belgium_unemployment_article_114_arts_work_allowance_maintained:
+                                  1
+                              else:
+                                  if belgium_unemployment_article_114_arts_work_ended_and_article_114bis_flat_rate:
+                                      1
+                                  else:
+                                      0
+  - name: belgium_unemployment_article_114_second_period_extension_months
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          min(belgium_unemployment_article_114_professional_past_104_day_tranches, belgium_unemployment_article_114_max_second_period_extension_months)
+  - name: belgium_unemployment_article_114_total_limited_entitlement_months
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 section 1 and article 116 extensions
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_article_114_first_period_months + belgium_unemployment_article_114_second_period_extension_months + belgium_unemployment_article_116_extension_month_equivalents
+  - name: belgium_unemployment_article_116_non_ui_profession_pause_days
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Unemployment royal decree of 25 November 1991, article 116 section 1 item 6
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_116_non_ui_profession_uninterrupted_months >= belgium_unemployment_article_116_non_ui_profession_min_uninterrupted_months:
+              if belgium_unemployment_article_116_non_ui_profession_no_allowance_granted:
+                  belgium_unemployment_article_116_non_ui_profession_days
+              else:
+                  0
+          else:
+              0
+  - name: belgium_unemployment_article_116_period_not_running_days
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Unemployment royal decree of 25 November 1991, article 116 section 1
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_article_116_full_time_work_days + belgium_unemployment_article_116_part_time_maintained_rights_without_income_guarantee_days + belgium_unemployment_article_116_voluntary_part_time_article_33_without_allowance_days + belgium_unemployment_article_116_article_37_work_days_without_supplemental_allowance + belgium_unemployment_article_116_maternity_paternity_adoption_days + belgium_unemployment_article_116_non_ui_profession_pause_days
+  - name: belgium_unemployment_article_116_incapacity_extension_days
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Unemployment royal decree of 25 November 1991, article 116 section 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          max(belgium_unemployment_article_116_incapacity_or_invalidity_benefit_days - belgium_unemployment_article_116_incapacity_excluded_maternity_days - belgium_unemployment_article_116_incapacity_simultaneous_unemployment_days, 0)
+  - name: belgium_unemployment_article_116_total_extension_days
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Unemployment royal decree of 25 November 1991, article 116 sections 1 and 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_article_116_period_not_running_days + belgium_unemployment_article_116_incapacity_extension_days
+  - name: belgium_unemployment_article_116_income_guarantee_can_continue_after_expiry
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 116 section 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_116_receives_income_guarantee_allowance_at_expiry:
+              if belgium_unemployment_article_116_part_time_weekly_hours >= belgium_unemployment_article_116_income_guarantee_min_weekly_hours:
+                  1
+              else:
+                  if belgium_unemployment_article_116_part_time_weekly_hours >= belgium_unemployment_article_116_reference_person_half_weekly_hours:
+                      1
+                  else:
+                      0
+          else:
+              0
+  - name: belgium_unemployment_article_116_articles_30_or_33_admissibility_condition_met
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 116 section 4 with articles 30 and 33 admission
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_116_meets_articles_30_or_33_admissibility:
+              1
+          else:
+              belgium_unemployment_articles_30_or_33_admission_condition_met
+  - name: belgium_unemployment_article_116_readmitted_to_new_article_114_period
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 116 section 4
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_116_interruption_under_article_138_1_3 and belgium_unemployment_article_116_articles_30_or_33_admissibility_condition_met == 1:
+              if belgium_unemployment_article_116_part_time_same_enterprise_or_group_within_12_months:
+                  0
+              else:
+                  1
+          else:
+              0
+  - name: belgium_unemployment_article_114_first_period_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 sections 1 and 3
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_indemnification_month_number <= belgium_unemployment_article_114_first_period_months:
+              1
+          else:
+              0
+  - name: belgium_unemployment_article_114_second_period_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 sections 1 and 4
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_indemnification_month_number > belgium_unemployment_article_114_first_period_months:
+              if belgium_unemployment_indemnification_month_number <= belgium_unemployment_article_114_total_limited_entitlement_months:
+                  1
+              else:
+                  0
+          else:
+              0
+  - name: belgium_unemployment_article_114_limited_entitlement_in_force
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Unemployment royal decree of 25 November 1991, article 114 sections 1 and 2
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_114_unlimited_time_condition_met == 1:
+              1
+          else:
+              if belgium_unemployment_indemnification_month_number <= belgium_unemployment_article_114_total_limited_entitlement_months:
+                  1
+              else:
+                  0
+  - name: belgium_unemployment_article_114_ordinary_replacement_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 114 sections 3 and 4
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_114_first_period_applies == 1:
+              if belgium_unemployment_indemnification_month_number <= 3:
+                  belgium_unemployment_article_114_first_three_months_replacement_rate
+              else:
+                  belgium_unemployment_article_114_later_first_period_replacement_rate
+          else:
+              0
+  - name: belgium_unemployment_article_114_selected_average_daily_wage_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 114 section 3 and article 111
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_indemnification_month_number <= 3:
+              belgium_unemployment_article_111_wage_cap_a1
+          else:
+              if belgium_unemployment_indemnification_month_number <= 6:
+                  belgium_unemployment_article_111_wage_cap_a2
+              else:
+                  if belgium_unemployment_indemnification_month_number <= belgium_unemployment_article_114_first_period_months:
+                      belgium_unemployment_article_111_wage_cap_b
+                  else:
+                      0
+  - name: belgium_unemployment_article_114_capped_average_daily_wage
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 114 section 3 and article 111
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          min(belgium_unemployment_average_daily_wage, belgium_unemployment_article_114_selected_average_daily_wage_cap)
+  - name: belgium_unemployment_article_114_ordinary_daily_amount_before_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 114 sections 3 and 4
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_article_114_capped_average_daily_wage * belgium_unemployment_article_114_ordinary_replacement_rate
+  - name: belgium_unemployment_article_114_temporary_replacement_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    source: Unemployment royal decree of 25 November 1991, article 114 section 6
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_temporary_force_majeure:
+              belgium_unemployment_article_114_temporary_force_majeure_replacement_rate
+          else:
+              belgium_unemployment_article_114_temporary_other_reason_replacement_rate
+  - name: belgium_unemployment_article_114_temporary_capped_average_daily_wage
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 114 section 6 and article 111 cap C
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          min(belgium_unemployment_average_daily_wage, belgium_unemployment_article_111_wage_cap_c)
+  - name: belgium_unemployment_article_114_temporary_daily_amount_before_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 114 section 6
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_article_114_temporary_capped_average_daily_wage * belgium_unemployment_article_114_temporary_replacement_rate
+  - name: belgium_unemployment_article_111_selected_average_daily_wage_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_article_111_wage_cap_selector == belgium_unemployment_article_111_wage_cap_selector_a1:
+              belgium_unemployment_article_111_wage_cap_a1
+          else:
+              if belgium_unemployment_article_111_wage_cap_selector == belgium_unemployment_article_111_wage_cap_selector_a2:
+                  belgium_unemployment_article_111_wage_cap_a2
+              else:
+                  if belgium_unemployment_article_111_wage_cap_selector == belgium_unemployment_article_111_wage_cap_selector_b:
+                      belgium_unemployment_article_111_wage_cap_b
+                  else:
+                      if belgium_unemployment_article_111_wage_cap_selector == belgium_unemployment_article_111_wage_cap_selector_c:
+                          belgium_unemployment_article_111_wage_cap_c
+                      else:
+                          if belgium_unemployment_article_111_wage_cap_selector == belgium_unemployment_article_111_wage_cap_selector_ax:
+                              belgium_unemployment_article_111_wage_cap_ax
+                          else:
+                              belgium_unemployment_article_111_wage_cap_az
+  - name: belgium_unemployment_article_111_capped_average_daily_wage
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 111
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          min(belgium_unemployment_average_daily_wage, belgium_unemployment_article_111_selected_average_daily_wage_cap)
+  - name: belgium_unemployment_article_131ter_holiday_allowance_capped_average_daily_wage
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 131ter, article 111 AX cap
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          min(belgium_unemployment_average_daily_wage, belgium_unemployment_article_111_wage_cap_ax)
+  - name: belgium_unemployment_article_131ter_holiday_allowance_before_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 131ter, 65 percent rate
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          belgium_unemployment_article_131ter_holiday_allowance_capped_average_daily_wage * belgium_unemployment_article_131ter_holiday_allowance_rate
+  - name: belgium_unemployment_article_131ter_holiday_allowance_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, article 131ter, minimum daily amount
+    versions:
+      - effective_from: '2023-07-01'
+        formula: |-
+          max(belgium_unemployment_article_131ter_holiday_allowance_before_minimum, belgium_unemployment_article_131ter_holiday_allowance_minimum_daily_amount)

@@ -1,0 +1,29 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_guarantee_for_elderly/amounts#belgium_grapa_article_6_maximum_annual_amount
+  - be:statutes/income_guarantee_for_elderly/resources#belgium_grapa_article_11_resource_reduction
+module:
+  summary: |-
+    This module bridges GRAPA article 6 maximum annual amounts with article 7
+    resource selection and article 11 resource offsets to produce a payable
+    annual amount after supplied resource exclusions and exemption inputs. It
+    excludes age/residence eligibility, pension-administration procedure,
+    delegated resource-exclusion amounts, and household relationships beyond
+    the supplied principal-residence and spouse/legal-cohabitant predicates.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/2001/03/22/2001022201/article/6
+      - be/statute/loi/2001/03/22/2001022201/article/7
+      - be/statute/loi/2001/03/22/2001022201/article/11
+rules:
+  - name: belgium_grapa_article_6_7_11_payable_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, articles 6, 7, and 11
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          max(0, belgium_grapa_article_6_maximum_annual_amount - belgium_grapa_article_11_resource_reduction)

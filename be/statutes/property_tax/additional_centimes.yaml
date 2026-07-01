@@ -1,0 +1,64 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 464/1 permits provinces, agglomerations, and communes to
+    establish additional centimes on immovable withholding tax. This module
+    encodes the generic additional-centimes interface for a supplied base
+    immovable-withholding amount and supplied local centime counts. It does not
+    maintain province, agglomeration, or municipality rate tables.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+    values:
+      belgium_immovable_withholding_centimes_to_rate_divisor: 100
+rules:
+  - name: belgium_immovable_withholding_centimes_to_rate_divisor
+    kind: parameter
+    dtype: Count
+    source: Additional-centime conversion convention for CIR 1992 article 464/1 surcharge inputs
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          100
+  - name: belgium_immovable_withholding_total_additional_centimes
+    kind: derived
+    entity: Property
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 464/1, provincial, agglomeration, and communal additional centimes
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          belgium_immovable_withholding_provincial_additional_centimes + belgium_immovable_withholding_agglomeration_additional_centimes + belgium_immovable_withholding_communal_additional_centimes
+  - name: belgium_immovable_withholding_additional_centimes_rate
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 464/1, additional centimes converted to a multiplier on base withholding
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          belgium_immovable_withholding_total_additional_centimes / belgium_immovable_withholding_centimes_to_rate_divisor
+  - name: belgium_immovable_withholding_additional_centimes_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 464/1, additional centimes on supplied immovable withholding base tax
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          belgium_immovable_withholding_base_tax_for_additional_centimes * belgium_immovable_withholding_additional_centimes_rate
+  - name: belgium_immovable_withholding_tax_after_additional_centimes
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 464/1, base immovable withholding plus additional centimes
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          belgium_immovable_withholding_base_tax_for_additional_centimes + belgium_immovable_withholding_additional_centimes_tax

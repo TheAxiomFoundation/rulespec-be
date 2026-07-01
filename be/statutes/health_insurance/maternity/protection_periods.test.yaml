@@ -1,0 +1,60 @@
+- name: single_birth_prenatal_and_base_postnatal_period
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_expected_multiple_birth: false
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_actual_multiple_birth: false
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_multiple_birth_requested_extension_days: 0
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_newborn_hospitalization_days_after_birth: 0
+  output:
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_prenatal_earliest_start_days_before_birth: 42
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_article_114_postnatal_rest_days: 63
+
+- name: multiple_birth_extension_and_hospitalization_extension
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_expected_multiple_birth: true
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_actual_multiple_birth: true
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_multiple_birth_requested_extension_days: 20
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_newborn_hospitalization_days_after_birth: 21
+  output:
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_prenatal_earliest_start_days_before_birth: 56
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_multiple_birth_selected_extension_days: 14
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_newborn_hospitalization_extension_days: 14
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_article_114_postnatal_rest_days: 91
+
+- name: hospitalization_extension_capped_at_twenty_four_weeks
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_expected_multiple_birth: false
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_actual_multiple_birth: false
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_multiple_birth_requested_extension_days: 0
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_newborn_hospitalization_days_after_birth: 300
+  output:
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_newborn_hospitalization_extension_days: 168
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_article_114_postnatal_rest_days: 231
+
+- name: stillbirth_threshold_and_indemnity_days
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_gestation_days_from_conception: 180
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_article_114_working_days_in_protection_period: 70
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_article_114bis_assimilated_working_days_in_protection_period: 5
+  output:
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_stillbirth_minimum_gestation_threshold_met: 1
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_indemnity_due_days_in_protection_period: 75

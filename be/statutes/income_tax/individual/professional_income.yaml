@@ -1,0 +1,209 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_company_director_forfait_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_assisting_spouse_forfait_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_first_threshold
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_second_threshold
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_third_threshold
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_first_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_second_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_third_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_top_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_and_business_profit_cap
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_company_director_cap
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_assisting_spouse_and_profit_cap
+module:
+  summary: |-
+    CIR 1992 article 23 defines professional income categories and the netting
+    sequence for professional income. CIR 1992 article 49 allows justified
+    actual professional expenses, while article 51 supplies forfait expenses
+    when proof is absent. This module encodes the article-23 category
+    aggregation, an article-49/article-51 expense-selection bridge, and the
+    current-period and prior-period loss offsets for supplied category amounts
+    and article-51 forfait bases. It leaves special category inclusions,
+    exemptions, detailed proof rules, and delegated commuting scales to later
+    modules.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-73
+      - be/statute/fisconetplus/cir92/revenus-2025/page-120
+      - be/statute/fisconetplus/cir92/revenus-2025/page-121
+      - be/statute/fisconetplus/cir92/revenus-2025/page-122
+    values:
+      belgium_pit_article_23_professional_income_category_count: 5
+      belgium_pit_article_51_employee_forfait_rate: "0.30"
+      belgium_pit_article_51_company_director_forfait_rate: "0.03"
+      belgium_pit_article_51_assisting_spouse_forfait_rate: "0.05"
+      belgium_pit_article_51_profit_first_rate: "0.287"
+      belgium_pit_article_51_employee_and_business_profit_cap: 5930
+      belgium_pit_article_51_company_director_cap: 3130
+      belgium_pit_article_51_assisting_spouse_and_profit_cap: 5210
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_23_professional_income_category_count
+    kind: parameter
+    dtype: Count
+    source: CIR 1992 article 23 paragraph 1
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          5
+  - name: belgium_pit_article_23_gross_professional_income_before_exemptions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 1
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          belgium_pit_article_23_business_profit_income + belgium_pit_article_23_profit_income + belgium_pit_article_23_prior_activity_professional_income + belgium_pit_article_23_worker_remuneration + belgium_pit_article_23_company_director_remuneration + belgium_pit_article_23_assisting_spouse_remuneration + belgium_pit_article_23_other_remuneration + belgium_pit_article_23_pension_annuity_or_equivalent_allowance
+  - name: belgium_pit_article_23_professional_income_before_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 2, exempt professional income excluded
+    versions:
+      - effective_from: '1992-01-01'
+        formula: |-
+          max(0, belgium_pit_article_23_gross_professional_income_before_exemptions - belgium_pit_article_23_exempt_professional_income)
+  - name: belgium_pit_article_23_worker_remuneration_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, item 1 and cap paragraph, imported rate and cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_23_worker_remuneration_article_51_forfait_base_amount * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)
+  - name: belgium_pit_article_23_company_director_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, item 2 and cap paragraph, imported rate and cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_23_company_director_article_51_forfait_base_amount * belgium_pit_article_51_company_director_forfait_rate, belgium_pit_article_51_company_director_cap)
+  - name: belgium_pit_article_23_assisting_spouse_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, item 3 and cap paragraph, imported rate and cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_23_assisting_spouse_article_51_forfait_base_amount * belgium_pit_article_51_assisting_spouse_forfait_rate, belgium_pit_article_51_assisting_spouse_and_profit_cap)
+  - name: belgium_pit_article_23_profit_uncapped_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, item 4, imported thresholds and rates
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_23_profit_article_51_forfait_base_amount <= belgium_pit_article_51_profit_first_threshold:
+              belgium_pit_article_23_profit_article_51_forfait_base_amount * belgium_pit_article_51_profit_first_rate
+          else:
+              if belgium_pit_article_23_profit_article_51_forfait_base_amount <= belgium_pit_article_51_profit_second_threshold:
+                  belgium_pit_article_51_profit_first_threshold * belgium_pit_article_51_profit_first_rate + (belgium_pit_article_23_profit_article_51_forfait_base_amount - belgium_pit_article_51_profit_first_threshold) * belgium_pit_article_51_profit_second_rate
+              else:
+                  if belgium_pit_article_23_profit_article_51_forfait_base_amount <= belgium_pit_article_51_profit_third_threshold:
+                      belgium_pit_article_51_profit_first_threshold * belgium_pit_article_51_profit_first_rate + (belgium_pit_article_51_profit_second_threshold - belgium_pit_article_51_profit_first_threshold) * belgium_pit_article_51_profit_second_rate + (belgium_pit_article_23_profit_article_51_forfait_base_amount - belgium_pit_article_51_profit_second_threshold) * belgium_pit_article_51_profit_third_rate
+                  else:
+                      belgium_pit_article_51_profit_first_threshold * belgium_pit_article_51_profit_first_rate + (belgium_pit_article_51_profit_second_threshold - belgium_pit_article_51_profit_first_threshold) * belgium_pit_article_51_profit_second_rate + (belgium_pit_article_51_profit_third_threshold - belgium_pit_article_51_profit_second_threshold) * belgium_pit_article_51_profit_third_rate + (belgium_pit_article_23_profit_article_51_forfait_base_amount - belgium_pit_article_51_profit_third_threshold) * belgium_pit_article_51_profit_top_rate
+  - name: belgium_pit_article_23_profit_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, item 4 and cap paragraph, imported cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_23_profit_uncapped_forfait_professional_expenses, belgium_pit_article_51_assisting_spouse_and_profit_cap)
+  - name: belgium_pit_article_23_business_profit_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, item 5 and cap paragraph, imported rate and cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_23_business_profit_article_51_forfait_base_amount * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)
+  - name: belgium_pit_article_23_article_51_total_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51, sum of supplied article-51 category bases
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_23_worker_remuneration_forfait_professional_expenses + belgium_pit_article_23_company_director_forfait_professional_expenses + belgium_pit_article_23_assisting_spouse_forfait_professional_expenses + belgium_pit_article_23_profit_forfait_professional_expenses + belgium_pit_article_23_business_profit_forfait_professional_expenses
+  - name: belgium_pit_article_49_51_selected_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 49 and 51, justified actual expenses or forfait if proof is absent
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_49_actual_professional_expenses_are_justified:
+              belgium_pit_article_49_justified_professional_expenses
+          else:
+              belgium_pit_article_23_article_51_total_forfait_professional_expenses
+  - name: belgium_pit_article_23_professional_income_after_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 2 item 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_23_professional_income_before_expenses - belgium_pit_article_49_51_selected_professional_expenses
+  - name: belgium_pit_article_23_professional_income_after_current_period_losses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 2 item 2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_23_professional_income_after_professional_expenses - belgium_pit_article_23_current_period_professional_losses)
+  - name: belgium_pit_article_23_net_professional_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 2 item 3
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_23_professional_income_after_current_period_losses - belgium_pit_article_23_prior_period_professional_losses)

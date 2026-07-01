@@ -1,0 +1,96 @@
+format: rulespec/v1
+imports:
+  - be:regulations/unemployment/benefit_amount#belgium_unemployment_article_111_capped_average_daily_wage
+  - be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_daily_amount_before_minimum
+  - be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_temporary_daily_amount_before_minimum
+  - be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount
+  - be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_temporary_minimum_daily_amount
+module:
+  summary: |-
+    This module bridges the encoded Article 114 ordinary unemployment
+    degressivity amount, Article 114 temporary-unemployment amount, and Article
+    115 minimum daily allowances into ordinary and temporary unemployment daily
+    and monthly payable amounts. A supplied ordinary replacement-rate override
+    remains available for external runners; otherwise the Article 114 ordinary
+    daily amount is used. Article 115 can use the Article 110 household-status
+    bridge when no positive status-code override is supplied. It does not encode
+    sanctions, activation, or payment-calendar rules.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1991/11/25/1991013192/article/110
+      - be/regulation/arrete/1991/11/25/1991013192/article/111
+      - be/regulation/arrete/1991/11/25/1991013192/article/114
+      - be/regulation/arrete/1991/11/25/1991013192/article/115
+    values:
+      belgium_unemployment_payable_amount_source_components: 4
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_unemployment_payable_amount_source_components
+    kind: parameter
+    dtype: Count
+    source: Structural bridge over unemployment royal decree articles 110, 111, 114, and 115
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          4
+  - name: belgium_unemployment_ordinary_daily_amount_before_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Article 114 ordinary daily amount, with supplied replacement-rate override applied to the Article 111 capped average daily wage
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          if belgium_unemployment_ordinary_replacement_rate > 0:
+              belgium_unemployment_article_111_capped_average_daily_wage * belgium_unemployment_ordinary_replacement_rate
+          else:
+              belgium_unemployment_article_114_ordinary_daily_amount_before_minimum
+  - name: belgium_unemployment_ordinary_daily_amount_after_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, articles 111 and 115
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          max(belgium_unemployment_ordinary_daily_amount_before_minimum, belgium_unemployment_article_115_ordinary_minimum_daily_amount)
+  - name: belgium_unemployment_ordinary_monthly_payable_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Monthly bridge from ordinary daily unemployment amount and supplied compensable day count
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_ordinary_daily_amount_after_minimum * belgium_unemployment_monthly_compensable_days
+  - name: belgium_unemployment_temporary_daily_amount_after_minimum
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Unemployment royal decree of 25 November 1991, articles 114 and 115
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          max(belgium_unemployment_article_114_temporary_daily_amount_before_minimum, belgium_unemployment_article_115_temporary_minimum_daily_amount)
+  - name: belgium_unemployment_temporary_monthly_payable_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Monthly bridge from temporary daily unemployment amount and supplied temporary compensable day count
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_temporary_daily_amount_after_minimum * belgium_unemployment_temporary_monthly_compensable_days

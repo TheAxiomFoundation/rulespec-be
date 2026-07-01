@@ -1,0 +1,174 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/taxable_income#belgium_pit_article_6_taxable_income
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_child_tax_credit_cap
+  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
+  - be:statutes/income_tax/movable_withholding/rates#belgium_general_movable_income_withholding
+  - be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_movable_withholding
+module:
+  summary: |-
+    This module provides a source-backed personal-income-tax pipeline from
+    Article 6 taxable income into the encoded Article 130 rate scale, Article
+    134 tax-free-amount reduction and refundable child-credit cap, supplied
+    Articles 465 to 468 local rates, and supplied withholding/prepayment
+    settlement. It deliberately excludes joint-assessment allocation, regional
+    reductions and credits, replacement-income reductions, professional
+    withholding table calculation, partial-year residency, treaty allocation
+    beyond supplied local-tax inputs, and assessment procedure.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-184
+      - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/fisconetplus/cir92/revenus-2025/page-186
+      - be/statute/fisconetplus/cir92/revenus-2025/page-187
+      - be/statute/fisconetplus/cir92/revenus-2025/page-461
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+      - be/statute/fisconetplus/cir92/revenus-2025/page-687
+      - be/statute/fisconetplus/cir92/revenus-2025/page-688
+    values:
+      belgium_pit_article_6_liability_pipeline_components_before_withholding: 2
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_6_liability_pipeline_components_before_withholding
+    kind: parameter
+    dtype: Count
+    source: Structural bridge over encoded federal tax and supplied local additions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2
+  - name: belgium_pit_article_6_base_tax_before_reductions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 6 and 130, Article 6 taxable income through the Article 130 ordinary rate scale
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_6_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_article_6_taxable_income * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_article_6_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_6_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_article_6_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_6_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_article_6_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
+  - name: belgium_pit_article_6_tax_after_tax_free_amount_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134, Article 6 taxable-income base tax after tax-free-amount reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_6_base_tax_before_reductions - belgium_pit_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_article_6_unused_tax_free_amount_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraphs 2 and 3, unused tax-free-amount reduction from the Article 6 pipeline
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_134_tax_on_tax_free_amount - belgium_pit_article_6_base_tax_before_reductions)
+  - name: belgium_pit_article_6_refundable_child_tax_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, refundable child tax credit capped after Article 6 pipeline reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_6_unused_tax_free_amount_reduction, belgium_pit_article_134_child_tax_credit_cap)
+  - name: belgium_pit_article_6_net_federal_tax_after_refundable_child_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134, Article 6 pipeline federal tax after refundable child credit
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_6_tax_after_tax_free_amount_reduction - belgium_pit_article_6_refundable_child_tax_credit
+  - name: belgium_pit_article_6_local_additional_tax_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 466 and 466bis, local-tax base from Article 6 pipeline or supplied treaty-exempt hypothetical base
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies:
+              max(0, belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+          else:
+              max(0, belgium_pit_article_6_net_federal_tax_after_refundable_child_credit - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+  - name: belgium_pit_article_6_local_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465 to 468, supplied municipal and agglomeration additions to Article 6 pipeline tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_6_local_additional_tax_base * belgium_pit_communal_additional_tax_rate + belgium_pit_article_6_local_additional_tax_base * belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
+  - name: belgium_pit_article_6_federal_and_local_tax_before_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130, 134, and 465 to 468, Article 6 pipeline federal tax plus supplied local additions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_6_net_federal_tax_after_refundable_child_credit + belgium_pit_article_6_local_additional_tax
+  - name: belgium_pit_article_6_total_withholding_and_prepayments
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 269 movable withholding plus supplied professional withholding, prepayments, and other creditable tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_professional_withholding + belgium_general_movable_income_withholding + belgium_regulated_savings_deposit_movable_withholding + belgium_pit_prepayments + belgium_pit_other_withholding_or_creditable_tax
+  - name: belgium_pit_article_6_net_tax_due_after_withholding_and_prepayments
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Settlement bridge after Article 6 pipeline tax and supplied creditable withholding/prepayments
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_6_federal_and_local_tax_before_withholding - belgium_pit_article_6_total_withholding_and_prepayments

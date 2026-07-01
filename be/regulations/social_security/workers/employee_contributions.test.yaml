@@ -1,0 +1,30 @@
+- name: article_38_employee_contribution_uses_1307_percent_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_contribution_base: 50000
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_work_bonus_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_other_worker_reduction: 0
+  output:
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions: 6535
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_supplied_worker_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 6535
+
+- name: article_38_employee_contribution_applies_supplied_reductions_with_floor
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_contribution_base: 12000
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_work_bonus_reduction: 1000
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_other_worker_reduction: 700
+  output:
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions: 1568.4
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_supplied_worker_reduction: 1700
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_supplied_reductions: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 0

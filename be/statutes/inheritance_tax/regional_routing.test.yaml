@@ -1,0 +1,53 @@
+- name: routes_flemish_inheritance_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/inheritance_tax/regional_routing#input.belgium_transfer_tax_region: 0
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_taxable_acquisition: 100000
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_relationship_class: 0
+  output:
+    be:statutes/inheritance_tax/regional_routing#belgium_regional_inheritance_tax: 6000
+
+- name: routes_brussels_inheritance_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/inheritance_tax/regional_routing#input.belgium_transfer_tax_region: 1
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_taxable_acquisition: 75000
+    be-bru:statutes/inheritance_tax/rate_scale#input.brussels_inheritance_tax_relationship_class: 0
+  output:
+    be:statutes/inheritance_tax/regional_routing#belgium_regional_inheritance_tax: 3500
+
+- name: routes_walloon_inheritance_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/inheritance_tax/regional_routing#input.belgium_transfer_tax_region: 2
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 3
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_death_year: 2026
+  output:
+    be:statutes/inheritance_tax/regional_routing#belgium_regional_inheritance_tax: 138125
+
+- name: routes_walloon_future_2028_inheritance_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be:statutes/inheritance_tax/regional_routing#input.belgium_transfer_tax_region: 2
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_taxable_acquisition: 200000
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_relationship_class: 3
+    be-wal:statutes/inheritance_tax/rate_scale#input.wallonia_inheritance_tax_death_year: 2028
+  output:
+    be:statutes/inheritance_tax/regional_routing#belgium_regional_inheritance_tax: 69125

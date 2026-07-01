@@ -1,0 +1,118 @@
+- name: immovable_direct_third_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 300000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 0
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: false
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax: 22500
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_current_tax: 22500
+
+- name: immovable_other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 500000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 1
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: false
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax: 115000
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_current_tax: 115000
+
+- name: movable_direct_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 100000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 0
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: true
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_movable_tax: 3300
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_current_tax: 3300
+
+- name: movable_other_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 100000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 1
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: true
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_current_tax: 5500
+
+- name: future_2028_immovable_direct_third_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 300000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 0
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: false
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_authentic_act_year: 2028
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax: 15500
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_article_131_2028_immovable_tax: 15500
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_tax: 15500
+
+- name: future_2028_immovable_other_top_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 500000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 1
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: false
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_authentic_act_year: 2028
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax: 67500
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_tax: 67500
+
+- name: article_131bis_death_condition_movable_gift_excluded_from_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 100000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 1
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: true
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: true
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_movable_gift_suspensive_term_by_donor_death_assimilated_to_legacy: false
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_article_131bis_movable_death_condition_or_term_exclusion_applies: 1
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_movable_tax: 5500
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_tax: 0
+
+- name: article_131bis_death_term_movable_gift_excluded_from_gift_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_taxable_amount: 100000
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_relationship_class: 1
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_is_movable_property: true
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy: false
+    be-wal:statutes/gift_tax/rate_scale#input.wallonia_gift_tax_movable_gift_suspensive_term_by_donor_death_assimilated_to_legacy: true
+  output:
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_article_131bis_movable_death_condition_or_term_exclusion_applies: 1
+    be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_tax: 0

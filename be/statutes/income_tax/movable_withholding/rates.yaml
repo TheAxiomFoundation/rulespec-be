@@ -1,0 +1,82 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 21 exempts the first indexed tranche of qualifying
+    regulated savings-deposit interest, and article 269 sets movable
+    withholding tax rates. This module encodes the main 30% rate, the 15%
+    rate for regulated savings-deposit income above the exemption, and the
+    current indexed exemption amount for income year 2025 / assessment year
+    2026. It also computes the taxable regulated-deposit interest and movable
+    withholding amounts for the general and regulated-deposit rates. Other
+    article 269 special rates remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-69
+      - be/statute/fisconetplus/cir92/revenus-2025/page-461
+    values:
+      belgium_regulated_savings_deposit_interest_exemption_amount: 1050
+      belgium_movable_withholding_general_rate: 0.30
+      belgium_regulated_savings_deposit_withholding_rate: 0.15
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_regulated_savings_deposit_interest_exemption_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 21, first paragraph item 5, income year 2025, assessment year 2026
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1050
+  - name: belgium_movable_withholding_general_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 269 section 1 item 1
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          0.30
+  - name: belgium_regulated_savings_deposit_withholding_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 269 section 1 item 2
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          0.15
+  - name: belgium_regulated_savings_deposit_taxable_interest
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 21 first paragraph item 5 and article 269 section 1 item 2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_regulated_savings_deposit_gross_interest - belgium_regulated_savings_deposit_interest_exemption_amount)
+  - name: belgium_regulated_savings_deposit_movable_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 269 section 1 item 2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_regulated_savings_deposit_taxable_interest * belgium_regulated_savings_deposit_withholding_rate
+  - name: belgium_general_movable_income_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 269 section 1 item 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_general_movable_income_subject_to_withholding * belgium_movable_withholding_general_rate

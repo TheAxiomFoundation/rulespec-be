@@ -1,0 +1,151 @@
+- name: article_216_ordinary_first_30_days_uses_79_5_percent_of_capped_lost_remuneration
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_216_uncapped_worker_first_30_days_applies: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_uncapped_lost_daily_remuneration: 120
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_day_in_rest_period: 10
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_first_30_working_days_count: 20
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_after_30_working_days_count: 0
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_remuneration_base: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_selected_rate: 0.795
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_daily_amount: 79.5
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_selected_daily_amount: 79.5
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_rest_period_amount: 1590
+
+- name: article_216_uncapped_worker_first_30_days_uses_82_percent_without_article_113_cap
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_216_uncapped_worker_first_30_days_applies: true
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_uncapped_lost_daily_remuneration: 120
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_day_in_rest_period: 5
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_first_30_working_days_count: 1
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_after_30_working_days_count: 0
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_remuneration_base: 120
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_selected_rate: 0.82
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_daily_amount: 98.4
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_selected_daily_amount: 98.4
+
+- name: article_216_uses_article_86_item_1a_or_1b_status_for_uncapped_worker_rate
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_216_uncapped_worker_first_30_days_applies: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: true
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_uncapped_lost_daily_remuneration: 120
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_day_in_rest_period: 10
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_first_30_working_days_count: 1
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_after_30_working_days_count: 0
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1a_or_1b_holder: 1
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_uncapped_worker_first_30_days_selected_applies: 1
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_remuneration_base: 120
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_selected_rate: 0.82
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_first_30_days_daily_amount: 98.4
+
+- name: article_216_after_30_days_uses_75_percent_of_capped_lost_remuneration
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_216_uncapped_worker_first_30_days_applies: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_uncapped_lost_daily_remuneration: 120
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_day_in_rest_period: 31
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_first_30_working_days_count: 0
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_after_30_working_days_count: 10
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_after_30_days_daily_amount: 75
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_selected_daily_amount: 75
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_216_rest_period_amount: 750
+
+- name: article_217_controlled_full_unemployment_alignment_and_after_30_day_supplement
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_unemployment_daily_allowance_for_protection_period: 55
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_217_alignment_elapsed_months: 2
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_217_temporary_unemployment: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_day_in_rest_period: 45
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_base_rate_daily_amount: 60
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_alignment_applies: 1
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_base_daily_amount: 55
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_selected_supplement_rate: 0.15
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_daily_amount: 70
+
+- name: article_217_temporary_unemployment_uses_statutory_base_and_first_30_day_supplement
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_unemployment_daily_allowance_for_protection_period: 55
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_217_alignment_elapsed_months: 1
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_217_temporary_unemployment: true
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_day_in_rest_period: 20
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_alignment_applies: 0
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_base_daily_amount: 60
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_selected_supplement_rate: 0.195
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_217_unemployment_daily_amount: 79.5
+
+- name: article_219bis_pregnancy_suspension_uses_78_237_percent
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_219bis_pregnancy_suspension_applies: true
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_months_since_childbirth: 0
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_219bis_selected_protection_rate: 0.78237
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_219bis_daily_amount: 78.237
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_219bis_breastfeeding_within_maximum_months: 1
+
+- name: article_219bis_postpartum_or_breastfeeding_suspension_uses_60_percent_and_five_month_cap
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_lost_daily_remuneration_after_article_113_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_219bis_pregnancy_suspension_applies: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_months_since_childbirth: 6
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_219bis_selected_protection_rate: 0.6
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_219bis_daily_amount: 60
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_219bis_breastfeeding_within_maximum_months: 0
+
+- name: article_222_converted_leave_for_employed_titular_uses_60_percent
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_converted_leave_lost_daily_remuneration_after_article_87_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_222_converted_leave_controlled_unemployment_applies: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_222_converted_leave_incapacity_floor_applies: false
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_converted_leave_unemployment_daily_allowance: 55
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_converted_leave_incapacity_daily_amount: 70
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_222_converted_leave_employed_daily_amount: 60
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_222_converted_leave_base_daily_amount: 60
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_222_converted_leave_daily_amount: 60
+
+- name: article_222_converted_leave_applies_unemployment_alignment_and_incapacity_floor
+  period: 2026
+  input:
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_converted_leave_lost_daily_remuneration_after_article_87_cap: 100
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_222_converted_leave_controlled_unemployment_applies: true
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_article_222_converted_leave_incapacity_floor_applies: true
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_converted_leave_unemployment_daily_allowance: 55
+    be:regulations/health_insurance/maternity/indemnity_rates#input.belgium_maternity_converted_leave_incapacity_daily_amount: 70
+  output:
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_222_converted_leave_base_daily_amount: 55
+    be:regulations/health_insurance/maternity/indemnity_rates#belgium_maternity_article_222_converted_leave_daily_amount: 70

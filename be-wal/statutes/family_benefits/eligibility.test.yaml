@@ -1,0 +1,76 @@
+- name: wallonia_under_18_child_with_effective_residence_and_residence_title_is_entitled
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_parents_eu_or_reg883_and_economic_activity_in_french_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_supranational_family_member_right_applies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_legal_domicile_in_french_language_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_without_legal_domicile_effectively_resides_in_french_language_region: true
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_belgian_nationality: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_residence_title: true
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_registration_attestation_only: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_parents_are_stateless: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_is_third_country_student_authorized_to_stay_for_studies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_age_on_august_31_years: 17
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_age_years: 17
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_disability_supplement_condition: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_in_month_turning_21: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_no_government_obstacle_applies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_is_apprentice: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_in_qualifying_courses_or_stage: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_in_qualifying_diploma_training: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_government_derogation_applies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_disappeared: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_was_beneficiary_at_disappearance: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_no_other_belgian_foreign_or_international_family_benefit_right: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_disappeared_child_found: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 17
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 1
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 70000
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+  output:
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_4_residence_and_status_condition_met: 1
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_4_temporary_student_exclusion_applies: 0
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_5_age_or_status_condition_met: 1
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_6_disappeared_child_condition_met: 0
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_child_entitlement: 1
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_eligible_monthly_amount: 155
+
+- name: wallonia_third_country_student_authorization_excludes_entitlement
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_parents_eu_or_reg883_and_economic_activity_in_french_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_supranational_family_member_right_applies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_legal_domicile_in_french_language_region: true
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_without_legal_domicile_effectively_resides_in_french_language_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_belgian_nationality: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_residence_title: true
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_registration_attestation_only: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_parents_are_stateless: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_is_third_country_student_authorized_to_stay_for_studies: true
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_age_on_august_31_years: 20
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_age_years: 20
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_disability_supplement_condition: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_no_government_obstacle_applies: true
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_disappeared: false
+  output:
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_4_residence_and_status_condition_met: 1
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_4_temporary_student_exclusion_applies: 1
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_5_age_or_status_condition_met: 1
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_6_disappeared_child_condition_met: 0
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_child_entitlement: 0
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_eligible_monthly_amount: 0

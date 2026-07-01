@@ -1,0 +1,58 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Federal GRAPA law article 7 requires an examination of resources and
+    pensions. It counts all resources and pensions of the interested person,
+    plus those of the spouse or legal cohabitant sharing the same principal
+    residence, subject to royal-decree exclusions. For a person living in a
+    community or sharing a principal residence with people other than a spouse
+    or legal cohabitant, only the claimant's personal resources and pensions
+    are considered. Article 11 reduces the guarantee only by resources above an
+    amount fixed by the King. This module encodes those resource-selection and
+    offset mechanics, expecting excluded resources and the Article 11 exemption
+    amount to be supplied by delegated-rule modules or inputs.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/2001/03/22/2001022201/article/7
+      - be/statute/loi/2001/03/22/2001022201/article/11
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_grapa_article_7_countable_resources_and_pensions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 7
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          if belgium_grapa_shares_principal_residence_with_spouse_or_legal_cohabitant:
+              belgium_grapa_personal_resources_and_pensions_after_exclusions + belgium_grapa_spouse_or_legal_cohabitant_resources_and_pensions_after_exclusions
+          else:
+              belgium_grapa_personal_resources_and_pensions_after_exclusions
+  - name: belgium_grapa_article_11_resource_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 11
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          max(0, belgium_grapa_article_7_countable_resources_and_pensions - belgium_grapa_article_11_resource_exemption)
+  - name: belgium_grapa_payable_annual_amount_after_resources
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, articles 7 and 11
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          max(0, belgium_grapa_maximum_annual_amount_before_resources - belgium_grapa_article_11_resource_reduction)

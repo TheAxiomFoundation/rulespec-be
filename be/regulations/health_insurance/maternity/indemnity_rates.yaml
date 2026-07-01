@@ -1,0 +1,359 @@
+format: rulespec/v1
+imports:
+  - be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1a_or_1b_holder
+module:
+  summary: |-
+    Article 113 of the coordinated 14 July 1994 health-insurance law delegates
+    maternity-indemnity rates to the King. The Royal Decree of 3 July 1996
+    articles 216, 217, 219bis, and 222 set the current rate interfaces for
+    ordinary maternity rest, controlled full unemployment, pregnancy and
+    postpartum/breastfeeding work suspension, and converted maternity leave.
+    This module encodes those household-level daily and period amount
+    interfaces from supplied lost-remuneration, unemployment-allowance, and
+    status inputs after the article-113 or article-87 remuneration cap has been
+    applied where required. It imports the Article 86 item 1 a/b holder bridge
+    for the first-30-day uncapped worker rate while keeping the supplied
+    category override. It leaves the detailed
+    average-daily-wage calculation, indexed daily maxima, unemployment-phase
+    routing, payment procedure, and eligibility proof to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1994/07/14/1994071451/article/86
+      - be/statute/loi/1994/07/14/1994071451/article/113
+      - be/regulation/arrete/1996/07/03/1996022344/article/216
+      - be/regulation/arrete/1996/07/03/1996022344/article/217
+      - be/regulation/arrete/1996/07/03/1996022344/article/219bis
+      - be/regulation/arrete/1996/07/03/1996022344/article/222
+    values:
+      belgium_maternity_article_216_first_30_days_rate: "0.795"
+      belgium_maternity_article_216_after_30_days_rate: "0.75"
+      belgium_maternity_article_216_first_30_days_uncapped_worker_rate: "0.82"
+      belgium_maternity_article_217_unemployment_base_rate: "0.60"
+      belgium_maternity_article_217_first_30_days_supplement_rate: "0.195"
+      belgium_maternity_article_217_after_30_days_supplement_rate: "0.15"
+      belgium_maternity_article_217_alignment_max_months: "6"
+      belgium_maternity_article_219bis_pregnancy_suspension_rate: "0.78237"
+      belgium_maternity_article_219bis_postpartum_breastfeeding_rate: "0.60"
+      belgium_maternity_article_219bis_breastfeeding_max_months_after_birth: "5"
+      belgium_maternity_article_222_converted_leave_rate: "0.60"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_maternity_article_216_first_30_days_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 216, ordinary maternity indemnity for the first thirty days
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          0.795
+  - name: belgium_maternity_article_216_after_30_days_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 216, ordinary maternity indemnity from the thirty-first day
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          0.75
+  - name: belgium_maternity_article_216_first_30_days_uncapped_worker_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 216, article-86 section-1 item-1 a and b workers during the first thirty days
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          0.82
+  - name: belgium_maternity_article_217_unemployment_base_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 217, controlled full unemployment base indemnity
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          0.60
+  - name: belgium_maternity_article_217_first_30_days_supplement_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 217, unemployment supplementary indemnity for the first thirty days
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          0.195
+  - name: belgium_maternity_article_217_after_30_days_supplement_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 217, unemployment supplementary indemnity from the thirty-first day
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          0.15
+  - name: belgium_maternity_article_217_alignment_max_months
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 217, unemployment-allowance alignment ceases once six months have elapsed
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          6
+  - name: belgium_maternity_article_219bis_pregnancy_suspension_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 219bis section 1
+    versions:
+      - effective_from: '2010-01-01'
+        formula: |-
+          0.78237
+  - name: belgium_maternity_article_219bis_postpartum_breastfeeding_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 219bis section 2
+    versions:
+      - effective_from: '2010-01-01'
+        formula: |-
+          0.60
+  - name: belgium_maternity_article_219bis_breastfeeding_max_months_after_birth
+    kind: parameter
+    dtype: Count
+    source: Royal Decree of 3 July 1996, article 219bis section 2
+    versions:
+      - effective_from: '2010-01-01'
+        formula: |-
+          5
+  - name: belgium_maternity_article_222_converted_leave_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 222 section 3
+    versions:
+      - effective_from: '2014-07-28'
+        formula: |-
+          0.60
+  - name: belgium_maternity_article_216_uncapped_worker_first_30_days_selected_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Royal Decree of 3 July 1996, article 216, using Article 86 section 1 item 1 a/b holder status or supplied override
+    versions:
+      - effective_from: '2016-01-01'
+        formula: |-
+          if belgium_maternity_article_216_uncapped_worker_first_30_days_applies or belgium_health_article_86_item_1a_or_1b_holder == 1:
+              1
+          else:
+              0
+  - name: belgium_maternity_article_216_first_30_days_remuneration_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 216 and coordinated health-insurance law article 113
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_maternity_article_216_uncapped_worker_first_30_days_selected_applies == 1:
+              belgium_maternity_uncapped_lost_daily_remuneration
+          else:
+              belgium_maternity_lost_daily_remuneration_after_article_113_cap
+  - name: belgium_maternity_article_216_first_30_days_selected_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Day
+    source: Royal Decree of 3 July 1996, article 216
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_maternity_article_216_uncapped_worker_first_30_days_selected_applies == 1:
+              belgium_maternity_article_216_first_30_days_uncapped_worker_rate
+          else:
+              belgium_maternity_article_216_first_30_days_rate
+  - name: belgium_maternity_article_216_first_30_days_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 216
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          belgium_maternity_article_216_first_30_days_remuneration_base * belgium_maternity_article_216_first_30_days_selected_rate
+  - name: belgium_maternity_article_216_after_30_days_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 216
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          belgium_maternity_lost_daily_remuneration_after_article_113_cap * belgium_maternity_article_216_after_30_days_rate
+  - name: belgium_maternity_article_216_selected_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 216
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_maternity_day_in_rest_period <= 30:
+              belgium_maternity_article_216_first_30_days_daily_amount
+          else:
+              belgium_maternity_article_216_after_30_days_daily_amount
+  - name: belgium_maternity_article_216_rest_period_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 216
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          belgium_maternity_article_216_first_30_days_daily_amount * belgium_maternity_first_30_working_days_count + belgium_maternity_article_216_after_30_days_daily_amount * belgium_maternity_after_30_working_days_count
+  - name: belgium_maternity_article_217_unemployment_base_rate_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 217
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          belgium_maternity_lost_daily_remuneration_after_article_113_cap * belgium_maternity_article_217_unemployment_base_rate
+  - name: belgium_maternity_article_217_unemployment_alignment_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Royal Decree of 3 July 1996, article 217, temporary-unemployment exclusion and six-month alignment limit
+    versions:
+      - effective_from: '2026-04-06'
+        formula: |-
+          if belgium_maternity_article_217_temporary_unemployment:
+              0
+          else:
+              if belgium_maternity_article_217_alignment_elapsed_months < belgium_maternity_article_217_alignment_max_months:
+                  1
+              else:
+                  0
+  - name: belgium_maternity_article_217_unemployment_base_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 217
+    versions:
+      - effective_from: '2026-04-06'
+        formula: |-
+          if belgium_maternity_article_217_unemployment_alignment_applies == 1:
+              belgium_maternity_unemployment_daily_allowance_for_protection_period
+          else:
+              belgium_maternity_article_217_unemployment_base_rate_daily_amount
+  - name: belgium_maternity_article_217_selected_supplement_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Day
+    source: Royal Decree of 3 July 1996, article 217
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          if belgium_maternity_day_in_rest_period <= 30:
+              belgium_maternity_article_217_first_30_days_supplement_rate
+          else:
+              belgium_maternity_article_217_after_30_days_supplement_rate
+  - name: belgium_maternity_article_217_unemployment_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 217
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          belgium_maternity_article_217_unemployment_base_daily_amount + belgium_maternity_lost_daily_remuneration_after_article_113_cap * belgium_maternity_article_217_selected_supplement_rate
+  - name: belgium_maternity_article_219bis_selected_protection_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Day
+    source: Royal Decree of 3 July 1996, article 219bis sections 1 and 2
+    versions:
+      - effective_from: '2010-01-01'
+        formula: |-
+          if belgium_maternity_article_219bis_pregnancy_suspension_applies:
+              belgium_maternity_article_219bis_pregnancy_suspension_rate
+          else:
+              belgium_maternity_article_219bis_postpartum_breastfeeding_rate
+  - name: belgium_maternity_article_219bis_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 219bis sections 1 and 2
+    versions:
+      - effective_from: '2010-01-01'
+        formula: |-
+          belgium_maternity_lost_daily_remuneration_after_article_113_cap * belgium_maternity_article_219bis_selected_protection_rate
+  - name: belgium_maternity_article_219bis_breastfeeding_within_maximum_months
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: Royal Decree of 3 July 1996, article 219bis section 2
+    versions:
+      - effective_from: '2010-01-01'
+        formula: |-
+          if belgium_maternity_months_since_childbirth <= belgium_maternity_article_219bis_breastfeeding_max_months_after_birth:
+              1
+          else:
+              0
+  - name: belgium_maternity_article_222_converted_leave_employed_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 222 section 3
+    versions:
+      - effective_from: '2014-07-28'
+        formula: |-
+          belgium_maternity_converted_leave_lost_daily_remuneration_after_article_87_cap * belgium_maternity_article_222_converted_leave_rate
+  - name: belgium_maternity_article_222_converted_leave_base_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 222 section 3
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          if belgium_maternity_article_222_converted_leave_controlled_unemployment_applies:
+              belgium_maternity_converted_leave_unemployment_daily_allowance
+          else:
+              belgium_maternity_article_222_converted_leave_employed_daily_amount
+  - name: belgium_maternity_article_222_converted_leave_daily_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 222 section 3
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          if belgium_maternity_article_222_converted_leave_incapacity_floor_applies:
+              max(belgium_maternity_article_222_converted_leave_base_daily_amount, belgium_maternity_converted_leave_incapacity_daily_amount)
+          else:
+              belgium_maternity_article_222_converted_leave_base_daily_amount

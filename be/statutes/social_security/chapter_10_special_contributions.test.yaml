@@ -1,0 +1,153 @@
+- name: article_39_double_holiday_withholding_uses_worker_total_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_legal_holiday_pay_not_normal_remuneration: 2000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_double_holiday_pay_excluded_after_third_day_fourth_week: 300
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_2_worker_total_contribution_rate: 0.1307
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_39_double_holiday_withholding_base: 1700
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_39_double_holiday_withholding: 222.19
+
+- name: public_sector_equalization_and_profit_premium_use_13_07_percent
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_public_sector_vacation_pay_subject_to_article_39ter_39quater: 1000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_public_sector_copernic_premium_subject_to_article_39ter_39quater: 500
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_public_sector_restructuring_premium_subject_to_article_39ter_39quater: 250
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_profit_premium_cash_amount: 5000
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_39ter_39quater_public_sector_equalization_base: 1750
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_39ter_39quater_public_sector_equalization_withholding: 228.725
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3septies_profit_premium_worker_contribution: 653.5
+
+- name: second_pillar_886_and_wijninckx_125_percent
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_second_pillar_employer_payments_for_retirement_or_death: 10000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_second_pillar_employee_personal_share: 1000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_second_pillar_annual_insurance_tax: 200
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_second_pillar_direct_employer_pre_1989_service_payments: 300
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_second_pillar_article_515_pre_1989_transfers: 500
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_legal_pension_and_converted_complementary_reserves: 120000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_pension_objective: 100000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_current_year_reserves: 50000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_prior_year_reserves_capitalized: 45000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_organizer_share_of_reserve_variation: 4000
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3ter_second_pillar_base: 8000
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3ter_second_pillar_employer_contribution: 708.8
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_objective_excess: 20000
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_reserve_variation: 5000
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_base: 4000
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_contribution: 500
+
+- name: company_car_solidarity_uses_indexed_old_vehicle_formula
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_has_known_co2: true
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_co2_g_per_km: 120
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_diesel: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_lpg_natural_gas_or_methane: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_electric: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_vehicle_bought_leased_or_rented_before_2023_07_01: true
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_health_index_factor: 1.1
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_months_available: 12
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_co2_used: 120
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_base_calculated_monthly_amount: 26
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_monthly_solidarity_contribution: 28.6
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_annual_solidarity_contribution: 343.2
+
+- name: company_car_solidarity_uses_2026_new_vehicle_multiplier_and_minimum
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_has_known_co2: true
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_co2_g_per_km: 100
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_diesel: true
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_lpg_natural_gas_or_methane: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_electric: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_vehicle_bought_leased_or_rented_before_2023_07_01: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_health_index_factor: 1
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_base_calculated_monthly_amount: 25
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_monthly_solidarity_contribution: 100
+
+- name: company_car_electric_new_vehicle_uses_2026_minimum
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_has_known_co2: true
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_co2_g_per_km: 0
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_diesel: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_lpg_natural_gas_or_methane: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_is_electric: true
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_vehicle_bought_leased_or_rented_before_2023_07_01: false
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_company_car_solidarity_health_index_factor: 1
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_base_calculated_monthly_amount: 0
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3quater_monthly_solidarity_contribution: 25.99
+
+- name: economic_unemployment_general_and_construction_formulas
+  period:
+    period_kind: custom
+    name: calendar_quarter
+    start: '2026-04-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_economic_unemployment_days_four_quarter_sum: 125
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_economic_unemployment_days_current_quarter: 5
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_economic_unemployment_rate_factor: 20
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_economic_unemployment_quarterly_contribution: 100
+
+- name: construction_economic_unemployment_annual_formula
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_construction_economic_unemployment_days_previous_calendar_year: 50
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_construction_economic_unemployment_excluded_days: 20
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_construction_economic_unemployment_forfait_amount: 10
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_construction_economic_unemployment_annual_contribution: 300
+
+- name: nonrecurring_result_benefits_cap_and_union_premium_supplied_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_nonrecurring_result_benefit_amount: 5000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_local_public_union_premium_article_4_supplied_contribution_amount: 123.45
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3novies_nonrecurring_capped_base: 3169
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3novies_nonrecurring_employer_contribution: 1045.77
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3novies_nonrecurring_worker_contribution: 414.1883
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3novies_nonrecurring_total_contribution: 1459.9583
+    be:statutes/social_security/chapter_10_special_contributions#belgium_local_public_union_premium_article_4_contribution_collected_by_onss: 123.45

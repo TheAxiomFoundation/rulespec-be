@@ -1,0 +1,77 @@
+- name: employee_forfait_under_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 10000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_professional_expenses: 3000
+
+- name: employee_forfait_capped
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 30000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_professional_expenses: 5930
+
+- name: company_director_forfait_capped
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 200000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_company_director_forfait_professional_expenses: 3130
+
+- name: assisting_spouse_forfait_under_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 40000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_assisting_spouse_forfait_professional_expenses: 2000
+
+- name: profit_forfait_in_second_bracket
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 10000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_uncapped_forfait_professional_expenses: 2409.98
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_forfait_professional_expenses: 2409.98
+
+- name: profit_forfait_capped
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 100000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_forfait_professional_expenses: 5210
+
+- name: business_profit_forfait_capped_like_employee_category
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#input.belgium_pit_article_51_forfait_base_amount: 30000
+  output:
+    be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_business_profit_forfait_professional_expenses: 5930

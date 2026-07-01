@@ -1,0 +1,211 @@
+- name: article_111_caps_average_daily_wage_at_selected_limit
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 1
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_111_selected_average_daily_wage_cap: 92.3956
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_111_capped_average_daily_wage: 92.3956
+
+- name: article_131ter_holiday_allowance_uses_ax_cap_and_sixty_five_percent
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 5
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_131ter_holiday_allowance_capped_average_daily_wage: 65.2262
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_131ter_holiday_allowance_before_minimum: 42.39703
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_131ter_holiday_allowance_daily_amount: 42.39703
+
+- name: article_131ter_holiday_allowance_minimum_applies
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 20
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 5
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_131ter_holiday_allowance_before_minimum: 13
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_131ter_holiday_allowance_daily_amount: 31.18
+
+- name: article_114_first_three_months_selects_a1_cap_and_sixty_five_percent
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_indemnification_month_number: 3
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_104_day_tranches: 4
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_extension_month_equivalents: 2
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_admissibility_year: 2026
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_years: 20
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_age_years_at_claim: 40
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_worker_is_article_28_3: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_company_supplement: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_article_78_non_market_allowance: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_safeguard_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_ended_and_article_114bis_flat_rate: false
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_second_period_extension_months: 4
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_total_limited_entitlement_months: 18
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_first_period_applies: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_limited_entitlement_in_force: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_replacement_rate: 0.65
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_selected_average_daily_wage_cap: 92.3956
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_capped_average_daily_wage: 92.3956
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_daily_amount_before_minimum: 60.05714
+
+- name: article_114_later_first_period_selects_b_cap_and_sixty_percent
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_indemnification_month_number: 10
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_104_day_tranches: 20
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_extension_month_equivalents: 0
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_admissibility_year: 2028
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_years: 32
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_age_years_at_claim: 54
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_worker_is_article_28_3: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_company_supplement: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_article_78_non_market_allowance: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_safeguard_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_ended_and_article_114bis_flat_rate: false
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_second_period_extension_months: 12
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_total_limited_entitlement_months: 24
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_required_professional_past_years: 33
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_sufficient_professional_past_condition_met: 0
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_replacement_rate: 0.60
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_selected_average_daily_wage_cap: 70.6721
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_daily_amount_before_minimum: 42.40326
+
+- name: article_114_second_period_uses_minimum_stage_and_limited_entitlement
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_indemnification_month_number: 16
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_104_day_tranches: 4
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_extension_month_equivalents: 0
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_admissibility_year: 2026
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_professional_past_years: 31
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_age_years_at_claim: 55
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_worker_is_article_28_3: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_company_supplement: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_receives_article_78_non_market_allowance: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_safeguard_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_allowance_maintained: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_114_arts_work_ended_and_article_114bis_flat_rate: false
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_required_professional_past_years: 31
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_sufficient_professional_past_condition_met: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_unlimited_time_condition_met: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_second_period_applies: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_limited_entitlement_in_force: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_replacement_rate: 0
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_ordinary_daily_amount_before_minimum: 0
+
+- name: article_114_temporary_force_majeure_uses_c_cap_and_sixty_five_percent
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 100
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_temporary_force_majeure: true
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_temporary_replacement_rate: 0.65
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_temporary_capped_average_daily_wage: 75.827
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_temporary_daily_amount_before_minimum: 49.28755
+
+- name: article_116_totals_non_running_and_incapacity_extension_days
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_full_time_work_days: 10
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_part_time_maintained_rights_without_income_guarantee_days: 5
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_voluntary_part_time_article_33_without_allowance_days: 4
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_article_37_work_days_without_supplemental_allowance: 3
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_maternity_paternity_adoption_days: 12
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_non_ui_profession_uninterrupted_months: 3
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_non_ui_profession_no_allowance_granted: true
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_non_ui_profession_days: 20
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_incapacity_or_invalidity_benefit_days: 50
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_incapacity_excluded_maternity_days: 10
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_incapacity_simultaneous_unemployment_days: 5
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_non_ui_profession_pause_days: 20
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_period_not_running_days: 54
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_incapacity_extension_days: 35
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_total_extension_days: 89
+
+- name: article_116_income_guarantee_continues_when_weekly_hours_meet_half_reference
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_receives_income_guarantee_allowance_at_expiry: true
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_part_time_weekly_hours: 18
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_reference_person_half_weekly_hours: 17
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_income_guarantee_can_continue_after_expiry: 1
+
+- name: article_116_readmits_to_new_article_114_period_unless_same_group_part_time_return
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_interruption_under_article_138_1_3: true
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_meets_articles_30_or_33_admissibility: true
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_part_time_same_enterprise_or_group_within_12_months: false
+  output:
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_articles_30_or_33_admissibility_condition_met: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_readmitted_to_new_article_114_period: 1
+
+- name: article_116_readmission_can_use_article_30_admission_when_explicit_flag_is_false
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_interruption_under_article_138_1_3: true
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_meets_articles_30_or_33_admissibility: false
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_116_part_time_same_enterprise_or_group_within_12_months: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_worker_is_full_time: true
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_countable_work_days_since_prior_admission_in_extended_reference_period: 312
+  output:
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_full_time_stage_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_article_30_full_time_admission_condition_met: 1
+    be:regulations/unemployment/admission#belgium_unemployment_articles_30_or_33_admission_condition_met: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_articles_30_or_33_admissibility_condition_met: 1
+    be:regulations/unemployment/benefit_amount#belgium_unemployment_article_116_readmitted_to_new_article_114_period: 1

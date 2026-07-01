@@ -1,0 +1,45 @@
+- name: movable_withholding_rates
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_interest_exemption_amount: 1050
+    be:statutes/income_tax/movable_withholding/rates#belgium_movable_withholding_general_rate: 0.30
+    be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_withholding_rate: 0.15
+
+- name: regulated_savings_deposit_interest_below_exemption_has_no_withholding
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_regulated_savings_deposit_gross_interest: 900
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_taxable_interest: 0
+    be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_movable_withholding: 0
+
+- name: regulated_savings_deposit_interest_above_exemption_uses_15_percent_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_regulated_savings_deposit_gross_interest: 1250
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_taxable_interest: 200
+    be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_movable_withholding: 30
+
+- name: general_movable_income_uses_30_percent_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_general_movable_income_subject_to_withholding: 1000
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_general_movable_income_withholding: 300
