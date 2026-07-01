@@ -2199,6 +2199,7 @@
       "rule_surface": [
         "social housing eligibility",
         "rent allowance",
+        "relocation accompaniment rent intervention and moving grant",
         "income ceilings",
         "household composition",
         "housing cost inputs"
@@ -2208,19 +2209,25 @@
           "source_id": "belgian-official-gazette",
           "source_priority_role": "primary_law_or_original_publication",
           "works": [
-            "Ordonnance du 17 juillet 2003 portant le Code bruxellois du Logement"
+            "Ordonnance du 17 juillet 2003 portant le Code bruxellois du Logement",
+            "Arrete du Gouvernement de la Region de Bruxelles-Capitale du 15 juillet 2021 instituant une allocation de loyer",
+            "Arrete du Gouvernement de la Region de Bruxelles-Capitale du 13 octobre 2022 instituant une allocation d'accompagnement au relogement"
           ],
           "eli_refs": [
-            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/moniteur"
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/moniteur"
           ],
-          "status": "eli_located"
+          "status": "corpus_ingested"
         },
         {
           "source_id": "justel-eli",
           "source_priority_role": "consolidated_locator_not_legal_authority",
           "eli_refs": [
             "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2003031392/justel",
-            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel"
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/justel",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/justel"
           ],
           "status": "corpus_ingested"
         },
@@ -2255,10 +2262,11 @@
       "first_rule_batches": [
         {
           "id": "brussels-rent-allowance-source-slice",
-          "destination": "be-bru/statutes/housing/rent_allowance.yaml",
+          "destination": "be-bru/regulations/housing/rent_and_relocation_allowances.yaml",
           "source_requirements": [
             "Brussels Housing Code",
-            "delegated rent-allowance instruments before agency guidance"
+            "15 July 2021 rent-allowance Government order",
+            "13 October 2022 relocation-accompaniment Government order"
           ],
           "oracle_checks": [
             "openfisca-belgium:housing"
