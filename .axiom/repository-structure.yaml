@@ -5,6 +5,9 @@ allowed_root_directories:
   - data
   - be
   - be-bru
+  - be-dg
+  - be-vlg
+  - be-wal
   - tests
 allowed_root_files:
   - .gitignore
@@ -33,6 +36,9 @@ path_rules:
   - patterns:
       - "be/**"
       - "be-bru/**"
+      - "be-dg/**"
+      - "be-vlg/**"
+      - "be-wal/**"
     allow_extensions:
       - ".yaml"
     allow_filenames:
@@ -41,4 +47,3 @@ path_rules:
       - "tests/**"
     allow_extensions:
       - ".py"
-
