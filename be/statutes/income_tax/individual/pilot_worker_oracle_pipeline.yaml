@@ -1,0 +1,210 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_and_business_profit_cap
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_top_tax_free_amount_rate
+  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
+module:
+  summary: |-
+    This composed pilot module exposes a dense-engine-friendly Person-level
+    path from gross worker remuneration into Belgian PIT for the EUROMOD oracle
+    slice. It wires the Article 51 employee forfait, Article 6 taxable-income
+    concept, Article 130 rate scale, Article 131 base tax-free amount, Article
+    134 tax-free-amount reduction, supplied Article 465/468 local rates, and
+    supplied withholding/prepayment settlement into one module. It deliberately
+    keeps existing public rule ids in other modules unchanged and excludes
+    dependants, joint assessment, other income categories, actual-expense proof,
+    replacement-income reductions, regional reductions/credits, professional
+    withholding tables, treaty allocation, and partial-year cases.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-120
+      - be/statute/fisconetplus/cir92/revenus-2025/page-121
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-184
+      - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+      - be/statute/fisconetplus/cir92/revenus-2025/page-687
+      - be/statute/fisconetplus/cir92/revenus-2025/page-688
+    values:
+      belgium_pit_article_51_employee_forfait_rate: "0.30"
+      belgium_pit_article_51_employee_and_business_profit_cap: 5930
+      belgium_pit_base_tax_free_amount: 10910
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_pilot_worker_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 51 item 1 and cap paragraph, employee forfait for the worker-only oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_23_worker_remuneration * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)
+  - name: belgium_pit_pilot_worker_net_professional_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 2, worker-only professional income after Article 51 employee forfait
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_23_worker_remuneration - belgium_pit_pilot_worker_forfait_professional_expenses)
+  - name: belgium_pit_taxable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 6, worker-only pilot taxable income from net professional income
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_worker_net_professional_income
+  - name: belgium_pit_pilot_article_130_base_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 130, worker-only pilot taxable income through the ordinary rate scale
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_taxable_income * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
+  - name: belgium_pit_pilot_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 131, base tax-free amount for the single-person worker oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_base_tax_free_amount
+  - name: belgium_pit_pilot_article_134_tax_on_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, tax on the pilot tax-free amount
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_pilot_tax_free_amount <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_pilot_tax_free_amount * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_pilot_tax_free_amount <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_pilot_tax_free_amount <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_pilot_tax_free_amount <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_pilot_net_federal_tax_after_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134, worker-only pilot federal tax after the base tax-free-amount reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_pilot_article_130_base_tax - belgium_pit_pilot_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_pilot_local_additional_tax_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 466 and 466bis, worker-only pilot local-tax base
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies:
+              max(0, belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+          else:
+              max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+  - name: belgium_pit_pilot_local_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465 to 468, supplied local additions for the worker-only pilot
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_local_additional_tax_base * belgium_pit_communal_additional_tax_rate + belgium_pit_pilot_local_additional_tax_base * belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
+  - name: belgium_pit_federal_and_local_tax_before_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130, 134, and 465 to 468, composed worker-only pilot final PIT before withholding
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_net_federal_tax_after_tax_free_amount + belgium_pit_pilot_local_additional_tax
+  - name: belgium_pit_total_withholding_and_prepayments
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Settlement bridge for supplied professional withholding, prepayments, and other creditable tax in the worker-only pilot
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_professional_withholding + belgium_pit_prepayments + belgium_pit_other_withholding_or_creditable_tax
+  - name: belgium_pit_net_tax_due_after_withholding_and_prepayments
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Settlement bridge after composed worker-only pilot final PIT and supplied withholding/prepayments
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_federal_and_local_tax_before_withholding - belgium_pit_total_withholding_and_prepayments

@@ -1,0 +1,53 @@
+- name: worker_remuneration_composes_to_final_pit_before_and_after_withholding
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 40000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0.06
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_professional_withholding: 5000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_prepayments: 1000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_other_withholding_or_creditable_tax: 0
+  output:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_forfait_professional_expenses: 5930
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income: 34070
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income: 34070
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_130_base_tax: 11443.5
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_tax_free_amount: 10910
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_134_tax_on_tax_free_amount: 2727.5
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_tax_free_amount: 8716
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax_base: 8716
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax: 610.12
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding: 9326.12
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_total_withholding_and_prepayments: 6000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_net_tax_due_after_withholding_and_prepayments: 3326.12
+
+- name: low_worker_remuneration_has_no_pit_after_base_tax_free_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 10000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_professional_withholding: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_prepayments: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_other_withholding_or_creditable_tax: 0
+  output:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_forfait_professional_expenses: 3000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income: 7000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_130_base_tax: 1750
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_tax_free_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_net_tax_due_after_withholding_and_prepayments: 0

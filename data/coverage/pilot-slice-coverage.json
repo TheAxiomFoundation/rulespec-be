@@ -1,0 +1,136 @@
+{
+  "created_at": "2026-07-02",
+  "jurisdiction": "be",
+  "purpose": "Machine-readable inventory of Belgium RuleSpec pilot programs that compute end-to-end enough for live populace and oracle consumers.",
+  "consumer_notes": [
+    "Rule names and canonical rule ids are treated as API by populace and axiom-oracles.",
+    "Derived rules in listed programs declare period metadata.",
+    "Pilot programs stay on Person or Household entities until the consumer mappings expand.",
+    "EUROMOD Belgium outputs are monthly and incomes are uprated to the system year; oracle comparisons should anchor on EUROMOD's post-uprating gross yem."
+  ],
+  "programs": [
+    {
+      "id": "be-pit-worker-oracle-pilot",
+      "module": "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml",
+      "entity": "Person",
+      "period": "Year",
+      "status": "encoded",
+      "companion_tests": "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.test.yaml",
+      "computes_end_to_end": true,
+      "oracle": {
+        "id": "euromod-belgium",
+        "model": "BE_2025",
+        "merged_oracle_pr": "https://github.com/TheAxiomFoundation/axiom-oracles/pull/73",
+        "dataset": "BE_2024_c1_2015_03_e2",
+        "template_dataset": "BE_training_data",
+        "comparison_concepts": [
+          {
+            "rulespec_output": "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding",
+            "euromod_variable": "tin_s",
+            "notes": "Compare final PIT after EUROMOD monthly-to-annual convention is applied by the oracle adapter."
+          },
+          {
+            "rulespec_output": "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income",
+            "euromod_variable": null,
+            "notes": "Internal bridge output for gross-to-taxable-income composition."
+          }
+        ]
+      },
+      "root_inputs": [
+        {
+          "name": "belgium_pit_article_23_worker_remuneration",
+          "dtype": "Money",
+          "required_for_oracle": true,
+          "euromod_anchor": "yem"
+        },
+        {
+          "name": "belgium_pit_communal_additional_tax_rate",
+          "dtype": "Rate",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_agglomeration_additional_tax_rate",
+          "dtype": "Rate",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_article_466_tax_share_on_nonprofessional_movable_income",
+          "dtype": "Money",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian",
+          "dtype": "Money",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies",
+          "dtype": "Boolean",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_professional_withholding",
+          "dtype": "Money",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_prepayments",
+          "dtype": "Money",
+          "required_for_oracle": false
+        },
+        {
+          "name": "belgium_pit_other_withholding_or_creditable_tax",
+          "dtype": "Money",
+          "required_for_oracle": false
+        }
+      ],
+      "outputs": [
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_forfait_professional_expenses",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_130_base_tax",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_tax_free_amount",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_134_tax_on_tax_free_amount",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_tax_free_amount",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax_base",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_total_withholding_and_prepayments",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_net_tax_due_after_withholding_and_prepayments"
+      ],
+      "exclusions": [
+        "joint assessment",
+        "dependants and Article 132 supplements",
+        "other income categories",
+        "actual professional expense proof",
+        "replacement-income reductions",
+        "regional reductions and credits",
+        "professional withholding table calculation",
+        "treaty allocation beyond supplied Article 466bis inputs",
+        "partial-year residency"
+      ]
+    },
+    {
+      "id": "be-employee-ssc-oracle-pilot",
+      "module": "be/statutes/social_security/workers/contribution_rates.yaml",
+      "entity": "Person",
+      "period": "Year",
+      "status": "encoded",
+      "computes_end_to_end": true,
+      "oracle": {
+        "id": "euromod-belgium",
+        "model": "BE_2025",
+        "comparison_concepts": [
+          {
+            "rulespec_output": "be:statutes/social_security/workers/contribution_rates#belgium_worker_article_17_uncapped_component_contribution",
+            "euromod_variable": "tscee_s",
+            "notes": "The oracle path has already recovered the statutory 13.07 percent employee SSC on EUROMOD's post-uprating gross yem."
+          }
+        ]
+      },
+      "outputs": [
+        "be:statutes/social_security/workers/contribution_rates#belgium_worker_article_17_uncapped_component_contribution"
+      ]
+    }
+  ]
+}

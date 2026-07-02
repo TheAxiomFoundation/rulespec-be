@@ -481,7 +481,23 @@
     "axiom_encode_ref": "372b74669c9afd04eee15b94fe2b7a5c2fa086d5",
     "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
   },
-  "oracle_bridge_modules": [],
+  "oracle_bridge_modules": [
+    {
+      "id": "be-pit-worker-oracle-pilot",
+      "destination": "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml",
+      "coverage_inventory": "data/coverage/pilot-slice-coverage.json",
+      "entity": "Person",
+      "period": "Year",
+      "oracle_id": "euromod-belgium",
+      "oracle_model": "BE_2025",
+      "oracle_pr": "https://github.com/TheAxiomFoundation/axiom-oracles/pull/73",
+      "target_outputs": [
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding"
+      ],
+      "status": "encoded"
+    }
+  ],
   "tracks": [
     {
       "track_id": "tax-personal-income",
@@ -798,6 +814,23 @@
             "openfisca-belgium:income_tax",
             "fantasi:personal_income_tax"
           ],
+          "status": "encoded"
+        },
+        {
+          "id": "worker-remuneration-to-final-pit-oracle-pilot",
+          "destination": "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml",
+          "source_requirements": [
+            "CIR 1992 article 51 employee forfait parameters",
+            "CIR 1992 article 6 taxable-income concept",
+            "CIR 1992 article 130 ordinary rate scale",
+            "CIR 1992 article 131 base tax-free amount",
+            "CIR 1992 article 134 tax-free-amount reduction",
+            "CIR 1992 articles 465 to 468 supplied local-rate additions"
+          ],
+          "oracle_checks": [
+            "euromod-belgium:BE_2025:tin_s"
+          ],
+          "coverage_inventory": "data/coverage/pilot-slice-coverage.json",
           "status": "encoded"
         }
       ]
