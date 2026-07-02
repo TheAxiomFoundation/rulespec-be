@@ -44,9 +44,14 @@
       "url": "https://euromod-web.jrc.ec.europa.eu/",
       "local_path": null,
       "commit": null,
-      "role": "Cross-country household-level tax-benefit comparison reference for Belgium once model version, policy year, and household-case execution path are pinned.",
+      "model": "BE_2025",
+      "dataset": "BE_2024_c1_2015_03_e2",
+      "template_dataset": "BE_training_data",
+      "merged_oracle_pr": "https://github.com/TheAxiomFoundation/axiom-oracles/pull/73",
+      "coverage_inventory": "data/coverage/euromod-be-coverage.json",
+      "role": "Pinned EUROMOD Belgium household-level comparison oracle for pilot output comparisons. Full BE_2025 model coverage is tracked separately because only selected output concepts are currently mapped to Axiom RuleSpec.",
       "coverage": ["income_tax", "social_contributions", "cash_benefits", "household_disposable_income"],
-      "authority": "oracle_unpinned"
+      "authority": "oracle_pinned_for_pilot_outputs"
     },
     {
       "id": "fantasi",

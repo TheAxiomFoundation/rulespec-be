@@ -128,6 +128,10 @@ def oracle_index() -> dict:
     return json.loads((ROOT / "data/oracles/oracle-index.json").read_text())
 
 
+def euromod_coverage() -> dict:
+    return json.loads((ROOT / "data/coverage/euromod-be-coverage.json").read_text())
+
+
 def test_has_full_belgium_jurisdiction_namespaces() -> None:
     assert [path.name for path in jurisdiction_dirs()] == [
         "be",
@@ -154,6 +158,76 @@ def test_beamm_is_scope_benchmark_not_oracle() -> None:
     assert benchmark["household_level_validation_status"] == "not_available"
     assert "beamm" not in oracle_ids
     assert "beamm" not in source_map_oracle_ids
+
+
+def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
+    coverage = euromod_coverage()
+    euromod_oracle = next(
+        oracle
+        for oracle in oracle_index()["oracles"]
+        if oracle["id"] == "euromod-belgium"
+    )
+    denominator = coverage["denominator"]
+    policies = coverage["euromod_policies"]
+    outputs = {
+        target["euromod_variable"]: target
+        for target in coverage["oracle_output_coverage"]
+    }
+
+    assert euromod_oracle["coverage_inventory"] == (
+        "data/coverage/euromod-be-coverage.json"
+    )
+    assert euromod_oracle["authority"] == "oracle_pinned_for_pilot_outputs"
+    assert denominator["policy_count"] == len(policies) == 43
+    assert denominator["function_count"] == 1171
+    assert denominator["parameter_count"] == 8211
+    assert denominator["policy_switch_counts"] == {
+        "on": 32,
+        "off": 7,
+        "switch": 3,
+        "n/a": 1,
+    }
+    assert coverage["coverage_summary"]["rule_percentage"] is None
+    assert coverage["coverage_summary"]["full_household_disposable_income_parity"] is False
+    assert coverage["coverage_summary"]["live_verified_oracle_output_targets"] == 1
+    assert outputs["tscee_s"]["status"] == (
+        "live_oracle_verified_for_regular_worker_statutory_slice"
+    )
+    assert outputs["tin_s"]["status"] == "prepared_worker_pilot_not_full_household_parity"
+    assert outputs["ils_dispy"]["status"] == "not_mapped"
+
+
+def test_euromod_inventory_references_existing_rulespec_modules() -> None:
+    coverage = euromod_coverage()
+    module_paths = [
+        output["rulespec_module"]
+        for output in coverage["oracle_output_coverage"]
+        if output["rulespec_module"]
+    ]
+    module_paths.extend(
+        module
+        for domain in coverage["domain_coverage"]
+        for module in domain["rulespec_modules"]
+    )
+
+    missing = [
+        module for module in sorted(set(module_paths)) if not (ROOT / module).exists()
+    ]
+
+    assert missing == []
+
+
+def test_euromod_domain_policy_codes_are_known() -> None:
+    coverage = euromod_coverage()
+    policy_codes = {policy["code"] for policy in coverage["euromod_policies"]}
+    unknown = [
+        f"{domain['domain']}:{code}"
+        for domain in coverage["domain_coverage"]
+        for code in domain["euromod_policies"]
+        if code not in policy_codes
+    ]
+
+    assert unknown == []
 
 
 def test_json_manifests_parse() -> None:
