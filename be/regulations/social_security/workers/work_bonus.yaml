@@ -1,0 +1,373 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module encodes the Belgium employee work-bonus reduction for the
+    EUROMOD-facing full-year equal-month worker slice. It applies the Article 2
+    statutory A/B split from the 20 December 1999 work-bonus law and the Article
+    1 royal-decree formula in force from 1 April 2024, using the official ONSS
+    DMFA 2025/2 employee table for the January 2025 and February-onward 2025
+    indexed thresholds, maximum reductions, and alpha coefficients. It covers
+    ordinary full-time complete monthly work with equal remuneration across the
+    year. It leaves future month-varying indexation, incomplete/part-time
+    performance fractions, manual-worker multipliers, restructuring reductions,
+    vacation-pay carryover, special social-insurance categories, and
+    employer-side calculations to separate payroll surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1999/12/20/2000022052/article/2
+      - be/regulation/arrete/2000/01/17/2000022082/article/1
+      - be/regulation/arrete/2024/03/05/2024002162/article/1er
+      - be/guidance/onss/dmfa/2025-2/workbonus/block-6
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be/statute/loi/1999/12/20/2000022052/article/2
+        - be/regulation/arrete/2000/01/17/2000022082/article/1
+        - be/regulation/arrete/2024/03/05/2024002162/article/1er
+      rationale: |-
+        The statute and royal decree establish the work-bonus formula and
+        delegate the detailed indexed payroll parameters. The ONSS DMFA
+        instructions are the official employer-facing administrative table for
+        the current thresholds, maximum reductions, and alpha coefficients after
+        those legal sources are checked.
+    values:
+      belgium_worker_work_bonus_january_2025_s1_threshold: "2132.59"
+      belgium_worker_work_bonus_january_2025_s1bis_threshold: "2723.36"
+      belgium_worker_work_bonus_january_2025_s2_threshold: "3207.40"
+      belgium_worker_work_bonus_january_2025_a_monthly_maximum: "118.22"
+      belgium_worker_work_bonus_january_2025_b_monthly_maximum: "159.43"
+      belgium_worker_work_bonus_january_2025_alpha_a: "0.2442"
+      belgium_worker_work_bonus_january_2025_alpha_b: "0.2699"
+      belgium_worker_work_bonus_s1_threshold: "2175.25"
+      belgium_worker_work_bonus_s1bis_threshold: "2777.83"
+      belgium_worker_work_bonus_s2_threshold: "3271.48"
+      belgium_worker_work_bonus_a_monthly_maximum: "120.59"
+      belgium_worker_work_bonus_b_monthly_maximum: "162.62"
+      belgium_worker_work_bonus_alpha_a: "0.2443"
+      belgium_worker_work_bonus_alpha_b: "0.2699"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_worker_work_bonus_months_in_year
+    kind: parameter
+    dtype: Decimal
+    source: Full-year equal-month oracle bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          12
+  - name: belgium_worker_work_bonus_january_2025_months_in_year
+    kind: parameter
+    dtype: Decimal
+    source: Full-year equal-month 2025 oracle bridge, January uses the ONSS January 2025 work-bonus table
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_worker_work_bonus_february_to_december_2025_months_in_year
+    kind: parameter
+    dtype: Decimal
+    source: Full-year equal-month 2025 oracle bridge, February through December use the ONSS table applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          11
+  - name: belgium_worker_work_bonus_cent_rounding_multiple
+    kind: parameter
+    dtype: Decimal
+    source: Royal Decree of 17 January 2000, article 1, rounds euro amounts to the second decimal with half cents rounded upward
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.01
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, W monthly remuneration; annual equal-month bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_employee_social_security_contribution_base / belgium_worker_work_bonus_months_in_year)
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, cap by personal contributions due; annual equal-month bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_employee_social_security_article_38_contribution_before_reductions / belgium_worker_work_bonus_months_in_year)
+  - name: belgium_worker_work_bonus_january_2025_s1_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, S1 threshold applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2132.59
+  - name: belgium_worker_work_bonus_january_2025_s1bis_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, S1bis threshold applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2723.36
+  - name: belgium_worker_work_bonus_january_2025_s2_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, S2 threshold applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3207.40
+  - name: belgium_worker_work_bonus_january_2025_a_monthly_maximum
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet A maximum monthly reduction applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          118.22
+  - name: belgium_worker_work_bonus_january_2025_b_monthly_maximum
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet B maximum monthly reduction applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          159.43
+  - name: belgium_worker_work_bonus_january_2025_alpha_a
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet A alpha coefficient applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.2442
+  - name: belgium_worker_work_bonus_january_2025_alpha_b
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet B alpha coefficient applicable in January 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.2699
+  - name: belgium_worker_work_bonus_s1_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, S1 threshold applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2175.25
+  - name: belgium_worker_work_bonus_s1bis_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, S1bis threshold applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2777.83
+  - name: belgium_worker_work_bonus_s2_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, S2 threshold applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3271.48
+  - name: belgium_worker_work_bonus_a_monthly_maximum
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet A maximum monthly reduction applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          120.59
+  - name: belgium_worker_work_bonus_b_monthly_maximum
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet B maximum monthly reduction applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          162.62
+  - name: belgium_worker_work_bonus_alpha_a
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet A alpha coefficient applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.2443
+  - name: belgium_worker_work_bonus_alpha_b
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DMFA 2025/2 work-bonus employee table, volet B alpha coefficient applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.2699
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, R(pA) for the full-time complete monthly formula using the ONSS table applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_s1bis_threshold:
+              belgium_worker_work_bonus_a_monthly_maximum
+          else:
+              if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_s2_threshold:
+                  max(0, floor(((belgium_worker_work_bonus_a_monthly_maximum - belgium_worker_work_bonus_alpha_a * (belgium_worker_work_bonus_full_year_equal_monthly_remuneration - belgium_worker_work_bonus_s1bis_threshold)) / belgium_worker_work_bonus_cent_rounding_multiple) + 0.5) * belgium_worker_work_bonus_cent_rounding_multiple)
+              else:
+                  0
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, R(pB) for the full-time complete monthly formula using the ONSS table applicable from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_s1_threshold:
+              belgium_worker_work_bonus_b_monthly_maximum
+          else:
+              if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_s1bis_threshold:
+                  max(0, floor(((belgium_worker_work_bonus_b_monthly_maximum - belgium_worker_work_bonus_alpha_b * (belgium_worker_work_bonus_full_year_equal_monthly_remuneration - belgium_worker_work_bonus_s1_threshold)) / belgium_worker_work_bonus_cent_rounding_multiple) + 0.5) * belgium_worker_work_bonus_cent_rounding_multiple)
+              else:
+                  0
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_before_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, R(pA) for the full-time complete monthly formula using the ONSS January 2025 employee table
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_january_2025_s1bis_threshold:
+              belgium_worker_work_bonus_january_2025_a_monthly_maximum
+          else:
+              if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_january_2025_s2_threshold:
+                  max(0, floor(((belgium_worker_work_bonus_january_2025_a_monthly_maximum - belgium_worker_work_bonus_january_2025_alpha_a * (belgium_worker_work_bonus_full_year_equal_monthly_remuneration - belgium_worker_work_bonus_january_2025_s1bis_threshold)) / belgium_worker_work_bonus_cent_rounding_multiple) + 0.5) * belgium_worker_work_bonus_cent_rounding_multiple)
+              else:
+                  0
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_before_cap
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, R(pB) for the full-time complete monthly formula using the ONSS January 2025 employee table
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_january_2025_s1_threshold:
+              belgium_worker_work_bonus_january_2025_b_monthly_maximum
+          else:
+              if belgium_worker_work_bonus_full_year_equal_monthly_remuneration <= belgium_worker_work_bonus_january_2025_s1bis_threshold:
+                  max(0, floor(((belgium_worker_work_bonus_january_2025_b_monthly_maximum - belgium_worker_work_bonus_january_2025_alpha_b * (belgium_worker_work_bonus_full_year_equal_monthly_remuneration - belgium_worker_work_bonus_january_2025_s1_threshold)) / belgium_worker_work_bonus_cent_rounding_multiple) + 0.5) * belgium_worker_work_bonus_cent_rounding_multiple)
+              else:
+                  0
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, January 2025 work-bonus volet B limited first by personal contributions due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_before_cap, belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus) * belgium_worker_work_bonus_january_2025_months_in_year
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, January 2025 work-bonus volet A limited after volet B by remaining personal contributions due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_before_cap, max(0, belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus - belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_amount / belgium_worker_work_bonus_january_2025_months_in_year)) * belgium_worker_work_bonus_january_2025_months_in_year
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_february_to_december_2025_b_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, February through December 2025 work-bonus volet B limited first by personal contributions due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap, belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus) * belgium_worker_work_bonus_february_to_december_2025_months_in_year
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_february_to_december_2025_a_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, February through December 2025 work-bonus volet A limited after volet B by remaining personal contributions due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap, max(0, belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus - belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap)) * belgium_worker_work_bonus_february_to_december_2025_months_in_year
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_b_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, 2025 work-bonus volet B annualized for the full-year equal-month worker slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_amount + belgium_worker_work_bonus_full_year_equal_monthly_february_to_december_2025_b_amount
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_a_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1 section 4, 2025 work-bonus volet A annualized for the full-year equal-month worker slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_amount + belgium_worker_work_bonus_full_year_equal_monthly_february_to_december_2025_a_amount
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_total_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, P equals PA plus PB, annualized for the 2025 full-year equal-month worker slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_worker_work_bonus_full_year_equal_monthly_a_amount + belgium_worker_work_bonus_full_year_equal_monthly_b_amount

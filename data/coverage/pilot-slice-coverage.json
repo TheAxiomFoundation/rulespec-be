@@ -7,7 +7,7 @@
     "Derived rules in listed programs declare period metadata.",
     "Pilot programs stay on Person or Household entities until the consumer mappings expand.",
     "EUROMOD Belgium outputs are monthly and incomes are uprated to the system year; oracle comparisons should anchor on EUROMOD's post-uprating gross yem.",
-    "The worker PIT pilot now composes ordinary employee SSC before Article 51 forfait expenses and accepts supplied Article 289ter/1 work-bonus A/B amounts; the ONSS work-bonus amount calculation itself remains a separate social-security gap."
+    "The worker PIT pilot now composes ordinary employee SSC before Article 51 forfait expenses and computes Article 289ter/1 work-bonus credit from the encoded ONSS January and February-onward 2025 work-bonus A/B amounts for the full-year equal-month worker slice."
   ],
   "programs": [
     {
@@ -68,24 +68,15 @@
           "name": "belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies",
           "dtype": "Boolean",
           "required_for_oracle": false
-        },
-        {
-          "name": "belgium_pit_pilot_article_289ter1_work_bonus_a_amount",
-          "dtype": "Money",
-          "required_for_oracle": false,
-          "default_for_current_oracle_cases": 0
-        },
-        {
-          "name": "belgium_pit_pilot_article_289ter1_work_bonus_b_amount",
-          "dtype": "Money",
-          "required_for_oracle": false,
-          "default_for_current_oracle_cases": 0
         }
       ],
       "outputs": [
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_supplied_work_bonus_reduction",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_supplied_other_worker_reduction",
+        "be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount",
+        "be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount",
+        "be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction",
         "be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_remuneration_after_employee_social_security",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_forfait_professional_expenses",
@@ -109,7 +100,7 @@
         "actual professional expense proof",
         "replacement-income reductions",
         "regional reductions and credits",
-        "ONSS work-bonus A/B amount calculation beyond supplied inputs",
+        "ONSS work-bonus partial-year, part-time, manual-worker, future indexation, and special payroll mechanics",
         "professional withholding table calculation",
         "treaty allocation beyond supplied Article 466bis inputs",
         "partial-year residency"
@@ -134,6 +125,7 @@
         ]
       },
       "outputs": [
+        "be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction",
         "be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution"
       ]
     }

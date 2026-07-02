@@ -1,0 +1,68 @@
+- name: full_year_equal_monthly_worker_gets_a_and_b_work_bonus_components
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 30000
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 3921
+  output:
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_remuneration: 2500
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus: 326.75
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_s1_threshold: 2175.25
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_s1bis_threshold: 2777.83
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_s2_threshold: 3271.48
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_a_monthly_maximum: 120.59
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_b_monthly_maximum: 162.62
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_alpha_a: 0.2443
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_alpha_b: 0.2699
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap: 120.59
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap: 74.97
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_before_cap: 118.22
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_before_cap: 60.27
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_amount: 118.22
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_amount: 60.27
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_february_to_december_2025_a_amount: 1326.49
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_february_to_december_2025_b_amount: 824.67
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount: 1444.71
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount: 884.94
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction: 2329.65
+
+- name: full_year_equal_monthly_worker_bonus_is_capped_by_employee_contributions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 24000
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 3136.8
+  output:
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_remuneration: 2000
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus: 261.4
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap: 120.59
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap: 162.62
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_amount: 101.97
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_amount: 159.43
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount: 1188.55
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount: 1948.25
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction: 3136.8
+
+- name: full_year_equal_monthly_worker_bonus_phases_out_above_s2
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 50000
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 6535
+  output:
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap: 0
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap: 0
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_before_cap: 0
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_before_cap: 0
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount: 0
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount: 0
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction: 0
