@@ -477,8 +477,8 @@
     }
   ],
   "toolchain_refs": {
-    "axiom_corpus_ref": "a2fde9f92cccc2d44a31d712c1df2b3268a322f3",
-    "axiom_encode_ref": "430c53c632cf6b4df27c8f31a8d44022e8b9cc39",
+    "axiom_corpus_ref": "a472ad50a18f820d019bfb42f58d0f764cd9c1b9",
+    "axiom_encode_ref": "c0b2de8a3f29ff9d9067c9827cce2b46eb129375",
     "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
   },
   "oracle_bridge_modules": [],
@@ -2827,7 +2827,7 @@
         "CIR 1992 Brussels/Walloon base rates, article-257 reductions, article-258 reduction-base mechanics, and article-259 rent pass-through",
         "Flemish immovable-withholding rates and reductions",
         "Brussels BE HOME annual ownership-access premium and property-tax notice deduction interface",
-        "cadastral-income interfaces",
+        "CIR 1992 article-518 cadastral-income indexation and remaining cadastral-income administration interfaces",
         "family and disability reductions",
         "municipal and provincial surcharge interfaces"
       ],
@@ -2903,7 +2903,7 @@
           "source_id": "fisconetplus",
           "source_priority_role": "official_consolidated_tax_code_after_moniteur_eli_and_justel_locator",
           "works": [
-            "Code des impots sur les revenus 1992, articles 255, 257, 258, and 259"
+            "Code des impots sur les revenus 1992, articles 255, 257, 258, 259, 464/1, and 518"
           ],
           "eli_refs": [
             "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur",
@@ -2914,13 +2914,33 @@
             "CIR 1992 article 257 reductions",
             "CIR 1992 article 258 reduction timing, cumulation, single-dwelling, and professional-use apportionment limits",
             "CIR 1992 article 259 rent deduction pass-through for article-257 items 2 and 3",
-            "CIR 1992 article 464/1 additional centimes"
+            "CIR 1992 article 464/1 additional centimes",
+            "CIR 1992 article 518 cadastral-income indexation and nearest-euro rounding"
           ],
           "corpus_citation_paths": [
             "be/statute/fisconetplus/cir92/revenus-2025/page-446",
             "be/statute/fisconetplus/cir92/revenus-2025/page-447",
             "be/statute/fisconetplus/cir92/revenus-2025/page-448",
-            "be/statute/fisconetplus/cir92/revenus-2025/page-686"
+            "be/statute/fisconetplus/cir92/revenus-2025/page-686",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-721"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "spf-finances",
+          "source_priority_role": "agency_current_value_table_after_article_518_source_identification",
+          "works": [
+            "SPF Finances cadastral-income definition and annual index coefficients"
+          ],
+          "eli_refs": [
+            "https://fin.belgium.be/fr/particuliers/habitation/revenu-cadastral/definition-usage"
+          ],
+          "target_provisions": [
+            "current annual cadastral-income index coefficients for revenue years 2024, 2025, and 2026",
+            "property-tax note that the immovable-withholding assessment year equals the revenue year"
+          ],
+          "corpus_citation_paths": [
+            "be/guidance/spf-finances/cadastral-income/definition-usage/block-3"
           ],
           "status": "corpus_ingested"
         },
@@ -2976,6 +2996,15 @@
           "oracle_checks": [
             "openfisca-belgium:property_tax"
           ],
+          "status": "encoded"
+        },
+        {
+          "id": "belgium-cadastral-income-indexation",
+          "destination": "be/statutes/property_tax/cadastral_income_indexation.yaml",
+          "source_requirements": [
+            "CIR 1992 article 518 current FisconetPlus consolidated text plus SPF Finances current annual cadastral-income index coefficient page ingested in corpus run 2026-07-02-be-cadastral-income-index"
+          ],
+          "oracle_checks": [],
           "status": "encoded"
         },
         {

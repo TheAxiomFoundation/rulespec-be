@@ -1,0 +1,41 @@
+- name: revenue_year_2024_rounds_down_after_indexation
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2024-01-01'
+    end: '2024-12-31'
+  input:
+    be:statutes/property_tax/cadastral_income_indexation#input.belgium_cadastral_income_non_indexed: 1000
+  output:
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_index_coefficient: 2.1763
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_indexed_before_rounding: 2176.30
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_indexed: 2176
+    be:statutes/property_tax/cadastral_income_indexation#belgium_immovable_withholding_taxable_cadastral_income_from_unindexed: 2176
+
+- name: revenue_year_2025_rounds_up_after_indexation
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/property_tax/cadastral_income_indexation#input.belgium_cadastral_income_non_indexed: 1000
+  output:
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_index_coefficient: 2.2446
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_indexed_before_rounding: 2244.60
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_indexed: 2245
+    be:statutes/property_tax/cadastral_income_indexation#belgium_immovable_withholding_taxable_cadastral_income_from_unindexed: 2245
+
+- name: revenue_year_2026_uses_current_spf_finances_coefficient
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/property_tax/cadastral_income_indexation#input.belgium_cadastral_income_non_indexed: 745
+  output:
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_index_coefficient: 2.3
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_indexed_before_rounding: 1713.50
+    be:statutes/property_tax/cadastral_income_indexation#belgium_cadastral_income_indexed: 1714
+    be:statutes/property_tax/cadastral_income_indexation#belgium_immovable_withholding_taxable_cadastral_income_from_unindexed: 1714

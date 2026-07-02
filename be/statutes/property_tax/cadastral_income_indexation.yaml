@@ -1,0 +1,72 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 article 518 indexes cadastral income for Article 255 immovable
+    withholding by applying the annual consumer-price-index coefficient and
+    rounding to the nearest euro. This module encodes the current national
+    cadastral-income index coefficients published by SPF Finances for revenue
+    years 2024, 2025, and 2026, the Article 518 rounding rule, and a bridge
+    value for immovable-withholding taxable cadastral income. It excludes
+    cadastral-income establishment, reassessment, claims, and regional
+    reductions or surcharges.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-721
+      - be/guidance/spf-finances/cadastral-income/definition-usage/block-3
+    values:
+      belgium_cadastral_income_index_coefficient_2024: "2.1763"
+      belgium_cadastral_income_index_coefficient_2025: "2.2446"
+      belgium_cadastral_income_index_coefficient_2026: "2.3"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_cadastral_income_index_coefficient
+    kind: parameter
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 518 formula with current annual coefficients published by SPF Finances
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          2.1763
+      - effective_from: '2025-01-01'
+        formula: |-
+          2.2446
+      - effective_from: '2026-01-01'
+        formula: |-
+          2.3
+  - name: belgium_cadastral_income_indexed_before_rounding
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 518, cadastral income adapted by annual index coefficient
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          belgium_cadastral_income_non_indexed * belgium_cadastral_income_index_coefficient
+  - name: belgium_cadastral_income_indexed
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 518, nearest-euro rounding after index coefficient
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          floor(belgium_cadastral_income_indexed_before_rounding + 0.5)
+  - name: belgium_immovable_withholding_taxable_cadastral_income_from_unindexed
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 255 and 518, indexed cadastral income used for immovable withholding
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          belgium_cadastral_income_indexed
