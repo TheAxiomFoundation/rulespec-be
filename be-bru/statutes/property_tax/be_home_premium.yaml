@@ -1,0 +1,153 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Brussels-Capital Region BE HOME is an annual ownership-access premium for a
+    dwelling where the household is domiciled and at least one household member
+    holds a real right. This module encodes the current Article 14 amount,
+    consumer-price-index coefficient, nearest-euro rounding, recipient gate for
+    the property-tax assessment notice, 1 January situation date, and a
+    property-tax notice deduction interface. It excludes delegated payment
+    procedure, withdrawal, recovery, fraud penalties, and historical premiums
+    based on the 1 January 2016 or 1 January 2017 situations.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/13
+      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/14
+      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/15
+      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/16
+      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/17
+      - be-bru/statute/ordonnance/2020/04/30/2020041087/article/2
+      - be-bru/statute/ordonnance/2020/04/30/2020041087/article/3
+    values:
+      brussels_be_home_base_annual_amount: "130"
+      brussels_be_home_first_indexed_situation_date: '2020-01-01'
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: brussels_be_home_base_annual_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Brussels ordinance of 23 November 2017 article 14, paragraph 1, as replaced by ordinance of 30 April 2020 article 2
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          130
+  - name: brussels_be_home_index_coefficient
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: Brussels ordinance of 23 November 2017 article 14, paragraph 1, as replaced by ordinance of 30 April 2020 article 2
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          if brussels_be_home_december_2018_consumer_price_index > 0:
+              brussels_be_home_prior_december_consumer_price_index / brussels_be_home_december_2018_consumer_price_index
+          else:
+              0
+  - name: brussels_be_home_unrounded_annual_amount
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels ordinance of 23 November 2017 article 14, paragraph 1, as replaced by ordinance of 30 April 2020 article 2
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          brussels_be_home_base_annual_amount * brussels_be_home_index_coefficient
+  - name: brussels_be_home_indexed_annual_amount
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels ordinance of 23 November 2017 article 14, paragraph 1, nearest-euro rounding after CPI coefficient
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          floor(brussels_be_home_unrounded_annual_amount + 0.5)
+  - name: brussels_be_home_qualifying_dwelling
+    kind: derived
+    entity: Property
+    dtype: Judgment
+    period: Year
+    source: Brussels ordinance of 23 November 2017 articles 13 and 14
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          brussels_be_home_dwelling_in_brussels_capital_region
+          and brussels_be_home_dwelling_is_habitation
+  - name: brussels_be_home_household_conditions_met
+    kind: derived
+    entity: Property
+    dtype: Judgment
+    period: Year
+    source: Brussels ordinance of 23 November 2017 article 14, paragraphs 1 and 4
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          brussels_be_home_household_has_member_with_real_right
+          and brussels_be_home_household_domiciled_in_dwelling
+          and brussels_be_home_situation_is_january_1
+  - name: brussels_be_home_recipient_condition_met
+    kind: derived
+    entity: Property
+    dtype: Judgment
+    period: Year
+    source: Brussels ordinance of 23 November 2017 article 14, paragraph 2
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          brussels_be_home_property_tax_assessment_notice_recipient
+  - name: brussels_be_home_eligible
+    kind: derived
+    entity: Property
+    dtype: Judgment
+    period: Year
+    source: Brussels ordinance of 23 November 2017 article 14
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          brussels_be_home_qualifying_dwelling
+          and brussels_be_home_household_conditions_met
+          and brussels_be_home_recipient_condition_met
+  - name: brussels_be_home_premium_amount
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels ordinance of 23 November 2017 article 14
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          if brussels_be_home_eligible:
+              brussels_be_home_indexed_annual_amount
+          else:
+              0
+  - name: brussels_be_home_property_tax_deduction
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels ordinance of 23 November 2017 article 14, payment delegated to the Government
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          min(max(0, brussels_be_home_property_tax_before_premium), brussels_be_home_premium_amount)
+  - name: brussels_be_home_property_tax_after_premium
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels ordinance of 23 November 2017 article 14, property-tax notice interface
+    versions:
+      - effective_from: '2020-01-01'
+        formula: |-
+          max(0, brussels_be_home_property_tax_before_premium - brussels_be_home_property_tax_deduction)

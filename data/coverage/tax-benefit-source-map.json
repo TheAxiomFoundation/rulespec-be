@@ -477,8 +477,8 @@
     }
   ],
   "toolchain_refs": {
-    "axiom_corpus_ref": "5456cef620ac4353baf90934b74fc3aaed316e61",
-    "axiom_encode_ref": "e0e5353167c4f8330a4c4bb617c797fd7868f652",
+    "axiom_corpus_ref": "a2fde9f92cccc2d44a31d712c1df2b3268a322f3",
+    "axiom_encode_ref": "430c53c632cf6b4df27c8f31a8d44022e8b9cc39",
     "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
   },
   "oracle_bridge_modules": [],
@@ -2826,6 +2826,7 @@
         "regional immovable-withholding-tax rates",
         "CIR 1992 Brussels/Walloon base rates, article-257 reductions, article-258 reduction-base mechanics, and article-259 rent pass-through",
         "Flemish immovable-withholding rates and reductions",
+        "Brussels BE HOME annual ownership-access premium and property-tax notice deduction interface",
         "cadastral-income interfaces",
         "family and disability reductions",
         "municipal and provincial surcharge interfaces"
@@ -2844,6 +2845,32 @@
             "Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1"
           ],
           "status": "eli_located"
+        },
+        {
+          "source_id": "belgian-official-gazette",
+          "source_priority_role": "primary_law_or_original_publication",
+          "works": [
+            "Ordonnance du 23 novembre 2017 effectuant les adaptations legislatives en vue de la reprise du service du precompte immobilier par la Region de Bruxelles-Capitale",
+            "Ordonnance du 30 avril 2020 modifiant l'ordonnance du 23 novembre 2017 en vue d'adapter l'indexation de la prime BE HOME"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2017/11/23/2017031630/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/04/30/2020041087/moniteur"
+          ],
+          "target_provisions": [
+            "2017 Brussels ordinance articles 13-17",
+            "2020 Brussels ordinance articles 2-3"
+          ],
+          "corpus_citation_paths": [
+            "be-bru/statute/ordonnance/2017/11/23/2017031630/article/13",
+            "be-bru/statute/ordonnance/2017/11/23/2017031630/article/14",
+            "be-bru/statute/ordonnance/2017/11/23/2017031630/article/15",
+            "be-bru/statute/ordonnance/2017/11/23/2017031630/article/16",
+            "be-bru/statute/ordonnance/2017/11/23/2017031630/article/17",
+            "be-bru/statute/ordonnance/2020/04/30/2020041087/article/2",
+            "be-bru/statute/ordonnance/2020/04/30/2020041087/article/3"
+          ],
+          "status": "corpus_ingested"
         },
         {
           "source_id": "vlaamse-codex",
@@ -2894,6 +2921,26 @@
             "be/statute/fisconetplus/cir92/revenus-2025/page-447",
             "be/statute/fisconetplus/cir92/revenus-2025/page-448",
             "be/statute/fisconetplus/cir92/revenus-2025/page-686"
+          ],
+          "status": "corpus_ingested"
+        },
+        {
+          "source_id": "justel-eli",
+          "source_priority_role": "non_authentic_consolidated_locator_after_original_publication",
+          "works": [
+            "Justel current consolidated Brussels BE HOME text and amendment navigation"
+          ],
+          "eli_refs": [
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2017/11/23/2017031630/justel",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/04/30/2020041087/justel"
+          ],
+          "target_provisions": [
+            "current consolidated article 14 BE HOME amount, recipient, and 1 January situation date",
+            "2020 amendment article 2 indexed amount formula"
+          ],
+          "corpus_citation_paths": [
+            "be-bru/statute/ordonnance/2017/11/23/2017031630/article/14",
+            "be-bru/statute/ordonnance/2020/04/30/2020041087/article/2"
           ],
           "status": "corpus_ingested"
         }
@@ -2952,6 +2999,15 @@
           "oracle_checks": [
             "openfisca-belgium:property_tax"
           ],
+          "status": "encoded"
+        },
+        {
+          "id": "brussels-be-home-property-tax-premium",
+          "destination": "be-bru/statutes/property_tax/be_home_premium.yaml",
+          "source_requirements": [
+            "2017 Brussels property-tax service-transfer ordinance articles 13-17 and 2020 BE HOME indexation amendment articles 2-3, ingested in corpus run 2026-07-02-be-bru-be-home-property-tax-premium"
+          ],
+          "oracle_checks": [],
           "status": "encoded"
         }
       ]

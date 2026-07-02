@@ -1,0 +1,92 @@
+- name: eligible_household_receives_indexed_premium_and_property_tax_deduction
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_december_2018_consumer_price_index: 100
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_prior_december_consumer_price_index: 123.0769230769
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_in_brussels_capital_region: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_is_habitation: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_has_member_with_real_right: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_domiciled_in_dwelling: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_situation_is_january_1: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_assessment_notice_recipient: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_before_premium: 300
+  output:
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_qualifying_dwelling: holds
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_household_conditions_met: holds
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_recipient_condition_met: holds
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_eligible: holds
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_indexed_annual_amount: 160
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_premium_amount: 160
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_deduction: 160
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_after_premium: 140
+
+- name: no_premium_without_household_real_right
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_december_2018_consumer_price_index: 100
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_prior_december_consumer_price_index: 100
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_in_brussels_capital_region: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_is_habitation: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_has_member_with_real_right: false
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_domiciled_in_dwelling: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_situation_is_january_1: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_assessment_notice_recipient: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_before_premium: 300
+  output:
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_index_coefficient: 1
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_unrounded_annual_amount: 130
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_household_conditions_met: not_holds
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_eligible: not_holds
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_premium_amount: 0
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_deduction: 0
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_after_premium: 300
+
+- name: nearest_euro_rounding_down_and_deduction_capped_by_tax_due
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_december_2018_consumer_price_index: 100
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_prior_december_consumer_price_index: 122.6846153846
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_in_brussels_capital_region: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_is_habitation: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_has_member_with_real_right: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_domiciled_in_dwelling: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_situation_is_january_1: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_assessment_notice_recipient: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_before_premium: 100
+  output:
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_indexed_annual_amount: 159
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_premium_amount: 159
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_deduction: 100
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_after_premium: 0
+
+- name: nearest_euro_rounding_up
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_december_2018_consumer_price_index: 100
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_prior_december_consumer_price_index: 122.7
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_in_brussels_capital_region: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_dwelling_is_habitation: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_has_member_with_real_right: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_household_domiciled_in_dwelling: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_situation_is_january_1: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_assessment_notice_recipient: true
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_property_tax_before_premium: 200
+  output:
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_indexed_annual_amount: 160
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_premium_amount: 160
