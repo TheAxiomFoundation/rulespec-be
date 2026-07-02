@@ -308,6 +308,24 @@ def test_rulespec_files_use_rulespec_v1_shape() -> None:
     assert apply_gap_ratchet("shape_issues", invalid_paths) == []
 
 
+def test_derived_rules_declare_period_metadata() -> None:
+    missing: list[str] = []
+
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        rules = payload.get("rules")
+        if not isinstance(rules, list):
+            continue
+        for rule in rules:
+            if not isinstance(rule, dict) or rule.get("kind") != "derived":
+                continue
+            if "period" not in rule:
+                name = rule.get("name", "<unnamed>")
+                missing.append(f"{path.relative_to(ROOT).as_posix()}#{name}")
+
+    assert missing == []
+
+
 def test_rulespec_rules_have_source_metadata() -> None:
     missing: list[str] = []
 
