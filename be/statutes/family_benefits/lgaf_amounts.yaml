@@ -348,6 +348,7 @@ rules:
     kind: derived
     entity: Child
     dtype: Count
+    period: Month
     source: LGAF article 42 section 1
     versions:
       - effective_from: '2000-08-31'
@@ -363,6 +364,7 @@ rules:
     kind: derived
     entity: Child
     dtype: Count
+    period: Month
     source: LGAF article 42
     versions:
       - effective_from: '2000-08-31'
@@ -566,6 +568,7 @@ rules:
     kind: derived
     entity: Child
     dtype: Money
+    period: Year
     unit: EUR
     source: LGAF article 73bis section 1
     versions:
@@ -585,6 +588,7 @@ rules:
     kind: derived
     entity: Child
     dtype: Money
+    period: Year
     unit: EUR
     source: LGAF article 76bis
     versions:
@@ -595,6 +599,7 @@ rules:
     kind: derived
     entity: Child
     dtype: Money
+    period: Year
     unit: EUR
     source: LGAF articles 73quater and 76bis
     versions:

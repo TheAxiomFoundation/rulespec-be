@@ -84,6 +84,7 @@ rules:
     kind: derived
     entity: Household
     dtype: Count
+    period: Year
     source: CIR 1992 article 126 section 2 item 1 and following legal-cohabitant marriage sentence
     versions:
       - effective_from: '2025-01-01'
@@ -99,6 +100,7 @@ rules:
     kind: derived
     entity: Household
     dtype: Count
+    period: Year
     source: CIR 1992 article 126 section 2 item 4
     versions:
       - effective_from: '2025-01-01'
@@ -114,6 +116,7 @@ rules:
     kind: derived
     entity: Household
     dtype: Count
+    period: Year
     source: CIR 1992 article 126 section 2, separate-assessment exceptions
     versions:
       - effective_from: '2025-01-01'
@@ -132,6 +135,7 @@ rules:
     kind: derived
     entity: Household
     dtype: Count
+    period: Year
     source: CIR 1992 article 126 sections 1 through 3
     versions:
       - effective_from: '2025-01-01'
@@ -228,6 +232,7 @@ rules:
     kind: derived
     entity: Household
     dtype: Count
+    period: Year
     source: CIR 1992 article 86, joint assessment, non-Article-33 spouse, effective help, and distinct professional-income limit
     versions:
       - effective_from: '2025-01-01'
@@ -321,6 +326,7 @@ rules:
     kind: derived
     entity: Household
     dtype: Count
+    period: Year
     source: CIR 1992 articles 87 and 88, joint assessment and no-tax-increase condition
     versions:
       - effective_from: '2025-01-01'
