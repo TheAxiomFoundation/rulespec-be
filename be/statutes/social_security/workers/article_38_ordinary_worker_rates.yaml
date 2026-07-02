@@ -1,0 +1,126 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module exposes the Article 38 section 2 ordinary worker contribution
+    rates from the 29 June 1981 social-security principles law as a narrow
+    import surface for employee social-security contribution composition. It
+    leaves the separate Chapter 10 special-contribution amounts in
+    chapter_10_special_contributions.yaml.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1981/06/29/1981001048/article/38
+rules:
+  - name: belgium_article_38_source_percent_denominator
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38, percentage notation uses p.c.
+    versions:
+      - effective_from: '1981-06-29'
+        formula: |-
+          100
+  - name: belgium_article_38_source_tenths_digit_denominator
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38, comma-decimal percentage notation
+    versions:
+      - effective_from: '1981-06-29'
+        formula: |-
+          10
+  - name: belgium_article_38_section_2_ordinary_worker_pension_percent_integer_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 1 states 7,5 p.c.
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          7
+  - name: belgium_article_38_section_2_ordinary_worker_pension_percent_tenths_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 1 states 7,5 p.c.
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          5
+  - name: belgium_article_38_section_2_ordinary_worker_indemnities_percent_integer_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 2 states 1,15 p.c.
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          1
+  - name: belgium_article_38_section_2_ordinary_worker_indemnities_percent_hundredths_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 2 states 1,15 p.c.
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          15
+  - name: belgium_article_38_section_2_ordinary_worker_unemployment_percent_hundredths_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 3 states 0,87 p.c.
+    versions:
+      - effective_from: '1994-03-30'
+        formula: |-
+          87
+  - name: belgium_article_38_section_2_ordinary_worker_health_care_percent_integer_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 4 states 3,55 p.c.
+    versions:
+      - effective_from: '1992-07-01'
+        formula: |-
+          3
+  - name: belgium_article_38_section_2_ordinary_worker_health_care_percent_hundredths_part
+    kind: parameter
+    dtype: Decimal
+    source: Law of 29 June 1981, article 38 section 2 item 4 states 3,55 p.c.
+    versions:
+      - effective_from: '1992-07-01'
+        formula: |-
+          55
+  - name: belgium_article_38_section_2_ordinary_worker_pension_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 1
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          (belgium_article_38_section_2_ordinary_worker_pension_percent_integer_part + belgium_article_38_section_2_ordinary_worker_pension_percent_tenths_part / belgium_article_38_source_tenths_digit_denominator) / belgium_article_38_source_percent_denominator
+  - name: belgium_article_38_section_2_ordinary_worker_indemnities_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 2
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          (belgium_article_38_section_2_ordinary_worker_indemnities_percent_integer_part + belgium_article_38_section_2_ordinary_worker_indemnities_percent_hundredths_part / belgium_article_38_source_percent_denominator) / belgium_article_38_source_percent_denominator
+  - name: belgium_article_38_section_2_ordinary_worker_unemployment_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 3
+    versions:
+      - effective_from: '1994-03-30'
+        formula: |-
+          belgium_article_38_section_2_ordinary_worker_unemployment_percent_hundredths_part / belgium_article_38_source_percent_denominator / belgium_article_38_source_percent_denominator
+  - name: belgium_article_38_section_2_ordinary_worker_health_care_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 4
+    versions:
+      - effective_from: '1992-07-01'
+        formula: |-
+          (belgium_article_38_section_2_ordinary_worker_health_care_percent_integer_part + belgium_article_38_section_2_ordinary_worker_health_care_percent_hundredths_part / belgium_article_38_source_percent_denominator) / belgium_article_38_source_percent_denominator
+  - name: belgium_article_38_section_2_ordinary_worker_total_contribution_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2
+    versions:
+      - effective_from: '2003-01-01'
+        formula: |-
+          belgium_article_38_section_2_ordinary_worker_pension_rate + belgium_article_38_section_2_ordinary_worker_indemnities_rate + belgium_article_38_section_2_ordinary_worker_unemployment_rate + belgium_article_38_section_2_ordinary_worker_health_care_rate

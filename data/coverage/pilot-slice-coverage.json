@@ -6,7 +6,8 @@
     "Rule names and canonical rule ids are treated as API by populace and axiom-oracles.",
     "Derived rules in listed programs declare period metadata.",
     "Pilot programs stay on Person or Household entities until the consumer mappings expand.",
-    "EUROMOD Belgium outputs are monthly and incomes are uprated to the system year; oracle comparisons should anchor on EUROMOD's post-uprating gross yem."
+    "EUROMOD Belgium outputs are monthly and incomes are uprated to the system year; oracle comparisons should anchor on EUROMOD's post-uprating gross yem.",
+    "The worker PIT pilot now composes ordinary employee SSC before Article 51 forfait expenses and accepts supplied Article 289ter/1 work-bonus A/B amounts; the ONSS work-bonus amount calculation itself remains a separate social-security gap."
   ],
   "programs": [
     {
@@ -25,7 +26,7 @@
         "template_dataset": "BE_training_data",
         "comparison_concepts": [
           {
-            "rulespec_output": "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding",
+            "rulespec_output": "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding",
             "euromod_variable": "tin_s",
             "notes": "Compare final PIT after EUROMOD monthly-to-annual convention is applied by the oracle adapter."
           },
@@ -69,22 +70,24 @@
           "required_for_oracle": false
         },
         {
-          "name": "belgium_pit_professional_withholding",
+          "name": "belgium_pit_pilot_article_289ter1_work_bonus_a_amount",
           "dtype": "Money",
-          "required_for_oracle": false
+          "required_for_oracle": false,
+          "default_for_current_oracle_cases": 0
         },
         {
-          "name": "belgium_pit_prepayments",
+          "name": "belgium_pit_pilot_article_289ter1_work_bonus_b_amount",
           "dtype": "Money",
-          "required_for_oracle": false
-        },
-        {
-          "name": "belgium_pit_other_withholding_or_creditable_tax",
-          "dtype": "Money",
-          "required_for_oracle": false
+          "required_for_oracle": false,
+          "default_for_current_oracle_cases": 0
         }
       ],
       "outputs": [
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_supplied_work_bonus_reduction",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_supplied_other_worker_reduction",
+        "be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_remuneration_after_employee_social_security",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_forfait_professional_expenses",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income",
@@ -92,12 +95,12 @@
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_tax_free_amount",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_134_tax_on_tax_free_amount",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_tax_free_amount",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit",
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_work_bonus_credit",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax_base",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_agglomeration_additional_tax_rate_after_cap",
         "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax",
-        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_federal_and_local_tax_before_withholding",
-        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_total_withholding_and_prepayments",
-        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_net_tax_due_after_withholding_and_prepayments"
+        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding"
       ],
       "exclusions": [
         "joint assessment",
@@ -106,6 +109,7 @@
         "actual professional expense proof",
         "replacement-income reductions",
         "regional reductions and credits",
+        "ONSS work-bonus A/B amount calculation beyond supplied inputs",
         "professional withholding table calculation",
         "treaty allocation beyond supplied Article 466bis inputs",
         "partial-year residency"
