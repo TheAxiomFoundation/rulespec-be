@@ -1,0 +1,137 @@
+format: rulespec/v1
+imports:
+  - be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_gross_tax
+  - be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_article_257_core_reductions
+module:
+  summary: |-
+    CIR 1992 Article 15 defines when cadastral income can be reduced
+    proportionally for vacancy, inactivity, unproductivity, or destruction.
+    Article 256 keeps that reduction out of the initial immovable-withholding
+    establishment, and Article 257 item 4 grants remission or moderation of
+    immovable withholding to the extent Article 15 can reduce the taxable
+    cadastral income. This module encodes the Article 15 eligibility thresholds
+    and proportional remission bridge for the non-Flemish Brussels/Walloon
+    immovable-withholding base. It expects supplied parcel/part predicates,
+    affected cadastral-income shares, and day counts; it excludes application
+    procedure, proof, administrative discretion, and Flanders.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-58
+      - be/statute/fisconetplus/cir92/revenus-2025/page-59
+      - be/statute/fisconetplus/cir92/revenus-2025/page-446
+    values:
+      belgium_immovable_withholding_article_15_minimum_days: 90
+      belgium_immovable_withholding_article_15_equipment_or_destroyed_minimum_share: "0.25"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_immovable_withholding_article_15_minimum_days
+    kind: parameter
+    dtype: Integer
+    source: CIR 1992 article 15 section 1 items 1 and 2, minimum days in the year
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          90
+  - name: belgium_immovable_withholding_article_15_equipment_or_destroyed_minimum_share
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 15 section 1 items 2 and 3, minimum cadastral-income share for partial equipment/instrument or destruction cases
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          0.25
+  - name: belgium_immovable_withholding_article_15_standard_year_days
+    kind: parameter
+    dtype: Integer
+    source: Structural default for annual Article 15 duration fractions when exact assessment-year days are not supplied
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          365
+  - name: belgium_immovable_withholding_article_15_effective_year_days
+    kind: derived
+    entity: Property
+    dtype: Integer
+    period: Year
+    source: CIR 1992 article 15 proportional duration denominator, with supplied exact year length where available
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          if belgium_immovable_withholding_article_15_supplied_year_days > 0:
+              belgium_immovable_withholding_article_15_supplied_year_days
+          else:
+              belgium_immovable_withholding_article_15_standard_year_days
+  - name: belgium_immovable_withholding_article_15_built_vacancy_reduction_fraction
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 15 section 1 item 1, built non-furnished property vacant and unproductive for at least 90 days
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          if belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive and belgium_immovable_withholding_article_15_built_vacancy_days >= belgium_immovable_withholding_article_15_minimum_days:
+              min(1, max(0, belgium_immovable_withholding_article_15_built_property_affected_share)) * min(1, max(0, belgium_immovable_withholding_article_15_built_vacancy_days) / belgium_immovable_withholding_article_15_effective_year_days)
+          else:
+              0
+  - name: belgium_immovable_withholding_article_15_equipment_inactivity_reduction_fraction
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 15 section 1 item 2, equipment or instruments inactive for 90 days where the inactive part is at least 25 percent of cadastral income
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          if belgium_immovable_withholding_article_15_equipment_inactive_days >= belgium_immovable_withholding_article_15_minimum_days and belgium_immovable_withholding_article_15_equipment_affected_share >= belgium_immovable_withholding_article_15_equipment_or_destroyed_minimum_share:
+              min(1, max(0, belgium_immovable_withholding_article_15_equipment_affected_share)) * min(1, max(0, belgium_immovable_withholding_article_15_equipment_inactive_days) / belgium_immovable_withholding_article_15_effective_year_days)
+          else:
+              0
+  - name: belgium_immovable_withholding_article_15_destruction_reduction_fraction
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 15 section 1 item 3, built property or equipment destroyed where a partial destruction is at least 25 percent of cadastral income
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          if belgium_immovable_withholding_article_15_destroyed_affected_share >= belgium_immovable_withholding_article_15_equipment_or_destroyed_minimum_share:
+              min(1, max(0, belgium_immovable_withholding_article_15_destroyed_affected_share)) * min(1, max(0, belgium_immovable_withholding_article_15_destroyed_days) / belgium_immovable_withholding_article_15_effective_year_days)
+          else:
+              0
+  - name: belgium_immovable_withholding_article_15_cadastral_income_reduction_fraction
+    kind: derived
+    entity: Property
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 15, proportional reduction by duration and affected cadastral-income importance
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          min(1, belgium_immovable_withholding_article_15_built_vacancy_reduction_fraction + belgium_immovable_withholding_article_15_equipment_inactivity_reduction_fraction + belgium_immovable_withholding_article_15_destruction_reduction_fraction)
+  - name: belgium_immovable_withholding_article_257_4_remission
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 257 item 4, remission or proportional moderation to the extent taxable cadastral income can be reduced under article 15
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          belgium_immovable_withholding_gross_tax * belgium_immovable_withholding_article_15_cadastral_income_reduction_fraction
+  - name: belgium_immovable_withholding_tax_after_article_257_including_article_15_remission
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 256 and 257 item 4, final non-Flemish base after core reductions and article-15 remission
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          max(0, belgium_immovable_withholding_gross_tax - belgium_immovable_withholding_article_257_core_reductions - belgium_immovable_withholding_article_257_4_remission)

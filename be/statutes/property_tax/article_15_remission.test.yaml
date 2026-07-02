@@ -1,0 +1,146 @@
+- name: built_vacancy_half_year_remits_half_of_base_withholding
+  period: 2026
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 360
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: true
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 1
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 180
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
+  output:
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_effective_year_days: 360
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_built_vacancy_reduction_fraction: 0.5
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_cadastral_income_reduction_fraction: 0.5
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_257_4_remission: 6.25
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 6.25
+
+- name: equipment_share_below_25_percent_threshold_has_no_remission
+  period: 2026
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 360
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: false
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0.24
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 180
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
+  output:
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_equipment_inactivity_reduction_fraction: 0
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_257_4_remission: 0
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 12.50
+
+- name: equipment_inactivity_at_threshold_remits_duration_and_share_fraction
+  period: 2026
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1600
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1600
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1600
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 360
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: false
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0.25
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 90
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
+  output:
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_equipment_inactivity_reduction_fraction: 0.0625
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_257_4_remission: 1.25
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 18.75
+
+- name: destruction_does_not_require_90_day_threshold
+  period: 2026
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 365
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: false
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0.40
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 365
+  output:
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_destruction_reduction_fraction: 0.40
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_257_4_remission: 5.00
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 7.50
+
+- name: aggregate_article_15_fraction_is_capped_at_full_base_withholding
+  period: 2026
+  input:
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 365
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: true
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 0.80
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 365
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0.50
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 365
+  output:
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_cadastral_income_reduction_fraction: 1
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_257_4_remission: 12.50
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 0

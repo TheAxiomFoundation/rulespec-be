@@ -477,8 +477,8 @@
     }
   ],
   "toolchain_refs": {
-    "axiom_corpus_ref": "a472ad50a18f820d019bfb42f58d0f764cd9c1b9",
-    "axiom_encode_ref": "c0b2de8a3f29ff9d9067c9827cce2b46eb129375",
+    "axiom_corpus_ref": "c9dd7ac97e35e554f3f3ab685a56524f17e1dc43",
+    "axiom_encode_ref": "372b74669c9afd04eee15b94fe2b7a5c2fa086d5",
     "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
   },
   "oracle_bridge_modules": [],
@@ -2824,7 +2824,7 @@
       "track_id": "regional-real-property-tax",
       "rule_surface": [
         "regional immovable-withholding-tax rates",
-        "CIR 1992 Brussels/Walloon base rates, article-257 reductions, article-258 reduction-base mechanics, and article-259 rent pass-through",
+        "CIR 1992 Brussels/Walloon base rates, article-257 reductions including article-257 item 4 / article-15 remission, article-258 reduction-base mechanics, and article-259 rent pass-through",
         "Flemish immovable-withholding rates and reductions",
         "Brussels BE HOME annual ownership-access premium and property-tax notice deduction interface",
         "CIR 1992 article-518 cadastral-income indexation and remaining cadastral-income administration interfaces",
@@ -2903,21 +2903,26 @@
           "source_id": "fisconetplus",
           "source_priority_role": "official_consolidated_tax_code_after_moniteur_eli_and_justel_locator",
           "works": [
-            "Code des impots sur les revenus 1992, articles 255, 257, 258, 259, 464/1, and 518"
+            "Code des impots sur les revenus 1992, articles 15, 255, 256, 257, 258, 259, 464/1, and 518"
           ],
           "eli_refs": [
             "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur",
             "https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel"
           ],
           "target_provisions": [
+            "CIR 1992 article 15 proportional cadastral-income reduction for vacancy, inactivity, unproductivity, and destruction",
             "CIR 1992 article 255 immovable-withholding rates",
+            "CIR 1992 article 256 exclusion of article-15 reductions from initial immovable-withholding establishment",
             "CIR 1992 article 257 reductions",
+            "CIR 1992 article 257 item 4 remission or proportional moderation where article 15 can reduce taxable cadastral income",
             "CIR 1992 article 258 reduction timing, cumulation, single-dwelling, and professional-use apportionment limits",
             "CIR 1992 article 259 rent deduction pass-through for article-257 items 2 and 3",
             "CIR 1992 article 464/1 additional centimes",
             "CIR 1992 article 518 cadastral-income indexation and nearest-euro rounding"
           ],
           "corpus_citation_paths": [
+            "be/statute/fisconetplus/cir92/revenus-2025/page-58",
+            "be/statute/fisconetplus/cir92/revenus-2025/page-59",
             "be/statute/fisconetplus/cir92/revenus-2025/page-446",
             "be/statute/fisconetplus/cir92/revenus-2025/page-447",
             "be/statute/fisconetplus/cir92/revenus-2025/page-448",
@@ -3019,11 +3024,20 @@
           "status": "encoded"
         },
         {
+          "id": "belgium-cir92-article15-immovable-withholding-remission",
+          "destination": "be/statutes/property_tax/article_15_remission.yaml",
+          "source_requirements": [
+            "CIR 1992 article 15 current FisconetPlus consolidated text plus articles 256 and 257 item 4 property-tax remission text, ingested in corpus run 2026-07-02-be-cir92-article15-immovable-remission"
+          ],
+          "oracle_checks": [],
+          "status": "encoded"
+        },
+        {
           "id": "belgium-immovable-withholding-regional-routing",
           "destination": "be/statutes/property_tax/regional_routing.yaml",
           "source_requirements": [
             "Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1 current article-version text",
-            "CIR 1992 articles 255, 257, 258, 259, and 464/1 current FisconetPlus consolidated text"
+            "CIR 1992 articles 15, 255, 256, 257, 258, 259, and 464/1 current FisconetPlus consolidated text"
           ],
           "oracle_checks": [
             "openfisca-belgium:property_tax"

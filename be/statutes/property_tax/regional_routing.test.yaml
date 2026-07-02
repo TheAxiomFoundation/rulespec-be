@@ -32,6 +32,14 @@
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 365
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: false
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
     be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 300
     be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 150
     be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 1500
@@ -39,6 +47,39 @@
     be:statutes/property_tax/regional_routing#belgium_immovable_withholding_selected_regional_base_tax: 12.50
     be:statutes/property_tax/regional_routing#belgium_immovable_withholding_non_flemish_additional_centimes_tax: 243.75
     be:statutes/property_tax/regional_routing#belgium_immovable_withholding_routed_tax_after_supplied_local_centimes: 256.25
+
+- name: routes_brussels_article_15_remission_before_supplied_additional_centimes
+  period: 2026
+  input:
+    be:statutes/property_tax/regional_routing#input.belgium_property_tax_region: 1
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_is_fully_owner_occupied_home: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_total_belgian_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_new_dwelling_five_year_reduction_applies: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_article_257_258_reductions_designated_dwelling: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_whole_dwelling_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_professional_use_cadastral_income: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_war_invalid_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_person_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 360
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: true
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 1
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 180
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 1000
+  output:
+    be:statutes/property_tax/regional_routing#belgium_immovable_withholding_selected_regional_base_tax: 6.25
+    be:statutes/property_tax/regional_routing#belgium_immovable_withholding_non_flemish_additional_centimes_tax: 62.50
+    be:statutes/property_tax/regional_routing#belgium_immovable_withholding_routed_tax_after_supplied_local_centimes: 68.75
 
 - name: routes_walloon_reduced_base_tax_and_supplied_additional_centimes
   period: 2026
@@ -57,6 +98,14 @@
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_family_reduction_eligible: false
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_non_disabled_child_count: 0
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_disabled_dependent_count: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_supplied_year_days: 365
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_non_furnished_vacant_and_unproductive: false
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_property_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_built_vacancy_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_equipment_inactive_days: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
+    be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
     be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 0
     be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 0
     be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 1000
