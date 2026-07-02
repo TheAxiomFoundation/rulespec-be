@@ -2,7 +2,7 @@ format: rulespec/v1
 module:
   summary: |-
     The 29 June 1981 social-security principles law article 38, article 39,
-    article 39ter, and article 39quater encode several BEAMM Chapter 10 special
+    article 39ter, and article 39quater encode several Chapter 10 special
     contribution surfaces. This module covers the article 39 private-sector
     double-holiday-pay withholding, the article 39ter/39quater public-sector
     vacation/Copernic/restructuring withholding, the article 38 section 3septies
@@ -25,7 +25,6 @@ module:
       - be/statute/loi/1969/06/27/1969062710/article/5-2
       - be/statute/loi/1980/09/01/1980090102/document
     values:
-      belgium_article_38_section_2_worker_total_contribution_rate: "0.1307"
       belgium_article_38_section_3ter_second_pillar_rate: "0.0886"
       belgium_article_38_section_3septies_profit_premium_rate: "0.1307"
       belgium_article_38_section_3novies_nonrecurring_employer_rate: "0.33"
@@ -36,8 +35,19 @@ module:
       belgium_article_38_section_3quater_diesel_subtractor: "600"
       belgium_article_38_section_3quater_lpg_gas_subtractor: "990"
       belgium_article_38_section_3quater_formula_multiplier_per_co2_gram: "9"
+      belgium_article_38_section_3quater_months_in_year: "12"
       belgium_article_38_section_3quater_new_vehicle_multiplier_2026: "4"
       belgium_article_38_section_3quater_new_vehicle_minimum_2026: "25.99"
+      belgium_article_38_section_3sexies_economic_unemployment_first_threshold_days: "110"
+      belgium_article_38_section_3sexies_economic_unemployment_second_threshold_days: "130"
+      belgium_article_38_section_3sexies_economic_unemployment_third_threshold_days: "150"
+      belgium_article_38_section_3sexies_economic_unemployment_fourth_threshold_days: "170"
+      belgium_article_38_section_3sexies_economic_unemployment_fifth_threshold_days: "200"
+      belgium_article_38_section_3sexies_economic_unemployment_first_rate: "20"
+      belgium_article_38_section_3sexies_economic_unemployment_second_rate: "40"
+      belgium_article_38_section_3sexies_economic_unemployment_third_rate: "60"
+      belgium_article_38_section_3sexies_economic_unemployment_fourth_rate: "80"
+      belgium_article_38_section_3sexies_economic_unemployment_fifth_rate: "100"
 units:
   - name: EUR
     kind: currency
@@ -294,6 +304,14 @@ rules:
       - effective_from: '2005-01-01'
         formula: |-
           20.83
+  - name: belgium_article_38_section_3quater_months_in_year
+    kind: parameter
+    dtype: Integer
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3
+    versions:
+      - effective_from: '2005-01-01'
+        formula: |-
+          12
   - name: belgium_article_38_section_3quater_new_vehicle_multiplier_2026
     kind: parameter
     dtype: Rate
@@ -341,12 +359,12 @@ rules:
               0
           else:
               if belgium_company_car_solidarity_is_lpg_natural_gas_or_methane:
-                  (belgium_article_38_section_3quater_co2_used * belgium_article_38_section_3quater_formula_multiplier_per_co2_gram - belgium_article_38_section_3quater_lpg_gas_subtractor) / 12
+                  (belgium_article_38_section_3quater_co2_used * belgium_article_38_section_3quater_formula_multiplier_per_co2_gram - belgium_article_38_section_3quater_lpg_gas_subtractor) / belgium_article_38_section_3quater_months_in_year
               else:
                   if belgium_company_car_solidarity_is_diesel:
-                      (belgium_article_38_section_3quater_co2_used * belgium_article_38_section_3quater_formula_multiplier_per_co2_gram - belgium_article_38_section_3quater_diesel_subtractor) / 12
+                      (belgium_article_38_section_3quater_co2_used * belgium_article_38_section_3quater_formula_multiplier_per_co2_gram - belgium_article_38_section_3quater_diesel_subtractor) / belgium_article_38_section_3quater_months_in_year
                   else:
-                      (belgium_article_38_section_3quater_co2_used * belgium_article_38_section_3quater_formula_multiplier_per_co2_gram - belgium_article_38_section_3quater_petrol_subtractor) / 12
+                      (belgium_article_38_section_3quater_co2_used * belgium_article_38_section_3quater_formula_multiplier_per_co2_gram - belgium_article_38_section_3quater_petrol_subtractor) / belgium_article_38_section_3quater_months_in_year
   - name: belgium_article_38_section_3quater_monthly_solidarity_contribution
     kind: derived
     entity: Person
@@ -372,6 +390,91 @@ rules:
       - effective_from: '2026-01-01'
         formula: |-
           belgium_article_38_section_3quater_monthly_solidarity_contribution * belgium_company_car_solidarity_months_available
+  - name: belgium_article_38_section_3sexies_economic_unemployment_first_threshold_days
+    kind: parameter
+    dtype: Integer
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          110
+  - name: belgium_article_38_section_3sexies_economic_unemployment_second_threshold_days
+    kind: parameter
+    dtype: Integer
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          130
+  - name: belgium_article_38_section_3sexies_economic_unemployment_third_threshold_days
+    kind: parameter
+    dtype: Integer
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          150
+  - name: belgium_article_38_section_3sexies_economic_unemployment_fourth_threshold_days
+    kind: parameter
+    dtype: Integer
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          170
+  - name: belgium_article_38_section_3sexies_economic_unemployment_fifth_threshold_days
+    kind: parameter
+    dtype: Integer
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          200
+  - name: belgium_article_38_section_3sexies_economic_unemployment_first_rate
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          20
+  - name: belgium_article_38_section_3sexies_economic_unemployment_second_rate
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          40
+  - name: belgium_article_38_section_3sexies_economic_unemployment_third_rate
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          60
+  - name: belgium_article_38_section_3sexies_economic_unemployment_fourth_rate
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          80
+  - name: belgium_article_38_section_3sexies_economic_unemployment_fifth_rate
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          100
   - name: belgium_article_38_section_3sexies_economic_unemployment_rate_factor
     kind: derived
     entity: Person
@@ -382,22 +485,22 @@ rules:
     versions:
       - effective_from: '2017-01-01'
         formula: |-
-          if belgium_economic_unemployment_days_four_quarter_sum <= 110:
+          if belgium_economic_unemployment_days_four_quarter_sum <= belgium_article_38_section_3sexies_economic_unemployment_first_threshold_days:
               0
           else:
-              if belgium_economic_unemployment_days_four_quarter_sum <= 130:
-                  20
+              if belgium_economic_unemployment_days_four_quarter_sum <= belgium_article_38_section_3sexies_economic_unemployment_second_threshold_days:
+                  belgium_article_38_section_3sexies_economic_unemployment_first_rate
               else:
-                  if belgium_economic_unemployment_days_four_quarter_sum <= 150:
-                      40
+                  if belgium_economic_unemployment_days_four_quarter_sum <= belgium_article_38_section_3sexies_economic_unemployment_third_threshold_days:
+                      belgium_article_38_section_3sexies_economic_unemployment_second_rate
                   else:
-                      if belgium_economic_unemployment_days_four_quarter_sum <= 170:
-                          60
+                      if belgium_economic_unemployment_days_four_quarter_sum <= belgium_article_38_section_3sexies_economic_unemployment_fourth_threshold_days:
+                          belgium_article_38_section_3sexies_economic_unemployment_third_rate
                       else:
-                          if belgium_economic_unemployment_days_four_quarter_sum <= 200:
-                              80
+                          if belgium_economic_unemployment_days_four_quarter_sum <= belgium_article_38_section_3sexies_economic_unemployment_fifth_threshold_days:
+                              belgium_article_38_section_3sexies_economic_unemployment_fourth_rate
                           else:
-                              100
+                              belgium_article_38_section_3sexies_economic_unemployment_fifth_rate
   - name: belgium_article_38_section_3sexies_economic_unemployment_quarterly_contribution
     kind: derived
     entity: Person
