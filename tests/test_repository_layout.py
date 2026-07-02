@@ -142,22 +142,21 @@ def test_has_full_belgium_jurisdiction_namespaces() -> None:
     ]
 
 
-def test_beamm_is_scope_benchmark_not_oracle() -> None:
-    benchmark = json.loads(
-        (ROOT / "data/coverage/beamm-non-oracle-scope-benchmark.json").read_text()
-    )
-    oracle_ids = {oracle["id"] for oracle in oracle_index()["oracles"]}
+def test_oracle_index_requires_household_level_executable_comparisons() -> None:
+    index = oracle_index()
+    oracle_scope = index["oracle_scope"]
+    oracle_ids = {oracle["id"] for oracle in index["oracles"]}
     source_map_oracle_ids = {
         surface["oracle_id"]
         for track in source_map()["tracks"]
         for surface in track["oracle_surfaces"]
     }
 
-    assert benchmark["oracle_status"] == "not_an_oracle"
-    assert benchmark["legal_authority_status"] == "not_legal_authority"
-    assert benchmark["household_level_validation_status"] == "not_available"
-    assert "beamm" not in oracle_ids
-    assert "beamm" not in source_map_oracle_ids
+    assert "household-level inputs" in oracle_scope
+    assert "household-level tax-benefit outputs" in oracle_scope
+    assert "public model summaries" in oracle_scope
+    assert "not oracles" in oracle_scope
+    assert source_map_oracle_ids <= oracle_ids
 
 
 def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
