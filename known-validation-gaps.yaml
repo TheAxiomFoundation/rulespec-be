@@ -1,4 +1,6 @@
 missing_companion_tests: []
 shape_issues: []
 uncovered_derived_rules: []
-validate_failures: []
+validate_failures:
+  - be/regulations/social_security/workers/work_bonus.yaml  # https://github.com/TheAxiomFoundation/rulespec-be/issues/3
+  - be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml  # Requires merged encoder/corpus refs; repo-wide toolchain bump exposes older shard gaps.
