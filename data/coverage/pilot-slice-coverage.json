@@ -113,7 +113,7 @@
     },
     {
       "id": "be-employee-ssc-oracle-pilot",
-      "module": "be/statutes/social_security/workers/contribution_rates.yaml",
+      "module": "be/regulations/social_security/workers/employee_contributions.yaml",
       "entity": "Person",
       "period": "Year",
       "status": "encoded",
@@ -123,14 +123,14 @@
         "model": "BE_2025",
         "comparison_concepts": [
           {
-            "rulespec_output": "be:statutes/social_security/workers/contribution_rates#belgium_worker_article_17_uncapped_component_contribution",
+            "rulespec_output": "be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution",
             "euromod_variable": "tscee_s",
-            "notes": "The oracle path has already recovered the statutory 13.07 percent employee SSC on EUROMOD's post-uprating gross yem."
+            "notes": "The Article 38 ordinary employee-contribution bridge and EUROMOD live oracle path both recover the statutory 13.07 percent employee SSC on EUROMOD's post-uprating gross yem."
           }
         ]
       },
       "outputs": [
-        "be:statutes/social_security/workers/contribution_rates#belgium_worker_article_17_uncapped_component_contribution"
+        "be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution"
       ]
     }
   ]
