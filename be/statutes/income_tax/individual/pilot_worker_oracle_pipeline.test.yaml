@@ -11,6 +11,7 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0.06
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base: 40000
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_supplied_work_bonus_reduction: 0
@@ -44,6 +45,7 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base: 10000
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 0
@@ -68,6 +70,7 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_remuneration_after_employee_social_security: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income: 0
@@ -87,6 +90,7 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount: 1444.71
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount: 884.94

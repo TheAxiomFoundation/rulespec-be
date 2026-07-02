@@ -7,7 +7,9 @@
   input:
     be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 30000
     be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 3921
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_reference_annual_remuneration: 30000
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_remuneration: 2500
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus: 326.75
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_s1_threshold: 2175.25
@@ -29,6 +31,27 @@
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount: 884.94
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction: 2329.65
 
+- name: supplied_reference_annual_remuneration_overrides_contribution_base_for_oracle_bridge
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 30000
+    be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 3921
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 25862.0689655172
+  output:
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_reference_annual_remuneration: 25862.0689655172
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_remuneration: 2155.1724137931
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap: 120.59
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap: 162.62
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_a_before_cap: 118.22
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_january_2025_b_before_cap: 153.34
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount: 1444.71
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount: 1942.16
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction: 3386.87
+
 - name: full_year_equal_monthly_worker_bonus_is_capped_by_employee_contributions
   period:
     period_kind: custom
@@ -38,6 +61,7 @@
   input:
     be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 24000
     be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 3136.8
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_remuneration: 2000
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus: 261.4
@@ -58,6 +82,7 @@
   input:
     be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_contribution_base: 50000
     be:regulations/social_security/workers/work_bonus#input.belgium_employee_social_security_article_38_contribution_before_reductions: 6535
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap: 0
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap: 0

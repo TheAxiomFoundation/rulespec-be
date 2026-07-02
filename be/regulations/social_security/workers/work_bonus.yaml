@@ -82,6 +82,20 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           0.01
+  - name: belgium_worker_work_bonus_full_year_equal_monthly_reference_annual_remuneration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 17 January 2000, article 1, annual W remuneration bridge; a positive supplied annual reference remuneration overrides the contribution base for oracle datasets that expose the work-bonus wage base separately
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_worker_work_bonus_supplied_reference_annual_remuneration > 0:
+              belgium_worker_work_bonus_supplied_reference_annual_remuneration
+          else:
+              max(0, belgium_employee_social_security_contribution_base)
   - name: belgium_worker_work_bonus_full_year_equal_monthly_remuneration
     kind: derived
     entity: Person
@@ -92,7 +106,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_employee_social_security_contribution_base / belgium_worker_work_bonus_months_in_year)
+          belgium_worker_work_bonus_full_year_equal_monthly_reference_annual_remuneration / belgium_worker_work_bonus_months_in_year
   - name: belgium_worker_work_bonus_full_year_equal_monthly_contribution_before_work_bonus
     kind: derived
     entity: Person
