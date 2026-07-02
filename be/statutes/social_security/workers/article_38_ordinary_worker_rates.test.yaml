@@ -1,0 +1,22 @@
+- name: article_38_ordinary_worker_rate_components_match_statutory_percentages
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input: {}
+  output:
+    be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_pension_rate: 0.075
+    be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_indemnities_rate: 0.0115
+    be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_unemployment_rate: 0.0087
+    be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_health_care_rate: 0.0355
+
+- name: article_38_ordinary_worker_rate_sums_components_to_1307_percent
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input: {}
+  output:
+    be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_total_contribution_rate: 0.1307

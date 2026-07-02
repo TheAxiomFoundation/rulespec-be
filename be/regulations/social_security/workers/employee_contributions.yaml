@@ -1,6 +1,6 @@
 format: rulespec/v1
 imports:
-  - be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_2_worker_total_contribution_rate
+  - be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_total_contribution_rate
 module:
   summary: |-
     This module bridges the ordinary employee social-security contribution for
@@ -16,8 +16,6 @@ module:
       - be/statute/loi/1981/06/29/1981001048/article/38
       - be/statute/loi/1969/06/27/1969062710/article/17
       - be/regulation/arrete/1969/11/28/1969112813/article/19
-    values:
-      belgium_employee_social_security_article_38_worker_rate: "0.1307"
 units:
   - name: EUR
     kind: currency
@@ -33,7 +31,7 @@ rules:
     versions:
       - effective_from: '2003-01-01'
         formula: |-
-          belgium_employee_social_security_contribution_base * belgium_article_38_section_2_worker_total_contribution_rate
+          belgium_employee_social_security_contribution_base * belgium_article_38_section_2_ordinary_worker_total_contribution_rate
   - name: belgium_employee_social_security_article_38_total_supplied_worker_reduction
     kind: derived
     entity: Person

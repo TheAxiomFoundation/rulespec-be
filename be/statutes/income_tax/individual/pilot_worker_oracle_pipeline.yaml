@@ -1,42 +1,47 @@
 format: rulespec/v1
+imports:
+  - be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution
 module:
   summary: |-
     This composed pilot module exposes a dense-engine-friendly Person-level
     path from gross worker remuneration into Belgian PIT for the EUROMOD oracle
-    slice. It wires the Article 51 employee forfait, Article 6 taxable-income
-    concept, Article 130 rate scale, Article 131 base tax-free amount, Article
-    134 tax-free-amount reduction, supplied Article 465/468 local rates, and
-    supplied withholding/prepayment settlement into one module. It deliberately
-    keeps existing public rule ids in other modules unchanged and excludes
-    dependants, joint assessment, other income categories, actual-expense proof,
-    replacement-income reductions, regional reductions/credits, professional
-    withholding tables, treaty allocation, and partial-year cases.
+    slice. It wires the ordinary Article 38 employee social-security
+    contribution, Article 51 employee forfait, Article 6 taxable-income concept,
+    Article 130 rate scale, Article 131 base tax-free amount, Article 134
+    tax-free-amount reduction, supplied Article 465/468 local rates, and supplied
+    Article 289ter/1 work-bonus amounts, and supplied local additions into one
+    module. It deliberately keeps existing public rule ids
+    in other modules unchanged and excludes dependants, joint assessment, other
+    income categories, actual-expense proof, replacement-income reductions,
+    regional reductions/credits, professional withholding tables, ONSS work-
+    bonus amount calculation, treaty allocation, and partial-year cases.
   source_verification:
     corpus_citation_paths:
+      - be/statute/loi/1981/06/29/1981001048/article/38
+      - be/statute/loi/1969/06/27/1969062710/article/17
+      - be/regulation/arrete/1969/11/28/1969112813/article/19
       - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-58
+      - be/statute/fisconetplus/cir92/revenus-2025/page-59
       - be/statute/fisconetplus/cir92/revenus-2025/page-120
       - be/statute/fisconetplus/cir92/revenus-2025/page-121
+      - be/statute/fisconetplus/cir92/revenus-2025/page-122
       - be/statute/fisconetplus/cir92/revenus-2025/page-181
       - be/statute/fisconetplus/cir92/revenus-2025/page-184
       - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/fisconetplus/cir92/revenus-2025/page-512
+      - be/statute/fisconetplus/cir92/revenus-2025/page-513
+      - be/statute/fisconetplus/cir92/revenus-2025/page-514
+      - be/statute/fisconetplus/cir92/revenus-2025/page-515
       - be/statute/fisconetplus/cir92/revenus-2025/page-686
       - be/statute/fisconetplus/cir92/revenus-2025/page-687
       - be/statute/fisconetplus/cir92/revenus-2025/page-688
     values:
       belgium_pit_pilot_article_51_employee_forfait_rate: "0.30"
-      belgium_pit_pilot_article_51_employee_and_business_profit_cap: 5930
-      belgium_pit_pilot_article_130_first_bracket_upper_threshold: 16320
-      belgium_pit_pilot_article_130_second_bracket_upper_threshold: 28800
-      belgium_pit_pilot_article_130_third_bracket_upper_threshold: 49840
       belgium_pit_pilot_article_130_first_bracket_rate: "0.25"
       belgium_pit_pilot_article_130_second_bracket_rate: "0.40"
       belgium_pit_pilot_article_130_third_bracket_rate: "0.45"
       belgium_pit_pilot_article_130_top_bracket_rate: "0.50"
-      belgium_pit_pilot_base_tax_free_amount: 10910
-      belgium_pit_pilot_article_134_first_tax_free_amount_threshold: 11460
-      belgium_pit_pilot_article_134_second_tax_free_amount_threshold: 16320
-      belgium_pit_pilot_article_134_third_tax_free_amount_threshold: 27190
-      belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold: 49840
       belgium_pit_pilot_article_134_first_tax_free_amount_rate: "0.25"
       belgium_pit_pilot_article_134_second_tax_free_amount_rate: "0.30"
       belgium_pit_pilot_article_134_third_tax_free_amount_rate: "0.40"
@@ -48,6 +53,222 @@ units:
     kind: currency
     minor_units: 2
 rules:
+  - name: belgium_pit_pilot_source_thousands_dot_hundreds_factor
+    kind: parameter
+    dtype: Decimal
+    source: Belgian indexed PIT source amounts use a dot as thousands separator
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          100
+  - name: belgium_pit_pilot_source_thousands_dot_tens_factor
+    kind: parameter
+    dtype: Decimal
+    source: Belgian indexed PIT source amounts use a dot as thousands separator
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10
+  - name: belgium_pit_pilot_source_percent_denominator
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 percentage notation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          100
+  - name: belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, source text states 5.930 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5
+  - name: belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 51, income year 2025, assessment year 2026, source text states 5.930 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          93
+  - name: belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 16.320 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          16
+  - name: belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 16.320 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          32
+  - name: belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 28.800 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          28
+  - name: belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 28.800 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          8
+  - name: belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 49.840 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          49
+  - name: belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 49.840 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          84
+  - name: belgium_pit_pilot_base_tax_free_amount_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 131, income year 2025, assessment year 2026, source text states 10.910 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10
+  - name: belgium_pit_pilot_base_tax_free_amount_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 131, income year 2025, assessment year 2026, source text states 10.910 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          91
+  - name: belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 11.460 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          11
+  - name: belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 11.460 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          46
+  - name: belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 16.320 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          16
+  - name: belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 16.320 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          32
+  - name: belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 27.190 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          27
+  - name: belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 27.190 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          19
+  - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 49.840 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          49
+  - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 49.840 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          84
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_integer_percent_part
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 289ter/1 states a 33,14 percent rate for work-bonus volet A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          33
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_fractional_percent_part
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 289ter/1 states a 33,14 percent rate for work-bonus volet A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          14
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_integer_percent_part
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 289ter/1 states a 52,54 percent rate for work-bonus volet B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          52
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_fractional_percent_part
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 289ter/1 states a 52,54 percent rate for work-bonus volet B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          54
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_thousands
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling source text states 1.540 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_trailing_group
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling source text states 1.540 euros
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          54
   - name: belgium_pit_pilot_article_51_employee_forfait_rate
     kind: parameter
     dtype: Rate
@@ -64,7 +285,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          5930
+          belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_130_first_bracket_upper_threshold
     kind: parameter
     dtype: Money
@@ -73,7 +294,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          16320
+          belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_130_second_bracket_upper_threshold
     kind: parameter
     dtype: Money
@@ -82,7 +303,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          28800
+          belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_hundreds_factor
   - name: belgium_pit_pilot_article_130_third_bracket_upper_threshold
     kind: parameter
     dtype: Money
@@ -91,7 +312,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          49840
+          belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_130_first_bracket_rate
     kind: parameter
     dtype: Rate
@@ -132,7 +353,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          10910
+          belgium_pit_pilot_base_tax_free_amount_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_base_tax_free_amount_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_134_first_tax_free_amount_threshold
     kind: parameter
     dtype: Money
@@ -141,7 +362,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          11460
+          belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_134_second_tax_free_amount_threshold
     kind: parameter
     dtype: Money
@@ -150,7 +371,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          16320
+          belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_134_third_tax_free_amount_threshold
     kind: parameter
     dtype: Money
@@ -159,7 +380,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          27190
+          belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold
     kind: parameter
     dtype: Money
@@ -168,7 +389,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          49840
+          belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
   - name: belgium_pit_pilot_article_134_first_tax_free_amount_rate
     kind: parameter
     dtype: Rate
@@ -217,6 +438,75 @@ rules:
       - effective_from: '2015-01-01'
         formula: |-
           0.01
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 289ter/1, work-bonus credit rate for volet A
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_289ter1_work_bonus_a_integer_percent_part / belgium_pit_pilot_source_percent_denominator + belgium_pit_pilot_article_289ter1_work_bonus_a_fractional_percent_part / belgium_pit_pilot_source_percent_denominator / belgium_pit_pilot_source_percent_denominator
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 289ter/1, work-bonus credit rate for volet B
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_289ter1_work_bonus_b_integer_percent_part / belgium_pit_pilot_source_percent_denominator + belgium_pit_pilot_article_289ter1_work_bonus_b_fractional_percent_part / belgium_pit_pilot_source_percent_denominator / belgium_pit_pilot_source_percent_denominator
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
+  - name: belgium_employee_social_security_contribution_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: 1969 workers social-security law and 28 November 1969 implementing royal decree, pilot worker-only contribution base bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_23_worker_remuneration
+  - name: belgium_employee_social_security_supplied_work_bonus_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Work-bonus reduction is not yet encoded in the worker-only pilot and is supplied as zero until the delegated reduction surface is wired
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+  - name: belgium_employee_social_security_supplied_other_worker_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Other worker-side social-security reductions are outside the worker-only pilot and supplied as zero
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+  - name: belgium_pit_pilot_worker_remuneration_after_employee_social_security
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 23 paragraph 2 professional-income netting after ordinary employee social-security contribution
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_23_worker_remuneration - belgium_employee_social_security_ordinary_worker_contribution)
   - name: belgium_pit_pilot_worker_forfait_professional_expenses
     kind: derived
     entity: Person
@@ -227,18 +517,18 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(belgium_pit_article_23_worker_remuneration * belgium_pit_pilot_article_51_employee_forfait_rate, belgium_pit_pilot_article_51_employee_and_business_profit_cap)
+          min(belgium_pit_pilot_worker_remuneration_after_employee_social_security * belgium_pit_pilot_article_51_employee_forfait_rate, belgium_pit_pilot_article_51_employee_and_business_profit_cap)
   - name: belgium_pit_pilot_worker_net_professional_income
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 23 paragraph 2, worker-only professional income after Article 51 employee forfait
+    source: CIR 1992 article 23 paragraph 2, worker-only professional income after employee social-security contribution and Article 51 employee forfait
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_article_23_worker_remuneration - belgium_pit_pilot_worker_forfait_professional_expenses)
+          max(0, belgium_pit_pilot_worker_remuneration_after_employee_social_security - belgium_pit_pilot_worker_forfait_professional_expenses)
   - name: belgium_pit_taxable_income
     kind: derived
     entity: Person
@@ -249,7 +539,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_worker_net_professional_income
+          max(0, belgium_pit_pilot_worker_net_professional_income)
   - name: belgium_pit_pilot_article_130_base_tax
     kind: derived
     entity: Person
@@ -315,6 +605,28 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           max(0, belgium_pit_pilot_article_130_base_tax - belgium_pit_pilot_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 289ter/1, worker-only pilot low-wage work-bonus credit from supplied work-bonus A and B amounts
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(max(0, belgium_pit_pilot_article_289ter1_work_bonus_a_amount) * belgium_pit_pilot_article_289ter1_work_bonus_a_rate + max(0, belgium_pit_pilot_article_289ter1_work_bonus_b_amount) * belgium_pit_pilot_article_289ter1_work_bonus_b_rate, belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling)
+  - name: belgium_pit_pilot_net_federal_tax_after_work_bonus_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 289ter/1, worker-only pilot federal tax after supplied work-bonus credit
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit)
   - name: belgium_pit_pilot_local_additional_tax_base
     kind: derived
     entity: Person
@@ -328,7 +640,7 @@ rules:
           if belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies:
               max(0, belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
           else:
-              max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+              max(0, belgium_pit_pilot_net_federal_tax_after_work_bonus_credit - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
   - name: belgium_pit_pilot_agglomeration_additional_tax_rate_after_cap
     kind: derived
     entity: Person
@@ -350,7 +662,7 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_pilot_local_additional_tax_base * belgium_pit_communal_additional_tax_rate + belgium_pit_pilot_local_additional_tax_base * belgium_pit_pilot_agglomeration_additional_tax_rate_after_cap
-  - name: belgium_pit_federal_and_local_tax_before_withholding
+  - name: belgium_pit_pilot_federal_and_local_tax_before_withholding
     kind: derived
     entity: Person
     dtype: Money
@@ -360,26 +672,4 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_net_federal_tax_after_tax_free_amount + belgium_pit_pilot_local_additional_tax
-  - name: belgium_pit_total_withholding_and_prepayments
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Settlement bridge for supplied professional withholding, prepayments, and other creditable tax in the worker-only pilot
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_professional_withholding + belgium_pit_prepayments + belgium_pit_other_withholding_or_creditable_tax
-  - name: belgium_pit_net_tax_due_after_withholding_and_prepayments
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Settlement bridge after composed worker-only pilot final PIT and supplied withholding/prepayments
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_federal_and_local_tax_before_withholding - belgium_pit_total_withholding_and_prepayments
+          belgium_pit_pilot_net_federal_tax_after_work_bonus_credit + belgium_pit_pilot_local_additional_tax
