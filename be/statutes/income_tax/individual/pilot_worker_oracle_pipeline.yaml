@@ -10,9 +10,10 @@ module:
     slice. It wires the ordinary Article 38 employee social-security
     contribution, Article 51 employee forfait, Article 6 taxable-income concept,
     Article 130 rate scale, Article 131 base tax-free amount, Article 134
-    tax-free-amount reduction, Article 289ter/1 work-bonus credit from the
-    encoded ONSS January and February-onward 2025 work-bonus A/B amounts, and
-    supplied Article 465/468 local additions into one
+    tax-free-amount reduction, the special-financing-law Article 5/2 autonomy
+    factor, Article 289ter/1 work-bonus credit from the encoded ONSS January
+    and February-onward 2025 work-bonus A/B amounts, and supplied Article
+    465/468 local additions into one
     module. It deliberately keeps existing public rule ids
     in other modules unchanged and excludes dependants, joint assessment, other
     income categories, actual-expense proof, replacement-income reductions,
@@ -45,16 +46,23 @@ module:
       - be/statute/fisconetplus/cir92/revenus-2025/page-686
       - be/statute/fisconetplus/cir92/revenus-2025/page-687
       - be/statute/fisconetplus/cir92/revenus-2025/page-688
+      - be/statute/loi/1989/01/16/1989021010/article/5-2
+      - be/regulation/arrete/2017/12/19/2017032216/article/1er
+      - be/regulation/arrete/2017/12/19/2017032216/article/2
     upstream_source_check:
       status: official_parameter_source
       checked_paths:
         - be/statute/loi/1999/12/20/2000022052/article/2
         - be/regulation/arrete/2000/01/17/2000022082/article/1
         - be/regulation/arrete/2024/03/05/2024002162/article/1er
+        - be/statute/loi/1989/01/16/1989021010/article/5-2
+        - be/regulation/arrete/2017/12/19/2017032216/article/1er
       rationale: |-
         The imported ONSS work-bonus formula is grounded in the statute and
         royal decree. The SPF Emploi salaires-minimums database is used only for
         the CCT 43 monthly RMMMG amount that those legal sources reference.
+        The PIT autonomy factor is grounded in the special financing law and
+        the royal decree fixing the definitive factor.
     values:
       belgium_pit_pilot_article_51_employee_forfait_rate: "0.30"
       belgium_pit_pilot_article_130_first_bracket_rate: "0.25"
@@ -67,6 +75,7 @@ module:
       belgium_pit_pilot_article_134_fourth_tax_free_amount_rate: "0.45"
       belgium_pit_pilot_article_134_top_tax_free_amount_rate: "0.50"
       belgium_pit_pilot_article_468_agglomeration_additional_tax_rate_cap: "0.01"
+      belgium_pit_pilot_article_5_2_autonomy_factor: "0.24957"
 units:
   - name: EUR
     kind: currency
@@ -457,6 +466,22 @@ rules:
       - effective_from: '2015-01-01'
         formula: |-
           0.01
+  - name: belgium_pit_pilot_article_5_2_autonomy_factor
+    kind: parameter
+    dtype: Rate
+    source: Special financing law article 5/2 and 19 December 2017 royal decree article 1, definitive autonomy factor applicable to income taxes from assessment year 2018
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          0.24957
+  - name: belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
+    kind: parameter
+    dtype: Rate
+    source: Special financing law article 5/2 defines reduced State tax as State tax less State tax multiplied by the autonomy factor
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          1 - belgium_pit_pilot_article_5_2_autonomy_factor
   - name: belgium_pit_pilot_article_289ter1_work_bonus_a_rate
     kind: parameter
     dtype: Rate
@@ -635,17 +660,28 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           min(max(0, belgium_worker_work_bonus_full_year_equal_monthly_a_amount) * belgium_pit_pilot_article_289ter1_work_bonus_a_rate + max(0, belgium_worker_work_bonus_full_year_equal_monthly_b_amount) * belgium_pit_pilot_article_289ter1_work_bonus_b_rate, belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling)
+  - name: belgium_pit_pilot_reduced_state_tax_after_autonomy_factor
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law article 5/2, worker-only pilot reduced State tax after the autonomy-factor reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount * belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor)
   - name: belgium_pit_pilot_net_federal_tax_after_work_bonus_credit
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 289ter/1, worker-only pilot federal tax after work-bonus credit
+    source: Special financing law article 5/2 and CIR 1992 article 289ter/1, worker-only pilot reduced State tax after work-bonus credit
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit)
+          max(0, belgium_pit_pilot_reduced_state_tax_after_autonomy_factor - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit)
   - name: belgium_pit_pilot_local_additional_tax_base
     kind: derived
     entity: Person
