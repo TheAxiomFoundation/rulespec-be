@@ -3,10 +3,13 @@ module:
   summary: |-
     The Flemish Social Protection decree requires people affiliated with a
     care fund to pay an annual premium from the age determined by the Flemish
-    Government. The implementing order sets the 2026 annual premium at EUR 100,
-    or EUR 35 for users entitled to increased health-insurance reimbursement
-    on 1 January of the previous calendar year. This module encodes the
-    household-facing annual premium for 2026. It excludes arrears allocation,
+    Government. The implementing order sets the 2022-2025 base premium at
+    EUR 54, or EUR 27 for users entitled to increased health-insurance
+    reimbursement, with annual health-index adjustment from 2023. It sets the
+    2026 annual premium at EUR 100, or EUR 35 for users entitled to increased
+    health-insurance reimbursement on 1 January of the previous calendar year.
+    This module encodes the household-facing annual premium for 2025 and 2026.
+    It excludes arrears allocation,
     payment collection, administrative fines after repeated non-payment,
     voluntary Brussels affiliation routing, and downstream care-budget
     entitlement sanctions.
@@ -14,9 +17,25 @@ module:
     corpus_citation_paths:
       - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-22
       - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-23
+      - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/block-26
       - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25
+      - be/guidance/statbel/consumer-price-index-and-health-index/sheet-1
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/block-26
+      rationale: |-
+        The implementing order sets the premium base amounts and requires
+        health-index adjustment. Statbel is Belgium's official statistical
+        source for the April health-index values used in that statutory
+        formula.
     values:
       flanders_social_protection_premium_start_age_years: 26
+      flanders_social_protection_article_68_base_ordinary_annual_premium_2022_2025: 54
+      flanders_social_protection_article_68_base_reduced_annual_premium_2022_2025: 27
+      flanders_social_protection_article_68_statbel_april_2024_health_index_2013: 130.85
+      flanders_social_protection_article_68_statbel_april_2020_health_index_2013: 110.22
+      flanders_social_protection_article_68_premium_year_2025: 2025
       flanders_social_protection_ordinary_annual_premium_2026: 100
       flanders_social_protection_reduced_annual_premium_2026: 35
 units:
@@ -29,7 +48,7 @@ rules:
     dtype: Count
     source: Flemish Social Protection public rule for annual premium from age 26, implementing Decree article 45
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           26
   - name: flanders_social_protection_premium_age_threshold_exclusive
@@ -37,16 +56,84 @@ rules:
     dtype: Count
     source: Flemish Social Protection public rule for annual premium from older than 25 years, implementing Decree article 45
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           flanders_social_protection_premium_start_age_years - 1
+  - name: flanders_social_protection_article_68_base_ordinary_annual_premium_2022_2025
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 68, ordinary annual premium base amount for 2022 through 2025 before health-index adjustment
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          54
+  - name: flanders_social_protection_article_68_base_reduced_annual_premium_2022_2025
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 68, reduced annual premium base amount for 2022 through 2025 before health-index adjustment
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          27
+  - name: flanders_social_protection_article_68_2025_health_index_ratio
+    kind: parameter
+    dtype: Rate
+    source: Flemish Government implementing order article 68 health-index adjustment for calendar year 2025, using Statbel April 2024 health index divided by April 2020 health index on base year 2013
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          flanders_social_protection_article_68_statbel_april_2024_health_index_2013 / flanders_social_protection_article_68_statbel_april_2020_health_index_2013
+  - name: flanders_social_protection_article_68_statbel_april_2024_health_index_2013
+    kind: parameter
+    dtype: Rate
+    source: Statbel consumer price index and health index open data, April 2024 health index on base year 2013
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          130.85
+  - name: flanders_social_protection_article_68_statbel_april_2020_health_index_2013
+    kind: parameter
+    dtype: Rate
+    source: Statbel consumer price index and health index open data, April 2020 health index on base year 2013
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          110.22
+  - name: flanders_social_protection_article_68_ordinary_annual_premium_2025
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 68, ordinary annual premium for 2025 after health-index adjustment and nearest-euro rounding
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          floor(flanders_social_protection_article_68_base_ordinary_annual_premium_2022_2025 * flanders_social_protection_article_68_2025_health_index_ratio + 0.5)
+  - name: flanders_social_protection_article_68_reduced_annual_premium_2025
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 68, reduced annual premium for 2025 after health-index adjustment and nearest-euro rounding
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          floor(flanders_social_protection_article_68_base_reduced_annual_premium_2022_2025 * flanders_social_protection_article_68_2025_health_index_ratio + 0.5)
+  - name: flanders_social_protection_article_68_premium_year_2025
+    kind: parameter
+    dtype: Integer
+    source: Calendar year for the Flemish Government implementing order article 68 indexed 2025 annual premium
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2025
   - name: flanders_social_protection_ordinary_annual_premium_2026
     kind: parameter
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 68, ordinary annual premium for 2026
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           100
   - name: flanders_social_protection_reduced_annual_premium_2026
@@ -55,9 +142,37 @@ rules:
     unit: EUR
     source: Flemish Government implementing order article 68, reduced annual premium for 2026
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           35
+  - name: flanders_social_protection_ordinary_annual_premium
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 68, selected ordinary annual premium by premium year
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_social_protection_premium_year == flanders_social_protection_article_68_premium_year_2025:
+              flanders_social_protection_article_68_ordinary_annual_premium_2025
+          else:
+              flanders_social_protection_ordinary_annual_premium_2026
+  - name: flanders_social_protection_reduced_annual_premium
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 68, selected reduced annual premium by premium year
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_social_protection_premium_year == flanders_social_protection_article_68_premium_year_2025:
+              flanders_social_protection_article_68_reduced_annual_premium_2025
+          else:
+              flanders_social_protection_reduced_annual_premium_2026
   - name: flanders_social_protection_base_annual_premium
     kind: derived
     entity: Person
@@ -66,12 +181,12 @@ rules:
     unit: EUR
     source: Flemish Government implementing order article 68
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           if flanders_social_protection_has_increased_health_insurance_reimbursement_on_previous_january_1:
-              flanders_social_protection_reduced_annual_premium_2026
+              flanders_social_protection_reduced_annual_premium
           else:
-              flanders_social_protection_ordinary_annual_premium_2026
+              flanders_social_protection_ordinary_annual_premium
   - name: flanders_social_protection_annual_premium
     kind: derived
     entity: Person
@@ -80,7 +195,7 @@ rules:
     unit: EUR
     source: Flemish Social Protection Decree articles 42 and 45 and implementing order article 68
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           if flanders_social_protection_is_subject_to_premium:
               if flanders_social_protection_age_years > flanders_social_protection_premium_age_threshold_exclusive:
