@@ -3,14 +3,7 @@
   "jurisdiction": "be",
   "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
   "scope": "belgium_tax_benefit",
-  "scope_benchmarks": [
-    {
-      "id": "beamm-non-oracle-scope-benchmark",
-      "path": "data/coverage/beamm-non-oracle-scope-benchmark.json",
-      "role": "coverage_benchmark_only",
-      "not_oracle": true
-    }
-  ],
+  "scope_benchmarks": [],
   "jurisdiction_layers": {
     "national": {
       "namespace": "be",
@@ -522,11 +515,11 @@
       "components": [
         "regional routing",
         "relationship classes",
-    "taxable estate and beneficiary acquisition bases",
-    "progressive rate schedules",
-    "Walloon future 2028 succession-duty table",
-    "exemptions and reduced rates",
-    "estate and household-level transaction inputs"
+        "taxable estate and beneficiary acquisition bases",
+        "progressive rate schedules",
+        "Walloon future 2028 succession-duty table",
+        "exemptions and reduced rates",
+        "estate and household-level transaction inputs"
       ],
       "status": "encoded",
       "priority": 4
@@ -552,12 +545,12 @@
         "regional routing",
         "movable and immovable gift classification",
         "relationship classes",
-    "progressive real-property gift rates",
-    "flat movable gift rates",
-    "Walloon future 2028 immovable-gift table",
-    "Brussels article-131bis successoral-pact movable-gift exemption",
-    "Brussels and Walloon movable-gift donor-death condition or term exclusions",
-    "exemptions and reduced rates"
+        "progressive real-property gift rates",
+        "flat movable gift rates",
+        "Walloon future 2028 immovable-gift table",
+        "Brussels article-131bis successoral-pact movable-gift exemption",
+        "Brussels and Walloon movable-gift donor-death condition or term exclusions",
+        "exemptions and reduced rates"
       ],
       "status": "encoded",
       "priority": 4

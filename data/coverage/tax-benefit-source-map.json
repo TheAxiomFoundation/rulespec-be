@@ -3,14 +3,7 @@
   "jurisdiction": "be",
   "focus": "Belgium tax-benefit surface with federal, Brussels, Flemish, Walloon, and community-layer coverage",
   "scope": "belgium_tax_benefit",
-  "scope_benchmarks": [
-    {
-      "id": "beamm-non-oracle-scope-benchmark",
-      "path": "data/coverage/beamm-non-oracle-scope-benchmark.json",
-      "role": "coverage_benchmark_only",
-      "not_oracle": true
-    }
-  ],
+  "scope_benchmarks": [],
   "jurisdiction_layers": {
     "national": {
       "namespace": "be",
@@ -675,7 +668,7 @@
           "oracle_checks": [
             "openfisca-belgium:income_tax",
             "fantasi:personal_income_tax",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -732,7 +725,7 @@
           "oracle_checks": [
             "fantasi:personal_income_tax",
             "belmod:personal_income_tax",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -962,7 +955,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -985,7 +978,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -997,7 +990,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1009,7 +1002,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1023,7 +1016,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1035,7 +1028,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1051,7 +1044,7 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:social_security_contributions",
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1063,7 +1056,7 @@
             "Flemish Government implementing order article 68 for 2026 ordinary and reduced premium amounts"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -1183,7 +1176,7 @@
             "LGAF coordinated-law amount schedule now supplies the family-allowance amount interface"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1195,7 +1188,7 @@
             "LGAF current consolidated Justel Articles 40, 41, 42, 42bis, 44, 44ter, 50bis, 73bis, 73quater, and 76bis after upstream Moniteur identification"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -1309,7 +1302,7 @@
             "2019 Brussels family-benefits ordinance articles 4 and 25 after upstream Moniteur identification"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1320,7 +1313,7 @@
             "Encoded Brussels, Flemish, Walloon, and German-speaking Community family-benefit amount and core eligibility surfaces"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -1402,7 +1395,7 @@
             "2018 Flemish Groeipakket decree article 8 official article body"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -1485,7 +1478,7 @@
             "2018 Walloon family-benefit decree articles 4, 5, and 6 official article bodies"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -1584,7 +1577,7 @@
             "German-speaking Community decree of 23 April 2018 articles 8, 15, 17, 19, 21, 23, 25, 30, 34, and 38 official Moniteur publication plus current Justel consolidation locator"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1595,7 +1588,7 @@
             "German-speaking Community program decree of 22 December 2025 article 17 indexation-freeze amendment and article 18 annual-supplement insertion, official Moniteur publication"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -1606,7 +1599,7 @@
             "German-speaking Community decree of 23 April 2018 articles 6 and 9 through 14 official Moniteur publication plus current Justel consolidation locator"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -2006,7 +1999,7 @@
             "1994 coordinated health insurance law article 131 thirty-day holder/incapacity continuity condition"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         },
@@ -2186,7 +2179,7 @@
           "oracle_checks": [
             "openfisca-belgium:disability_allowances",
             "belmod:disability_allowances",
-            "household-level external calculator or executable model still required; BEAMM is not an oracle"
+            "household-level external calculator or executable model still required"
           ],
           "status": "encoded"
         }
@@ -2414,7 +2407,7 @@
             "26 September 1996 Brussels social-housing rental Government order"
           ],
           "oracle_checks": [
-            "household-level oracle required; BEAMM is not an oracle"
+            "household-level oracle required"
           ]
         }
       ]
@@ -2713,7 +2706,7 @@
             "Encoded Flemish, Brussels-Capital, and Walloon inheritance-tax statutory rate schedules"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -2847,7 +2840,7 @@
             "Encoded Flemish, Brussels-Capital, and Walloon gift-tax statutory rate schedules"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -3177,7 +3170,7 @@
             "Encoded Brussels, Flemish, and Walloon passenger-car annual circulation-tax and entry-into-service tax surfaces"
           ],
           "oracle_checks": [
-            "household-level external calculator or model still required; BEAMM is not an oracle"
+            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }

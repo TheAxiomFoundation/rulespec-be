@@ -1,21 +1,25 @@
 format: rulespec/v1
 imports:
   - be:statutes/social_security/workers/article_38_ordinary_worker_rates#belgium_article_38_section_2_ordinary_worker_total_contribution_rate
+  - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction
 module:
   summary: |-
     This module bridges the ordinary employee social-security contribution for
     workers. It applies the Article 38 section 2 statutory worker rate from the
     29 June 1981 social-security principles law to a supplied contribution base
     determined under the 27 June 1969 workers law and its 28 November 1969
-    implementing decree, then applies supplied worker-side reductions. It leaves
-    ONSS current effective tables, work bonus calculation, student/flexi-job
-    categories, quarterly declaration mechanics, and employer contributions to
-    separate surfaces.
+    implementing decree, then applies the encoded work-bonus reduction and
+    supplied worker-side reductions. It leaves the full ONSS remuneration-base
+    table, student/flexi-job categories, quarterly declaration mechanics,
+    incomplete or part-time monthly work-bonus mechanics, and employer
+    contributions to separate surfaces.
   source_verification:
     corpus_citation_paths:
       - be/statute/loi/1981/06/29/1981001048/article/38
       - be/statute/loi/1969/06/27/1969062710/article/17
       - be/regulation/arrete/1969/11/28/1969112813/article/19
+      - be/statute/loi/1999/12/20/2000022052/article/2
+      - be/regulation/arrete/2000/01/17/2000022082/article/1
 units:
   - name: EUR
     kind: currency
@@ -43,17 +47,53 @@ rules:
       - effective_from: '2003-01-01'
         formula: |-
           max(0, belgium_employee_social_security_supplied_work_bonus_reduction + belgium_employee_social_security_supplied_other_worker_reduction)
+  - name: belgium_employee_social_security_article_38_selected_work_bonus_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Computed work-bonus reduction, with a positive supplied amount retained as an override for payroll cases outside the encoded full-year equal-month slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_employee_social_security_supplied_work_bonus_reduction > 0:
+              belgium_employee_social_security_supplied_work_bonus_reduction
+          else:
+              belgium_worker_work_bonus_full_year_equal_monthly_total_reduction
+  - name: belgium_employee_social_security_article_38_total_worker_reduction
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Worker-side social-security reductions after adding the encoded work bonus and supplied non-work-bonus reductions, limited to personal contributions due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(max(0, belgium_employee_social_security_article_38_contribution_before_reductions), max(0, belgium_employee_social_security_article_38_selected_work_bonus_reduction + belgium_employee_social_security_supplied_other_worker_reduction))
+  - name: belgium_employee_social_security_article_38_contribution_after_worker_reductions
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Law of 29 June 1981 article 38 worker contribution after worker-side reductions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_employee_social_security_article_38_contribution_before_reductions - belgium_employee_social_security_article_38_total_worker_reduction)
   - name: belgium_employee_social_security_article_38_contribution_after_supplied_reductions
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: Law of 29 June 1981 article 38 worker contribution after supplied worker reductions
+    source: Compatibility alias for the ordinary worker contribution after worker-side reductions
     versions:
       - effective_from: '2003-01-01'
         formula: |-
-          max(0, belgium_employee_social_security_article_38_contribution_before_reductions - belgium_employee_social_security_article_38_total_supplied_worker_reduction)
+          belgium_employee_social_security_article_38_contribution_after_worker_reductions
   - name: belgium_employee_social_security_ordinary_worker_contribution
     kind: derived
     entity: Person
@@ -64,4 +104,4 @@ rules:
     versions:
       - effective_from: '2003-01-01'
         formula: |-
-          belgium_employee_social_security_article_38_contribution_after_supplied_reductions
+          belgium_employee_social_security_article_38_contribution_after_worker_reductions

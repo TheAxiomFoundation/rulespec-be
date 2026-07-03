@@ -53,6 +53,24 @@
     be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_base: 4000
     be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_contribution: 500
 
+- name: wijninckx_base_zero_without_objective_excess
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_legal_pension_and_converted_complementary_reserves: 90000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_pension_objective: 100000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_current_year_reserves: 50000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_prior_year_reserves_capitalized: 45000
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_wijninckx_organizer_share_of_reserve_variation: 4000
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_objective_excess: 0
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_reserve_variation: 5000
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_base: 0
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3terdecies_wijninckx_contribution: 0
+
 - name: company_car_solidarity_uses_indexed_old_vehicle_formula
   period:
     period_kind: custom
@@ -122,6 +140,19 @@
   output:
     be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_economic_unemployment_rate_factor: 20
     be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_economic_unemployment_quarterly_contribution: 100
+
+- name: economic_unemployment_rate_zero_at_first_threshold
+  period:
+    period_kind: custom
+    name: calendar_quarter
+    start: '2026-04-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_economic_unemployment_days_four_quarter_sum: 110
+    be:statutes/social_security/chapter_10_special_contributions#input.belgium_economic_unemployment_days_current_quarter: 5
+  output:
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_economic_unemployment_rate_factor: 0
+    be:statutes/social_security/chapter_10_special_contributions#belgium_article_38_section_3sexies_economic_unemployment_quarterly_contribution: 0
 
 - name: construction_economic_unemployment_annual_formula
   period:

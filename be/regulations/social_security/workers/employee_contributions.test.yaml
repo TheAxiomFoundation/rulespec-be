@@ -8,10 +8,36 @@
     be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_contribution_base: 50000
     be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_work_bonus_reduction: 0
     be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_other_worker_reduction: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions: 6535
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_supplied_worker_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_selected_work_bonus_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_worker_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_worker_reductions: 6535
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_supplied_reductions: 6535
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 6535
+
+- name: article_38_employee_contribution_applies_computed_work_bonus
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_contribution_base: 30000
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_work_bonus_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_other_worker_reduction: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions: 3921
+    be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_total_reduction: 2329.65
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_supplied_worker_reduction: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_selected_work_bonus_reduction: 2329.65
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_worker_reduction: 2329.65
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_worker_reductions: 1591.35
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_supplied_reductions: 1591.35
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 1591.35
 
 - name: article_38_employee_contribution_applies_supplied_reductions_with_floor
   period:
@@ -23,8 +49,12 @@
     be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_contribution_base: 12000
     be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_work_bonus_reduction: 1000
     be:regulations/social_security/workers/employee_contributions#input.belgium_employee_social_security_supplied_other_worker_reduction: 700
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions: 1568.4
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_supplied_worker_reduction: 1700
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_selected_work_bonus_reduction: 1000
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_total_worker_reduction: 1568.4
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_worker_reductions: 0
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_after_supplied_reductions: 0
     be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 0
