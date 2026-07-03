@@ -9,8 +9,11 @@
     be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_actual_multiple_birth: false
     be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_multiple_birth_requested_extension_days: 0
     be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_newborn_hospitalization_days_after_birth: 0
+    be:statutes/health_insurance/maternity/protection_periods#input.belgium_maternity_gestation_days_from_conception: 0
   output:
     be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_prenatal_earliest_start_days_before_birth: 42
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_multiple_birth_selected_extension_days: 0
+    be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_stillbirth_minimum_gestation_threshold_met: 0
     be:statutes/health_insurance/maternity/protection_periods#belgium_maternity_article_114_postnatal_rest_days: 63
 
 - name: multiple_birth_extension_and_hospitalization_extension

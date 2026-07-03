@@ -32,12 +32,162 @@
   output:
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_article_1_person_condition_met: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_child_residence_condition_met: 1
-    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_quarterly_ceiling: 3694.872
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_base_conditions_met: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_monthly_allowance_claim_timely: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_regular_monthly_allowance_eligible: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_regular_monthly_allowance_amount: 210
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_special_monthly_allowance_eligible: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_special_monthly_allowance_amount: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_advance_pending_condition: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_advance_payable_amount: 0
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_selected_monthly_cash_amount: 210
+
+- name: federal_guaranteed_family_benefits_resource_ceiling_without_exemption
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_person_in_charge_has_social_integration_right: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_guaranteed_elderly_income_exemption_conditions_met: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_resource_current_index_factor: 1
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_resource_ceiling_qualifying_child_count: 2
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_quarterly_ceiling: 3694.872
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_test_exempt: 0
+
+- name: principal_maintenance_zero_when_share_at_half_and_no_registration_presumption
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_household_registration_presumption: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_person_in_charge_maintenance_share: 0.5
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_person_principally_maintains_child: 0
+
+- name: article_1_person_condition_zero_when_person_in_charge_not_resident
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_household_registration_presumption: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_person_in_charge_maintenance_share: 0.6
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_person_in_charge_resides_in_belgium: false
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_article_1_person_condition_met: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_advance_prerequisites_met: 0
+
+- name: foreign_residence_condition_zero_for_unauthorized_foreign_child
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_is_foreign_national: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_foreign_residence_authorized: false
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_child_foreign_residence_condition_met: 0
+
+- name: child_residence_condition_zero_without_effective_belgium_residence
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_effectively_resides_in_belgium: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_prior_residence_or_family_link_condition_met: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_is_foreign_national: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_foreign_residence_authorized: false
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_child_residence_condition_met: 0
+
+- name: other_benefits_condition_zero_when_complete_month_benefits_reach_reference
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_receives_other_family_benefits_for_complete_month: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_other_family_benefits_monthly_amount: 200
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_monthly_reference_amount: 200
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_other_benefits_condition_met: 0
+
+- name: monthly_allowance_claim_timely_zero_after_retroactive_claim_limit
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_allowance_months_since_claimable_start: 13
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_monthly_allowance_claim_timely: 0
+
+- name: birth_event_condition_zero_for_short_non_live_birth
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_born_alive: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_pregnancy_duration_days: 179
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_pregnancy_completed_months: 5
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_months_before_probable_birth_for_request: 2
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_birth_event_condition_met: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_birth_request_before_probable_birth_allowed: 0
+
+- name: birth_allowance_claim_timely_zero_after_claim_limit
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_birth_months_since_birth: 13
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_birth_allowance_claim_timely: 0
+
+- name: birth_allowance_placement_condition_zero_when_public_expense_without_discretion
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_placed_at_public_expense: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_birth_allowance_special_discretion_applies: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_birth_allowance_conditions_met: false
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_birth_allowance_placement_condition_met: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_birth_allowance_payable_amount: 0
+
+- name: adoption_premium_zero_when_late_and_duplicate
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_adoption_months_since_adoption: 13
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_adoption_premium_already_paid_for_child: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_birth_allowance_received_by_adopter_household_for_same_child: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_adoption_premium_conditions_met: true
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_adoption_premium_claim_timely: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_adoption_premium_not_duplicate: 0
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_adoption_premium_payable_amount: 0
 
 - name: household_registration_and_social_integration_exemption_can_satisfy_conditions
   period:
@@ -68,8 +218,19 @@
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_person_principally_maintains_child: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_child_foreign_residence_condition_met: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_other_benefits_condition_met: 1
-    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_test_exempt: 1
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_regular_monthly_allowance_amount: 50
+
+- name: social_integration_right_exempts_resource_test
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_person_in_charge_has_social_integration_right: true
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_guaranteed_elderly_income_exemption_conditions_met: false
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_test_exempt: 1
 
 - name: resources_above_ceiling_block_regular_monthly_allowance
   period:
@@ -97,9 +258,23 @@
     be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_child_placed_at_public_expense: false
     be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_supplied_regular_monthly_allowance_amount: 210
   output:
-    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_condition_met: 0
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_base_conditions_met: 0
     be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_regular_monthly_allowance_amount: 0
+
+- name: resources_above_ceiling_fail_resource_condition
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2018-06-01'
+    end: '2018-06-30'
+  input:
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_person_in_charge_has_social_integration_right: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_guaranteed_elderly_income_exemption_conditions_met: false
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_resource_current_index_factor: 1
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_resource_ceiling_qualifying_child_count: 1
+    be:statutes/family_benefits/guaranteed_family_benefits#input.belgium_guaranteed_family_benefits_countable_quarterly_resources: 4000
+  output:
+    be:statutes/family_benefits/guaranteed_family_benefits#belgium_guaranteed_family_benefits_resource_condition_met: 0
 
 - name: public_placement_blocks_regular_allowance_but_can_pay_special_allowance
   period:

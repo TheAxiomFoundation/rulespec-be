@@ -1,410 +1,611 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Flemish Groeipakket decree articles 4, 9, 11, 13, 15, 16, 17, 18,
+  summary: 'Flemish Groeipakket decree articles 4, 9, 11, 13, 15, 16, 17, 18,
+
     and 19-22 set the original statutory amount surfaces for family-policy
+
     allowances. This module encodes those amount surfaces and simple selectors;
+
     delegated eligibility tests, later indexation, and later amendment history
-    remain separate surfaces.
+
+    remain separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/4
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/11
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/15
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/17
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/11
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/15
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/16
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/17
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/18
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
+    - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
     values:
-      flanders_family_benefits_index_pivot_2013: "103.04"
-      flanders_family_benefits_birth_grant_amount: "1100"
-      flanders_family_benefits_adoption_grant_amount: "1100"
-      flanders_family_benefits_base_monthly_amount: "160"
-      flanders_family_benefits_one_parent_orphan_supplement_rate: "0.50"
-      flanders_family_benefits_double_orphan_supplement_rate: "1.00"
-      flanders_family_benefits_disability_tier_1_monthly_amount: "80.75"
-      flanders_family_benefits_disability_tier_2_monthly_amount: "107.55"
-      flanders_family_benefits_disability_tier_3_monthly_amount: "250.97"
-      flanders_family_benefits_disability_tier_4_monthly_amount: "414.28"
-      flanders_family_benefits_disability_tier_5_monthly_amount: "471.07"
-      flanders_family_benefits_disability_tier_6_monthly_amount: "504.71"
-      flanders_family_benefits_disability_tier_7_monthly_amount: "538.36"
-      flanders_family_benefits_foster_care_monthly_amount: "61.79"
-      flanders_family_benefits_social_low_income_small_family_monthly_amount: "50"
-      flanders_family_benefits_social_low_income_large_family_monthly_amount: "80"
-      flanders_family_benefits_social_middle_income_large_family_monthly_amount: "60"
-      flanders_family_benefits_social_low_income_threshold: "30386.52"
-      flanders_family_benefits_social_middle_income_threshold: "60000"
-      flanders_family_benefits_participation_under_4_annual_amount: "20"
-      flanders_family_benefits_participation_4_to_10_annual_amount: "35"
-      flanders_family_benefits_participation_11_to_16_annual_amount: "50"
-      flanders_family_benefits_participation_17_to_24_annual_amount: "60"
+      flanders_family_benefits_index_pivot_2013: '103.04'
+      flanders_family_benefits_birth_grant_amount: '1100'
+      flanders_family_benefits_adoption_grant_amount: '1100'
+      flanders_family_benefits_base_monthly_amount: '160'
+      flanders_family_benefits_one_parent_orphan_supplement_rate: '0.50'
+      flanders_family_benefits_double_orphan_supplement_rate: '1.00'
+      flanders_family_benefits_disability_tier_1_monthly_amount: '80.75'
+      flanders_family_benefits_disability_tier_2_monthly_amount: '107.55'
+      flanders_family_benefits_disability_tier_3_monthly_amount: '250.97'
+      flanders_family_benefits_disability_tier_4_monthly_amount: '414.28'
+      flanders_family_benefits_disability_tier_5_monthly_amount: '471.07'
+      flanders_family_benefits_disability_tier_6_monthly_amount: '504.71'
+      flanders_family_benefits_disability_tier_7_monthly_amount: '538.36'
+      flanders_family_benefits_foster_care_monthly_amount: '61.79'
+      flanders_family_benefits_social_low_income_small_family_monthly_amount: '50'
+      flanders_family_benefits_social_low_income_large_family_monthly_amount: '80'
+      flanders_family_benefits_social_middle_income_large_family_monthly_amount: '60'
+      flanders_family_benefits_social_low_income_threshold: '30386.52'
+      flanders_family_benefits_social_middle_income_threshold: '60000'
+      flanders_family_benefits_participation_under_4_annual_amount: '20'
+      flanders_family_benefits_participation_4_to_10_annual_amount: '35'
+      flanders_family_benefits_participation_11_to_16_annual_amount: '50'
+      flanders_family_benefits_participation_17_to_24_annual_amount: '60'
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: flanders_family_benefits_index_pivot_2013
-    kind: parameter
-    dtype: Decimal
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 4 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          103.04
-  - name: flanders_family_benefits_birth_grant_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 9 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          1100
-  - name: flanders_family_benefits_adoption_grant_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 11 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          1100
-  - name: flanders_family_benefits_base_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 13
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          160
-  - name: flanders_family_benefits_one_parent_orphan_supplement_rate
-    kind: parameter
-    dtype: Rate
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 15 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          0.50
-  - name: flanders_family_benefits_double_orphan_supplement_rate
-    kind: parameter
-    dtype: Rate
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 15 section 2
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          1.00
-  - name: flanders_family_benefits_disability_tier_1_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          80.75
-  - name: flanders_family_benefits_disability_tier_2_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          107.55
-  - name: flanders_family_benefits_disability_tier_3_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          250.97
-  - name: flanders_family_benefits_disability_tier_4_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          414.28
-  - name: flanders_family_benefits_disability_tier_5_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          471.07
-  - name: flanders_family_benefits_disability_tier_6_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          504.71
-  - name: flanders_family_benefits_disability_tier_7_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16 section 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          538.36
-  - name: flanders_family_benefits_foster_care_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 17
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          61.79
-  - name: flanders_family_benefits_social_low_income_threshold
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          30386.52
-  - name: flanders_family_benefits_social_middle_income_threshold
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          60000
-  - name: flanders_family_benefits_social_low_income_small_family_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18 item 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          50
-  - name: flanders_family_benefits_social_low_income_large_family_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18 item 2
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          80
-  - name: flanders_family_benefits_social_middle_income_large_family_monthly_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18 item 3
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          60
-  - name: flanders_family_benefits_participation_under_4_annual_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 19
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          20
-  - name: flanders_family_benefits_participation_4_to_10_annual_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 20
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          35
-  - name: flanders_family_benefits_participation_11_to_16_annual_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 21
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          50
-  - name: flanders_family_benefits_participation_17_to_24_annual_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 22
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          60
-  - name: flanders_family_benefits_orphan_supplement_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 15
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if flanders_family_benefits_orphan_status_code == 1:
-              flanders_family_benefits_base_monthly_amount * flanders_family_benefits_one_parent_orphan_supplement_rate
-          else:
-              if flanders_family_benefits_orphan_status_code == 2:
-                  flanders_family_benefits_base_monthly_amount * flanders_family_benefits_double_orphan_supplement_rate
-              else:
-                  0
-  - name: flanders_family_benefits_disability_supplement_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 16
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if flanders_family_benefits_disability_tier == 1:
-              flanders_family_benefits_disability_tier_1_monthly_amount
-          else:
-              if flanders_family_benefits_disability_tier == 2:
-                  flanders_family_benefits_disability_tier_2_monthly_amount
-              else:
-                  if flanders_family_benefits_disability_tier == 3:
-                      flanders_family_benefits_disability_tier_3_monthly_amount
-                  else:
-                      if flanders_family_benefits_disability_tier == 4:
-                          flanders_family_benefits_disability_tier_4_monthly_amount
-                      else:
-                          if flanders_family_benefits_disability_tier == 5:
-                              flanders_family_benefits_disability_tier_5_monthly_amount
-                          else:
-                              if flanders_family_benefits_disability_tier == 6:
-                                  flanders_family_benefits_disability_tier_6_monthly_amount
-                              else:
-                                  if flanders_family_benefits_disability_tier == 7:
-                                      flanders_family_benefits_disability_tier_7_monthly_amount
-                                  else:
-                                      0
-  - name: flanders_family_benefits_foster_care_supplement_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 17
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if flanders_family_benefits_in_qualifying_foster_care:
-              flanders_family_benefits_foster_care_monthly_amount
-          else:
-              0
-  - name: flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if flanders_family_benefits_family_annual_income <= flanders_family_benefits_social_low_income_threshold:
-              if flanders_family_benefits_qualifying_children_in_family_count <= 2:
-                  flanders_family_benefits_social_low_income_small_family_monthly_amount
-              else:
-                  flanders_family_benefits_social_low_income_large_family_monthly_amount
-          else:
-              if flanders_family_benefits_family_annual_income <= flanders_family_benefits_social_middle_income_threshold:
-                  if flanders_family_benefits_qualifying_children_in_family_count > 2:
-                      flanders_family_benefits_social_middle_income_large_family_monthly_amount
-                  else:
-                      0
-              else:
-                  0
-  - name: flanders_family_benefits_social_supplement_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, article 18
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if flanders_family_benefits_equal_shared_housing:
-              flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount * 0.5
-          else:
-              flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount
-  - name: flanders_family_benefits_universal_participation_annual_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles 19 to 22
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if flanders_family_benefits_age_on_december_31_years < 0:
-              0
-          else:
-              if flanders_family_benefits_age_on_december_31_years < 4:
-                  flanders_family_benefits_participation_under_4_annual_amount
-              else:
-                  if flanders_family_benefits_age_on_december_31_years < 11:
-                      flanders_family_benefits_participation_4_to_10_annual_amount
-                  else:
-                      if flanders_family_benefits_age_on_december_31_years < 17:
-                          flanders_family_benefits_participation_11_to_16_annual_amount
-                      else:
-                          if flanders_family_benefits_age_on_december_31_years < 25:
-                              flanders_family_benefits_participation_17_to_24_annual_amount
-                          else:
-                              0
-  - name: flanders_family_benefits_selected_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles 13 and 15 to 18
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          flanders_family_benefits_base_monthly_amount + flanders_family_benefits_orphan_supplement_monthly_amount + flanders_family_benefits_disability_supplement_monthly_amount + flanders_family_benefits_foster_care_supplement_monthly_amount + flanders_family_benefits_social_supplement_monthly_amount
+- name: flanders_family_benefits_index_pivot_2013
+  kind: parameter
+  dtype: Decimal
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    4 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '103.04'
+- name: flanders_family_benefits_birth_grant_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    9 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '1100'
+- name: flanders_family_benefits_adoption_grant_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    11 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '1100'
+- name: flanders_family_benefits_base_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    13
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '160'
+- name: flanders_family_benefits_one_parent_orphan_supplement_rate
+  kind: parameter
+  dtype: Rate
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    15 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '0.50'
+- name: flanders_family_benefits_double_orphan_supplement_rate
+  kind: parameter
+  dtype: Rate
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    15 section 2
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '1.00'
+- name: flanders_family_benefits_disability_tier_1_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '80.75'
+- name: flanders_family_benefits_disability_tier_2_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '107.55'
+- name: flanders_family_benefits_disability_tier_3_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '250.97'
+- name: flanders_family_benefits_disability_tier_4_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '414.28'
+- name: flanders_family_benefits_disability_tier_5_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '471.07'
+- name: flanders_family_benefits_disability_tier_6_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '504.71'
+- name: flanders_family_benefits_disability_tier_7_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16 section 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '538.36'
+- name: flanders_family_benefits_foster_care_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    17
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '61.79'
+- name: flanders_family_benefits_social_low_income_threshold
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '30386.52'
+- name: flanders_family_benefits_social_middle_income_threshold
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '60000'
+- name: flanders_family_benefits_social_low_income_small_family_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18 item 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '50'
+- name: flanders_family_benefits_social_low_income_large_family_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18 item 2
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '80'
+- name: flanders_family_benefits_social_middle_income_large_family_monthly_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18 item 3
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '60'
+- name: flanders_family_benefits_participation_under_4_annual_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    19
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '20'
+- name: flanders_family_benefits_participation_4_to_10_annual_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    20
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '35'
+- name: flanders_family_benefits_participation_11_to_16_annual_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    21
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '50'
+- name: flanders_family_benefits_participation_17_to_24_annual_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    22
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '60'
+- name: flanders_family_benefits_orphan_supplement_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    15
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if flanders_family_benefits_orphan_status_code == 1:\n    flanders_family_benefits_base_monthly_amount\
+      \ * flanders_family_benefits_one_parent_orphan_supplement_rate\nelse:\n    if\
+      \ flanders_family_benefits_orphan_status_code == 2:\n        flanders_family_benefits_base_monthly_amount\
+      \ * flanders_family_benefits_double_orphan_supplement_rate\n    else:\n    \
+      \    0"
+- name: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            article 16
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '4'
+- name: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            article 16
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '5'
+- name: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            article 16
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '6'
+- name: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            article 16
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '7'
+- name: flanders_family_benefits_disability_supplement_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    16
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if flanders_family_benefits_disability_tier == 1:\n    flanders_family_benefits_disability_tier_1_monthly_amount\n\
+      else:\n    if flanders_family_benefits_disability_tier == 2:\n        flanders_family_benefits_disability_tier_2_monthly_amount\n\
+      \    else:\n        if flanders_family_benefits_disability_tier == 3:\n    \
+      \        flanders_family_benefits_disability_tier_3_monthly_amount\n       \
+      \ else:\n            if flanders_family_benefits_disability_tier == flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit:\n\
+      \                flanders_family_benefits_disability_tier_4_monthly_amount\n\
+      \            else:\n                if flanders_family_benefits_disability_tier\
+      \ == flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_2:\n\
+      \                    flanders_family_benefits_disability_tier_5_monthly_amount\n\
+      \                else:\n                    if flanders_family_benefits_disability_tier\
+      \ == flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_3:\n\
+      \                        flanders_family_benefits_disability_tier_6_monthly_amount\n\
+      \                    else:\n                        if flanders_family_benefits_disability_tier\
+      \ == flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_4:\n\
+      \                            flanders_family_benefits_disability_tier_7_monthly_amount\n\
+      \                        else:\n                            0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit
+          output: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_2
+          output: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_3
+          output: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_4
+          output: flanders_family_benefits_disability_supplement_monthly_amount_scalar_limit_4
+          hash: sha256:local
+- name: flanders_family_benefits_foster_care_supplement_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    17
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if flanders_family_benefits_in_qualifying_foster_care:\n    flanders_family_benefits_foster_care_monthly_amount\n\
+      else:\n    0"
+- name: flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if flanders_family_benefits_family_annual_income <= flanders_family_benefits_social_low_income_threshold:\n\
+      \    if flanders_family_benefits_qualifying_children_in_family_count <= 2:\n\
+      \        flanders_family_benefits_social_low_income_small_family_monthly_amount\n\
+      \    else:\n        flanders_family_benefits_social_low_income_large_family_monthly_amount\n\
+      else:\n    if flanders_family_benefits_family_annual_income <= flanders_family_benefits_social_middle_income_threshold:\n\
+      \        if flanders_family_benefits_qualifying_children_in_family_count > 2:\n\
+      \            flanders_family_benefits_social_middle_income_large_family_monthly_amount\n\
+      \        else:\n            0\n    else:\n        0"
+- name: flanders_family_benefits_social_supplement_monthly_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            article 18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '0.5'
+- name: flanders_family_benefits_social_supplement_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, article
+    18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if flanders_family_benefits_equal_shared_housing:\n    flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount\
+      \ * flanders_family_benefits_social_supplement_monthly_amount_scalar_limit\n\
+      else:\n    flanders_family_benefits_social_supplement_before_shared_housing_monthly_amount"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_social_supplement_monthly_amount_scalar_limit
+          output: flanders_family_benefits_social_supplement_monthly_amount_scalar_limit
+          hash: sha256:local
+- name: flanders_family_benefits_universal_participation_annual_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles
+    19 to 22
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            articles 19 to 22
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '4'
+- name: flanders_family_benefits_universal_participation_annual_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles
+    19 to 22
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            articles 19 to 22
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '11'
+- name: flanders_family_benefits_universal_participation_annual_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles
+    19 to 22
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            articles 19 to 22
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '17'
+- name: flanders_family_benefits_universal_participation_annual_amount_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles
+    19 to 22
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
+          span: Flemish decree of 27 April 2018 regulating family-policy allowances,
+            articles 19 to 22
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '25'
+- name: flanders_family_benefits_universal_participation_annual_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles
+    19 to 22
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if flanders_family_benefits_age_on_december_31_years < 0:\n    0\nelse:\n\
+      \    if flanders_family_benefits_age_on_december_31_years < flanders_family_benefits_universal_participation_annual_amount_scalar_limit:\n\
+      \        flanders_family_benefits_participation_under_4_annual_amount\n    else:\n\
+      \        if flanders_family_benefits_age_on_december_31_years < flanders_family_benefits_universal_participation_annual_amount_scalar_limit_2:\n\
+      \            flanders_family_benefits_participation_4_to_10_annual_amount\n\
+      \        else:\n            if flanders_family_benefits_age_on_december_31_years\
+      \ < flanders_family_benefits_universal_participation_annual_amount_scalar_limit_3:\n\
+      \                flanders_family_benefits_participation_11_to_16_annual_amount\n\
+      \            else:\n                if flanders_family_benefits_age_on_december_31_years\
+      \ < flanders_family_benefits_universal_participation_annual_amount_scalar_limit_4:\n\
+      \                    flanders_family_benefits_participation_17_to_24_annual_amount\n\
+      \                else:\n                    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_universal_participation_annual_amount_scalar_limit
+          output: flanders_family_benefits_universal_participation_annual_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_universal_participation_annual_amount_scalar_limit_2
+          output: flanders_family_benefits_universal_participation_annual_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_universal_participation_annual_amount_scalar_limit_3
+          output: flanders_family_benefits_universal_participation_annual_amount_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_universal_participation_annual_amount_scalar_limit_4
+          output: flanders_family_benefits_universal_participation_annual_amount_scalar_limit_4
+          hash: sha256:local
+- name: flanders_family_benefits_selected_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Flemish decree of 27 April 2018 regulating family-policy allowances, articles
+    13 and 15 to 18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: flanders_family_benefits_base_monthly_amount + flanders_family_benefits_orphan_supplement_monthly_amount
+      + flanders_family_benefits_disability_supplement_monthly_amount + flanders_family_benefits_foster_care_supplement_monthly_amount
+      + flanders_family_benefits_social_supplement_monthly_amount

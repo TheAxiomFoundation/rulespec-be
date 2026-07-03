@@ -70,6 +70,22 @@
     be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_minimum_isolated_later_daily_amount: 31.76
     be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount: 31.76
 
+- name: unsupported_status_has_no_ordinary_or_company_supplement_minimum
+  period:
+    period_kind: custom
+    name: calendar_day
+    start: '2026-06-01'
+    end: '2026-06-01'
+  input:
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 4
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_article_114_4_1_condition_met: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_two_spouses_only_receive_lowest_minimum: false
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: false
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_ordinary_minimum_daily_amount: 0
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_company_supplement_minimum_daily_amount: 0
+
 - name: cohabiting_second_period_lowest_minimum_with_spouse_increment
   period:
     period_kind: custom

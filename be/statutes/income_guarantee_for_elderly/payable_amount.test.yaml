@@ -1,5 +1,8 @@
 - name: isolated_grapa_payable_amount_offsets_countable_resources
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/income_guarantee_for_elderly/amounts#input.shares_principal_residence: false
     be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_shares_principal_residence_with_spouse_or_legal_cohabitant: false
@@ -12,7 +15,10 @@
     be:statutes/income_guarantee_for_elderly/payable_amount#belgium_grapa_article_6_7_11_payable_annual_amount: 10673.89
 
 - name: cohabiting_spouse_resources_reduce_shared_residence_grapa_amount
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/income_guarantee_for_elderly/amounts#input.shares_principal_residence: true
     be:statutes/income_guarantee_for_elderly/resources#input.belgium_grapa_shares_principal_residence_with_spouse_or_legal_cohabitant: true

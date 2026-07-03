@@ -1,657 +1,2175 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Vlaamse Codex Fiscaliteit articles 2.2.4.0.1, 2.2.4.0.4,
+  summary: 'Vlaamse Codex Fiscaliteit articles 2.2.4.0.1, 2.2.4.0.4,
+
     2.2.4.0.5, 2.3.4.1.1, 2.3.4.1.2/1, 2.3.4.1.3, and 2.3.5.0.1
+
     set core Flemish annual circulation-tax and tax-on-entry-into-service
+
     amounts for household passenger vehicles. This module encodes the current
+
     passenger-car fiscal-power annual tax table, post-2020 CO2 and euronorm
+
     adjustments, the additional LPG circulation tax, the municipal decime, and
+
     the post-2020 BIV formula with age correction, air component, minimum,
+
     maximum, electric/hydrogen amount, and natural-gas reduction interface.
+
     It excludes commercial vehicle routing, heavy-vehicle tables, procedural
-    rules, legacy pre-2021 BIV formulas, and detailed exemption administration.
+
+    rules, legacy pre-2021 BIV formulas, and detailed exemption administration.'
   source_verification:
     corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.5/version-1422880
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.5/version-1422880
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227
     values:
       flanders_circulation_tax_cv_0_to_4_amount: 69.72
-      flanders_circulation_tax_cv_20_amount: 1783.20
-      flanders_circulation_tax_above_20_increment: 97.20
+      flanders_circulation_tax_cv_20_amount: 1783.2
+      flanders_circulation_tax_above_20_increment: 97.2
       flanders_circulation_tax_post_2020_co2_neutral_grams: 149
-      flanders_circulation_tax_co2_adjustment_per_gram: "0.003"
+      flanders_circulation_tax_co2_adjustment_per_gram: '0.003'
       flanders_circulation_tax_post_2015_minimum: 40
       flanders_additional_lpg_tax_low_power_amount: 89.16
       flanders_additional_lpg_tax_middle_power_amount: 148.68
-      flanders_additional_lpg_tax_high_power_amount: 208.20
-      flanders_circulation_tax_municipal_decime_rate: "0.10"
-      flanders_biv_electric_or_hydrogen_after_2025_amount: 61.50
-      flanders_biv_q_2026: "1.245"
+      flanders_additional_lpg_tax_high_power_amount: 208.2
+      flanders_circulation_tax_municipal_decime_rate: '0.10'
+      flanders_biv_electric_or_hydrogen_after_2025_amount: 61.5
+      flanders_biv_q_base_2021: 1.07
+      flanders_biv_q_annual_increment_after_2021: 0.035
       flanders_biv_minimum: 41.99
-      flanders_biv_maximum: 10497.70
+      flanders_biv_maximum: 10497.7
       flanders_biv_natural_gas_reduction_amount: 4000
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: flanders_circulation_tax_cv_0_to_4_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table, passenger cars 4 fiscal horsepower and less
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          69.72
-  - name: flanders_circulation_tax_cv_5_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          87.24
-  - name: flanders_circulation_tax_cv_6_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          126.12
-  - name: flanders_circulation_tax_cv_7_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          164.76
-  - name: flanders_circulation_tax_cv_8_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          203.76
-  - name: flanders_circulation_tax_cv_9_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          242.64
-  - name: flanders_circulation_tax_cv_10_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          281.16
-  - name: flanders_circulation_tax_cv_11_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          364.92
-  - name: flanders_circulation_tax_cv_12_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          448.56
-  - name: flanders_circulation_tax_cv_13_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          532.08
-  - name: flanders_circulation_tax_cv_14_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          615.84
-  - name: flanders_circulation_tax_cv_15_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          699.48
-  - name: flanders_circulation_tax_cv_16_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          916.20
-  - name: flanders_circulation_tax_cv_17_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          1133.16
-  - name: flanders_circulation_tax_cv_18_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          1350.00
-  - name: flanders_circulation_tax_cv_19_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          1566.36
-  - name: flanders_circulation_tax_cv_20_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          1783.20
-  - name: flanders_circulation_tax_above_20_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table, amount per fiscal horsepower above 20
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          97.20
-  - name: flanders_circulation_tax_post_2020_co2_neutral_grams
-    kind: parameter
-    dtype: Count
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          149
-  - name: flanders_circulation_tax_co2_adjustment_per_gram
-    kind: parameter
-    dtype: Rate
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2, 0.30 percent per CO2 gram
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          0.003
-  - name: flanders_circulation_tax_post_2015_minimum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 minimum, carried into post-2020 calculation
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          40
-  - name: flanders_circulation_tax_passenger_base_table_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if flanders_circulation_tax_fiscal_power_cv <= 4:
-              flanders_circulation_tax_cv_0_to_4_amount
-          else:
-              if flanders_circulation_tax_fiscal_power_cv == 5:
-                  flanders_circulation_tax_cv_5_amount
-              else:
-                  if flanders_circulation_tax_fiscal_power_cv == 6:
-                      flanders_circulation_tax_cv_6_amount
-                  else:
-                      if flanders_circulation_tax_fiscal_power_cv == 7:
-                          flanders_circulation_tax_cv_7_amount
-                      else:
-                          if flanders_circulation_tax_fiscal_power_cv == 8:
-                              flanders_circulation_tax_cv_8_amount
-                          else:
-                              if flanders_circulation_tax_fiscal_power_cv == 9:
-                                  flanders_circulation_tax_cv_9_amount
-                              else:
-                                  if flanders_circulation_tax_fiscal_power_cv == 10:
-                                      flanders_circulation_tax_cv_10_amount
-                                  else:
-                                      if flanders_circulation_tax_fiscal_power_cv == 11:
-                                          flanders_circulation_tax_cv_11_amount
-                                      else:
-                                          if flanders_circulation_tax_fiscal_power_cv == 12:
-                                              flanders_circulation_tax_cv_12_amount
-                                          else:
-                                              if flanders_circulation_tax_fiscal_power_cv == 13:
-                                                  flanders_circulation_tax_cv_13_amount
-                                              else:
-                                                  if flanders_circulation_tax_fiscal_power_cv == 14:
-                                                      flanders_circulation_tax_cv_14_amount
-                                                  else:
-                                                      if flanders_circulation_tax_fiscal_power_cv == 15:
-                                                          flanders_circulation_tax_cv_15_amount
-                                                      else:
-                                                          if flanders_circulation_tax_fiscal_power_cv == 16:
-                                                              flanders_circulation_tax_cv_16_amount
-                                                          else:
-                                                              if flanders_circulation_tax_fiscal_power_cv == 17:
-                                                                  flanders_circulation_tax_cv_17_amount
-                                                              else:
-                                                                  if flanders_circulation_tax_fiscal_power_cv == 18:
-                                                                      flanders_circulation_tax_cv_18_amount
-                                                                  else:
-                                                                      if flanders_circulation_tax_fiscal_power_cv == 19:
-                                                                          flanders_circulation_tax_cv_19_amount
-                                                                      else:
-                                                                          if flanders_circulation_tax_fiscal_power_cv == 20:
-                                                                              flanders_circulation_tax_cv_20_amount
-                                                                          else:
-                                                                              flanders_circulation_tax_cv_20_amount + (flanders_circulation_tax_fiscal_power_cv - 20) * flanders_circulation_tax_above_20_increment
-  - name: flanders_circulation_tax_co2_adjustment_rate
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if flanders_circulation_tax_co2_g_per_km > flanders_circulation_tax_post_2020_co2_neutral_grams:
-              (min(flanders_circulation_tax_co2_g_per_km, 500) - flanders_circulation_tax_post_2020_co2_neutral_grams) * flanders_circulation_tax_co2_adjustment_per_gram
-          else:
-              if flanders_circulation_tax_co2_g_per_km > 24:
-                  (flanders_circulation_tax_co2_g_per_km - flanders_circulation_tax_post_2020_co2_neutral_grams) * flanders_circulation_tax_co2_adjustment_per_gram
-              else:
-                  0
-  - name: flanders_circulation_tax_euronorm_fuel_adjustment_rate
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if flanders_circulation_tax_is_diesel:
-              if flanders_circulation_tax_euro_norm <= 0:
-                  0.50
-              else:
-                  if flanders_circulation_tax_euro_norm == 1:
-                      0.40
-                  else:
-                      if flanders_circulation_tax_euro_norm == 2:
-                          0.35
-                      else:
-                          if flanders_circulation_tax_euro_norm == 3:
-                              if flanders_circulation_tax_has_particle_filter:
-                                  0.25
-                              else:
-                                  0.30
-                          else:
-                              if flanders_circulation_tax_euro_norm == 4:
-                                  if flanders_circulation_tax_has_particle_filter:
-                                      0.175
-                                  else:
-                                      0.25
-                              else:
-                                  if flanders_circulation_tax_euro_norm == 5:
-                                      0.175
-                                  else:
-                                      0.15
-          else:
-              if flanders_circulation_tax_euro_norm <= 0:
-                  0.30
-              else:
-                  if flanders_circulation_tax_euro_norm == 1:
-                      0.10
-                  else:
-                      if flanders_circulation_tax_euro_norm == 2:
-                          0.05
-                      else:
-                          if flanders_circulation_tax_euro_norm == 3:
-                              0
-                          else:
-                              if flanders_circulation_tax_euro_norm == 4:
-                                  -0.125
-                              else:
-                                  -0.15
-  - name: flanders_circulation_tax_passenger_car_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraphs 2, 2/1, and 2/2
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          max(flanders_circulation_tax_post_2015_minimum, flanders_circulation_tax_passenger_base_table_amount * (1 + flanders_circulation_tax_co2_adjustment_rate + flanders_circulation_tax_euronorm_fuel_adjustment_rate))
-  - name: flanders_additional_lpg_tax_low_power_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, not higher than 7 fiscal horsepower
-    versions:
-      - effective_from: '2020-10-01'
-        formula: |-
-          89.16
-  - name: flanders_additional_lpg_tax_middle_power_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, 8 to 13 fiscal horsepower
-    versions:
-      - effective_from: '2020-10-01'
-        formula: |-
-          148.68
-  - name: flanders_additional_lpg_tax_high_power_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, more than 13 fiscal horsepower
-    versions:
-      - effective_from: '2020-10-01'
-        formula: |-
-          208.20
-  - name: flanders_circulation_tax_additional_lpg_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
-    versions:
-      - effective_from: '2020-10-01'
-        formula: |-
-          if flanders_circulation_tax_is_lpg:
-              if flanders_circulation_tax_fiscal_power_cv <= 7:
-                  flanders_additional_lpg_tax_low_power_amount
-              else:
-                  if flanders_circulation_tax_fiscal_power_cv <= 13:
-                      flanders_additional_lpg_tax_middle_power_amount
-                  else:
-                      flanders_additional_lpg_tax_high_power_amount
-          else:
-              0
-  - name: flanders_circulation_tax_municipal_decime_rate
-    kind: parameter
-    dtype: Rate
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.5 paragraph 2
-    versions:
-      - effective_from: '2021-04-25'
-        formula: |-
-          0.10
-  - name: flanders_circulation_tax_municipal_decime
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.2.4.0.5 paragraph 2
-    versions:
-      - effective_from: '2021-04-25'
-        formula: |-
-          if flanders_circulation_tax_municipal_decime_applies:
-              flanders_circulation_tax_passenger_car_amount * flanders_circulation_tax_municipal_decime_rate
-          else:
-              0
-  - name: flanders_circulation_tax_passenger_car_total
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit articles 2.2.4.0.1, 2.2.4.0.4, and 2.2.4.0.5
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          flanders_circulation_tax_passenger_car_amount + flanders_circulation_tax_additional_lpg_amount + flanders_circulation_tax_municipal_decime
-  - name: flanders_biv_electric_or_hydrogen_after_2025_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.1 second paragraph
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          61.50
-  - name: flanders_biv_fuel_factor
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          if flanders_biv_is_lpg:
-              0.88
-          else:
-              if flanders_biv_is_natural_gas_and_petrol_homologated_petrol:
-                  0.744
-              else:
-                  if flanders_biv_is_natural_gas:
-                      0.93
-                  else:
-                      1
-  - name: flanders_biv_q_2026
-    kind: parameter
-    dtype: Rate
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 3, 1.07 in 2021 plus 0.035 annually from 2022 through 2026
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          1.245
-  - name: flanders_biv_air_component
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          if flanders_biv_is_diesel:
-              if flanders_biv_euro_norm <= 0:
-                  2863.15
-              else:
-                  if flanders_biv_euro_norm == 1:
-                      840.00
-                  else:
-                      if flanders_biv_euro_norm == 2:
-                          622.57
-                      else:
-                          if flanders_biv_euro_norm == 3:
-                              if flanders_biv_has_particle_filter:
-                                  467.06
-                              else:
-                                  493.36
-                          else:
-                              if flanders_biv_euro_norm == 4:
-                                  if flanders_biv_has_particle_filter:
-                                      459.35
-                                  else:
-                                      467.06
-                              else:
-                                  if flanders_biv_euro_norm == 5:
-                                      459.35
-                                  else:
-                                      454.07
-          else:
-              if flanders_biv_euro_norm <= 0:
-                  1138.78
-              else:
-                  if flanders_biv_euro_norm == 1:
-                      509.28
-                  else:
-                      if flanders_biv_euro_norm == 2:
-                          152.29
-                      else:
-                          if flanders_biv_euro_norm == 3:
-                              95.53
-                          else:
-                              if flanders_biv_euro_norm == 4:
-                                  22.93
-                              else:
-                                  20.61
-  - name: flanders_biv_age_correction_factor
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          if flanders_biv_vehicle_age_months < 12:
-              1
-          else:
-              if flanders_biv_vehicle_age_months < 24:
-                  0.90
-              else:
-                  if flanders_biv_vehicle_age_months < 36:
-                      0.80
-                  else:
-                      if flanders_biv_vehicle_age_months < 48:
-                          0.70
-                      else:
-                          if flanders_biv_vehicle_age_months < 60:
-                              0.60
-                          else:
-                              if flanders_biv_vehicle_age_months < 72:
-                                  0.50
-                              else:
-                                  if flanders_biv_vehicle_age_months < 84:
-                                      0.40
-                                  else:
-                                      if flanders_biv_vehicle_age_months < 96:
-                                          0.30
-                                      else:
-                                          if flanders_biv_vehicle_age_months < 108:
-                                              0.20
-                                          else:
-                                              0.10
-  - name: flanders_biv_post_2020_raw_formula_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          (((flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026 / 246) * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026 / 246) * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026 / 246) * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026 / 246) * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026 / 246) * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026 / 246)) * 4500 + flanders_biv_air_component) * flanders_biv_age_correction_factor
-  - name: flanders_biv_minimum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.3
-    versions:
-      - effective_from: '2026-05-03'
-        formula: |-
-          41.99
-  - name: flanders_biv_maximum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.4.1.3
-    versions:
-      - effective_from: '2026-05-03'
-        formula: |-
-          10497.70
-  - name: flanders_biv_natural_gas_reduction_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.5.0.1 first paragraph
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          4000
-  - name: flanders_biv_natural_gas_reduction
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit article 2.3.5.0.1
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          if flanders_biv_natural_gas_reduction_applies:
-              min(flanders_biv_natural_gas_reduction_amount, flanders_biv_post_2020_raw_formula_amount)
-          else:
-              0
-  - name: flanders_biv_post_2020_tax_after_minimum_maximum_and_reduction
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit articles 2.3.4.1.2/1, 2.3.4.1.3, and 2.3.5.0.1
-    versions:
-      - effective_from: '2026-05-03'
-        formula: |-
-          max(flanders_biv_minimum, min(flanders_biv_maximum, flanders_biv_post_2020_raw_formula_amount - flanders_biv_natural_gas_reduction))
-  - name: flanders_biv_article_23411_tax
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Vlaamse Codex Fiscaliteit articles 2.3.4.1.1 through 2.3.5.0.1
-    versions:
-      - effective_from: '2026-05-03'
-        formula: |-
-          if flanders_biv_is_electric_or_hydrogen_after_2025:
-              flanders_biv_electric_or_hydrogen_after_2025_amount
-          else:
-              if flanders_biv_first_put_in_traffic_30_years_ago_or_earlier:
-                  flanders_biv_minimum
-              else:
-                  flanders_biv_post_2020_tax_after_minimum_maximum_and_reduction
+- name: flanders_circulation_tax_cv_0_to_4_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table, passenger
+    cars 4 fiscal horsepower and less
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '69.72'
+- name: flanders_circulation_tax_cv_5_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '87.24'
+- name: flanders_circulation_tax_cv_6_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '126.12'
+- name: flanders_circulation_tax_cv_7_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '164.76'
+- name: flanders_circulation_tax_cv_8_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '203.76'
+- name: flanders_circulation_tax_cv_9_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '242.64'
+- name: flanders_circulation_tax_cv_10_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '281.16'
+- name: flanders_circulation_tax_cv_11_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '364.92'
+- name: flanders_circulation_tax_cv_12_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '448.56'
+- name: flanders_circulation_tax_cv_13_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '532.08'
+- name: flanders_circulation_tax_cv_14_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '615.84'
+- name: flanders_circulation_tax_cv_15_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '699.48'
+- name: flanders_circulation_tax_cv_16_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '916.20'
+- name: flanders_circulation_tax_cv_17_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '1133.16'
+- name: flanders_circulation_tax_cv_18_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '1350.00'
+- name: flanders_circulation_tax_cv_19_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '1566.36'
+- name: flanders_circulation_tax_cv_20_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '1783.20'
+- name: flanders_circulation_tax_above_20_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table, amount per
+    fiscal horsepower above 20
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '97.20'
+- name: flanders_circulation_tax_post_2020_co2_neutral_grams
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '149'
+- name: flanders_circulation_tax_co2_adjustment_per_gram
+  kind: parameter
+  dtype: Rate
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2, 0.30 percent
+    per CO2 gram
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.003'
+- name: flanders_circulation_tax_post_2015_minimum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 minimum, carried
+    into post-2020 calculation
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '40'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '4'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '5'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '6'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '7'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '8'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '9'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '10'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '11'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '12'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '13'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '14'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '15'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '16'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '17'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '18'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_16
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '19'
+- name: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_17
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
+            fiscal-power table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '20'
+- name: flanders_circulation_tax_passenger_base_table_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car fiscal-power
+    table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if flanders_circulation_tax_fiscal_power_cv <= flanders_circulation_tax_passenger_base_table_amount_scalar_limit:\n\
+      \    flanders_circulation_tax_cv_0_to_4_amount\nelse:\n    if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_2:\n\
+      \        flanders_circulation_tax_cv_5_amount\n    else:\n        if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_3:\n\
+      \            flanders_circulation_tax_cv_6_amount\n        else:\n         \
+      \   if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_4:\n\
+      \                flanders_circulation_tax_cv_7_amount\n            else:\n \
+      \               if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_5:\n\
+      \                    flanders_circulation_tax_cv_8_amount\n                else:\n\
+      \                    if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_6:\n\
+      \                        flanders_circulation_tax_cv_9_amount\n            \
+      \        else:\n                        if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_7:\n\
+      \                            flanders_circulation_tax_cv_10_amount\n       \
+      \                 else:\n                            if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_8:\n\
+      \                                flanders_circulation_tax_cv_11_amount\n   \
+      \                         else:\n                                if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_9:\n\
+      \                                    flanders_circulation_tax_cv_12_amount\n\
+      \                                else:\n                                   \
+      \ if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_10:\n\
+      \                                        flanders_circulation_tax_cv_13_amount\n\
+      \                                    else:\n                               \
+      \         if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_11:\n\
+      \                                            flanders_circulation_tax_cv_14_amount\n\
+      \                                        else:\n                           \
+      \                 if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_12:\n\
+      \                                                flanders_circulation_tax_cv_15_amount\n\
+      \                                            else:\n                       \
+      \                         if flanders_circulation_tax_fiscal_power_cv == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_13:\n\
+      \                                                    flanders_circulation_tax_cv_16_amount\n\
+      \                                                else:\n                   \
+      \                                 if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_14:\n\
+      \                                                        flanders_circulation_tax_cv_17_amount\n\
+      \                                                    else:\n               \
+      \                                         if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_15:\n\
+      \                                                            flanders_circulation_tax_cv_18_amount\n\
+      \                                                        else:\n           \
+      \                                                 if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_16:\n\
+      \                                                                flanders_circulation_tax_cv_19_amount\n\
+      \                                                            else:\n       \
+      \                                                         if flanders_circulation_tax_fiscal_power_cv\
+      \ == flanders_circulation_tax_passenger_base_table_amount_scalar_limit_17:\n\
+      \                                                                    flanders_circulation_tax_cv_20_amount\n\
+      \                                                                else:\n   \
+      \                                                                 flanders_circulation_tax_cv_20_amount\
+      \ + (flanders_circulation_tax_fiscal_power_cv - flanders_circulation_tax_passenger_base_table_amount_scalar_limit_17)\
+      \ * flanders_circulation_tax_above_20_increment"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_2
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_3
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_4
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_5
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_6
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_7
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_8
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_9
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_10
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_11
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_12
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_13
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_14
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_15
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_15
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_16
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_16
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_17
+          output: flanders_circulation_tax_passenger_base_table_amount_scalar_limit_17
+          hash: sha256:local
+- name: flanders_circulation_tax_co2_adjustment_rate_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '500'
+- name: flanders_circulation_tax_co2_adjustment_rate_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '24'
+- name: flanders_circulation_tax_co2_adjustment_rate
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if flanders_circulation_tax_co2_g_per_km > flanders_circulation_tax_post_2020_co2_neutral_grams:\n\
+      \    (min(flanders_circulation_tax_co2_g_per_km, flanders_circulation_tax_co2_adjustment_rate_scalar_limit)\
+      \ - flanders_circulation_tax_post_2020_co2_neutral_grams) * flanders_circulation_tax_co2_adjustment_per_gram\n\
+      else:\n    if flanders_circulation_tax_co2_g_per_km > flanders_circulation_tax_co2_adjustment_rate_scalar_limit_2:\n\
+      \        (flanders_circulation_tax_co2_g_per_km - flanders_circulation_tax_post_2020_co2_neutral_grams)\
+      \ * flanders_circulation_tax_co2_adjustment_per_gram\n    else:\n        0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_co2_adjustment_rate_scalar_limit
+          output: flanders_circulation_tax_co2_adjustment_rate_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_co2_adjustment_rate_scalar_limit_2
+          output: flanders_circulation_tax_co2_adjustment_rate_scalar_limit_2
+          hash: sha256:local
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.50'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.40'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.35'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.25'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.30'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '4'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.175'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '5'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.15'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.10'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.05'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+            table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '-0.125'
+- name: flanders_circulation_tax_euronorm_fuel_adjustment_rate
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
+    table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if flanders_circulation_tax_is_diesel:\n    if flanders_circulation_tax_euro_norm\
+      \ <= 0:\n        flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit\n\
+      \    else:\n        if flanders_circulation_tax_euro_norm == 1:\n          \
+      \  flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_2\n \
+      \       else:\n            if flanders_circulation_tax_euro_norm == 2:\n   \
+      \             flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_3\n\
+      \            else:\n                if flanders_circulation_tax_euro_norm ==\
+      \ 3:\n                    if flanders_circulation_tax_has_particle_filter:\n\
+      \                        flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_4\n\
+      \                    else:\n                        flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_5\n\
+      \                else:\n                    if flanders_circulation_tax_euro_norm\
+      \ == flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_6:\n\
+      \                        if flanders_circulation_tax_has_particle_filter:\n\
+      \                            flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_7\n\
+      \                        else:\n                            flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_4\n\
+      \                    else:\n                        if flanders_circulation_tax_euro_norm\
+      \ == flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_8:\n\
+      \                            flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_7\n\
+      \                        else:\n                            flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_9\n\
+      else:\n    if flanders_circulation_tax_euro_norm <= 0:\n        flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_5\n\
+      \    else:\n        if flanders_circulation_tax_euro_norm == 1:\n          \
+      \  flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_10\n\
+      \        else:\n            if flanders_circulation_tax_euro_norm == 2:\n  \
+      \              flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_11\n\
+      \            else:\n                if flanders_circulation_tax_euro_norm ==\
+      \ 3:\n                    0\n                else:\n                    if flanders_circulation_tax_euro_norm\
+      \ == flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_6:\n\
+      \                        flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_12\n\
+      \                    else:\n                        -flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_2
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_3
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_4
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_5
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_6
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_7
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_8
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_9
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_10
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_11
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_12
+          output: flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_12
+          hash: sha256:local
+- name: flanders_circulation_tax_passenger_car_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraphs 2, 2/1, and 2/2
+  versions:
+  - effective_from: '2026-01-01'
+    formula: max(flanders_circulation_tax_post_2015_minimum, flanders_circulation_tax_passenger_base_table_amount
+      * (1 + flanders_circulation_tax_co2_adjustment_rate + flanders_circulation_tax_euronorm_fuel_adjustment_rate))
+- name: flanders_additional_lpg_tax_low_power_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, not higher than 7 fiscal horsepower
+  versions:
+  - effective_from: '2020-10-01'
+    formula: '89.16'
+- name: flanders_additional_lpg_tax_middle_power_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, 8 to 13 fiscal horsepower
+  versions:
+  - effective_from: '2020-10-01'
+    formula: '148.68'
+- name: flanders_additional_lpg_tax_high_power_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, more than 13 fiscal horsepower
+  versions:
+  - effective_from: '2020-10-01'
+    formula: '208.20'
+- name: flanders_circulation_tax_additional_lpg_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+  versions:
+  - effective_from: '2020-10-01'
+    formula: '7'
+- name: flanders_circulation_tax_additional_lpg_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+  versions:
+  - effective_from: '2020-10-01'
+    formula: '13'
+- name: flanders_circulation_tax_additional_lpg_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+  versions:
+  - effective_from: '2020-10-01'
+    formula: "if flanders_circulation_tax_is_lpg:\n    if flanders_circulation_tax_fiscal_power_cv\
+      \ <= flanders_circulation_tax_additional_lpg_amount_scalar_limit:\n        flanders_additional_lpg_tax_low_power_amount\n\
+      \    else:\n        if flanders_circulation_tax_fiscal_power_cv <= flanders_circulation_tax_additional_lpg_amount_scalar_limit_2:\n\
+      \            flanders_additional_lpg_tax_middle_power_amount\n        else:\n\
+      \            flanders_additional_lpg_tax_high_power_amount\nelse:\n    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_additional_lpg_amount_scalar_limit
+          output: flanders_circulation_tax_additional_lpg_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_additional_lpg_amount_scalar_limit_2
+          output: flanders_circulation_tax_additional_lpg_amount_scalar_limit_2
+          hash: sha256:local
+- name: flanders_circulation_tax_municipal_decime_rate
+  kind: parameter
+  dtype: Rate
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.5 paragraph 2
+  versions:
+  - effective_from: '2021-04-25'
+    formula: '0.10'
+- name: flanders_circulation_tax_municipal_decime
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.2.4.0.5 paragraph 2
+  versions:
+  - effective_from: '2021-04-25'
+    formula: "if flanders_circulation_tax_municipal_decime_applies:\n    flanders_circulation_tax_passenger_car_amount\
+      \ * flanders_circulation_tax_municipal_decime_rate\nelse:\n    0"
+- name: flanders_circulation_tax_passenger_car_total
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit articles 2.2.4.0.1, 2.2.4.0.4, and 2.2.4.0.5
+  versions:
+  - effective_from: '2026-01-01'
+    formula: flanders_circulation_tax_passenger_car_amount + flanders_circulation_tax_additional_lpg_amount
+      + flanders_circulation_tax_municipal_decime
+- name: flanders_biv_electric_or_hydrogen_after_2025_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.1 second paragraph
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '61.50'
+- name: flanders_biv_fuel_factor_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.88'
+- name: flanders_biv_fuel_factor_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.744'
+- name: flanders_biv_fuel_factor_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.93'
+- name: flanders_biv_fuel_factor
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+  versions:
+  - effective_from: '2021-01-01'
+    formula: "if flanders_biv_is_lpg:\n    flanders_biv_fuel_factor_scalar_limit\n\
+      else:\n    if flanders_biv_is_natural_gas_and_petrol_homologated_petrol:\n \
+      \       flanders_biv_fuel_factor_scalar_limit_2\n    else:\n        if flanders_biv_is_natural_gas:\n\
+      \            flanders_biv_fuel_factor_scalar_limit_3\n        else:\n      \
+      \      1"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_fuel_factor_scalar_limit
+          output: flanders_biv_fuel_factor_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_fuel_factor_scalar_limit_2
+          output: flanders_biv_fuel_factor_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_fuel_factor_scalar_limit_3
+          output: flanders_biv_fuel_factor_scalar_limit_3
+          hash: sha256:local
+- name: flanders_biv_q_base_2021
+  kind: parameter
+  dtype: Rate
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 3, Q equals
+    1.07 in 2021
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '1.07'
+- name: flanders_biv_q_annual_increment_after_2021
+  kind: parameter
+  dtype: Rate
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 3, Q annual
+    increase from 2022
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.035'
+- name: flanders_biv_q_2026
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 3, 1.07 in
+    2021 plus 0.035 annually from 2022 through 2026
+  versions:
+  - effective_from: '2026-01-01'
+    formula: flanders_biv_q_base_2021 + flanders_biv_q_annual_increment_after_2021 + flanders_biv_q_annual_increment_after_2021 + flanders_biv_q_annual_increment_after_2021 + flanders_biv_q_annual_increment_after_2021 + flanders_biv_q_annual_increment_after_2021
+- name: flanders_biv_air_component_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '2863.15'
+- name: flanders_biv_air_component_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '840.00'
+- name: flanders_biv_air_component_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '622.57'
+- name: flanders_biv_air_component_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '467.06'
+- name: flanders_biv_air_component_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '493.36'
+- name: flanders_biv_air_component_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '4'
+- name: flanders_biv_air_component_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '459.35'
+- name: flanders_biv_air_component_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '5'
+- name: flanders_biv_air_component_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '454.07'
+- name: flanders_biv_air_component_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '1138.78'
+- name: flanders_biv_air_component_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '509.28'
+- name: flanders_biv_air_component_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '152.29'
+- name: flanders_biv_air_component_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '95.53'
+- name: flanders_biv_air_component_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '22.93'
+- name: flanders_biv_air_component_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '20.61'
+- name: flanders_biv_air_component
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: "if flanders_biv_is_diesel:\n    if flanders_biv_euro_norm <= 0:\n  \
+      \      flanders_biv_air_component_scalar_limit\n    else:\n        if flanders_biv_euro_norm\
+      \ == 1:\n            flanders_biv_air_component_scalar_limit_2\n        else:\n\
+      \            if flanders_biv_euro_norm == 2:\n                flanders_biv_air_component_scalar_limit_3\n\
+      \            else:\n                if flanders_biv_euro_norm == 3:\n      \
+      \              if flanders_biv_has_particle_filter:\n                      \
+      \  flanders_biv_air_component_scalar_limit_4\n                    else:\n  \
+      \                      flanders_biv_air_component_scalar_limit_5\n         \
+      \       else:\n                    if flanders_biv_euro_norm == flanders_biv_air_component_scalar_limit_6:\n\
+      \                        if flanders_biv_has_particle_filter:\n            \
+      \                flanders_biv_air_component_scalar_limit_7\n               \
+      \         else:\n                            flanders_biv_air_component_scalar_limit_4\n\
+      \                    else:\n                        if flanders_biv_euro_norm\
+      \ == flanders_biv_air_component_scalar_limit_8:\n                          \
+      \  flanders_biv_air_component_scalar_limit_7\n                        else:\n\
+      \                            flanders_biv_air_component_scalar_limit_9\nelse:\n\
+      \    if flanders_biv_euro_norm <= 0:\n        flanders_biv_air_component_scalar_limit_10\n\
+      \    else:\n        if flanders_biv_euro_norm == 1:\n            flanders_biv_air_component_scalar_limit_11\n\
+      \        else:\n            if flanders_biv_euro_norm == 2:\n              \
+      \  flanders_biv_air_component_scalar_limit_12\n            else:\n         \
+      \       if flanders_biv_euro_norm == 3:\n                    flanders_biv_air_component_scalar_limit_13\n\
+      \                else:\n                    if flanders_biv_euro_norm == flanders_biv_air_component_scalar_limit_6:\n\
+      \                        flanders_biv_air_component_scalar_limit_14\n      \
+      \              else:\n                        flanders_biv_air_component_scalar_limit_15"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit
+          output: flanders_biv_air_component_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_2
+          output: flanders_biv_air_component_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_3
+          output: flanders_biv_air_component_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_4
+          output: flanders_biv_air_component_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_5
+          output: flanders_biv_air_component_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_6
+          output: flanders_biv_air_component_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_7
+          output: flanders_biv_air_component_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_8
+          output: flanders_biv_air_component_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_9
+          output: flanders_biv_air_component_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_10
+          output: flanders_biv_air_component_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_11
+          output: flanders_biv_air_component_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_12
+          output: flanders_biv_air_component_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_13
+          output: flanders_biv_air_component_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_14
+          output: flanders_biv_air_component_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component_scalar_limit_15
+          output: flanders_biv_air_component_scalar_limit_15
+          hash: sha256:local
+- name: flanders_biv_age_correction_factor_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '12'
+- name: flanders_biv_age_correction_factor_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '24'
+- name: flanders_biv_age_correction_factor_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.90'
+- name: flanders_biv_age_correction_factor_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '36'
+- name: flanders_biv_age_correction_factor_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.80'
+- name: flanders_biv_age_correction_factor_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '48'
+- name: flanders_biv_age_correction_factor_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.70'
+- name: flanders_biv_age_correction_factor_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '60'
+- name: flanders_biv_age_correction_factor_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.60'
+- name: flanders_biv_age_correction_factor_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '72'
+- name: flanders_biv_age_correction_factor_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.50'
+- name: flanders_biv_age_correction_factor_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '84'
+- name: flanders_biv_age_correction_factor_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.40'
+- name: flanders_biv_age_correction_factor_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '96'
+- name: flanders_biv_age_correction_factor_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.30'
+- name: flanders_biv_age_correction_factor_scalar_limit_16
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '107'
+- name: flanders_biv_age_correction_factor_scalar_limit_17
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.20'
+- name: flanders_biv_age_correction_factor_scalar_limit_18
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '0.10'
+- name: flanders_biv_age_correction_factor
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+  versions:
+  - effective_from: '2021-01-01'
+    formula: "if flanders_biv_vehicle_age_months < flanders_biv_age_correction_factor_scalar_limit:\n\
+      \    1\nelse:\n    if flanders_biv_vehicle_age_months < flanders_biv_age_correction_factor_scalar_limit_2:\n\
+      \        flanders_biv_age_correction_factor_scalar_limit_3\n    else:\n    \
+      \    if flanders_biv_vehicle_age_months < flanders_biv_age_correction_factor_scalar_limit_4:\n\
+      \            flanders_biv_age_correction_factor_scalar_limit_5\n        else:\n\
+      \            if flanders_biv_vehicle_age_months < flanders_biv_age_correction_factor_scalar_limit_6:\n\
+      \                flanders_biv_age_correction_factor_scalar_limit_7\n       \
+      \     else:\n                if flanders_biv_vehicle_age_months < flanders_biv_age_correction_factor_scalar_limit_8:\n\
+      \                    flanders_biv_age_correction_factor_scalar_limit_9\n   \
+      \             else:\n                    if flanders_biv_vehicle_age_months\
+      \ < flanders_biv_age_correction_factor_scalar_limit_10:\n                  \
+      \      flanders_biv_age_correction_factor_scalar_limit_11\n                \
+      \    else:\n                        if flanders_biv_vehicle_age_months < flanders_biv_age_correction_factor_scalar_limit_12:\n\
+      \                            flanders_biv_age_correction_factor_scalar_limit_13\n\
+      \                        else:\n                            if flanders_biv_vehicle_age_months\
+      \ < flanders_biv_age_correction_factor_scalar_limit_14:\n                  \
+      \              flanders_biv_age_correction_factor_scalar_limit_15\n        \
+      \                    else:\n                                if flanders_biv_vehicle_age_months\
+      \ <= flanders_biv_age_correction_factor_scalar_limit_16:\n                 \
+      \                  flanders_biv_age_correction_factor_scalar_limit_17\n    \
+      \                            else:\n                                    flanders_biv_age_correction_factor_scalar_limit_18"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit
+          output: flanders_biv_age_correction_factor_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_2
+          output: flanders_biv_age_correction_factor_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_3
+          output: flanders_biv_age_correction_factor_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_4
+          output: flanders_biv_age_correction_factor_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_5
+          output: flanders_biv_age_correction_factor_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_6
+          output: flanders_biv_age_correction_factor_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_7
+          output: flanders_biv_age_correction_factor_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_8
+          output: flanders_biv_age_correction_factor_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_9
+          output: flanders_biv_age_correction_factor_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_10
+          output: flanders_biv_age_correction_factor_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_11
+          output: flanders_biv_age_correction_factor_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_12
+          output: flanders_biv_age_correction_factor_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_13
+          output: flanders_biv_age_correction_factor_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_14
+          output: flanders_biv_age_correction_factor_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_15
+          output: flanders_biv_age_correction_factor_scalar_limit_15
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_16
+          output: flanders_biv_age_correction_factor_scalar_limit_16
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_17
+          output: flanders_biv_age_correction_factor_scalar_limit_17
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_age_correction_factor_scalar_limit_18
+          output: flanders_biv_age_correction_factor_scalar_limit_18
+          hash: sha256:local
+- name: flanders_biv_post_2020_raw_formula_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '246'
+- name: flanders_biv_post_2020_raw_formula_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '4500'
+- name: flanders_biv_post_2020_raw_formula_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+  versions:
+  - effective_from: '2026-01-01'
+    formula: (((flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026
+      / flanders_biv_post_2020_raw_formula_amount_scalar_limit) * (flanders_biv_co2_g_per_km
+      * flanders_biv_fuel_factor * flanders_biv_q_2026 / flanders_biv_post_2020_raw_formula_amount_scalar_limit)
+      * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026
+      / flanders_biv_post_2020_raw_formula_amount_scalar_limit) * (flanders_biv_co2_g_per_km
+      * flanders_biv_fuel_factor * flanders_biv_q_2026 / flanders_biv_post_2020_raw_formula_amount_scalar_limit)
+      * (flanders_biv_co2_g_per_km * flanders_biv_fuel_factor * flanders_biv_q_2026
+      / flanders_biv_post_2020_raw_formula_amount_scalar_limit) * (flanders_biv_co2_g_per_km
+      * flanders_biv_fuel_factor * flanders_biv_q_2026 / flanders_biv_post_2020_raw_formula_amount_scalar_limit))
+      * flanders_biv_post_2020_raw_formula_amount_scalar_limit_2 + flanders_biv_air_component)
+      * flanders_biv_age_correction_factor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_post_2020_raw_formula_amount_scalar_limit
+          output: flanders_biv_post_2020_raw_formula_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_post_2020_raw_formula_amount_scalar_limit_2
+          output: flanders_biv_post_2020_raw_formula_amount_scalar_limit_2
+          hash: sha256:local
+- name: flanders_biv_minimum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.3
+  versions:
+  - effective_from: '2026-05-03'
+    formula: '41.99'
+- name: flanders_biv_maximum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.4.1.3
+  versions:
+  - effective_from: '2026-05-03'
+    formula: '10497.70'
+- name: flanders_biv_natural_gas_reduction_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.5.0.1 first paragraph
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '4000'
+- name: flanders_biv_natural_gas_reduction
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit article 2.3.5.0.1
+  versions:
+  - effective_from: '2021-01-01'
+    formula: "if flanders_biv_natural_gas_reduction_applies:\n    min(flanders_biv_natural_gas_reduction_amount,\
+      \ flanders_biv_post_2020_raw_formula_amount)\nelse:\n    0"
+- name: flanders_biv_post_2020_tax_after_minimum_maximum_and_reduction
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit articles 2.3.4.1.2/1, 2.3.4.1.3, and 2.3.5.0.1
+  versions:
+  - effective_from: '2026-05-03'
+    formula: max(flanders_biv_minimum, min(flanders_biv_maximum, flanders_biv_post_2020_raw_formula_amount
+      - flanders_biv_natural_gas_reduction))
+- name: flanders_biv_article_23411_tax
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Vlaamse Codex Fiscaliteit articles 2.3.4.1.1 through 2.3.5.0.1
+  versions:
+  - effective_from: '2026-05-03'
+    formula: "if flanders_biv_is_electric_or_hydrogen_after_2025:\n    flanders_biv_electric_or_hydrogen_after_2025_amount\n\
+      else:\n    if flanders_biv_first_put_in_traffic_30_years_ago_or_earlier:\n \
+      \       flanders_biv_minimum\n    else:\n        flanders_biv_post_2020_tax_after_minimum_maximum_and_reduction"

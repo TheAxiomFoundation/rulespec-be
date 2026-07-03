@@ -4,34 +4,34 @@
     name: calendar_month
     start: '2026-06-01'
     end: '2026-06-30'
-  input: &eligible_applicant_inputs
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_habitually_and_permanently_stays_in_belgium: true
+  input:
+    <<: &eligible_applicant_inputs
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_habitually_and_permanently_stays_in_belgium: true
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_emancipated_by_marriage: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_has_dependent_child: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_is_pregnant: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_age_years: 30
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_person_has_belgian_nationality: true
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_citizen_or_family_with_residence_over_three_months: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_residence_months_completed: 0
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_registered_foreigner_in_population_register: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_stateless_under_1954_convention: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_refugee_under_1980_law: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_subsidiary_protection_under_1980_law: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_has_sufficient_resources: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_can_claim_sufficient_resources: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_can_procure_sufficient_resources_by_efforts_or_other_means: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_disposed_to_work: true
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_health_or_equity_prevents_work: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_social_benefit_rights_asserted: true
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_cpas_requires_maintenance_rights_against_listed_debtor: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_maintenance_rights_against_listed_debtor_asserted: false
+      be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 1.2
     be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: true
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_emancipated_by_marriage: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_has_dependent_child: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_is_pregnant: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_age_years: 30
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_person_has_belgian_nationality: true
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_citizen_or_family_with_residence_over_three_months: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_residence_months_completed: 0
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_registered_foreigner_in_population_register: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_stateless_under_1954_convention: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_refugee_under_1980_law: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_subsidiary_protection_under_1980_law: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_has_sufficient_resources: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_can_claim_sufficient_resources: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_can_procure_sufficient_resources_by_efforts_or_other_means: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_disposed_to_work: true
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_health_or_equity_prevents_work: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_social_benefit_rights_asserted: true
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_cpas_requires_maintenance_rights_against_listed_debtor: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_maintenance_rights_against_listed_debtor_asserted: false
     be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
     be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
-    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 1.2
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 1560
   output:
-    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_indexed_annual_amount: 10560
     be:statutes/social_integration/eligibility#belgium_social_integration_article_3_4_general_eligibility_condition_met: 1
     be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_resource_reduction: 1560
     be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_payable_annual_amount_before_eligibility: 9000
@@ -47,6 +47,9 @@
   input:
     <<: *eligible_applicant_inputs
     be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: false
+    be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
+    be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
+    be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 1560
   output:
     be:statutes/social_integration/eligibility#belgium_social_integration_article_3_4_general_eligibility_condition_met: 0
     be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_payable_annual_amount_before_eligibility: 9000
@@ -61,6 +64,7 @@
     end: '2026-06-30'
   input:
     <<: *eligible_applicant_inputs
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: true
     be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: false
     be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: true
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 0
@@ -124,8 +128,6 @@
     be:regulations/social_integration/resource_calculation#input.belgium_social_integration_family_benefits_paid_to_maintenance_debtor_for_applicant: 0
     be:regulations/social_integration/resource_calculation#input.belgium_social_integration_family_benefits_paid_to_maintenance_debtors_for_applicant: 0
   output:
-    be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_indexed_annual_amount: 5280
-    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_countable_resources: 480
     be:statutes/social_integration/payable_amount#belgium_social_integration_chapter_2_itemized_annual_resources: 480
     be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_resource_reduction: 480
     be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_payable_annual_amount: 4800

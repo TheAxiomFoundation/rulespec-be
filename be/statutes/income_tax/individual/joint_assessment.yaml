@@ -82,7 +82,7 @@ rules:
           13460
   - name: belgium_pit_article_126_year_of_marriage_or_declaration_exception
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Count
     period: Year
     source: CIR 1992 article 126 section 2 item 1 and following legal-cohabitant marriage sentence
@@ -98,7 +98,7 @@ rules:
               0
   - name: belgium_pit_article_126_convention_exempt_professional_income_exception
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Count
     period: Year
     source: CIR 1992 article 126 section 2 item 4
@@ -114,7 +114,7 @@ rules:
                   0
   - name: belgium_pit_article_126_separate_assessment_exception_applies
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Count
     period: Year
     source: CIR 1992 article 126 section 2, separate-assessment exceptions
@@ -133,7 +133,7 @@ rules:
                       belgium_pit_article_126_convention_exempt_professional_income_exception
   - name: belgium_pit_joint_assessment_established
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Count
     period: Year
     source: CIR 1992 article 126 sections 1 through 3
@@ -152,7 +152,7 @@ rules:
               0
   - name: belgium_pit_article_127_spouse_a_other_income_half_share
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -163,7 +163,7 @@ rules:
           (belgium_pit_spouse_a_article_127_other_income + belgium_pit_spouse_b_article_127_other_income) / 2
   - name: belgium_pit_article_127_spouse_b_other_income_half_share
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -174,7 +174,7 @@ rules:
           belgium_pit_article_127_spouse_a_other_income_half_share
   - name: belgium_pit_article_127_spouse_a_net_income_under_joint_assessment
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -188,7 +188,7 @@ rules:
               0
   - name: belgium_pit_article_127_spouse_b_net_income_under_joint_assessment
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -202,7 +202,7 @@ rules:
               0
   - name: belgium_pit_article_129_spouse_a_loss_balance_imputed_to_spouse_b
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -216,7 +216,7 @@ rules:
               0
   - name: belgium_pit_article_129_spouse_b_loss_balance_imputed_to_spouse_a
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -230,7 +230,7 @@ rules:
               0
   - name: belgium_pit_article_86_assisting_spouse_attribution_conditions_met
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Count
     period: Year
     source: CIR 1992 article 86, joint assessment, non-Article-33 spouse, effective help, and distinct professional-income limit
@@ -252,7 +252,7 @@ rules:
               0
   - name: belgium_pit_article_86_default_maximum_attribution
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -263,7 +263,7 @@ rules:
           max(0, belgium_pit_article_86_aided_spouse_activity_income) * belgium_pit_article_86_default_max_share_rate
   - name: belgium_pit_article_86_allowed_attribution_cap
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -277,7 +277,7 @@ rules:
               belgium_pit_article_86_default_maximum_attribution
   - name: belgium_pit_article_86_assisting_spouse_attributed_professional_income
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -291,7 +291,7 @@ rules:
               0
   - name: belgium_pit_article_86_aided_spouse_activity_income_after_attribution
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -302,7 +302,7 @@ rules:
           max(0, belgium_pit_article_86_aided_spouse_activity_income - belgium_pit_article_86_assisting_spouse_attributed_professional_income)
   - name: belgium_pit_article_89_spouses_total_professional_income_considered_for_87_88
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -313,7 +313,7 @@ rules:
           belgium_pit_spouse_a_professional_income_after_article_89_exclusions + belgium_pit_spouse_b_professional_income_after_article_89_exclusions
   - name: belgium_pit_article_87_88_lower_spouse_professional_income_target
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -324,7 +324,7 @@ rules:
           belgium_pit_article_89_spouses_total_professional_income_considered_for_87_88 * belgium_pit_article_87_88_spouse_professional_income_share_rate
   - name: belgium_pit_article_87_88_spouse_imputation_conditions_met
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Count
     period: Year
     source: CIR 1992 articles 87 and 88, joint assessment and no-tax-increase condition
@@ -340,7 +340,7 @@ rules:
               0
   - name: belgium_pit_article_87_spouse_a_one_earner_imputation_received
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -357,7 +357,7 @@ rules:
               0
   - name: belgium_pit_article_87_spouse_b_one_earner_imputation_received
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -374,7 +374,7 @@ rules:
               0
   - name: belgium_pit_article_88_spouse_a_low_earner_imputation_received
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -394,7 +394,7 @@ rules:
               0
   - name: belgium_pit_article_88_spouse_b_low_earner_imputation_received
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -414,7 +414,7 @@ rules:
               0
   - name: belgium_pit_article_87_88_spouse_a_professional_income_imputation_received
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -425,7 +425,7 @@ rules:
           belgium_pit_article_87_spouse_a_one_earner_imputation_received + belgium_pit_article_88_spouse_a_low_earner_imputation_received
   - name: belgium_pit_article_87_88_spouse_b_professional_income_imputation_received
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -436,7 +436,7 @@ rules:
           belgium_pit_article_87_spouse_b_one_earner_imputation_received + belgium_pit_article_88_spouse_b_low_earner_imputation_received
   - name: belgium_pit_article_87_88_spouse_a_professional_income_after_imputation
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
@@ -447,7 +447,7 @@ rules:
           belgium_pit_spouse_a_professional_income_after_article_89_exclusions + belgium_pit_article_87_88_spouse_a_professional_income_imputation_received - belgium_pit_article_87_88_spouse_b_professional_income_imputation_received
   - name: belgium_pit_article_87_88_spouse_b_professional_income_after_imputation
     kind: derived
-    entity: Household
+    entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR

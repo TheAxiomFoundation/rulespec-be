@@ -14,6 +14,7 @@ module:
       - be/statute/loi/2002/05/26/2002022559/article/3
       - be/statute/loi/2002/05/26/2002022559/article/4
       - be/statute/loi/2002/05/26/2002022559/article/7
+      - be/statute/loi/1804/03/21/1804032150/article/488
       - be/regulation/arrete/2002/07/11/2002022564/article/2
     values:
       belgium_social_integration_adult_age_years: 18
@@ -22,7 +23,7 @@ rules:
   - name: belgium_social_integration_adult_age_years
     kind: parameter
     dtype: Count
-    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 2
+    source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 2, and Civil Code article 488
     versions:
       - effective_from: '2002-10-01'
         formula: |-

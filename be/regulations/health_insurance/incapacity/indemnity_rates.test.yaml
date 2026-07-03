@@ -1,5 +1,8 @@
 - name: article_211_primary_incapacity_uses_60_percent_after_article_212_cap
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 120
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: false
@@ -19,12 +22,16 @@
   output:
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_incapacity_daily_remuneration_after_article_212_cap: 105.1873
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_statutory_daily_amount: 63.11238
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_controlled_unemployment_selected_applies: 0
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_incapacity_minimum_applies: 0
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 63.11238
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_monthly_amount: 1640.92188
 
 - name: article_211_controlled_unemployment_alignment_uses_lower_unemployment_allowance
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 100
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: true
@@ -43,7 +50,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 55
 
 - name: article_211_uses_article_86_item_1c_status_for_unemployment_alignment
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 100
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: false
@@ -65,7 +75,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 55
 
 - name: article_211_temporary_unemployment_exclusion_keeps_statutory_primary_amount
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 100
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: true
@@ -84,7 +97,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 60
 
 - name: article_214_regular_worker_dependant_minimum_applies_from_seventh_month
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 50
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: false
@@ -109,7 +125,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_monthly_amount: 1187.381
 
 - name: article_214_nonregular_worker_uses_social_integration_daily_minimum
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 30
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: false
@@ -131,7 +150,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 38
 
 - name: article_213_invalidity_dependent_rate_is_65_percent
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 100
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_worker_has_dependant: true
@@ -147,7 +169,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_invalidity_monthly_amount: 1690
 
 - name: article_213_invalidity_article_226_rate_is_55_percent
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 100
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_worker_has_dependant: false
@@ -163,7 +188,10 @@
     be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_invalidity_daily_amount: 55
 
 - name: article_213_invalidity_other_no_dependant_rate_is_40_percent
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 100
     be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_worker_has_dependant: false

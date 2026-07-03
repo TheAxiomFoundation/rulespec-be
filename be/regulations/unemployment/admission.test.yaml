@@ -37,7 +37,6 @@
     start: '2026-06-01'
     end: '2026-06-01'
   input:
-    <<: *admission_default_inputs
     be:regulations/unemployment/admission#input.belgium_unemployment_article_30_worker_is_full_time: true
     be:regulations/unemployment/admission#input.belgium_unemployment_article_30_countable_work_days_since_prior_admission_in_extended_reference_period: 312
     be:regulations/unemployment/admission#input.belgium_unemployment_article_30_incapacity_or_invalidity_extension_months: 2
@@ -47,6 +46,10 @@
     be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_extension_months: 200
     be:regulations/unemployment/admission#input.belgium_unemployment_article_30_career_interruption_allowance_extension_months: 6
     be:regulations/unemployment/admission#input.belgium_unemployment_article_30_detention_or_deprivation_extension_months: 1
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_worker_is_voluntary_part_time: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_average_weekly_hours: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_reference_person_average_weekly_hours: 30
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_33_countable_work_half_days_since_prior_admission: 0
   output:
     be:regulations/unemployment/admission#belgium_unemployment_article_30_non_ui_profession_reference_extension_months: 180
     be:regulations/unemployment/admission#belgium_unemployment_article_30_total_reference_extension_months: 189
@@ -62,7 +65,15 @@
     start: '2026-06-01'
     end: '2026-06-01'
   input:
-    <<: *admission_default_inputs
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_worker_is_full_time: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_countable_work_days_since_prior_admission_in_extended_reference_period: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_incapacity_or_invalidity_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_uninterrupted_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_no_allowance_granted: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_days_not_countable_as_work_or_assimilated: false
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_non_ui_profession_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_career_interruption_allowance_extension_months: 0
+    be:regulations/unemployment/admission#input.belgium_unemployment_article_30_detention_or_deprivation_extension_months: 0
     be:regulations/unemployment/admission#input.belgium_unemployment_article_33_worker_is_voluntary_part_time: true
     be:regulations/unemployment/admission#input.belgium_unemployment_article_33_average_weekly_hours: 10
     be:regulations/unemployment/admission#input.belgium_unemployment_article_33_reference_person_average_weekly_hours: 30

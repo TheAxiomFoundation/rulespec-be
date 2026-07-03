@@ -1,36 +1,44 @@
 format: rulespec/v1
 module:
-  summary: |-
-    The Brussels Housing Code authorizes household housing aids, including rent
+  summary: 'The Brussels Housing Code authorizes household housing aids, including
+    rent
+
     and moving/rent support, while the Brussels Government orders of 15 July
+
     2021 and 13 October 2022 set the current rent allowance and relocation
+
     accompaniment allowance gates. This module encodes the household-facing
+
     eligibility gates, statutory/regulatory base amounts, child increments,
+
     rent caps, ordinary durations, and one-time moving grant surface. It leaves
+
     social-integration and increased-intervention income-threshold euro tables,
+
     index-factor calculation, source-data matching, documentary proof, appeal,
-    recovery, and other Brussels housing aids to separate surfaces.
+
+    recovery, and other Brussels housing aids to separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/165
-      - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/166
-      - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/166bis
-      - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/169
-      - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/170
-      - be-bru/regulation/arrete/2021/07/15/2021032702/article/1er
-      - be-bru/regulation/arrete/2021/07/15/2021032702/article/2
-      - be-bru/regulation/arrete/2021/07/15/2021032702/article/3
-      - be-bru/regulation/arrete/2021/07/15/2021032702/article/4
-      - be-bru/regulation/arrete/2021/07/15/2021032702/article/5
-      - be-bru/regulation/arrete/2021/07/15/2021032702/article/29
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/1er
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/2
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/3
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/4
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/5
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/6
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/7
-      - be-bru/regulation/arrete/2022/10/13/2022033858/article/19
+    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/165
+    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/166
+    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/166bis
+    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/169
+    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/170
+    - be-bru/regulation/arrete/2021/07/15/2021032702/article/1er
+    - be-bru/regulation/arrete/2021/07/15/2021032702/article/2
+    - be-bru/regulation/arrete/2021/07/15/2021032702/article/3
+    - be-bru/regulation/arrete/2021/07/15/2021032702/article/4
+    - be-bru/regulation/arrete/2021/07/15/2021032702/article/5
+    - be-bru/regulation/arrete/2021/07/15/2021032702/article/29
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/1er
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/2
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/3
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/4
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/5
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/6
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/7
+    - be-bru/regulation/arrete/2022/10/13/2022033858/article/19
     values:
       brussels_housing_rent_allowance_standard_priority_titles_min: 6
       brussels_housing_rent_allowance_single_parent_priority_titles_min: 2
@@ -49,411 +57,460 @@ module:
       brussels_housing_relocation_moving_grant_base_amount: 800
       brussels_housing_relocation_moving_grant_child_increment: 80
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: brussels_housing_rent_allowance_standard_priority_titles_min
-    kind: parameter
-    dtype: Count
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 3 section 2 item 5
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          6
-  - name: brussels_housing_rent_allowance_single_parent_priority_titles_min
-    kind: parameter
-    dtype: Count
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 3 section 2 item 6
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          2
-  - name: brussels_housing_rent_allowance_standard_base_monthly_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 section 2
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          160
-  - name: brussels_housing_rent_allowance_lower_single_parent_base_monthly_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 section 2 item 3
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          120
-  - name: brussels_housing_rent_allowance_child_monthly_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 section 3 item 1
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          20
-  - name: brussels_housing_rent_allowance_single_parent_child_monthly_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 section 3 item 2
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          40
-  - name: brussels_housing_rent_allowance_benefit_period_years
-    kind: parameter
-    dtype: Count
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 5 section 1
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          5
-  - name: brussels_housing_rent_allowance_regular_renewal_count
-    kind: parameter
-    dtype: Count
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 5 section 2 first paragraph
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          1
-  - name: brussels_housing_relocation_recent_move_window_months
-    kind: parameter
-    dtype: Count
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 3 section 2 item 4
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          6
-  - name: brussels_housing_relocation_rent_support_period_years
-    kind: parameter
-    dtype: Count
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 6 section 1
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          3
-  - name: brussels_housing_relocation_rent_low_income_base_monthly_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 section 2 item 1
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          160
-  - name: brussels_housing_relocation_rent_other_base_monthly_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 section 2 item 2
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          120
-  - name: brussels_housing_relocation_rent_child_monthly_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 section 3 item 1
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          20
-  - name: brussels_housing_relocation_rent_single_parent_child_monthly_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 section 3 item 2
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          40
-  - name: brussels_housing_relocation_moving_grant_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 5 section 2
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          800
-  - name: brussels_housing_relocation_moving_grant_child_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 5 section 3
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          80
-  - name: brussels_housing_rent_allowance_priority_condition_met
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 3 section 2 items 5 and 6
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_rent_allowance_single_parent_applicant:
-              if brussels_housing_rent_allowance_priority_title_count >= brussels_housing_rent_allowance_single_parent_priority_titles_min:
-                  1
-              else:
-                  0
-          else:
-              if brussels_housing_rent_allowance_priority_title_count >= brussels_housing_rent_allowance_standard_priority_titles_min:
-                  1
-              else:
-                  0
-  - name: brussels_housing_rent_allowance_applicant_conditions_met
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 3 section 2
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_rent_allowance_household_income_at_or_below_applicable_threshold and (brussels_housing_rent_allowance_applicant_age_years >= 18 or brussels_housing_rent_allowance_applicant_emancipated or brussels_housing_rent_allowance_applicant_minor_in_autonomy) and not brussels_housing_household_has_disqualifying_property_right and brussels_housing_rent_allowance_registered_and_domiciled_at_rented_dwelling and brussels_housing_rent_allowance_priority_condition_met == 1 and not brussels_housing_rent_allowance_prior_periods_exhausted and not brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention:
-              1
-          else:
-              0
-  - name: brussels_housing_rent_allowance_housing_conditions_met
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 3 section 3
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_principal_residence_lease and brussels_housing_rented_dwelling_in_brussels and not brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency and not brussels_housing_dwelling_owned_by_close_relative and not brussels_housing_dwelling_has_socialized_public_housing_rent:
-              1
-          else:
-              0
-  - name: brussels_housing_rent_allowance_eligibility
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, articles 2 and 3
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_rent_allowance_applicant_conditions_met == 1 and brussels_housing_rent_allowance_housing_conditions_met == 1:
-              1
-          else:
-              0
-  - name: brussels_housing_rent_allowance_regular_maximum_benefit_years
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Year
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 5 sections 1 and 2
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          brussels_housing_rent_allowance_benefit_period_years * (1 + brussels_housing_rent_allowance_regular_renewal_count)
-  - name: brussels_housing_rent_allowance_indefinite_renewal_allowed
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Year
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 5 section 2 second paragraph
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_household_has_member_age_65_or_older or brussels_housing_household_has_disabled_member:
-              1
-          else:
-              0
-  - name: brussels_housing_rent_allowance_base_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 section 2
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_rent_allowance_single_parent_applicant and not brussels_housing_household_income_at_or_below_social_integration_category_3_threshold:
-              brussels_housing_rent_allowance_lower_single_parent_base_monthly_amount
-          else:
-              brussels_housing_rent_allowance_standard_base_monthly_amount
-  - name: brussels_housing_rent_allowance_child_increment_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 section 3
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_rent_allowance_single_parent_applicant:
-              brussels_housing_rent_allowance_single_parent_child_monthly_increment * brussels_housing_child_count
-          else:
-              brussels_housing_rent_allowance_child_monthly_increment * brussels_housing_child_count
-  - name: brussels_housing_rent_allowance_uncapped_indexed_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, article 4 with article 29 indexation
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          (brussels_housing_rent_allowance_base_monthly_amount + brussels_housing_rent_allowance_child_increment_monthly_amount) * brussels_housing_rent_allowance_current_index_factor
-  - name: brussels_housing_rent_allowance_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 15 July 2021 establishing a rent allowance, articles 2, 3, 4, and 29
-    versions:
-      - effective_from: '2021-10-11'
-        formula: |-
-          if brussels_housing_rent_allowance_eligibility == 1:
-              min(brussels_housing_monthly_rent_at_lease_start, brussels_housing_rent_allowance_uncapped_indexed_monthly_amount)
-          else:
-              0
-  - name: brussels_housing_relocation_qualifying_trigger_met
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 3 section 2 item 6
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_relocation_had_cpas_installation_premium_or_homeless_assistance or brussels_housing_relocation_had_domestic_violence_or_youth_service_pathway or brussels_housing_relocation_left_banned_or_uninhabitable_brussels_dwelling:
-              1
-          else:
-              0
-  - name: brussels_housing_relocation_applicant_conditions_met
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 3 section 2
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_relocation_household_income_at_or_below_increased_intervention_base_threshold and (brussels_housing_relocation_applicant_age_years >= 18 or brussels_housing_relocation_applicant_emancipated or brussels_housing_relocation_applicant_minor_in_autonomy) and brussels_housing_relocation_registered_and_domiciled_at_new_dwelling and brussels_housing_relocation_months_since_new_housing_start <= brussels_housing_relocation_recent_move_window_months and brussels_housing_relocation_registered_social_housing_candidate and brussels_housing_relocation_qualifying_trigger_met == 1 and not brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention and not brussels_housing_relocation_prior_period_exhausted:
-              1
-          else:
-              0
-  - name: brussels_housing_relocation_housing_conditions_met
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 3 section 3
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if (brussels_housing_principal_residence_lease or brussels_housing_transit_housing_occupancy_agreement) and brussels_housing_rented_dwelling_in_brussels and (brussels_housing_transit_housing_occupancy_agreement or (not brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency and not brussels_housing_dwelling_has_socialized_public_housing_rent)) and not brussels_housing_dwelling_owned_by_close_relative:
-              1
-          else:
-              0
-  - name: brussels_housing_relocation_rent_support_extinction_condition_applies
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 7
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_household_has_disqualifying_property_right or brussels_housing_relocation_beneficiary_not_domiciled_in_brussels or brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention or brussels_housing_relocation_not_in_regional_social_housing_candidate_database or (not brussels_housing_transit_housing_occupancy_agreement and (brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency or brussels_housing_dwelling_has_socialized_public_housing_rent)) or brussels_housing_dwelling_owned_by_close_relative or not brussels_housing_rented_dwelling_in_brussels:
-              1
-          else:
-              0
-  - name: brussels_housing_relocation_eligibility
-    kind: derived
-    entity: Household
-    dtype: Count
-    period: Month
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, articles 2 and 3
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_relocation_applicant_conditions_met == 1 and brussels_housing_relocation_housing_conditions_met == 1:
-              1
-          else:
-              0
-  - name: brussels_housing_relocation_rent_base_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 section 2
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_household_income_below_social_integration_category_3_threshold:
-              brussels_housing_relocation_rent_low_income_base_monthly_amount
-          else:
-              brussels_housing_relocation_rent_other_base_monthly_amount
-  - name: brussels_housing_relocation_rent_child_increment_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 section 3
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_relocation_single_parent_applicant:
-              brussels_housing_relocation_rent_single_parent_child_monthly_increment * brussels_housing_child_count
-          else:
-              brussels_housing_relocation_rent_child_monthly_increment * brussels_housing_child_count
-  - name: brussels_housing_relocation_rent_uncapped_indexed_monthly_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, article 4 with article 19 indexation
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          (brussels_housing_relocation_rent_base_monthly_amount + brussels_housing_relocation_rent_child_increment_monthly_amount) * brussels_housing_relocation_current_index_factor
-  - name: brussels_housing_relocation_monthly_rent_intervention_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, articles 2, 4, 7, and 19
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_relocation_eligibility == 1 and brussels_housing_relocation_rent_support_extinction_condition_applies == 0:
-              min(brussels_housing_monthly_rent_at_lease_start, brussels_housing_relocation_rent_uncapped_indexed_monthly_amount)
-          else:
-              0
-  - name: brussels_housing_relocation_one_time_moving_grant_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Brussels Government order of 13 October 2022 on relocation accompaniment allowance, articles 2, 5, 6, and 19
-    versions:
-      - effective_from: '2023-02-01'
-        formula: |-
-          if brussels_housing_relocation_eligibility == 1:
-              (brussels_housing_relocation_moving_grant_base_amount + brussels_housing_relocation_moving_grant_child_increment * brussels_housing_child_count) * brussels_housing_relocation_current_index_factor
-          else:
-              0
+- name: brussels_housing_rent_allowance_standard_priority_titles_min
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 3 section 2 item 5
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '6'
+- name: brussels_housing_rent_allowance_single_parent_priority_titles_min
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 3 section 2 item 6
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '2'
+- name: brussels_housing_rent_allowance_standard_base_monthly_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 section 2
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '160'
+- name: brussels_housing_rent_allowance_lower_single_parent_base_monthly_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 section 2 item 3
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '120'
+- name: brussels_housing_rent_allowance_child_monthly_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 section 3 item 1
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '20'
+- name: brussels_housing_rent_allowance_single_parent_child_monthly_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 section 3 item 2
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '40'
+- name: brussels_housing_rent_allowance_benefit_period_years
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 5 section 1
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '5'
+- name: brussels_housing_rent_allowance_regular_renewal_count
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 5 section 2 first paragraph
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '1'
+- name: brussels_housing_relocation_recent_move_window_months
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 3 section 2 item 4
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '6'
+- name: brussels_housing_relocation_rent_support_period_years
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 6 section 1
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '3'
+- name: brussels_housing_relocation_rent_low_income_base_monthly_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 section 2 item 1
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '160'
+- name: brussels_housing_relocation_rent_other_base_monthly_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 section 2 item 2
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '120'
+- name: brussels_housing_relocation_rent_child_monthly_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 section 3 item 1
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '20'
+- name: brussels_housing_relocation_rent_single_parent_child_monthly_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 section 3 item 2
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '40'
+- name: brussels_housing_relocation_moving_grant_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 5 section 2
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '800'
+- name: brussels_housing_relocation_moving_grant_child_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 5 section 3
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '80'
+- name: brussels_housing_rent_allowance_priority_condition_met
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 3 section 2 items 5 and 6
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_rent_allowance_single_parent_applicant:\n    if\
+      \ brussels_housing_rent_allowance_priority_title_count >= brussels_housing_rent_allowance_single_parent_priority_titles_min:\n\
+      \        1\n    else:\n        0\nelse:\n    if brussels_housing_rent_allowance_priority_title_count\
+      \ >= brussels_housing_rent_allowance_standard_priority_titles_min:\n       \
+      \ 1\n    else:\n        0"
+- name: brussels_housing_rent_allowance_applicant_conditions_met_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 3 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/ordonnance/2003/07/17/2013A31614/article/165
+          span: Brussels Government order of 15 July 2021 establishing a rent allowance,
+            article 3 section 2
+  versions:
+  - effective_from: '2021-10-11'
+    formula: '18'
+- name: brussels_housing_rent_allowance_applicant_conditions_met
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 3 section 2
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_rent_allowance_household_income_at_or_below_applicable_threshold\
+      \ and (brussels_housing_rent_allowance_applicant_age_years >= brussels_housing_rent_allowance_applicant_conditions_met_scalar_limit\
+      \ or brussels_housing_rent_allowance_applicant_emancipated or brussels_housing_rent_allowance_applicant_minor_in_autonomy)\
+      \ and not brussels_housing_household_has_disqualifying_property_right and brussels_housing_rent_allowance_registered_and_domiciled_at_rented_dwelling\
+      \ and brussels_housing_rent_allowance_priority_condition_met == 1 and not brussels_housing_rent_allowance_prior_periods_exhausted\
+      \ and not brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention:\n\
+      \    1\nelse:\n    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_applicant_conditions_met_scalar_limit
+          output: brussels_housing_rent_allowance_applicant_conditions_met_scalar_limit
+          hash: sha256:local
+- name: brussels_housing_rent_allowance_housing_conditions_met
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 3 section 3
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_principal_residence_lease and brussels_housing_rented_dwelling_in_brussels\
+      \ and not brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency\
+      \ and not brussels_housing_dwelling_owned_by_close_relative and not brussels_housing_dwelling_has_socialized_public_housing_rent:\n\
+      \    1\nelse:\n    0"
+- name: brussels_housing_rent_allowance_eligibility
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    articles 2 and 3
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_rent_allowance_applicant_conditions_met == 1 and\
+      \ brussels_housing_rent_allowance_housing_conditions_met == 1:\n    1\nelse:\n\
+      \    0"
+- name: brussels_housing_rent_allowance_regular_maximum_benefit_years
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Year
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 5 sections 1 and 2
+  versions:
+  - effective_from: '2021-10-11'
+    formula: brussels_housing_rent_allowance_benefit_period_years * (1 + brussels_housing_rent_allowance_regular_renewal_count)
+- name: brussels_housing_rent_allowance_indefinite_renewal_allowed
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Year
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 5 section 2 second paragraph
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_household_has_member_age_65_or_older or brussels_housing_household_has_disabled_member:\n\
+      \    1\nelse:\n    0"
+- name: brussels_housing_rent_allowance_base_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 section 2
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_rent_allowance_single_parent_applicant and not brussels_housing_household_income_at_or_below_social_integration_category_3_threshold:\n\
+      \    brussels_housing_rent_allowance_lower_single_parent_base_monthly_amount\n\
+      else:\n    brussels_housing_rent_allowance_standard_base_monthly_amount"
+- name: brussels_housing_rent_allowance_child_increment_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 section 3
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_rent_allowance_single_parent_applicant:\n    brussels_housing_rent_allowance_single_parent_child_monthly_increment\
+      \ * brussels_housing_child_count\nelse:\n    brussels_housing_rent_allowance_child_monthly_increment\
+      \ * brussels_housing_child_count"
+- name: brussels_housing_rent_allowance_uncapped_indexed_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    article 4 with article 29 indexation
+  versions:
+  - effective_from: '2021-10-11'
+    formula: (brussels_housing_rent_allowance_base_monthly_amount + brussels_housing_rent_allowance_child_increment_monthly_amount)
+      * brussels_housing_rent_allowance_current_index_factor
+- name: brussels_housing_rent_allowance_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 15 July 2021 establishing a rent allowance,
+    articles 2, 3, 4, and 29
+  versions:
+  - effective_from: '2021-10-11'
+    formula: "if brussels_housing_rent_allowance_eligibility == 1:\n    min(brussels_housing_monthly_rent_at_lease_start,\
+      \ brussels_housing_rent_allowance_uncapped_indexed_monthly_amount)\nelse:\n\
+      \    0"
+- name: brussels_housing_relocation_qualifying_trigger_met
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 3 section 2 item 6
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_relocation_had_cpas_installation_premium_or_homeless_assistance\
+      \ or brussels_housing_relocation_had_domestic_violence_or_youth_service_pathway\
+      \ or brussels_housing_relocation_left_banned_or_uninhabitable_brussels_dwelling:\n\
+      \    1\nelse:\n    0"
+- name: brussels_housing_relocation_applicant_conditions_met_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 3 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/ordonnance/2003/07/17/2013A31614/article/165
+          span: Brussels Government order of 13 October 2022 on relocation accompaniment
+            allowance, article 3 section 2
+  versions:
+  - effective_from: '2023-02-01'
+    formula: '18'
+- name: brussels_housing_relocation_applicant_conditions_met
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 3 section 2
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_relocation_household_income_at_or_below_increased_intervention_base_threshold\
+      \ and (brussels_housing_relocation_applicant_age_years >= brussels_housing_relocation_applicant_conditions_met_scalar_limit\
+      \ or brussels_housing_relocation_applicant_emancipated or brussels_housing_relocation_applicant_minor_in_autonomy)\
+      \ and brussels_housing_relocation_registered_and_domiciled_at_new_dwelling and\
+      \ brussels_housing_relocation_months_since_new_housing_start <= brussels_housing_relocation_recent_move_window_months\
+      \ and brussels_housing_relocation_registered_social_housing_candidate and brussels_housing_relocation_qualifying_trigger_met\
+      \ == 1 and not brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention\
+      \ and not brussels_housing_relocation_prior_period_exhausted:\n    1\nelse:\n\
+      \    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_relocation_applicant_conditions_met_scalar_limit
+          output: brussels_housing_relocation_applicant_conditions_met_scalar_limit
+          hash: sha256:local
+- name: brussels_housing_relocation_housing_conditions_met
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 3 section 3
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if (brussels_housing_principal_residence_lease or brussels_housing_transit_housing_occupancy_agreement)\
+      \ and brussels_housing_rented_dwelling_in_brussels and (brussels_housing_transit_housing_occupancy_agreement\
+      \ or (not brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency\
+      \ and not brussels_housing_dwelling_has_socialized_public_housing_rent)) and\
+      \ not brussels_housing_dwelling_owned_by_close_relative:\n    1\nelse:\n   \
+      \ 0"
+- name: brussels_housing_relocation_rent_support_extinction_condition_applies
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 7
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_household_has_disqualifying_property_right or brussels_housing_relocation_beneficiary_not_domiciled_in_brussels\
+      \ or brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention\
+      \ or brussels_housing_relocation_not_in_regional_social_housing_candidate_database\
+      \ or (not brussels_housing_transit_housing_occupancy_agreement and (brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency\
+      \ or brussels_housing_dwelling_has_socialized_public_housing_rent)) or brussels_housing_dwelling_owned_by_close_relative\
+      \ or not brussels_housing_rented_dwelling_in_brussels:\n    1\nelse:\n    0"
+- name: brussels_housing_relocation_eligibility
+  kind: derived
+  entity: Household
+  dtype: Count
+  period: Month
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, articles 2 and 3
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_relocation_applicant_conditions_met == 1 and brussels_housing_relocation_housing_conditions_met\
+      \ == 1:\n    1\nelse:\n    0"
+- name: brussels_housing_relocation_rent_base_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 section 2
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_household_income_below_social_integration_category_3_threshold:\n\
+      \    brussels_housing_relocation_rent_low_income_base_monthly_amount\nelse:\n\
+      \    brussels_housing_relocation_rent_other_base_monthly_amount"
+- name: brussels_housing_relocation_rent_child_increment_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 section 3
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_relocation_single_parent_applicant:\n    brussels_housing_relocation_rent_single_parent_child_monthly_increment\
+      \ * brussels_housing_child_count\nelse:\n    brussels_housing_relocation_rent_child_monthly_increment\
+      \ * brussels_housing_child_count"
+- name: brussels_housing_relocation_rent_uncapped_indexed_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, article 4 with article 19 indexation
+  versions:
+  - effective_from: '2023-02-01'
+    formula: (brussels_housing_relocation_rent_base_monthly_amount + brussels_housing_relocation_rent_child_increment_monthly_amount)
+      * brussels_housing_relocation_current_index_factor
+- name: brussels_housing_relocation_monthly_rent_intervention_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, articles 2, 4, 7, and 19
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_relocation_eligibility == 1 and brussels_housing_relocation_rent_support_extinction_condition_applies\
+      \ == 0:\n    min(brussels_housing_monthly_rent_at_lease_start, brussels_housing_relocation_rent_uncapped_indexed_monthly_amount)\n\
+      else:\n    0"
+- name: brussels_housing_relocation_one_time_moving_grant_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Brussels Government order of 13 October 2022 on relocation accompaniment
+    allowance, articles 2, 5, 6, and 19
+  versions:
+  - effective_from: '2023-02-01'
+    formula: "if brussels_housing_relocation_eligibility == 1:\n    (brussels_housing_relocation_moving_grant_base_amount\
+      \ + brussels_housing_relocation_moving_grant_child_increment * brussels_housing_child_count)\
+      \ * brussels_housing_relocation_current_index_factor\nelse:\n    0"

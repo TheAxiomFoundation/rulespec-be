@@ -1,840 +1,824 @@
 format: rulespec/v1
 module:
-  summary: |-
-    This module encodes selected federal personal income tax reductions and
+  summary: 'This module encodes selected federal personal income tax reductions and
+
     personal credits from current CIR 1992 consolidated text for income year
+
     2025 / assessment year 2026. It covers arithmetic rates, caps, and selected
+
     phaseout interfaces for Article 145 tax reductions, Articles 147 to 152
+
     replacement-income reductions, and Articles 289bis, 289ter, and 289ter/1
+
     credits. Eligibility, attestations, product classification, joint-
+
     assessment allocation, regional reductions, and final imputation ordering
-    remain separate surfaces.
+
+    remain separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-193
-      - be/statute/fisconetplus/cir92/revenus-2025/page-199
-      - be/statute/fisconetplus/cir92/revenus-2025/page-200
-      - be/statute/fisconetplus/cir92/revenus-2025/page-225
-      - be/statute/fisconetplus/cir92/revenus-2025/page-226
-      - be/statute/fisconetplus/cir92/revenus-2025/page-229
-      - be/statute/fisconetplus/cir92/revenus-2025/page-231
-      - be/statute/fisconetplus/cir92/revenus-2025/page-233
-      - be/statute/fisconetplus/cir92/revenus-2025/page-249
-      - be/statute/fisconetplus/cir92/revenus-2025/page-250
-      - be/statute/fisconetplus/cir92/revenus-2025/page-253
-      - be/statute/fisconetplus/cir92/revenus-2025/page-255
-      - be/statute/fisconetplus/cir92/revenus-2025/page-256
-      - be/statute/fisconetplus/cir92/revenus-2025/page-512
-      - be/statute/fisconetplus/cir92/revenus-2025/page-513
-      - be/statute/fisconetplus/cir92/revenus-2025/page-514
-      - be/statute/fisconetplus/cir92/revenus-2025/page-515
+    - be/statute/fisconetplus/cir92/revenus-2025/page-193
+    - be/statute/fisconetplus/cir92/revenus-2025/page-199
+    - be/statute/fisconetplus/cir92/revenus-2025/page-200
+    - be/statute/fisconetplus/cir92/revenus-2025/page-225
+    - be/statute/fisconetplus/cir92/revenus-2025/page-226
+    - be/statute/fisconetplus/cir92/revenus-2025/page-229
+    - be/statute/fisconetplus/cir92/revenus-2025/page-231
+    - be/statute/fisconetplus/cir92/revenus-2025/page-233
+    - be/statute/fisconetplus/cir92/revenus-2025/page-249
+    - be/statute/fisconetplus/cir92/revenus-2025/page-250
+    - be/statute/fisconetplus/cir92/revenus-2025/page-253
+    - be/statute/fisconetplus/cir92/revenus-2025/page-255
+    - be/statute/fisconetplus/cir92/revenus-2025/page-256
+    - be/statute/fisconetplus/cir92/revenus-2025/page-512
+    - be/statute/fisconetplus/cir92/revenus-2025/page-513
+    - be/statute/fisconetplus/cir92/revenus-2025/page-514
+    - be/statute/fisconetplus/cir92/revenus-2025/page-515
     values:
-      belgium_pit_article_1452_general_reduction_rate: "0.30"
+      belgium_pit_article_1452_general_reduction_rate: '0.30'
       belgium_pit_article_1458_standard_pension_savings_ceiling: 1050
       belgium_pit_article_1458_higher_pension_savings_ceiling: 1350
-      belgium_pit_article_1458_higher_pension_savings_rate: "0.25"
+      belgium_pit_article_1458_higher_pension_savings_rate: '0.25'
       belgium_pit_article_1457_employer_share_ceiling: 840
       belgium_pit_article_14531_home_security_reduction_ceiling: 500
       belgium_pit_article_14532_development_fund_minimum_subscription: 420
-      belgium_pit_article_14532_development_fund_rate: "0.05"
+      belgium_pit_article_14532_development_fund_rate: '0.05'
       belgium_pit_article_14532_development_fund_reduction_ceiling: 350
       belgium_pit_article_14533_gift_minimum: 40
-      belgium_pit_article_14533_gift_net_income_cap_rate: "0.10"
+      belgium_pit_article_14533_gift_net_income_cap_rate: '0.10'
       belgium_pit_article_14533_gift_absolute_cap: 420930
-      belgium_pit_article_14533_gift_reduction_rate: "0.45"
+      belgium_pit_article_14533_gift_reduction_rate: '0.45'
       belgium_pit_article_14534_domestic_employee_minimum_remuneration: 4920
-      belgium_pit_article_14534_domestic_employee_base_rate: "0.50"
+      belgium_pit_article_14534_domestic_employee_base_rate: '0.50'
       belgium_pit_article_14534_domestic_employee_base_ceiling: 8420
-      belgium_pit_article_14535_childcare_daily_ceiling: "16.90"
-      belgium_pit_article_14535_childcare_reduction_rate: "0.45"
-      belgium_pit_article_14548_adoption_rate: "0.20"
+      belgium_pit_article_14535_childcare_daily_ceiling: '16.90'
+      belgium_pit_article_14535_childcare_reduction_rate: '0.45'
+      belgium_pit_article_14548_adoption_rate: '0.20'
       belgium_pit_article_14548_adoption_reduction_ceiling: 6730
       belgium_pit_article_14549_legal_protection_premium_ceiling: 330
-      belgium_pit_article_14549_legal_protection_rate: "0.40"
-      belgium_pit_article_147_basic_replacement_reduction: "2219.27"
-      belgium_pit_article_147_additional_replacement_reduction: "457.23"
-      belgium_pit_article_147_sickness_invalidity_reduction: "2977.93"
-      belgium_pit_article_289bis_self_employed_investment_credit_rate: "0.10"
+      belgium_pit_article_14549_legal_protection_rate: '0.40'
+      belgium_pit_article_147_basic_replacement_reduction: '2219.27'
+      belgium_pit_article_147_additional_replacement_reduction: '457.23'
+      belgium_pit_article_147_sickness_invalidity_reduction: '2977.93'
+      belgium_pit_article_289bis_self_employed_investment_credit_rate: '0.10'
       belgium_pit_article_289bis_self_employed_investment_credit_ceiling: 3750
-      belgium_pit_article_289ter_low_activity_income_credit: 880
+      belgium_pit_article_289ter_standard_credit: 880
       belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1540
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_pit_article_1452_general_reduction_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/2, general rate for Article 145/1 selected expenses
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.30
-  - name: belgium_pit_article_1458_higher_pension_savings_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/2 paragraph 2, higher pension-savings band rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.25
-  - name: belgium_pit_article_1458_standard_pension_savings_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/8, income year 2025 indexed standard pension-savings ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          1050
-  - name: belgium_pit_article_1458_higher_pension_savings_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/8, income year 2025 indexed elective higher pension-savings ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          1350
-  - name: belgium_pit_article_1457_employer_share_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/7, income year 2025 indexed employer-share subscription ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          840
-  - name: belgium_pit_article_14531_home_security_reduction_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/31, base annual reduction ceiling per dwelling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          500
-  - name: belgium_pit_article_14532_development_fund_minimum_subscription
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/32, income year 2025 indexed minimum subscription
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          420
-  - name: belgium_pit_article_14532_development_fund_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/32, development-fund reduction rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.05
-  - name: belgium_pit_article_14532_development_fund_reduction_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/32, income year 2025 indexed annual reduction ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          350
-  - name: belgium_pit_article_14533_gift_minimum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/33, income year 2025 indexed gift minimum
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          40
-  - name: belgium_pit_article_14533_gift_net_income_cap_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/33, gift cap as a share of total net income
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.10
-  - name: belgium_pit_article_14533_gift_absolute_cap
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/33, income year 2025 indexed absolute gift base cap
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          420930
-  - name: belgium_pit_article_14533_gift_reduction_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/33, gift reduction rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.45
-  - name: belgium_pit_article_14534_domestic_employee_minimum_remuneration
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/34, income year 2025 indexed minimum remuneration
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          4920
-  - name: belgium_pit_article_14534_domestic_employee_base_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/34, domestic-employee remuneration base fraction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.50
-  - name: belgium_pit_article_14534_domestic_employee_base_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/34, income year 2025 indexed base ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          8420
-  - name: belgium_pit_article_14535_childcare_daily_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/35, income year 2025 indexed daily childcare ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          16.90
-  - name: belgium_pit_article_14535_childcare_reduction_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/35, childcare reduction rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.45
-  - name: belgium_pit_article_14535_childcare_complementary_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/35, complementary childcare reduction rate for Article 133 supplement cases
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.30
-  - name: belgium_pit_article_14548_adoption_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/48, adoption-procedure expense reduction rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.20
-  - name: belgium_pit_article_14548_adoption_reduction_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/48, income year 2025 indexed reduction ceiling per adoption procedure
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          6730
-  - name: belgium_pit_article_14549_legal_protection_premium_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 145/49, income year 2025 indexed legal-protection insurance premium ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          330
-  - name: belgium_pit_article_14549_legal_protection_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 145/49, legal-protection insurance reduction rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.40
-  - name: belgium_pit_article_147_basic_replacement_reduction
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 147, income year 2025 indexed basic pension and replacement-income reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          2219.27
-  - name: belgium_pit_article_147_additional_replacement_reduction
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 147, income year 2025 indexed additional pension and replacement-income reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          457.23
-  - name: belgium_pit_article_147_sickness_invalidity_reduction
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 147, income year 2025 indexed sickness or invalidity indemnity reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          2977.93
-  - name: belgium_pit_article_151_unemployment_phaseout_start
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 151, income year 2025 indexed unemployment-reduction phaseout start
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          28780
-  - name: belgium_pit_article_151_unemployment_phaseout_end
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 151, income year 2025 indexed unemployment-reduction phaseout end
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          35930
-  - name: belgium_pit_article_1511_additional_phaseout_start
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 151/1, income year 2025 indexed additional-reduction phaseout start
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          19630
-  - name: belgium_pit_article_1511_additional_phaseout_end
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 151/1, income year 2025 indexed additional-reduction phaseout end
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          28780
-  - name: belgium_pit_article_152_replacement_phaseout_start
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 152, income year 2025 indexed replacement-reduction phaseout start
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          28780
-  - name: belgium_pit_article_152_replacement_phaseout_end
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 152, income year 2025 indexed replacement-reduction phaseout end
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          57560
-  - name: belgium_pit_article_289bis_self_employed_investment_credit_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 289bis, self-employed investment credit rate
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.10
-  - name: belgium_pit_article_289bis_self_employed_investment_credit_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289bis, self-employed investment credit ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          3750
-  - name: belgium_pit_article_289ter_activity_income_lower_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed activity-income lower threshold
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          6550
-  - name: belgium_pit_article_289ter_activity_income_plateau_start
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed activity-income plateau start
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          8740
-  - name: belgium_pit_article_289ter_activity_income_plateau_end
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed activity-income plateau end
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          21860
-  - name: belgium_pit_article_289ter_activity_income_upper_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed activity-income and total-net-income upper threshold
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          28420
-  - name: belgium_pit_article_289ter_standard_credit
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed standard low activity-income credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          880
-  - name: belgium_pit_article_289ter_assisting_spouse_credit
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed assisting-spouse low activity-income credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          400
-  - name: belgium_pit_article_289ter_public_worker_credit
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter, income year 2025 indexed public-worker low activity-income credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          970
-  - name: belgium_pit_article_289ter1_work_bonus_a_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 289ter/1, work-bonus credit rate for volet A
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.3314
-  - name: belgium_pit_article_289ter1_work_bonus_b_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 289ter/1, work-bonus credit rate for volet B
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.5254
-  - name: belgium_pit_article_289ter1_work_bonus_credit_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          1540
-  - name: belgium_pit_article_1458_pension_savings_payment_taken_into_account
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/8, pension-savings payment ceiling selector
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_1458_uses_higher_pension_savings_ceiling:
-              min(belgium_pit_article_1458_pension_savings_payments, belgium_pit_article_1458_higher_pension_savings_ceiling)
-          else:
-              min(belgium_pit_article_1458_pension_savings_payments, belgium_pit_article_1458_standard_pension_savings_ceiling)
-  - name: belgium_pit_article_1458_pension_savings_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 articles 145/2 and 145/8, pension-savings tax reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_1458_uses_higher_pension_savings_ceiling:
-              belgium_pit_article_1458_pension_savings_payment_taken_into_account * belgium_pit_article_1458_higher_pension_savings_rate
-          else:
-              belgium_pit_article_1458_pension_savings_payment_taken_into_account * belgium_pit_article_1452_general_reduction_rate
-  - name: belgium_pit_article_1457_employer_share_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 articles 145/2 and 145/7, employer-share subscription reduction with pension-savings non-cumulation
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_1457_employer_share_eligibility_met and not belgium_pit_article_1458_pension_savings_reduction_claimed:
-              min(belgium_pit_article_1457_employer_share_cash_subscription, belgium_pit_article_1457_employer_share_ceiling) * belgium_pit_article_1452_general_reduction_rate
-          else:
-              0
-  - name: belgium_pit_article_14531_home_security_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/31, home-security reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14531_home_security_conditions_met:
-              min(belgium_pit_article_14531_home_security_expenses * belgium_pit_article_1452_general_reduction_rate, belgium_pit_article_14531_home_security_reduction_ceiling)
-          else:
-              0
-  - name: belgium_pit_article_14532_development_fund_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/32, development-fund reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14532_development_fund_subscription >= belgium_pit_article_14532_development_fund_minimum_subscription:
-              min(belgium_pit_article_14532_development_fund_subscription * belgium_pit_article_14532_development_fund_rate, belgium_pit_article_14532_development_fund_reduction_ceiling)
-          else:
-              0
-  - name: belgium_pit_article_14532_development_fund_recapture
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/32 paragraph 2, development-fund recapture when shares are ceded inside 60 months
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14532_development_fund_ceded_before_60_months:
-              belgium_pit_article_14532_development_fund_reduction_previously_obtained * min(60, max(0, belgium_pit_article_14532_development_fund_remaining_full_months)) / 60
-          else:
-              0
-  - name: belgium_pit_article_14533_gift_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/33, gifts reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14533_eligible_gifts < belgium_pit_article_14533_gift_minimum:
-              0
-          else:
-              min(belgium_pit_article_14533_eligible_gifts, min(belgium_pit_article_14533_total_net_income_for_gift_cap * belgium_pit_article_14533_gift_net_income_cap_rate, belgium_pit_article_14533_gift_absolute_cap)) * belgium_pit_article_14533_gift_reduction_rate
-  - name: belgium_pit_article_14534_domestic_employee_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/34, domestic-employee remuneration reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14534_domestic_employee_conditions_met and belgium_pit_article_14534_domestic_employee_remuneration >= belgium_pit_article_14534_domestic_employee_minimum_remuneration:
-              min(belgium_pit_article_14534_domestic_employee_remuneration * belgium_pit_article_14534_domestic_employee_base_rate, belgium_pit_article_14534_domestic_employee_base_ceiling) * belgium_pit_article_1452_general_reduction_rate
-          else:
-              0
-  - name: belgium_pit_article_14535_childcare_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/35, child-care reduction and supplied complementary base
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14535_childcare_conditions_met:
-              min(belgium_pit_article_14535_childcare_expenses, belgium_pit_article_14535_childcare_days * belgium_pit_article_14535_childcare_daily_ceiling) * belgium_pit_article_14535_childcare_reduction_rate + belgium_pit_article_14535_childcare_complementary_base * belgium_pit_article_14535_childcare_complementary_rate * belgium_pit_article_14535_childcare_complementary_fraction
-          else:
-              0
-  - name: belgium_pit_article_14548_adoption_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/48, adoption-procedure expense reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14548_adoption_conditions_met:
-              min(belgium_pit_article_14548_adoption_expenses * belgium_pit_article_14548_adoption_rate, belgium_pit_article_14548_adoption_reduction_ceiling)
-          else:
-              0
-  - name: belgium_pit_article_14549_legal_protection_insurance_reduction
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 145/49, legal-protection insurance premium reduction
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_14549_legal_protection_conditions_met:
-              min(belgium_pit_article_14549_legal_protection_premiums, belgium_pit_article_14549_legal_protection_premium_ceiling) * belgium_pit_article_14549_legal_protection_rate
-          else:
-              0
-  - name: belgium_pit_selected_federal_article_145_reductions
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Structural bridge summing selected CIR 1992 Article 145 federal reductions encoded in this module
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_article_1458_pension_savings_reduction + belgium_pit_article_1457_employer_share_reduction + belgium_pit_article_14531_home_security_reduction + belgium_pit_article_14532_development_fund_reduction + belgium_pit_article_14533_gift_reduction + belgium_pit_article_14534_domestic_employee_reduction + belgium_pit_article_14535_childcare_reduction + belgium_pit_article_14548_adoption_reduction + belgium_pit_article_14549_legal_protection_insurance_reduction
-  - name: belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 147 items 1 and 2, pension and other replacement-income reduction before phaseouts
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_147_net_income_for_replacement_reduction <= 0:
-              0
-          else:
-              min(1, belgium_pit_article_147_pension_and_other_replacement_income / belgium_pit_article_147_net_income_for_replacement_reduction) * (belgium_pit_article_147_basic_replacement_reduction + belgium_pit_article_147_additional_replacement_reduction)
-  - name: belgium_pit_article_147_unemployment_reduction_before_phaseouts
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 147 items 7 and 8, unemployment reduction before phaseouts
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_147_net_income_for_replacement_reduction <= 0:
-              0
-          else:
-              min(1, belgium_pit_article_147_unemployment_income / belgium_pit_article_147_net_income_for_replacement_reduction) * (belgium_pit_article_147_basic_replacement_reduction + belgium_pit_article_147_additional_replacement_reduction)
-  - name: belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 147 items 9 and 10, sickness and invalidity indemnity reduction before phaseouts
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_147_net_income_for_replacement_reduction <= 0:
-              0
-          else:
-              min(1, belgium_pit_article_147_sickness_invalidity_income / belgium_pit_article_147_net_income_for_replacement_reduction) * belgium_pit_article_147_sickness_invalidity_reduction
-  - name: belgium_pit_article_151_unemployment_reduction_factor
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 151, unemployment reduction phaseout factor
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_151_older_unemployed_with_seniority_supplement:
-              1
-          else:
-              if belgium_pit_taxable_income >= belgium_pit_article_151_unemployment_phaseout_end:
-                  0
-              else:
-                  if belgium_pit_taxable_income <= belgium_pit_article_151_unemployment_phaseout_start:
-                      1
-                  else:
-                      (belgium_pit_article_151_unemployment_phaseout_end - belgium_pit_taxable_income) / (belgium_pit_article_151_unemployment_phaseout_end - belgium_pit_article_151_unemployment_phaseout_start)
-  - name: belgium_pit_article_1511_additional_reduction_factor
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 151/1, additional replacement-income reduction phaseout factor
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_taxable_income >= belgium_pit_article_1511_additional_phaseout_end:
-              0
-          else:
-              if belgium_pit_taxable_income <= belgium_pit_article_1511_additional_phaseout_start:
-                  1
-              else:
-                  (belgium_pit_article_1511_additional_phaseout_end - belgium_pit_taxable_income) / (belgium_pit_article_1511_additional_phaseout_end - belgium_pit_article_1511_additional_phaseout_start)
-  - name: belgium_pit_article_152_replacement_reduction_factor
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 152, phaseout factor for replacement-income reductions not covered by Articles 151 and 151/1
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_taxable_income >= belgium_pit_article_152_replacement_phaseout_end:
-              1 / 3
-          else:
-              if belgium_pit_taxable_income <= belgium_pit_article_152_replacement_phaseout_start:
-                  1
-              else:
-                  1 / 3 + (2 / 3) * ((belgium_pit_article_152_replacement_phaseout_end - belgium_pit_taxable_income) / (belgium_pit_article_152_replacement_phaseout_end - belgium_pit_article_152_replacement_phaseout_start))
-  - name: belgium_pit_selected_replacement_income_reduction_after_phaseouts
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 articles 147, 151, 151/1, and 152, selected replacement-income reduction after statutory phaseout interfaces
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts * belgium_pit_article_152_replacement_reduction_factor + belgium_pit_article_147_unemployment_reduction_before_phaseouts * belgium_pit_article_151_unemployment_reduction_factor + belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts * belgium_pit_article_152_replacement_reduction_factor
-  - name: belgium_pit_article_289bis_self_employed_investment_credit
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 289bis, self-employed investment credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289bis_self_employed_credit_conditions_met:
-              min(max(0, belgium_pit_article_289bis_current_qualifying_net_business_assets - belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets) * belgium_pit_article_289bis_self_employed_investment_credit_rate, belgium_pit_article_289bis_self_employed_investment_credit_ceiling)
-          else:
-              0
-  - name: belgium_pit_article_289ter_max_credit_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 289ter, low activity-income credit maximum by taxpayer status
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289ter_is_assisting_spouse:
-              belgium_pit_article_289ter_assisting_spouse_credit
-          else:
-              if belgium_pit_article_289ter_is_covered_public_worker_without_contract:
-                  belgium_pit_article_289ter_public_worker_credit
-              else:
-                  belgium_pit_article_289ter_standard_credit
-  - name: belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 289ter paragraph 2, low activity-income credit by activity-income band
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289ter_activity_income <= belgium_pit_article_289ter_activity_income_lower_threshold:
-              0
-          else:
-              if belgium_pit_article_289ter_activity_income <= belgium_pit_article_289ter_activity_income_plateau_start:
-                  belgium_pit_article_289ter_max_credit_amount * ((belgium_pit_article_289ter_activity_income - belgium_pit_article_289ter_activity_income_lower_threshold) / (belgium_pit_article_289ter_activity_income_plateau_start - belgium_pit_article_289ter_activity_income_lower_threshold))
-              else:
-                  if belgium_pit_article_289ter_activity_income <= belgium_pit_article_289ter_activity_income_plateau_end:
-                      belgium_pit_article_289ter_max_credit_amount
-                  else:
-                      if belgium_pit_article_289ter_activity_income <= belgium_pit_article_289ter_activity_income_upper_threshold:
-                          belgium_pit_article_289ter_max_credit_amount * ((belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_activity_income) / (belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_activity_income_plateau_end))
-                      else:
-                          0
-  - name: belgium_pit_article_289ter_professional_income_ratio
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 289ter paragraph 2, reduction where activity income is only part of net professional income
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289ter_net_professional_income <= 0:
-              0
-          else:
-              min(1, belgium_pit_article_289ter_activity_income / belgium_pit_article_289ter_net_professional_income)
-  - name: belgium_pit_article_289ter_total_net_income_cap
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 289ter paragraph 2, total net income cap on low activity-income credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289ter_total_net_income <= belgium_pit_article_289ter_activity_income_plateau_end:
-              belgium_pit_article_289ter_max_credit_amount
-          else:
-              if belgium_pit_article_289ter_total_net_income <= belgium_pit_article_289ter_activity_income_upper_threshold:
-                  belgium_pit_article_289ter_max_credit_amount * ((belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_total_net_income) / (belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_activity_income_plateau_end))
-              else:
-                  0
-  - name: belgium_pit_article_289ter_low_activity_income_credit
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 289ter, low activity-income credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289ter_low_activity_credit_conditions_met:
-              min(belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio * belgium_pit_article_289ter_professional_income_ratio, belgium_pit_article_289ter_total_net_income_cap)
-          else:
-              0
-  - name: belgium_pit_article_289ter1_low_wage_work_bonus_credit
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 289ter/1, low-wage work-bonus credit
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_pit_article_289ter1_work_bonus_credit_conditions_met:
-              min(belgium_pit_article_289ter1_work_bonus_a_amount * belgium_pit_article_289ter1_work_bonus_a_rate + belgium_pit_article_289ter1_work_bonus_b_amount * belgium_pit_article_289ter1_work_bonus_b_rate, belgium_pit_article_289ter1_work_bonus_credit_ceiling)
-          else:
-              0
-  - name: belgium_pit_selected_personal_credits
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Structural bridge summing selected CIR 1992 personal credits encoded in this module
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_article_289bis_self_employed_investment_credit + belgium_pit_article_289ter_low_activity_income_credit + belgium_pit_article_289ter1_low_wage_work_bonus_credit
+- name: belgium_pit_article_1452_general_reduction_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/2, general rate for Article 145/1 selected expenses
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.30'
+- name: belgium_pit_article_1458_higher_pension_savings_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/2 paragraph 2, higher pension-savings band rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.25'
+- name: belgium_pit_article_1458_standard_pension_savings_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/8, income year 2025 indexed standard pension-savings
+    ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1050'
+- name: belgium_pit_article_1458_higher_pension_savings_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/8, income year 2025 indexed elective higher pension-savings
+    ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1350'
+- name: belgium_pit_article_1457_employer_share_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/7, income year 2025 indexed employer-share subscription
+    ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '840'
+- name: belgium_pit_article_14531_home_security_reduction_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/31, base annual reduction ceiling per dwelling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '500'
+- name: belgium_pit_article_14532_development_fund_minimum_subscription
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/32, income year 2025 indexed minimum subscription
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '420'
+- name: belgium_pit_article_14532_development_fund_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/32, development-fund reduction rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.05'
+- name: belgium_pit_article_14532_development_fund_reduction_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/32, income year 2025 indexed annual reduction ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '350'
+- name: belgium_pit_article_14533_gift_minimum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/33, income year 2025 indexed gift minimum
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '40'
+- name: belgium_pit_article_14533_gift_net_income_cap_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/33, gift cap as a share of total net income
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.10'
+- name: belgium_pit_article_14533_gift_absolute_cap
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/33, income year 2025 indexed absolute gift base cap
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '420930'
+- name: belgium_pit_article_14533_gift_reduction_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/33, gift reduction rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.45'
+- name: belgium_pit_article_14534_domestic_employee_minimum_remuneration
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/34, income year 2025 indexed minimum remuneration
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '4920'
+- name: belgium_pit_article_14534_domestic_employee_base_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/34, domestic-employee remuneration base fraction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.50'
+- name: belgium_pit_article_14534_domestic_employee_base_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/34, income year 2025 indexed base ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '8420'
+- name: belgium_pit_article_14535_childcare_daily_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/35, income year 2025 indexed daily childcare ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '16.90'
+- name: belgium_pit_article_14535_childcare_reduction_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/35, childcare reduction rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.45'
+- name: belgium_pit_article_14535_childcare_complementary_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/35, complementary childcare reduction rate for Article
+    133 supplement cases
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.30'
+- name: belgium_pit_article_14548_adoption_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/48, adoption-procedure expense reduction rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.20'
+- name: belgium_pit_article_14548_adoption_reduction_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/48, income year 2025 indexed reduction ceiling per
+    adoption procedure
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '6730'
+- name: belgium_pit_article_14549_legal_protection_premium_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 145/49, income year 2025 indexed legal-protection insurance
+    premium ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '330'
+- name: belgium_pit_article_14549_legal_protection_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 145/49, legal-protection insurance reduction rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.40'
+- name: belgium_pit_article_147_basic_replacement_reduction
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 147, income year 2025 indexed basic pension and replacement-income
+    reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '2219.27'
+- name: belgium_pit_article_147_additional_replacement_reduction
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 147, income year 2025 indexed additional pension and replacement-income
+    reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '457.23'
+- name: belgium_pit_article_147_sickness_invalidity_reduction
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 147, income year 2025 indexed sickness or invalidity indemnity
+    reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '2977.93'
+- name: belgium_pit_article_151_unemployment_phaseout_start
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 151, income year 2025 indexed unemployment-reduction phaseout
+    start
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '28780'
+- name: belgium_pit_article_151_unemployment_phaseout_end
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 151, income year 2025 indexed unemployment-reduction phaseout
+    end
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '35930'
+- name: belgium_pit_article_1511_additional_phaseout_start
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 151/1, income year 2025 indexed additional-reduction phaseout
+    start
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '19630'
+- name: belgium_pit_article_1511_additional_phaseout_end
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 151/1, income year 2025 indexed additional-reduction phaseout
+    end
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '28780'
+- name: belgium_pit_article_152_replacement_phaseout_start
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 152, income year 2025 indexed replacement-reduction phaseout
+    start
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '28780'
+- name: belgium_pit_article_152_replacement_phaseout_end
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 152, income year 2025 indexed replacement-reduction phaseout
+    end
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '57560'
+- name: belgium_pit_article_289bis_self_employed_investment_credit_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 289bis, self-employed investment credit rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.10'
+- name: belgium_pit_article_289bis_self_employed_investment_credit_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289bis, self-employed investment credit ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '3750'
+- name: belgium_pit_article_289ter_activity_income_lower_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed activity-income lower
+    threshold
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '6550'
+- name: belgium_pit_article_289ter_activity_income_plateau_start
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed activity-income plateau
+    start
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '8740'
+- name: belgium_pit_article_289ter_activity_income_plateau_end
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed activity-income plateau
+    end
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '21860'
+- name: belgium_pit_article_289ter_activity_income_upper_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed activity-income and total-net-income
+    upper threshold
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '28420'
+- name: belgium_pit_article_289ter_standard_credit
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed standard low activity-income
+    credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '880'
+- name: belgium_pit_article_289ter_assisting_spouse_credit
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed assisting-spouse low activity-income
+    credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '400'
+- name: belgium_pit_article_289ter_public_worker_credit
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter, income year 2025 indexed public-worker low activity-income
+    credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '970'
+- name: belgium_pit_article_289ter1_work_bonus_a_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 289ter/1, work-bonus credit rate for volet A
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.3314'
+- name: belgium_pit_article_289ter1_work_bonus_b_rate
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 289ter/1, work-bonus credit rate for volet B
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '0.5254'
+- name: belgium_pit_article_289ter1_work_bonus_credit_ceiling
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1540'
+- name: belgium_pit_article_1458_pension_savings_payment_taken_into_account
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/8, pension-savings payment ceiling selector
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_1458_uses_higher_pension_savings_ceiling:\n \
+      \   min(belgium_pit_article_1458_pension_savings_payments, belgium_pit_article_1458_higher_pension_savings_ceiling)\n\
+      else:\n    min(belgium_pit_article_1458_pension_savings_payments, belgium_pit_article_1458_standard_pension_savings_ceiling)"
+- name: belgium_pit_article_1458_pension_savings_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 articles 145/2 and 145/8, pension-savings tax reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_1458_uses_higher_pension_savings_ceiling:\n \
+      \   belgium_pit_article_1458_pension_savings_payment_taken_into_account * belgium_pit_article_1458_higher_pension_savings_rate\n\
+      else:\n    belgium_pit_article_1458_pension_savings_payment_taken_into_account\
+      \ * belgium_pit_article_1452_general_reduction_rate"
+- name: belgium_pit_article_1457_employer_share_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 articles 145/2 and 145/7, employer-share subscription reduction
+    with pension-savings non-cumulation
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_1457_employer_share_eligibility_met and not belgium_pit_article_1458_pension_savings_reduction_claimed:\n\
+      \    min(belgium_pit_article_1457_employer_share_cash_subscription, belgium_pit_article_1457_employer_share_ceiling)\
+      \ * belgium_pit_article_1452_general_reduction_rate\nelse:\n    0"
+- name: belgium_pit_article_14531_home_security_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/31, home-security reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14531_home_security_conditions_met:\n    min(belgium_pit_article_14531_home_security_expenses\
+      \ * belgium_pit_article_1452_general_reduction_rate, belgium_pit_article_14531_home_security_reduction_ceiling)\n\
+      else:\n    0"
+- name: belgium_pit_article_14532_development_fund_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/32, development-fund reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14532_development_fund_subscription >= belgium_pit_article_14532_development_fund_minimum_subscription:\n\
+      \    min(belgium_pit_article_14532_development_fund_subscription * belgium_pit_article_14532_development_fund_rate,\
+      \ belgium_pit_article_14532_development_fund_reduction_ceiling)\nelse:\n   \
+      \ 0"
+- name: belgium_pit_article_14532_development_fund_recapture_floor
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 145/32 paragraph 2, development-fund recapture when shares
+    are ceded inside 60 months
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-193
+          span: CIR 1992 article 145/32 paragraph 2, development-fund recapture when
+            shares are ceded inside 60 months
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '60'
+- name: belgium_pit_article_14532_development_fund_recapture
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/32 paragraph 2, development-fund recapture when shares
+    are ceded inside 60 months
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14532_development_fund_ceded_before_60_months:\n\
+      \    belgium_pit_article_14532_development_fund_reduction_previously_obtained\
+      \ * min(belgium_pit_article_14532_development_fund_recapture_floor, max(0, belgium_pit_article_14532_development_fund_remaining_full_months))\
+      \ / belgium_pit_article_14532_development_fund_recapture_floor\nelse:\n    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14532_development_fund_recapture_floor
+          output: belgium_pit_article_14532_development_fund_recapture_floor
+          hash: sha256:local
+- name: belgium_pit_article_14533_gift_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/33, gifts reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14533_eligible_gifts < belgium_pit_article_14533_gift_minimum:\n\
+      \    0\nelse:\n    min(belgium_pit_article_14533_eligible_gifts, min(belgium_pit_article_14533_total_net_income_for_gift_cap\
+      \ * belgium_pit_article_14533_gift_net_income_cap_rate, belgium_pit_article_14533_gift_absolute_cap))\
+      \ * belgium_pit_article_14533_gift_reduction_rate"
+- name: belgium_pit_article_14534_domestic_employee_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/34, domestic-employee remuneration reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14534_domestic_employee_conditions_met and belgium_pit_article_14534_domestic_employee_remuneration\
+      \ >= belgium_pit_article_14534_domestic_employee_minimum_remuneration:\n   \
+      \ min(belgium_pit_article_14534_domestic_employee_remuneration * belgium_pit_article_14534_domestic_employee_base_rate,\
+      \ belgium_pit_article_14534_domestic_employee_base_ceiling) * belgium_pit_article_1452_general_reduction_rate\n\
+      else:\n    0"
+- name: belgium_pit_article_14535_childcare_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/35, child-care reduction and supplied complementary
+    base
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14535_childcare_conditions_met:\n    min(belgium_pit_article_14535_childcare_expenses,\
+      \ belgium_pit_article_14535_childcare_days * belgium_pit_article_14535_childcare_daily_ceiling)\
+      \ * belgium_pit_article_14535_childcare_reduction_rate + belgium_pit_article_14535_childcare_complementary_base\
+      \ * belgium_pit_article_14535_childcare_complementary_rate * belgium_pit_article_14535_childcare_complementary_fraction\n\
+      else:\n    0"
+- name: belgium_pit_article_14548_adoption_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/48, adoption-procedure expense reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14548_adoption_conditions_met:\n    min(belgium_pit_article_14548_adoption_expenses\
+      \ * belgium_pit_article_14548_adoption_rate, belgium_pit_article_14548_adoption_reduction_ceiling)\n\
+      else:\n    0"
+- name: belgium_pit_article_14549_legal_protection_insurance_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 145/49, legal-protection insurance premium reduction
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_14549_legal_protection_conditions_met:\n    min(belgium_pit_article_14549_legal_protection_premiums,\
+      \ belgium_pit_article_14549_legal_protection_premium_ceiling) * belgium_pit_article_14549_legal_protection_rate\n\
+      else:\n    0"
+- name: belgium_pit_selected_federal_article_145_reductions
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Structural bridge summing selected CIR 1992 Article 145 federal reductions
+    encoded in this module
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_pit_article_1458_pension_savings_reduction + belgium_pit_article_1457_employer_share_reduction
+      + belgium_pit_article_14531_home_security_reduction + belgium_pit_article_14532_development_fund_reduction
+      + belgium_pit_article_14533_gift_reduction + belgium_pit_article_14534_domestic_employee_reduction
+      + belgium_pit_article_14535_childcare_reduction + belgium_pit_article_14548_adoption_reduction
+      + belgium_pit_article_14549_legal_protection_insurance_reduction
+- name: belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 147 items 1 and 2, pension and other replacement-income
+    reduction before phaseouts
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_147_net_income_for_replacement_reduction <= 0:\n\
+      \    0\nelse:\n    min(1, belgium_pit_article_147_pension_and_other_replacement_income\
+      \ / belgium_pit_article_147_net_income_for_replacement_reduction) * (belgium_pit_article_147_basic_replacement_reduction\
+      \ + belgium_pit_article_147_additional_replacement_reduction)"
+- name: belgium_pit_article_147_unemployment_reduction_before_phaseouts
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 147 items 7 and 8, unemployment reduction before phaseouts
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_147_net_income_for_replacement_reduction <= 0:\n\
+      \    0\nelse:\n    min(1, belgium_pit_article_147_unemployment_income / belgium_pit_article_147_net_income_for_replacement_reduction)\
+      \ * (belgium_pit_article_147_basic_replacement_reduction + belgium_pit_article_147_additional_replacement_reduction)"
+- name: belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 147 items 9 and 10, sickness and invalidity indemnity reduction
+    before phaseouts
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_147_net_income_for_replacement_reduction <= 0:\n\
+      \    0\nelse:\n    min(1, belgium_pit_article_147_sickness_invalidity_income\
+      \ / belgium_pit_article_147_net_income_for_replacement_reduction) * belgium_pit_article_147_sickness_invalidity_reduction"
+- name: belgium_pit_article_151_unemployment_reduction_factor
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 151, unemployment reduction phaseout factor
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_151_older_unemployed_with_seniority_supplement:\n\
+      \    1\nelse:\n    if belgium_pit_taxable_income >= belgium_pit_article_151_unemployment_phaseout_end:\n\
+      \        0\n    else:\n        if belgium_pit_taxable_income <= belgium_pit_article_151_unemployment_phaseout_start:\n\
+      \            1\n        else:\n            (belgium_pit_article_151_unemployment_phaseout_end\
+      \ - belgium_pit_taxable_income) / (belgium_pit_article_151_unemployment_phaseout_end\
+      \ - belgium_pit_article_151_unemployment_phaseout_start)"
+- name: belgium_pit_article_1511_additional_reduction_factor
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 151/1, additional replacement-income reduction phaseout
+    factor
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_taxable_income >= belgium_pit_article_1511_additional_phaseout_end:\n\
+      \    0\nelse:\n    if belgium_pit_taxable_income <= belgium_pit_article_1511_additional_phaseout_start:\n\
+      \        1\n    else:\n        (belgium_pit_article_1511_additional_phaseout_end\
+      \ - belgium_pit_taxable_income) / (belgium_pit_article_1511_additional_phaseout_end\
+      \ - belgium_pit_article_1511_additional_phaseout_start)"
+- name: belgium_pit_article_152_replacement_reduction_factor
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 152, phaseout factor for replacement-income reductions
+    not covered by Articles 151 and 151/1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_taxable_income >= belgium_pit_article_152_replacement_phaseout_end:\n\
+      \    1 / 3\nelse:\n    if belgium_pit_taxable_income <= belgium_pit_article_152_replacement_phaseout_start:\n\
+      \        1\n    else:\n        1 / 3 + (2 / 3) * ((belgium_pit_article_152_replacement_phaseout_end\
+      \ - belgium_pit_taxable_income) / (belgium_pit_article_152_replacement_phaseout_end\
+      \ - belgium_pit_article_152_replacement_phaseout_start))"
+- name: belgium_pit_selected_replacement_income_reduction_after_phaseouts
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 articles 147, 151, 151/1, and 152, selected replacement-income
+    reduction after statutory phaseout interfaces
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts
+      * belgium_pit_article_152_replacement_reduction_factor + belgium_pit_article_147_unemployment_reduction_before_phaseouts
+      * belgium_pit_article_151_unemployment_reduction_factor + belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts
+      * belgium_pit_article_152_replacement_reduction_factor
+- name: belgium_pit_article_289bis_self_employed_investment_credit
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 289bis, self-employed investment credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_289bis_self_employed_credit_conditions_met:\n\
+      \    min(max(0, belgium_pit_article_289bis_current_qualifying_net_business_assets\
+      \ - belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets)\
+      \ * belgium_pit_article_289bis_self_employed_investment_credit_rate, belgium_pit_article_289bis_self_employed_investment_credit_ceiling)\n\
+      else:\n    0"
+- name: belgium_pit_article_289ter_max_credit_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 289ter, low activity-income credit maximum by taxpayer
+    status
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_289ter_is_assisting_spouse:\n    belgium_pit_article_289ter_assisting_spouse_credit\n\
+      else:\n    if belgium_pit_article_289ter_is_covered_public_worker_without_contract:\n\
+      \        belgium_pit_article_289ter_public_worker_credit\n    else:\n      \
+      \  belgium_pit_article_289ter_standard_credit"
+- name: belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 289ter paragraph 2, low activity-income credit by activity-income
+    band
+  versions:
+  - effective_from: '2025-01-01'
+    formula: |-
+      max(0, min(
+          belgium_pit_article_289ter_max_credit_amount,
+          belgium_pit_article_289ter_max_credit_amount * max(0, belgium_pit_article_289ter_activity_income - belgium_pit_article_289ter_activity_income_lower_threshold) / (belgium_pit_article_289ter_activity_income_plateau_start - belgium_pit_article_289ter_activity_income_lower_threshold),
+          belgium_pit_article_289ter_max_credit_amount * max(0, belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_activity_income) / (belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_activity_income_plateau_end)
+      ))
+- name: belgium_pit_article_289ter_professional_income_ratio
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 289ter paragraph 2, reduction where activity income is
+    only part of net professional income
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_289ter_net_professional_income <= 0:\n    0\n\
+      else:\n    min(1, belgium_pit_article_289ter_activity_income / belgium_pit_article_289ter_net_professional_income)"
+- name: belgium_pit_article_289ter_total_net_income_cap
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 289ter paragraph 2, total net income cap on low activity-income
+    credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_289ter_total_net_income <= belgium_pit_article_289ter_activity_income_plateau_end:\n\
+      \    belgium_pit_article_289ter_max_credit_amount\nelse:\n    if belgium_pit_article_289ter_total_net_income\
+      \ <= belgium_pit_article_289ter_activity_income_upper_threshold:\n        belgium_pit_article_289ter_max_credit_amount\
+      \ * ((belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_total_net_income)\
+      \ / (belgium_pit_article_289ter_activity_income_upper_threshold - belgium_pit_article_289ter_activity_income_plateau_end))\n\
+      \    else:\n        0"
+- name: belgium_pit_article_289ter_low_activity_income_credit
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 289ter, low activity-income credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: |-
+      if belgium_pit_article_289ter_low_activity_credit_conditions_met:
+          max(0, min(
+              max(0, belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio) * max(0, belgium_pit_article_289ter_professional_income_ratio),
+              max(0, belgium_pit_article_289ter_total_net_income_cap)
+          ))
+      else:
+          0
+- name: belgium_pit_article_289ter1_low_wage_work_bonus_credit
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 289ter/1, low-wage work-bonus credit
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_pit_article_289ter1_work_bonus_credit_conditions_met:\n \
+      \   min(belgium_pit_article_289ter1_work_bonus_a_amount * belgium_pit_article_289ter1_work_bonus_a_rate\
+      \ + belgium_pit_article_289ter1_work_bonus_b_amount * belgium_pit_article_289ter1_work_bonus_b_rate,\
+      \ belgium_pit_article_289ter1_work_bonus_credit_ceiling)\nelse:\n    0"
+- name: belgium_pit_selected_personal_credits
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Structural bridge summing selected CIR 1992 personal credits encoded in
+    this module
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_pit_article_289bis_self_employed_investment_credit + belgium_pit_article_289ter_low_activity_income_credit
+      + belgium_pit_article_289ter1_low_wage_work_bonus_credit

@@ -24,6 +24,18 @@
     be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_deduction: 160
     be-bru:statutes/property_tax/be_home_premium#brussels_be_home_property_tax_after_premium: 140
 
+- name: index_coefficient_zero_when_2018_cpi_is_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_december_2018_consumer_price_index: 0
+    be-bru:statutes/property_tax/be_home_premium#input.brussels_be_home_prior_december_consumer_price_index: 123
+  output:
+    be-bru:statutes/property_tax/be_home_premium#brussels_be_home_index_coefficient: 0
+
 - name: no_premium_without_household_real_right
   period:
     period_kind: custom

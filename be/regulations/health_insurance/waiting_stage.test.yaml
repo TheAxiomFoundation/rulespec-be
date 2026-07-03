@@ -1,5 +1,8 @@
 - name: incapacity_standard_waiting_stage_uses_180_days_in_12_months
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 180
@@ -14,8 +17,30 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_standard_waiting_stage_met: 1
     be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_waiting_stage_satisfied: 1
 
+- name: incapacity_standard_waiting_stage_below_180_days_is_not_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 179
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_hours: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_reference_months: 12
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_extended_reference_allowed: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_impossible_to_reach_regular_hours: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_transfer_within_30_days: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_prior_waiting_stage_completed_or_dispensed: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_incapacity_waiting_stage_dispensed: false
+  output:
+    be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_standard_waiting_stage_met: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_waiting_stage_satisfied: 0
+
 - name: incapacity_part_time_waiting_stage_can_use_extended_36_month_reference
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: true
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 0
@@ -31,7 +56,10 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_waiting_stage_satisfied: 1
 
 - name: maternity_standard_waiting_stage_uses_120_days_or_400_part_time_hours
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 120
@@ -47,8 +75,31 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_standard_waiting_stage_met: 1
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 1
 
+- name: maternity_standard_waiting_stage_below_120_days_is_not_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 119
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_hours: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_reference_months: 6
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_impossible_to_reach_regular_hours: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_transfer_within_30_days: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_prior_waiting_stage_completed_or_dispensed: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_maternity_reentry_childcare_reduced_stage_condition: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_maternity_reentry_mutuality_membership_condition: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_maternity_waiting_stage_dispensed: false
+  output:
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_standard_waiting_stage_met: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 0
+
 - name: maternity_part_time_impossible_case_can_use_133_hours_in_6_months
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: true
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 0
@@ -65,7 +116,10 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 1
 
 - name: incapacity_self_employed_transfer_reduced_stage_uses_90_days_in_6_months
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 90
@@ -79,8 +133,29 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_self_employed_transfer_reduced_waiting_stage_met: 1
     be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_waiting_stage_satisfied: 1
 
+- name: incapacity_self_employed_transfer_reduced_stage_below_90_days_is_not_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 89
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_hours: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_reference_months: 6
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_extended_reference_allowed: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_transfer_within_30_days: true
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_prior_waiting_stage_completed_or_dispensed: true
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_incapacity_waiting_stage_dispensed: false
+  output:
+    be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_self_employed_transfer_reduced_waiting_stage_met: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_waiting_stage_satisfied: 0
+
 - name: maternity_self_employed_transfer_exempts_waiting_stage
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 0
@@ -96,8 +171,33 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_self_employed_transfer_waiting_stage_exempt: 1
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 1
 
+- name: maternity_self_employed_transfer_without_transfer_condition_is_not_exempt
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_hours: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_reference_months: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_impossible_to_reach_regular_hours: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_transfer_within_30_days: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_self_employed_prior_waiting_stage_completed_or_dispensed: true
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_maternity_reentry_childcare_reduced_stage_condition: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_maternity_reentry_mutuality_membership_condition: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_maternity_waiting_stage_dispensed: false
+  output:
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_self_employed_transfer_waiting_stage_exempt: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_reentry_one_month_reduced_waiting_stage_met: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_reentry_three_month_reduced_waiting_stage_met: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 0
+
 - name: maternity_reentry_one_month_reduced_stage_uses_20_days
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 20
@@ -114,7 +214,10 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 1
 
 - name: maternity_reentry_three_month_part_time_impossible_case_uses_67_hours
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: true
     be:regulations/health_insurance/waiting_stage#input.belgium_health_waiting_stage_assimilated_work_days: 0
@@ -131,7 +234,10 @@
     be:regulations/health_insurance/waiting_stage#belgium_health_maternity_waiting_stage_satisfied: 1
 
 - name: incapacity_continuing_entitlement_uses_120_days_and_contributions
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_currently_indemnified_at_quarter_end: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_continuing_entitlement_contributions_condition_met: true
@@ -142,8 +248,27 @@
   output:
     be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_continuing_entitlement_met: 1
 
+- name: incapacity_continuing_entitlement_without_contributions_is_not_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_currently_indemnified_at_quarter_end: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_continuing_entitlement_contributions_condition_met: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_seasonal_intermittent_or_part_time_worker: false
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_continuing_entitlement_titular_work_days_second_third_quarters: 120
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_continuing_entitlement_assimilated_work_hours_second_third_quarters: 0
+    be:regulations/health_insurance/waiting_stage#input.belgium_health_continuing_entitlement_longest_titular_interruption_days: 0
+  output:
+    be:regulations/health_insurance/waiting_stage#belgium_health_incapacity_continuing_entitlement_met: 0
+    be:regulations/health_insurance/waiting_stage#belgium_health_maternity_continuing_entitlement_met: 0
+
 - name: maternity_continuing_entitlement_part_time_fallback_uses_no_interruption_over_30_days
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:regulations/health_insurance/waiting_stage#input.belgium_health_currently_indemnified_at_quarter_end: false
     be:regulations/health_insurance/waiting_stage#input.belgium_health_continuing_entitlement_contributions_condition_met: true

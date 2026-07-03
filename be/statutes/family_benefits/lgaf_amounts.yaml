@@ -1,33 +1,40 @@
 format: rulespec/v1
 module:
-  summary: |-
-    The 19 December 1939 Loi generale relative aux allocations familiales
+  summary: 'The 19 December 1939 Loi generale relative aux allocations familiales
+
     (LGAF) contains the coordinated-law amount schedule referenced by the
+
     federal guaranteed-family-benefits implementation decree. This module
+
     encodes the current consolidated amount articles for rank-based monthly
+
     family allowances, selected supplements, age supplements, orphan amount,
+
     first and second birth allowances, adoption premium, and Article 76bis
+
     indexation interfaces. It does not replace regional post-transfer systems,
+
     eligibility predicates, child-status proof, or the third-and-later birth
+
     grant BEF-to-EUR conversion, which remains supplied until an upstream
-    conversion source is ingested.
+
+    conversion source is ingested.'
   source_verification:
     corpus_citation_paths:
-      - be/statute/moniteur/1939-12-22/mopdf/page-6/1939121901/lgaf
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 40
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 41
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 42
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 42bis
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 44
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 44ter
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 50bis
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 73bis
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 73quater
-      - be/statute/justel/loi-1939-12-19/1939121901/lgaf-current/Article 76bis
+    - be/statute/loi/1939/12/19/1939121901/article/40
+    - be/statute/loi/1939/12/19/1939121901/article/41
+    - be/statute/loi/1939/12/19/1939121901/article/42
+    - be/statute/loi/1939/12/19/1939121901/article/42bis
+    - be/statute/loi/1939/12/19/1939121901/article/44
+    - be/statute/loi/1939/12/19/1939121901/article/44ter
+    - be/statute/loi/1939/12/19/1939121901/article/50bis
+    - be/statute/loi/1939/12/19/1939121901/article/73bis
+    - be/statute/loi/1939/12/19/1939121901/article/73quater
+    - be/statute/loi/1939/12/19/1939121901/article/76bis
     values:
       belgium_lgaf_index_pivot_1996_base_100: 103.14
       belgium_lgaf_article_40_first_child_monthly_base_amount: 68.42
-      belgium_lgaf_article_40_second_child_monthly_base_amount: 126.60
+      belgium_lgaf_article_40_second_child_monthly_base_amount: 126.6
       belgium_lgaf_article_40_third_and_later_child_monthly_base_amount: 189.02
       belgium_lgaf_article_41_first_child_single_parent_supplement_base_amount: 34.83
       belgium_lgaf_article_41_second_child_single_parent_supplement_base_amount: 21.59
@@ -43,7 +50,7 @@ module:
       belgium_lgaf_article_44_high_age_12_monthly_base_amount: 36.32
       belgium_lgaf_article_44_high_age_18_monthly_base_amount: 46.18
       belgium_lgaf_article_44ter_general_under_5_annual_base_amount: 20.92
-      belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount: 44.40
+      belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount: 44.4
       belgium_lgaf_article_44ter_general_11_to_16_annual_base_amount: 62.16
       belgium_lgaf_article_44ter_general_17_plus_annual_base_amount: 83.68
       belgium_lgaf_article_44ter_reduced_under_5_annual_base_amount: 15.16
@@ -55,554 +62,601 @@ module:
       belgium_lgaf_article_73bis_second_birth_allowance_base_amount: 697.42
       belgium_lgaf_article_73quater_adoption_premium_base_amount: 926.95
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_lgaf_index_pivot_1996_base_100
-    kind: parameter
-    dtype: Decimal
-    source: LGAF article 76bis
-    versions:
-      - effective_from: '2008-06-16'
-        formula: |-
-          103.14
-  - name: belgium_lgaf_article_40_first_child_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 40 item 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          68.42
-  - name: belgium_lgaf_article_40_second_child_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 40 item 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          126.60
-  - name: belgium_lgaf_article_40_third_and_later_child_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 40 item 3
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          189.02
-  - name: belgium_lgaf_article_41_first_child_single_parent_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 41
-    versions:
-      - effective_from: '2008-10-01'
-        formula: |-
-          34.83
-  - name: belgium_lgaf_article_41_second_child_single_parent_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 41
-    versions:
-      - effective_from: '2008-10-01'
-        formula: |-
-          21.59
-  - name: belgium_lgaf_article_41_third_and_later_child_single_parent_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 41
-    versions:
-      - effective_from: '2008-10-01'
-        formula: |-
-          17.41
-  - name: belgium_lgaf_article_42bis_first_child_social_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 42bis section 2 item 1
-    versions:
-      - effective_from: '2007-05-01'
-        formula: |-
-          34.83
-  - name: belgium_lgaf_article_42bis_second_child_social_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 42bis section 2 item 2
-    versions:
-      - effective_from: '2007-05-01'
-        formula: |-
-          21.59
-  - name: belgium_lgaf_article_42bis_third_and_later_child_social_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 42bis section 2 item 3
-    versions:
-      - effective_from: '2007-05-01'
-        formula: |-
-          3.79
-  - name: belgium_lgaf_article_42bis_third_and_later_article_41_allocataire_social_supplement_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 42bis section 2 final sentence
-    versions:
-      - effective_from: '2007-05-01'
-        formula: |-
-          17.41
-  - name: belgium_lgaf_article_44_low_age_6_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44 section 1 item 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          11.92
-  - name: belgium_lgaf_article_44_low_age_12_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44 section 1 item 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          18.51
-  - name: belgium_lgaf_article_44_low_age_18_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44 section 1 item 3
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          20.92
-  - name: belgium_lgaf_article_44_high_age_6_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44 section 2 item 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          23.77
-  - name: belgium_lgaf_article_44_high_age_12_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44 section 2 item 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          36.32
-  - name: belgium_lgaf_article_44_high_age_18_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44 section 2 item 3
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          46.18
-  - name: belgium_lgaf_article_44ter_general_under_5_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 1 item a
-    versions:
-      - effective_from: '2013-06-30'
-        formula: |-
-          20.92
-  - name: belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 1 item b
-    versions:
-      - effective_from: '2013-06-30'
-        formula: |-
-          44.40
-  - name: belgium_lgaf_article_44ter_general_11_to_16_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 1 item c
-    versions:
-      - effective_from: '2013-06-30'
-        formula: |-
-          62.16
-  - name: belgium_lgaf_article_44ter_general_17_plus_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 1 item d
-    versions:
-      - effective_from: '2013-06-30'
-        formula: |-
-          83.68
-  - name: belgium_lgaf_article_44ter_reduced_under_5_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 2 item 2 a
-    versions:
-      - effective_from: '2014-01-01'
-        formula: |-
-          15.16
-  - name: belgium_lgaf_article_44ter_reduced_5_to_10_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 2 item 2 b
-    versions:
-      - effective_from: '2014-01-01'
-        formula: |-
-          32.59
-  - name: belgium_lgaf_article_44ter_reduced_11_to_16_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 2 item 2 c
-    versions:
-      - effective_from: '2014-01-01'
-        formula: |-
-          45.47
-  - name: belgium_lgaf_article_44ter_reduced_17_plus_annual_base_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter section 2 item 2 d
-    versions:
-      - effective_from: '2014-01-01'
-        formula: |-
-          60.63
-  - name: belgium_lgaf_article_50bis_orphan_monthly_base_amount
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 50bis
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          262.84
-  - name: belgium_lgaf_article_73bis_first_birth_allowance_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: LGAF article 73bis section 1 item 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          926.95
-  - name: belgium_lgaf_article_73bis_second_birth_allowance_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: LGAF article 73bis section 1 item 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          697.42
-  - name: belgium_lgaf_article_73quater_adoption_premium_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: LGAF article 73quater section 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          926.95
-  - name: belgium_lgaf_article_42_multiple_allocataire_grouping_condition_met
-    kind: derived
-    entity: Child
-    dtype: Count
-    period: Month
-    source: LGAF article 42 section 1
-    versions:
-      - effective_from: '2000-08-31'
-        formula: |-
-          if belgium_lgaf_single_allocataire_for_rank_group:
-              1
-          else:
-              if belgium_lgaf_allocataires_same_principal_residence and belgium_lgaf_allocataires_qualifying_relationship_or_de_facto_household:
-                  1
-              else:
-                  0
-  - name: belgium_lgaf_article_42_effective_child_rank
-    kind: derived
-    entity: Child
-    dtype: Count
-    period: Month
-    source: LGAF article 42
-    versions:
-      - effective_from: '2000-08-31'
-        formula: |-
-          if belgium_lgaf_child_is_article_50bis_orphan:
-              0
-          else:
-              belgium_lgaf_supplied_child_rank_for_amounts
-  - name: belgium_lgaf_article_40_base_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF articles 40 and 42
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_lgaf_article_42_effective_child_rank <= 0:
-              0
-          else:
-              if belgium_lgaf_article_42_effective_child_rank == 1:
-                  belgium_lgaf_article_40_first_child_monthly_base_amount
-              else:
-                  if belgium_lgaf_article_42_effective_child_rank == 2:
-                      belgium_lgaf_article_40_second_child_monthly_base_amount
-                  else:
-                      belgium_lgaf_article_40_third_and_later_child_monthly_base_amount
-  - name: belgium_lgaf_article_41_single_parent_supplement_base_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 41
-    versions:
-      - effective_from: '2008-10-01'
-        formula: |-
-          if not belgium_lgaf_article_41_single_parent_supplement_conditions_met:
-              0
-          else:
-              if belgium_lgaf_article_42_effective_child_rank == 1:
-                  belgium_lgaf_article_41_first_child_single_parent_supplement_base_amount
-              else:
-                  if belgium_lgaf_article_42_effective_child_rank == 2:
-                      belgium_lgaf_article_41_second_child_single_parent_supplement_base_amount
-                  else:
-                      belgium_lgaf_article_41_third_and_later_child_single_parent_supplement_base_amount
-  - name: belgium_lgaf_article_42bis_social_supplement_base_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 42bis section 2
-    versions:
-      - effective_from: '2007-05-01'
-        formula: |-
-          if not belgium_lgaf_article_42bis_social_supplement_conditions_met:
-              0
-          else:
-              if belgium_lgaf_article_42_effective_child_rank == 1:
-                  belgium_lgaf_article_42bis_first_child_social_supplement_base_amount
-              else:
-                  if belgium_lgaf_article_42_effective_child_rank == 2:
-                      belgium_lgaf_article_42bis_second_child_social_supplement_base_amount
-                  else:
-                      if belgium_lgaf_article_42bis_third_or_later_allocataire_meets_article_41_first_two_conditions:
-                          belgium_lgaf_article_42bis_third_and_later_article_41_allocataire_social_supplement_base_amount
-                      else:
-                          belgium_lgaf_article_42bis_third_and_later_child_social_supplement_base_amount
-  - name: belgium_lgaf_article_44_monthly_age_supplement_base_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 44
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_lgaf_child_age_years < 6:
-              0
-          else:
-              if belgium_lgaf_child_age_years < 12:
-                  if belgium_lgaf_article_42_effective_child_rank == 1 and not belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement:
-                      belgium_lgaf_article_44_low_age_6_monthly_base_amount
-                  else:
-                      belgium_lgaf_article_44_high_age_6_monthly_base_amount
-              else:
-                  if belgium_lgaf_child_age_years < 18:
-                      if belgium_lgaf_article_42_effective_child_rank == 1 and not belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement:
-                          belgium_lgaf_article_44_low_age_12_monthly_base_amount
-                      else:
-                          belgium_lgaf_article_44_high_age_12_monthly_base_amount
-                  else:
-                      if belgium_lgaf_article_42_effective_child_rank == 1 and not belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement:
-                          belgium_lgaf_article_44_low_age_18_monthly_base_amount
-                      else:
-                          belgium_lgaf_article_44_high_age_18_monthly_base_amount
-  - name: belgium_lgaf_article_50bis_orphan_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 50bis
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_lgaf_child_is_article_50bis_orphan:
-              belgium_lgaf_article_50bis_orphan_monthly_base_amount
-          else:
-              0
-  - name: belgium_lgaf_monthly_base_before_supplements
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF articles 40, 42, and 50bis
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_lgaf_child_is_article_50bis_orphan:
-              belgium_lgaf_article_50bis_orphan_monthly_amount
-          else:
-              belgium_lgaf_article_40_base_monthly_amount
-  - name: belgium_lgaf_selected_monthly_base_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF articles 40, 41, 42bis, 44, 50bis, and 76bis
-    versions:
-      - effective_from: '2008-10-01'
-        formula: |-
-          belgium_lgaf_monthly_base_before_supplements + belgium_lgaf_article_41_single_parent_supplement_base_monthly_amount + belgium_lgaf_article_42bis_social_supplement_base_monthly_amount + belgium_lgaf_article_44_monthly_age_supplement_base_amount
-  - name: belgium_lgaf_selected_monthly_indexed_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: LGAF article 76bis
-    versions:
-      - effective_from: '2008-10-01'
-        formula: |-
-          belgium_lgaf_selected_monthly_base_amount * belgium_lgaf_current_index_multiplier * belgium_lgaf_current_revaluation_coefficient
-  - name: belgium_lgaf_article_44ter_annual_age_supplement_base_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 44ter
-    versions:
-      - effective_from: '2014-01-01'
-        formula: |-
-          if belgium_lgaf_child_age_on_december_31_years < 0:
-              0
-          else:
-              if belgium_lgaf_child_age_on_december_31_years < 5:
-                  if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:
-                      belgium_lgaf_article_44ter_general_under_5_annual_base_amount
-                  else:
-                      belgium_lgaf_article_44ter_reduced_under_5_annual_base_amount
-              else:
-                  if belgium_lgaf_child_age_on_december_31_years < 11:
-                      if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:
-                          belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount
-                      else:
-                          belgium_lgaf_article_44ter_reduced_5_to_10_annual_base_amount
-                  else:
-                      if belgium_lgaf_child_age_on_december_31_years < 17:
-                          if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:
-                              belgium_lgaf_article_44ter_general_11_to_16_annual_base_amount
-                          else:
-                              belgium_lgaf_article_44ter_reduced_11_to_16_annual_base_amount
-                      else:
-                          if belgium_lgaf_child_is_article_62_or_63_beneficiary:
-                              if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:
-                                  belgium_lgaf_article_44ter_general_17_plus_annual_base_amount
-                              else:
-                                  belgium_lgaf_article_44ter_reduced_17_plus_annual_base_amount
-                          else:
-                              0
-  - name: belgium_lgaf_article_44ter_annual_age_supplement_indexed_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 76bis
-    versions:
-      - effective_from: '2014-01-01'
-        formula: |-
-          belgium_lgaf_article_44ter_annual_age_supplement_base_amount * belgium_lgaf_current_index_multiplier * belgium_lgaf_current_revaluation_coefficient
-  - name: belgium_lgaf_article_73bis_birth_allowance_base_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 73bis section 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_lgaf_multiple_birth:
-              belgium_lgaf_article_73bis_first_birth_allowance_base_amount
-          else:
-              if belgium_lgaf_birth_order_rank == 1:
-                  belgium_lgaf_article_73bis_first_birth_allowance_base_amount
-              else:
-                  if belgium_lgaf_birth_order_rank == 2:
-                      belgium_lgaf_article_73bis_second_birth_allowance_base_amount
-                  else:
-                      belgium_lgaf_supplied_third_and_later_birth_allowance_base_amount
-  - name: belgium_lgaf_article_73bis_birth_allowance_indexed_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF article 76bis
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          belgium_lgaf_article_73bis_birth_allowance_base_amount * belgium_lgaf_current_index_multiplier * belgium_lgaf_current_revaluation_coefficient
-  - name: belgium_lgaf_article_73quater_adoption_premium_indexed_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: LGAF articles 73quater and 76bis
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          belgium_lgaf_article_73quater_adoption_premium_base_amount * belgium_lgaf_current_index_multiplier * belgium_lgaf_current_revaluation_coefficient
+- name: belgium_lgaf_index_pivot_1996_base_100
+  kind: parameter
+  dtype: Decimal
+  source: LGAF article 76bis
+  versions:
+  - effective_from: '2008-06-16'
+    formula: '103.14'
+- name: belgium_lgaf_article_40_first_child_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 40 item 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '68.42'
+- name: belgium_lgaf_article_40_second_child_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 40 item 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '126.60'
+- name: belgium_lgaf_article_40_third_and_later_child_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 40 item 3
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '189.02'
+- name: belgium_lgaf_article_41_first_child_single_parent_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 41
+  versions:
+  - effective_from: '2008-10-01'
+    formula: '34.83'
+- name: belgium_lgaf_article_41_second_child_single_parent_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 41
+  versions:
+  - effective_from: '2008-10-01'
+    formula: '21.59'
+- name: belgium_lgaf_article_41_third_and_later_child_single_parent_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 41
+  versions:
+  - effective_from: '2008-10-01'
+    formula: '17.41'
+- name: belgium_lgaf_article_42bis_first_child_social_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 42bis section 2 item 1
+  versions:
+  - effective_from: '2007-05-01'
+    formula: '34.83'
+- name: belgium_lgaf_article_42bis_second_child_social_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 42bis section 2 item 2
+  versions:
+  - effective_from: '2007-05-01'
+    formula: '21.59'
+- name: belgium_lgaf_article_42bis_third_and_later_child_social_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 42bis section 2 item 3
+  versions:
+  - effective_from: '2007-05-01'
+    formula: '3.79'
+- name: belgium_lgaf_article_42bis_third_and_later_article_41_allocataire_social_supplement_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 42bis section 2 final sentence
+  versions:
+  - effective_from: '2007-05-01'
+    formula: '17.41'
+- name: belgium_lgaf_article_44_low_age_6_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44 section 1 item 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '11.92'
+- name: belgium_lgaf_article_44_low_age_12_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44 section 1 item 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '18.51'
+- name: belgium_lgaf_article_44_low_age_18_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44 section 1 item 3
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '20.92'
+- name: belgium_lgaf_article_44_high_age_6_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44 section 2 item 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '23.77'
+- name: belgium_lgaf_article_44_high_age_12_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44 section 2 item 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '36.32'
+- name: belgium_lgaf_article_44_high_age_18_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44 section 2 item 3
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '46.18'
+- name: belgium_lgaf_article_44ter_general_under_5_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 1 item a
+  versions:
+  - effective_from: '2013-06-30'
+    formula: '20.92'
+- name: belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 1 item b
+  versions:
+  - effective_from: '2013-06-30'
+    formula: '44.40'
+- name: belgium_lgaf_article_44ter_general_11_to_16_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 1 item c
+  versions:
+  - effective_from: '2013-06-30'
+    formula: '62.16'
+- name: belgium_lgaf_article_44ter_general_17_plus_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 1 item d
+  versions:
+  - effective_from: '2013-06-30'
+    formula: '83.68'
+- name: belgium_lgaf_article_44ter_reduced_under_5_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 2 item 2 a
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '15.16'
+- name: belgium_lgaf_article_44ter_reduced_5_to_10_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 2 item 2 b
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '32.59'
+- name: belgium_lgaf_article_44ter_reduced_11_to_16_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 2 item 2 c
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '45.47'
+- name: belgium_lgaf_article_44ter_reduced_17_plus_annual_base_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter section 2 item 2 d
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '60.63'
+- name: belgium_lgaf_article_50bis_orphan_monthly_base_amount
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 50bis
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '262.84'
+- name: belgium_lgaf_article_73bis_first_birth_allowance_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: LGAF article 73bis section 1 item 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '926.95'
+- name: belgium_lgaf_article_73bis_second_birth_allowance_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: LGAF article 73bis section 1 item 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '697.42'
+- name: belgium_lgaf_article_73quater_adoption_premium_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: LGAF article 73quater section 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '926.95'
+- name: belgium_lgaf_article_42_multiple_allocataire_grouping_condition_met
+  kind: derived
+  entity: Child
+  dtype: Count
+  period: Month
+  source: LGAF article 42 section 1
+  versions:
+  - effective_from: '2000-08-31'
+    formula: "if belgium_lgaf_single_allocataire_for_rank_group:\n    1\nelse:\n \
+      \   if belgium_lgaf_allocataires_same_principal_residence and belgium_lgaf_allocataires_qualifying_relationship_or_de_facto_household:\n\
+      \        1\n    else:\n        0"
+- name: belgium_lgaf_article_42_effective_child_rank
+  kind: derived
+  entity: Child
+  dtype: Count
+  period: Month
+  source: LGAF article 42
+  versions:
+  - effective_from: '2000-08-31'
+    formula: "if belgium_lgaf_child_is_article_50bis_orphan:\n    0\nelse:\n    belgium_lgaf_supplied_child_rank_for_amounts"
+- name: belgium_lgaf_article_40_base_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF articles 40 and 42
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_lgaf_article_42_effective_child_rank <= 0:\n    0\nelse:\n\
+      \    if belgium_lgaf_article_42_effective_child_rank == 1:\n        belgium_lgaf_article_40_first_child_monthly_base_amount\n\
+      \    else:\n        if belgium_lgaf_article_42_effective_child_rank == 2:\n\
+      \            belgium_lgaf_article_40_second_child_monthly_base_amount\n    \
+      \    else:\n            belgium_lgaf_article_40_third_and_later_child_monthly_base_amount"
+- name: belgium_lgaf_article_41_single_parent_supplement_base_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 41
+  versions:
+  - effective_from: '2008-10-01'
+    formula: "if not belgium_lgaf_article_41_single_parent_supplement_conditions_met:\n\
+      \    0\nelse:\n    if belgium_lgaf_article_42_effective_child_rank == 1:\n \
+      \       belgium_lgaf_article_41_first_child_single_parent_supplement_base_amount\n\
+      \    else:\n        if belgium_lgaf_article_42_effective_child_rank == 2:\n\
+      \            belgium_lgaf_article_41_second_child_single_parent_supplement_base_amount\n\
+      \        else:\n            belgium_lgaf_article_41_third_and_later_child_single_parent_supplement_base_amount"
+- name: belgium_lgaf_article_42bis_social_supplement_base_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 42bis section 2
+  versions:
+  - effective_from: '2007-05-01'
+    formula: "if not belgium_lgaf_article_42bis_social_supplement_conditions_met:\n\
+      \    0\nelse:\n    if belgium_lgaf_article_42_effective_child_rank == 1:\n \
+      \       belgium_lgaf_article_42bis_first_child_social_supplement_base_amount\n\
+      \    else:\n        if belgium_lgaf_article_42_effective_child_rank == 2:\n\
+      \            belgium_lgaf_article_42bis_second_child_social_supplement_base_amount\n\
+      \        else:\n            if belgium_lgaf_article_42bis_third_or_later_allocataire_meets_article_41_first_two_conditions:\n\
+      \                belgium_lgaf_article_42bis_third_and_later_article_41_allocataire_social_supplement_base_amount\n\
+      \            else:\n                belgium_lgaf_article_42bis_third_and_later_child_social_supplement_base_amount"
+- name: belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: LGAF article 44
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
+          span: LGAF article 44
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '6'
+- name: belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: LGAF article 44
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
+          span: LGAF article 44
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '12'
+- name: belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: LGAF article 44
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
+          span: LGAF article 44
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '18'
+- name: belgium_lgaf_article_44_monthly_age_supplement_base_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 44
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_lgaf_child_age_years < belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit:\n\
+      \    0\nelse:\n    if belgium_lgaf_child_age_years < belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_2:\n\
+      \        if belgium_lgaf_article_42_effective_child_rank == 1 and not belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement:\n\
+      \            belgium_lgaf_article_44_low_age_6_monthly_base_amount\n       \
+      \ else:\n            belgium_lgaf_article_44_high_age_6_monthly_base_amount\n\
+      \    else:\n        if belgium_lgaf_child_age_years < belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_3:\n\
+      \            if belgium_lgaf_article_42_effective_child_rank == 1 and not belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement:\n\
+      \                belgium_lgaf_article_44_low_age_12_monthly_base_amount\n  \
+      \          else:\n                belgium_lgaf_article_44_high_age_12_monthly_base_amount\n\
+      \        else:\n            if belgium_lgaf_article_42_effective_child_rank\
+      \ == 1 and not belgium_lgaf_child_has_article_41_42bis_47_or_50ter_supplement:\n\
+      \                belgium_lgaf_article_44_low_age_18_monthly_base_amount\n  \
+      \          else:\n                belgium_lgaf_article_44_high_age_18_monthly_base_amount"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit
+          output: belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_2
+          output: belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_3
+          output: belgium_lgaf_article_44_monthly_age_supplement_base_amount_scalar_limit_3
+          hash: sha256:local
+- name: belgium_lgaf_article_50bis_orphan_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 50bis
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_lgaf_child_is_article_50bis_orphan:\n    belgium_lgaf_article_50bis_orphan_monthly_base_amount\n\
+      else:\n    0"
+- name: belgium_lgaf_monthly_base_before_supplements
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF articles 40, 42, and 50bis
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_lgaf_child_is_article_50bis_orphan:\n    belgium_lgaf_article_50bis_orphan_monthly_amount\n\
+      else:\n    belgium_lgaf_article_40_base_monthly_amount"
+- name: belgium_lgaf_selected_monthly_base_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF articles 40, 41, 42bis, 44, 50bis, and 76bis
+  versions:
+  - effective_from: '2008-10-01'
+    formula: belgium_lgaf_monthly_base_before_supplements + belgium_lgaf_article_41_single_parent_supplement_base_monthly_amount
+      + belgium_lgaf_article_42bis_social_supplement_base_monthly_amount + belgium_lgaf_article_44_monthly_age_supplement_base_amount
+- name: belgium_lgaf_selected_monthly_indexed_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: LGAF article 76bis
+  versions:
+  - effective_from: '2008-10-01'
+    formula: belgium_lgaf_selected_monthly_base_amount * belgium_lgaf_current_index_multiplier
+      * belgium_lgaf_current_revaluation_coefficient
+- name: belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: LGAF article 44ter
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
+          span: LGAF article 44ter
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '5'
+- name: belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: LGAF article 44ter
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
+          span: LGAF article 44ter
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '11'
+- name: belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: LGAF article 44ter
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
+          span: LGAF article 44ter
+  versions:
+  - effective_from: '2014-01-01'
+    formula: '17'
+- name: belgium_lgaf_article_44ter_annual_age_supplement_base_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 44ter
+  versions:
+  - effective_from: '2014-01-01'
+    formula: "if belgium_lgaf_child_age_on_december_31_years < 0:\n    0\nelse:\n\
+      \    if belgium_lgaf_child_age_on_december_31_years < belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit:\n\
+      \        if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:\n\
+      \            belgium_lgaf_article_44ter_general_under_5_annual_base_amount\n\
+      \        else:\n            belgium_lgaf_article_44ter_reduced_under_5_annual_base_amount\n\
+      \    else:\n        if belgium_lgaf_child_age_on_december_31_years < belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_2:\n\
+      \            if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:\n\
+      \                belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount\n\
+      \            else:\n                belgium_lgaf_article_44ter_reduced_5_to_10_annual_base_amount\n\
+      \        else:\n            if belgium_lgaf_child_age_on_december_31_years <\
+      \ belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_3:\n\
+      \                if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:\n\
+      \                    belgium_lgaf_article_44ter_general_11_to_16_annual_base_amount\n\
+      \                else:\n                    belgium_lgaf_article_44ter_reduced_11_to_16_annual_base_amount\n\
+      \            else:\n                if belgium_lgaf_child_is_article_62_or_63_beneficiary:\n\
+      \                    if belgium_lgaf_receives_article_41_42bis_47_50ter_or_50bis_for_july:\n\
+      \                        belgium_lgaf_article_44ter_general_17_plus_annual_base_amount\n\
+      \                    else:\n                        belgium_lgaf_article_44ter_reduced_17_plus_annual_base_amount\n\
+      \                else:\n                    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit
+          output: belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_2
+          output: belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/family_benefits/lgaf_amounts#belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_3
+          output: belgium_lgaf_article_44ter_annual_age_supplement_base_amount_scalar_limit_3
+          hash: sha256:local
+- name: belgium_lgaf_article_44ter_annual_age_supplement_indexed_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 76bis
+  versions:
+  - effective_from: '2014-01-01'
+    formula: belgium_lgaf_article_44ter_annual_age_supplement_base_amount * belgium_lgaf_current_index_multiplier
+      * belgium_lgaf_current_revaluation_coefficient
+- name: belgium_lgaf_article_73bis_birth_allowance_base_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 73bis section 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_lgaf_multiple_birth:\n    belgium_lgaf_article_73bis_first_birth_allowance_base_amount\n\
+      else:\n    if belgium_lgaf_birth_order_rank == 1:\n        belgium_lgaf_article_73bis_first_birth_allowance_base_amount\n\
+      \    else:\n        if belgium_lgaf_birth_order_rank == 2:\n            belgium_lgaf_article_73bis_second_birth_allowance_base_amount\n\
+      \        else:\n            belgium_lgaf_supplied_third_and_later_birth_allowance_base_amount"
+- name: belgium_lgaf_article_73bis_birth_allowance_indexed_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF article 76bis
+  versions:
+  - effective_from: '2002-01-01'
+    formula: belgium_lgaf_article_73bis_birth_allowance_base_amount * belgium_lgaf_current_index_multiplier
+      * belgium_lgaf_current_revaluation_coefficient
+- name: belgium_lgaf_article_73quater_adoption_premium_indexed_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: LGAF articles 73quater and 76bis
+  versions:
+  - effective_from: '2002-01-01'
+    formula: belgium_lgaf_article_73quater_adoption_premium_base_amount * belgium_lgaf_current_index_multiplier
+      * belgium_lgaf_current_revaluation_coefficient

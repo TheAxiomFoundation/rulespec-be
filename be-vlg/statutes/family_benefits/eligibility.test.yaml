@@ -6,7 +6,8 @@
     end: '2026-06-30'
   input:
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_disappeared_or_abducted: false
-    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_residence_and_status_condition_met_at_disappearance_or_abduction: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_residence_and_status_condition_met_at_disappearance_or_abduction
+    : false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_domiciled_in_dutch_language_region: true
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_belgian_nationality_proof: false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_authorized_residence: true
@@ -17,7 +18,8 @@
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_pupil_student_intern_or_school_leaver: true
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_25: false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_book_5_transition_no_age_limit_applies: false
-    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right
+    : false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_child_of_excluded_residence_holder: false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_raised_or_studies_outside_belgium: false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_outside_belgium_government_exemption_applies: false
@@ -34,7 +36,6 @@
     be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_outside_belgium_exclusion_applies: 0
     be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_child_entitlement: 1
     be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_eligible_monthly_amount: 160
-
 - name: flanders_child_studying_outside_belgium_without_exemption_is_not_entitled
   period:
     period_kind: custom
@@ -51,7 +52,8 @@
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_specific_support_need: false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_pupil_student_intern_or_school_leaver: false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_book_5_transition_no_age_limit_applies: false
-    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right
+    : false
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_raised_or_studies_outside_belgium: true
     be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_outside_belgium_government_exemption_applies: false
   output:
@@ -61,3 +63,55 @@
     be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_outside_belgium_exclusion_applies: 1
     be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_child_entitlement: 0
     be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_eligible_monthly_amount: 0
+- name: auto_zero_flanders_family_benefits_residence_and_status_condition_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_book_5_transition_no_age_limit_applies: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_age_years: 0
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_disappeared_or_abducted: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_domiciled_in_dutch_language_region: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_authorized_residence: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_belgian_nationality_proof: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right
+    : false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_specific_support_need: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_18: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_21: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_25: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_child_of_excluded_residence_holder: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_pupil_student_intern_or_school_leaver: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_raised_or_studies_outside_belgium: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_outside_belgium_government_exemption_applies: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_residence_and_status_condition_met_at_disappearance_or_abduction
+    : false
+  output:
+    be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_residence_and_status_condition_met: 0
+- name: auto_zero_flanders_family_benefits_age_or_status_condition_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_book_5_transition_no_age_limit_applies: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_age_years: 26
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_disappeared_or_abducted: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_domiciled_in_dutch_language_region: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_authorized_residence: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_belgian_nationality_proof: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_excluded_study_training_volunteer_or_au_pair_residence_right
+    : false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_has_specific_support_need: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_18: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_21: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_in_month_turning_25: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_child_of_excluded_residence_holder: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_is_pupil_student_intern_or_school_leaver: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_child_raised_or_studies_outside_belgium: false
+    be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_outside_belgium_government_exemption_applies: false
+    ? be-vlg:statutes/family_benefits/eligibility#input.flanders_family_benefits_residence_and_status_condition_met_at_disappearance_or_abduction
+    : false
+  output:
+    be-vlg:statutes/family_benefits/eligibility#flanders_family_benefits_age_or_status_condition_met: 0

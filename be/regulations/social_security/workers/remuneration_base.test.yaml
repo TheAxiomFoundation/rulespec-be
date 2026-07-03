@@ -38,6 +38,7 @@
     be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_amount: 150
   output:
     be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_holiday_gift_cap: 120
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_retirement_gift_cap: 0
     be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_selected_gift_cap: 120
     be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_gift_remuneration: 30
 
@@ -56,6 +57,20 @@
     be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_retirement_gift_service_year_cap: 1200
     be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_retirement_gift_cap: 1000
     be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_gift_remuneration: 300
+
+- name: unsupported_gift_event_has_no_selected_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_event_code: 0
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_dependent_child_count_for_holiday_gifts: 0
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_complete_service_years: 0
+    be:regulations/social_security/workers/remuneration_base#input.belgium_social_security_article_19_gift_amount: 100
+  output:
+    be:regulations/social_security/workers/remuneration_base#belgium_social_security_article_19_selected_gift_cap: 0
 
 - name: employee_discount_uses_excess_over_thirty_percent_or_below_cost
   period:

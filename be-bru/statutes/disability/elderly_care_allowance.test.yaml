@@ -1,5 +1,8 @@
 - name: single_person_category_2_receives_full_annual_amount
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_cohabits_with_person_who_is_not_close_relative: false
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_household_member_detained_or_in_social_defense: false
@@ -47,8 +50,46 @@
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount: 4056
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_monthly_amount: 338
 
+- name: scope_condition_zero_without_brussels_or_export_residence
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_domiciled_in_bilingual_brussels_region: false
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_permanent_effective_belgium_residence_or_assimilated: false
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_eu_eea_switzerland_export_condition_met: false
+  output:
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_scope_condition_met: 0
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount_before_suspension: 0
+
+- name: age_condition_zero_below_elderly_care_threshold
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_age_years: 64
+  output:
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_age_condition_met: 0
+
+- name: autonomy_category_zero_below_minimum_points
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_autonomy_points: 6
+  output:
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_autonomy_category: 0
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_autonomy_condition_met: 0
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_base_annual_amount_by_category: 0
+
 - name: income_above_disregard_reduces_category_5_award
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_cohabits_with_person_who_is_not_close_relative: false
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_household_member_detained_or_in_social_defense: false
@@ -88,7 +129,10 @@
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount: 5347.16
 
 - name: household_split_and_resource_income_can_exhaust_award
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_cohabits_with_person_who_is_not_close_relative: true
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_household_member_detained_or_in_social_defense: false
@@ -141,7 +185,10 @@
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount: 0
 
 - name: minimum_annual_payment_applies_when_positive_award_below_twelve_cents
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_cohabits_with_person_who_is_not_close_relative: false
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_household_member_detained_or_in_social_defense: false
@@ -180,7 +227,10 @@
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount: 0.12
 
 - name: detention_or_social_defense_suspends_payment
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_cohabits_with_person_who_is_not_close_relative: false
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_household_member_detained_or_in_social_defense: false
@@ -217,7 +267,10 @@
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount: 0
 
 - name: federal_disability_allowance_receipt_blocks_apa
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_cohabits_with_person_who_is_not_close_relative: false
     be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_household_member_detained_or_in_social_defense: false

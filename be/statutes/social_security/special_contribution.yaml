@@ -1,581 +1,605 @@
 format: rulespec/v1
 module:
-  summary: |-
-    The 30 March 1994 social provisions law articles 106 to 110 establish the
+  summary: 'The 30 March 1994 social provisions law articles 106 to 110 establish
+    the
+
     special social-security contribution. This module encodes the article 108
+
     annual household contribution scale, the article 109 monthly payroll
+
     withholding schedule for supplied wages and household flags, and the article
+
     110 settlement/refund minimum threshold. It leaves detailed household
+
     membership, Article 107 income construction from PIT variables, social
+
     treaty exclusions, employer remittance administration, and special worker
-    categories as separate surfaces.
+
+    categories as separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be/statute/loi/1994/03/30/1994021117/article/106
-      - be/statute/loi/1994/03/30/1994021117/article/107
-      - be/statute/loi/1994/03/30/1994021117/article/108
-      - be/statute/loi/1994/03/30/1994021117/article/109
-      - be/statute/loi/1994/03/30/1994021117/article/110
+    - be/statute/loi/1994/03/30/1994021117/article/106
+    - be/statute/loi/1994/03/30/1994021117/article/107
+    - be/statute/loi/1994/03/30/1994021117/article/108
+    - be/statute/loi/1994/03/30/1994021117/article/109
+    - be/statute/loi/1994/03/30/1994021117/article/110
     values:
-      belgium_special_social_security_article_108_first_threshold: "18592.02"
-      belgium_special_social_security_article_108_second_threshold: "21070.96"
-      belgium_special_social_security_article_108_single_third_threshold: "37344.00"
-      belgium_special_social_security_article_108_single_fourth_threshold: "40997.26"
-      belgium_special_social_security_article_108_single_top_threshold: "60181.95"
-      belgium_special_social_security_article_108_joint_plateau_upper_threshold: "74688.00"
-      belgium_special_social_security_article_108_joint_top_threshold: "81944.00"
-      belgium_special_social_security_article_108_maximum_contribution: "731.28"
-      belgium_special_social_security_article_109_monthly_max_withholding: "60.94"
-      belgium_special_social_security_article_110_minimum_assessment_or_refund: "2.50"
+      belgium_special_social_security_article_108_first_threshold: '18592.02'
+      belgium_special_social_security_article_108_second_threshold: '21070.96'
+      belgium_special_social_security_article_108_single_third_threshold: '37344.00'
+      belgium_special_social_security_article_108_single_fourth_threshold: '40997.26'
+      belgium_special_social_security_article_108_single_top_threshold: '60181.95'
+      belgium_special_social_security_article_108_joint_plateau_upper_threshold: '74688.00'
+      belgium_special_social_security_article_108_joint_top_threshold: '81944.00'
+      belgium_special_social_security_article_108_maximum_contribution: '731.28'
+      belgium_special_social_security_article_109_monthly_max_withholding: '60.94'
+      belgium_special_social_security_article_110_minimum_assessment_or_refund: '2.50'
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_special_social_security_article_108_first_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          18592.02
-  - name: belgium_special_social_security_article_108_second_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          21070.96
-  - name: belgium_special_social_security_article_108_single_third_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          37344.00
-  - name: belgium_special_social_security_article_108_single_fourth_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          40997.26
-  - name: belgium_special_social_security_article_108_single_top_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          60181.95
-  - name: belgium_special_social_security_article_108_joint_plateau_upper_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          74688.00
-  - name: belgium_special_social_security_article_108_joint_top_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          81944.00
-  - name: belgium_special_social_security_article_108_first_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.05
-  - name: belgium_special_social_security_article_108_second_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.013
-  - name: belgium_special_social_security_article_108_single_third_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.040090
-  - name: belgium_special_social_security_article_108_single_fourth_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.012996
-  - name: belgium_special_social_security_article_108_joint_top_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.013629
-  - name: belgium_special_social_security_article_108_second_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          123.95
-  - name: belgium_special_social_security_article_108_single_third_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          335.50
-  - name: belgium_special_social_security_article_108_single_fourth_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          481.96
-  - name: belgium_special_social_security_article_108_joint_plateau_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          632.39
-  - name: belgium_special_social_security_article_108_maximum_contribution
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108 section 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          731.28
-  - name: belgium_special_social_security_article_109_quarterly_first_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          5836.14
-  - name: belgium_special_social_security_article_109_quarterly_spouse_professional_income_floor
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          3285.29
-  - name: belgium_special_social_security_article_109_quarterly_second_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          6570.54
-  - name: belgium_special_social_security_article_109_quarterly_third_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          11211.00
-  - name: belgium_special_social_security_article_109_quarterly_fourth_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          12300.00
-  - name: belgium_special_social_security_article_109_quarterly_top_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          18116.46
-  - name: belgium_special_social_security_article_109_monthly_first_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          1945.38
-  - name: belgium_special_social_security_article_109_monthly_second_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          2190.18
-  - name: belgium_special_social_security_article_109_monthly_third_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          3737.00
-  - name: belgium_special_social_security_article_109_monthly_fourth_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          4100.00
-  - name: belgium_special_social_security_article_109_regular_first_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          0.0422
-  - name: belgium_special_social_security_article_109_regular_second_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          0.011
-  - name: belgium_special_social_security_article_109_regular_third_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          0.0338
-  - name: belgium_special_social_security_article_109_joint_first_rate
-    kind: parameter
-    dtype: Rate
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          0.059
-  - name: belgium_special_social_security_article_109_regular_second_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          10.33
-  - name: belgium_special_social_security_article_109_regular_third_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          27.35
-  - name: belgium_special_social_security_article_109_regular_fourth_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          39.61
-  - name: belgium_special_social_security_article_109_joint_second_base_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          14.44
-  - name: belgium_special_social_security_article_109_joint_two_earner_minimum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          5.15
-  - name: belgium_special_social_security_article_109_joint_two_earner_cap
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          51.64
-  - name: belgium_special_social_security_article_109_monthly_max_withholding
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          60.94
-  - name: belgium_special_social_security_article_110_minimum_assessment_or_refund
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 110
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          2.50
-  - name: belgium_special_social_security_article_108_annual_contribution
-    kind: derived
-    entity: TaxUnit
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 108
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if not belgium_special_social_security_household_has_article_106_person:
-              0
-          else:
-              if belgium_special_social_security_joint_assessment:
-                  if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_first_threshold:
-                      0
-                  else:
-                      if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_second_threshold:
-                          (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_first_threshold) * belgium_special_social_security_article_108_first_rate
-                      else:
-                          if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_single_top_threshold:
-                              belgium_special_social_security_article_108_second_base_amount + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_second_threshold) * belgium_special_social_security_article_108_second_rate
-                          else:
-                              if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_joint_plateau_upper_threshold:
-                                  belgium_special_social_security_article_108_joint_plateau_amount
-                              else:
-                                  if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_joint_top_threshold:
-                                      belgium_special_social_security_article_108_joint_plateau_amount + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_joint_plateau_upper_threshold) * belgium_special_social_security_article_108_joint_top_rate
-                                  else:
-                                      belgium_special_social_security_article_108_maximum_contribution
-              else:
-                  if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_first_threshold:
-                      0
-                  else:
-                      if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_second_threshold:
-                          (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_first_threshold) * belgium_special_social_security_article_108_first_rate
-                      else:
-                          if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_single_third_threshold:
-                              belgium_special_social_security_article_108_second_base_amount + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_second_threshold) * belgium_special_social_security_article_108_second_rate
-                          else:
-                              if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_single_fourth_threshold:
-                                  belgium_special_social_security_article_108_single_third_base_amount + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_single_third_threshold) * belgium_special_social_security_article_108_single_third_rate
-                              else:
-                                  if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_single_top_threshold:
-                                      belgium_special_social_security_article_108_single_fourth_base_amount + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_single_fourth_threshold) * belgium_special_social_security_article_108_single_fourth_rate
-                                  else:
-                                      belgium_special_social_security_article_108_maximum_contribution
-  - name: belgium_special_social_security_article_110_balance_before_minimum_assessment
-    kind: derived
-    entity: TaxUnit
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 110 section 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          max(0, belgium_special_social_security_article_108_annual_contribution - belgium_special_social_security_article_110_retained_or_supplement_paid)
-  - name: belgium_special_social_security_article_110_balance_collected
-    kind: derived
-    entity: TaxUnit
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 110 section 1
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_special_social_security_article_110_balance_before_minimum_assessment < belgium_special_social_security_article_110_minimum_assessment_or_refund:
-              0
-          else:
-              belgium_special_social_security_article_110_balance_before_minimum_assessment
-  - name: belgium_special_social_security_article_110_overpayment_before_minimum_refund
-    kind: derived
-    entity: TaxUnit
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 110 section 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          max(0, belgium_special_social_security_article_110_retained_or_supplement_paid - belgium_special_social_security_article_108_annual_contribution)
-  - name: belgium_special_social_security_article_110_refund_amount
-    kind: derived
-    entity: TaxUnit
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 110 section 2
-    versions:
-      - effective_from: '2002-01-01'
-        formula: |-
-          if belgium_special_social_security_article_110_overpayment_before_minimum_refund < belgium_special_social_security_article_110_minimum_assessment_or_refund:
-              0
-          else:
-              belgium_special_social_security_article_110_overpayment_before_minimum_refund
-  - name: belgium_special_social_security_article_109_adjusted_monthly_wage
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          if belgium_special_social_security_article_109_apply_108_percent_wage_base:
-              belgium_special_social_security_article_109_monthly_wage * 1.08
-          else:
-              belgium_special_social_security_article_109_monthly_wage
-  - name: belgium_special_social_security_article_109_adjusted_quarterly_wage
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Quarter
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          if belgium_special_social_security_article_109_apply_108_percent_wage_base:
-              belgium_special_social_security_article_109_quarterly_wage * 1.08
-          else:
-              belgium_special_social_security_article_109_quarterly_wage
-  - name: belgium_special_social_security_article_109_regular_monthly_withholding
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1 paragraph 2
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_first_threshold:
-              0
-          else:
-              if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_second_threshold:
-                  max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_first_threshold) * belgium_special_social_security_article_109_regular_first_rate
-              else:
-                  if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_third_threshold:
-                      belgium_special_social_security_article_109_regular_second_base_amount + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_second_threshold) * belgium_special_social_security_article_109_regular_second_rate
-                  else:
-                      if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_fourth_threshold:
-                          belgium_special_social_security_article_109_regular_third_base_amount + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_third_threshold) * belgium_special_social_security_article_109_regular_third_rate
-                      else:
-                          if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_top_threshold:
-                              belgium_special_social_security_article_109_regular_fourth_base_amount + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_fourth_threshold) * belgium_special_social_security_article_109_regular_second_rate
-                          else:
-                              belgium_special_social_security_article_109_monthly_max_withholding
-  - name: belgium_special_social_security_article_109_joint_two_earner_monthly_withholding
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1 paragraph 3
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_spouse_professional_income_floor:
-              0
-          else:
-              if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_first_threshold:
-                  belgium_special_social_security_article_109_joint_two_earner_minimum
-              else:
-                  if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_second_threshold:
-                      max(belgium_special_social_security_article_109_joint_two_earner_minimum, max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_first_threshold) * belgium_special_social_security_article_109_joint_first_rate)
-                  else:
-                      min(belgium_special_social_security_article_109_joint_two_earner_cap, belgium_special_social_security_article_109_joint_second_base_amount + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_second_threshold) * belgium_special_social_security_article_109_regular_second_rate)
-  - name: belgium_special_social_security_article_109_joint_one_earner_monthly_withholding
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1 paragraph 3
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_first_threshold:
-              0
-          else:
-              if belgium_special_social_security_article_109_adjusted_quarterly_wage <= belgium_special_social_security_article_109_quarterly_second_threshold:
-                  max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_first_threshold) * belgium_special_social_security_article_109_joint_first_rate
-              else:
-                  min(belgium_special_social_security_article_109_monthly_max_withholding, belgium_special_social_security_article_109_joint_second_base_amount + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_second_threshold) * belgium_special_social_security_article_109_regular_second_rate)
-  - name: belgium_special_social_security_article_109_monthly_withholding
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 109 section 1
-    versions:
-      - effective_from: '2022-04-01'
-        formula: |-
-          if belgium_special_social_security_joint_assessment:
-              if belgium_special_social_security_spouse_has_professional_income:
-                  belgium_special_social_security_article_109_joint_two_earner_monthly_withholding
-              else:
-                  belgium_special_social_security_article_109_joint_one_earner_monthly_withholding
-          else:
-              belgium_special_social_security_article_109_regular_monthly_withholding
+- name: belgium_special_social_security_article_108_first_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '18592.02'
+- name: belgium_special_social_security_article_108_second_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '21070.96'
+- name: belgium_special_social_security_article_108_single_third_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '37344.00'
+- name: belgium_special_social_security_article_108_single_fourth_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '40997.26'
+- name: belgium_special_social_security_article_108_single_top_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '60181.95'
+- name: belgium_special_social_security_article_108_joint_plateau_upper_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '74688.00'
+- name: belgium_special_social_security_article_108_joint_top_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '81944.00'
+- name: belgium_special_social_security_article_108_first_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.05'
+- name: belgium_special_social_security_article_108_second_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.013'
+- name: belgium_special_social_security_article_108_single_third_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.040090'
+- name: belgium_special_social_security_article_108_single_fourth_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.012996'
+- name: belgium_special_social_security_article_108_joint_top_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.013629'
+- name: belgium_special_social_security_article_108_second_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '123.95'
+- name: belgium_special_social_security_article_108_single_third_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '335.50'
+- name: belgium_special_social_security_article_108_single_fourth_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '481.96'
+- name: belgium_special_social_security_article_108_joint_plateau_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '632.39'
+- name: belgium_special_social_security_article_108_maximum_contribution
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108 section 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '731.28'
+- name: belgium_special_social_security_article_109_quarterly_first_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '5836.14'
+- name: belgium_special_social_security_article_109_quarterly_spouse_professional_income_floor
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '3285.29'
+- name: belgium_special_social_security_article_109_quarterly_second_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '6570.54'
+- name: belgium_special_social_security_article_109_quarterly_third_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '11211.00'
+- name: belgium_special_social_security_article_109_quarterly_fourth_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '12300.00'
+- name: belgium_special_social_security_article_109_quarterly_top_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '18116.46'
+- name: belgium_special_social_security_article_109_monthly_first_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '1945.38'
+- name: belgium_special_social_security_article_109_monthly_second_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '2190.18'
+- name: belgium_special_social_security_article_109_monthly_third_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '3737.00'
+- name: belgium_special_social_security_article_109_monthly_fourth_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '4100.00'
+- name: belgium_special_social_security_article_109_regular_first_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '0.0422'
+- name: belgium_special_social_security_article_109_regular_second_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '0.011'
+- name: belgium_special_social_security_article_109_regular_third_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '0.0338'
+- name: belgium_special_social_security_article_109_joint_first_rate
+  kind: parameter
+  dtype: Rate
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '0.059'
+- name: belgium_special_social_security_article_109_regular_second_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '10.33'
+- name: belgium_special_social_security_article_109_regular_third_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '27.35'
+- name: belgium_special_social_security_article_109_regular_fourth_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '39.61'
+- name: belgium_special_social_security_article_109_joint_second_base_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '14.44'
+- name: belgium_special_social_security_article_109_joint_two_earner_minimum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '5.15'
+- name: belgium_special_social_security_article_109_joint_two_earner_cap
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '51.64'
+- name: belgium_special_social_security_article_109_monthly_max_withholding
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '60.94'
+- name: belgium_special_social_security_article_110_minimum_assessment_or_refund
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 110
+  versions:
+  - effective_from: '2002-01-01'
+    formula: '2.50'
+- name: belgium_special_social_security_article_108_annual_contribution
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 108
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if not belgium_special_social_security_household_has_article_106_person:\n\
+      \    0\nelse:\n    if belgium_special_social_security_joint_assessment:\n  \
+      \      if belgium_special_social_security_article_107_household_income <= belgium_special_social_security_article_108_first_threshold:\n\
+      \            0\n        else:\n            if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_second_threshold:\n       \
+      \         (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_first_threshold)\
+      \ * belgium_special_social_security_article_108_first_rate\n            else:\n\
+      \                if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_single_top_threshold:\n   \
+      \                 belgium_special_social_security_article_108_second_base_amount\
+      \ + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_second_threshold)\
+      \ * belgium_special_social_security_article_108_second_rate\n              \
+      \  else:\n                    if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_joint_plateau_upper_threshold:\n\
+      \                        belgium_special_social_security_article_108_joint_plateau_amount\n\
+      \                    else:\n                        if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_joint_top_threshold:\n    \
+      \                        belgium_special_social_security_article_108_joint_plateau_amount\
+      \ + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_joint_plateau_upper_threshold)\
+      \ * belgium_special_social_security_article_108_joint_top_rate\n           \
+      \             else:\n                            belgium_special_social_security_article_108_maximum_contribution\n\
+      \    else:\n        if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_first_threshold:\n        \
+      \    0\n        else:\n            if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_second_threshold:\n       \
+      \         (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_first_threshold)\
+      \ * belgium_special_social_security_article_108_first_rate\n            else:\n\
+      \                if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_single_third_threshold:\n \
+      \                   belgium_special_social_security_article_108_second_base_amount\
+      \ + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_second_threshold)\
+      \ * belgium_special_social_security_article_108_second_rate\n              \
+      \  else:\n                    if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_single_fourth_threshold:\n\
+      \                        belgium_special_social_security_article_108_single_third_base_amount\
+      \ + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_single_third_threshold)\
+      \ * belgium_special_social_security_article_108_single_third_rate\n        \
+      \            else:\n                        if belgium_special_social_security_article_107_household_income\
+      \ <= belgium_special_social_security_article_108_single_top_threshold:\n   \
+      \                         belgium_special_social_security_article_108_single_fourth_base_amount\
+      \ + (belgium_special_social_security_article_107_household_income - belgium_special_social_security_article_108_single_fourth_threshold)\
+      \ * belgium_special_social_security_article_108_single_fourth_rate\n       \
+      \                 else:\n                            belgium_special_social_security_article_108_maximum_contribution"
+- name: belgium_special_social_security_article_110_balance_before_minimum_assessment
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 110 section 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: max(0, belgium_special_social_security_article_108_annual_contribution
+      - belgium_special_social_security_article_110_retained_or_supplement_paid)
+- name: belgium_special_social_security_article_110_balance_collected
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 110 section 1
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_special_social_security_article_110_balance_before_minimum_assessment\
+      \ < belgium_special_social_security_article_110_minimum_assessment_or_refund:\n\
+      \    0\nelse:\n    belgium_special_social_security_article_110_balance_before_minimum_assessment"
+- name: belgium_special_social_security_article_110_overpayment_before_minimum_refund
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 110 section 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: max(0, belgium_special_social_security_article_110_retained_or_supplement_paid
+      - belgium_special_social_security_article_108_annual_contribution)
+- name: belgium_special_social_security_article_110_refund_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 110 section 2
+  versions:
+  - effective_from: '2002-01-01'
+    formula: "if belgium_special_social_security_article_110_overpayment_before_minimum_refund\
+      \ < belgium_special_social_security_article_110_minimum_assessment_or_refund:\n\
+      \    0\nelse:\n    belgium_special_social_security_article_110_overpayment_before_minimum_refund"
+- name: belgium_special_social_security_article_109_adjusted_monthly_wage_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/106
+          span: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '1.08'
+- name: belgium_special_social_security_article_109_adjusted_monthly_wage
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: "if belgium_special_social_security_article_109_apply_108_percent_wage_base:\n\
+      \    belgium_special_social_security_article_109_monthly_wage * belgium_special_social_security_article_109_adjusted_monthly_wage_scalar_limit\n\
+      else:\n    belgium_special_social_security_article_109_monthly_wage"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_monthly_wage_scalar_limit
+          output: belgium_special_social_security_article_109_adjusted_monthly_wage_scalar_limit
+          hash: sha256:local
+- name: belgium_special_social_security_article_109_adjusted_quarterly_wage_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/106
+          span: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: '1.08'
+- name: belgium_special_social_security_article_109_adjusted_quarterly_wage
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Quarter
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: "if belgium_special_social_security_article_109_apply_108_percent_wage_base:\n\
+      \    belgium_special_social_security_article_109_quarterly_wage * belgium_special_social_security_article_109_adjusted_quarterly_wage_scalar_limit\n\
+      else:\n    belgium_special_social_security_article_109_quarterly_wage"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_quarterly_wage_scalar_limit
+          output: belgium_special_social_security_article_109_adjusted_quarterly_wage_scalar_limit
+          hash: sha256:local
+- name: belgium_special_social_security_article_109_regular_monthly_withholding
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1 paragraph
+    2
+  versions:
+  - effective_from: '2022-04-01'
+    formula: "if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_first_threshold:\n\
+      \    0\nelse:\n    if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_second_threshold:\n\
+      \        max(0, belgium_special_social_security_article_109_adjusted_monthly_wage\
+      \ - belgium_special_social_security_article_109_monthly_first_threshold) * belgium_special_social_security_article_109_regular_first_rate\n\
+      \    else:\n        if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_third_threshold:\n\
+      \            belgium_special_social_security_article_109_regular_second_base_amount\
+      \ + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage\
+      \ - belgium_special_social_security_article_109_monthly_second_threshold) *\
+      \ belgium_special_social_security_article_109_regular_second_rate\n        else:\n\
+      \            if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_fourth_threshold:\n\
+      \                belgium_special_social_security_article_109_regular_third_base_amount\
+      \ + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage\
+      \ - belgium_special_social_security_article_109_monthly_third_threshold) * belgium_special_social_security_article_109_regular_third_rate\n\
+      \            else:\n                if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_top_threshold:\n\
+      \                    belgium_special_social_security_article_109_regular_fourth_base_amount\
+      \ + max(0, belgium_special_social_security_article_109_adjusted_monthly_wage\
+      \ - belgium_special_social_security_article_109_monthly_fourth_threshold) *\
+      \ belgium_special_social_security_article_109_regular_second_rate\n        \
+      \        else:\n                    belgium_special_social_security_article_109_monthly_max_withholding"
+- name: belgium_special_social_security_article_109_joint_two_earner_monthly_withholding
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1 paragraph
+    3
+  versions:
+  - effective_from: '2022-04-01'
+    formula: "if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_spouse_professional_income_floor:\n\
+      \    0\nelse:\n    if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_first_threshold:\n\
+      \        belgium_special_social_security_article_109_joint_two_earner_minimum\n\
+      \    else:\n        if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_second_threshold:\n\
+      \            max(belgium_special_social_security_article_109_joint_two_earner_minimum,\
+      \ max(0, belgium_special_social_security_article_109_adjusted_monthly_wage -\
+      \ belgium_special_social_security_article_109_monthly_first_threshold) * belgium_special_social_security_article_109_joint_first_rate)\n\
+      \        else:\n            min(belgium_special_social_security_article_109_joint_two_earner_cap,\
+      \ belgium_special_social_security_article_109_joint_second_base_amount + max(0,\
+      \ belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_second_threshold)\
+      \ * belgium_special_social_security_article_109_regular_second_rate)"
+- name: belgium_special_social_security_article_109_joint_one_earner_monthly_withholding
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1 paragraph
+    3
+  versions:
+  - effective_from: '2022-04-01'
+    formula: "if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_first_threshold:\n\
+      \    0\nelse:\n    if belgium_special_social_security_article_109_adjusted_quarterly_wage\
+      \ <= belgium_special_social_security_article_109_quarterly_second_threshold:\n\
+      \        max(0, belgium_special_social_security_article_109_adjusted_monthly_wage\
+      \ - belgium_special_social_security_article_109_monthly_first_threshold) * belgium_special_social_security_article_109_joint_first_rate\n\
+      \    else:\n        min(belgium_special_social_security_article_109_monthly_max_withholding,\
+      \ belgium_special_social_security_article_109_joint_second_base_amount + max(0,\
+      \ belgium_special_social_security_article_109_adjusted_monthly_wage - belgium_special_social_security_article_109_monthly_second_threshold)\
+      \ * belgium_special_social_security_article_109_regular_second_rate)"
+- name: belgium_special_social_security_article_109_monthly_withholding
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Law of 30 March 1994 on social provisions, article 109 section 1
+  versions:
+  - effective_from: '2022-04-01'
+    formula: "if belgium_special_social_security_joint_assessment:\n    if belgium_special_social_security_spouse_has_professional_income:\n\
+      \        belgium_special_social_security_article_109_joint_two_earner_monthly_withholding\n\
+      \    else:\n        belgium_special_social_security_article_109_joint_one_earner_monthly_withholding\n\
+      else:\n    belgium_special_social_security_article_109_regular_monthly_withholding"

@@ -5,50 +5,70 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling: true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: 1400
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription: 1000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : 1000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 3000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 8000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained: 300
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months: 24
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 300
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 24
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 10000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 50000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration: 20000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 20000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 4000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 100
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 500
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction: 0.5
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0.5
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 50000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met: true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: 500
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction: 0
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 19630
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement: false
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets: 100000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets: 50000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met: true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 100000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 50000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 12000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 15000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 20000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 1000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 2000
   output:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1458_pension_savings_payment_taken_into_account: 1350
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1458_pension_savings_payment_taken_into_account
+    : 1350
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1458_pension_savings_reduction: 337.5
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1457_employer_share_reduction: 0
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14531_home_security_reduction: 500
@@ -58,24 +78,29 @@
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14534_domestic_employee_reduction: 2526
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14535_childcare_reduction: 835.5
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14548_adoption_reduction: 6730
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14549_legal_protection_insurance_reduction: 132
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14549_legal_protection_insurance_reduction
+    : 132
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_selected_federal_article_145_reductions: 13661
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts: 0
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_unemployment_reduction_before_phaseouts: 0
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_unemployment_reduction_before_phaseouts
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts
+    : 0
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_151_unemployment_reduction_factor: 1
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1511_additional_reduction_factor: 1
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_152_replacement_reduction_factor: 1
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_selected_replacement_income_reduction_after_phaseouts: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_selected_replacement_income_reduction_after_phaseouts
+    : 0
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289bis_self_employed_investment_credit: 3750
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_max_credit_amount: 880
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio: 880
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio
+    : 880
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_professional_income_ratio: 0.8
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_total_net_income_cap: 880
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_low_activity_income_credit: 704
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1382.2
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_selected_personal_credits: 5836.2
-
 - name: standard_pension_savings_and_employer_shares_without_non_cumulation
   period:
     period_kind: custom
@@ -83,16 +108,19 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: 2000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed: false
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription: 1000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : 1000
   output:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1458_pension_savings_payment_taken_into_account: 1050
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1458_pension_savings_payment_taken_into_account
+    : 1050
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1458_pension_savings_reduction: 315
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1457_employer_share_reduction: 252
-
 - name: replacement_income_phaseouts
   period:
     period_kind: custom
@@ -100,21 +128,27 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction: 30000
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income: 15000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 30000
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 15000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 6000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 9000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 19630
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
   output:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts: 1338.25
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_unemployment_reduction_before_phaseouts: 535.3
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts: 893.379
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_pension_and_other_replacement_reduction_before_phaseouts
+    : 1338.25
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_unemployment_reduction_before_phaseouts
+    : 535.3
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_before_phaseouts
+    : 893.379
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_151_unemployment_reduction_factor: 1
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1511_additional_reduction_factor: 1
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_152_replacement_reduction_factor: 1
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_selected_replacement_income_reduction_after_phaseouts: 2766.929
-
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_selected_replacement_income_reduction_after_phaseouts
+    : 2766.929
 - name: low_activity_income_credit_phases_out_with_total_income
   period:
     period_kind: custom
@@ -122,15 +156,1054 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met: true
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: true
-    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 12000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 12000
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 20000
   output:
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_max_credit_amount: 400
-    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio: 400
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_credit_by_activity_income_before_professional_ratio
+    : 400
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_professional_income_ratio: 1
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_total_net_income_cap: 400
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_low_activity_income_credit: 400
+- name: auto_zero_belgium_pit_article_14531_home_security_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14531_home_security_reduction: 0
+- name: auto_zero_belgium_pit_article_14532_development_fund_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14532_development_fund_reduction: 0
+- name: auto_zero_belgium_pit_article_14532_development_fund_recapture
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14532_development_fund_recapture: 0
+- name: auto_zero_belgium_pit_article_14533_gift_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 39
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14533_gift_reduction: 0
+- name: auto_zero_belgium_pit_article_14534_domestic_employee_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14534_domestic_employee_reduction: 0
+- name: auto_zero_belgium_pit_article_14535_childcare_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14535_childcare_reduction: 0
+- name: auto_zero_belgium_pit_article_14548_adoption_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14548_adoption_reduction: 0
+- name: auto_zero_belgium_pit_article_14549_legal_protection_insurance_reduction
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_14549_legal_protection_insurance_reduction
+    : 0
+- name: auto_zero_belgium_pit_article_151_unemployment_reduction_factor
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 35930
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_151_unemployment_reduction_factor: 0
+- name: auto_zero_belgium_pit_article_1511_additional_reduction_factor
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 28780
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_1511_additional_reduction_factor: 0
+- name: auto_zero_belgium_pit_article_289bis_self_employed_investment_credit
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289bis_self_employed_investment_credit: 0
+- name: auto_zero_belgium_pit_article_289ter_professional_income_ratio
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_professional_income_ratio: 0
+- name: auto_zero_belgium_pit_article_289ter_total_net_income_cap
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 28421
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_total_net_income_cap: 0
+- name: auto_zero_belgium_pit_article_289ter_low_activity_income_credit
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 1
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 28421
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter_low_activity_income_credit: 0
+- name: auto_zero_belgium_pit_article_289ter1_low_wage_work_bonus_credit
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_reduction_previously_obtained
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_remaining_full_months
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_subscription: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_eligible_gifts: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14533_total_net_income_for_gift_cap: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_conditions_met
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14534_domestic_employee_remuneration
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_base: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_complementary_fraction
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_days: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14535_childcare_expenses: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_conditions_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14548_adoption_expenses: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14549_legal_protection_premiums: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_cash_subscription
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1457_employer_share_eligibility_met: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_reduction_claimed
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
+    : 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_sickness_invalidity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_unemployment_income: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_151_older_unemployed_with_seniority_supplement
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_current_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_prior_three_year_max_qualifying_net_business_assets
+    : 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289bis_self_employed_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 0
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_activity_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_covered_public_worker_without_contract
+    : false
+    ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
+    : false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_net_professional_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_total_net_income: 0
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 0

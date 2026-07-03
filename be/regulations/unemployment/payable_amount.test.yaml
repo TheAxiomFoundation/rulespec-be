@@ -79,6 +79,19 @@
     be:regulations/unemployment/payable_amount#input.belgium_unemployment_temporary_monthly_compensable_days: 10
   output:
     be:regulations/unemployment/benefit_amount#belgium_unemployment_article_114_temporary_daily_amount_before_minimum: 32.5
-    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_temporary_minimum_daily_amount: 38.72
     be:regulations/unemployment/payable_amount#belgium_unemployment_temporary_daily_amount_after_minimum: 38.72
     be:regulations/unemployment/payable_amount#belgium_unemployment_temporary_monthly_payable_amount: 387.2
+
+- name: temporary_unemployment_minimum_daily_amount_article_115_floor
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 50
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_temporary_force_majeure: true
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_temporary_force_majeure: true
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_temporary_monthly_compensable_days: 10
+  output:
+    be:regulations/unemployment/minimum_daily_amounts#belgium_unemployment_article_115_temporary_minimum_daily_amount: 38.72

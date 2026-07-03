@@ -4,23 +4,24 @@
     name: calendar_day
     start: '2026-06-01'
     end: '2026-06-01'
-  input: &social_integration_eligibility_defaults
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_habitually_and_permanently_stays_in_belgium: true
+  input:
+    <<: &social_integration_eligibility_invariants
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_habitually_and_permanently_stays_in_belgium: true
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_emancipated_by_marriage: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_has_dependent_child: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_registered_foreigner_in_population_register: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_stateless_under_1954_convention: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_refugee_under_1980_law: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_subsidiary_protection_under_1980_law: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_can_claim_sufficient_resources: false
+      be:statutes/social_integration/eligibility#input.belgium_social_integration_can_procure_sufficient_resources_by_efforts_or_other_means: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: true
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_emancipated_by_marriage: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_has_dependent_child: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_is_pregnant: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_age_years: 30
     be:statutes/social_integration/eligibility#input.belgium_social_integration_person_has_belgian_nationality: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_citizen_or_family_with_residence_over_three_months: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_residence_months_completed: 0
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_registered_foreigner_in_population_register: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_stateless_under_1954_convention: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_refugee_under_1980_law: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_subsidiary_protection_under_1980_law: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_has_sufficient_resources: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_can_claim_sufficient_resources: false
-    be:statutes/social_integration/eligibility#input.belgium_social_integration_can_procure_sufficient_resources_by_efforts_or_other_means: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_disposed_to_work: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_health_or_equity_prevents_work: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_social_benefit_rights_asserted: true
@@ -42,14 +43,17 @@
     start: '2026-06-01'
     end: '2026-06-01'
   input:
-    <<: *social_integration_eligibility_defaults
+    <<: *social_integration_eligibility_invariants
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_age_years: 17
     be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_is_pregnant: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_person_has_belgian_nationality: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_citizen_or_family_with_residence_over_three_months: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_residence_months_completed: 4
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_has_sufficient_resources: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_disposed_to_work: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_health_or_equity_prevents_work: true
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_social_benefit_rights_asserted: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_cpas_requires_maintenance_rights_against_listed_debtor: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_maintenance_rights_against_listed_debtor_asserted: true
   output:
@@ -67,16 +71,19 @@
     start: '2026-06-01'
     end: '2026-06-01'
   input:
-    <<: *social_integration_eligibility_defaults
+    <<: *social_integration_eligibility_invariants
     be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_age_years: 17
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_minor_is_pregnant: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_person_has_belgian_nationality: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_citizen_or_family_with_residence_over_three_months: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_eu_residence_months_completed: 3
     be:statutes/social_integration/eligibility#input.belgium_social_integration_has_sufficient_resources: true
     be:statutes/social_integration/eligibility#input.belgium_social_integration_disposed_to_work: false
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_health_or_equity_prevents_work: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_social_benefit_rights_asserted: false
     be:statutes/social_integration/eligibility#input.belgium_social_integration_cpas_requires_maintenance_rights_against_listed_debtor: true
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_maintenance_rights_against_listed_debtor_asserted: false
   output:
     be:statutes/social_integration/eligibility#belgium_social_integration_effective_residence_condition_met: 0
     be:statutes/social_integration/eligibility#belgium_social_integration_minor_assimilated_to_adult_condition_met: 0

@@ -10,27 +10,33 @@
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_is_apprentice: false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_in_qualifying_education_training_or_stage: false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_prepares_higher_education_thesis: false
-    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship: false
-    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_study_training_volunteer_or_au_pair_stay_authorization: false
+    ? be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship
+    : false
+    ? be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_study_training_volunteer_or_au_pair_stay_authorization
+    : false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_right_open_on_2025_08_31: false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_domiciled_in_brussels_capital_region: true
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_belgian_nationality: false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_residence_title: true
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_article_26_condition_met: false
-    be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement: true
+    ? be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_single_child_without_article_8_9_or_12_supplement
+    : true
     be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_age_years: 17
     be-bru:statutes/family_benefits/basic_amounts#input.brussels_family_benefits_child_enrolled_in_higher_education: false
-    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_household_annual_income: 50000
-    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_beneficiary_child_count: 1
+    ? be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_household_annual_income
+    : 50000
+    ? be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_beneficiary_child_count
+    : 1
     be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_child_age_years: 17
-    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_child_in_single_parent_family: false
-    be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_cadastral_income_cap_exceeded: false
+    ? be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_child_in_single_parent_family
+    : false
+    ? be-bru:statutes/family_benefits/social_supplements#input.brussels_family_benefits_social_supplement_cadastral_income_cap_exceeded
+    : false
   output:
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_article_25_age_or_status_condition_met: 1
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_article_4_temporary_stay_exclusion_applies: 0
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_child_entitlement: 1
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_eligible_monthly_amount: 150
-
 - name: brussels_temporary_foreign_student_stay_blocks_new_entitlement
   period:
     period_kind: custom
@@ -43,8 +49,10 @@
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_is_apprentice: false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_in_qualifying_education_training_or_stage: true
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_prepares_higher_education_thesis: false
-    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship: false
-    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_study_training_volunteer_or_au_pair_stay_authorization: true
+    ? be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship
+    : false
+    ? be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_study_training_volunteer_or_au_pair_stay_authorization
+    : true
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_right_open_on_2025_08_31: false
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_domiciled_in_brussels_capital_region: true
     be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_belgian_nationality: false
@@ -55,3 +63,25 @@
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_article_4_temporary_stay_exclusion_applies: 1
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_child_entitlement: 0
     be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_eligible_monthly_amount: 0
+- name: auto_zero_brussels_family_benefits_article_25_age_or_status_condition_met
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_article_26_condition_met: false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_age_on_august_31_years: 19
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_age_years: 26
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_domiciled_in_brussels_capital_region: false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_belgian_nationality: false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_residence_title: false
+    ? be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_has_foreign_study_training_volunteer_or_au_pair_stay_authorization
+    : false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_in_qualifying_education_training_or_stage: false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_is_apprentice: false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_prepares_higher_education_thesis: false
+    ? be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship
+    : false
+    be-bru:statutes/family_benefits/eligibility#input.brussels_family_benefits_right_open_on_2025_08_31: false
+  output:
+    be-bru:statutes/family_benefits/eligibility#brussels_family_benefits_article_25_age_or_status_condition_met: 0

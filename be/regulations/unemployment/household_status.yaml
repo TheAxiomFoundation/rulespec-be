@@ -42,7 +42,7 @@ rules:
           3
   - name: belgium_unemployment_article_110_de_facto_partner_assimilated_to_spouse
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 paragraph assimilating a financially dependent de facto household member to a spouse
@@ -61,7 +61,7 @@ rules:
               0
   - name: belgium_unemployment_article_110_cohabits_with_spouse_or_assimilated_partner
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 items 1 and 2 and spouse-assimilation paragraph
@@ -74,7 +74,7 @@ rules:
               belgium_unemployment_article_110_de_facto_partner_assimilated_to_spouse
   - name: belgium_unemployment_article_110_spouse_or_assimilated_partner_without_income_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 1
@@ -93,7 +93,7 @@ rules:
                       1
   - name: belgium_unemployment_article_110_child_household_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 2(a)
@@ -112,7 +112,7 @@ rules:
                   0
   - name: belgium_unemployment_article_110_child_and_relative_household_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 2(b)
@@ -131,7 +131,7 @@ rules:
                   0
   - name: belgium_unemployment_article_110_relative_household_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 2(c)
@@ -150,7 +150,7 @@ rules:
                   0
   - name: belgium_unemployment_article_110_maintenance_payment_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 3
@@ -172,7 +172,7 @@ rules:
                           0
   - name: belgium_unemployment_article_110_civil_code_221_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 item 4
@@ -185,7 +185,7 @@ rules:
               0
   - name: belgium_unemployment_article_110_special_family_charge_condition
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1 items 5 to 7
@@ -204,7 +204,7 @@ rules:
                       0
   - name: belgium_unemployment_article_110_family_charge_status_met
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1
@@ -232,7 +232,7 @@ rules:
                                   belgium_unemployment_article_110_special_family_charge_condition
   - name: belgium_unemployment_article_110_isolated_status_met
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 2
@@ -248,7 +248,7 @@ rules:
                   0
   - name: belgium_unemployment_article_110_household_status_code
     kind: derived
-    entity: Person
+    entity: Household
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 sections 1 to 3

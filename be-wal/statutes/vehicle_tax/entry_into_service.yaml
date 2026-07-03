@@ -1,484 +1,1221 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Walloon Code des taxes assimilees article 98, as replaced by the
+  summary: 'Walloon Code des taxes assimilees article 98, as replaced by the
+
     decree of 7 September 2023 and adapted by the decree of 30 May 2025,
+
     sets the passenger-car tax on entry into service (TMC) formula. This
+
     module encodes the current passenger-car formula for registrations in
+
     the 2026-2027 indexed-amount period: base amount by engine power,
+
     vehicle-age degressivity, CO2 factor, mass factor, fuel/energy
+
     coefficient, large-family and single-parent reductions, oldtimer
+
     amount, and statutory minimum/maximum caps. It excludes motorcycles,
+
     motorhomes, boats, aircraft, leasing-company routing, detailed default
-    characteristic imputations, and administrative claim procedures.
+
+    characteristic imputations, and administrative claim procedures.'
   source_verification:
     corpus_citation_paths:
-      - be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-      - be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
-      - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
-      - be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+    - be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+    - be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+    - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
+    - be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
     values:
       wallonia_tmc_base_amount_kw_0_to_70: 64.01
-      wallonia_tmc_base_amount_kw_86_to_100: 515.20
+      wallonia_tmc_base_amount_kw_86_to_100: 515.2
       wallonia_tmc_base_amount_kw_above_155: 5159.25
       wallonia_tmc_wltp_denominator: 136
       wallonia_tmc_nedc_denominator: 115
       wallonia_tmc_mass_denominator_kg: 1838
-      wallonia_tmc_electric_power_120_kw_or_less_coefficient: "0.01"
-      wallonia_tmc_hybrid_coefficient: "0.80"
+      wallonia_tmc_electric_power_120_kw_or_less_coefficient: '0.01'
+      wallonia_tmc_hybrid_coefficient: '0.80'
       wallonia_tmc_family_reduction_amount: 250
       wallonia_tmc_minimum: 50
       wallonia_tmc_maximum: 9000
-      wallonia_tmc_oldtimer_amount: 61.50
+      wallonia_tmc_oldtimer_amount: 61.5
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: wallonia_tmc_base_amount_kw_0_to_70
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          64.01
-  - name: wallonia_tmc_base_amount_kw_71_to_85
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          128.02
-  - name: wallonia_tmc_base_amount_kw_86_to_100
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          515.20
-  - name: wallonia_tmc_base_amount_kw_101_to_110
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          902.37
-  - name: wallonia_tmc_base_amount_kw_111_to_120
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          1289.55
-  - name: wallonia_tmc_base_amount_kw_121_to_155
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          2579.10
-  - name: wallonia_tmc_base_amount_kw_above_155
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June 2027
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          5159.25
-  - name: wallonia_tmc_base_amount_by_engine_power
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances indexed table
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_tmc_engine_power_kw <= 70:
-              wallonia_tmc_base_amount_kw_0_to_70
-          else:
-              if wallonia_tmc_engine_power_kw <= 85:
-                  wallonia_tmc_base_amount_kw_71_to_85
-              else:
-                  if wallonia_tmc_engine_power_kw <= 100:
-                      wallonia_tmc_base_amount_kw_86_to_100
-                  else:
-                      if wallonia_tmc_engine_power_kw <= 110:
-                          wallonia_tmc_base_amount_kw_101_to_110
-                      else:
-                          if wallonia_tmc_engine_power_kw <= 120:
-                              wallonia_tmc_base_amount_kw_111_to_120
-                          else:
-                              if wallonia_tmc_engine_power_kw <= 155:
-                                  wallonia_tmc_base_amount_kw_121_to_155
-                              else:
-                                  wallonia_tmc_base_amount_kw_above_155
-  - name: wallonia_tmc_vehicle_age_factor
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          if wallonia_tmc_vehicle_age_years < 1:
-              1
-          else:
-              if wallonia_tmc_vehicle_age_years < 2:
-                  0.90
-              else:
-                  if wallonia_tmc_vehicle_age_years < 3:
-                      0.80
-                  else:
-                      if wallonia_tmc_vehicle_age_years < 4:
-                          0.70
-                      else:
-                          if wallonia_tmc_vehicle_age_years < 5:
-                              0.60
-                          else:
-                              if wallonia_tmc_vehicle_age_years < 6:
-                                  0.55
-                              else:
-                                  if wallonia_tmc_vehicle_age_years < 7:
-                                      0.50
-                                  else:
-                                      if wallonia_tmc_vehicle_age_years < 8:
-                                          0.45
-                                      else:
-                                          if wallonia_tmc_vehicle_age_years < 9:
-                                              0.40
-                                          else:
-                                              if wallonia_tmc_vehicle_age_years < 10:
-                                                  0.35
-                                              else:
-                                                  if wallonia_tmc_vehicle_age_years < 11:
-                                                      0.30
-                                                  else:
-                                                      if wallonia_tmc_vehicle_age_years < 12:
-                                                          0.25
-                                                      else:
-                                                          if wallonia_tmc_vehicle_age_years < 13:
-                                                              0.20
-                                                          else:
-                                                              if wallonia_tmc_vehicle_age_years < 14:
-                                                                  0.15
-                                                              else:
-                                                                  0.10
-  - name: wallonia_tmc_minimum_base_after_age
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 3, base amount after degressivity minimum
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          61.50
-  - name: wallonia_tmc_base_amount_after_age
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_tmc_vehicle_age_years >= 15:
-              wallonia_tmc_minimum_base_after_age
-          else:
-              max(wallonia_tmc_minimum_base_after_age, wallonia_tmc_base_amount_by_engine_power * wallonia_tmc_vehicle_age_factor)
-  - name: wallonia_tmc_wltp_denominator
-    kind: parameter
-    dtype: Count
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A, WLTP CO2 denominator
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          136
-  - name: wallonia_tmc_nedc_denominator
-    kind: parameter
-    dtype: Count
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A, NEDC CO2 denominator
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          115
-  - name: wallonia_tmc_co2_denominator
-    kind: derived
-    entity: Vehicle
-    dtype: Count
-    period: Year
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          if wallonia_tmc_co2_uses_wltp:
-              wallonia_tmc_wltp_denominator
-          else:
-              wallonia_tmc_nedc_denominator
-  - name: wallonia_tmc_co2_factor
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A, including uniform electric/hydrogen factor
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          if wallonia_tmc_is_electric_or_hydrogen:
-              1
-          else:
-              wallonia_tmc_co2_g_per_km / wallonia_tmc_co2_denominator
-  - name: wallonia_tmc_mass_denominator_kg
-    kind: parameter
-    dtype: Count
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A, mass coefficient denominator
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          1838
-  - name: wallonia_tmc_mass_factor
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          wallonia_tmc_max_authorized_mass_kg / wallonia_tmc_mass_denominator_kg
-  - name: wallonia_tmc_electric_power_120_kw_or_less_coefficient
-    kind: parameter
-    dtype: Rate
-    source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          0.01
-  - name: wallonia_tmc_electric_power_121_to_155_kw_coefficient
-    kind: parameter
-    dtype: Rate
-    source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          0.10
-  - name: wallonia_tmc_electric_power_156_to_249_kw_coefficient
-    kind: parameter
-    dtype: Rate
-    source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          0.18
-  - name: wallonia_tmc_electric_power_250_kw_or_more_coefficient
-    kind: parameter
-    dtype: Rate
-    source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          0.26
-  - name: wallonia_tmc_hybrid_coefficient
-    kind: parameter
-    dtype: Rate
-    source: Walloon decree of 30 May 2025, article 1, hybrid coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          0.80
-  - name: wallonia_tmc_other_fuel_coefficient
-    kind: parameter
-    dtype: Rate
-    source: Walloon decree of 30 May 2025, article 1, non-hybrid combustion and other coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          1
-  - name: wallonia_tmc_energy_coefficient
-    kind: derived
-    entity: Vehicle
-    dtype: Rate
-    period: Year
-    source: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient table
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          if wallonia_tmc_is_electric_or_hydrogen:
-              if wallonia_tmc_engine_power_kw <= 120:
-                  wallonia_tmc_electric_power_120_kw_or_less_coefficient
-              else:
-                  if wallonia_tmc_engine_power_kw <= 155:
-                      wallonia_tmc_electric_power_121_to_155_kw_coefficient
-                  else:
-                      if wallonia_tmc_engine_power_kw <= 249:
-                          wallonia_tmc_electric_power_156_to_249_kw_coefficient
-                      else:
-                          wallonia_tmc_electric_power_250_kw_or_more_coefficient
-          else:
-              if wallonia_tmc_is_hybrid:
-                  wallonia_tmc_hybrid_coefficient
-              else:
-                  wallonia_tmc_other_fuel_coefficient
-  - name: wallonia_tmc_raw_formula_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A formula
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          wallonia_tmc_base_amount_after_age * wallonia_tmc_co2_factor * wallonia_tmc_mass_factor * wallonia_tmc_energy_coefficient
-  - name: wallonia_tmc_family_reduction_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Walloon decree of 30 May 2025, articles 1 and 2, passenger-car family reductions
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          250
-  - name: wallonia_tmc_large_family_min_mass_kg
-    kind: parameter
-    dtype: Count
-    source: Walloon decree of 30 May 2025, article 2, large-family reduction mass floor
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          1838
-  - name: wallonia_tmc_family_reduction_max_mass_kg
-    kind: parameter
-    dtype: Count
-    source: Walloon decree of 30 May 2025, article 2, large-family and single-parent reduction mass ceiling
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          2750
-  - name: wallonia_tmc_large_family_reduction
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon decree of 30 May 2025, article 2, large-family reduction
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_tmc_large_family_reduction_applies:
-              if wallonia_tmc_max_authorized_mass_kg > wallonia_tmc_large_family_min_mass_kg:
-                  if wallonia_tmc_max_authorized_mass_kg < wallonia_tmc_family_reduction_max_mass_kg:
-                      wallonia_tmc_family_reduction_amount
-                  else:
-                      0
-              else:
-                  0
-          else:
-              0
-  - name: wallonia_tmc_single_parent_reduction
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon decree of 30 May 2025, article 2, single-parent reduction effective 1 July 2026
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_tmc_single_parent_reduction_applies:
-              if wallonia_tmc_max_authorized_mass_kg < wallonia_tmc_family_reduction_max_mass_kg:
-                  wallonia_tmc_family_reduction_amount
-              else:
-                  0
-          else:
-              0
-  - name: wallonia_tmc_family_reduction
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon decree of 30 May 2025, article 2, non-cumulative family reductions
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          max(wallonia_tmc_large_family_reduction, wallonia_tmc_single_parent_reduction)
-  - name: wallonia_tmc_amount_after_reduction
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 2 A formula and 2025 family reductions
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          wallonia_tmc_raw_formula_amount - wallonia_tmc_family_reduction
-  - name: wallonia_tmc_minimum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car TMC minimum
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          50
-  - name: wallonia_tmc_maximum
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car TMC maximum
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          9000
-  - name: wallonia_tmc_capped_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car TMC minimum and maximum
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          max(wallonia_tmc_minimum, min(wallonia_tmc_maximum, wallonia_tmc_amount_after_reduction))
-  - name: wallonia_tmc_oldtimer_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Walloon decree of 30 May 2025, article 1, over-30-year special-plate passenger vehicles
-    versions:
-      - effective_from: '2025-07-01'
-        formula: |-
-          61.50
-  - name: wallonia_tmc_passenger_car_tax
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon Code des taxes assimilees article 98 passenger-car TMC formula as adapted by the decree of 30 May 2025
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_tmc_is_oldtimer_over_30_years_with_special_plate:
-              wallonia_tmc_oldtimer_amount
-          else:
-              wallonia_tmc_capped_amount
+- name: wallonia_tmc_base_amount_kw_0_to_70
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '64.01'
+- name: wallonia_tmc_base_amount_kw_71_to_85
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '128.02'
+- name: wallonia_tmc_base_amount_kw_86_to_100
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '515.20'
+- name: wallonia_tmc_base_amount_kw_101_to_110
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '902.37'
+- name: wallonia_tmc_base_amount_kw_111_to_120
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '1289.55'
+- name: wallonia_tmc_base_amount_kw_121_to_155
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '2579.10'
+- name: wallonia_tmc_base_amount_kw_above_155
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
+    2027
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '5159.25'
+- name: wallonia_tmc_base_amount_by_engine_power_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
+            Finances indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '70'
+- name: wallonia_tmc_base_amount_by_engine_power_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
+            Finances indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '85'
+- name: wallonia_tmc_base_amount_by_engine_power_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
+            Finances indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '100'
+- name: wallonia_tmc_base_amount_by_engine_power_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
+            Finances indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '110'
+- name: wallonia_tmc_base_amount_by_engine_power_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
+            Finances indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '120'
+- name: wallonia_tmc_base_amount_by_engine_power_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
+            Finances indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '155'
+- name: wallonia_tmc_base_amount_by_engine_power
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW Finances
+    indexed table
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_tmc_engine_power_kw <= wallonia_tmc_base_amount_by_engine_power_scalar_limit:\n\
+      \    wallonia_tmc_base_amount_kw_0_to_70\nelse:\n    if wallonia_tmc_engine_power_kw\
+      \ <= wallonia_tmc_base_amount_by_engine_power_scalar_limit_2:\n        wallonia_tmc_base_amount_kw_71_to_85\n\
+      \    else:\n        if wallonia_tmc_engine_power_kw <= wallonia_tmc_base_amount_by_engine_power_scalar_limit_3:\n\
+      \            wallonia_tmc_base_amount_kw_86_to_100\n        else:\n        \
+      \    if wallonia_tmc_engine_power_kw <= wallonia_tmc_base_amount_by_engine_power_scalar_limit_4:\n\
+      \                wallonia_tmc_base_amount_kw_101_to_110\n            else:\n\
+      \                if wallonia_tmc_engine_power_kw <= wallonia_tmc_base_amount_by_engine_power_scalar_limit_5:\n\
+      \                    wallonia_tmc_base_amount_kw_111_to_120\n              \
+      \  else:\n                    if wallonia_tmc_engine_power_kw <= wallonia_tmc_base_amount_by_engine_power_scalar_limit_6:\n\
+      \                        wallonia_tmc_base_amount_kw_121_to_155\n          \
+      \          else:\n                        wallonia_tmc_base_amount_kw_above_155"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power_scalar_limit
+          output: wallonia_tmc_base_amount_by_engine_power_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power_scalar_limit_2
+          output: wallonia_tmc_base_amount_by_engine_power_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power_scalar_limit_3
+          output: wallonia_tmc_base_amount_by_engine_power_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power_scalar_limit_4
+          output: wallonia_tmc_base_amount_by_engine_power_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power_scalar_limit_5
+          output: wallonia_tmc_base_amount_by_engine_power_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_by_engine_power_scalar_limit_6
+          output: wallonia_tmc_base_amount_by_engine_power_scalar_limit_6
+          hash: sha256:local
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.90'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.80'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '4'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.70'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '5'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.60'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '6'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.55'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '7'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.50'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '8'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.45'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '9'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.40'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '10'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_16
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.35'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_17
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '11'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_18
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.30'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_19
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '12'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_20
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.25'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_21
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '13'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_22
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.20'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_23
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '14'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_24
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.15'
+- name: wallonia_tmc_vehicle_age_factor_scalar_limit_25
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.10'
+- name: wallonia_tmc_vehicle_age_factor
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2025-07-01'
+    formula: "if wallonia_tmc_vehicle_age_years < 1:\n    1\nelse:\n    if wallonia_tmc_vehicle_age_years\
+      \ < 2:\n        wallonia_tmc_vehicle_age_factor_scalar_limit\n    else:\n  \
+      \      if wallonia_tmc_vehicle_age_years < 3:\n            wallonia_tmc_vehicle_age_factor_scalar_limit_2\n\
+      \        else:\n            if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_3:\n\
+      \                wallonia_tmc_vehicle_age_factor_scalar_limit_4\n          \
+      \  else:\n                if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_5:\n\
+      \                    wallonia_tmc_vehicle_age_factor_scalar_limit_6\n      \
+      \          else:\n                    if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_7:\n\
+      \                        wallonia_tmc_vehicle_age_factor_scalar_limit_8\n  \
+      \                  else:\n                        if wallonia_tmc_vehicle_age_years\
+      \ < wallonia_tmc_vehicle_age_factor_scalar_limit_9:\n                      \
+      \      wallonia_tmc_vehicle_age_factor_scalar_limit_10\n                   \
+      \     else:\n                            if wallonia_tmc_vehicle_age_years <\
+      \ wallonia_tmc_vehicle_age_factor_scalar_limit_11:\n                       \
+      \         wallonia_tmc_vehicle_age_factor_scalar_limit_12\n                \
+      \            else:\n                                if wallonia_tmc_vehicle_age_years\
+      \ < wallonia_tmc_vehicle_age_factor_scalar_limit_13:\n                     \
+      \               wallonia_tmc_vehicle_age_factor_scalar_limit_14\n          \
+      \                      else:\n                                    if wallonia_tmc_vehicle_age_years\
+      \ < wallonia_tmc_vehicle_age_factor_scalar_limit_15:\n                     \
+      \                   wallonia_tmc_vehicle_age_factor_scalar_limit_16\n      \
+      \                              else:\n                                     \
+      \   if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_17:\n\
+      \                                            wallonia_tmc_vehicle_age_factor_scalar_limit_18\n\
+      \                                        else:\n                           \
+      \                 if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_19:\n\
+      \                                                wallonia_tmc_vehicle_age_factor_scalar_limit_20\n\
+      \                                            else:\n                       \
+      \                         if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_21:\n\
+      \                                                    wallonia_tmc_vehicle_age_factor_scalar_limit_22\n\
+      \                                                else:\n                   \
+      \                                 if wallonia_tmc_vehicle_age_years < wallonia_tmc_vehicle_age_factor_scalar_limit_23:\n\
+      \                                                        wallonia_tmc_vehicle_age_factor_scalar_limit_24\n\
+      \                                                    else:\n               \
+      \                                         wallonia_tmc_vehicle_age_factor_scalar_limit_25"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_2
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_3
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_4
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_5
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_6
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_7
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_8
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_9
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_10
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_11
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_12
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_13
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_14
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_15
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_15
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_16
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_16
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_17
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_17
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_18
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_18
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_19
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_19
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_20
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_20
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_21
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_21
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_22
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_22
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_23
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_23
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_24
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_24
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_vehicle_age_factor_scalar_limit_25
+          output: wallonia_tmc_vehicle_age_factor_scalar_limit_25
+          hash: sha256:local
+- name: wallonia_tmc_minimum_base_after_age
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 3, base amount after
+    degressivity minimum
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '61.50'
+- name: wallonia_tmc_base_amount_after_age_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '15'
+- name: wallonia_tmc_base_amount_after_age
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_tmc_vehicle_age_years >= wallonia_tmc_base_amount_after_age_scalar_limit:\n\
+      \    wallonia_tmc_minimum_base_after_age\nelse:\n    max(wallonia_tmc_minimum_base_after_age,\
+      \ wallonia_tmc_base_amount_by_engine_power * wallonia_tmc_vehicle_age_factor)"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_base_amount_after_age_scalar_limit
+          output: wallonia_tmc_base_amount_after_age_scalar_limit
+          hash: sha256:local
+- name: wallonia_tmc_wltp_denominator
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A, WLTP CO2 denominator
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+          span: X = 136 si les emissions de CO2 de la voiture ont ete mesurees
+            selon la norme WLTP
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '136'
+- name: wallonia_tmc_nedc_denominator
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A, NEDC CO2 denominator
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+          span: X = 115 si les emissions de CO2 de la voiture ont ete mesurees
+            selon la norme NEDC
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '115'
+- name: wallonia_tmc_co2_denominator
+  kind: derived
+  entity: Vehicle
+  dtype: Count
+  period: Year
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A
+  versions:
+  - effective_from: '2025-07-01'
+    formula: "if wallonia_tmc_co2_uses_wltp:\n    wallonia_tmc_wltp_denominator\n\
+      else:\n    wallonia_tmc_nedc_denominator"
+- name: wallonia_tmc_co2_factor
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A, including uniform
+    electric/hydrogen factor
+  versions:
+  - effective_from: '2025-07-01'
+    formula: "if wallonia_tmc_is_electric_or_hydrogen:\n    1\nelse:\n    wallonia_tmc_co2_g_per_km\
+      \ / wallonia_tmc_co2_denominator"
+- name: wallonia_tmc_mass_denominator_kg
+  kind: parameter
+  dtype: Count
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A, mass coefficient
+    denominator
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '1838'
+- name: wallonia_tmc_mass_factor
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A
+  versions:
+  - effective_from: '2025-07-01'
+    formula: wallonia_tmc_max_authorized_mass_kg / wallonia_tmc_mass_denominator_kg
+- name: wallonia_tmc_electric_power_120_kw_or_less_coefficient
+  kind: parameter
+  dtype: Rate
+  source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
+    table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.01'
+- name: wallonia_tmc_electric_power_121_to_155_kw_coefficient
+  kind: parameter
+  dtype: Rate
+  source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
+    table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.10'
+- name: wallonia_tmc_electric_power_156_to_249_kw_coefficient
+  kind: parameter
+  dtype: Rate
+  source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
+    table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.18'
+- name: wallonia_tmc_electric_power_250_kw_or_more_coefficient
+  kind: parameter
+  dtype: Rate
+  source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
+    table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.26'
+- name: wallonia_tmc_hybrid_coefficient
+  kind: parameter
+  dtype: Rate
+  source: Walloon decree of 30 May 2025, article 1, hybrid coefficient table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '0.80'
+- name: wallonia_tmc_other_fuel_coefficient
+  kind: parameter
+  dtype: Rate
+  source: Walloon decree of 30 May 2025, article 1, non-hybrid combustion and other
+    coefficient table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '1'
+- name: wallonia_tmc_energy_coefficient_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient
+            table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '120'
+- name: wallonia_tmc_energy_coefficient_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient
+            table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '155'
+- name: wallonia_tmc_energy_coefficient_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
+          span: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient
+            table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '249'
+- name: wallonia_tmc_energy_coefficient
+  kind: derived
+  entity: Vehicle
+  dtype: Rate
+  period: Year
+  source: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient table
+  versions:
+  - effective_from: '2025-07-01'
+    formula: "if wallonia_tmc_is_electric_or_hydrogen:\n    if wallonia_tmc_engine_power_kw\
+      \ <= wallonia_tmc_energy_coefficient_scalar_limit:\n        wallonia_tmc_electric_power_120_kw_or_less_coefficient\n\
+      \    else:\n        if wallonia_tmc_engine_power_kw <= wallonia_tmc_energy_coefficient_scalar_limit_2:\n\
+      \            wallonia_tmc_electric_power_121_to_155_kw_coefficient\n       \
+      \ else:\n            if wallonia_tmc_engine_power_kw <= wallonia_tmc_energy_coefficient_scalar_limit_3:\n\
+      \                wallonia_tmc_electric_power_156_to_249_kw_coefficient\n   \
+      \         else:\n                wallonia_tmc_electric_power_250_kw_or_more_coefficient\n\
+      else:\n    if wallonia_tmc_is_hybrid:\n        wallonia_tmc_hybrid_coefficient\n\
+      \    else:\n        wallonia_tmc_other_fuel_coefficient"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_energy_coefficient_scalar_limit
+          output: wallonia_tmc_energy_coefficient_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_energy_coefficient_scalar_limit_2
+          output: wallonia_tmc_energy_coefficient_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/entry_into_service#wallonia_tmc_energy_coefficient_scalar_limit_3
+          output: wallonia_tmc_energy_coefficient_scalar_limit_3
+          hash: sha256:local
+- name: wallonia_tmc_raw_formula_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A formula
+  versions:
+  - effective_from: '2026-07-01'
+    formula: wallonia_tmc_base_amount_after_age * wallonia_tmc_co2_factor * wallonia_tmc_mass_factor
+      * wallonia_tmc_energy_coefficient
+- name: wallonia_tmc_family_reduction_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Walloon decree of 30 May 2025, articles 1 and 2, passenger-car family reductions
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '250'
+- name: wallonia_tmc_large_family_min_mass_kg
+  kind: parameter
+  dtype: Count
+  source: Walloon decree of 30 May 2025, article 2, large-family reduction mass floor
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '1838'
+- name: wallonia_tmc_family_reduction_max_mass_kg
+  kind: parameter
+  dtype: Count
+  source: Walloon decree of 30 May 2025, article 2, large-family and single-parent
+    reduction mass ceiling
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '2750'
+- name: wallonia_tmc_large_family_reduction
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon decree of 30 May 2025, article 2, large-family reduction
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_tmc_large_family_reduction_applies:\n    if wallonia_tmc_max_authorized_mass_kg\
+      \ > wallonia_tmc_large_family_min_mass_kg:\n        if wallonia_tmc_max_authorized_mass_kg\
+      \ < wallonia_tmc_family_reduction_max_mass_kg:\n            wallonia_tmc_family_reduction_amount\n\
+      \        else:\n            0\n    else:\n        0\nelse:\n    0"
+- name: wallonia_tmc_single_parent_reduction
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon decree of 30 May 2025, article 2, single-parent reduction effective
+    1 July 2026
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_tmc_single_parent_reduction_applies:\n    if wallonia_tmc_max_authorized_mass_kg\
+      \ < wallonia_tmc_family_reduction_max_mass_kg:\n        wallonia_tmc_family_reduction_amount\n\
+      \    else:\n        0\nelse:\n    0"
+- name: wallonia_tmc_family_reduction
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon decree of 30 May 2025, article 2, non-cumulative family reductions
+  versions:
+  - effective_from: '2026-07-01'
+    formula: max(wallonia_tmc_large_family_reduction, wallonia_tmc_single_parent_reduction)
+- name: wallonia_tmc_amount_after_reduction
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 2 A formula and 2025
+    family reductions
+  versions:
+  - effective_from: '2026-07-01'
+    formula: wallonia_tmc_raw_formula_amount - wallonia_tmc_family_reduction
+- name: wallonia_tmc_minimum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car
+    TMC minimum
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '50'
+- name: wallonia_tmc_maximum
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car
+    TMC maximum
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '9000'
+- name: wallonia_tmc_capped_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car
+    TMC minimum and maximum
+  versions:
+  - effective_from: '2026-07-01'
+    formula: max(wallonia_tmc_minimum, min(wallonia_tmc_maximum, wallonia_tmc_amount_after_reduction))
+- name: wallonia_tmc_oldtimer_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Walloon decree of 30 May 2025, article 1, over-30-year special-plate passenger
+    vehicles
+  versions:
+  - effective_from: '2025-07-01'
+    formula: '61.50'
+- name: wallonia_tmc_passenger_car_tax
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon Code des taxes assimilees article 98 passenger-car TMC formula as
+    adapted by the decree of 30 May 2025
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_tmc_is_oldtimer_over_30_years_with_special_plate:\n    wallonia_tmc_oldtimer_amount\n\
+      else:\n    wallonia_tmc_capped_amount"
