@@ -33,7 +33,7 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax: 334.27003834
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: 5109.55630034
 
-- name: low_worker_remuneration_has_no_pit_after_base_tax_free_amount
+- name: low_worker_remuneration_gets_refundable_work_bonus_credit
   period:
     period_kind: custom
     name: calendar_year
@@ -55,9 +55,10 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income: 7000
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_130_base_tax: 1750
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_tax_free_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 686.6978
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_reduced_state_tax_after_autonomy_factor: 0
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_work_bonus_credit: 0
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_work_bonus_credit: -686.6978
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: -686.6978
 
 - name: taxable_income_rule_floors_negative_inputs_at_zero
   period:

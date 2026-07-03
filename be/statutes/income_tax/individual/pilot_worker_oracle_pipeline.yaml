@@ -43,6 +43,8 @@ module:
       - be/statute/fisconetplus/cir92/revenus-2025/page-513
       - be/statute/fisconetplus/cir92/revenus-2025/page-514
       - be/statute/fisconetplus/cir92/revenus-2025/page-515
+      - be/statute/fisconetplus/cir92/revenus-2025/page-518
+      - be/statute/fisconetplus/cir92/revenus-2025/page-526
       - be/statute/fisconetplus/cir92/revenus-2025/page-686
       - be/statute/fisconetplus/cir92/revenus-2025/page-687
       - be/statute/fisconetplus/cir92/revenus-2025/page-688
@@ -677,11 +679,11 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: Special financing law article 5/2 and CIR 1992 article 289ter/1, worker-only pilot reduced State tax after work-bonus credit
+    source: Special financing law article 5/2 and CIR 1992 articles 289ter/1, 290, and 304, worker-only pilot reduced State tax after fully imputed and refundable work-bonus credit
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_pilot_reduced_state_tax_after_autonomy_factor - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit)
+          belgium_pit_pilot_reduced_state_tax_after_autonomy_factor - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
   - name: belgium_pit_pilot_local_additional_tax_base
     kind: derived
     entity: Person
