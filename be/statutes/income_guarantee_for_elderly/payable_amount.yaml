@@ -16,6 +16,20 @@ module:
       - be/statute/loi/2001/03/22/2001022201/article/7
       - be/statute/loi/2001/03/22/2001022201/article/11
 rules:
+  - name: belgium_grapa_article_6_selected_maximum_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6, with supplied current-amount bridge when present
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          if belgium_grapa_use_supplied_article_6_maximum_annual_amount:
+              belgium_grapa_supplied_article_6_maximum_annual_amount
+          else:
+              belgium_grapa_article_6_maximum_annual_amount
   - name: belgium_grapa_article_6_7_11_payable_annual_amount
     kind: derived
     entity: Person
@@ -26,4 +40,15 @@ rules:
     versions:
       - effective_from: '2014-01-01'
         formula: |-
-          max(0, belgium_grapa_article_6_maximum_annual_amount - belgium_grapa_article_11_resource_reduction)
+          max(0, belgium_grapa_article_6_selected_maximum_annual_amount - belgium_grapa_article_11_resource_reduction)
+  - name: belgium_grapa_income_guarantee_for_elderly_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, articles 6, 7, and 11
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          belgium_grapa_article_6_7_11_payable_annual_amount

@@ -723,7 +723,7 @@ rules:
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 34 sections 1 and 4
   versions:
-  - effective_from: '2026-03-01'
+  - effective_from: '2024-05-31'
     formula: "if belgium_social_integration_lives_with_spouse_or_de_facto_partner_not_requesting_benefit:\n\
       \    if belgium_social_integration_article_14_category_code == 3:\n        belgium_social_integration_spouse_or_de_facto_partner_resources\n\
       \    else:\n        max(0, belgium_social_integration_spouse_or_de_facto_partner_resources\
@@ -738,7 +738,7 @@ rules:
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 34 section 2
   versions:
-  - effective_from: '2026-03-01'
+  - effective_from: '2024-05-31'
     formula: "if belgium_social_integration_lives_with_adult_maintenance_debtor:\n\
       \    if belgium_social_integration_article_34_maintenance_debtor_equity_override_applies:\n\
       \        0\n    else:\n        if belgium_social_integration_applicant_has_recognized_aid_need_family_benefit_supplement:\n\
@@ -756,7 +756,7 @@ rules:
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 34 section 2
   versions:
-  - effective_from: '2026-03-01'
+  - effective_from: '2024-05-31'
     formula: belgium_social_integration_article_14_category_1_annual_amount * belgium_social_integration_adult_maintenance_debtor_count
 - name: belgium_social_integration_article_34_adult_maintenance_debtors_resource
   kind: derived
@@ -767,7 +767,7 @@ rules:
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 34 section 2
   versions:
-  - effective_from: '2026-03-01'
+  - effective_from: '2024-05-31'
     formula: "if belgium_social_integration_adult_maintenance_debtor_count > 0:\n\
       \    if belgium_social_integration_article_34_maintenance_debtor_equity_override_applies:\n\
       \        0\n    else:\n        if belgium_social_integration_applicant_has_recognized_aid_need_family_benefit_supplement:\n\
@@ -786,7 +786,7 @@ rules:
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 34
   versions:
-  - effective_from: '2026-03-01'
+  - effective_from: '2024-05-31'
     formula: belgium_social_integration_article_34_spouse_or_de_facto_household_resource
       + belgium_social_integration_article_34_adult_maintenance_debtor_resource +
       belgium_social_integration_article_34_adult_maintenance_debtors_resource
