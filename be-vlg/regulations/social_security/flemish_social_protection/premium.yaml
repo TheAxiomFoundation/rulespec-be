@@ -16,7 +16,7 @@ module:
       - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-23
       - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25
     values:
-      flanders_social_protection_premium_age_threshold_exclusive: 25
+      flanders_social_protection_premium_start_age_years: 26
       flanders_social_protection_ordinary_annual_premium_2026: 100
       flanders_social_protection_reduced_annual_premium_2026: 35
 units:
@@ -24,6 +24,14 @@ units:
     kind: currency
     minor_units: 2
 rules:
+  - name: flanders_social_protection_premium_start_age_years
+    kind: parameter
+    dtype: Count
+    source: Flemish Social Protection public rule for annual premium from age 26, implementing Decree article 45
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          26
   - name: flanders_social_protection_premium_age_threshold_exclusive
     kind: parameter
     dtype: Count
@@ -31,7 +39,7 @@ rules:
     versions:
       - effective_from: '2026-01-01'
         formula: |-
-          25
+          flanders_social_protection_premium_start_age_years - 1
   - name: flanders_social_protection_ordinary_annual_premium_2026
     kind: parameter
     dtype: Money

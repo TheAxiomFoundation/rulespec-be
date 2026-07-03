@@ -1,322 +1,714 @@
 format: rulespec/v1
 module:
-  summary: |-
-    SPW Finances publishes the Walloon annual circulation-tax table for
+  summary: 'SPW Finances publishes the Walloon annual circulation-tax table for
+
     1 July 2026 through 30 June 2027 after the Code des taxes assimilees
+
     vehicle-tax locator is checked. This module encodes the current
+
     passenger-car fiscal-horsepower table, the amount per fiscal
+
     horsepower above 20 CV, the additional LPG circulation tax, and the
+
     oldtimer/minimum forfait amount. It excludes motorhomes, motorcycles,
+
     utility vehicles, heavy vehicles, trailers, buses, exemptions, and
-    administrative collection rules.
+
+    administrative collection rules.'
   source_verification:
     corpus_citation_paths:
-      - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
-      - be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+    - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
+    - be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
     values:
       wallonia_circulation_tax_cv_0_to_4_amount: 107.18
       wallonia_circulation_tax_cv_20_amount: 2741.77
       wallonia_circulation_tax_above_20_increment: 149.56
       wallonia_circulation_tax_lpg_low_power_amount: 89.16
       wallonia_circulation_tax_lpg_middle_power_amount: 148.68
-      wallonia_circulation_tax_lpg_high_power_amount: 208.20
+      wallonia_circulation_tax_lpg_high_power_amount: 208.2
       wallonia_circulation_tax_oldtimer_or_minimum_forfait_amount: 48.61
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: wallonia_circulation_tax_cv_0_to_4_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 4 fiscal horsepower and less
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          107.18
-  - name: wallonia_circulation_tax_cv_5_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 5 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          134.11
-  - name: wallonia_circulation_tax_cv_6_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 6 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          193.91
-  - name: wallonia_circulation_tax_cv_7_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 7 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          253.31
-  - name: wallonia_circulation_tax_cv_8_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 8 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          313.24
-  - name: wallonia_circulation_tax_cv_9_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 9 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          373.16
-  - name: wallonia_circulation_tax_cv_10_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 10 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          432.30
-  - name: wallonia_circulation_tax_cv_11_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 11 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          561.00
-  - name: wallonia_circulation_tax_cv_12_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 12 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          689.70
-  - name: wallonia_circulation_tax_cv_13_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 13 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          818.14
-  - name: wallonia_circulation_tax_cv_14_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 14 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          946.84
-  - name: wallonia_circulation_tax_cv_15_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 15 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          1075.54
-  - name: wallonia_circulation_tax_cv_16_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 16 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          1408.70
-  - name: wallonia_circulation_tax_cv_17_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 17 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          1742.14
-  - name: wallonia_circulation_tax_cv_18_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 18 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          2075.57
-  - name: wallonia_circulation_tax_cv_19_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 19 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          2408.34
-  - name: wallonia_circulation_tax_cv_20_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, 20 fiscal horsepower
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          2741.77
-  - name: wallonia_circulation_tax_above_20_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars, amount per fiscal horsepower above 20 CV
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          149.56
-  - name: wallonia_circulation_tax_passenger_base_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_circulation_tax_fiscal_power_cv <= 4:
-              wallonia_circulation_tax_cv_0_to_4_amount
-          else:
-              if wallonia_circulation_tax_fiscal_power_cv == 5:
-                  wallonia_circulation_tax_cv_5_amount
-              else:
-                  if wallonia_circulation_tax_fiscal_power_cv == 6:
-                      wallonia_circulation_tax_cv_6_amount
-                  else:
-                      if wallonia_circulation_tax_fiscal_power_cv == 7:
-                          wallonia_circulation_tax_cv_7_amount
-                      else:
-                          if wallonia_circulation_tax_fiscal_power_cv == 8:
-                              wallonia_circulation_tax_cv_8_amount
-                          else:
-                              if wallonia_circulation_tax_fiscal_power_cv == 9:
-                                  wallonia_circulation_tax_cv_9_amount
-                              else:
-                                  if wallonia_circulation_tax_fiscal_power_cv == 10:
-                                      wallonia_circulation_tax_cv_10_amount
-                                  else:
-                                      if wallonia_circulation_tax_fiscal_power_cv == 11:
-                                          wallonia_circulation_tax_cv_11_amount
-                                      else:
-                                          if wallonia_circulation_tax_fiscal_power_cv == 12:
-                                              wallonia_circulation_tax_cv_12_amount
-                                          else:
-                                              if wallonia_circulation_tax_fiscal_power_cv == 13:
-                                                  wallonia_circulation_tax_cv_13_amount
-                                              else:
-                                                  if wallonia_circulation_tax_fiscal_power_cv == 14:
-                                                      wallonia_circulation_tax_cv_14_amount
-                                                  else:
-                                                      if wallonia_circulation_tax_fiscal_power_cv == 15:
-                                                          wallonia_circulation_tax_cv_15_amount
-                                                      else:
-                                                          if wallonia_circulation_tax_fiscal_power_cv == 16:
-                                                              wallonia_circulation_tax_cv_16_amount
-                                                          else:
-                                                              if wallonia_circulation_tax_fiscal_power_cv == 17:
-                                                                  wallonia_circulation_tax_cv_17_amount
-                                                              else:
-                                                                  if wallonia_circulation_tax_fiscal_power_cv == 18:
-                                                                      wallonia_circulation_tax_cv_18_amount
-                                                                  else:
-                                                                      if wallonia_circulation_tax_fiscal_power_cv == 19:
-                                                                          wallonia_circulation_tax_cv_19_amount
-                                                                      else:
-                                                                          if wallonia_circulation_tax_fiscal_power_cv == 20:
-                                                                              wallonia_circulation_tax_cv_20_amount
-                                                                          else:
-                                                                              wallonia_circulation_tax_cv_20_amount + (wallonia_circulation_tax_fiscal_power_cv - 20) * wallonia_circulation_tax_above_20_increment
-  - name: wallonia_circulation_tax_lpg_low_power_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, LPG additional tax, not higher than 7 CV
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          89.16
-  - name: wallonia_circulation_tax_lpg_middle_power_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, LPG additional tax, 8 to 13 CV
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          148.68
-  - name: wallonia_circulation_tax_lpg_high_power_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, LPG additional tax, at least 14 CV
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          208.20
-  - name: wallonia_circulation_tax_additional_lpg_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, LPG additional tax not indexed and not subject to additional decime
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_circulation_tax_is_lpg:
-              if wallonia_circulation_tax_fiscal_power_cv <= 7:
-                  wallonia_circulation_tax_lpg_low_power_amount
-              else:
-                  if wallonia_circulation_tax_fiscal_power_cv <= 13:
-                      wallonia_circulation_tax_lpg_middle_power_amount
-                  else:
-                      wallonia_circulation_tax_lpg_high_power_amount
-          else:
-              0
-  - name: wallonia_circulation_tax_oldtimer_or_minimum_forfait_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, oldtimer and article 10 CTA minimum forfait
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          48.61
-  - name: wallonia_circulation_tax_passenger_car_amount
-    kind: derived
-    entity: Vehicle
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: SPW Finances annual circulation-tax table, passenger cars plus LPG additional tax
-    versions:
-      - effective_from: '2026-07-01'
-        formula: |-
-          if wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle:
-              wallonia_circulation_tax_oldtimer_or_minimum_forfait_amount
-          else:
-              wallonia_circulation_tax_passenger_base_amount + wallonia_circulation_tax_additional_lpg_amount
+- name: wallonia_circulation_tax_cv_0_to_4_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 4 fiscal horsepower
+    and less
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '107.18'
+- name: wallonia_circulation_tax_cv_5_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 5 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '134.11'
+- name: wallonia_circulation_tax_cv_6_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 6 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '193.91'
+- name: wallonia_circulation_tax_cv_7_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 7 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '253.31'
+- name: wallonia_circulation_tax_cv_8_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 8 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '313.24'
+- name: wallonia_circulation_tax_cv_9_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 9 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '373.16'
+- name: wallonia_circulation_tax_cv_10_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 10 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '432.30'
+- name: wallonia_circulation_tax_cv_11_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 11 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '561.00'
+- name: wallonia_circulation_tax_cv_12_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 12 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '689.70'
+- name: wallonia_circulation_tax_cv_13_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 13 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '818.14'
+- name: wallonia_circulation_tax_cv_14_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 14 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '946.84'
+- name: wallonia_circulation_tax_cv_15_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 15 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '1075.54'
+- name: wallonia_circulation_tax_cv_16_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 16 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '1408.70'
+- name: wallonia_circulation_tax_cv_17_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 17 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '1742.14'
+- name: wallonia_circulation_tax_cv_18_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 18 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '2075.57'
+- name: wallonia_circulation_tax_cv_19_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 19 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '2408.34'
+- name: wallonia_circulation_tax_cv_20_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, 20 fiscal horsepower
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '2741.77'
+- name: wallonia_circulation_tax_above_20_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars, amount per fiscal
+    horsepower above 20 CV
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '149.56'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '4'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '5'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '6'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '7'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '8'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '9'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '10'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '11'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '12'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '13'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '14'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '15'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '16'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '17'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '18'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_16
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '19'
+- name: wallonia_circulation_tax_passenger_base_amount_scalar_limit_17
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, passenger cars
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '20'
+- name: wallonia_circulation_tax_passenger_base_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_circulation_tax_fiscal_power_cv <= wallonia_circulation_tax_passenger_base_amount_scalar_limit:\n\
+      \    wallonia_circulation_tax_cv_0_to_4_amount\nelse:\n    if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_2:\n      \
+      \  wallonia_circulation_tax_cv_5_amount\n    else:\n        if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_3:\n      \
+      \      wallonia_circulation_tax_cv_6_amount\n        else:\n            if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_4:\n      \
+      \          wallonia_circulation_tax_cv_7_amount\n            else:\n       \
+      \         if wallonia_circulation_tax_fiscal_power_cv == wallonia_circulation_tax_passenger_base_amount_scalar_limit_5:\n\
+      \                    wallonia_circulation_tax_cv_8_amount\n                else:\n\
+      \                    if wallonia_circulation_tax_fiscal_power_cv == wallonia_circulation_tax_passenger_base_amount_scalar_limit_6:\n\
+      \                        wallonia_circulation_tax_cv_9_amount\n            \
+      \        else:\n                        if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_7:\n      \
+      \                      wallonia_circulation_tax_cv_10_amount\n             \
+      \           else:\n                            if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_8:\n      \
+      \                          wallonia_circulation_tax_cv_11_amount\n         \
+      \                   else:\n                                if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_9:\n      \
+      \                              wallonia_circulation_tax_cv_12_amount\n     \
+      \                           else:\n                                    if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_10:\n     \
+      \                                   wallonia_circulation_tax_cv_13_amount\n\
+      \                                    else:\n                               \
+      \         if wallonia_circulation_tax_fiscal_power_cv == wallonia_circulation_tax_passenger_base_amount_scalar_limit_11:\n\
+      \                                            wallonia_circulation_tax_cv_14_amount\n\
+      \                                        else:\n                           \
+      \                 if wallonia_circulation_tax_fiscal_power_cv == wallonia_circulation_tax_passenger_base_amount_scalar_limit_12:\n\
+      \                                                wallonia_circulation_tax_cv_15_amount\n\
+      \                                            else:\n                       \
+      \                         if wallonia_circulation_tax_fiscal_power_cv == wallonia_circulation_tax_passenger_base_amount_scalar_limit_13:\n\
+      \                                                    wallonia_circulation_tax_cv_16_amount\n\
+      \                                                else:\n                   \
+      \                                 if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_14:\n     \
+      \                                                   wallonia_circulation_tax_cv_17_amount\n\
+      \                                                    else:\n               \
+      \                                         if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_15:\n     \
+      \                                                       wallonia_circulation_tax_cv_18_amount\n\
+      \                                                        else:\n           \
+      \                                                 if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_16:\n     \
+      \                                                           wallonia_circulation_tax_cv_19_amount\n\
+      \                                                            else:\n       \
+      \                                                         if wallonia_circulation_tax_fiscal_power_cv\
+      \ == wallonia_circulation_tax_passenger_base_amount_scalar_limit_17:\n     \
+      \                                                               wallonia_circulation_tax_cv_20_amount\n\
+      \                                                                else:\n   \
+      \                                                                 wallonia_circulation_tax_cv_20_amount\
+      \ + (wallonia_circulation_tax_fiscal_power_cv - wallonia_circulation_tax_passenger_base_amount_scalar_limit_17)\
+      \ * wallonia_circulation_tax_above_20_increment"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_2
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_3
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_4
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_5
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_6
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_7
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_8
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_9
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_10
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_11
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_12
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_13
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_14
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_15
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_15
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_16
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_16
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_passenger_base_amount_scalar_limit_17
+          output: wallonia_circulation_tax_passenger_base_amount_scalar_limit_17
+          hash: sha256:local
+- name: wallonia_circulation_tax_lpg_low_power_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, LPG additional tax, not higher
+    than 7 CV
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '89.16'
+- name: wallonia_circulation_tax_lpg_middle_power_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, LPG additional tax, 8 to 13 CV
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '148.68'
+- name: wallonia_circulation_tax_lpg_high_power_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, LPG additional tax, at least
+    14 CV
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '208.20'
+- name: wallonia_circulation_tax_additional_lpg_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, LPG additional tax not indexed
+    and not subject to additional decime
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, LPG additional tax not
+            indexed and not subject to additional decime
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '7'
+- name: wallonia_circulation_tax_additional_lpg_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: SPW Finances annual circulation-tax table, LPG additional tax not indexed
+    and not subject to additional decime
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
+          span: SPW Finances annual circulation-tax table, LPG additional tax not
+            indexed and not subject to additional decime
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '13'
+- name: wallonia_circulation_tax_additional_lpg_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, LPG additional tax not indexed
+    and not subject to additional decime
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_circulation_tax_is_lpg:\n    if wallonia_circulation_tax_fiscal_power_cv\
+      \ <= wallonia_circulation_tax_additional_lpg_amount_scalar_limit:\n        wallonia_circulation_tax_lpg_low_power_amount\n\
+      \    else:\n        if wallonia_circulation_tax_fiscal_power_cv <= wallonia_circulation_tax_additional_lpg_amount_scalar_limit_2:\n\
+      \            wallonia_circulation_tax_lpg_middle_power_amount\n        else:\n\
+      \            wallonia_circulation_tax_lpg_high_power_amount\nelse:\n    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_additional_lpg_amount_scalar_limit
+          output: wallonia_circulation_tax_additional_lpg_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/vehicle_tax/circulation_tax#wallonia_circulation_tax_additional_lpg_amount_scalar_limit_2
+          output: wallonia_circulation_tax_additional_lpg_amount_scalar_limit_2
+          hash: sha256:local
+- name: wallonia_circulation_tax_oldtimer_or_minimum_forfait_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, oldtimer and article 10 CTA minimum
+    forfait
+  versions:
+  - effective_from: '2026-07-01'
+    formula: '48.61'
+- name: wallonia_circulation_tax_passenger_car_amount
+  kind: derived
+  entity: Vehicle
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: SPW Finances annual circulation-tax table, passenger cars plus LPG additional
+    tax
+  versions:
+  - effective_from: '2026-07-01'
+    formula: "if wallonia_circulation_tax_is_oldtimer_or_minimum_forfait_vehicle:\n\
+      \    wallonia_circulation_tax_oldtimer_or_minimum_forfait_amount\nelse:\n  \
+      \  wallonia_circulation_tax_passenger_base_amount + wallonia_circulation_tax_additional_lpg_amount"

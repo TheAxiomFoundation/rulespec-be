@@ -1,36 +1,48 @@
 format: rulespec/v1
 module:
-  summary: |-
-    The 11 July 2002 royal decree implementing the right to social integration
-    defines resources excluded from the revenu d'integration resource
+  summary: 'The 11 July 2002 royal decree implementing the right to social integration
+
+    defines resources excluded from the revenu d''integration resource
+
     calculation. Article 22 lists excluded resource categories, caps excluded
+
     ALE cheque remuneration at EUR 6 per non-invalidated cheque, and grants a
+
     supplemental annual exemption by article-14 beneficiary category when
-    countable resources are below the revenu d'integration amount. This module
+
+    countable resources are below the revenu d''integration amount. This module
+
     encodes those Article 22 mechanics, a simple Article 23/35 countable
+
     earned-income calculation, the Article 24 business-transfer treatment, the
+
     Article 25 to 27 valuation rules for built immovable property, unbuilt
+
     immovable property, rented immovable property, and movable capital, and the
+
     Article 28 to 34 transfer-of-assets, in-kind housing support, and cohabitant
+
     resource-attribution mechanics. It still leaves CPAS equity decisions and
+
     end-to-end eligibility and payable-amount integration as upstream inputs or
-    separate surfaces.
+
+    separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be/regulation/arrete/2002/07/11/2002022564/article/22
-      - be/regulation/arrete/2002/07/11/2002022564/article/23
-      - be/regulation/arrete/2002/07/11/2002022564/article/24
-      - be/regulation/arrete/2002/07/11/2002022564/article/25
-      - be/regulation/arrete/2002/07/11/2002022564/article/26
-      - be/regulation/arrete/2002/07/11/2002022564/article/27
-      - be/regulation/arrete/2002/07/11/2002022564/article/28
-      - be/regulation/arrete/2002/07/11/2002022564/article/29
-      - be/regulation/arrete/2002/07/11/2002022564/article/30
-      - be/regulation/arrete/2002/07/11/2002022564/article/31
-      - be/regulation/arrete/2002/07/11/2002022564/article/32
-      - be/regulation/arrete/2002/07/11/2002022564/article/33
-      - be/regulation/arrete/2002/07/11/2002022564/article/34
-      - be/regulation/arrete/2002/07/11/2002022564/article/35
+    - be/regulation/arrete/2002/07/11/2002022564/article/22
+    - be/regulation/arrete/2002/07/11/2002022564/article/23
+    - be/regulation/arrete/2002/07/11/2002022564/article/24
+    - be/regulation/arrete/2002/07/11/2002022564/article/25
+    - be/regulation/arrete/2002/07/11/2002022564/article/26
+    - be/regulation/arrete/2002/07/11/2002022564/article/27
+    - be/regulation/arrete/2002/07/11/2002022564/article/28
+    - be/regulation/arrete/2002/07/11/2002022564/article/29
+    - be/regulation/arrete/2002/07/11/2002022564/article/30
+    - be/regulation/arrete/2002/07/11/2002022564/article/31
+    - be/regulation/arrete/2002/07/11/2002022564/article/32
+    - be/regulation/arrete/2002/07/11/2002022564/article/33
+    - be/regulation/arrete/2002/07/11/2002022564/article/34
+    - be/regulation/arrete/2002/07/11/2002022564/article/35
     values:
       belgium_social_integration_article_22_ale_cheque_exclusion_cap: 6
       belgium_social_integration_article_22_category_1_supplemental_exemption: 155
@@ -44,679 +56,737 @@ module:
       belgium_social_integration_article_27_movable_capital_first_threshold: 6200
       belgium_social_integration_article_27_movable_capital_second_threshold: 12500
       belgium_social_integration_article_27_movable_capital_first_rate: 0.06
-      belgium_social_integration_article_27_movable_capital_top_rate: 0.10
-      belgium_social_integration_article_28_usufruct_value_fraction: 0.40
+      belgium_social_integration_article_27_movable_capital_top_rate: 0.1
+      belgium_social_integration_article_28_usufruct_value_fraction: 0.4
       belgium_social_integration_article_29_transfer_exempt_tranche: 37200
       belgium_social_integration_article_31_category_1_annual_abatement: 1250
       belgium_social_integration_article_31_category_2_annual_abatement: 2000
       belgium_social_integration_article_31_category_3_annual_abatement: 2500
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_social_integration_article_22_ale_cheque_exclusion_cap
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 1 item d
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          6
-  - name: belgium_social_integration_article_22_category_1_supplemental_exemption
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          155
-  - name: belgium_social_integration_article_22_category_2_supplemental_exemption
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          250
-  - name: belgium_social_integration_article_22_category_3_supplemental_exemption
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          280
-  - name: belgium_social_integration_article_22_category_4_supplemental_exemption
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          310
-  - name: belgium_social_integration_article_25_built_property_base_exemption
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 1
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          750
-  - name: belgium_social_integration_article_25_built_property_child_increment
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 1
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          125
-  - name: belgium_social_integration_article_25_unbuilt_property_base_exemption
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 2
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          30
-  - name: belgium_social_integration_article_25_cadastral_income_multiplier
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          3
-  - name: belgium_social_integration_article_27_movable_capital_first_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          6200
-  - name: belgium_social_integration_article_27_movable_capital_second_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          12500
-  - name: belgium_social_integration_article_27_movable_capital_first_rate
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          0.06
-  - name: belgium_social_integration_article_27_movable_capital_top_rate
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          0.10
-  - name: belgium_social_integration_article_28_usufruct_value_fraction
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 28 section 3
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          0.40
-  - name: belgium_social_integration_article_29_transfer_exempt_tranche
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 29
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          37200
-  - name: belgium_social_integration_article_31_category_1_annual_abatement
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31 section 1
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          1250
-  - name: belgium_social_integration_article_31_category_2_annual_abatement
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31 section 1
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          2000
-  - name: belgium_social_integration_article_31_category_3_annual_abatement
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31 section 1
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          2500
-  - name: belgium_social_integration_article_22_ale_cheque_excluded_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 1 item d
-    versions:
-      - effective_from: '2021-01-01'
-        formula: |-
-          min(belgium_social_integration_ale_cheque_remuneration, belgium_social_integration_article_22_ale_cheque_exclusion_cap * belgium_social_integration_non_invalidated_ale_cheques)
-  - name: belgium_social_integration_article_22_listed_excluded_resources
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 1
-    versions:
-      - effective_from: '2024-05-31'
-        formula: |-
-          belgium_social_integration_cpas_aid + belgium_social_integration_family_benefits_for_children + belgium_social_integration_child_alimony + belgium_social_integration_article_22_ale_cheque_excluded_amount + belgium_social_integration_training_productivity_or_encouragement_premiums + belgium_social_integration_moving_installation_waiting_or_rent_allowances + belgium_social_integration_study_grants_specific_costs + belgium_social_integration_foster_care_allowances + belgium_social_integration_public_office_attendance_tokens + belgium_social_integration_non_regular_donations + belgium_social_integration_war_service_rents + belgium_social_integration_long_term_care_service_allowances + belgium_social_integration_german_wartime_detention_compensation + belgium_social_integration_refundable_tax_credit + belgium_social_integration_minor_guardianship_flat_rate + belgium_social_integration_volunteer_allowances + belgium_social_integration_transition_internship_indemnity + belgium_social_integration_integration_allowance_for_disabled_people
-  - name: belgium_social_integration_article_22_resources_before_supplemental_exemption
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 1
-    versions:
-      - effective_from: '2024-05-31'
-        formula: |-
-          max(0, belgium_social_integration_gross_resources - belgium_social_integration_article_22_listed_excluded_resources)
-  - name: belgium_social_integration_article_22_category_supplemental_exemption_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_article_14_category_code == 1:
-              belgium_social_integration_article_22_category_1_supplemental_exemption
-          else:
-              if belgium_social_integration_article_14_category_code == 2:
-                  belgium_social_integration_article_22_category_2_supplemental_exemption
-              else:
-                  if belgium_social_integration_article_14_category_code == 3:
-                      belgium_social_integration_article_22_category_3_supplemental_exemption
-                  else:
-                      if belgium_social_integration_article_14_category_code == 4:
-                          belgium_social_integration_article_22_category_4_supplemental_exemption
-                      else:
-                          0
-  - name: belgium_social_integration_article_22_supplemental_exemption
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_article_22_resources_before_supplemental_exemption < belgium_social_integration_article_14_annual_amount:
-              belgium_social_integration_article_22_category_supplemental_exemption_amount
-          else:
-              0
-  - name: belgium_social_integration_article_22_countable_resources
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 22
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          max(0, belgium_social_integration_article_22_resources_before_supplemental_exemption - belgium_social_integration_article_22_supplemental_exemption)
-  - name: belgium_social_integration_article_23_35_monthly_countable_earned_income
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, articles 23 and 35
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          max(0, belgium_social_integration_article_24_monthly_net_earned_income_after_business_transfer_exclusion - belgium_social_integration_article_35_monthly_earned_income_disregard)
-  - name: belgium_social_integration_article_24_monthly_net_earned_income_after_business_transfer_exclusion
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 24 section 1
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          if belgium_social_integration_article_24_income_from_business_transfer_taxed_as_professional_income:
-              max(0, belgium_social_integration_monthly_net_earned_income - belgium_social_integration_article_24_monthly_business_transfer_income)
-          else:
-              belgium_social_integration_monthly_net_earned_income
-  - name: belgium_social_integration_article_24_deceased_spouse_reference_year_income_attributed
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 24 section 2
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          if belgium_social_integration_article_24_continues_deceased_spouse_self_employment_activity:
-              belgium_social_integration_article_24_deceased_spouse_self_employment_reference_year_income
-          else:
-              0
-  - name: belgium_social_integration_article_24_self_employment_reference_year_income
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 24 section 2
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_article_24_applicant_self_employment_reference_year_income + belgium_social_integration_article_24_deceased_spouse_reference_year_income_attributed
-  - name: belgium_social_integration_article_25_built_property_exemption
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 1
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_immovable_property_right_fraction * (belgium_social_integration_article_25_built_property_base_exemption + belgium_social_integration_property_child_count_for_exemption * belgium_social_integration_article_25_built_property_child_increment)
-  - name: belgium_social_integration_article_25_built_property_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 1
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          max(0, belgium_social_integration_built_property_cadastral_income * belgium_social_integration_immovable_property_right_fraction - belgium_social_integration_article_25_built_property_exemption) * belgium_social_integration_article_25_cadastral_income_multiplier
-  - name: belgium_social_integration_article_25_unbuilt_property_exemption
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 2
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_immovable_property_right_fraction * belgium_social_integration_article_25_unbuilt_property_base_exemption
-  - name: belgium_social_integration_article_25_unbuilt_property_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 1 item 2
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          max(0, belgium_social_integration_unbuilt_property_cadastral_income * belgium_social_integration_immovable_property_right_fraction - belgium_social_integration_article_25_unbuilt_property_exemption) * belgium_social_integration_article_25_cadastral_income_multiplier
-  - name: belgium_social_integration_article_25_property_resource_after_mortgage_interest
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 25 section 4
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          max(0, belgium_social_integration_article_25_built_property_resource + belgium_social_integration_article_25_unbuilt_property_resource - belgium_social_integration_eligible_annual_mortgage_interest_on_property)
-  - name: belgium_social_integration_article_26_rented_property_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 26
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          max(belgium_social_integration_article_25_property_resource_after_mortgage_interest, belgium_social_integration_annual_property_rent * belgium_social_integration_immovable_property_right_fraction)
-  - name: belgium_social_integration_article_27_movable_capital_owner_fraction
-    kind: derived
-    entity: Household
-    dtype: Rate
-    period: Year
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          if belgium_social_integration_movable_capital_account_holder_count <= 0:
-              0
-          else:
-              belgium_social_integration_movable_capital_numerator_share / belgium_social_integration_movable_capital_account_holder_count
-  - name: belgium_social_integration_article_27_movable_capital_counted_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_movable_capital_amount * belgium_social_integration_article_27_movable_capital_owner_fraction
-  - name: belgium_social_integration_article_27_movable_capital_first_threshold_prorated
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_article_27_movable_capital_first_threshold * belgium_social_integration_article_27_movable_capital_owner_fraction
-  - name: belgium_social_integration_article_27_movable_capital_second_threshold_prorated
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_article_27_movable_capital_second_threshold * belgium_social_integration_article_27_movable_capital_owner_fraction
-  - name: belgium_social_integration_article_27_movable_capital_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 27
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          max(0, min(belgium_social_integration_article_27_movable_capital_counted_amount, belgium_social_integration_article_27_movable_capital_second_threshold_prorated) - belgium_social_integration_article_27_movable_capital_first_threshold_prorated) * belgium_social_integration_article_27_movable_capital_first_rate + max(0, belgium_social_integration_article_27_movable_capital_counted_amount - belgium_social_integration_article_27_movable_capital_second_threshold_prorated) * belgium_social_integration_article_27_movable_capital_top_rate
-  - name: belgium_social_integration_article_28_transfer_right_value
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 28 section 2
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          belgium_social_integration_transferred_asset_market_value * belgium_social_integration_transferred_asset_right_fraction
-  - name: belgium_social_integration_article_28_usufruct_adjusted_transfer_value
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 28 section 3
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          if belgium_social_integration_transfer_is_usufruct:
-              belgium_social_integration_article_28_transfer_right_value * belgium_social_integration_article_28_usufruct_value_fraction
-          else:
-              belgium_social_integration_article_28_transfer_right_value
-  - name: belgium_social_integration_article_30_transfer_value_after_debts
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 30
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          if belgium_social_integration_transfer_is_for_valuable_consideration:
-              max(0, belgium_social_integration_article_28_usufruct_adjusted_transfer_value - belgium_social_integration_transfer_eligible_debts_paid_from_proceeds)
-          else:
-              belgium_social_integration_article_28_usufruct_adjusted_transfer_value
-  - name: belgium_social_integration_article_29_transfer_exemption
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 29
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_transfer_is_for_valuable_consideration:
-              if belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property:
-                  belgium_social_integration_article_29_transfer_exempt_tranche * belgium_social_integration_transferred_asset_right_fraction
-              else:
-                  0
-          else:
-              0
-  - name: belgium_social_integration_article_31_category_annual_abatement
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31 section 1
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_article_14_category_code == 1:
-              belgium_social_integration_article_31_category_1_annual_abatement
-          else:
-              if belgium_social_integration_article_14_category_code == 2:
-                  belgium_social_integration_article_31_category_2_annual_abatement
-              else:
-                  if belgium_social_integration_article_14_category_code == 3:
-                      belgium_social_integration_article_31_category_3_annual_abatement
-                  else:
-                      0
-  - name: belgium_social_integration_article_31_prorated_initial_abatement
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31 section 1
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_transfer_is_for_valuable_consideration:
-              if belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property:
-                  belgium_social_integration_article_31_category_annual_abatement * max(0, belgium_social_integration_transfer_months_from_month_after_transfer_to_right_start) / 12
-              else:
-                  0
-          else:
-              0
-  - name: belgium_social_integration_article_31_anniversary_abatement
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31 section 2
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_transfer_is_for_valuable_consideration:
-              if belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property:
-                  belgium_social_integration_article_31_category_annual_abatement * max(0, belgium_social_integration_transfer_anniversary_years_since_right_start)
-              else:
-                  0
-          else:
-              0
-  - name: belgium_social_integration_article_31_total_abatement
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 31
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          belgium_social_integration_article_31_prorated_initial_abatement + belgium_social_integration_article_31_anniversary_abatement
-  - name: belgium_social_integration_article_28_31_transfer_value_for_article_27
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, articles 28 to 31
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          max(0, belgium_social_integration_article_30_transfer_value_after_debts - belgium_social_integration_article_29_transfer_exemption - belgium_social_integration_article_31_total_abatement)
-  - name: belgium_social_integration_article_28_32_counted_transfer_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, articles 28 and 32
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          if belgium_social_integration_transfer_within_ten_year_lookback:
-              if belgium_social_integration_article_32_equity_override_applies:
-                  belgium_social_integration_article_32_transfer_proceeds_counted_under_article_27
-              else:
-                  belgium_social_integration_article_28_31_transfer_value_for_article_27
-          else:
-              0
-  - name: belgium_social_integration_article_28_32_transfer_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, articles 28 and 32
-    versions:
-      - effective_from: '2005-01-01'
-        formula: |-
-          max(0, min(belgium_social_integration_article_28_32_counted_transfer_amount, belgium_social_integration_article_27_movable_capital_second_threshold) - belgium_social_integration_article_27_movable_capital_first_threshold) * belgium_social_integration_article_27_movable_capital_first_rate + max(0, belgium_social_integration_article_28_32_counted_transfer_amount - belgium_social_integration_article_27_movable_capital_second_threshold) * belgium_social_integration_article_27_movable_capital_top_rate
-  - name: belgium_social_integration_article_33_in_kind_housing_income
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 33
-    versions:
-      - effective_from: '2002-10-01'
-        formula: |-
-          if belgium_social_integration_housing_costs_paid_by_non_cohabiting_third_party:
-              belgium_social_integration_third_party_paid_housing_costs_for_principal_residence
-          else:
-              0
-  - name: belgium_social_integration_article_34_spouse_or_de_facto_household_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 34 sections 1 and 4
-    versions:
-      - effective_from: '2026-03-01'
-        formula: |-
-          if belgium_social_integration_lives_with_spouse_or_de_facto_partner_not_requesting_benefit:
-              if belgium_social_integration_article_14_category_code == 3:
-                  belgium_social_integration_spouse_or_de_facto_partner_resources
-              else:
-                  max(0, belgium_social_integration_spouse_or_de_facto_partner_resources - belgium_social_integration_article_14_category_1_annual_amount)
-          else:
-              0
-  - name: belgium_social_integration_article_34_adult_maintenance_debtor_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 34 section 2
-    versions:
-      - effective_from: '2026-03-01'
-        formula: |-
-          if belgium_social_integration_lives_with_adult_maintenance_debtor:
-              if belgium_social_integration_article_34_maintenance_debtor_equity_override_applies:
-                  0
-              else:
-                  if belgium_social_integration_applicant_has_recognized_aid_need_family_benefit_supplement:
-                      max(0, belgium_social_integration_adult_maintenance_debtor_resources - belgium_social_integration_article_14_category_1_annual_amount)
-                  else:
-                  max(0, belgium_social_integration_adult_maintenance_debtor_resources - belgium_social_integration_article_14_category_1_annual_amount) + belgium_social_integration_family_benefits_paid_to_maintenance_debtor_for_applicant
-          else:
-              0
-  - name: belgium_social_integration_article_34_adult_maintenance_debtors_fictitious_exempt_amount
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 34 section 2
-    versions:
-      - effective_from: '2026-03-01'
-        formula: |-
-          belgium_social_integration_article_14_category_1_annual_amount * belgium_social_integration_adult_maintenance_debtor_count
-  - name: belgium_social_integration_article_34_adult_maintenance_debtors_resource
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 34 section 2
-    versions:
-      - effective_from: '2026-03-01'
-        formula: |-
-          if belgium_social_integration_adult_maintenance_debtor_count > 0:
-              if belgium_social_integration_article_34_maintenance_debtor_equity_override_applies:
-                  0
-              else:
-                  if belgium_social_integration_applicant_has_recognized_aid_need_family_benefit_supplement:
-                      max(0, belgium_social_integration_adult_maintenance_debtors_total_resources - belgium_social_integration_article_34_adult_maintenance_debtors_fictitious_exempt_amount)
-                  else:
-                      max(0, belgium_social_integration_adult_maintenance_debtors_total_resources - belgium_social_integration_article_34_adult_maintenance_debtors_fictitious_exempt_amount) + belgium_social_integration_family_benefits_paid_to_maintenance_debtors_for_applicant
-          else:
-              0
-  - name: belgium_social_integration_article_34_cohabitant_resources
-    kind: derived
-    entity: Household
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 34
-    versions:
-      - effective_from: '2026-03-01'
-        formula: |-
-          belgium_social_integration_article_34_spouse_or_de_facto_household_resource + belgium_social_integration_article_34_adult_maintenance_debtor_resource + belgium_social_integration_article_34_adult_maintenance_debtors_resource
+- name: belgium_social_integration_article_22_ale_cheque_exclusion_cap
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 1 item d
+  versions:
+  - effective_from: '2021-01-01'
+    formula: '6'
+- name: belgium_social_integration_article_22_category_1_supplemental_exemption
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '155'
+- name: belgium_social_integration_article_22_category_2_supplemental_exemption
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '250'
+- name: belgium_social_integration_article_22_category_3_supplemental_exemption
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '280'
+- name: belgium_social_integration_article_22_category_4_supplemental_exemption
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '310'
+- name: belgium_social_integration_article_25_built_property_base_exemption
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 1
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '750'
+- name: belgium_social_integration_article_25_built_property_child_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 1
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '125'
+- name: belgium_social_integration_article_25_unbuilt_property_base_exemption
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 2
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '30'
+- name: belgium_social_integration_article_25_cadastral_income_multiplier
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '3'
+- name: belgium_social_integration_article_27_movable_capital_first_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '6200'
+- name: belgium_social_integration_article_27_movable_capital_second_threshold
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '12500'
+- name: belgium_social_integration_article_27_movable_capital_first_rate
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '0.06'
+- name: belgium_social_integration_article_27_movable_capital_top_rate
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '0.10'
+- name: belgium_social_integration_article_28_usufruct_value_fraction
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 28 section 3
+  versions:
+  - effective_from: '2002-10-01'
+    formula: '0.40'
+- name: belgium_social_integration_article_29_transfer_exempt_tranche
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 29
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '37200'
+- name: belgium_social_integration_article_31_category_1_annual_abatement
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 1
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '1250'
+- name: belgium_social_integration_article_31_category_2_annual_abatement
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 1
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '2000'
+- name: belgium_social_integration_article_31_category_3_annual_abatement
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 1
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '2500'
+- name: belgium_social_integration_article_22_ale_cheque_excluded_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 1 item d
+  versions:
+  - effective_from: '2021-01-01'
+    formula: min(belgium_social_integration_ale_cheque_remuneration, belgium_social_integration_article_22_ale_cheque_exclusion_cap
+      * belgium_social_integration_non_invalidated_ale_cheques)
+- name: belgium_social_integration_article_22_listed_excluded_resources
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 1
+  versions:
+  - effective_from: '2024-05-31'
+    formula: belgium_social_integration_cpas_aid + belgium_social_integration_family_benefits_for_children
+      + belgium_social_integration_child_alimony + belgium_social_integration_article_22_ale_cheque_excluded_amount
+      + belgium_social_integration_training_productivity_or_encouragement_premiums
+      + belgium_social_integration_moving_installation_waiting_or_rent_allowances
+      + belgium_social_integration_study_grants_specific_costs + belgium_social_integration_foster_care_allowances
+      + belgium_social_integration_public_office_attendance_tokens + belgium_social_integration_non_regular_donations
+      + belgium_social_integration_war_service_rents + belgium_social_integration_long_term_care_service_allowances
+      + belgium_social_integration_german_wartime_detention_compensation + belgium_social_integration_refundable_tax_credit
+      + belgium_social_integration_minor_guardianship_flat_rate + belgium_social_integration_volunteer_allowances
+      + belgium_social_integration_transition_internship_indemnity + belgium_social_integration_integration_allowance_for_disabled_people
+- name: belgium_social_integration_article_22_resources_before_supplemental_exemption
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 1
+  versions:
+  - effective_from: '2024-05-31'
+    formula: max(0, belgium_social_integration_gross_resources - belgium_social_integration_article_22_listed_excluded_resources)
+- name: belgium_social_integration_article_22_category_supplemental_exemption_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
+          span: Royal Decree of 11 July 2002 on the general regulation for social
+            integration, article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '4'
+- name: belgium_social_integration_article_22_category_supplemental_exemption_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_article_14_category_code == 1:\n    belgium_social_integration_article_22_category_1_supplemental_exemption\n\
+      else:\n    if belgium_social_integration_article_14_category_code == 2:\n  \
+      \      belgium_social_integration_article_22_category_2_supplemental_exemption\n\
+      \    else:\n        if belgium_social_integration_article_14_category_code ==\
+      \ 3:\n            belgium_social_integration_article_22_category_3_supplemental_exemption\n\
+      \        else:\n            if belgium_social_integration_article_14_category_code\
+      \ == belgium_social_integration_article_22_category_supplemental_exemption_amount_scalar_limit:\n\
+      \                belgium_social_integration_article_22_category_4_supplemental_exemption\n\
+      \            else:\n                0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_category_supplemental_exemption_amount_scalar_limit
+          output: belgium_social_integration_article_22_category_supplemental_exemption_amount_scalar_limit
+          hash: sha256:local
+- name: belgium_social_integration_article_22_supplemental_exemption
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_article_22_resources_before_supplemental_exemption\
+      \ < belgium_social_integration_article_14_annual_amount:\n    belgium_social_integration_article_22_category_supplemental_exemption_amount\n\
+      else:\n    0"
+- name: belgium_social_integration_article_22_countable_resources
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 22
+  versions:
+  - effective_from: '2005-01-01'
+    formula: max(0, belgium_social_integration_article_22_resources_before_supplemental_exemption
+      - belgium_social_integration_article_22_supplemental_exemption)
+- name: belgium_social_integration_article_23_35_monthly_countable_earned_income
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    articles 23 and 35
+  versions:
+  - effective_from: '2024-01-01'
+    formula: max(0, belgium_social_integration_article_24_monthly_net_earned_income_after_business_transfer_exclusion
+      - belgium_social_integration_article_35_monthly_earned_income_disregard)
+- name: belgium_social_integration_article_24_monthly_net_earned_income_after_business_transfer_exclusion
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 24 section 1
+  versions:
+  - effective_from: '2002-10-01'
+    formula: "if belgium_social_integration_article_24_income_from_business_transfer_taxed_as_professional_income:\n\
+      \    max(0, belgium_social_integration_monthly_net_earned_income - belgium_social_integration_article_24_monthly_business_transfer_income)\n\
+      else:\n    belgium_social_integration_monthly_net_earned_income"
+- name: belgium_social_integration_article_24_deceased_spouse_reference_year_income_attributed
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 24 section 2
+  versions:
+  - effective_from: '2002-10-01'
+    formula: "if belgium_social_integration_article_24_continues_deceased_spouse_self_employment_activity:\n\
+      \    belgium_social_integration_article_24_deceased_spouse_self_employment_reference_year_income\n\
+      else:\n    0"
+- name: belgium_social_integration_article_24_self_employment_reference_year_income
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 24 section 2
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_article_24_applicant_self_employment_reference_year_income
+      + belgium_social_integration_article_24_deceased_spouse_reference_year_income_attributed
+- name: belgium_social_integration_article_25_built_property_exemption
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 1
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_immovable_property_right_fraction * (belgium_social_integration_article_25_built_property_base_exemption
+      + belgium_social_integration_property_child_count_for_exemption * belgium_social_integration_article_25_built_property_child_increment)
+- name: belgium_social_integration_article_25_built_property_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 1
+  versions:
+  - effective_from: '2002-10-01'
+    formula: max(0, belgium_social_integration_built_property_cadastral_income * belgium_social_integration_immovable_property_right_fraction
+      - belgium_social_integration_article_25_built_property_exemption) * belgium_social_integration_article_25_cadastral_income_multiplier
+- name: belgium_social_integration_article_25_unbuilt_property_exemption
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 2
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_immovable_property_right_fraction * belgium_social_integration_article_25_unbuilt_property_base_exemption
+- name: belgium_social_integration_article_25_unbuilt_property_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 1 item 2
+  versions:
+  - effective_from: '2002-10-01'
+    formula: max(0, belgium_social_integration_unbuilt_property_cadastral_income *
+      belgium_social_integration_immovable_property_right_fraction - belgium_social_integration_article_25_unbuilt_property_exemption)
+      * belgium_social_integration_article_25_cadastral_income_multiplier
+- name: belgium_social_integration_article_25_property_resource_after_mortgage_interest
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 25 section 4
+  versions:
+  - effective_from: '2002-10-01'
+    formula: max(0, belgium_social_integration_article_25_built_property_resource
+      + belgium_social_integration_article_25_unbuilt_property_resource - belgium_social_integration_eligible_annual_mortgage_interest_on_property)
+- name: belgium_social_integration_article_26_rented_property_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 26
+  versions:
+  - effective_from: '2002-10-01'
+    formula: max(belgium_social_integration_article_25_property_resource_after_mortgage_interest,
+      belgium_social_integration_annual_property_rent * belgium_social_integration_immovable_property_right_fraction)
+- name: belgium_social_integration_article_27_movable_capital_owner_fraction
+  kind: derived
+  entity: Household
+  dtype: Rate
+  period: Year
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: "if belgium_social_integration_movable_capital_account_holder_count <=\
+      \ 0:\n    0\nelse:\n    belgium_social_integration_movable_capital_numerator_share\
+      \ / belgium_social_integration_movable_capital_account_holder_count"
+- name: belgium_social_integration_article_27_movable_capital_counted_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_movable_capital_amount * belgium_social_integration_article_27_movable_capital_owner_fraction
+- name: belgium_social_integration_article_27_movable_capital_first_threshold_prorated
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_article_27_movable_capital_first_threshold
+      * belgium_social_integration_article_27_movable_capital_owner_fraction
+- name: belgium_social_integration_article_27_movable_capital_second_threshold_prorated
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_article_27_movable_capital_second_threshold
+      * belgium_social_integration_article_27_movable_capital_owner_fraction
+- name: belgium_social_integration_article_27_movable_capital_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 27
+  versions:
+  - effective_from: '2002-10-01'
+    formula: max(0, min(belgium_social_integration_article_27_movable_capital_counted_amount,
+      belgium_social_integration_article_27_movable_capital_second_threshold_prorated)
+      - belgium_social_integration_article_27_movable_capital_first_threshold_prorated)
+      * belgium_social_integration_article_27_movable_capital_first_rate + max(0,
+      belgium_social_integration_article_27_movable_capital_counted_amount - belgium_social_integration_article_27_movable_capital_second_threshold_prorated)
+      * belgium_social_integration_article_27_movable_capital_top_rate
+- name: belgium_social_integration_article_28_transfer_right_value
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 28 section 2
+  versions:
+  - effective_from: '2002-10-01'
+    formula: belgium_social_integration_transferred_asset_market_value * belgium_social_integration_transferred_asset_right_fraction
+- name: belgium_social_integration_article_28_usufruct_adjusted_transfer_value
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 28 section 3
+  versions:
+  - effective_from: '2002-10-01'
+    formula: "if belgium_social_integration_transfer_is_usufruct:\n    belgium_social_integration_article_28_transfer_right_value\
+      \ * belgium_social_integration_article_28_usufruct_value_fraction\nelse:\n \
+      \   belgium_social_integration_article_28_transfer_right_value"
+- name: belgium_social_integration_article_30_transfer_value_after_debts
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 30
+  versions:
+  - effective_from: '2002-10-01'
+    formula: "if belgium_social_integration_transfer_is_for_valuable_consideration:\n\
+      \    max(0, belgium_social_integration_article_28_usufruct_adjusted_transfer_value\
+      \ - belgium_social_integration_transfer_eligible_debts_paid_from_proceeds)\n\
+      else:\n    belgium_social_integration_article_28_usufruct_adjusted_transfer_value"
+- name: belgium_social_integration_article_29_transfer_exemption
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 29
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_transfer_is_for_valuable_consideration:\n\
+      \    if belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property:\n\
+      \        belgium_social_integration_article_29_transfer_exempt_tranche * belgium_social_integration_transferred_asset_right_fraction\n\
+      \    else:\n        0\nelse:\n    0"
+- name: belgium_social_integration_article_31_category_annual_abatement
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 1
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_article_14_category_code == 1:\n    belgium_social_integration_article_31_category_1_annual_abatement\n\
+      else:\n    if belgium_social_integration_article_14_category_code == 2:\n  \
+      \      belgium_social_integration_article_31_category_2_annual_abatement\n \
+      \   else:\n        if belgium_social_integration_article_14_category_code ==\
+      \ 3:\n            belgium_social_integration_article_31_category_3_annual_abatement\n\
+      \        else:\n            0"
+- name: belgium_social_integration_article_31_prorated_initial_abatement_floor
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
+          span: Royal Decree of 11 July 2002 on the general regulation for social
+            integration, article 31 section 1
+  versions:
+  - effective_from: '2005-01-01'
+    formula: '12'
+- name: belgium_social_integration_article_31_prorated_initial_abatement
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 1
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_transfer_is_for_valuable_consideration:\n\
+      \    if belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property:\n\
+      \        belgium_social_integration_article_31_category_annual_abatement * max(0,\
+      \ belgium_social_integration_transfer_months_from_month_after_transfer_to_right_start)\
+      \ / belgium_social_integration_article_31_prorated_initial_abatement_floor\n\
+      \    else:\n        0\nelse:\n    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/social_integration/resource_calculation#belgium_social_integration_article_31_prorated_initial_abatement_floor
+          output: belgium_social_integration_article_31_prorated_initial_abatement_floor
+          hash: sha256:local
+- name: belgium_social_integration_article_31_anniversary_abatement
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31 section 2
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_transfer_is_for_valuable_consideration:\n\
+      \    if belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property:\n\
+      \        belgium_social_integration_article_31_category_annual_abatement * max(0,\
+      \ belgium_social_integration_transfer_anniversary_years_since_right_start)\n\
+      \    else:\n        0\nelse:\n    0"
+- name: belgium_social_integration_article_31_total_abatement
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 31
+  versions:
+  - effective_from: '2005-01-01'
+    formula: belgium_social_integration_article_31_prorated_initial_abatement + belgium_social_integration_article_31_anniversary_abatement
+- name: belgium_social_integration_article_28_31_transfer_value_for_article_27
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    articles 28 to 31
+  versions:
+  - effective_from: '2005-01-01'
+    formula: max(0, belgium_social_integration_article_30_transfer_value_after_debts
+      - belgium_social_integration_article_29_transfer_exemption - belgium_social_integration_article_31_total_abatement)
+- name: belgium_social_integration_article_28_32_counted_transfer_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    articles 28 and 32
+  versions:
+  - effective_from: '2005-01-01'
+    formula: "if belgium_social_integration_transfer_within_ten_year_lookback:\n \
+      \   if belgium_social_integration_article_32_equity_override_applies:\n    \
+      \    belgium_social_integration_article_32_transfer_proceeds_counted_under_article_27\n\
+      \    else:\n        belgium_social_integration_article_28_31_transfer_value_for_article_27\n\
+      else:\n    0"
+- name: belgium_social_integration_article_28_32_transfer_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    articles 28 and 32
+  versions:
+  - effective_from: '2005-01-01'
+    formula: max(0, min(belgium_social_integration_article_28_32_counted_transfer_amount,
+      belgium_social_integration_article_27_movable_capital_second_threshold) - belgium_social_integration_article_27_movable_capital_first_threshold)
+      * belgium_social_integration_article_27_movable_capital_first_rate + max(0,
+      belgium_social_integration_article_28_32_counted_transfer_amount - belgium_social_integration_article_27_movable_capital_second_threshold)
+      * belgium_social_integration_article_27_movable_capital_top_rate
+- name: belgium_social_integration_article_33_in_kind_housing_income
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 33
+  versions:
+  - effective_from: '2002-10-01'
+    formula: "if belgium_social_integration_housing_costs_paid_by_non_cohabiting_third_party:\n\
+      \    belgium_social_integration_third_party_paid_housing_costs_for_principal_residence\n\
+      else:\n    0"
+- name: belgium_social_integration_article_34_spouse_or_de_facto_household_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 34 sections 1 and 4
+  versions:
+  - effective_from: '2026-03-01'
+    formula: "if belgium_social_integration_lives_with_spouse_or_de_facto_partner_not_requesting_benefit:\n\
+      \    if belgium_social_integration_article_14_category_code == 3:\n        belgium_social_integration_spouse_or_de_facto_partner_resources\n\
+      \    else:\n        max(0, belgium_social_integration_spouse_or_de_facto_partner_resources\
+      \ - belgium_social_integration_article_14_category_1_annual_amount)\nelse:\n\
+      \    0"
+- name: belgium_social_integration_article_34_adult_maintenance_debtor_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 34 section 2
+  versions:
+  - effective_from: '2026-03-01'
+    formula: "if belgium_social_integration_lives_with_adult_maintenance_debtor:\n\
+      \    if belgium_social_integration_article_34_maintenance_debtor_equity_override_applies:\n\
+      \        0\n    else:\n        if belgium_social_integration_applicant_has_recognized_aid_need_family_benefit_supplement:\n\
+      \            max(0, belgium_social_integration_adult_maintenance_debtor_resources\
+      \ - belgium_social_integration_article_14_category_1_annual_amount)\n      \
+      \  else:\n        max(0, belgium_social_integration_adult_maintenance_debtor_resources\
+      \ - belgium_social_integration_article_14_category_1_annual_amount) + belgium_social_integration_family_benefits_paid_to_maintenance_debtor_for_applicant\n\
+      else:\n    0"
+- name: belgium_social_integration_article_34_adult_maintenance_debtors_fictitious_exempt_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 34 section 2
+  versions:
+  - effective_from: '2026-03-01'
+    formula: belgium_social_integration_article_14_category_1_annual_amount * belgium_social_integration_adult_maintenance_debtor_count
+- name: belgium_social_integration_article_34_adult_maintenance_debtors_resource
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 34 section 2
+  versions:
+  - effective_from: '2026-03-01'
+    formula: "if belgium_social_integration_adult_maintenance_debtor_count > 0:\n\
+      \    if belgium_social_integration_article_34_maintenance_debtor_equity_override_applies:\n\
+      \        0\n    else:\n        if belgium_social_integration_applicant_has_recognized_aid_need_family_benefit_supplement:\n\
+      \            max(0, belgium_social_integration_adult_maintenance_debtors_total_resources\
+      \ - belgium_social_integration_article_34_adult_maintenance_debtors_fictitious_exempt_amount)\n\
+      \        else:\n            max(0, belgium_social_integration_adult_maintenance_debtors_total_resources\
+      \ - belgium_social_integration_article_34_adult_maintenance_debtors_fictitious_exempt_amount)\
+      \ + belgium_social_integration_family_benefits_paid_to_maintenance_debtors_for_applicant\n\
+      else:\n    0"
+- name: belgium_social_integration_article_34_cohabitant_resources
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
+    article 34
+  versions:
+  - effective_from: '2026-03-01'
+    formula: belgium_social_integration_article_34_spouse_or_de_facto_household_resource
+      + belgium_social_integration_article_34_adult_maintenance_debtor_resource +
+      belgium_social_integration_article_34_adult_maintenance_debtors_resource

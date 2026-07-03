@@ -20,7 +20,6 @@
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_adoption_grant_amount: 1100
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_base_monthly_amount: 155
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_selected_monthly_amount: 155
-
 - name: wallonia_older_child_base_and_large_family
   period:
     period_kind: custom
@@ -41,9 +40,9 @@
   output:
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_base_monthly_amount: 165
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_large_family_supplement_monthly_amount: 20
-    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_social_or_disabled_household_member_supplement_monthly_amount: 25
+    ? be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_social_or_disabled_household_member_supplement_monthly_amount
+    : 25
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_selected_monthly_amount: 210
-
 - name: wallonia_social_disability_and_foster_supplements
   period:
     period_kind: custom
@@ -64,10 +63,10 @@
   output:
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_foster_care_supplement_monthly_amount: 61
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_single_parent_supplement_monthly_amount: 20
-    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_social_or_disabled_household_member_supplement_monthly_amount: 65
+    ? be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_social_or_disabled_household_member_supplement_monthly_amount
+    : 65
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_supplement_monthly_amount: 549.12
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_selected_monthly_amount: 850.12
-
 - name: wallonia_double_orphan_base_and_one_parent_orphan_supplement
   period:
     period_kind: custom
@@ -89,7 +88,6 @@
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_base_monthly_amount: 350
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_one_parent_orphan_supplement_monthly_amount: 175
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_selected_monthly_amount: 525
-
 - name: wallonia_age_supplement_17_plus
   period:
     period_kind: custom
@@ -101,3 +99,156 @@
   output:
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_age_supplement_17_plus_annual_amount: 80
     be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_age_supplement_annual_amount: 80
+- name: auto_zero_wallonia_family_benefits_base_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 26
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_base_monthly_amount: 0
+- name: auto_zero_wallonia_family_benefits_foster_care_supplement_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_foster_care_supplement_monthly_amount: 0
+- name: auto_zero_wallonia_family_benefits_large_family_supplement_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 50001
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 2
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_large_family_supplement_monthly_amount: 0
+- name: auto_zero_wallonia_family_benefits_single_parent_supplement_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 50001
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_single_parent_supplement_monthly_amount: 0
+- name: auto_zero_wallonia_family_benefits_social_or_disabled_household_member_supplement_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 50001
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    ? be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_social_or_disabled_household_member_supplement_monthly_amount
+    : 0
+- name: auto_zero_wallonia_family_benefits_one_parent_orphan_supplement_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 26
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_one_parent_orphan_supplement_monthly_amount: 0
+- name: auto_zero_wallonia_family_benefits_disability_supplement_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_supplement_monthly_amount: 0
+- name: auto_zero_wallonia_family_benefits_age_supplement_annual_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_age_on_december_31_years: -1
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_child_age_years: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disability_tier: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_disabled_household_member_supplement_applies: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_double_orphan_or_only_parent_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_annual_income: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_household_member_has_loss_capacity: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_in_qualifying_foster_care: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_one_parent_or_only_filiation_orphan: false
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_qualifying_children_in_household_count: 0
+    be-wal:statutes/family_benefits/amounts#input.wallonia_family_benefits_single_parent: false
+  output:
+    be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_age_supplement_annual_amount: 0

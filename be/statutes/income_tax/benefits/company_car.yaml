@@ -1,258 +1,508 @@
 format: rulespec/v1
 module:
-  summary: |-
-    CIR 1992 article 36 paragraph 2 sets the Belgian taxable benefit in kind
+  summary: 'CIR 1992 article 36 paragraph 2 sets the Belgian taxable benefit in kind
+
     for private use of a company car. This module encodes the annual employee
+
     personal-income-tax benefit for income year 2026 / assessment year 2027:
+
     catalogue-value age coefficients, the 6/7 statutory fraction, 2026
+
     reference CO2 values, the 4 to 18 percent CO2-percentage bounds, missing
+
     CO2 fallbacks, false plug-in hybrid CO2 substitution, the indexed minimum
+
     annual benefit, and beneficiary contributions. It excludes employer-side
+
     corporate-tax disallowance, payroll withholding remittance, day-level
+
     prorating for partial-year availability, multiple simultaneous vehicles,
-    and administrative evidence rules.
+
+    and administrative evidence rules.'
   source_verification:
     corpus_citation_paths:
+    - be/statute/fisconetplus/cir92/revenus-2025/page-95
+    - be/statute/fisconetplus/cir92/revenus-2025/page-96
+    - be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
+    - be/guidance/spf-finances/company-car-benefit/2026-faq/page-2
+    - be/guidance/spf-finances/company-car-benefit/2026-faq/page-3
+    - be/guidance/spf-finances/company-car-benefit/2026-faq/page-27
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
       - be/statute/fisconetplus/cir92/revenus-2025/page-95
       - be/statute/fisconetplus/cir92/revenus-2025/page-96
       - be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
-      - be/guidance/spf-finances/company-car-benefit/2026-faq/page-2
-      - be/guidance/spf-finances/company-car-benefit/2026-faq/page-3
-      - be/guidance/spf-finances/company-car-benefit/2026-faq/page-27
+      rationale: |-
+        CIR 1992 article 36 sets the company-car benefit formula, CO2
+        percentage bounds, missing-CO2 fallbacks, age coefficients, and
+        statutory fraction. The royal decree sets the 2026 reference CO2
+        values. SPF Finances FAQ rows are used only as official administrative
+        current-year guidance for indexed minimum and false plug-in-hybrid
+        application details after those statute/regulation sources are checked.
     values:
-      belgium_company_car_catalog_value_fraction: "0.8571428571428571428571428571"
-      belgium_company_car_first_year_catalog_value_coefficient: 1
-      belgium_company_car_months_13_to_24_catalog_value_coefficient: "0.94"
-      belgium_company_car_months_25_to_36_catalog_value_coefficient: "0.88"
-      belgium_company_car_months_37_to_48_catalog_value_coefficient: "0.82"
-      belgium_company_car_months_49_to_60_catalog_value_coefficient: "0.76"
-      belgium_company_car_months_61_plus_catalog_value_coefficient: "0.70"
       belgium_company_car_petrol_lpg_natural_gas_reference_co2_2026: 70
       belgium_company_car_diesel_reference_co2_2026: 58
-      belgium_company_car_base_co2_percentage: "0.055"
-      belgium_company_car_co2_percentage_step_per_gram: "0.001"
-      belgium_company_car_minimum_co2_percentage: "0.04"
-      belgium_company_car_maximum_co2_percentage: "0.18"
+      belgium_company_car_base_co2_percentage: '0.055'
+      belgium_company_car_co2_percentage_step_per_gram: '0.001'
+      belgium_company_car_minimum_co2_percentage: '0.04'
+      belgium_company_car_maximum_co2_percentage: '0.18'
       belgium_company_car_missing_petrol_lpg_natural_gas_co2: 205
       belgium_company_car_missing_diesel_co2: 195
       belgium_company_car_minimum_annual_benefit_assessment_year_2027: 1690
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_company_car_catalog_value_fraction
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 36 paragraph 2, 6/7 of catalogue value
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          6 / 7
-  - name: belgium_company_car_base_co2_percentage
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 36 paragraph 2 base CO2 percentage
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          0.055
-  - name: belgium_company_car_co2_percentage_step_per_gram
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 36 paragraph 2, 0.1 percentage point per CO2 gram
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          0.001
-  - name: belgium_company_car_minimum_co2_percentage
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 36 paragraph 2 CO2 percentage floor
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          0.04
-  - name: belgium_company_car_maximum_co2_percentage
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 36 paragraph 2 CO2 percentage cap
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          0.18
-  - name: belgium_company_car_petrol_lpg_natural_gas_reference_co2_2026
-    kind: parameter
-    dtype: Count
-    source: Royal Decree of 17 December 2025 amending AR/CIR 92 article 18 paragraph 3 point 9
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          70
-  - name: belgium_company_car_diesel_reference_co2_2026
-    kind: parameter
-    dtype: Count
-    source: Royal Decree of 17 December 2025 amending AR/CIR 92 article 18 paragraph 3 point 9
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          58
-  - name: belgium_company_car_missing_petrol_lpg_natural_gas_co2
-    kind: parameter
-    dtype: Count
-    source: CIR 1992 article 36 paragraph 2 missing CO2 fallback for petrol, LPG, or natural-gas vehicles
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          205
-  - name: belgium_company_car_missing_diesel_co2
-    kind: parameter
-    dtype: Count
-    source: CIR 1992 article 36 paragraph 2 missing CO2 fallback for diesel vehicles
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          195
-  - name: belgium_company_car_minimum_annual_benefit_assessment_year_2027
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: SPF Finances company-car benefit FAQ, indexed minimum for assessment year 2027 / income year 2026
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          1690
-  - name: belgium_company_car_catalog_value_age_coefficient
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month counts as a full month
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if belgium_company_car_started_months_since_first_registration <= 12:
-              1
-          else:
-              if belgium_company_car_started_months_since_first_registration <= 24:
-                  0.94
-              else:
-                  if belgium_company_car_started_months_since_first_registration <= 36:
-                      0.88
-                  else:
-                      if belgium_company_car_started_months_since_first_registration <= 48:
-                          0.82
-                      else:
-                          if belgium_company_car_started_months_since_first_registration <= 60:
-                              0.76
-                          else:
-                              0.70
-  - name: belgium_company_car_age_adjusted_catalog_value
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 36 paragraph 2 catalogue-value age coefficient
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          belgium_company_car_catalog_value * belgium_company_car_catalog_value_age_coefficient
-  - name: belgium_company_car_reference_co2
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: Royal Decree of 17 December 2025, 2026 reference CO2 table
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if belgium_company_car_is_diesel:
-              belgium_company_car_diesel_reference_co2_2026
-          else:
-              belgium_company_car_petrol_lpg_natural_gas_reference_co2_2026
-  - name: belgium_company_car_reported_or_default_co2
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: CIR 1992 article 36 paragraph 2 missing CO2 fallbacks
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if belgium_company_car_has_known_co2:
-              belgium_company_car_co2_g_per_km
-          else:
-              if belgium_company_car_is_diesel:
-                  belgium_company_car_missing_diesel_co2
-              else:
-                  belgium_company_car_missing_petrol_lpg_natural_gas_co2
-  - name: belgium_company_car_co2_used
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: CIR 1992 article 36 paragraph 2 false plug-in hybrid and missing CO2 rules
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if belgium_company_car_is_false_plugin_hybrid:
-              if belgium_company_car_has_corresponding_combustion_vehicle:
-                  belgium_company_car_corresponding_combustion_co2_g_per_km
-              else:
-                  belgium_company_car_reported_or_default_co2 * 2.5
-          else:
-              belgium_company_car_reported_or_default_co2
-  - name: belgium_company_car_raw_co2_percentage
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 36 paragraph 2 CO2 percentage before floor and cap
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          belgium_company_car_base_co2_percentage + (belgium_company_car_co2_used - belgium_company_car_reference_co2) * belgium_company_car_co2_percentage_step_per_gram
-  - name: belgium_company_car_co2_percentage
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: CIR 1992 article 36 paragraph 2 CO2 percentage floor and cap
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          max(belgium_company_car_minimum_co2_percentage, min(belgium_company_car_maximum_co2_percentage, belgium_company_car_raw_co2_percentage))
-  - name: belgium_company_car_gross_annual_benefit
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 36 paragraph 2 company-car benefit formula
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          belgium_company_car_age_adjusted_catalog_value * belgium_company_car_catalog_value_fraction * belgium_company_car_co2_percentage
-  - name: belgium_company_car_annual_benefit_before_contribution
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 36 paragraph 2 annual minimum benefit
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          max(belgium_company_car_minimum_annual_benefit_assessment_year_2027, belgium_company_car_gross_annual_benefit)
-  - name: belgium_company_car_taxable_annual_benefit
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 36 paragraph 2 beneficiary contribution rule
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          max(0, belgium_company_car_annual_benefit_before_contribution - belgium_company_car_beneficiary_contribution)
+- name: belgium_company_car_catalog_value_fraction
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 36 paragraph 2, 6/7 of catalogue value
+  versions:
+  - effective_from: '2026-01-01'
+    formula: 6 / 7
+- name: belgium_company_car_base_co2_percentage
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 36 paragraph 2 base CO2 percentage
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.055'
+- name: belgium_company_car_co2_percentage_step_per_gram
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 36 paragraph 2, 0.1 percentage point per CO2 gram
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.001'
+- name: belgium_company_car_minimum_co2_percentage
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 36 paragraph 2 CO2 percentage floor
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.04'
+- name: belgium_company_car_maximum_co2_percentage
+  kind: parameter
+  dtype: Rate
+  source: CIR 1992 article 36 paragraph 2 CO2 percentage cap
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.18'
+- name: belgium_company_car_petrol_lpg_natural_gas_reference_co2_2026
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 17 December 2025 amending AR/CIR 92 article 18 paragraph
+    3 point 9
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '70'
+- name: belgium_company_car_diesel_reference_co2_2026
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 17 December 2025 amending AR/CIR 92 article 18 paragraph
+    3 point 9
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '58'
+- name: belgium_company_car_missing_petrol_lpg_natural_gas_co2
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 missing CO2 fallback for petrol, LPG, or
+    natural-gas vehicles
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '205'
+- name: belgium_company_car_missing_diesel_co2
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 missing CO2 fallback for diesel vehicles
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '195'
+- name: belgium_company_car_minimum_annual_benefit_assessment_year_2027
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: SPF Finances company-car benefit FAQ, indexed minimum for assessment year
+    2027 / income year 2026
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '1690'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '12'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '24'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.94'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '36'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.88'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '48'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.82'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '60'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.76'
+- name: belgium_company_car_catalog_value_age_coefficient_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
+            month counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '0.70'
+- name: belgium_company_car_catalog_value_age_coefficient
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started month
+    counts as a full month
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if belgium_company_car_started_months_since_first_registration <= belgium_company_car_catalog_value_age_coefficient_scalar_limit:\n\
+      \    1\nelse:\n    if belgium_company_car_started_months_since_first_registration\
+      \ <= belgium_company_car_catalog_value_age_coefficient_scalar_limit_2:\n   \
+      \     belgium_company_car_catalog_value_age_coefficient_scalar_limit_3\n   \
+      \ else:\n        if belgium_company_car_started_months_since_first_registration\
+      \ <= belgium_company_car_catalog_value_age_coefficient_scalar_limit_4:\n   \
+      \         belgium_company_car_catalog_value_age_coefficient_scalar_limit_5\n\
+      \        else:\n            if belgium_company_car_started_months_since_first_registration\
+      \ <= belgium_company_car_catalog_value_age_coefficient_scalar_limit_6:\n   \
+      \             belgium_company_car_catalog_value_age_coefficient_scalar_limit_7\n\
+      \            else:\n                if belgium_company_car_started_months_since_first_registration\
+      \ <= belgium_company_car_catalog_value_age_coefficient_scalar_limit_8:\n   \
+      \                 belgium_company_car_catalog_value_age_coefficient_scalar_limit_9\n\
+      \                else:\n                    belgium_company_car_catalog_value_age_coefficient_scalar_limit_10"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_2
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_3
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_4
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_5
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_6
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_7
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_8
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_9
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_catalog_value_age_coefficient_scalar_limit_10
+          output: belgium_company_car_catalog_value_age_coefficient_scalar_limit_10
+          hash: sha256:local
+- name: belgium_company_car_age_adjusted_catalog_value
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 36 paragraph 2 catalogue-value age coefficient
+  versions:
+  - effective_from: '2026-01-01'
+    formula: belgium_company_car_catalog_value * belgium_company_car_catalog_value_age_coefficient
+- name: belgium_company_car_reference_co2
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: Royal Decree of 17 December 2025, 2026 reference CO2 table
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if belgium_company_car_is_diesel:\n    belgium_company_car_diesel_reference_co2_2026\n\
+      else:\n    belgium_company_car_petrol_lpg_natural_gas_reference_co2_2026"
+- name: belgium_company_car_reported_or_default_co2
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: CIR 1992 article 36 paragraph 2 missing CO2 fallbacks
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if belgium_company_car_has_known_co2:\n    belgium_company_car_co2_g_per_km\n\
+      else:\n    if belgium_company_car_is_diesel:\n        belgium_company_car_missing_diesel_co2\n\
+      \    else:\n        belgium_company_car_missing_petrol_lpg_natural_gas_co2"
+- name: belgium_company_car_co2_used_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: CIR 1992 article 36 paragraph 2 false plug-in hybrid and missing CO2 rules
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: CIR 1992 article 36 paragraph 2 false plug-in hybrid and missing CO2
+            rules
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '2.5'
+- name: belgium_company_car_co2_used
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: CIR 1992 article 36 paragraph 2 false plug-in hybrid and missing CO2 rules
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if belgium_company_car_is_false_plugin_hybrid:\n    if belgium_company_car_has_corresponding_combustion_vehicle:\n\
+      \        belgium_company_car_corresponding_combustion_co2_g_per_km\n    else:\n\
+      \        belgium_company_car_reported_or_default_co2 * belgium_company_car_co2_used_scalar_limit\n\
+      else:\n    belgium_company_car_reported_or_default_co2"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/income_tax/benefits/company_car#belgium_company_car_co2_used_scalar_limit
+          output: belgium_company_car_co2_used_scalar_limit
+          hash: sha256:local
+- name: belgium_company_car_raw_co2_percentage
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 36 paragraph 2 CO2 percentage before floor and cap
+  versions:
+  - effective_from: '2026-01-01'
+    formula: belgium_company_car_base_co2_percentage + (belgium_company_car_co2_used
+      - belgium_company_car_reference_co2) * belgium_company_car_co2_percentage_step_per_gram
+- name: belgium_company_car_co2_percentage
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: CIR 1992 article 36 paragraph 2 CO2 percentage floor and cap
+  versions:
+  - effective_from: '2026-01-01'
+    formula: max(belgium_company_car_minimum_co2_percentage, min(belgium_company_car_maximum_co2_percentage,
+      belgium_company_car_raw_co2_percentage))
+- name: belgium_company_car_gross_annual_benefit
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 36 paragraph 2 company-car benefit formula
+  versions:
+  - effective_from: '2026-01-01'
+    formula: belgium_company_car_age_adjusted_catalog_value * belgium_company_car_catalog_value_fraction
+      * belgium_company_car_co2_percentage
+- name: belgium_company_car_annual_benefit_before_contribution
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 36 paragraph 2 annual minimum benefit
+  versions:
+  - effective_from: '2026-01-01'
+    formula: max(belgium_company_car_minimum_annual_benefit_assessment_year_2027,
+      belgium_company_car_gross_annual_benefit)
+- name: belgium_company_car_taxable_annual_benefit
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 36 paragraph 2 beneficiary contribution rule
+  versions:
+  - effective_from: '2026-01-01'
+    formula: max(0, belgium_company_car_annual_benefit_before_contribution - belgium_company_car_beneficiary_contribution)

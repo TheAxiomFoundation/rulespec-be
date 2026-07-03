@@ -1,325 +1,752 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Federal disability-allowances law articles 2, 6, and 12 set age thresholds,
+  summary: 'Federal disability-allowances law articles 2, 6, and 12 set age thresholds,
+
     income-replacement annual amounts, integration-allowance autonomy categories,
+
     elderly-care autonomy categories, and the institutional-payment suspension
+
     percentage. This module encodes those statutory amount and category surfaces
+
     only; resource tests, medical assessment, delegated category definitions, and
-    regional elderly-care competence remain separate surfaces.
+
+    regional elderly-care competence remain separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be/statute/loi/1987/02/27/1987022077/article/2
-      - be/statute/loi/1987/02/27/1987022077/article/6
-      - be/statute/loi/1987/02/27/1987022077/article/12
+    - be/statute/loi/1987/02/27/1987022077/article/2
+    - be/statute/loi/1987/02/27/1987022077/article/6
+    - be/statute/loi/1987/02/27/1987022077/article/12
     values:
-      belgium_disability_working_age_allowance_min_age_years: "18"
-      belgium_disability_elderly_care_allowance_min_age_years: "65"
-      belgium_disability_income_replacement_capacity_gain_max_fraction: "1/3"
-      belgium_disability_income_replacement_category_a_annual_amount: "6191.01"
-      belgium_disability_income_replacement_category_b_annual_amount: "9472.26"
-      belgium_disability_income_replacement_category_c_annual_amount: "12550.16"
-      belgium_disability_integration_category_1_annual_amount: "908.33"
-      belgium_disability_integration_category_2_annual_amount: "3004.40"
-      belgium_disability_integration_category_3_annual_amount: "4778.10"
-      belgium_disability_integration_category_4_annual_amount: "6943.85"
-      belgium_disability_integration_category_5_annual_amount: "7872.29"
-      belgium_disability_elderly_care_category_1_annual_amount: "743.98"
-      belgium_disability_elderly_care_category_2_annual_amount: "2839.94"
-      belgium_disability_elderly_care_category_3_annual_amount: "3452.91"
-      belgium_disability_elderly_care_category_4_annual_amount: "4065.70"
-      belgium_disability_elderly_care_category_5_annual_amount: "4994.14"
-      belgium_disability_integration_institution_suspension_rate: "0.28"
+      belgium_disability_working_age_allowance_min_age_years: '18'
+      belgium_disability_elderly_care_allowance_min_age_years: '65'
+      belgium_disability_income_replacement_category_a_annual_amount: '6191.01'
+      belgium_disability_income_replacement_category_b_annual_amount: '9472.26'
+      belgium_disability_income_replacement_category_c_annual_amount: '12550.16'
+      belgium_disability_integration_category_1_annual_amount: '908.33'
+      belgium_disability_integration_category_2_annual_amount: '3004.40'
+      belgium_disability_integration_category_3_annual_amount: '4778.10'
+      belgium_disability_integration_category_4_annual_amount: '6943.85'
+      belgium_disability_integration_category_5_annual_amount: '7872.29'
+      belgium_disability_elderly_care_category_1_annual_amount: '743.98'
+      belgium_disability_elderly_care_category_2_annual_amount: '2839.94'
+      belgium_disability_elderly_care_category_3_annual_amount: '3452.91'
+      belgium_disability_elderly_care_category_4_annual_amount: '4065.70'
+      belgium_disability_elderly_care_category_5_annual_amount: '4994.14'
+      belgium_disability_integration_institution_suspension_rate: '0.28'
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_disability_working_age_allowance_min_age_years
-    kind: parameter
-    dtype: Count
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 2 sections 1 and 2
-    versions:
-      - effective_from: '2020-08-01'
-        formula: |-
-          18
-  - name: belgium_disability_elderly_care_allowance_min_age_years
-    kind: parameter
-    dtype: Count
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 2 section 3
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          65
-  - name: belgium_disability_income_replacement_capacity_gain_max_fraction
-    kind: parameter
-    dtype: Rate
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 2 section 1
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          1 / 3
-  - name: belgium_disability_income_replacement_category_a_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 1 item 1
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          6191.01
-  - name: belgium_disability_income_replacement_category_b_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 1 item 2
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          9472.26
-  - name: belgium_disability_income_replacement_category_c_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 1 item 3
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          12550.16
-  - name: belgium_disability_integration_category_1_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2 item 1
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          908.33
-  - name: belgium_disability_integration_category_2_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2 item 2
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          3004.40
-  - name: belgium_disability_integration_category_3_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2 item 3
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          4778.10
-  - name: belgium_disability_integration_category_4_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2 item 4
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          6943.85
-  - name: belgium_disability_integration_category_5_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2 item 5
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          7872.29
-  - name: belgium_disability_elderly_care_category_1_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3 item 1
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          743.98
-  - name: belgium_disability_elderly_care_category_2_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3 item 2
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          2839.94
-  - name: belgium_disability_elderly_care_category_3_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3 item 3
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          3452.91
-  - name: belgium_disability_elderly_care_category_4_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3 item 4
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          4065.70
-  - name: belgium_disability_elderly_care_category_5_annual_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3 item 5
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          4994.14
-  - name: belgium_disability_integration_institution_suspension_rate
-    kind: parameter
-    dtype: Rate
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 12 section 1
-    versions:
-      - effective_from: '2007-06-01'
-        formula: |-
-          0.28
-  - name: belgium_disability_income_replacement_annual_amount_by_category
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 1
-    versions:
-      - effective_from: '2026-01-01'
-        formula: |-
-          if belgium_disability_income_replacement_category_code == 1:
-              belgium_disability_income_replacement_category_a_annual_amount
-          else:
-              if belgium_disability_income_replacement_category_code == 2:
-                  belgium_disability_income_replacement_category_b_annual_amount
-              else:
-                  if belgium_disability_income_replacement_category_code == 3:
-                      belgium_disability_income_replacement_category_c_annual_amount
-                  else:
-                      0
-  - name: belgium_disability_integration_category_from_autonomy_points
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          if belgium_disability_autonomy_points < 7:
-              0
-          else:
-              if belgium_disability_autonomy_points <= 8:
-                  1
-              else:
-                  if belgium_disability_autonomy_points <= 11:
-                      2
-                  else:
-                      if belgium_disability_autonomy_points <= 14:
-                          3
-                      else:
-                          if belgium_disability_autonomy_points <= 16:
-                              4
-                          else:
-                              5
-  - name: belgium_disability_integration_annual_amount_by_autonomy_points
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 2
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          if belgium_disability_integration_category_from_autonomy_points == 1:
-              belgium_disability_integration_category_1_annual_amount
-          else:
-              if belgium_disability_integration_category_from_autonomy_points == 2:
-                  belgium_disability_integration_category_2_annual_amount
-              else:
-                  if belgium_disability_integration_category_from_autonomy_points == 3:
-                      belgium_disability_integration_category_3_annual_amount
-                  else:
-                      if belgium_disability_integration_category_from_autonomy_points == 4:
-                          belgium_disability_integration_category_4_annual_amount
-                      else:
-                          if belgium_disability_integration_category_from_autonomy_points == 5:
-                              belgium_disability_integration_category_5_annual_amount
-                          else:
-                              0
-  - name: belgium_disability_integration_after_institution_suspension_annual_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 12 section 1
-    versions:
-      - effective_from: '2018-07-01'
-        formula: |-
-          if belgium_disability_institution_payment_suspension_applies:
-              belgium_disability_integration_annual_amount_by_autonomy_points * (1 - belgium_disability_integration_institution_suspension_rate)
-          else:
-              belgium_disability_integration_annual_amount_by_autonomy_points
-  - name: belgium_disability_elderly_care_category_from_autonomy_points
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          if belgium_disability_autonomy_points < 7:
-              0
-          else:
-              if belgium_disability_autonomy_points <= 8:
-                  1
-              else:
-                  if belgium_disability_autonomy_points <= 11:
-                      2
-                  else:
-                      if belgium_disability_autonomy_points <= 14:
-                          3
-                      else:
-                          if belgium_disability_autonomy_points <= 16:
-                              4
-                          else:
-                              if belgium_disability_autonomy_points <= 18:
-                                  5
-                              else:
-                                  0
-  - name: belgium_disability_elderly_care_annual_amount_by_autonomy_points
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Federal law of 27 February 1987 on allowances for persons with disabilities, article 6 section 3
-    versions:
-      - effective_from: '2003-07-01'
-        formula: |-
-          if belgium_disability_elderly_care_category_from_autonomy_points == 1:
-              belgium_disability_elderly_care_category_1_annual_amount
-          else:
-              if belgium_disability_elderly_care_category_from_autonomy_points == 2:
-                  belgium_disability_elderly_care_category_2_annual_amount
-              else:
-                  if belgium_disability_elderly_care_category_from_autonomy_points == 3:
-                      belgium_disability_elderly_care_category_3_annual_amount
-                  else:
-                      if belgium_disability_elderly_care_category_from_autonomy_points == 4:
-                          belgium_disability_elderly_care_category_4_annual_amount
-                      else:
-                          if belgium_disability_elderly_care_category_from_autonomy_points == 5:
-                              belgium_disability_elderly_care_category_5_annual_amount
-                          else:
-                              0
+- name: belgium_disability_working_age_allowance_min_age_years
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 2 sections 1 and 2
+  versions:
+  - effective_from: '2020-08-01'
+    formula: '18'
+- name: belgium_disability_elderly_care_allowance_min_age_years
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 2 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '65'
+- name: belgium_disability_income_replacement_capacity_gain_max_fraction
+  kind: parameter
+  dtype: Rate
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 2 section 1
+  versions:
+  - effective_from: '2003-07-01'
+    formula: 1 / 3
+- name: belgium_disability_income_replacement_category_a_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 1 item 1
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '6191.01'
+- name: belgium_disability_income_replacement_category_b_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 1 item 2
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '9472.26'
+- name: belgium_disability_income_replacement_category_c_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 1 item 3
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '12550.16'
+- name: belgium_disability_integration_category_1_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2 item 1
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '908.33'
+- name: belgium_disability_integration_category_2_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2 item 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '3004.40'
+- name: belgium_disability_integration_category_3_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2 item 3
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '4778.10'
+- name: belgium_disability_integration_category_4_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2 item 4
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '6943.85'
+- name: belgium_disability_integration_category_5_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2 item 5
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '7872.29'
+- name: belgium_disability_elderly_care_category_1_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3 item 1
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '743.98'
+- name: belgium_disability_elderly_care_category_2_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3 item 2
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '2839.94'
+- name: belgium_disability_elderly_care_category_3_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3 item 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '3452.91'
+- name: belgium_disability_elderly_care_category_4_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3 item 4
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '4065.70'
+- name: belgium_disability_elderly_care_category_5_annual_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3 item 5
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '4994.14'
+- name: belgium_disability_integration_institution_suspension_rate
+  kind: parameter
+  dtype: Rate
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 12 section 1
+  versions:
+  - effective_from: '2007-06-01'
+    formula: '0.28'
+- name: belgium_disability_income_replacement_annual_amount_by_category
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 1
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if belgium_disability_income_replacement_category_code == 1:\n    belgium_disability_income_replacement_category_a_annual_amount\n\
+      else:\n    if belgium_disability_income_replacement_category_code == 2:\n  \
+      \      belgium_disability_income_replacement_category_b_annual_amount\n    else:\n\
+      \        if belgium_disability_income_replacement_category_code == 3:\n    \
+      \        belgium_disability_income_replacement_category_c_annual_amount\n  \
+      \      else:\n            0"
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '7'
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '8'
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '11'
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '14'
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '16'
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '4'
+- name: belgium_disability_integration_category_from_autonomy_points_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '5'
+- name: belgium_disability_integration_category_from_autonomy_points
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: "if belgium_disability_autonomy_points < belgium_disability_integration_category_from_autonomy_points_scalar_limit:\n\
+      \    0\nelse:\n    if belgium_disability_autonomy_points <= belgium_disability_integration_category_from_autonomy_points_scalar_limit_2:\n\
+      \        1\n    else:\n        if belgium_disability_autonomy_points <= belgium_disability_integration_category_from_autonomy_points_scalar_limit_3:\n\
+      \            2\n        else:\n            if belgium_disability_autonomy_points\
+      \ <= belgium_disability_integration_category_from_autonomy_points_scalar_limit_4:\n\
+      \                3\n            else:\n                if belgium_disability_autonomy_points\
+      \ <= belgium_disability_integration_category_from_autonomy_points_scalar_limit_5:\n\
+      \                    belgium_disability_integration_category_from_autonomy_points_scalar_limit_6\n\
+      \                else:\n                    belgium_disability_integration_category_from_autonomy_points_scalar_limit_7"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit_2
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit_3
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit_4
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit_5
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit_6
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points_scalar_limit_7
+          output: belgium_disability_integration_category_from_autonomy_points_scalar_limit_7
+          hash: sha256:local
+- name: belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '4'
+- name: belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: '5'
+- name: belgium_disability_integration_annual_amount_by_autonomy_points
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 2
+  versions:
+  - effective_from: '2018-07-01'
+    formula: "if belgium_disability_integration_category_from_autonomy_points == 1:\n\
+      \    belgium_disability_integration_category_1_annual_amount\nelse:\n    if\
+      \ belgium_disability_integration_category_from_autonomy_points == 2:\n     \
+      \   belgium_disability_integration_category_2_annual_amount\n    else:\n   \
+      \     if belgium_disability_integration_category_from_autonomy_points == 3:\n\
+      \            belgium_disability_integration_category_3_annual_amount\n     \
+      \   else:\n            if belgium_disability_integration_category_from_autonomy_points\
+      \ == belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit:\n\
+      \                belgium_disability_integration_category_4_annual_amount\n \
+      \           else:\n                if belgium_disability_integration_category_from_autonomy_points\
+      \ == belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit_2:\n\
+      \                    belgium_disability_integration_category_5_annual_amount\n\
+      \                else:\n                    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit
+          output: belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit_2
+          output: belgium_disability_integration_annual_amount_by_autonomy_points_scalar_limit_2
+          hash: sha256:local
+- name: belgium_disability_integration_after_institution_suspension_annual_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 12 section 1
+  versions:
+  - effective_from: '2018-07-01'
+    formula: "if belgium_disability_institution_payment_suspension_applies:\n    belgium_disability_integration_annual_amount_by_autonomy_points\
+      \ * (1 - belgium_disability_integration_institution_suspension_rate)\nelse:\n\
+      \    belgium_disability_integration_annual_amount_by_autonomy_points"
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '7'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '8'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '11'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '14'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '16'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '4'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '18'
+- name: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '5'
+- name: belgium_disability_elderly_care_category_from_autonomy_points
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: "if belgium_disability_autonomy_points < belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit:\n\
+      \    0\nelse:\n    if belgium_disability_autonomy_points <= belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_2:\n\
+      \        1\n    else:\n        if belgium_disability_autonomy_points <= belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_3:\n\
+      \            2\n        else:\n            if belgium_disability_autonomy_points\
+      \ <= belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_4:\n\
+      \                3\n            else:\n                if belgium_disability_autonomy_points\
+      \ <= belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_5:\n\
+      \                    belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_6\n\
+      \                else:\n                    if belgium_disability_autonomy_points\
+      \ <= belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_7:\n\
+      \                        belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_8\n\
+      \                    else:\n                        0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_2
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_3
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_4
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_5
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_6
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_7
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_8
+          output: belgium_disability_elderly_care_category_from_autonomy_points_scalar_limit_8
+          hash: sha256:local
+- name: belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '4'
+- name: belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1987/02/27/1987022077/article/2
+          span: Federal law of 27 February 1987 on allowances for persons with disabilities,
+            article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: '5'
+- name: belgium_disability_elderly_care_annual_amount_by_autonomy_points
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Federal law of 27 February 1987 on allowances for persons with disabilities,
+    article 6 section 3
+  versions:
+  - effective_from: '2003-07-01'
+    formula: "if belgium_disability_elderly_care_category_from_autonomy_points ==\
+      \ 1:\n    belgium_disability_elderly_care_category_1_annual_amount\nelse:\n\
+      \    if belgium_disability_elderly_care_category_from_autonomy_points == 2:\n\
+      \        belgium_disability_elderly_care_category_2_annual_amount\n    else:\n\
+      \        if belgium_disability_elderly_care_category_from_autonomy_points ==\
+      \ 3:\n            belgium_disability_elderly_care_category_3_annual_amount\n\
+      \        else:\n            if belgium_disability_elderly_care_category_from_autonomy_points\
+      \ == belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit:\n\
+      \                belgium_disability_elderly_care_category_4_annual_amount\n\
+      \            else:\n                if belgium_disability_elderly_care_category_from_autonomy_points\
+      \ == belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit_2:\n\
+      \                    belgium_disability_elderly_care_category_5_annual_amount\n\
+      \                else:\n                    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit
+          output: belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/disability/allowances#belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit_2
+          output: belgium_disability_elderly_care_annual_amount_by_autonomy_points_scalar_limit_2
+          hash: sha256:local

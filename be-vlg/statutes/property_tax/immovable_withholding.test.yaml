@@ -56,6 +56,24 @@
     be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_modest_dwelling_reduction: 9.925
     be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_tax_after_core_reductions: 29.775
 
+- name: modest_dwelling_reduction_zero_when_not_main_residence
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_rate_category: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_is_main_residence: false
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_total_flemish_cadastral_income: 700
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_is_family_occupied: false
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_eligible_child_count: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_disabled_child_count: 0
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_modest_dwelling_reduction: 0
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_child_reduction: 0
+
 - name: child_and_disability_reductions
   period:
     period_kind: custom

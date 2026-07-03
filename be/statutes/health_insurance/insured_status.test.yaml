@@ -1,59 +1,82 @@
 - name: article_32_item_3_controlled_unemployment_feeds_article_86_item_1c
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: true
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_32_item_3_controlled_unemployment_holder: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_32_items_3_or_5_holder: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1c_holder: 1
-
 - name: article_32_item_5_domestic_work_requires_retained_habitual_employee_status
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: true
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: true
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : true
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_32_item_5_domestic_work_end_unemployment_holder: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_32_items_3_or_5_holder: 1
-
 - name: article_131_continuity_allows_gap_of_thirty_days
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status: 30
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 30
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_131_continuity_condition_met: 1
-
 - name: article_131_continuity_fails_after_more_than_thirty_days
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status: 31
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 31
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_131_continuity_condition_met: 0
-
 - name: article_86_item_1a_compulsory_worker_is_indemnity_holder
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: true
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : true
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1a_worker_holder: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1c_holder: 0
@@ -63,63 +86,369 @@
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_2_lost_item_1a_quality_holder: 0
     be:statutes/health_insurance/insured_status#belgium_health_article_86_section_1_holder_for_indemnities: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_112_maternity_indemnity_beneficiary: 1
-
 - name: article_86_item_1b_maternity_rest_holder_requires_item_1a_worker_quality
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: true
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : true
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: true
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1b_maternity_rest_holder: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1a_or_1b_holder: 1
-
 - name: article_86_item_3_post_continued_insurance_requires_timely_incapacity_or_maternity
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: true
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: true
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance: true
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : true
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_3_post_continued_insurance_holder: 1
     be:statutes/health_insurance/insured_status#belgium_health_article_86_section_1_holder_for_indemnities: 1
-
 - name: article_86_item_4_transition_allowance_without_timely_event_is_not_holder
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
     be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: true
-    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
   output:
     be:statutes/health_insurance/insured_status#belgium_health_article_86_item_4_post_transition_allowance_holder: 0
     be:statutes/health_insurance/insured_status#belgium_health_article_86_section_1_holder_for_indemnities: 0
+- name: auto_zero_belgium_health_article_32_item_3_controlled_unemployment_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_32_item_3_controlled_unemployment_holder: 0
+- name: auto_zero_belgium_health_article_32_item_5_domestic_work_end_unemployment_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_32_item_5_domestic_work_end_unemployment_holder: 0
+- name: auto_zero_belgium_health_article_32_items_3_or_5_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_32_items_3_or_5_holder: 0
+- name: auto_zero_belgium_health_article_86_item_1a_worker_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1a_worker_holder: 0
+- name: auto_zero_belgium_health_article_86_item_1b_maternity_rest_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1b_maternity_rest_holder: 0
+- name: auto_zero_belgium_health_article_86_item_1_worker_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1_worker_holder: 0
+- name: auto_zero_belgium_health_article_86_item_3_post_continued_insurance_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_86_item_3_post_continued_insurance_holder: 0
+- name: auto_zero_belgium_health_article_86_item_1a_or_1b_holder
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_131_uninterrupted_days_since_last_article_86_holder_or_incapacity_status
+    : 0
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_apprentice_deemed_compulsory_insured_until_age_18_year_end
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_continued_insurance_period_expired: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_had_item_1_quality_before_continued_insurance: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_continued_insurance
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_incapacity_or_maternity_by_first_working_day_after_transition_allowance
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_legacy_maritime_transport_worker: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_lost_item_1a_quality_during_incapacity_or_maternity
+    : false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_maternity_rest_period_under_article_32_1_4: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_successor_company_seagoing_worker: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_transition_allowance_max_period_ended: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_article_1a_termination_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_receives_compensatory_dismissal_indemnity
+    : false
+    ? be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_subject_to_compulsory_indemnity_insurance
+    : false
+  output:
+    be:statutes/health_insurance/insured_status#belgium_health_article_86_item_1a_or_1b_holder: 0

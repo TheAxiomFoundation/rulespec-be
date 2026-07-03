@@ -1,425 +1,536 @@
 format: rulespec/v1
 module:
-  summary: |-
-    German-speaking Community decree of 23 April 2018 articles 8, 15, 17,
+  summary: 'German-speaking Community decree of 23 April 2018 articles 8, 15, 17,
+
     19, 21, 23, 25, 30, and 34 set original statutory amount surfaces for
+
     family benefits. Article 117.3, as amended by the 22 December 2025
+
     program decree, freezes family-benefit adaptations for 2025 through 2027,
+
     and article 117.4 sets a 62.55 EUR annual supplement for 2025. This module
+
     encodes the 2019 amount surfaces, the 2025-2027 freeze selector against
+
     supplied index factors, and the 2025 annual supplement override; residence,
+
     age, education, recipient, transitional protected amounts, exact delegated
-    index values, and delegated eligibility tests remain separate surfaces.
+
+    index values, and delegated eligibility tests remain separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
-      - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
+    - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+    - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+    - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
     values:
-      german_speaking_community_family_benefits_base_monthly_amount_2019: "157"
-      german_speaking_community_family_benefits_annual_supplement_2019: "52"
-      german_speaking_community_family_benefits_large_family_monthly_supplement_2019: "135"
-      german_speaking_community_family_benefits_social_monthly_supplement_2019: "75"
-      german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019: "85"
-      german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019: "112"
-      german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019: "262"
-      german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019: "432"
-      german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019: "491"
-      german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019: "526"
-      german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019: "561"
-      german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019: "239"
-      german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019: "120"
-      german_speaking_community_family_benefits_birth_premium_2019: "1144"
-      german_speaking_community_family_benefits_adoption_premium_2019: "1144"
-      german_speaking_community_family_benefits_indexation_freeze_start_year: "2025"
-      german_speaking_community_family_benefits_indexation_freeze_end_year: "2027"
-      german_speaking_community_family_benefits_2025_annual_supplement_amount: "62,55"
+      german_speaking_community_family_benefits_base_monthly_amount_2019: '157'
+      german_speaking_community_family_benefits_annual_supplement_2019: '52'
+      german_speaking_community_family_benefits_large_family_monthly_supplement_2019: '135'
+      german_speaking_community_family_benefits_social_monthly_supplement_2019: '75'
+      german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019: '85'
+      german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019: '112'
+      german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019: '262'
+      german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019: '432'
+      german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019: '491'
+      german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019: '526'
+      german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019: '561'
+      german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019: '239'
+      german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019: '120'
+      german_speaking_community_family_benefits_birth_premium_2019: '1144'
+      german_speaking_community_family_benefits_adoption_premium_2019: '1144'
+      german_speaking_community_family_benefits_indexation_freeze_start_year: '2025'
+      german_speaking_community_family_benefits_indexation_freeze_end_year: '2027'
+      german_speaking_community_family_benefits_2025_annual_supplement_amount: '62.55'
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: german_speaking_community_family_benefits_base_monthly_amount_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 8
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          157
-  - name: german_speaking_community_family_benefits_annual_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 15
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          52
-  - name: german_speaking_community_family_benefits_large_family_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 17
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          135
-  - name: german_speaking_community_family_benefits_social_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 19
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          75
-  - name: german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 1
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          85
-  - name: german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 2
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          112
-  - name: german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 3
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          262
-  - name: german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 4
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          432
-  - name: german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 5
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          491
-  - name: german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 6
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          526
-  - name: german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 7
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          561
-  - name: german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 23
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          239
-  - name: german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019
-    kind: parameter
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 25
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          120
-  - name: german_speaking_community_family_benefits_birth_premium_2019
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 30
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          1144
-  - name: german_speaking_community_family_benefits_adoption_premium_2019
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, article 34
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          1144
-  - name: german_speaking_community_family_benefits_indexation_freeze_start_year
-    kind: parameter
-    dtype: Count
-    period: Year
-    source: German-speaking Community program decree of 22 December 2025, article 17
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          2025
-  - name: german_speaking_community_family_benefits_indexation_freeze_end_year
-    kind: parameter
-    dtype: Count
-    period: Year
-    source: German-speaking Community program decree of 22 December 2025, article 17
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          2027
-  - name: german_speaking_community_family_benefits_2025_annual_supplement_amount
-    kind: parameter
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: German-speaking Community program decree of 22 December 2025, article 18 inserting article 117.4
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          62.55
-  - name: german_speaking_community_family_benefits_indexation_freeze_applies
-    kind: derived
-    entity: Child
-    dtype: Count
-    period: Year
-    source: German-speaking Community program decree of 22 December 2025, article 17 amending article 117.3
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_benefit_year >= german_speaking_community_family_benefits_indexation_freeze_start_year:
-              if german_speaking_community_family_benefits_benefit_year <= german_speaking_community_family_benefits_indexation_freeze_end_year:
-                  1
-              else:
-                  0
-          else:
-              0
-  - name: german_speaking_community_family_benefits_indexed_amount_factor
-    kind: derived
-    entity: Child
-    dtype: Rate
-    period: Year
-    source: German-speaking Community family-benefits decree article 38 and program decree of 22 December 2025 article 17
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_indexation_freeze_applies == 1:
-              german_speaking_community_family_benefits_pre_2025_index_factor
-          else:
-              german_speaking_community_family_benefits_current_index_factor
-  - name: german_speaking_community_family_benefits_base_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 8 and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_child_has_base_entitlement:
-              german_speaking_community_family_benefits_base_monthly_amount_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-          else:
-              0
-  - name: german_speaking_community_family_benefits_annual_supplement_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 15, 16, and 38, and 22 December 2025 program decree article 18
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_has_july_base_entitlement:
-              if german_speaking_community_family_benefits_benefit_year == 2025:
-                  german_speaking_community_family_benefits_2025_annual_supplement_amount
-              else:
-                  german_speaking_community_family_benefits_annual_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-          else:
-              0
-  - name: german_speaking_community_family_benefits_large_family_monthly_supplement_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 17, 18, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_child_has_base_entitlement:
-              if german_speaking_community_family_benefits_same_recipient_entitled_child_count >= 3:
-                  german_speaking_community_family_benefits_large_family_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-              else:
-                  0
-          else:
-              0
-  - name: german_speaking_community_family_benefits_social_monthly_supplement_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 19, 20, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_child_has_base_entitlement:
-              if german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement:
-                  if german_speaking_community_family_benefits_is_full_orphan or german_speaking_community_family_benefits_is_half_orphan:
-                      0
-                  else:
-                      german_speaking_community_family_benefits_social_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-              else:
-                  0
-          else:
-              0
-  - name: german_speaking_community_family_benefits_disability_monthly_supplement_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 21, 22, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_child_has_base_entitlement:
-              if german_speaking_community_family_benefits_disability_category == 1:
-                  german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-              else:
-                  if german_speaking_community_family_benefits_disability_category == 2:
-                      german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-                  else:
-                      if german_speaking_community_family_benefits_disability_category == 3:
-                          german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-                      else:
-                          if german_speaking_community_family_benefits_disability_category == 4:
-                              german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-                          else:
-                              if german_speaking_community_family_benefits_disability_category == 5:
-                                  german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-                              else:
-                                  if german_speaking_community_family_benefits_disability_category == 6:
-                                      german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-                                  else:
-                                      if german_speaking_community_family_benefits_disability_category == 7:
-                                          german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-                                      else:
-                                          0
-          else:
-              0
-  - name: german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 23, 24, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_child_has_base_entitlement:
-              if german_speaking_community_family_benefits_is_full_orphan:
-                  german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-              else:
-                  0
-          else:
-              0
-  - name: german_speaking_community_family_benefits_half_orphan_monthly_supplement_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 25, 26, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_child_has_base_entitlement:
-              if german_speaking_community_family_benefits_is_half_orphan:
-                  if german_speaking_community_family_benefits_is_full_orphan:
-                      0
-                  else:
-                      german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-              else:
-                  0
-          else:
-              0
-  - name: german_speaking_community_family_benefits_selected_monthly_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 8, 17, 19, 21, 23, 25, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          german_speaking_community_family_benefits_base_monthly_amount + german_speaking_community_family_benefits_large_family_monthly_supplement_amount + german_speaking_community_family_benefits_social_monthly_supplement_amount + german_speaking_community_family_benefits_disability_monthly_supplement_amount + german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount + german_speaking_community_family_benefits_half_orphan_monthly_supplement_amount
-  - name: german_speaking_community_family_benefits_birth_premium_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 30, 31, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_birth_premium_conditions_met:
-              german_speaking_community_family_benefits_birth_premium_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-          else:
-              0
-  - name: german_speaking_community_family_benefits_adoption_premium_amount
-    kind: derived
-    entity: Child
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 34, 35, and 38
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if german_speaking_community_family_benefits_adoption_premium_conditions_met:
-              german_speaking_community_family_benefits_adoption_premium_2019 * german_speaking_community_family_benefits_indexed_amount_factor
-          else:
-              0
+- name: german_speaking_community_family_benefits_base_monthly_amount_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    8
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '157'
+- name: german_speaking_community_family_benefits_annual_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    15
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '52'
+- name: german_speaking_community_family_benefits_large_family_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    17
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '135'
+- name: german_speaking_community_family_benefits_social_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    19
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '75'
+- name: german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 1
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '85'
+- name: german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 2
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '112'
+- name: german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 3
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '262'
+- name: german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 4
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '432'
+- name: german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 5
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '491'
+- name: german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 6
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '526'
+- name: german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    21 item 7
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '561'
+- name: german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    23
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '239'
+- name: german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019
+  kind: parameter
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    25
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '120'
+- name: german_speaking_community_family_benefits_birth_premium_2019
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    30
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '1144'
+- name: german_speaking_community_family_benefits_adoption_premium_2019
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, article
+    34
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '1144'
+- name: german_speaking_community_family_benefits_indexation_freeze_start_year
+  kind: parameter
+  dtype: Count
+  period: Year
+  source: German-speaking Community program decree of 22 December 2025, article 17
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '2025'
+- name: german_speaking_community_family_benefits_indexation_freeze_end_year
+  kind: parameter
+  dtype: Count
+  period: Year
+  source: German-speaking Community program decree of 22 December 2025, article 17
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '2027'
+- name: german_speaking_community_family_benefits_2025_annual_supplement_amount
+  kind: parameter
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: German-speaking Community program decree of 22 December 2025, article 18
+    inserting article 117.4
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '62.55'
+- name: german_speaking_community_family_benefits_indexation_freeze_applies
+  kind: derived
+  entity: Child
+  dtype: Count
+  period: Year
+  source: German-speaking Community program decree of 22 December 2025, article 17
+    amending article 117.3
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if german_speaking_community_family_benefits_benefit_year >= german_speaking_community_family_benefits_indexation_freeze_start_year:\n\
+      \    if german_speaking_community_family_benefits_benefit_year <= german_speaking_community_family_benefits_indexation_freeze_end_year:\n\
+      \        1\n    else:\n        0\nelse:\n    0"
+- name: german_speaking_community_family_benefits_indexed_amount_factor
+  kind: derived
+  entity: Child
+  dtype: Rate
+  period: Year
+  source: German-speaking Community family-benefits decree article 38 and program
+    decree of 22 December 2025 article 17
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_indexation_freeze_applies\
+      \ == 1:\n    german_speaking_community_family_benefits_pre_2025_index_factor\n\
+      else:\n    german_speaking_community_family_benefits_current_index_factor"
+- name: german_speaking_community_family_benefits_base_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    8 and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_child_has_base_entitlement:\n\
+      \    german_speaking_community_family_benefits_base_monthly_amount_2019 * german_speaking_community_family_benefits_indexed_amount_factor\n\
+      else:\n    0"
+- name: german_speaking_community_family_benefits_annual_supplement_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    15, 16, and 38, and 22 December 2025 program decree article 18
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+          span: German-speaking Community decree of 23 April 2018 on family benefits,
+            articles 15, 16, and 38, and 22 December 2025 program decree article 18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '2025'
+- name: german_speaking_community_family_benefits_annual_supplement_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    15, 16, and 38, and 22 December 2025 program decree article 18
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_has_july_base_entitlement:\n\
+      \    if german_speaking_community_family_benefits_benefit_year == german_speaking_community_family_benefits_annual_supplement_amount_scalar_limit:\n\
+      \        german_speaking_community_family_benefits_2025_annual_supplement_amount\n\
+      \    else:\n        german_speaking_community_family_benefits_annual_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\nelse:\n\
+      \    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_annual_supplement_amount_scalar_limit
+          output: german_speaking_community_family_benefits_annual_supplement_amount_scalar_limit
+          hash: sha256:local
+- name: german_speaking_community_family_benefits_large_family_monthly_supplement_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    17, 18, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_child_has_base_entitlement:\n\
+      \    if german_speaking_community_family_benefits_same_recipient_entitled_child_count\
+      \ >= 3:\n        german_speaking_community_family_benefits_large_family_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n    else:\n\
+      \        0\nelse:\n    0"
+- name: german_speaking_community_family_benefits_social_monthly_supplement_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    19, 20, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_child_has_base_entitlement:\n\
+      \    if german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement:\n\
+      \        if german_speaking_community_family_benefits_is_full_orphan or german_speaking_community_family_benefits_is_half_orphan:\n\
+      \            0\n        else:\n            german_speaking_community_family_benefits_social_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n    else:\n\
+      \        0\nelse:\n    0"
+- name: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    21, 22, and 38
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+          span: German-speaking Community decree of 23 April 2018 on family benefits,
+            articles 21, 22, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '4'
+- name: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    21, 22, and 38
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+          span: German-speaking Community decree of 23 April 2018 on family benefits,
+            articles 21, 22, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '5'
+- name: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    21, 22, and 38
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+          span: German-speaking Community decree of 23 April 2018 on family benefits,
+            articles 21, 22, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '6'
+- name: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    21, 22, and 38
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+          span: German-speaking Community decree of 23 April 2018 on family benefits,
+            articles 21, 22, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '7'
+- name: german_speaking_community_family_benefits_disability_monthly_supplement_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    21, 22, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_child_has_base_entitlement:\n\
+      \    if german_speaking_community_family_benefits_disability_category == 1:\n\
+      \        german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n    else:\n\
+      \        if german_speaking_community_family_benefits_disability_category ==\
+      \ 2:\n            german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n      \
+      \  else:\n            if german_speaking_community_family_benefits_disability_category\
+      \ == 3:\n                german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n      \
+      \      else:\n                if german_speaking_community_family_benefits_disability_category\
+      \ == german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit:\n\
+      \                    german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n      \
+      \          else:\n                    if german_speaking_community_family_benefits_disability_category\
+      \ == german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_2:\n\
+      \                        german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n      \
+      \              else:\n                        if german_speaking_community_family_benefits_disability_category\
+      \ == german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_3:\n\
+      \                            german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n      \
+      \                  else:\n                            if german_speaking_community_family_benefits_disability_category\
+      \ == german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_4:\n\
+      \                                german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n      \
+      \                      else:\n                                0\nelse:\n   \
+      \ 0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit
+          output: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_2
+          output: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_3
+          output: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_4
+          output: german_speaking_community_family_benefits_disability_monthly_supplement_amount_scalar_limit_4
+          hash: sha256:local
+- name: german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    23, 24, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_child_has_base_entitlement:\n\
+      \    if german_speaking_community_family_benefits_is_full_orphan:\n        german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n    else:\n\
+      \        0\nelse:\n    0"
+- name: german_speaking_community_family_benefits_half_orphan_monthly_supplement_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    25, 26, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_child_has_base_entitlement:\n\
+      \    if german_speaking_community_family_benefits_is_half_orphan:\n        if\
+      \ german_speaking_community_family_benefits_is_full_orphan:\n            0\n\
+      \        else:\n            german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019\
+      \ * german_speaking_community_family_benefits_indexed_amount_factor\n    else:\n\
+      \        0\nelse:\n    0"
+- name: german_speaking_community_family_benefits_selected_monthly_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    8, 17, 19, 21, 23, 25, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: german_speaking_community_family_benefits_base_monthly_amount + german_speaking_community_family_benefits_large_family_monthly_supplement_amount
+      + german_speaking_community_family_benefits_social_monthly_supplement_amount
+      + german_speaking_community_family_benefits_disability_monthly_supplement_amount
+      + german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount
+      + german_speaking_community_family_benefits_half_orphan_monthly_supplement_amount
+- name: german_speaking_community_family_benefits_birth_premium_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    30, 31, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_birth_premium_conditions_met:\n\
+      \    german_speaking_community_family_benefits_birth_premium_2019 * german_speaking_community_family_benefits_indexed_amount_factor\n\
+      else:\n    0"
+- name: german_speaking_community_family_benefits_adoption_premium_amount
+  kind: derived
+  entity: Child
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: German-speaking Community decree of 23 April 2018 on family benefits, articles
+    34, 35, and 38
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if german_speaking_community_family_benefits_adoption_premium_conditions_met:\n\
+      \    german_speaking_community_family_benefits_adoption_premium_2019 * german_speaking_community_family_benefits_indexed_amount_factor\n\
+      else:\n    0"

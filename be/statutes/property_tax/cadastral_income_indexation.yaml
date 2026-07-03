@@ -12,11 +12,18 @@ module:
   source_verification:
     corpus_citation_paths:
       - be/statute/fisconetplus/cir92/revenus-2025/page-721
-      - be/guidance/spf-finances/cadastral-income/definition-usage/block-3
-    values:
-      belgium_cadastral_income_index_coefficient_2024: "2.1763"
-      belgium_cadastral_income_index_coefficient_2025: "2.2446"
-      belgium_cadastral_income_index_coefficient_2026: "2.3"
+      - be/guidance/spf-finances/cadastral-income/definition-usage/block-1
+      - be/guidance/spf-finances/cadastral-income/previous-years/block-16
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be/statute/fisconetplus/cir92/revenus-2025/page-721
+      rationale: |-
+        CIR 1992 article 518 supplies the statutory indexation formula and
+        rounding rule. The annual cadastral-income index coefficients are
+        official SPF Finances current and previous-year parameters published
+        for applying that statutory formula, so those guidance rows are used
+        only after checking the statute source.
 units:
   - name: EUR
     kind: currency

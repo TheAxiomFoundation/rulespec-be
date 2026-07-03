@@ -228,7 +228,7 @@ rules:
           26
   - name: belgium_pension_solidarity_article_68_total_monthly_gross_pensions
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -239,7 +239,7 @@ rules:
           belgium_pension_solidarity_monthly_gross_legal_pensions + belgium_pension_solidarity_monthly_gross_complementary_pensions + belgium_pension_solidarity_nonmonthly_periodic_pensions_monthly_equivalent + belgium_pension_solidarity_capital_pensions_fictive_monthly_rent
   - name: belgium_pension_solidarity_article_68_selected_first_threshold
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -253,7 +253,7 @@ rules:
               belgium_pension_solidarity_article_68_isolated_first_threshold_base * belgium_pension_solidarity_article_68_index_factor
   - name: belgium_pension_solidarity_article_68_selected_second_threshold
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -267,7 +267,7 @@ rules:
               belgium_pension_solidarity_article_68_isolated_second_threshold_base * belgium_pension_solidarity_article_68_index_factor
   - name: belgium_pension_solidarity_article_68_selected_third_threshold
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -281,7 +281,7 @@ rules:
               belgium_pension_solidarity_article_68_isolated_third_threshold_base * belgium_pension_solidarity_article_68_index_factor
   - name: belgium_pension_solidarity_article_68_selected_fourth_threshold
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -295,7 +295,7 @@ rules:
               belgium_pension_solidarity_article_68_isolated_fourth_threshold_base * belgium_pension_solidarity_article_68_index_factor
   - name: belgium_pension_solidarity_article_68_selected_transition_base_amount
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -309,7 +309,7 @@ rules:
               belgium_pension_solidarity_article_68_isolated_transition_base_amount * belgium_pension_solidarity_article_68_index_factor
   - name: belgium_pension_solidarity_article_68_monthly_withholding
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -332,7 +332,7 @@ rules:
                           belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_pension_solidarity_article_68_top_rate
   - name: belgium_pension_solidarity_article_68_complementary_capital_withholding
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -343,7 +343,7 @@ rules:
           belgium_complementary_pension_capital_paid_after_1996 * belgium_pension_solidarity_article_68_capital_withholding_rate
   - name: belgium_health_insurance_article_191_monthly_pension_withholding
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -354,7 +354,7 @@ rules:
           belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_health_insurance_article_191_pension_withholding_rate
   - name: belgium_rd33_selected_monthly_floor
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -368,7 +368,7 @@ rules:
               belgium_rd33_base_monthly_floor_without_family_charge * belgium_rd33_floor_revaluation_factor
   - name: belgium_rd33_invalidity_floor_for_paid_days
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -379,7 +379,7 @@ rules:
           belgium_rd33_selected_monthly_floor / belgium_rd33_invalidity_daily_floor_divisor * belgium_rd33_invalidity_paid_days
   - name: belgium_rd33_invalidity_monthly_withholding
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -390,7 +390,7 @@ rules:
           min(belgium_rd33_monthly_invalidity_indemnities * belgium_rd33_invalidity_prepension_withholding_rate, max(0, belgium_rd33_monthly_invalidity_indemnities - belgium_rd33_invalidity_floor_for_paid_days))
   - name: belgium_rd33_prepension_floor
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -401,7 +401,7 @@ rules:
           belgium_rd33_selected_monthly_floor * belgium_rd33_prepension_floor_fraction
   - name: belgium_rd33_prepension_monthly_withholding
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR
@@ -412,7 +412,7 @@ rules:
           min(belgium_rd33_monthly_prepension_and_complementary_indemnity * belgium_rd33_invalidity_prepension_withholding_rate, max(0, belgium_rd33_monthly_prepension_and_complementary_indemnity - belgium_rd33_prepension_floor))
   - name: belgium_rd33_total_monthly_withholding
     kind: derived
-    entity: Person
+    entity: Family
     dtype: Money
     period: Month
     unit: EUR

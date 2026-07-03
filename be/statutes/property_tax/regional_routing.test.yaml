@@ -1,5 +1,8 @@
 - name: routes_flemish_immovable_withholding_base_tax
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/regional_routing#input.belgium_property_tax_region: 0
     be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
@@ -19,7 +22,10 @@
     be:statutes/property_tax/regional_routing#belgium_immovable_withholding_routed_tax_after_supplied_local_centimes: 39.70
 
 - name: routes_brussels_base_tax_and_supplied_additional_centimes
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/regional_routing#input.belgium_property_tax_region: 1
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
@@ -49,7 +55,10 @@
     be:statutes/property_tax/regional_routing#belgium_immovable_withholding_routed_tax_after_supplied_local_centimes: 256.25
 
 - name: routes_brussels_article_15_remission_before_supplied_additional_centimes
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/regional_routing#input.belgium_property_tax_region: 1
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
@@ -82,7 +91,10 @@
     be:statutes/property_tax/regional_routing#belgium_immovable_withholding_routed_tax_after_supplied_local_centimes: 68.75
 
 - name: routes_walloon_reduced_base_tax_and_supplied_additional_centimes
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/regional_routing#input.belgium_property_tax_region: 2
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000

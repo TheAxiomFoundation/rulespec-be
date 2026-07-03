@@ -16,6 +16,7 @@
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount: 281.16
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_co2_adjustment_rate: 0.03
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_euronorm_fuel_adjustment_rate: 0
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_additional_lpg_amount: 0
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_car_amount: 289.5948
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_municipal_decime: 28.95948
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_car_total: 318.55428
@@ -36,7 +37,9 @@
     be-vlg:statutes/vehicle_tax/circulation_and_entry#input.flanders_circulation_tax_municipal_decime_applies: false
   output:
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_base_table_amount: 1880.40
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_co2_adjustment_rate: 0
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_additional_lpg_amount: 208.20
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_municipal_decime: 0
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_circulation_tax_passenger_car_total: 2088.60
 
 - name: electric_or_hydrogen_biv_after_2025
@@ -81,6 +84,7 @@
   output:
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_air_component: 20.61
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_fuel_factor: 1
+    be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_q_2026: 1.245
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_post_2020_raw_formula_amount: 20.61
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_natural_gas_reduction: 0
     be-vlg:statutes/vehicle_tax/circulation_and_entry#flanders_biv_post_2020_tax_after_minimum_maximum_and_reduction: 41.99

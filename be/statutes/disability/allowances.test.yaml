@@ -12,6 +12,8 @@
     be:statutes/disability/allowances#belgium_disability_working_age_allowance_min_age_years: 18
     be:statutes/disability/allowances#belgium_disability_income_replacement_category_b_annual_amount: 9472.26
     be:statutes/disability/allowances#belgium_disability_income_replacement_annual_amount_by_category: 9472.26
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 0
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 0
 
 - name: integration_autonomy_points_select_category_3_amount
   period:
@@ -24,6 +26,7 @@
     be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 12
     be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
   output:
+    be:statutes/disability/allowances#belgium_disability_income_replacement_annual_amount_by_category: 0
     be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 3
     be:statutes/disability/allowances#belgium_disability_integration_category_3_annual_amount: 4778.10
     be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 4778.10

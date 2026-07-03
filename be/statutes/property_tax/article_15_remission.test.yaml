@@ -1,5 +1,8 @@
 - name: built_vacancy_half_year_remits_half_of_base_withholding
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
@@ -30,7 +33,10 @@
     be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 6.25
 
 - name: equipment_share_below_25_percent_threshold_has_no_remission
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
@@ -54,12 +60,17 @@
     be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_affected_share: 0
     be:statutes/property_tax/article_15_remission#input.belgium_immovable_withholding_article_15_destroyed_days: 0
   output:
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_built_vacancy_reduction_fraction: 0
     be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_equipment_inactivity_reduction_fraction: 0
+    be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_15_destruction_reduction_fraction: 0
     be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_article_257_4_remission: 0
     be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 12.50
 
 - name: equipment_inactivity_at_threshold_remits_duration_and_share_fraction
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1600
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
@@ -88,7 +99,10 @@
     be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 18.75
 
 - name: destruction_does_not_require_90_day_threshold
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0
@@ -117,7 +131,10 @@
     be:statutes/property_tax/article_15_remission#belgium_immovable_withholding_tax_after_article_257_including_article_15_remission: 7.50
 
 - name: aggregate_article_15_fraction_is_capped_at_full_base_withholding
-  period: 2026
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
   input:
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
     be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_rate_category: 0

@@ -43,27 +43,16 @@ rules:
       - effective_from: '2022-01-01'
         formula: |-
           0.25
-  - name: belgium_immovable_withholding_article_15_standard_year_days
-    kind: parameter
-    dtype: Integer
-    source: Structural default for annual Article 15 duration fractions when exact assessment-year days are not supplied
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          365
   - name: belgium_immovable_withholding_article_15_effective_year_days
     kind: derived
     entity: Property
     dtype: Integer
     period: Year
-    source: CIR 1992 article 15 proportional duration denominator, with supplied exact year length where available
+    source: CIR 1992 article 15 proportional duration denominator supplied by the assessment-year context
     versions:
       - effective_from: '2022-01-01'
         formula: |-
-          if belgium_immovable_withholding_article_15_supplied_year_days > 0:
-              belgium_immovable_withholding_article_15_supplied_year_days
-          else:
-              belgium_immovable_withholding_article_15_standard_year_days
+          belgium_immovable_withholding_article_15_supplied_year_days
   - name: belgium_immovable_withholding_article_15_built_vacancy_reduction_fraction
     kind: derived
     entity: Property

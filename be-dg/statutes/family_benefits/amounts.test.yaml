@@ -11,7 +11,8 @@
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 1
-    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement: false
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
@@ -21,7 +22,6 @@
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_base_monthly_amount: 157
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_annual_supplement_amount: 52
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_selected_monthly_amount: 157
-
 - name: german_speaking_community_large_family_social_and_disability_amounts
   period:
     period_kind: custom
@@ -35,7 +35,8 @@
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 3
-    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement: true
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 3
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
@@ -46,7 +47,6 @@
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_social_monthly_supplement_amount: 75
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_monthly_supplement_amount: 262
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_selected_monthly_amount: 629
-
 - name: german_speaking_community_full_orphan_excludes_half_orphan_and_social
   period:
     period_kind: custom
@@ -60,7 +60,8 @@
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 1
-    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement: true
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: true
@@ -71,7 +72,6 @@
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount: 239
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_half_orphan_monthly_supplement_amount: 0
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_selected_monthly_amount: 396
-
 - name: german_speaking_community_supplied_index_factor_for_premiums
   period:
     period_kind: custom
@@ -85,7 +85,8 @@
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 1
-    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement: false
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
@@ -95,7 +96,6 @@
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_base_monthly_amount: 172.7
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_birth_premium_amount: 1258.4
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_adoption_premium_amount: 1258.4
-
 - name: german_speaking_community_2025_2027_freeze_uses_pre_2025_index_factor
   period:
     period_kind: custom
@@ -109,7 +109,8 @@
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 1
-    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement: false
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
@@ -121,7 +122,6 @@
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_base_monthly_amount: 172.7
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_birth_premium_amount: 1258.4
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_adoption_premium_amount: 1258.4
-
 - name: german_speaking_community_2025_annual_supplement_override
   period:
     period_kind: custom
@@ -135,7 +135,8 @@
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: true
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 1
-    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement: false
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
     be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
@@ -146,3 +147,171 @@
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_indexed_amount_factor: 1.1
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_base_monthly_amount: 172.7
     be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_annual_supplement_amount: 62.55
+- name: auto_zero_german_speaking_community_family_benefits_indexation_freeze_applies
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_indexation_freeze_applies: 0
+- name: auto_zero_german_speaking_community_family_benefits_base_monthly_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_base_monthly_amount: 0
+- name: auto_zero_german_speaking_community_family_benefits_annual_supplement_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_annual_supplement_amount: 0
+- name: auto_zero_german_speaking_community_family_benefits_large_family_monthly_supplement_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_large_family_monthly_supplement_amount: 0
+- name: auto_zero_german_speaking_community_family_benefits_disability_monthly_supplement_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_monthly_supplement_amount: 0
+- name: auto_zero_german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_full_orphan_monthly_supplement_amount: 0
+- name: auto_zero_german_speaking_community_family_benefits_birth_premium_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_birth_premium_amount: 0
+- name: auto_zero_german_speaking_community_family_benefits_adoption_premium_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_adoption_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_benefit_year: 2028
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_birth_premium_conditions_met: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_child_has_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_current_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_disability_category: 0
+    ? be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_increased_health_insurance_reimbursement
+    : false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_has_july_base_entitlement: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_full_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_is_half_orphan: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_pre_2025_index_factor: false
+    be-dg:statutes/family_benefits/amounts#input.german_speaking_community_family_benefits_same_recipient_entitled_child_count: 0
+  output:
+    be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_adoption_premium_amount: 0

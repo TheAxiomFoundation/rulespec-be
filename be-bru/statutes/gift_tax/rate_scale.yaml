@@ -1,166 +1,618 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Brussels-Capital Code des droits d'enregistrement article 131 sets current
+  summary: 'Brussels-Capital Code des droits d''enregistrement article 131 sets current
+
     gift-tax rates for immovable and movable gifts, and article 131bis exempts
+
     qualifying prior movable gifts mentioned in a successoral pact or Civil
+
     Code article 4.84 agreement. This module encodes the main
+
     direct-line/partner and other-person rate tables, the article-131 movable
+
     gift exclusion for donor-death suspensive conditions assimilated to
+
     succession duty, and the article-131bis movable-gift exemption gate. It
+
     excludes notarial procedure, business transfer regimes, anti-avoidance
-    rules, and special reduced rates.
+
+    rules, and special reduced rates.'
   source_verification:
     corpus_citation_paths:
-      - be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
-      - be-bru/statute/fisconetplus/registration-code/article-131bis/guid-f7c88ad4-32bc-4599-adcd-2409f7c71192/block-1
-    values:
-      brussels_gift_tax_immovable_direct_first_threshold: 150000
-      brussels_gift_tax_immovable_direct_second_threshold: 250000
-      brussels_gift_tax_immovable_direct_third_threshold: 450000
-      brussels_gift_tax_immovable_direct_first_rate: "0.03"
-      brussels_gift_tax_immovable_direct_second_rate: "0.09"
-      brussels_gift_tax_immovable_direct_third_rate: "0.18"
-      brussels_gift_tax_immovable_direct_top_rate: "0.27"
-      brussels_gift_tax_immovable_other_first_rate: "0.10"
-      brussels_gift_tax_immovable_other_second_rate: "0.20"
-      brussels_gift_tax_immovable_other_third_rate: "0.30"
-      brussels_gift_tax_immovable_other_top_rate: "0.40"
-      brussels_gift_tax_movable_direct_or_partner_rate: "0.03"
-      brussels_gift_tax_movable_other_rate: "0.07"
-      brussels_gift_tax_article_131bis_exemption_rate: "1.00"
+    - be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+    - be-bru/statute/fisconetplus/registration-code/article-131bis/guid-f7c88ad4-32bc-4599-adcd-2409f7c71192/block-1
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: brussels_gift_tax_relationship_direct_or_partner
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Brussels registration-duty code article 131 table I
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          0
-  - name: brussels_gift_tax_relationship_other
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Brussels registration-duty code article 131 table II
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          1
-  - name: brussels_gift_tax_immovable_direct_or_partner_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Brussels registration-duty code article 131 paragraph 1 table I
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if brussels_gift_tax_taxable_amount <= 150000:
-              brussels_gift_tax_taxable_amount * 0.03
-          else:
-              if brussels_gift_tax_taxable_amount <= 250000:
-                  4500 + (brussels_gift_tax_taxable_amount - 150000) * 0.09
-              else:
-                  if brussels_gift_tax_taxable_amount <= 450000:
-                      13500 + (brussels_gift_tax_taxable_amount - 250000) * 0.18
-                  else:
-                      49500 + (brussels_gift_tax_taxable_amount - 450000) * 0.27
-  - name: brussels_gift_tax_immovable_other_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Brussels registration-duty code article 131 paragraph 1 table II
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if brussels_gift_tax_taxable_amount <= 150000:
-              brussels_gift_tax_taxable_amount * 0.10
-          else:
-              if brussels_gift_tax_taxable_amount <= 250000:
-                  15000 + (brussels_gift_tax_taxable_amount - 150000) * 0.20
-              else:
-                  if brussels_gift_tax_taxable_amount <= 450000:
-                      35000 + (brussels_gift_tax_taxable_amount - 250000) * 0.30
-                  else:
-                      95000 + (brussels_gift_tax_taxable_amount - 450000) * 0.40
-  - name: brussels_gift_tax_movable_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Brussels registration-duty code article 131 paragraph 2
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if brussels_gift_tax_relationship_class == brussels_gift_tax_relationship_direct_or_partner:
-              brussels_gift_tax_taxable_amount * 0.03
-          else:
-              brussels_gift_tax_taxable_amount * 0.07
-  - name: brussels_gift_tax_article_131_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Brussels registration-duty code article 131
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if brussels_gift_tax_is_movable_property:
-              brussels_gift_tax_movable_tax
-          else:
-              if brussels_gift_tax_relationship_class == brussels_gift_tax_relationship_direct_or_partner:
-                  brussels_gift_tax_immovable_direct_or_partner_tax
-              else:
-                  brussels_gift_tax_immovable_other_tax
-  - name: brussels_gift_tax_article_131bis_successoral_pact_movable_gift_exemption_applies
-    kind: derived
-    entity: Gift
-    dtype: Count
-    period: Year
-    source: Brussels registration-duty code article 131bis
-    versions:
-      - effective_from: '2022-07-01'
-        formula: |-
-          if brussels_gift_tax_is_movable_property and brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement and brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement and not brussels_gift_tax_parties_declare_mention_seeks_donation_title:
-              1
-          else:
-              0
-  - name: brussels_gift_tax_article_131_movable_death_condition_exclusion_applies
-    kind: derived
-    entity: Gift
-    dtype: Count
-    period: Year
-    source: Brussels registration-duty code article 131 paragraph 2 exclusion for movable gifts assimilated to succession duty
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if brussels_gift_tax_is_movable_property and brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy:
-              1
-          else:
-              0
-  - name: brussels_gift_tax_articles_131_131bis_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Brussels registration-duty code articles 131 and 131bis
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if brussels_gift_tax_is_movable_property:
-              if brussels_gift_tax_article_131_movable_death_condition_exclusion_applies == 1 or brussels_gift_tax_article_131bis_successoral_pact_movable_gift_exemption_applies == 1:
-                  0
-              else:
-                  brussels_gift_tax_article_131_tax
-          else:
-              brussels_gift_tax_article_131_tax
+- name: brussels_gift_tax_relationship_direct_or_partner
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Brussels registration-duty code article 131 table
+    I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0'
+- name: brussels_gift_tax_relationship_other
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Brussels registration-duty code article 131 table
+    II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '1'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '150000'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.03'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '250000'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.09'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_2
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '450000'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.18'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_5 + ((brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3 - brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit) * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_4)
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.27'
+- name: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_8 + ((brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6 - brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3) * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_7)
+- name: brussels_gift_tax_immovable_direct_or_partner_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Brussels registration-duty code article 131 paragraph 1 table I
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if brussels_gift_tax_taxable_amount <= brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit:\n\
+      \    brussels_gift_tax_taxable_amount * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_2\n\
+      else:\n    if brussels_gift_tax_taxable_amount <= brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3:\n\
+      \        brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_5 +\
+      \ (brussels_gift_tax_taxable_amount - brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit)\
+      \ * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_4\n    else:\n\
+      \        if brussels_gift_tax_taxable_amount <= brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6:\n\
+      \            brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_8\
+      \ + (brussels_gift_tax_taxable_amount - brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3)\
+      \ * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_7\n     \
+      \   else:\n            brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_10\
+      \ + (brussels_gift_tax_taxable_amount - brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6)\
+      \ * brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_2
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_4
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_5
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_7
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_8
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_9
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_10
+          output: brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_10
+          hash: sha256:local
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '150000'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.10'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '250000'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.20'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: brussels_gift_tax_immovable_other_tax_scalar_limit * brussels_gift_tax_immovable_other_tax_scalar_limit_2
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '450000'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.30'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: brussels_gift_tax_immovable_other_tax_scalar_limit_5 + ((brussels_gift_tax_immovable_other_tax_scalar_limit_3 - brussels_gift_tax_immovable_other_tax_scalar_limit) * brussels_gift_tax_immovable_other_tax_scalar_limit_4)
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.40'
+- name: brussels_gift_tax_immovable_other_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: brussels_gift_tax_immovable_other_tax_scalar_limit_8 + ((brussels_gift_tax_immovable_other_tax_scalar_limit_6 - brussels_gift_tax_immovable_other_tax_scalar_limit_3) * brussels_gift_tax_immovable_other_tax_scalar_limit_7)
+- name: brussels_gift_tax_immovable_other_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Brussels registration-duty code article 131 paragraph 1 table II
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if brussels_gift_tax_taxable_amount <= brussels_gift_tax_immovable_other_tax_scalar_limit:\n\
+      \    brussels_gift_tax_taxable_amount * brussels_gift_tax_immovable_other_tax_scalar_limit_2\n\
+      else:\n    if brussels_gift_tax_taxable_amount <= brussels_gift_tax_immovable_other_tax_scalar_limit_3:\n\
+      \        brussels_gift_tax_immovable_other_tax_scalar_limit_5 + (brussels_gift_tax_taxable_amount\
+      \ - brussels_gift_tax_immovable_other_tax_scalar_limit) * brussels_gift_tax_immovable_other_tax_scalar_limit_4\n\
+      \    else:\n        if brussels_gift_tax_taxable_amount <= brussels_gift_tax_immovable_other_tax_scalar_limit_6:\n\
+      \            brussels_gift_tax_immovable_other_tax_scalar_limit_8 + (brussels_gift_tax_taxable_amount\
+      \ - brussels_gift_tax_immovable_other_tax_scalar_limit_3) * brussels_gift_tax_immovable_other_tax_scalar_limit_7\n\
+      \        else:\n            brussels_gift_tax_immovable_other_tax_scalar_limit_10\
+      \ + (brussels_gift_tax_taxable_amount - brussels_gift_tax_immovable_other_tax_scalar_limit_6)\
+      \ * brussels_gift_tax_immovable_other_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_2
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_3
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_4
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_5
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_6
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_7
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_8
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_9
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_immovable_other_tax_scalar_limit_10
+          output: brussels_gift_tax_immovable_other_tax_scalar_limit_10
+          hash: sha256:local
+- name: brussels_gift_tax_movable_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 2
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.03'
+- name: brussels_gift_tax_movable_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Brussels registration-duty code article 131 paragraph 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
+          span: Brussels registration-duty code article 131 paragraph 2
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '0.07'
+- name: brussels_gift_tax_movable_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Brussels registration-duty code article 131 paragraph 2
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if brussels_gift_tax_relationship_class == brussels_gift_tax_relationship_direct_or_partner:\n\
+      \    brussels_gift_tax_taxable_amount * brussels_gift_tax_movable_tax_scalar_limit\n\
+      else:\n    brussels_gift_tax_taxable_amount * brussels_gift_tax_movable_tax_scalar_limit_2"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_movable_tax_scalar_limit
+          output: brussels_gift_tax_movable_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-bru:statutes/gift_tax/rate_scale#brussels_gift_tax_movable_tax_scalar_limit_2
+          output: brussels_gift_tax_movable_tax_scalar_limit_2
+          hash: sha256:local
+- name: brussels_gift_tax_article_131_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Brussels registration-duty code article 131
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if brussels_gift_tax_is_movable_property:\n    brussels_gift_tax_movable_tax\n\
+      else:\n    if brussels_gift_tax_relationship_class == brussels_gift_tax_relationship_direct_or_partner:\n\
+      \        brussels_gift_tax_immovable_direct_or_partner_tax\n    else:\n    \
+      \    brussels_gift_tax_immovable_other_tax"
+- name: brussels_gift_tax_article_131bis_successoral_pact_movable_gift_exemption_applies
+  kind: derived
+  entity: Gift
+  dtype: Count
+  period: Year
+  source: Brussels registration-duty code article 131bis
+  versions:
+  - effective_from: '2022-07-01'
+    formula: "if brussels_gift_tax_is_movable_property and brussels_gift_tax_movable_gift_mentioned_in_successoral_pact_or_article_484_agreement\
+      \ and brussels_gift_tax_parties_declare_donation_prior_to_pact_or_agreement\
+      \ and not brussels_gift_tax_parties_declare_mention_seeks_donation_title:\n\
+      \    1\nelse:\n    0"
+- name: brussels_gift_tax_article_131_movable_death_condition_exclusion_applies
+  kind: derived
+  entity: Gift
+  dtype: Count
+  period: Year
+  source: Brussels registration-duty code article 131 paragraph 2 exclusion for movable
+    gifts assimilated to succession duty
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if brussels_gift_tax_is_movable_property and brussels_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy:\n\
+      \    1\nelse:\n    0"
+- name: brussels_gift_tax_articles_131_131bis_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Brussels registration-duty code articles 131 and 131bis
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if brussels_gift_tax_is_movable_property:\n    if brussels_gift_tax_article_131_movable_death_condition_exclusion_applies\
+      \ == 1 or brussels_gift_tax_article_131bis_successoral_pact_movable_gift_exemption_applies\
+      \ == 1:\n        0\n    else:\n        brussels_gift_tax_article_131_tax\nelse:\n\
+      \    brussels_gift_tax_article_131_tax"

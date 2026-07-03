@@ -34,6 +34,55 @@
     be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_uncapped_indexed_monthly_amount: 200
     be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_monthly_amount: 200
 
+- name: rent_allowance_priority_zero_when_standard_titles_below_minimum
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_single_parent_applicant: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_priority_title_count: 5
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_household_income_at_or_below_applicable_threshold: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_applicant_age_years: 35
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_applicant_emancipated: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_applicant_minor_in_autonomy: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_has_disqualifying_property_right: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_registered_and_domiciled_at_rented_dwelling: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_prior_periods_exhausted: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention: false
+  output:
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_priority_condition_met: 0
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_applicant_conditions_met: 0
+
+- name: rent_allowance_housing_conditions_zero_without_principal_residence_lease
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_single_parent_applicant: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_priority_title_count: 6
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_household_income_at_or_below_applicable_threshold: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_applicant_age_years: 35
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_applicant_emancipated: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_applicant_minor_in_autonomy: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_has_disqualifying_property_right: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_registered_and_domiciled_at_rented_dwelling: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rent_allowance_prior_periods_exhausted: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_principal_residence_lease: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rented_dwelling_in_brussels: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_dwelling_owned_by_close_relative: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_dwelling_has_socialized_public_housing_rent: false
+  output:
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_applicant_conditions_met: 1
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_housing_conditions_met: 0
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_eligibility: 0
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_monthly_amount: 0
+
 - name: rent_allowance_single_parent_lower_base_capped_by_rent
   period:
     period_kind: custom
@@ -79,6 +128,71 @@
   output:
     be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_regular_maximum_benefit_years: 10
     be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_indefinite_renewal_allowed: 1
+
+- name: rent_allowance_indefinite_renewal_zero_without_age_or_disability_condition
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_has_member_age_65_or_older: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_has_disabled_member: false
+  output:
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_rent_allowance_indefinite_renewal_allowed: 0
+
+- name: relocation_qualifying_trigger_zero_without_trigger_pathway
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_household_income_at_or_below_increased_intervention_base_threshold: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_applicant_age_years: 35
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_applicant_emancipated: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_applicant_minor_in_autonomy: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_registered_and_domiciled_at_new_dwelling: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_months_since_new_housing_start: 6
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_registered_social_housing_candidate: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_had_cpas_installation_premium_or_homeless_assistance: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_had_domestic_violence_or_youth_service_pathway: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_left_banned_or_uninhabitable_brussels_dwelling: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_prior_period_exhausted: false
+  output:
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_relocation_qualifying_trigger_met: 0
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_relocation_applicant_conditions_met: 0
+
+- name: relocation_housing_conditions_zero_without_lease_or_transit_agreement
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_household_income_at_or_below_increased_intervention_base_threshold: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_applicant_age_years: 35
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_applicant_emancipated: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_applicant_minor_in_autonomy: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_registered_and_domiciled_at_new_dwelling: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_months_since_new_housing_start: 6
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_registered_social_housing_candidate: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_had_cpas_installation_premium_or_homeless_assistance: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_had_domestic_violence_or_youth_service_pathway: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_left_banned_or_uninhabitable_brussels_dwelling: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_household_receives_incompatible_article_11_165_or_166_rent_intervention: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_relocation_prior_period_exhausted: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_principal_residence_lease: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_transit_housing_occupancy_agreement: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_rented_dwelling_in_brussels: true
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_dwelling_managed_by_public_social_housing_or_social_rental_agency: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_dwelling_has_socialized_public_housing_rent: false
+    be-bru:regulations/housing/rent_and_relocation_allowances#input.brussels_housing_dwelling_owned_by_close_relative: false
+  output:
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_relocation_housing_conditions_met: 0
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_relocation_eligibility: 0
+    be-bru:regulations/housing/rent_and_relocation_allowances#brussels_housing_relocation_one_time_moving_grant_amount: 0
 
 - name: relocation_allowance_low_income_standard_household
   period:

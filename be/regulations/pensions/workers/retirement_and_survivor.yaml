@@ -1,279 +1,545 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Royal Decree No. 50 article 7 identifies the worker-pension remuneration
+  summary: 'Royal Decree No. 50 article 7 identifies the worker-pension remuneration
+
     base, while the Royal Decree of 23 December 1996 articles 2, 4, 5, 7,
+
     7bis, and 8 set the current worker retirement age, early-retirement
+
     thresholds, 60 percent and 75 percent retirement-pension fractions, survivor
+
     pension, transition allowance, and minimum right per career year. This
+
     module encodes those household-level calculation interfaces from supplied
+
     career and remuneration inputs after statutory career-proof, revaluation,
+
     wage-cap, and least-advantageous-day selection. It leaves mixed-regime
+
     career proof, mineworker/mariner legacy denominators, foreign pension
+
     coordination, detailed article-8 eligibility proof, and administration to
-    separate surfaces.
+
+    separate surfaces.'
   source_verification:
     corpus_citation_paths:
-      - be/regulation/arrete/1967/10/24/1967102410/article/7
-      - be/regulation/arrete/1996/12/23/1997022010/article/2
-      - be/regulation/arrete/1996/12/23/1997022010/article/4
-      - be/regulation/arrete/1996/12/23/1997022010/article/5
-      - be/regulation/arrete/1996/12/23/1997022010/article/7
-      - be/regulation/arrete/1996/12/23/1997022010/article/7bis
-      - be/regulation/arrete/1996/12/23/1997022010/article/8
+    - be/regulation/arrete/1967/10/24/1967102410/article/7
+    - be/regulation/arrete/1996/12/23/1997022010/article/2
+    - be/regulation/arrete/1996/12/23/1997022010/article/4
+    - be/regulation/arrete/1996/12/23/1997022010/article/5
+    - be/regulation/arrete/1996/12/23/1997022010/article/7
+    - be/regulation/arrete/1996/12/23/1997022010/article/7bis
+    - be/regulation/arrete/1996/12/23/1997022010/article/8
     values:
-      belgium_worker_pension_household_rate: "0.75"
-      belgium_worker_pension_isolated_rate: "0.60"
-      belgium_worker_pension_standard_denominator_years: "45"
-      belgium_worker_pension_full_career_days: "14040"
-      belgium_worker_pension_working_days_per_year: "312"
-      belgium_worker_pension_survivor_rate: "0.80"
-      belgium_worker_pension_article_8_minimum_annual_remuneration: "18819.12"
-      belgium_worker_pension_article_8_family_cap: "16441.83"
-      belgium_worker_pension_article_8_isolated_cap: "13153.46"
+      belgium_worker_pension_household_rate: '0.75'
+      belgium_worker_pension_isolated_rate: '0.60'
+      belgium_worker_pension_standard_denominator_years: '45'
+      belgium_worker_pension_working_days_per_year: '312'
+      belgium_worker_pension_survivor_rate: '0.80'
+      belgium_worker_pension_article_8_minimum_annual_remuneration: '18819.12'
+      belgium_worker_pension_article_8_family_cap: '16441.83'
+      belgium_worker_pension_article_8_isolated_cap: '13153.46'
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: belgium_worker_pension_household_rate
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 23 December 1996, article 5 section 1 item a
-    versions:
-      - effective_from: '1997-07-01'
-        formula: |-
-          0.75
-  - name: belgium_worker_pension_isolated_rate
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 23 December 1996, article 5 section 1 item b
-    versions:
-      - effective_from: '1997-07-01'
-        formula: |-
-          0.60
-  - name: belgium_worker_pension_standard_denominator_years
-    kind: parameter
-    dtype: Count
-    source: Royal Decree of 23 December 1996, article 5 section 1
-    versions:
-      - effective_from: '2009-01-01'
-        formula: |-
-          45
-  - name: belgium_worker_pension_working_days_per_year
-    kind: parameter
-    dtype: Count
-    source: Royal Decree of 23 December 1996, article 5 section 1 and article 7bis section 1
-    versions:
-      - effective_from: '1997-07-01'
-        formula: |-
-          312
-  - name: belgium_worker_pension_full_career_days
-    kind: parameter
-    dtype: Count
-    source: Royal Decree of 23 December 1996, article 5 section 1
-    versions:
-      - effective_from: '2015-01-01'
-        formula: |-
-          14040
-  - name: belgium_worker_pension_survivor_rate
-    kind: parameter
-    dtype: Rate
-    source: Royal Decree of 23 December 1996, article 7 sections 1 and 2
-    versions:
-      - effective_from: '1997-07-01'
-        formula: |-
-          0.80
-  - name: belgium_worker_pension_article_8_minimum_annual_remuneration
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 8 section 1
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          18819.12
-  - name: belgium_worker_pension_article_8_family_cap
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 8 section 1 future-note amounts for pensions first taking effect from 2024
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          16441.83
-  - name: belgium_worker_pension_article_8_isolated_cap
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 8 section 1 future-note amounts for pensions first taking effect from 2024
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          13153.46
-  - name: belgium_worker_pension_legal_pension_age_years
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: Royal Decree of 23 December 1996, article 2 section 1
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          if belgium_worker_pension_birth_year < 1960:
-              65
-          else:
-              if belgium_worker_pension_birth_year < 1964:
-                  66
-              else:
-                  67
-  - name: belgium_worker_pension_current_early_retirement_minimum_age_years
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions first taking effect from 2019
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if belgium_worker_pension_career_years_for_early_retirement >= 44:
-              60
-          else:
-              if belgium_worker_pension_career_years_for_early_retirement >= 43:
-                  61
-              else:
-                  63
-  - name: belgium_worker_pension_current_early_retirement_eligible
-    kind: derived
-    entity: Person
-    dtype: Count
-    period: Year
-    source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions first taking effect from 2019
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          if belgium_worker_pension_career_years_for_early_retirement >= 42 and belgium_worker_pension_age_years >= belgium_worker_pension_current_early_retirement_minimum_age_years:
-              1
-          else:
-              0
-  - name: belgium_worker_pension_selected_article_5_rate
-    kind: derived
-    entity: Person
-    dtype: Rate
-    period: Year
-    source: Royal Decree of 23 December 1996, article 5 section 1
-    versions:
-      - effective_from: '1997-07-01'
-        formula: |-
-          if belgium_worker_pension_spouse_condition_for_family_rate_met:
-              belgium_worker_pension_household_rate
-          else:
-              belgium_worker_pension_isolated_rate
-  - name: belgium_worker_pension_article_8_minimum_annual_remuneration_for_year
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 8 section 1
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          belgium_worker_pension_article_8_minimum_annual_remuneration * belgium_worker_pension_article_8_year_fraction
-  - name: belgium_worker_pension_selected_annual_remuneration_for_representative_year
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree No. 50 article 7 and Royal Decree of 23 December 1996 article 8
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if belgium_worker_pension_article_8_minimum_applies_for_year:
-              max(belgium_worker_pension_revalued_annual_remuneration_after_cap, belgium_worker_pension_article_8_minimum_annual_remuneration_for_year)
-          else:
-              belgium_worker_pension_revalued_annual_remuneration_after_cap
-  - name: belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 5 section 1
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          belgium_worker_pension_selected_annual_remuneration_for_representative_year * belgium_worker_pension_selected_article_5_rate * belgium_worker_pension_career_years_after_statutory_limit / belgium_worker_pension_standard_denominator_years
-  - name: belgium_worker_pension_article_8_selected_pension_cap
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 8 sections 1 and 3
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if belgium_worker_pension_spouse_condition_for_family_rate_met:
-              belgium_worker_pension_article_8_family_cap
-          else:
-              belgium_worker_pension_article_8_isolated_cap
-  - name: belgium_worker_pension_article_5_retirement_annual_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, articles 5 and 8
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          if belgium_worker_pension_article_8_minimum_applies_for_year:
-              min(belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap, belgium_worker_pension_article_8_selected_pension_cap)
-          else:
-              belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap
-  - name: belgium_worker_pension_article_5_retirement_monthly_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Month
-    unit: EUR
-    source: Monthly bridge from Royal Decree of 23 December 1996 article 5 annual pension amount
-    versions:
-      - effective_from: '2024-01-01'
-        formula: |-
-          belgium_worker_pension_article_5_retirement_annual_amount / 12
-  - name: belgium_worker_survivor_pension_from_deceased_retirement_annual_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 7 section 2
-    versions:
-      - effective_from: '2013-07-01'
-        formula: |-
-          belgium_worker_pension_deceased_retirement_payable_annual_amount_at_household_rate * belgium_worker_pension_survivor_rate
-  - name: belgium_worker_survivor_pension_from_pre_retirement_career_annual_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 7 section 1
-    versions:
-      - effective_from: '2015-01-01'
-        formula: |-
-          belgium_worker_pension_selected_annual_remuneration_for_representative_year * belgium_worker_pension_household_rate * belgium_worker_survivor_pension_career_years_after_statutory_limit / belgium_worker_survivor_pension_denominator_years * belgium_worker_pension_survivor_rate
-  - name: belgium_worker_transition_allowance_annual_amount
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Royal Decree of 23 December 1996, article 7bis section 1
-    versions:
-      - effective_from: '2015-01-01'
-        formula: |-
-          belgium_worker_pension_selected_annual_remuneration_for_representative_year * belgium_worker_pension_isolated_rate * belgium_worker_transition_allowance_career_years_after_statutory_limit / belgium_worker_transition_allowance_denominator_years
+- name: belgium_worker_pension_household_rate
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 23 December 1996, article 5 section 1 item a
+  versions:
+  - effective_from: '1997-07-01'
+    formula: '0.75'
+- name: belgium_worker_pension_isolated_rate
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 23 December 1996, article 5 section 1 item b
+  versions:
+  - effective_from: '1997-07-01'
+    formula: '0.60'
+- name: belgium_worker_pension_standard_denominator_years
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 5 section 1
+  versions:
+  - effective_from: '2009-01-01'
+    formula: '45'
+- name: belgium_worker_pension_working_days_per_year
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 5 section 1 and article 7bis section
+    1
+  versions:
+  - effective_from: '1997-07-01'
+    formula: '312'
+- name: belgium_worker_pension_full_career_days
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 5 section 1
+  versions:
+  - effective_from: '2015-01-01'
+    formula: belgium_worker_pension_standard_denominator_years * belgium_worker_pension_working_days_per_year
+- name: belgium_worker_pension_survivor_rate
+  kind: parameter
+  dtype: Rate
+  source: Royal Decree of 23 December 1996, article 7 sections 1 and 2
+  versions:
+  - effective_from: '1997-07-01'
+    formula: '0.80'
+- name: belgium_worker_pension_article_8_minimum_annual_remuneration
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 8 section 1
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '18819.12'
+- name: belgium_worker_pension_article_8_family_cap
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 8 section 1 future-note amounts
+    for pensions first taking effect from 2024
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '16441.83'
+- name: belgium_worker_pension_article_8_isolated_cap
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 8 section 1 future-note amounts
+    for pensions first taking effect from 2024
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '13153.46'
+- name: belgium_worker_pension_legal_pension_age_years_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 2 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 2 section 1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1960'
+- name: belgium_worker_pension_legal_pension_age_years_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 2 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 2 section 1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '65'
+- name: belgium_worker_pension_legal_pension_age_years_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 2 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 2 section 1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1964'
+- name: belgium_worker_pension_legal_pension_age_years_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 2 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 2 section 1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '66'
+- name: belgium_worker_pension_legal_pension_age_years_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 2 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 2 section 1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '67'
+- name: belgium_worker_pension_legal_pension_age_years
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: Royal Decree of 23 December 1996, article 2 section 1
+  versions:
+  - effective_from: '2025-01-01'
+    formula: "if belgium_worker_pension_birth_year < belgium_worker_pension_legal_pension_age_years_scalar_limit:\n\
+      \    belgium_worker_pension_legal_pension_age_years_scalar_limit_2\nelse:\n\
+      \    if belgium_worker_pension_birth_year < belgium_worker_pension_legal_pension_age_years_scalar_limit_3:\n\
+      \        belgium_worker_pension_legal_pension_age_years_scalar_limit_4\n   \
+      \ else:\n        belgium_worker_pension_legal_pension_age_years_scalar_limit_5"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years_scalar_limit
+          output: belgium_worker_pension_legal_pension_age_years_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years_scalar_limit_2
+          output: belgium_worker_pension_legal_pension_age_years_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years_scalar_limit_3
+          output: belgium_worker_pension_legal_pension_age_years_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years_scalar_limit_4
+          output: belgium_worker_pension_legal_pension_age_years_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years_scalar_limit_5
+          output: belgium_worker_pension_legal_pension_age_years_scalar_limit_5
+          hash: sha256:local
+- name: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
+            for pensions first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '44'
+- name: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
+            for pensions first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '60'
+- name: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
+            for pensions first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '43'
+- name: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
+            for pensions first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '61'
+- name: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
+            for pensions first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '63'
+- name: belgium_worker_pension_current_early_retirement_minimum_age_years
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if belgium_worker_pension_career_years_for_early_retirement >= belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit:\n\
+      \    belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_2\n\
+      else:\n    if belgium_worker_pension_career_years_for_early_retirement >= belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_3:\n\
+      \        belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_4\n\
+      \    else:\n        belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_5"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit
+          output: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_2
+          output: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_3
+          output: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_4
+          output: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_5
+          output: belgium_worker_pension_current_early_retirement_minimum_age_years_scalar_limit_5
+          hash: sha256:local
+- name: belgium_worker_pension_current_early_retirement_eligible_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
+            for pensions first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: '42'
+- name: belgium_worker_pension_current_early_retirement_eligible
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Year
+  source: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules for pensions
+    first taking effect from 2019
+  versions:
+  - effective_from: '2019-01-01'
+    formula: "if belgium_worker_pension_career_years_for_early_retirement >= belgium_worker_pension_current_early_retirement_eligible_scalar_limit\
+      \ and belgium_worker_pension_age_years >= belgium_worker_pension_current_early_retirement_minimum_age_years:\n\
+      \    1\nelse:\n    0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_eligible_scalar_limit
+          output: belgium_worker_pension_current_early_retirement_eligible_scalar_limit
+          hash: sha256:local
+- name: belgium_worker_pension_selected_article_5_rate
+  kind: derived
+  entity: Person
+  dtype: Rate
+  period: Year
+  source: Royal Decree of 23 December 1996, article 5 section 1
+  versions:
+  - effective_from: '1997-07-01'
+    formula: "if belgium_worker_pension_spouse_condition_for_family_rate_met:\n  \
+      \  belgium_worker_pension_household_rate\nelse:\n    belgium_worker_pension_isolated_rate"
+- name: belgium_worker_pension_article_8_minimum_annual_remuneration_for_year
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 8 section 1
+  versions:
+  - effective_from: '2024-01-01'
+    formula: belgium_worker_pension_article_8_minimum_annual_remuneration * belgium_worker_pension_article_8_year_fraction
+- name: belgium_worker_pension_selected_annual_remuneration_for_representative_year
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree No. 50 article 7 and Royal Decree of 23 December 1996 article
+    8
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if belgium_worker_pension_article_8_minimum_applies_for_year:\n    max(belgium_worker_pension_revalued_annual_remuneration_after_cap,\
+      \ belgium_worker_pension_article_8_minimum_annual_remuneration_for_year)\nelse:\n\
+      \    belgium_worker_pension_revalued_annual_remuneration_after_cap"
+- name: belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 5 section 1
+  versions:
+  - effective_from: '2024-01-01'
+    formula: belgium_worker_pension_selected_annual_remuneration_for_representative_year
+      * belgium_worker_pension_selected_article_5_rate * belgium_worker_pension_career_years_after_statutory_limit
+      / belgium_worker_pension_standard_denominator_years
+- name: belgium_worker_pension_article_8_selected_pension_cap
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 8 sections 1 and 3
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if belgium_worker_pension_spouse_condition_for_family_rate_met:\n  \
+      \  belgium_worker_pension_article_8_family_cap\nelse:\n    belgium_worker_pension_article_8_isolated_cap"
+- name: belgium_worker_pension_article_5_retirement_annual_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, articles 5 and 8
+  versions:
+  - effective_from: '2024-01-01'
+    formula: "if belgium_worker_pension_article_8_minimum_applies_for_year:\n    min(belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap,\
+      \ belgium_worker_pension_article_8_selected_pension_cap)\nelse:\n    belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap"
+- name: belgium_worker_pension_article_5_retirement_monthly_amount_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Monthly bridge from Royal Decree of 23 December 1996 article 5 annual pension
+    amount
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
+          span: Monthly bridge from Royal Decree of 23 December 1996 article 5 annual
+            pension amount
+  versions:
+  - effective_from: '2024-01-01'
+    formula: '12'
+- name: belgium_worker_pension_article_5_retirement_monthly_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Monthly bridge from Royal Decree of 23 December 1996 article 5 annual pension
+    amount
+  versions:
+  - effective_from: '2024-01-01'
+    formula: belgium_worker_pension_article_5_retirement_annual_amount / belgium_worker_pension_article_5_retirement_monthly_amount_scalar_limit
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_monthly_amount_scalar_limit
+          output: belgium_worker_pension_article_5_retirement_monthly_amount_scalar_limit
+          hash: sha256:local
+- name: belgium_worker_survivor_pension_from_deceased_retirement_annual_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 7 section 2
+  versions:
+  - effective_from: '2013-07-01'
+    formula: belgium_worker_pension_deceased_retirement_payable_annual_amount_at_household_rate
+      * belgium_worker_pension_survivor_rate
+- name: belgium_worker_survivor_pension_from_pre_retirement_career_annual_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 7 section 1
+  versions:
+  - effective_from: '2015-01-01'
+    formula: belgium_worker_pension_selected_annual_remuneration_for_representative_year
+      * belgium_worker_pension_household_rate * belgium_worker_survivor_pension_career_years_after_statutory_limit
+      / belgium_worker_survivor_pension_denominator_years * belgium_worker_pension_survivor_rate
+- name: belgium_worker_transition_allowance_annual_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Royal Decree of 23 December 1996, article 7bis section 1
+  versions:
+  - effective_from: '2015-01-01'
+    formula: belgium_worker_pension_selected_annual_remuneration_for_representative_year
+      * belgium_worker_pension_isolated_rate * belgium_worker_transition_allowance_career_years_after_statutory_limit
+      / belgium_worker_transition_allowance_denominator_years

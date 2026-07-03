@@ -70,6 +70,24 @@
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_regular_monthly_withholding: 60.94
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 60.94
 
+- name: regular_monthly_withholding_zero_below_first_quarterly_threshold
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_spouse_has_professional_income: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_monthly_wage: 1000
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_apply_108_percent_wage_base: false
+  output:
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_monthly_wage: 1000
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_regular_monthly_withholding: 0
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 0
+
 - name: joint_two_earner_withholding_uses_cap_and_one_earner_uses_higher_cap
   period:
     period_kind: custom
@@ -87,3 +105,37 @@
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_joint_two_earner_monthly_withholding: 51.64
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_joint_one_earner_monthly_withholding: 56.34802
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 51.64
+
+- name: joint_two_earner_withholding_zero_below_spouse_income_floor
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: true
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_spouse_has_professional_income: true
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_monthly_wage: 900
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_apply_108_percent_wage_base: false
+  output:
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_joint_two_earner_monthly_withholding: 0
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 0
+
+- name: joint_one_earner_withholding_zero_below_first_quarterly_threshold
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: true
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_spouse_has_professional_income: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_monthly_wage: 1000
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_apply_108_percent_wage_base: false
+  output:
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_joint_one_earner_monthly_withholding: 0
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 0

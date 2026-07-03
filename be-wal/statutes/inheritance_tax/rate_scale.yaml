@@ -1,316 +1,2952 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Walloon Code des droits de succession article 48 contains current
+  summary: 'Walloon Code des droits de succession article 48 contains current
+
     inheritance-tax rate tables and future 2028 tables. This module encodes the
+
     current table applicable for 2026 and the future table applying to deaths
+
     from 1 January 2028: direct-line/spouse/legal-cohabitant, siblings,
+
     uncle-aunt/nephew-niece, and all other beneficiaries. It does not model
+
     abatements, exemptions, reduced rates, article-54 interactions, filing, or
-    debt deductibility.
+
+    debt deductibility.'
   source_verification:
     corpus_citation_paths:
-      - be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
-    values:
-      wallonia_inheritance_tax_direct_first_threshold: 12500
-      wallonia_inheritance_tax_direct_top_threshold: 500000
-      wallonia_inheritance_tax_direct_first_rate: "0.03"
-      wallonia_inheritance_tax_direct_top_rate: "0.30"
-      wallonia_inheritance_tax_sibling_first_rate: "0.20"
-      wallonia_inheritance_tax_sibling_top_rate: "0.65"
-      wallonia_inheritance_tax_uncle_aunt_nephew_niece_top_rate: "0.70"
-      wallonia_inheritance_tax_other_top_rate: "0.80"
-      wallonia_inheritance_tax_2028_direct_top_rate: "0.15"
-      wallonia_inheritance_tax_2028_sibling_top_rate: "0.33"
-      wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_top_rate: "0.35"
-      wallonia_inheritance_tax_2028_other_top_rate: "0.40"
+    - be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: wallonia_inheritance_tax_relationship_direct_spouse_or_legal_cohabitant
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Walloon succession-duty code article 48 table I
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          0
-  - name: wallonia_inheritance_tax_relationship_sibling
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Walloon succession-duty code article 48 table II siblings
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          1
-  - name: wallonia_inheritance_tax_relationship_uncle_aunt_nephew_niece
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Walloon succession-duty code article 48 table II uncle/aunt column
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          2
-  - name: wallonia_inheritance_tax_relationship_other
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Walloon succession-duty code article 48 table II other-person column
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          3
-  - name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 current table I
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.03
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  375 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.04
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 50000:
-                      875 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.05
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 100000:
-                          2125 + (wallonia_inheritance_tax_taxable_acquisition - 50000) * 0.07
-                      else:
-                          if wallonia_inheritance_tax_taxable_acquisition <= 150000:
-                              5625 + (wallonia_inheritance_tax_taxable_acquisition - 100000) * 0.10
-                          else:
-                              if wallonia_inheritance_tax_taxable_acquisition <= 200000:
-                                  10625 + (wallonia_inheritance_tax_taxable_acquisition - 150000) * 0.14
-                              else:
-                                  if wallonia_inheritance_tax_taxable_acquisition <= 250000:
-                                      17625 + (wallonia_inheritance_tax_taxable_acquisition - 200000) * 0.18
-                                  else:
-                                      if wallonia_inheritance_tax_taxable_acquisition <= 500000:
-                                          26625 + (wallonia_inheritance_tax_taxable_acquisition - 250000) * 0.24
-                                      else:
-                                          86625 + (wallonia_inheritance_tax_taxable_acquisition - 500000) * 0.30
-  - name: wallonia_inheritance_tax_sibling_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 current table II sibling column
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.20
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  2500 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.25
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 75000:
-                      5625 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.35
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 175000:
-                          23125 + (wallonia_inheritance_tax_taxable_acquisition - 75000) * 0.50
-                      else:
-                          73125 + (wallonia_inheritance_tax_taxable_acquisition - 175000) * 0.65
-  - name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 current table II uncle/aunt and nephew/niece column
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.25
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  3125 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.30
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 75000:
-                      6875 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.40
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 175000:
-                          26875 + (wallonia_inheritance_tax_taxable_acquisition - 75000) * 0.55
-                      else:
-                          81875 + (wallonia_inheritance_tax_taxable_acquisition - 175000) * 0.70
-  - name: wallonia_inheritance_tax_other_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 current table II other-person column
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.30
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  3750 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.35
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 75000:
-                      8125 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.60
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 175000:
-                          38125 + (wallonia_inheritance_tax_taxable_acquisition - 75000) * 0.80
-                      else:
-                          118125 + (wallonia_inheritance_tax_taxable_acquisition - 175000) * 0.80
-  - name: wallonia_inheritance_tax_article_48_current_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 current table
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_direct_spouse_or_legal_cohabitant:
-              wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax
-          else:
-              if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_sibling:
-                  wallonia_inheritance_tax_sibling_tax
-              else:
-                  if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_uncle_aunt_nephew_niece:
-                      wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax
-                  else:
-                      wallonia_inheritance_tax_other_tax
-  - name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 future 2028 table I
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.03
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  375 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.04
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 150000:
-                      875 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.05
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 200000:
-                          7125 + (wallonia_inheritance_tax_taxable_acquisition - 150000) * 0.07
-                      else:
-                          if wallonia_inheritance_tax_taxable_acquisition <= 250000:
-                              10625 + (wallonia_inheritance_tax_taxable_acquisition - 200000) * 0.09
-                          else:
-                              if wallonia_inheritance_tax_taxable_acquisition <= 500000:
-                                  15125 + (wallonia_inheritance_tax_taxable_acquisition - 250000) * 0.12
-                              else:
-                                  45125 + (wallonia_inheritance_tax_taxable_acquisition - 500000) * 0.15
-  - name: wallonia_inheritance_tax_2028_sibling_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 future 2028 table II sibling column
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.10
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  1250 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.13
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 75000:
-                      2875 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.18
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 175000:
-                          11875 + (wallonia_inheritance_tax_taxable_acquisition - 75000) * 0.25
-                      else:
-                          36875 + (wallonia_inheritance_tax_taxable_acquisition - 175000) * 0.33
-  - name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt and nephew/niece column
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.13
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  1625 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.15
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 75000:
-                      3500 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.20
-                  else:
-                      if wallonia_inheritance_tax_taxable_acquisition <= 175000:
-                          13500 + (wallonia_inheritance_tax_taxable_acquisition - 75000) * 0.28
-                      else:
-                          41500 + (wallonia_inheritance_tax_taxable_acquisition - 175000) * 0.35
-  - name: wallonia_inheritance_tax_2028_other_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 future 2028 table III other-person column
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_inheritance_tax_taxable_acquisition <= 12500:
-              wallonia_inheritance_tax_taxable_acquisition * 0.15
-          else:
-              if wallonia_inheritance_tax_taxable_acquisition <= 25000:
-                  1875 + (wallonia_inheritance_tax_taxable_acquisition - 12500) * 0.18
-              else:
-                  if wallonia_inheritance_tax_taxable_acquisition <= 75000:
-                      4125 + (wallonia_inheritance_tax_taxable_acquisition - 25000) * 0.30
-                  else:
-                      19125 + (wallonia_inheritance_tax_taxable_acquisition - 75000) * 0.40
-  - name: wallonia_inheritance_tax_article_48_2028_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 future 2028 table
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_direct_spouse_or_legal_cohabitant:
-              wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax
-          else:
-              if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_sibling:
-                  wallonia_inheritance_tax_2028_sibling_tax
-              else:
-                  if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_uncle_aunt_nephew_niece:
-                      wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax
-                  else:
-                      wallonia_inheritance_tax_2028_other_tax
-  - name: wallonia_inheritance_tax_article_48_tax
-    kind: derived
-    entity: EstateBeneficiary
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon succession-duty code article 48 current/future date-aware rules
-    versions:
-      - effective_from: '2009-12-23'
-        formula: |-
-          if wallonia_inheritance_tax_death_year >= 2028:
-              wallonia_inheritance_tax_article_48_2028_tax
-          else:
-              wallonia_inheritance_tax_article_48_current_tax
+- name: wallonia_inheritance_tax_relationship_direct_spouse_or_legal_cohabitant
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Walloon succession-duty code article 48 table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0'
+- name: wallonia_inheritance_tax_relationship_sibling
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Walloon succession-duty code article 48 table II
+    siblings
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '1'
+- name: wallonia_inheritance_tax_relationship_uncle_aunt_nephew_niece
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Walloon succession-duty code article 48 table II
+    uncle/aunt column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '2'
+- name: wallonia_inheritance_tax_relationship_other
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Walloon succession-duty code article 48 table II
+    other-person column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '3'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '12500'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.03'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '25000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.04'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '50000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.05'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '100000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.07'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '150000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.10'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '200000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.14'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '250000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.18'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_20
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '500000'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_22
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.24'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_23
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_20 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_24
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.30'
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_25
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_23 + ((wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21 - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18) * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_22)
+- name: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 current table I
+  versions:
+  - effective_from: '2009-12-23'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7\n\
+      \        else:\n            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9:\n\
+      \                wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10\n\
+      \            else:\n                if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12:\n\
+      \                    wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13\n\
+      \                else:\n                    if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15:\n\
+      \                        wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16\n\
+      \                    else:\n                        if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18:\n\
+      \                            wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_20\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19\n\
+      \                        else:\n                            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21:\n\
+      \                                wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_23\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_22\n\
+      \                            else:\n                                wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_25\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21)\
+      \ * wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_24"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_20
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_20
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_22
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_22
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_23
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_23
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_24
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_24
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_25
+          output: wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_25
+          hash: sha256:local
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '12500'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.20'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '25000'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.25'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_sibling_tax_scalar_limit * wallonia_inheritance_tax_sibling_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '75000'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.35'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_sibling_tax_scalar_limit_5 + ((wallonia_inheritance_tax_sibling_tax_scalar_limit_3 - wallonia_inheritance_tax_sibling_tax_scalar_limit) * wallonia_inheritance_tax_sibling_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '175000'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.50'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_sibling_tax_scalar_limit_8 + ((wallonia_inheritance_tax_sibling_tax_scalar_limit_6 - wallonia_inheritance_tax_sibling_tax_scalar_limit_3) * wallonia_inheritance_tax_sibling_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.65'
+- name: wallonia_inheritance_tax_sibling_tax_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_sibling_tax_scalar_limit_11 + ((wallonia_inheritance_tax_sibling_tax_scalar_limit_9 - wallonia_inheritance_tax_sibling_tax_scalar_limit_6) * wallonia_inheritance_tax_sibling_tax_scalar_limit_10)
+- name: wallonia_inheritance_tax_sibling_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 current table II sibling column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_sibling_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_sibling_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_sibling_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_sibling_tax_scalar_limit_5 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_sibling_tax_scalar_limit) * wallonia_inheritance_tax_sibling_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_sibling_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_sibling_tax_scalar_limit_8 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_sibling_tax_scalar_limit_3) * wallonia_inheritance_tax_sibling_tax_scalar_limit_7\n\
+      \        else:\n            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_sibling_tax_scalar_limit_9:\n                wallonia_inheritance_tax_sibling_tax_scalar_limit_11\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_sibling_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_sibling_tax_scalar_limit_10\n            else:\n\
+      \                wallonia_inheritance_tax_sibling_tax_scalar_limit_13 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_sibling_tax_scalar_limit_9) * wallonia_inheritance_tax_sibling_tax_scalar_limit_12"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_sibling_tax_scalar_limit_13
+          output: wallonia_inheritance_tax_sibling_tax_scalar_limit_13
+          hash: sha256:local
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '12500'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.25'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '25000'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.30'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '75000'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.40'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_5 + ((wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3 - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit) * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '175000'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.55'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_8 + ((wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6 - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3) * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.70'
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_11 + ((wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9 - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6) * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_10)
+- name: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 current table II uncle/aunt and
+    nephew/niece column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_5\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit)\
+      \ * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4\n  \
+      \  else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_8\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3)\
+      \ * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7\n  \
+      \      else:\n            if wallonia_inheritance_tax_taxable_acquisition <=\
+      \ wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9:\n   \
+      \             wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_11\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_10\n \
+      \           else:\n                wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_13\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9)\
+      \ * wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_12"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_13
+          output: wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_13
+          hash: sha256:local
+- name: wallonia_inheritance_tax_other_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '12500'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.30'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '25000'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.35'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_other_tax_scalar_limit * wallonia_inheritance_tax_other_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '75000'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.60'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_other_tax_scalar_limit_5 + ((wallonia_inheritance_tax_other_tax_scalar_limit_3 - wallonia_inheritance_tax_other_tax_scalar_limit) * wallonia_inheritance_tax_other_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '175000'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '0.80'
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: wallonia_inheritance_tax_other_tax_scalar_limit_8 + ((wallonia_inheritance_tax_other_tax_scalar_limit_6 - wallonia_inheritance_tax_other_tax_scalar_limit_3) * wallonia_inheritance_tax_other_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_other_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current table II other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current table II other-person
+            column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '118125'
+- name: wallonia_inheritance_tax_other_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 current table II other-person column
+  versions:
+  - effective_from: '2009-12-23'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_other_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_other_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_other_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_other_tax_scalar_limit_5 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_other_tax_scalar_limit) * wallonia_inheritance_tax_other_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_other_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_other_tax_scalar_limit_8 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_other_tax_scalar_limit_3) * wallonia_inheritance_tax_other_tax_scalar_limit_7\n\
+      \        else:\n            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_other_tax_scalar_limit_9:\n                wallonia_inheritance_tax_other_tax_scalar_limit_11\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_other_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_other_tax_scalar_limit_10\n            else:\n\
+      \                wallonia_inheritance_tax_other_tax_scalar_limit_12 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_other_tax_scalar_limit_9) * wallonia_inheritance_tax_other_tax_scalar_limit_10"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit
+          output: wallonia_inheritance_tax_other_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_other_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_other_tax_scalar_limit_12
+          hash: sha256:local
+- name: wallonia_inheritance_tax_article_48_current_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 current table
+  versions:
+  - effective_from: '2009-12-23'
+    formula: "if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_direct_spouse_or_legal_cohabitant:\n\
+      \    wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax\nelse:\n\
+      \    if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_sibling:\n\
+      \        wallonia_inheritance_tax_sibling_tax\n    else:\n        if wallonia_inheritance_tax_relationship_class\
+      \ == wallonia_inheritance_tax_relationship_uncle_aunt_nephew_niece:\n      \
+      \      wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax\n        else:\n\
+      \            wallonia_inheritance_tax_other_tax"
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '12500'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.03'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '25000'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.04'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '150000'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.05'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5 + ((wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3 - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit) * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '200000'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.07'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8 + ((wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6 - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3) * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '250000'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.09'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11 + ((wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9 - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6) * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10)
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '500000'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.12'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14 + ((wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12 - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9) * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13)
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.15'
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table I
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17 + ((wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15 - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12) * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16)
+- name: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 future 2028 table I
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit)\
+      \ * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3)\
+      \ * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7\n\
+      \        else:\n            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9:\n\
+      \                wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10\n\
+      \            else:\n                if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12:\n\
+      \                    wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9)\
+      \ * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13\n\
+      \                else:\n                    if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15:\n\
+      \                        wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12)\
+      \ * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16\n\
+      \                    else:\n                        wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15)\
+      \ * wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_14
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_17
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19
+          output: wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19
+          hash: sha256:local
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '12500'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.10'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '25000'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.13'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '75000'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.18'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_5 + ((wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3 - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit) * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '175000'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.25'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_8 + ((wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6 - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3) * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.33'
+- name: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II sibling
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_11 + ((wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9 - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6) * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_10)
+- name: wallonia_inheritance_tax_2028_sibling_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 future 2028 table II sibling column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_sibling_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_5 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit) * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_8 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3) * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_7\n\
+      \        else:\n            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9:\n           \
+      \     wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_11 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6) * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_10\n\
+      \            else:\n                wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_13\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9)\
+      \ * wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_12"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_13
+          output: wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_13
+          hash: sha256:local
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '12500'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.13'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '25000'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.15'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '75000'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.20'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_5 + ((wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3 - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit) * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '175000'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.28'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_11
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_8 + ((wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6 - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3) * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_12
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.35'
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_13
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+            and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_11 + ((wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9 - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6) * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_10)
+- name: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 future 2028 table II uncle/aunt
+    and nephew/niece column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_5\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit)\
+      \ * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_8\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3)\
+      \ * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_7\n\
+      \        else:\n            if wallonia_inheritance_tax_taxable_acquisition\
+      \ <= wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9:\n\
+      \                wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_11\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_10\n\
+      \            else:\n                wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_13\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9)\
+      \ * wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_12"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_10
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_11
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_11
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_12
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_12
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_13
+          output: wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_13
+          hash: sha256:local
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '12500'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.15'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '25000'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.18'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_other_tax_scalar_limit * wallonia_inheritance_tax_2028_other_tax_scalar_limit_2
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '75000'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.30'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_other_tax_scalar_limit_5 + ((wallonia_inheritance_tax_2028_other_tax_scalar_limit_3 - wallonia_inheritance_tax_2028_other_tax_scalar_limit) * wallonia_inheritance_tax_2028_other_tax_scalar_limit_4)
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.40'
+- name: wallonia_inheritance_tax_2028_other_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 future 2028 table III other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_inheritance_tax_2028_other_tax_scalar_limit_8 + ((wallonia_inheritance_tax_2028_other_tax_scalar_limit_6 - wallonia_inheritance_tax_2028_other_tax_scalar_limit_3) * wallonia_inheritance_tax_2028_other_tax_scalar_limit_7)
+- name: wallonia_inheritance_tax_2028_other_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 future 2028 table III other-person
+    column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_other_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_taxable_acquisition * wallonia_inheritance_tax_2028_other_tax_scalar_limit_2\n\
+      else:\n    if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_other_tax_scalar_limit_3:\n\
+      \        wallonia_inheritance_tax_2028_other_tax_scalar_limit_5 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_2028_other_tax_scalar_limit) * wallonia_inheritance_tax_2028_other_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_inheritance_tax_taxable_acquisition <= wallonia_inheritance_tax_2028_other_tax_scalar_limit_6:\n\
+      \            wallonia_inheritance_tax_2028_other_tax_scalar_limit_8 + (wallonia_inheritance_tax_taxable_acquisition\
+      \ - wallonia_inheritance_tax_2028_other_tax_scalar_limit_3) * wallonia_inheritance_tax_2028_other_tax_scalar_limit_7\n\
+      \        else:\n            wallonia_inheritance_tax_2028_other_tax_scalar_limit_10\
+      \ + (wallonia_inheritance_tax_taxable_acquisition - wallonia_inheritance_tax_2028_other_tax_scalar_limit_6)\
+      \ * wallonia_inheritance_tax_2028_other_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_2
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_3
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_4
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_5
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_6
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_7
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_8
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_9
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_2028_other_tax_scalar_limit_10
+          output: wallonia_inheritance_tax_2028_other_tax_scalar_limit_10
+          hash: sha256:local
+- name: wallonia_inheritance_tax_article_48_2028_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 future 2028 table
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_direct_spouse_or_legal_cohabitant:\n\
+      \    wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax\nelse:\n\
+      \    if wallonia_inheritance_tax_relationship_class == wallonia_inheritance_tax_relationship_sibling:\n\
+      \        wallonia_inheritance_tax_2028_sibling_tax\n    else:\n        if wallonia_inheritance_tax_relationship_class\
+      \ == wallonia_inheritance_tax_relationship_uncle_aunt_nephew_niece:\n      \
+      \      wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax\n        else:\n\
+      \            wallonia_inheritance_tax_2028_other_tax"
+- name: wallonia_inheritance_tax_article_48_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon succession-duty code article 48 current/future date-aware rules
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
+          span: Walloon succession-duty code article 48 current/future date-aware
+            rules
+  versions:
+  - effective_from: '2009-12-23'
+    formula: '2028'
+- name: wallonia_inheritance_tax_article_48_tax
+  kind: derived
+  entity: EstateBeneficiary
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon succession-duty code article 48 current/future date-aware rules
+  versions:
+  - effective_from: '2009-12-23'
+    formula: "if wallonia_inheritance_tax_death_year >= wallonia_inheritance_tax_article_48_tax_scalar_limit:\n\
+      \    wallonia_inheritance_tax_article_48_2028_tax\nelse:\n    wallonia_inheritance_tax_article_48_current_tax"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/inheritance_tax/rate_scale#wallonia_inheritance_tax_article_48_tax_scalar_limit
+          output: wallonia_inheritance_tax_article_48_tax_scalar_limit
+          hash: sha256:local

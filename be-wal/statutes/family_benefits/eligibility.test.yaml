@@ -46,6 +46,36 @@
     be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_child_entitlement: 1
     be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_eligible_monthly_amount: 155
 
+- name: wallonia_child_without_residence_or_status_fails_article_4
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_parents_eu_or_reg883_and_economic_activity_in_french_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_supranational_family_member_right_applies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_legal_domicile_in_french_language_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_without_legal_domicile_effectively_resides_in_french_language_region: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_belgian_nationality: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_residence_title: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_registration_attestation_only: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_parents_are_stateless: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_is_third_country_student_authorized_to_stay_for_studies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_age_on_august_31_years: 26
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_age_years: 26
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_has_disability_supplement_condition: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_in_month_turning_21: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_no_government_obstacle_applies: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_is_apprentice: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_in_qualifying_courses_or_stage: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_in_qualifying_diploma_training: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_child_registered_jobseeker_after_studies_or_apprenticeship: false
+    be-wal:statutes/family_benefits/eligibility#input.wallonia_family_benefits_government_derogation_applies: false
+  output:
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_4_residence_and_status_condition_met: 0
+    be-wal:statutes/family_benefits/eligibility#wallonia_family_benefits_article_5_age_or_status_condition_met: 0
+
 - name: wallonia_third_country_student_authorization_excludes_entitlement
   period:
     period_kind: custom

@@ -1,215 +1,1166 @@
 format: rulespec/v1
 module:
-  summary: |-
-    Walloon Code des droits d'enregistrement articles 131 and 131bis set the
+  summary: 'Walloon Code des droits d''enregistrement articles 131 and 131bis set
+    the
+
     current and future gift-tax rates for immovable gifts, and article 131bis
+
     sets movable-gift rates. This module encodes the 2026 current immovable
+
     rate table, the future immovable-gift table applying from 1 January 2028,
+
     and movable-gift rates from article 131bis, with article-131bis exclusions
+
     for donor-death suspensive conditions or terms assimilated to succession
+
     duty. It excludes business donations, exemptions, notarial procedure, and
-    anti-avoidance rules.
+
+    anti-avoidance rules.'
   source_verification:
     corpus_citation_paths:
-      - be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
-      - be-wal/statute/fisconetplus/registration-code/article-131bis/guid-9bac3e5f-2e86-4a74-a79e-6466f91b104d/block-1
-    values:
-      wallonia_gift_tax_immovable_direct_first_threshold: 150000
-      wallonia_gift_tax_immovable_direct_second_threshold: 250000
-      wallonia_gift_tax_immovable_direct_third_threshold: 450000
-      wallonia_gift_tax_immovable_direct_first_rate: "0.03"
-      wallonia_gift_tax_immovable_direct_second_rate: "0.09"
-      wallonia_gift_tax_immovable_direct_third_rate: "0.18"
-      wallonia_gift_tax_immovable_direct_top_rate: "0.27"
-      wallonia_gift_tax_immovable_other_first_rate: "0.10"
-      wallonia_gift_tax_immovable_other_second_rate: "0.20"
-      wallonia_gift_tax_immovable_other_third_rate: "0.30"
-      wallonia_gift_tax_immovable_other_top_rate: "0.40"
-      wallonia_gift_tax_2028_immovable_direct_second_rate: "0.06"
-      wallonia_gift_tax_2028_immovable_direct_third_rate: "0.10"
-      wallonia_gift_tax_2028_immovable_direct_top_rate: "0.14"
-      wallonia_gift_tax_2028_immovable_other_first_rate: "0.09"
-      wallonia_gift_tax_2028_immovable_other_second_rate: "0.12"
-      wallonia_gift_tax_2028_immovable_other_third_rate: "0.16"
-      wallonia_gift_tax_2028_immovable_other_top_rate: "0.20"
-      wallonia_gift_tax_movable_direct_or_legal_cohabitant_rate: "0.033"
-      wallonia_gift_tax_movable_other_rate: "0.055"
+    - be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+    - be-wal/statute/fisconetplus/registration-code/article-131bis/guid-9bac3e5f-2e86-4a74-a79e-6466f91b104d/block-1
 units:
-  - name: EUR
-    kind: currency
-    minor_units: 2
+- name: EUR
+  kind: currency
+  minor_units: 2
 rules:
-  - name: wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Walloon registration-duty code article 131 direct/spouse/legal-cohabitant column
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0
-  - name: wallonia_gift_tax_relationship_other
-    kind: parameter
-    dtype: Count
-    source: Structural selector for Walloon registration-duty code article 131 other-person column
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          1
-  - name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant column
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if wallonia_gift_tax_taxable_amount <= 150000:
-              wallonia_gift_tax_taxable_amount * 0.03
-          else:
-              if wallonia_gift_tax_taxable_amount <= 250000:
-                  4500 + (wallonia_gift_tax_taxable_amount - 150000) * 0.09
-              else:
-                  if wallonia_gift_tax_taxable_amount <= 450000:
-                      13500 + (wallonia_gift_tax_taxable_amount - 250000) * 0.18
-                  else:
-                      49500 + (wallonia_gift_tax_taxable_amount - 450000) * 0.27
-  - name: wallonia_gift_tax_immovable_other_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code article 131 current other-person column
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if wallonia_gift_tax_taxable_amount <= 150000:
-              wallonia_gift_tax_taxable_amount * 0.10
-          else:
-              if wallonia_gift_tax_taxable_amount <= 250000:
-                  15000 + (wallonia_gift_tax_taxable_amount - 150000) * 0.20
-              else:
-                  if wallonia_gift_tax_taxable_amount <= 450000:
-                      35000 + (wallonia_gift_tax_taxable_amount - 250000) * 0.30
-                  else:
-                      95000 + (wallonia_gift_tax_taxable_amount - 450000) * 0.40
-  - name: wallonia_gift_tax_movable_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code article 131bis paragraph 1
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if wallonia_gift_tax_relationship_class == wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant:
-              wallonia_gift_tax_taxable_amount * 0.033
-          else:
-              wallonia_gift_tax_taxable_amount * 0.055
-  - name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant column
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_gift_tax_taxable_amount <= 150000:
-              wallonia_gift_tax_taxable_amount * 0.03
-          else:
-              if wallonia_gift_tax_taxable_amount <= 250000:
-                  4500 + (wallonia_gift_tax_taxable_amount - 150000) * 0.06
-              else:
-                  if wallonia_gift_tax_taxable_amount <= 450000:
-                      10500 + (wallonia_gift_tax_taxable_amount - 250000) * 0.10
-                  else:
-                      30500 + (wallonia_gift_tax_taxable_amount - 450000) * 0.14
-  - name: wallonia_gift_tax_2028_immovable_other_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code article 131 future 2028 other-person column
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_gift_tax_taxable_amount <= 150000:
-              wallonia_gift_tax_taxable_amount * 0.09
-          else:
-              if wallonia_gift_tax_taxable_amount <= 250000:
-                  13500 + (wallonia_gift_tax_taxable_amount - 150000) * 0.12
-              else:
-                  if wallonia_gift_tax_taxable_amount <= 450000:
-                      25500 + (wallonia_gift_tax_taxable_amount - 250000) * 0.16
-                  else:
-                      57500 + (wallonia_gift_tax_taxable_amount - 450000) * 0.20
-  - name: wallonia_gift_tax_article_131_2028_immovable_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code article 131 future 2028 immovable-gift table
-    versions:
-      - effective_from: '2028-01-01'
-        formula: |-
-          if wallonia_gift_tax_relationship_class == wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant:
-              wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax
-          else:
-              wallonia_gift_tax_2028_immovable_other_tax
-  - name: wallonia_gift_tax_article_131bis_movable_death_condition_or_term_exclusion_applies
-    kind: derived
-    entity: Gift
-    dtype: Count
-    period: Year
-    source: Walloon registration-duty code article 131bis paragraph 1 exclusions for movable gifts assimilated to succession duty
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if wallonia_gift_tax_is_movable_property and (wallonia_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy or wallonia_gift_tax_movable_gift_suspensive_term_by_donor_death_assimilated_to_legacy):
-              1
-          else:
-              0
-  - name: wallonia_gift_tax_articles_131_131bis_current_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code articles 131 and 131bis current rules
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if wallonia_gift_tax_is_movable_property:
-              wallonia_gift_tax_movable_tax
-          else:
-              if wallonia_gift_tax_relationship_class == wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant:
-                  wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax
-              else:
-                  wallonia_gift_tax_immovable_other_tax
-  - name: wallonia_gift_tax_articles_131_131bis_tax
-    kind: derived
-    entity: Gift
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Walloon registration-duty code articles 131 and 131bis current/future date-aware rules
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          if wallonia_gift_tax_is_movable_property:
-              if wallonia_gift_tax_article_131bis_movable_death_condition_or_term_exclusion_applies == 1:
-                  0
-              else:
-                  wallonia_gift_tax_movable_tax
-          else:
-              if wallonia_gift_tax_authentic_act_year >= 2028:
-                  wallonia_gift_tax_article_131_2028_immovable_tax
-              else:
-                  wallonia_gift_tax_articles_131_131bis_current_tax
+- name: wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Walloon registration-duty code article 131 direct/spouse/legal-cohabitant
+    column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0'
+- name: wallonia_gift_tax_relationship_other
+  kind: parameter
+  dtype: Count
+  source: Structural selector for Walloon registration-duty code article 131 other-person
+    column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '1'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '150000'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.03'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '250000'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.09'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '450000'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.18'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5 + ((wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3 - wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit) * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4)
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.27'
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8 + ((wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6 - wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3) * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7)
+- name: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code article 131 current direct/spouse/legal-cohabitant
+    column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit:\n\
+      \    wallonia_gift_tax_taxable_amount * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2\n\
+      else:\n    if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3:\n\
+      \        wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit)\
+      \ * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6:\n\
+      \            wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3)\
+      \ * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7\n\
+      \        else:\n            wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6)\
+      \ * wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          output: wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          hash: sha256:local
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '150000'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.10'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '250000'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.20'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: wallonia_gift_tax_immovable_other_tax_scalar_limit * wallonia_gift_tax_immovable_other_tax_scalar_limit_2
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '450000'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.30'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: wallonia_gift_tax_immovable_other_tax_scalar_limit_5 + ((wallonia_gift_tax_immovable_other_tax_scalar_limit_3 - wallonia_gift_tax_immovable_other_tax_scalar_limit) * wallonia_gift_tax_immovable_other_tax_scalar_limit_4)
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.40'
+- name: wallonia_gift_tax_immovable_other_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 current other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: wallonia_gift_tax_immovable_other_tax_scalar_limit_8 + ((wallonia_gift_tax_immovable_other_tax_scalar_limit_6 - wallonia_gift_tax_immovable_other_tax_scalar_limit_3) * wallonia_gift_tax_immovable_other_tax_scalar_limit_7)
+- name: wallonia_gift_tax_immovable_other_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code article 131 current other-person column
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_immovable_other_tax_scalar_limit:\n\
+      \    wallonia_gift_tax_taxable_amount * wallonia_gift_tax_immovable_other_tax_scalar_limit_2\n\
+      else:\n    if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_immovable_other_tax_scalar_limit_3:\n\
+      \        wallonia_gift_tax_immovable_other_tax_scalar_limit_5 + (wallonia_gift_tax_taxable_amount\
+      \ - wallonia_gift_tax_immovable_other_tax_scalar_limit) * wallonia_gift_tax_immovable_other_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_immovable_other_tax_scalar_limit_6:\n\
+      \            wallonia_gift_tax_immovable_other_tax_scalar_limit_8 + (wallonia_gift_tax_taxable_amount\
+      \ - wallonia_gift_tax_immovable_other_tax_scalar_limit_3) * wallonia_gift_tax_immovable_other_tax_scalar_limit_7\n\
+      \        else:\n            wallonia_gift_tax_immovable_other_tax_scalar_limit_10\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_immovable_other_tax_scalar_limit_6)\
+      \ * wallonia_gift_tax_immovable_other_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_2
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_3
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_4
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_5
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_6
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_7
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_8
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_9
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_immovable_other_tax_scalar_limit_10
+          output: wallonia_gift_tax_immovable_other_tax_scalar_limit_10
+          hash: sha256:local
+- name: wallonia_gift_tax_movable_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131bis paragraph 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131bis paragraph 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.033'
+- name: wallonia_gift_tax_movable_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131bis paragraph 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131bis paragraph 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '0.055'
+- name: wallonia_gift_tax_movable_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code article 131bis paragraph 1
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if wallonia_gift_tax_relationship_class == wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant:\n\
+      \    wallonia_gift_tax_taxable_amount * wallonia_gift_tax_movable_tax_scalar_limit\n\
+      else:\n    wallonia_gift_tax_taxable_amount * wallonia_gift_tax_movable_tax_scalar_limit_2"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_movable_tax_scalar_limit
+          output: wallonia_gift_tax_movable_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_movable_tax_scalar_limit_2
+          output: wallonia_gift_tax_movable_tax_scalar_limit_2
+          hash: sha256:local
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '150000'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.03'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '250000'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.06'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '450000'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.10'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5 + ((wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3 - wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit) * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4)
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.14'
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8 + ((wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6 - wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3) * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7)
+- name: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code article 131 future 2028 direct/spouse/legal-cohabitant
+    column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit:\n\
+      \    wallonia_gift_tax_taxable_amount * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2\n\
+      else:\n    if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3:\n\
+      \        wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit)\
+      \ * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6:\n\
+      \            wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3)\
+      \ * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7\n\
+      \        else:\n            wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6)\
+      \ * wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          output: wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10
+          hash: sha256:local
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '150000'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_2
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.09'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '250000'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_4
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.12'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_5
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_2
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '450000'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_7
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.16'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_8
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_5 + ((wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3 - wallonia_gift_tax_2028_immovable_other_tax_scalar_limit) * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_4)
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_9
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: '0.20'
+- name: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_10
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code article 131 future 2028 other-person
+            column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_8 + ((wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6 - wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3) * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_7)
+- name: wallonia_gift_tax_2028_immovable_other_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code article 131 future 2028 other-person column
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_2028_immovable_other_tax_scalar_limit:\n\
+      \    wallonia_gift_tax_taxable_amount * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_2\n\
+      else:\n    if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3:\n\
+      \        wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_5 + (wallonia_gift_tax_taxable_amount\
+      \ - wallonia_gift_tax_2028_immovable_other_tax_scalar_limit) * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_4\n\
+      \    else:\n        if wallonia_gift_tax_taxable_amount <= wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6:\n\
+      \            wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_8 + (wallonia_gift_tax_taxable_amount\
+      \ - wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3) * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_7\n\
+      \        else:\n            wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_10\
+      \ + (wallonia_gift_tax_taxable_amount - wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6)\
+      \ * wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_9"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_2
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_2
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_4
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_4
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_5
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_5
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_7
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_7
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_8
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_8
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_9
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_9
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_10
+          output: wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_10
+          hash: sha256:local
+- name: wallonia_gift_tax_article_131_2028_immovable_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code article 131 future 2028 immovable-gift table
+  versions:
+  - effective_from: '2028-01-01'
+    formula: "if wallonia_gift_tax_relationship_class == wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant:\n\
+      \    wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax\n\
+      else:\n    wallonia_gift_tax_2028_immovable_other_tax"
+- name: wallonia_gift_tax_article_131bis_movable_death_condition_or_term_exclusion_applies
+  kind: derived
+  entity: Gift
+  dtype: Count
+  period: Year
+  source: Walloon registration-duty code article 131bis paragraph 1 exclusions for
+    movable gifts assimilated to succession duty
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if wallonia_gift_tax_is_movable_property and (wallonia_gift_tax_movable_gift_suspensive_condition_realized_by_donor_death_assimilated_to_legacy\
+      \ or wallonia_gift_tax_movable_gift_suspensive_term_by_donor_death_assimilated_to_legacy):\n\
+      \    1\nelse:\n    0"
+- name: wallonia_gift_tax_articles_131_131bis_current_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code articles 131 and 131bis current rules
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if wallonia_gift_tax_is_movable_property:\n    wallonia_gift_tax_movable_tax\n\
+      else:\n    if wallonia_gift_tax_relationship_class == wallonia_gift_tax_relationship_direct_spouse_or_legal_cohabitant:\n\
+      \        wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax\n\
+      \    else:\n        wallonia_gift_tax_immovable_other_tax"
+- name: wallonia_gift_tax_articles_131_131bis_tax_scalar_limit
+  kind: parameter
+  dtype: Count
+  source: Walloon registration-duty code articles 131 and 131bis current/future date-aware
+    rules
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
+          span: Walloon registration-duty code articles 131 and 131bis current/future
+            date-aware rules
+  versions:
+  - effective_from: '2022-01-01'
+    formula: '2028'
+- name: wallonia_gift_tax_articles_131_131bis_tax
+  kind: derived
+  entity: Gift
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Walloon registration-duty code articles 131 and 131bis current/future date-aware
+    rules
+  versions:
+  - effective_from: '2022-01-01'
+    formula: "if wallonia_gift_tax_is_movable_property:\n    if wallonia_gift_tax_article_131bis_movable_death_condition_or_term_exclusion_applies\
+      \ == 1:\n        0\n    else:\n        wallonia_gift_tax_movable_tax\nelse:\n\
+      \    if wallonia_gift_tax_authentic_act_year >= wallonia_gift_tax_articles_131_131bis_tax_scalar_limit:\n\
+      \        wallonia_gift_tax_article_131_2028_immovable_tax\n    else:\n     \
+      \   wallonia_gift_tax_articles_131_131bis_current_tax"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/gift_tax/rate_scale#wallonia_gift_tax_articles_131_131bis_tax_scalar_limit
+          output: wallonia_gift_tax_articles_131_131bis_tax_scalar_limit
+          hash: sha256:local
