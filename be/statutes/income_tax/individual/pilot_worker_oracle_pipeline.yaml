@@ -1,8 +1,9 @@
 format: rulespec/v1
 imports:
   - be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution
-  - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount
-  - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_amount
+  - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_months_in_year
+  - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap
+  - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
 module:
   summary: |-
     This composed pilot module exposes a dense-engine-friendly Person-level
@@ -11,8 +12,8 @@ module:
     contribution, Article 51 employee forfait, Article 6 taxable-income concept,
     Article 130 rate scale, Article 131 base tax-free amount, Article 134
     tax-free-amount reduction, the special-financing-law Article 5/2 autonomy
-    factor, Article 289ter/1 work-bonus credit from the encoded ONSS January
-    and February-onward 2025 work-bonus A/B amounts, and supplied Article
+    factor, Article 289ter/1 work-bonus credit from the encoded ONSS 2025
+    full-year equal-month uncapped work-bonus A/B amounts, and supplied Article
     465/468 local additions into one
     module. It deliberately keeps existing public rule ids
     in other modules unchanged and excludes dependants, joint assessment, other
@@ -657,11 +658,33 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 289ter/1, worker-only pilot low-wage work-bonus credit from encoded ONSS work-bonus A and B amounts
+    source: CIR 1992 article 289ter/1, worker-only pilot low-wage work-bonus credit from encoded ONSS full-year equal-month work-bonus A and B tax-credit bases
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(max(0, belgium_worker_work_bonus_full_year_equal_monthly_a_amount) * belgium_pit_pilot_article_289ter1_work_bonus_a_rate + max(0, belgium_worker_work_bonus_full_year_equal_monthly_b_amount) * belgium_pit_pilot_article_289ter1_work_bonus_b_rate, belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling)
+          min(belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount * belgium_pit_pilot_article_289ter1_work_bonus_a_rate + belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount * belgium_pit_pilot_article_289ter1_work_bonus_b_rate, belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling)
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 289ter/1 and the statutory work-bonus A formula, worker-only pilot annualized volet A amount before the final employee-contribution cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap * belgium_worker_work_bonus_months_in_year
+  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 289ter/1 and the statutory work-bonus B formula, worker-only pilot annualized volet B amount before the final employee-contribution cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap * belgium_worker_work_bonus_months_in_year
   - name: belgium_pit_pilot_reduced_state_tax_after_autonomy_factor
     kind: derived
     entity: Person
