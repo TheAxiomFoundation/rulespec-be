@@ -55,12 +55,36 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income: 7000
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_130_base_tax: 1750
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_tax_free_amount: 0
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount: 1447.08
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount: 1951.44
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 1504.848888
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount: 1307
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 686.6978
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_reduced_state_tax_after_autonomy_factor: 0
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_work_bonus_credit: -1504.848888
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: -1504.848888
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_work_bonus_credit: -686.6978
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: -686.6978
+
+- name: zero_worker_remuneration_gets_no_work_bonus_credit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions: 0
+    be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: 0
 
 - name: taxable_income_rule_floors_negative_inputs_at_zero
   period:
