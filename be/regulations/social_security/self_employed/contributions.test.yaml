@@ -222,7 +222,7 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 2.8844857470602205
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
     be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 30000
     be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
     be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
@@ -239,4 +239,5 @@
     be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
     be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
   output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_article_12_first_threshold_indexed: "73447.52000000000915976"
     be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 6150
