@@ -30,6 +30,7 @@
     be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
     be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
     be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 1.2
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_use_supplied_current_monthly_amounts: false
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_use_supplied_chapter_2_countable_annual_resources: true
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 1560
   output:
@@ -53,6 +54,7 @@
     be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: false
     be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
     be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 2.3894545454545455
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_use_supplied_current_monthly_amounts: false
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_use_supplied_chapter_2_countable_annual_resources: true
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 0
   output:
@@ -60,6 +62,31 @@
     be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_resource_reduction: 0
     be:statutes/social_integration/payable_amount#belgium_social_integration_income_support_monthly_amount: 1314.2
     be:statutes/social_integration/payable_amount#belgium_social_integration_income_support_annual_amount: 15770.4
+
+- name: euromod_bsa_s_dependent_family_no_resources_2025_bridge
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2025-02-01'
+    end: '2025-02-28'
+  input:
+    <<: *eligible_applicant_inputs
+    be:statutes/social_integration/eligibility#input.belgium_social_integration_authorized_to_stay_in_belgium: true
+    be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
+    be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 2.3894545454545455
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_use_supplied_current_monthly_amounts: true
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_supplied_cohabitant_current_monthly_amount: 876.13
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_supplied_isolated_current_monthly_amount: 1314.20
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_supplied_dependent_family_current_monthly_amount: 1776.07
+    be:statutes/social_integration/payable_amount#input.belgium_social_integration_use_supplied_chapter_2_countable_annual_resources: true
+    be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 0
+  output:
+    be:statutes/social_integration/eligibility#belgium_social_integration_article_3_4_general_eligibility_condition_met: 1
+    be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_resource_reduction: 0
+    be:statutes/social_integration/payable_amount#belgium_social_integration_article_14_payable_annual_amount_before_eligibility: 21312.84
+    be:statutes/social_integration/payable_amount#belgium_social_integration_income_support_monthly_amount: 1776.07
+    be:statutes/social_integration/payable_amount#belgium_social_integration_income_support_annual_amount: 21312.84
 
 - name: ineligible_household_payable_amount_is_zero
   period:
@@ -73,6 +100,7 @@
     be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: true
     be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: false
     be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 1.2
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_use_supplied_current_monthly_amounts: false
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_use_supplied_chapter_2_countable_annual_resources: true
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 1560
   output:
@@ -95,6 +123,7 @@
     be:statutes/social_integration/minimum_income_amounts#input.has_dependent_family: false
     be:statutes/social_integration/minimum_income_amounts#input.is_cohabiting: true
     be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_current_index_factor: 1.2
+    be:statutes/social_integration/minimum_income_amounts#input.belgium_social_integration_use_supplied_current_monthly_amounts: false
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_use_supplied_chapter_2_countable_annual_resources: false
     be:statutes/social_integration/payable_amount#input.belgium_social_integration_supplied_chapter_2_countable_annual_resources: 0
     be:regulations/social_integration/resource_calculation#input.belgium_social_integration_gross_resources: 635

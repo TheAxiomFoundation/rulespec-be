@@ -11,7 +11,13 @@ module:
 
     statutory base amounts, household category selector, and an indexed amount
 
-    bridge using a supplied current index factor; chapter II resource
+    bridge using a supplied current index factor. It also exposes an optional
+
+    supplied current monthly amount bridge for official SPP/POD Social
+
+    Integration amount tables when a current category amount is available
+
+    directly. Chapter II resource
 
     calculations remain separate surfaces.'
   source_verification:
@@ -124,4 +130,51 @@ rules:
         import:
           target: be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
           output: belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
+          hash: sha256:local
+- name: belgium_social_integration_supplied_current_monthly_amount_for_category
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Federal social-integration law articles 14 and 15, with optional official
+    current monthly category amounts supplied from SPP/POD Social Integration amount
+    tables
+  versions:
+  - effective_from: '2024-05-31'
+    formula: "if has_dependent_family:\n    belgium_social_integration_supplied_dependent_family_current_monthly_amount\n\
+      else:\n    if is_cohabiting:\n        belgium_social_integration_supplied_cohabitant_current_monthly_amount\n\
+      \    else:\n        belgium_social_integration_supplied_isolated_current_monthly_amount"
+- name: belgium_social_integration_selected_monthly_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Month
+  unit: EUR
+  source: Federal social-integration law articles 14 and 15, with optional official
+    current monthly amount bridge when supplied
+  versions:
+  - effective_from: '2024-05-31'
+    formula: "if belgium_social_integration_use_supplied_current_monthly_amounts:\n\
+      \    belgium_social_integration_supplied_current_monthly_amount_for_category\n\
+      else:\n    belgium_social_integration_article_15_indexed_monthly_amount"
+- name: belgium_social_integration_selected_annual_amount
+  kind: derived
+  entity: Household
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: Federal social-integration law articles 14 and 15, annualized from the
+    selected monthly revenu d'integration amount
+  versions:
+  - effective_from: '2024-05-31'
+    formula: belgium_social_integration_selected_monthly_amount * belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_selected_monthly_amount
+          output: belgium_social_integration_selected_monthly_amount
           hash: sha256:local
