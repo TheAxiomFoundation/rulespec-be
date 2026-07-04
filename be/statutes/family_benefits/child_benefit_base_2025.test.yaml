@@ -1,0 +1,162 @@
+- name: brussels_new_system_child_under_6_receives_monthly_base_and_annual_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 0
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_monthly_amount: 186.51
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_annual_age_supplement: 24.87
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 2262.99
+
+- name: brussels_pre_2019_age_6_single_child_uses_transition_deduction
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 6
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 2126.26
+
+- name: brussels_pre_2019_age_13_single_child_uses_ordinary_annual_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 13
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 2151.13
+
+- name: brussels_age_18_requires_higher_education_for_oracle_slice
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 18
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_annual_age_supplement: 0
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 0
+
+- name: brussels_age_18_two_child_component_zero_without_higher_education
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 18
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 2
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_monthly_amount: 0
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_annual_age_supplement: 0
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 0
+
+- name: brussels_age_18_higher_education_gets_higher_annual_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 18
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: true
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 2188.43
+
+- name: wallonia_new_system_child_under_6_receives_new_base
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 0
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 3
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 2337.63
+
+- name: wallonia_pre_2020_age_6_first_child_uses_first_age_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 6
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 3
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_monthly_amount: 139.87
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_annual_age_supplement: 56.74
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 1735.18
+
+- name: wallonia_pre_2020_age_13_first_child_uses_second_age_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 13
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 3
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 1887.80
+
+- name: wallonia_pre_2020_age_18_first_child_still_paid_in_base_slice
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 18
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 3
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: false
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 1972.04
+
+- name: unmapped_region_or_age_25_returns_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 25
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 2
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: true
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_monthly_amount: 0
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_annual_age_supplement: 0
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount: 0
