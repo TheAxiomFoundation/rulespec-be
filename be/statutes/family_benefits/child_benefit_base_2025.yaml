@@ -5,10 +5,11 @@ module:
     base surface for the BE_2025 bch_s oracle slice. It covers the
     high-income one-child Brussels, Flemish, and Walloon cases where EUROMOD
     pays the ordinary monthly child benefit plus the annual age supplement,
-    the Brussels one-child Article 9 social supplement branch, and the
-    statutory German-speaking Community base branch. Multi-child social
-    supplements, orphan and disability supplements, payment-recipient rules,
-    and multi-child rank interactions remain separate surfaces. EUROMOD
+    the Brussels one-child Article 9 social supplement branch, the Walloon
+    Article 13 one-child social supplement branch, and the statutory
+    German-speaking Community base branch. Multi-child social supplements,
+    orphan and disability supplements, payment-recipient rules, and
+    multi-child rank interactions remain separate surfaces. EUROMOD
     BE_2025 currently returns zero for German-speaking Community cases, so
     that branch is encoded from statute rather than matched to the live oracle.
   source_verification:
@@ -24,9 +25,11 @@ module:
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-8
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
       - be-wal/statute/decret/2018/02/08/2018201006/article/9
+      - be-wal/statute/decret/2018/02/08/2018201006/article/13
       - be-wal/statute/decret/2018/02/08/2018201006/article/19
       - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
       - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-6
       - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
       - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
       - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
@@ -46,6 +49,7 @@ module:
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
         - be-wal/statute/decret/2018/02/08/2018201006/article/9
+        - be-wal/statute/decret/2018/02/08/2018201006/article/13
         - be-wal/statute/decret/2018/02/08/2018201006/article/19
         - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
         - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
@@ -120,6 +124,10 @@ module:
       belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement: "105.56"
       belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount: "192.73"
       belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount: "24.87"
+      belgium_child_benefit_wallonia_article_13_2025_low_income_threshold: "34000.47"
+      belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold: "54867.79"
+      belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement: "68.39"
+      belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement: "31.09"
       belgium_child_benefit_flanders_article_13_2025_base_monthly_amount: "180.19"
       belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_0_to_3_annual_amount: "22.52"
       belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_4_to_11_annual_amount: "39.41"
@@ -582,6 +590,46 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           24.87
+  - name: belgium_child_benefit_wallonia_article_13_2025_low_income_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree article 13, AVIQ 2025 first social-supplement income ceiling for rights from 1 July 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          34000.47
+  - name: belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree article 13, AVIQ 2025 second social-supplement income ceiling for rights from 1 July 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          54867.79
+  - name: belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 13, indexed monthly social supplement for families below the first ceiling from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          68.39
+  - name: belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 13, indexed monthly social supplement for families below the second ceiling from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          31.09
   - name: belgium_child_benefit_flanders_article_13_2025_base_monthly_amount
     kind: parameter
     dtype: Money
@@ -875,6 +923,46 @@ rules:
                               belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement
                           else:
                               0
+  - name: belgium_child_benefit_wallonia_article_13_2025_monthly_social_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 13 social supplement, indexed 2025 new-system one-child branch
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_wallonia:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
+                  if belgium_child_benefit_wallonia_article_13_household_annual_income < belgium_child_benefit_wallonia_article_13_2025_low_income_threshold:
+                      belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement
+                  else:
+                      if belgium_child_benefit_wallonia_article_13_household_annual_income < belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold:
+                          belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement
+                      else:
+                          0
+              else:
+                  0
+          else:
+              0
+  - name: belgium_child_benefit_wallonia_2025_annual_amount_with_social_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree articles 9, 13, and 19, BE_2025 ordinary child benefit plus Article 13 social supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_wallonia:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
+                  (belgium_child_benefit_wallonia_2025_monthly_amount + belgium_child_benefit_wallonia_article_13_2025_monthly_social_supplement) * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_wallonia_2025_annual_age_supplement
+              else:
+                  0
+          else:
+              0
   - name: belgium_child_benefit_flanders_2025_monthly_amount
     kind: derived
     entity: Household
