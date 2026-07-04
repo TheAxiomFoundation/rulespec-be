@@ -4,10 +4,12 @@ module:
     This module provides a Belgian-facing, household-level 2025 child-benefit
     base surface for the BE_2025 bch_s oracle slice. It covers the
     high-income one-child Brussels and Walloon cases where EUROMOD pays the
-    ordinary monthly child benefit plus the annual age supplement. Flanders,
-    the German-speaking Community, social supplements, orphan and disability
-    supplements, payment-recipient rules, and multi-child rank interactions
-    remain separate surfaces.
+    ordinary monthly child benefit plus the annual age supplement, and the
+    statutory German-speaking Community base branch. Flanders, social
+    supplements, orphan and disability supplements, payment-recipient rules,
+    and multi-child rank interactions remain separate surfaces. EUROMOD
+    BE_2025 currently returns zero for German-speaking Community cases, so
+    that branch is encoded from statute rather than matched to the live oracle.
   source_verification:
     corpus_citation_paths:
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
@@ -19,6 +21,8 @@ module:
       - be-wal/statute/decret/2018/02/08/2018201006/article/19
       - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
       - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+      - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
     upstream_source_check:
       status: official_parameter_source
       checked_paths:
@@ -26,15 +30,21 @@ module:
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
         - be-wal/statute/decret/2018/02/08/2018201006/article/9
         - be-wal/statute/decret/2018/02/08/2018201006/article/19
+        - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+        - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
       rationale: |-
         The Brussels ordinance and Walloon decree establish the base child
         benefit and annual age-supplement structures. The 2025 Iriscare and
         AVIQ amount tables are official administrative publications used only
         to ground the indexed amounts in force for the BE_2025 oracle slice
-        after checking those statutory sources.
+        after checking those statutory sources. The German-speaking Community
+        decree provides the statutory base amount and entitlement boundaries,
+        and the 2025 programme-decree amendment freezes indexation for 2025
+        and sets the 2025 annual supplement.
     values:
       belgium_family_benefits_child_benefit_region_brussels: 1
       belgium_family_benefits_child_benefit_region_wallonia: 3
+      belgium_family_benefits_child_benefit_region_german_speaking_community: 4
       belgium_family_benefits_child_benefit_months_in_year: 12
       belgium_family_benefits_child_benefit_age_5_years: 5
       belgium_family_benefits_child_benefit_age_6_years: 6
@@ -60,6 +70,8 @@ module:
       belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement: "105.56"
       belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount: "192.73"
       belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount: "24.87"
+      belgium_child_benefit_dg_article_8_2025_base_monthly_amount: "157"
+      belgium_child_benefit_dg_article_117_4_2025_annual_supplement: "62.55"
 units:
   - name: EUR
     kind: currency
@@ -81,6 +93,14 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           3
+  - name: belgium_family_benefits_child_benefit_region_german_speaking_community
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for German-speaking Community child-benefit routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4
   - name: belgium_family_benefits_child_benefit_months_in_year
     kind: parameter
     dtype: Integer
@@ -315,6 +335,26 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           24.87
+  - name: belgium_child_benefit_dg_article_8_2025_base_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: German-speaking Community family-benefits decree article 8, with article 117.3 freezing 2025 indexation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          157
+  - name: belgium_child_benefit_dg_article_117_4_2025_annual_supplement
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: German-speaking Community 2025 programme-decree article 117.4 annual supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          62.55
   - name: belgium_child_benefit_brussels_2025_monthly_amount
     kind: derived
     entity: Household
@@ -413,13 +453,47 @@ rules:
                               belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement
                           else:
                               0
+  - name: belgium_child_benefit_dg_2025_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: German-speaking Community family-benefits decree articles 8, 9, and 14, BE_2025 base monthly amount
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+              belgium_child_benefit_dg_article_8_2025_base_monthly_amount
+          else:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years and belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                  belgium_child_benefit_dg_article_8_2025_base_monthly_amount
+              else:
+                  0
+  - name: belgium_child_benefit_dg_2025_annual_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: German-speaking Community 2025 programme-decree article 117.4 annual supplement for a child with base-benefit entitlement in July 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+              belgium_child_benefit_dg_article_117_4_2025_annual_supplement
+          else:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years and belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                  belgium_child_benefit_dg_article_117_4_2025_annual_supplement
+              else:
+                  0
   - name: belgium_family_benefits_child_benefit_base_2025_annual_amount
     kind: derived
     entity: Household
     dtype: Money
     period: Year
     unit: EUR
-    source: Brussels and Walloon 2025 one-child base child benefit for BE_2025 bch_s oracle comparisons
+    source: Brussels, Walloon, and German-speaking Community 2025 one-child base child benefit for BE_2025 bch_s oracle comparisons
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -433,6 +507,9 @@ rules:
                   if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_wallonia:
                       belgium_child_benefit_wallonia_2025_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_wallonia_2025_annual_age_supplement
                   else:
-                      0
+                      if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_german_speaking_community:
+                          belgium_child_benefit_dg_2025_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_dg_2025_annual_supplement
+                      else:
+                          0
           else:
               0
