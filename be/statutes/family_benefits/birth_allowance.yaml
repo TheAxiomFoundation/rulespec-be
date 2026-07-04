@@ -3,16 +3,19 @@ module:
   summary: |-
     This module provides a Belgian-facing, household-level birth-allowance
     surface for the BE_2025 oracle slice. It routes the indexed 2025
-    one-off birth amounts for Brussels, Flanders, and Wallonia using the
-    newborn and birth-order facts used by EUROMOD's bchba_be policy. Broader
-    family-benefit eligibility, payment administration, German-speaking
-    Community birth premiums, adoption premiums, and monthly child benefits
-    remain separate surfaces.
+    one-off birth amounts for Brussels, Flanders, Wallonia, and the
+    German-speaking Community using the newborn and birth-order facts used by
+    EUROMOD's bchba_be policy. Broader family-benefit eligibility, payment
+    administration, adoption premiums, and monthly child benefits remain
+    separate surfaces.
   source_verification:
     corpus_citation_paths:
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
       - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
       - be-wal/statute/decret/2018/02/08/2018201006/article/7
+      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+      - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
       - be-vlg/guidance/gpedia/family-benefits/start-amount-decision-2025-112/page-1
       - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-5
@@ -22,21 +25,29 @@ module:
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
         - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
         - be-wal/statute/decret/2018/02/08/2018201006/article/7
+        - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+        - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+        - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
       rationale: |-
-        The Brussels ordinance, Flemish decree, and Walloon decree establish
-        the entitlement and base birth-allowance structures. The 2025 current
-        amount tables are official administrative publications used only to
-        ground the indexed amounts in force for the BE_2025 oracle slice after
-        checking those statutory sources.
+        The Brussels ordinance, Flemish decree, Walloon decree, and
+        German-speaking Community decree establish the entitlement and base
+        birth-allowance structures. The 2025 current amount tables are official
+        administrative publications used only to ground the indexed amounts in
+        force for the BE_2025 oracle slice after checking those statutory
+        sources. For the German-speaking Community, Article 30 establishes the
+        2019 birth premium and the 2025-2027 freeze module supplies the
+        pre-2025 index factor used by the oracle bridge.
     values:
       belgium_family_benefits_birth_allowance_region_brussels: 1
       belgium_family_benefits_birth_allowance_region_flanders: 2
       belgium_family_benefits_birth_allowance_region_wallonia: 3
+      belgium_family_benefits_birth_allowance_region_german_speaking_community: 4
       belgium_family_benefits_birth_allowance_newborn_age_years: 0
       belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth_2025_amount: "1367.74"
       belgium_family_benefits_birth_allowance_brussels_later_child_2025_amount: "621.70"
       belgium_family_benefits_birth_allowance_flanders_2025_amount: "1238.78"
       belgium_family_benefits_birth_allowance_wallonia_2025_amount: "1367.74"
+      belgium_family_benefits_birth_allowance_german_speaking_community_birth_premium_2019_amount: "1144"
 units:
   - name: EUR
     kind: currency
@@ -66,6 +77,14 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           3
+  - name: belgium_family_benefits_birth_allowance_region_german_speaking_community
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for German-speaking Community birth-allowance routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4
   - name: belgium_family_benefits_birth_allowance_newborn_age_years
     kind: parameter
     dtype: Integer
@@ -114,6 +133,35 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           1367.74
+  - name: belgium_family_benefits_birth_allowance_german_speaking_community_birth_premium_2019_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: German-speaking Community decree of 23 April 2018 on family benefits, article 30
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+              span: German-speaking Community decree of 23 April 2018 on family benefits, article 30
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          1144
+  - name: belgium_family_benefits_birth_allowance_german_speaking_community_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: German-speaking Community decree of 23 April 2018 on family benefits, articles 30 and 38, with the supplied pre-2025 index factor used for the 2025-2027 freeze bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_family_benefits_birth_allowance_german_speaking_community_birth_premium_2019_amount * belgium_family_benefits_birth_allowance_german_speaking_community_pre_2025_index_factor
   - name: belgium_family_benefits_birth_allowance_amount
     kind: derived
     entity: Household
@@ -137,6 +185,9 @@ rules:
                       if belgium_family_benefits_birth_allowance_region == belgium_family_benefits_birth_allowance_region_wallonia:
                           belgium_family_benefits_birth_allowance_wallonia_2025_amount
                       else:
-                          0
+                          if belgium_family_benefits_birth_allowance_region == belgium_family_benefits_birth_allowance_region_german_speaking_community:
+                              belgium_family_benefits_birth_allowance_german_speaking_community_annual_amount
+                          else:
+                              0
           else:
               0
