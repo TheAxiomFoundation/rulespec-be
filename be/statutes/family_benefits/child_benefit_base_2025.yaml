@@ -1,0 +1,438 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module provides a Belgian-facing, household-level 2025 child-benefit
+    base surface for the BE_2025 bch_s oracle slice. It covers the
+    high-income one-child Brussels and Walloon cases where EUROMOD pays the
+    ordinary monthly child benefit plus the annual age supplement. Flanders,
+    the German-speaking Community, social supplements, orphan and disability
+    supplements, payment-recipient rules, and multi-child rank interactions
+    remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-2
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-3
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
+      - be-wal/statute/decret/2018/02/08/2018201006/article/9
+      - be-wal/statute/decret/2018/02/08/2018201006/article/19
+      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
+        - be-wal/statute/decret/2018/02/08/2018201006/article/9
+        - be-wal/statute/decret/2018/02/08/2018201006/article/19
+      rationale: |-
+        The Brussels ordinance and Walloon decree establish the base child
+        benefit and annual age-supplement structures. The 2025 Iriscare and
+        AVIQ amount tables are official administrative publications used only
+        to ground the indexed amounts in force for the BE_2025 oracle slice
+        after checking those statutory sources.
+    values:
+      belgium_family_benefits_child_benefit_region_brussels: 1
+      belgium_family_benefits_child_benefit_region_wallonia: 3
+      belgium_family_benefits_child_benefit_months_in_year: 12
+      belgium_family_benefits_child_benefit_age_5_years: 5
+      belgium_family_benefits_child_benefit_age_6_years: 6
+      belgium_family_benefits_child_benefit_age_11_years: 11
+      belgium_family_benefits_child_benefit_age_12_years: 12
+      belgium_family_benefits_child_benefit_age_18_years: 18
+      belgium_family_benefits_child_benefit_age_25_years: 25
+      belgium_family_benefits_child_benefit_one_child_count: 1
+      belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount: "186.51"
+      belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount: "198.94"
+      belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount: "211.38"
+      belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction: "12.43"
+      belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount: "24.87"
+      belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount: "37.30"
+      belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount: "62.17"
+      belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount: "99.47"
+      belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount: "119.12"
+      belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement: "20.75"
+      belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement: "31.60"
+      belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement: "36.42"
+      belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement: "56.74"
+      belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement: "79.16"
+      belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement: "105.56"
+      belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount: "192.73"
+      belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount: "24.87"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_family_benefits_child_benefit_region_brussels
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Brussels child-benefit routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_family_benefits_child_benefit_region_wallonia
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Walloon child-benefit routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3
+  - name: belgium_family_benefits_child_benefit_months_in_year
+    kind: parameter
+    dtype: Integer
+    source: Calendar year contains twelve monthly child-benefit payments
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          12
+  - name: belgium_family_benefits_child_benefit_age_5_years
+    kind: parameter
+    dtype: Integer
+    source: Walloon 2025 table first annual-supplement upper age band
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5
+  - name: belgium_family_benefits_child_benefit_age_6_years
+    kind: parameter
+    dtype: Integer
+    source: Brussels and Walloon family-benefit annual age-supplement age band
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          6
+  - name: belgium_family_benefits_child_benefit_age_11_years
+    kind: parameter
+    dtype: Integer
+    source: Walloon 2025 table second annual-supplement upper age band
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          11
+  - name: belgium_family_benefits_child_benefit_age_12_years
+    kind: parameter
+    dtype: Integer
+    source: Brussels and Walloon family-benefit base and annual age-supplement age band
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          12
+  - name: belgium_family_benefits_child_benefit_age_18_years
+    kind: parameter
+    dtype: Integer
+    source: Brussels and Walloon family-benefit base and annual age-supplement age band
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          18
+  - name: belgium_family_benefits_child_benefit_age_25_years
+    kind: parameter
+    dtype: Integer
+    source: Brussels and Walloon family-benefit maximum student-age boundary
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          25
+  - name: belgium_family_benefits_child_benefit_one_child_count
+    kind: parameter
+    dtype: Integer
+    source: One-child oracle slice selector
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 7, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          186.51
+  - name: belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 7, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          198.94
+  - name: belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 7, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          211.38
+  - name: belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 35 transition deduction, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          12.43
+  - name: belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          24.87
+  - name: belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          37.30
+  - name: belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          62.17
+  - name: belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          99.47
+  - name: belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 9, pre-2020 first-child indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          119.12
+  - name: belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 19 transition amount, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          20.75
+  - name: belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 19 transition amount, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          31.60
+  - name: belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 19 transition amount, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          36.42
+  - name: belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree article 19 transition annual age supplement, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          56.74
+  - name: belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree article 19 transition annual age supplement, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          79.16
+  - name: belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree article 19 transition annual age supplement, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          105.56
+  - name: belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree article 9, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          192.73
+  - name: belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree article 9 annual age supplement, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          24.87
+  - name: belgium_child_benefit_brussels_2025_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance articles 7 and 35, BE_2025 one-child ordinary monthly amount
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+              belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount
+          else:
+              if belgium_family_benefits_child_benefit_household_child_count == belgium_family_benefits_child_benefit_one_child_count:
+                  belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+              else:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                      belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                  else:
+                      if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                          belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                      else:
+                          if belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                              belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                          else:
+                              0
+  - name: belgium_child_benefit_brussels_2025_annual_age_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 15, BE_2025 ordinary annual age supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+              belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount
+          else:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                  belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount
+              else:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                      belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount
+                  else:
+                      if belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                          belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount
+                      else:
+                          0
+  - name: belgium_child_benefit_wallonia_2025_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon family-benefits decree articles 9 and 19, BE_2025 one-child ordinary monthly amount
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+              belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount
+          else:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                  belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount + belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement
+              else:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                      belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount + belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement
+                  else:
+                      if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
+                          belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount + belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement
+                      else:
+                          0
+  - name: belgium_child_benefit_wallonia_2025_annual_age_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon family-benefits decree articles 9 and 19, BE_2025 ordinary annual age supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_5_years:
+              belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount
+          else:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+                  belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount
+              else:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                      belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement
+                  else:
+                      if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                          belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement
+                      else:
+                          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
+                              belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement
+                          else:
+                              0
+  - name: belgium_family_benefits_child_benefit_base_2025_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels and Walloon 2025 one-child base child benefit for BE_2025 bch_s oracle comparisons
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
+              if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_brussels:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years or belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                      belgium_child_benefit_brussels_2025_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_brussels_2025_annual_age_supplement
+                  else:
+                      0
+              else:
+                  if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      belgium_child_benefit_wallonia_2025_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_wallonia_2025_annual_age_supplement
+                  else:
+                      0
+          else:
+              0
