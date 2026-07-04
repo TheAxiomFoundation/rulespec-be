@@ -1,3 +1,13 @@
+- name: ordinary_gross_tax_2025_for_euromod_bridge
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+  output:
+    be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_ordinary_gross_tax: 39.70
 - name: ordinary_rate_gross_tax
   period:
     period_kind: custom
