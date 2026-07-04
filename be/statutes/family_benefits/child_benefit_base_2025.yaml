@@ -800,6 +800,32 @@ rules:
                                   0
                       else:
                           0
+  - name: belgium_child_benefit_brussels_article_9_2025_monthly_base_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance articles 7, 9, and 35, BE_2025 monthly base used when Article 9 social supplement applies
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_child_benefit_brussels_article_9_2025_monthly_social_supplement > 0:
+              if belgium_family_benefits_child_benefit_household_child_count == belgium_family_benefits_child_benefit_one_child_count:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                      belgium_child_benefit_brussels_2025_monthly_amount
+                  else:
+                      if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                          belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                      else:
+                          if belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                              belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount
+                          else:
+                              0
+              else:
+                  belgium_child_benefit_brussels_2025_monthly_amount
+          else:
+              belgium_child_benefit_brussels_2025_monthly_amount
   - name: belgium_child_benefit_wallonia_2025_monthly_amount
     kind: derived
     entity: Household
@@ -977,7 +1003,7 @@ rules:
           if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_brussels:
               if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
                   if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years or belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
-                      (belgium_child_benefit_brussels_2025_monthly_amount + belgium_child_benefit_brussels_article_9_2025_monthly_social_supplement) * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_brussels_2025_annual_age_supplement
+                      (belgium_child_benefit_brussels_article_9_2025_monthly_base_amount + belgium_child_benefit_brussels_article_9_2025_monthly_social_supplement) * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_brussels_2025_annual_age_supplement
                   else:
                       0
               else:
