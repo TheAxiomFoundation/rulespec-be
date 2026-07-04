@@ -1,0 +1,64 @@
+- name: brussels_first_child_birth_allowance_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_child_age_years: 0
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_region: 1
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth: true
+  output:
+    be:statutes/family_benefits/birth_allowance#belgium_family_benefits_birth_allowance_amount: 1367.74
+
+- name: brussels_later_child_birth_allowance_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_child_age_years: 0
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_region: 1
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth: false
+  output:
+    be:statutes/family_benefits/birth_allowance#belgium_family_benefits_birth_allowance_amount: 621.70
+
+- name: flanders_birth_allowance_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_child_age_years: 0
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_region: 2
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth: false
+  output:
+    be:statutes/family_benefits/birth_allowance#belgium_family_benefits_birth_allowance_amount: 1238.78
+
+- name: wallonia_birth_allowance_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_child_age_years: 0
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_region: 3
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth: false
+  output:
+    be:statutes/family_benefits/birth_allowance#belgium_family_benefits_birth_allowance_amount: 1367.74
+
+- name: no_birth_allowance_for_non_newborn_or_unmapped_region
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_child_age_years: 1
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_region: 4
+    be:statutes/family_benefits/birth_allowance#input.belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth: true
+  output:
+    be:statutes/family_benefits/birth_allowance#belgium_family_benefits_birth_allowance_amount: 0

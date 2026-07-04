@@ -1,0 +1,142 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module provides a Belgian-facing, household-level birth-allowance
+    surface for the BE_2025 oracle slice. It routes the indexed 2025
+    one-off birth amounts for Brussels, Flanders, and Wallonia using the
+    newborn and birth-order facts used by EUROMOD's bchba_be policy. Broader
+    family-benefit eligibility, payment administration, German-speaking
+    Community birth premiums, adoption premiums, and monthly child benefits
+    remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
+      - be-wal/statute/decret/2018/02/08/2018201006/article/7
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
+      - be-vlg/guidance/gpedia/family-benefits/start-amount-decision-2025-112/page-1
+      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-5
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
+        - be-wal/statute/decret/2018/02/08/2018201006/article/7
+      rationale: |-
+        The Brussels ordinance, Flemish decree, and Walloon decree establish
+        the entitlement and base birth-allowance structures. The 2025 current
+        amount tables are official administrative publications used only to
+        ground the indexed amounts in force for the BE_2025 oracle slice after
+        checking those statutory sources.
+    values:
+      belgium_family_benefits_birth_allowance_region_brussels: 1
+      belgium_family_benefits_birth_allowance_region_flanders: 2
+      belgium_family_benefits_birth_allowance_region_wallonia: 3
+      belgium_family_benefits_birth_allowance_newborn_age_years: 0
+      belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth_2025_amount: "1367.74"
+      belgium_family_benefits_birth_allowance_brussels_later_child_2025_amount: "621.70"
+      belgium_family_benefits_birth_allowance_flanders_2025_amount: "1238.78"
+      belgium_family_benefits_birth_allowance_wallonia_2025_amount: "1367.74"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_family_benefits_birth_allowance_region_brussels
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Brussels birth-allowance routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_family_benefits_birth_allowance_region_flanders
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Flemish birth-allowance routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2
+  - name: belgium_family_benefits_birth_allowance_region_wallonia
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Walloon birth-allowance routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3
+  - name: belgium_family_benefits_birth_allowance_newborn_age_years
+    kind: parameter
+    dtype: Integer
+    source: Birth-allowance newborn event selector; EUROMOD bchba_be treats dag = 0 as the birth event
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+  - name: belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth_2025_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1367.74
+  - name: belgium_family_benefits_birth_allowance_brussels_later_child_2025_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          621.70
+  - name: belgium_family_benefits_birth_allowance_flanders_2025_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 9, indexed amount in force before the September 2025 indexation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1238.78
+  - name: belgium_family_benefits_birth_allowance_wallonia_2025_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon decree of 8 February 2018 on management and payment of family benefits, article 7, indexed amount in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1367.74
+  - name: belgium_family_benefits_birth_allowance_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Belgian regional and community bridge over encoded birth-allowance amount rules for BE_2025 oracle comparisons
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_birth_allowance_child_age_years == belgium_family_benefits_birth_allowance_newborn_age_years:
+              if belgium_family_benefits_birth_allowance_region == belgium_family_benefits_birth_allowance_region_brussels:
+                  if belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth:
+                      belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth_2025_amount
+                  else:
+                      belgium_family_benefits_birth_allowance_brussels_later_child_2025_amount
+              else:
+                  if belgium_family_benefits_birth_allowance_region == belgium_family_benefits_birth_allowance_region_flanders:
+                      belgium_family_benefits_birth_allowance_flanders_2025_amount
+                  else:
+                      if belgium_family_benefits_birth_allowance_region == belgium_family_benefits_birth_allowance_region_wallonia:
+                          belgium_family_benefits_birth_allowance_wallonia_2025_amount
+                      else:
+                          0
+          else:
+              0
