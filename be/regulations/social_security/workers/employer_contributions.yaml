@@ -1,0 +1,231 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module encodes the ordinary employer social-security contribution
+    bridge for 2025 private-sector commercial employers. It applies the ONSS
+    DmfA 2025 Q1 current-rate instructions after checking the Article 38 legal
+    base: the tax-shift basic employer rate, the wage-moderation contribution,
+    the 1.60 percent contribution including wage moderation for employers with
+    at least 10 workers, and the Fonds de fermeture des entreprises rates from
+    the official ONSS 2025 workbook. It leaves special employer categories,
+    public-sector regimes, manual-worker vacation contributions, reduced
+    structural employer contributions, quarter-specific payroll declarations,
+    and non-commercial FFE categories to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1981/06/29/1981001048/article/38
+      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift
+      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-contribution
+      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
+      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution
+      - be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be/statute/loi/1981/06/29/1981001048/article/38
+      rationale: |-
+        Article 38 establishes the employer contribution legal base and wage
+        moderation structure. The ONSS DmfA instructions and linked FFE workbook
+        are the official employer-facing 2025 administrative rate tables for the
+        current tax-shift basic rate, wage-moderation rate, 1.60 percent
+        contribution with wage moderation, and company-closing-fund percentages.
+    values:
+      belgium_employer_social_security_source_percent_denominator: "100"
+      belgium_employer_social_security_ordinary_worker_basic_percent_after_tax_shift: "19.88"
+      belgium_employer_social_security_ordinary_worker_wage_moderation_percent_after_tax_shift: "4.27"
+      belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_percent: "1.69"
+      belgium_employer_social_security_ffe_less_than_20_workers_commercial_percent_with_wage_moderation: "0.18"
+      belgium_employer_social_security_ffe_at_least_20_workers_commercial_percent_with_wage_moderation: "0.23"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_employer_social_security_source_percent_denominator
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DmfA 2025 Q1 contribution-rate percentage notation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          100
+  - name: belgium_employer_social_security_ordinary_worker_basic_percent_after_tax_shift
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, basic employer rate after tax shift states 19.88 percent
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          19.88
+  - name: belgium_employer_social_security_ordinary_worker_basic_rate_after_tax_shift
+    kind: parameter
+    dtype: Rate
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, basic employer rate after tax shift
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_ordinary_worker_basic_percent_after_tax_shift / belgium_employer_social_security_source_percent_denominator
+  - name: belgium_employer_social_security_ordinary_worker_wage_moderation_percent_after_tax_shift
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, category 1 wage-moderation percentage after tax shift states 4.27 percent
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4.27
+  - name: belgium_employer_social_security_ordinary_worker_wage_moderation_base_salary_rate_after_tax_shift
+    kind: parameter
+    dtype: Rate
+    source: ONSS DmfA 2025 Q1 wage-moderation instructions, tax-shift category 1 percentage applied to remuneration
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_ordinary_worker_wage_moderation_percent_after_tax_shift / belgium_employer_social_security_source_percent_denominator
+  - name: belgium_employer_social_security_ordinary_worker_wage_moderation_on_basic_employer_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: ONSS DmfA 2025 Q1 wage-moderation instructions apply the same percentage to employer contributions due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_ordinary_worker_basic_rate_after_tax_shift * belgium_employer_social_security_ordinary_worker_wage_moderation_base_salary_rate_after_tax_shift
+  - name: belgium_employer_social_security_ordinary_worker_wage_moderation_rate_after_tax_shift
+    kind: parameter
+    dtype: Rate
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, wage-moderation after tax shift equals 4.27 percent of remuneration plus 4.27 percent of the basic employer contribution
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_ordinary_worker_wage_moderation_base_salary_rate_after_tax_shift + belgium_employer_social_security_ordinary_worker_wage_moderation_on_basic_employer_contribution_rate
+  - name: belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_percent
+    kind: parameter
+    dtype: Decimal
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, 1.60 percent contribution is 1.69 percent after wage moderation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1.69
+  - name: belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_rate
+    kind: parameter
+    dtype: Rate
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, 1.60 percent contribution after wage moderation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_percent / belgium_employer_social_security_source_percent_denominator
+  - name: belgium_employer_social_security_ffe_less_than_20_workers_commercial_percent_with_wage_moderation
+    kind: parameter
+    dtype: Decimal
+    source: ONSS 2025 FFE workbook, commercial employers with fewer than 20 workers, parenthesized rate including wage moderation states 0.18 percent
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.18
+  - name: belgium_employer_social_security_ffe_less_than_20_workers_commercial_rate_with_wage_moderation
+    kind: parameter
+    dtype: Rate
+    source: ONSS 2025 FFE workbook, commercial employers with fewer than 20 workers, rate including wage moderation in parentheses
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_ffe_less_than_20_workers_commercial_percent_with_wage_moderation / belgium_employer_social_security_source_percent_denominator
+  - name: belgium_employer_social_security_ffe_at_least_20_workers_commercial_percent_with_wage_moderation
+    kind: parameter
+    dtype: Decimal
+    source: ONSS 2025 FFE workbook, commercial employers with at least 20 workers, parenthesized rate including wage moderation states 0.23 percent
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.23
+  - name: belgium_employer_social_security_ffe_at_least_20_workers_commercial_rate_with_wage_moderation
+    kind: parameter
+    dtype: Rate
+    source: ONSS 2025 FFE workbook, commercial employers with at least 20 workers, rate including wage moderation in parentheses
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_ffe_at_least_20_workers_commercial_percent_with_wage_moderation / belgium_employer_social_security_source_percent_denominator
+  - name: belgium_employer_social_security_basic_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, 19.88 percent basic employer rate
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_employer_social_security_contribution_base) * belgium_employer_social_security_ordinary_worker_basic_rate_after_tax_shift
+  - name: belgium_employer_social_security_wage_moderation_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, wage moderation after tax shift on remuneration and the basic employer contribution
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_employer_social_security_contribution_base) * belgium_employer_social_security_ordinary_worker_wage_moderation_rate_after_tax_shift
+  - name: belgium_employer_social_security_one_point_six_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: ONSS DmfA 2025 Q1 social-security contributions instructions, 1.60 percent contribution for employers with at least 10 workers including wage moderation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_employer_social_security_employer_has_at_least_10_workers:
+              max(0, belgium_employer_social_security_contribution_base) * belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_rate
+          else:
+              0
+  - name: belgium_employer_social_security_company_closing_fund_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: ONSS 2025 FFE workbook, commercial employer rates including wage moderation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_employer_social_security_employer_has_at_least_20_workers:
+              belgium_employer_social_security_ffe_at_least_20_workers_commercial_rate_with_wage_moderation
+          else:
+              belgium_employer_social_security_ffe_less_than_20_workers_commercial_rate_with_wage_moderation
+  - name: belgium_employer_social_security_company_closing_fund_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: ONSS 2025 FFE workbook, commercial employer company-closing-fund contribution
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_employer_social_security_contribution_base) * belgium_employer_social_security_company_closing_fund_rate
+  - name: belgium_employer_social_security_ordinary_worker_contribution_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: ONSS DmfA 2025 Q1 ordinary employer contribution rate bridge for private-sector commercial employers
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_employer_social_security_employer_has_at_least_10_workers:
+              belgium_employer_social_security_ordinary_worker_basic_rate_after_tax_shift + belgium_employer_social_security_ordinary_worker_wage_moderation_rate_after_tax_shift + belgium_employer_social_security_company_closing_fund_rate + belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_rate
+          else:
+              belgium_employer_social_security_ordinary_worker_basic_rate_after_tax_shift + belgium_employer_social_security_ordinary_worker_wage_moderation_rate_after_tax_shift + belgium_employer_social_security_company_closing_fund_rate
+  - name: belgium_employer_social_security_ordinary_worker_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: ONSS DmfA 2025 Q1 ordinary employer contribution bridge before unencoded reductions and special employer categories
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employer_social_security_basic_contribution + belgium_employer_social_security_wage_moderation_contribution + belgium_employer_social_security_one_point_six_contribution + belgium_employer_social_security_company_closing_fund_contribution

@@ -896,9 +896,17 @@
           "source_priority_role": "agency_guidance_after_law",
           "documents": [
             "administrative instructions",
-            "contribution rate tables"
+            "contribution rate tables",
+            "2025 Fonds de fermeture des entreprises workbook"
           ],
-          "status": "ready_for_agency_inventory"
+          "status": "corpus_ingested",
+          "corpus_citation_paths": [
+            "be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift",
+            "be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-contribution",
+            "be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift",
+            "be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution",
+            "be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates"
+          ]
         },
         {
           "source_id": "vlaamse-codex",
@@ -958,6 +966,22 @@
             "household-level external calculator or model still required"
           ],
           "status": "encoded"
+        },
+        {
+          "id": "ordinary-employer-social-security-contribution",
+          "destination": "be/regulations/social_security/workers/employer_contributions.yaml",
+          "source_requirements": [
+            "1981 social-security principles law article 38 employer contribution legal base and wage-moderation structure",
+            "ONSS DmfA 2025 Q1 basic employer rate after tax shift",
+            "ONSS DmfA 2025 Q1 wage-moderation formula and tax-shift rate",
+            "ONSS DmfA 2025 Q1 1.60 percent contribution including wage moderation",
+            "ONSS 2025 Fonds de fermeture des entreprises commercial employer rates including wage moderation"
+          ],
+          "oracle_checks": [
+            "euromod-belgium:BE_2025:tscer_s",
+            "household-level external calculator or model still required for non-EUROMOD confirmation"
+          ],
+          "status": "encoded_pending_oracle_discrepancy_classification"
         },
         {
           "id": "worker-social-security-article-17-component-rates-and-amounts",

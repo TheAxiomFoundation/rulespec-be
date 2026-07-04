@@ -2,7 +2,7 @@
   "created_at": "2026-07-02",
   "jurisdiction": "be",
   "purpose": "Coverage inventory for the EUROMOD Belgium BE_2025 model surface against Belgium RuleSpec. EUROMOD is an executable comparison oracle, not legal authority; statutory and regulatory RuleSpec modules must still cite upstream Belgian law.",
-  "coverage_claim": "Current Axiom coverage is three EUROMOD-facing output concepts: employee SSC tscee_s is live-verified for the regular worker statutory slice; PIT tin_s has a composed single-worker pilot that nets ordinary employee SSC before Article 51 forfait expenses and computes Article 289ter/1 work-bonus credit amounts from the encoded ONSS January and February-onward 2025 work-bonus A/B reduction for the full-year equal-month worker slice; Flemish jobbonus bwkrg_s now has a statutory 2025 RuleSpec target pending live EUROMOD comparison. The broader BE_2025 model has 43 policy nodes and is not yet covered end-to-end.",
+  "coverage_claim": "Current Axiom coverage is four EUROMOD-facing output concepts: employee SSC tscee_s is live-verified for the regular worker statutory slice; employer SSC tscer_s has an official ONSS 2025 ordinary private-sector commercial employer RuleSpec target pending oracle discrepancy classification; PIT tin_s has a composed single-worker pilot that nets ordinary employee SSC before Article 51 forfait expenses and computes Article 289ter/1 work-bonus credit amounts from the encoded ONSS January and February-onward 2025 work-bonus A/B reduction for the full-year equal-month worker slice; Flemish jobbonus bwkrg_s now has a statutory 2025 RuleSpec target pending live EUROMOD comparison. The broader BE_2025 model has 43 policy nodes and is not yet covered end-to-end.",
   "source_artifacts": [
     {
       "kind": "euromod_country_model",
@@ -59,9 +59,9 @@
     }
   },
   "coverage_summary": {
-    "current_oracle_output_targets": 3,
+    "current_oracle_output_targets": 4,
     "live_verified_oracle_output_targets": 1,
-    "prepared_oracle_output_targets": 1,
+    "prepared_oracle_output_targets": 2,
     "full_household_disposable_income_parity": false,
     "rule_percentage": null,
     "rule_percentage_note": "No percentage is reported until each BE_2025 policy/function is mapped to RuleSpec modules and marked encoded, composed, oracle-tested, or gap."
@@ -75,6 +75,15 @@
       "status": "live_oracle_verified_for_regular_worker_statutory_slice",
       "evidence": "The RuleSpec Article 38 ordinary employee-contribution bridge and the axiom-oracles EUROMOD Belgium live test both check tscee_s against 13.07 percent of EUROMOD post-uprating gross yem.",
       "remaining_gap": "Full ONSS contribution bases, partial-year and part-time work-bonus mechanics, special regimes, and household integration remain partial."
+    },
+    {
+      "euromod_variable": "tscer_s",
+      "meaning": "employer social contributions",
+      "rulespec_output": "be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_ordinary_worker_contribution",
+      "rulespec_module": "be/regulations/social_security/workers/employer_contributions.yaml",
+      "status": "rulespec_encoded_official_onss_pending_euromod_discrepancy_classification",
+      "evidence": "RuleSpec encodes the ONSS DmfA 2025 Q1 ordinary employer bridge for private-sector commercial employers from the 19.88 percent basic tax-shift rate, the 4.27 percent wage-moderation formula on remuneration and the basic employer contribution, the 1.69 percent 1.60-contribution including wage moderation, and the official ONSS 2025 FFE workbook parenthesized rates of 0.18 percent and 0.23 percent.",
+      "remaining_gap": "Live EUROMOD comparison must classify the residual before parity is claimed. Initial BE_2025 XML inspection indicates EUROMOD uses lower company-closing-fund rates than the current ONSS 2025 workbook; special employer categories, structural reductions, manual-worker vacation contributions, and full household contribution bases remain outside this ordinary-worker slice."
     },
     {
       "euromod_variable": "tin_s",
@@ -158,6 +167,7 @@
         "be/statutes/social_security/workers/contribution_rates.yaml",
         "be/regulations/social_security/workers/work_bonus.yaml",
         "be/regulations/social_security/workers/employee_contributions.yaml",
+        "be/regulations/social_security/workers/employer_contributions.yaml",
         "be/regulations/social_security/workers/remuneration_base.yaml",
         "be/statutes/social_security/special_contribution.yaml",
         "be/statutes/social_security/chapter_10_special_contributions.yaml",
@@ -165,8 +175,8 @@
         "be/regulations/social_security/self_employed/contributions.yaml",
         "be-vlg/regulations/social_security/flemish_social_protection/premium.yaml"
       ],
-      "status": "partial_statutory_coverage_employee_ssc_oracle_verified_with_work_bonus_pilot",
-      "oracle_status": "tscee_s regular worker statutory slice verified live before work-bonus retest"
+      "status": "partial_statutory_coverage_employee_ssc_oracle_verified_employer_ssc_encoded_with_work_bonus_pilot",
+      "oracle_status": "tscee_s regular worker statutory slice verified live before work-bonus retest; tscer_s official ONSS 2025 ordinary private-sector commercial employer slice encoded pending EUROMOD discrepancy classification"
     },
     {
       "domain": "family_benefits",
