@@ -82,7 +82,7 @@ rules:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
           span: CIR 1992 article 255
   versions:
-  - effective_from: '2026-01-01'
+  - effective_from: '2025-01-01'
     formula: '0.0125'
 - name: belgium_immovable_withholding_selected_rate
   kind: derived
@@ -119,6 +119,16 @@ rules:
   versions:
   - effective_from: '2026-01-01'
     formula: belgium_immovable_withholding_taxable_cadastral_income * belgium_immovable_withholding_selected_rate
+- name: belgium_immovable_withholding_ordinary_gross_tax
+  kind: derived
+  entity: Property
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 255 ordinary rate
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_immovable_withholding_taxable_cadastral_income * belgium_immovable_withholding_selected_rate_scalar_limit_2
 - name: belgium_immovable_withholding_article_258_professional_use_threshold_rate
   kind: parameter
   dtype: Rate

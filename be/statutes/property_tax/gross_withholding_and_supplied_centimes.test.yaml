@@ -1,0 +1,53 @@
+- name: flanders_gross_withholding_with_supplied_centimes_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#input.belgium_immovable_withholding_supplied_centimes_region: 0
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 1068
+  output:
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_selected_gross_tax_before_supplied_centimes: 39.70
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_supplied_local_centimes_tax: 423.996
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_gross_tax_after_supplied_local_centimes: 463.696
+
+- name: brussels_gross_withholding_with_supplied_centimes_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#input.belgium_immovable_withholding_supplied_centimes_region: 1
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 4328
+  output:
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_selected_gross_tax_before_supplied_centimes: 12.50
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_supplied_local_centimes_tax: 541
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_gross_tax_after_supplied_local_centimes: 553.50
+
+- name: wallonia_gross_withholding_with_supplied_centimes_2025
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#input.belgium_immovable_withholding_supplied_centimes_region: 2
+    be-vlg:statutes/property_tax/immovable_withholding#input.flanders_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/immovable_withholding#input.belgium_immovable_withholding_taxable_cadastral_income: 1000
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_provincial_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_agglomeration_additional_centimes: 0
+    be:statutes/property_tax/additional_centimes#input.belgium_immovable_withholding_communal_additional_centimes: 4220
+  output:
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_selected_gross_tax_before_supplied_centimes: 12.50
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_supplied_local_centimes_tax: 527.50
+    be:statutes/property_tax/gross_withholding_and_supplied_centimes#belgium_immovable_withholding_gross_tax_after_supplied_local_centimes: 540

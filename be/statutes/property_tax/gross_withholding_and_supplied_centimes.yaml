@@ -1,0 +1,85 @@
+format: rulespec/v1
+imports:
+  - be-vlg:statutes/property_tax/immovable_withholding#flanders_immovable_withholding_ordinary_gross_tax
+  - be:statutes/property_tax/immovable_withholding#belgium_immovable_withholding_ordinary_gross_tax
+  - be:statutes/property_tax/additional_centimes#belgium_immovable_withholding_additional_centimes_rate
+module:
+  summary: |-
+    This module composes the encoded Belgian regional immovable-withholding
+    gross base tax with externally supplied provincial, agglomeration, and
+    communal additional-centime counts. It is intended for high-level gross
+    withholding comparisons where local centime counts are already supplied by
+    an upstream model or dataset. It excludes cadastral-income determinations,
+    local centime table lookup, reductions, remissions, exemptions, credits,
+    application procedures, and proof rules.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.2/version-1302348/block-1
+      - be/statute/fisconetplus/cir92/revenus-2025/page-446
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+    values:
+      belgium_immovable_withholding_supplied_centimes_region_flanders: 0
+      belgium_immovable_withholding_supplied_centimes_region_brussels: 1
+      belgium_immovable_withholding_supplied_centimes_region_wallonia: 2
+rules:
+  - name: belgium_immovable_withholding_supplied_centimes_region_flanders
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Flemish immovable-withholding gross-tax routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+  - name: belgium_immovable_withholding_supplied_centimes_region_brussels
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Brussels immovable-withholding gross-tax routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_immovable_withholding_supplied_centimes_region_wallonia
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for Walloon immovable-withholding gross-tax routing
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2
+  - name: belgium_immovable_withholding_selected_gross_tax_before_supplied_centimes
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Regional bridge over encoded Flemish and non-Flemish immovable-withholding gross tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_immovable_withholding_supplied_centimes_region == belgium_immovable_withholding_supplied_centimes_region_flanders:
+              flanders_immovable_withholding_ordinary_gross_tax
+          else:
+              belgium_immovable_withholding_ordinary_gross_tax
+  - name: belgium_immovable_withholding_supplied_local_centimes_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Supplied local additional centimes applied to the selected regional immovable-withholding gross tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_immovable_withholding_selected_gross_tax_before_supplied_centimes * belgium_immovable_withholding_additional_centimes_rate
+  - name: belgium_immovable_withholding_gross_tax_after_supplied_local_centimes
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Selected regional gross immovable withholding plus supplied local additional centimes
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_immovable_withholding_selected_gross_tax_before_supplied_centimes + belgium_immovable_withholding_supplied_local_centimes_tax

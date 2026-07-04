@@ -11,6 +11,7 @@ module:
     income determinations.
   source_verification:
     corpus_citation_paths:
+      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
       - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885
       - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/comment
       - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170
@@ -64,7 +65,7 @@ rules:
     dtype: Rate
     source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 1
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           0.0397
   - name: flanders_immovable_withholding_social_housing_rate
@@ -155,6 +156,17 @@ rules:
       - effective_from: '2026-01-01'
         formula: |-
           flanders_immovable_withholding_taxable_cadastral_income * flanders_immovable_withholding_selected_rate
+  - name: flanders_immovable_withholding_ordinary_gross_tax
+    kind: derived
+    entity: Property
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Vlaamse Codex Fiscaliteit article 2.1.4.0.1 paragraph 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          flanders_immovable_withholding_taxable_cadastral_income * flanders_immovable_withholding_ordinary_rate
   - name: flanders_immovable_withholding_modest_dwelling_reduction
     kind: derived
     entity: Property
