@@ -1,0 +1,207 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module encodes the Flemish jobbonus for the 2025 EUROMOD-facing
+    annual worker slice. It applies the decree's beneficiary and eligibility
+    framework and the Flemish Government implementing order's 2025 wage
+    thresholds, degressive amount schedule, work-fraction proration,
+    small-payment suppression, and fixed 50 euro top-up. It leaves quarterly
+    Dimona/DMFA reconstruction, frontier-worker annual-income conversion,
+    administrative application/payment procedure, recovery, and objections to
+    later payroll-administration surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/codex-vlaanderen/jobbonus/decree-2022-05-20/block-4
+      - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-5
+      - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be-vlg/statute/codex-vlaanderen/jobbonus/decree-2022-05-20/block-4
+        - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-5
+        - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+      rationale: |-
+        The decree establishes the beneficiary classes, domicile, wage, and
+        retirement-age conditions and delegates amount adjustment to the
+        Flemish Government. The dated 1 January 2025 implementing order is the
+        operative statutory source for the 2025 wage thresholds, amount formula,
+        proration, payment suppression thresholds, and fixed top-up.
+    values:
+      flanders_jobbonus_2025_lower_monthly_gross_wage_threshold: "2115.00"
+      flanders_jobbonus_2025_upper_monthly_gross_wage_threshold: "3114.99"
+      flanders_jobbonus_2025_maximum_annual_full_time_amount: "650.00"
+      flanders_jobbonus_2025_degressive_floor_annual_full_time_amount: "50.00"
+      flanders_jobbonus_2025_fixed_top_up: "50.00"
+      flanders_jobbonus_2025_part_time_minimum_payable_amount: "10.00"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: flanders_jobbonus_2025_lower_monthly_gross_wage_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 2/1, 2025 lower monthly gross wage threshold for the full jobbonus
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2115
+  - name: flanders_jobbonus_2025_upper_monthly_gross_wage_threshold
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 2/1, 2025 upper monthly gross wage threshold above which no jobbonus is due
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3114.99
+  - name: flanders_jobbonus_2025_maximum_annual_full_time_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 2/1, 2025 maximum annual amount for full-time complete-year work
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          650
+  - name: flanders_jobbonus_2025_degressive_floor_annual_full_time_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 2/1, 2025 degressive floor amount at the upper wage threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          50
+  - name: flanders_jobbonus_2025_fixed_top_up
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 2/2, fixed top-up for reference years 2023, 2024, and 2025 when the jobbonus is payable
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          50
+  - name: flanders_jobbonus_2025_part_time_minimum_payable_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Government implementing order article 2 section 6, part-time payment suppression threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10
+  - name: flanders_jobbonus_bounded_work_fraction
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: Flemish Government implementing order article 2 sections 2 and 6, PB work-fraction factor capped at 1
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(1, max(0, flanders_jobbonus_work_fraction))
+  - name: flanders_jobbonus_statutory_eligibility_flag
+    kind: derived
+    entity: Person
+    dtype: Integer
+    period: Year
+    source: Flemish jobbonus decree articles 3 and 4, beneficiary class, Flemish domicile, wage condition, and below-retirement-age condition
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_jobbonus_is_beneficiary_class:
+              if flanders_jobbonus_is_domiciled_in_flanders_on_january_1_after_reference_year:
+                  if flanders_jobbonus_is_below_retirement_age_in_worked_quarter:
+                      1
+                  else:
+                      0
+              else:
+                  0
+          else:
+              0
+  - name: flanders_jobbonus_annual_full_time_amount_before_proration
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 2/1, annual full-time 2025 amount schedule by average monthly gross wage
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_jobbonus_average_monthly_gross_wage_at_full_time > flanders_jobbonus_2025_upper_monthly_gross_wage_threshold:
+              0
+          else:
+              if flanders_jobbonus_average_monthly_gross_wage_at_full_time <= flanders_jobbonus_2025_lower_monthly_gross_wage_threshold:
+                  flanders_jobbonus_2025_maximum_annual_full_time_amount
+              else:
+                  flanders_jobbonus_2025_maximum_annual_full_time_amount - (flanders_jobbonus_2025_maximum_annual_full_time_amount - flanders_jobbonus_2025_degressive_floor_annual_full_time_amount) * (flanders_jobbonus_average_monthly_gross_wage_at_full_time - flanders_jobbonus_2025_lower_monthly_gross_wage_threshold) / (flanders_jobbonus_2025_upper_monthly_gross_wage_threshold - flanders_jobbonus_2025_lower_monthly_gross_wage_threshold)
+  - name: flanders_jobbonus_prorated_amount_before_suppression
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 2 section 6, annual jobbonus prorated by worked period and work regime
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          flanders_jobbonus_annual_full_time_amount_before_proration * flanders_jobbonus_bounded_work_fraction
+  - name: flanders_jobbonus_small_payment_threshold
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 2 section 6, full-time and part-time payment suppression thresholds
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_jobbonus_is_full_time_worker:
+              flanders_jobbonus_2025_degressive_floor_annual_full_time_amount
+          else:
+              flanders_jobbonus_2025_part_time_minimum_payable_amount
+  - name: flanders_jobbonus_payable_base_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish jobbonus decree articles 3 through 5 and Flemish Government implementing order article 2 section 6, base amount after eligibility and small-payment suppression
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_jobbonus_statutory_eligibility_flag == 1:
+              if flanders_jobbonus_prorated_amount_before_suppression < flanders_jobbonus_small_payment_threshold:
+                  0
+              else:
+                  flanders_jobbonus_prorated_amount_before_suppression
+          else:
+              0
+  - name: flanders_jobbonus_fixed_top_up_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Government implementing order article 2/2, fixed top-up for 2025 beneficiaries for whom the jobbonus is payable
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if flanders_jobbonus_payable_base_amount > 0:
+              flanders_jobbonus_2025_fixed_top_up
+          else:
+              0
+  - name: flanders_jobbonus_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish jobbonus decree articles 3 through 5 and Flemish Government implementing order articles 2, 2/1, and 2/2, final annual jobbonus for the 2025 worker slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          flanders_jobbonus_payable_base_amount + flanders_jobbonus_fixed_top_up_amount
