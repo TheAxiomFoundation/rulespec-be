@@ -228,6 +228,22 @@
     be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_article_13_2025_monthly_social_supplement: 0
     be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_annual_amount_with_social_supplement: 2337.63
 
+- name: wallonia_age_25_returns_zero_with_article_13_social_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_age_years: 25
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_region: 3
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_household_child_count: 1
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_family_benefits_child_benefit_child_enrolled_in_higher_education: true
+    be:statutes/family_benefits/child_benefit_base_2025#input.belgium_child_benefit_wallonia_article_13_household_annual_income: 30000
+  output:
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_article_13_2025_monthly_social_supplement: 0
+    be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_annual_amount_with_social_supplement: 0
+
 - name: wallonia_pre_2020_age_6_first_child_uses_first_age_supplement
   period:
     period_kind: custom
