@@ -5,7 +5,8 @@ module:
     base surface for the BE_2025 bch_s oracle slice. It covers the
     high-income one-child Brussels, Flemish, and Walloon cases where EUROMOD
     pays the ordinary monthly child benefit plus the annual age supplement,
-    and the statutory German-speaking Community base branch. Social
+    the Brussels one-child Article 9 social supplement branch, and the
+    statutory German-speaking Community base branch. Multi-child social
     supplements, orphan and disability supplements, payment-recipient rules,
     and multi-child rank interactions remain separate surfaces. EUROMOD
     BE_2025 currently returns zero for German-speaking Community cases, so
@@ -13,9 +14,14 @@ module:
   source_verification:
     corpus_citation_paths:
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-2
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-3
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-5
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-6
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
+      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-8
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
       - be-wal/statute/decret/2018/02/08/2018201006/article/9
       - be-wal/statute/decret/2018/02/08/2018201006/article/19
@@ -37,6 +43,7 @@ module:
       status: official_parameter_source
       checked_paths:
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
         - be-wal/statute/decret/2018/02/08/2018201006/article/9
         - be-wal/statute/decret/2018/02/08/2018201006/article/19
@@ -51,10 +58,11 @@ module:
         - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
       rationale: |-
         The Brussels ordinance and Walloon decree establish the base child
-        benefit and annual age-supplement structures. The 2025 Iriscare and
-        AVIQ amount tables are official administrative publications used only
-        to ground the indexed amounts in force for the BE_2025 oracle slice
-        after checking those statutory sources. The Flemish Groeipakket decree
+        benefit, social-supplement, and annual age-supplement structures. The
+        2025 Iriscare and AVIQ amount tables are official administrative
+        publications used only to ground the indexed amounts in force for the
+        BE_2025 oracle slice after checking those statutory sources. The
+        Flemish Groeipakket decree
         establishes the current-system base amount, universal participation
         supplement, old-system rank amounts, and old-system age supplements;
         the official GPedia 1 September 2024 amount schedule grounds the
@@ -79,10 +87,26 @@ module:
       belgium_family_benefits_child_benefit_age_18_years: 18
       belgium_family_benefits_child_benefit_age_25_years: 25
       belgium_family_benefits_child_benefit_one_child_count: 1
+      belgium_family_benefits_child_benefit_two_child_count: 2
+      belgium_family_benefits_child_benefit_three_child_count: 3
       belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount: "186.51"
       belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount: "198.94"
       belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount: "211.38"
       belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction: "12.43"
+      belgium_child_benefit_brussels_article_9_2025_low_income_threshold: "39792.84"
+      belgium_child_benefit_brussels_article_9_2025_middle_income_threshold: "57763.80"
+      belgium_child_benefit_brussels_article_9_2025_low_income_one_child_under_12_monthly_amount: "49.74"
+      belgium_child_benefit_brussels_article_9_2025_low_income_one_child_12_to_24_monthly_amount: "62.17"
+      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_under_12_monthly_amount: "99.47"
+      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount: "87.04"
+      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_12_to_24_monthly_amount: "111.91"
+      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount: "99.47"
+      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_under_12_monthly_amount: "161.64"
+      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount: "136.77"
+      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_12_to_24_monthly_amount: "174.08"
+      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount: "149.21"
+      belgium_child_benefit_brussels_article_9_2025_middle_income_two_child_monthly_amount: "31.09"
+      belgium_child_benefit_brussels_article_9_2025_middle_income_three_plus_monthly_amount: "89.52"
       belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount: "24.87"
       belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount: "37.30"
       belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount: "62.17"
@@ -232,6 +256,22 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           1
+  - name: belgium_family_benefits_child_benefit_two_child_count
+    kind: parameter
+    dtype: Integer
+    source: Brussels article 9 two-child social-supplement family-size selector
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2
+  - name: belgium_family_benefits_child_benefit_three_child_count
+    kind: parameter
+    dtype: Integer
+    source: Brussels article 9 three-or-more-child social-supplement family-size selector
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3
   - name: belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount
     kind: parameter
     dtype: Money
@@ -272,6 +312,146 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           12.43
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1), indexed income ceiling in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          39792.84
+  - name: belgium_child_benefit_brussels_article_9_2025_middle_income_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(2), indexed income ceiling in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          57763.80
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_one_child_under_12_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(a), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          49.74
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_one_child_12_to_24_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(a), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          62.17
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_under_12_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          99.47
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          87.04
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_12_to_24_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          111.91
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          99.47
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_under_12_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          161.64
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          136.77
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_12_to_24_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          174.08
+  - name: belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          149.21
+  - name: belgium_child_benefit_brussels_article_9_2025_middle_income_two_child_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(2)(a), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          31.09
+  - name: belgium_child_benefit_brussels_article_9_2025_middle_income_three_plus_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9(2)(b), indexed monthly supplement in force from 1 February 2025
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          89.52
   - name: belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount
     kind: parameter
     dtype: Money
@@ -561,6 +741,65 @@ rules:
                           belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount
                       else:
                           0
+  - name: belgium_child_benefit_brussels_article_9_2025_monthly_social_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Brussels family-benefits ordinance article 9 social supplement, indexed 2025 one-child and statutory family-size branches
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_child_benefit_brussels_article_9_cadastral_income_cap_exceeded:
+              0
+          else:
+              if belgium_family_benefits_child_benefit_child_age_years >= belgium_family_benefits_child_benefit_age_25_years:
+                  0
+              else:
+                  if belgium_child_benefit_brussels_article_9_household_annual_income < belgium_child_benefit_brussels_article_9_2025_low_income_threshold:
+                      if belgium_family_benefits_child_benefit_household_child_count == belgium_family_benefits_child_benefit_one_child_count:
+                          if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                              belgium_child_benefit_brussels_article_9_2025_low_income_one_child_under_12_monthly_amount
+                          else:
+                              belgium_child_benefit_brussels_article_9_2025_low_income_one_child_12_to_24_monthly_amount
+                      else:
+                          if belgium_family_benefits_child_benefit_household_child_count == belgium_family_benefits_child_benefit_two_child_count:
+                              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                  if belgium_child_benefit_brussels_article_9_child_in_single_parent_family:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_under_12_monthly_amount
+                                  else:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount
+                              else:
+                                  if belgium_child_benefit_brussels_article_9_child_in_single_parent_family:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_12_to_24_monthly_amount
+                                  else:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount
+                          else:
+                              if belgium_family_benefits_child_benefit_household_child_count >= belgium_family_benefits_child_benefit_three_child_count:
+                                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                      if belgium_child_benefit_brussels_article_9_child_in_single_parent_family:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_under_12_monthly_amount
+                                      else:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount
+                                  else:
+                                      if belgium_child_benefit_brussels_article_9_child_in_single_parent_family:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_12_to_24_monthly_amount
+                                      else:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount
+                              else:
+                                  0
+                  else:
+                      if belgium_child_benefit_brussels_article_9_household_annual_income < belgium_child_benefit_brussels_article_9_2025_middle_income_threshold:
+                          if belgium_family_benefits_child_benefit_household_child_count == belgium_family_benefits_child_benefit_two_child_count:
+                              belgium_child_benefit_brussels_article_9_2025_middle_income_two_child_monthly_amount
+                          else:
+                              if belgium_family_benefits_child_benefit_household_child_count >= belgium_family_benefits_child_benefit_three_child_count:
+                                  belgium_child_benefit_brussels_article_9_2025_middle_income_three_plus_monthly_amount
+                              else:
+                                  0
+                      else:
+                          0
   - name: belgium_child_benefit_wallonia_2025_monthly_amount
     kind: derived
     entity: Household
@@ -723,5 +962,25 @@ rules:
                               belgium_child_benefit_dg_2025_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_dg_2025_annual_supplement
                           else:
                               0
+          else:
+              0
+  - name: belgium_child_benefit_brussels_2025_annual_amount_with_social_supplement
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Brussels family-benefits ordinance articles 7, 9, 15, and 35, BE_2025 ordinary child benefit plus Article 9 social supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_family_benefits_child_benefit_region == belgium_family_benefits_child_benefit_region_brussels:
+              if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_25_years:
+                  if belgium_family_benefits_child_benefit_child_age_years < belgium_family_benefits_child_benefit_age_18_years or belgium_family_benefits_child_benefit_child_enrolled_in_higher_education:
+                      (belgium_child_benefit_brussels_2025_monthly_amount + belgium_child_benefit_brussels_article_9_2025_monthly_social_supplement) * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_brussels_2025_annual_age_supplement
+                  else:
+                      0
+              else:
+                  0
           else:
               0
