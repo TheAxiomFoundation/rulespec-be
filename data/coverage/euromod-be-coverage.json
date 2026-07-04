@@ -2,7 +2,7 @@
   "created_at": "2026-07-02",
   "jurisdiction": "be",
   "purpose": "Coverage inventory for the EUROMOD Belgium BE_2025 model surface against Belgium RuleSpec. EUROMOD is an executable comparison oracle, not legal authority; statutory and regulatory RuleSpec modules must still cite upstream Belgian law.",
-  "coverage_claim": "Current Axiom coverage is two EUROMOD-facing output concepts: employee SSC tscee_s is live-verified for the regular worker statutory slice; PIT tin_s has a composed single-worker pilot that nets ordinary employee SSC before Article 51 forfait expenses and computes Article 289ter/1 work-bonus credit amounts from the encoded ONSS January and February-onward 2025 work-bonus A/B reduction for the full-year equal-month worker slice. The broader BE_2025 model has 43 policy nodes and is not yet covered end-to-end.",
+  "coverage_claim": "Current Axiom coverage is three EUROMOD-facing output concepts: employee SSC tscee_s is live-verified for the regular worker statutory slice; PIT tin_s has a composed single-worker pilot that nets ordinary employee SSC before Article 51 forfait expenses and computes Article 289ter/1 work-bonus credit amounts from the encoded ONSS January and February-onward 2025 work-bonus A/B reduction for the full-year equal-month worker slice; Flemish jobbonus bwkrg_s now has a statutory 2025 RuleSpec target pending live EUROMOD comparison. The broader BE_2025 model has 43 policy nodes and is not yet covered end-to-end.",
   "source_artifacts": [
     {
       "kind": "euromod_country_model",
@@ -59,7 +59,7 @@
     }
   },
   "coverage_summary": {
-    "current_oracle_output_targets": 2,
+    "current_oracle_output_targets": 3,
     "live_verified_oracle_output_targets": 1,
     "prepared_oracle_output_targets": 1,
     "full_household_disposable_income_parity": false,
@@ -84,6 +84,15 @@
       "status": "prepared_worker_pilot_not_full_household_parity",
       "evidence": "RuleSpec has a dense-executable worker-remuneration-to-PIT pipeline that composes Article 38 ordinary employee SSC into the PIT professional-income base, then applies Article 51 forfait expenses, Article 130/134 tax, Article 289ter/1 work-bonus credit amounts computed from the ONSS January and February-onward 2025 work-bonus A/B reduction, and supplied local rates.",
       "remaining_gap": "Exact gross-to-tin_s parity still needs live EUROMOD comparison after the ONSS work-bonus wiring, plus full household PIT, joint assessment, dependants, other income categories, regional reductions, withholding tables, local rate ingestion, and final imputation ordering outside the pilot."
+    },
+    {
+      "euromod_variable": "bwkrg_s",
+      "meaning": "Flemish jobbonus",
+      "rulespec_output": "be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_amount",
+      "rulespec_module": "be-vlg/regulations/employment/jobbonus.yaml",
+      "status": "rulespec_encoded_pending_live_oracle_comparison",
+      "evidence": "RuleSpec encodes the statutory 2025 Flemish jobbonus thresholds, degressive amount schedule, work-fraction proration, small-payment suppression, and fixed top-up from the official Flemish Codex decree and implementing order.",
+      "remaining_gap": "Live EUROMOD comparison is pending. Initial XML inspection suggests BE_2025 may still use older 600 euro / 1800-2500 wage-threshold parameters, so any residual must be classified against the statutory 2025 Codex source before treating it as an Axiom encoding error."
     },
     {
       "euromod_variable": "ils_tax",
@@ -203,9 +212,10 @@
         "be/regulations/unemployment/minimum_daily_amounts.yaml",
         "be/regulations/unemployment/benefit_amount.yaml",
         "be/regulations/unemployment/payable_amount.yaml",
-        "be/regulations/pensions/workers/retirement_and_survivor.yaml"
+        "be/regulations/pensions/workers/retirement_and_survivor.yaml",
+        "be-vlg/regulations/employment/jobbonus.yaml"
       ],
-      "status": "partial_statutory_coverage_no_euromod_oracle_parity"
+      "status": "partial_statutory_coverage_flemish_jobbonus_oracle_target_encoded"
     },
     {
       "domain": "leave_disability_and_health_insurance",
