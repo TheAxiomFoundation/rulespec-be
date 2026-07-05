@@ -6,7 +6,25 @@ module:
 
     surfaces and simple selectors; delegated eligibility tests, indexation
 
-    orders, and later amendment history remain separate surfaces.'
+    orders, and later amendment history remain separate surfaces. Amounts here
+
+    are the raw statutory base values as enacted in the 2018 decree; they are
+
+    not indexed to a current month. The applied, current-month indexed Article
+
+    13 social supplement (68.39 and 31.09 EUR/month, in force from 1 February
+
+    2025 at pivot index 130.67, base 2013 = 100) is encoded separately in
+
+    be/statutes/family_benefits/child_benefit_base_2025.yaml and grounded in
+
+    the AVIQ 2025 amount table, per the lane convention that applied surfaces
+
+    carry the indexed value with its index date disclosed and a proof atom
+
+    citing the official amount schedule. See the convention note
+
+    axiom-oracles/docs/be-family-benefit-indexation-convention.md.'
   source_verification:
     corpus_citation_paths:
     - be-wal/statute/decret/2018/02/08/2018201006/article/7
@@ -276,7 +294,8 @@ rules:
   period: Month
   unit: EUR
   source: Walloon decree of 8 February 2018 on management and payment of family benefits,
-    article 13 section 1 item 1
+    article 13 section 1 item 1; raw statutory base amount before indexation (the
+    applied 2025 indexed value 68.39 EUR/month is in be/statutes/family_benefits/child_benefit_base_2025.yaml)
   metadata:
     proof:
       atoms:
@@ -294,7 +313,8 @@ rules:
   period: Month
   unit: EUR
   source: Walloon decree of 8 February 2018 on management and payment of family benefits,
-    article 13 section 1 item 2
+    article 13 section 1 item 2; raw statutory base amount before indexation (the
+    applied 2025 indexed value 31.09 EUR/month is in be/statutes/family_benefits/child_benefit_base_2025.yaml)
   metadata:
     proof:
       atoms:
