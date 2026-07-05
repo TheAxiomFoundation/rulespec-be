@@ -1,0 +1,101 @@
+format: rulespec/v1
+imports:
+  - be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_worker_pit_pilot_annual_amount
+  - be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution
+  - be:statutes/social_security/special_contribution#belgium_special_social_security_article_108_annual_contribution
+module:
+  summary: |-
+    This module exposes a narrow household-level bridge to EUROMOD's standard
+    ils_dispy disposable-income list for worker-pilot oracle comparisons.
+    EUROMOD defines disposable income as original income plus simulated
+    benefits, less simulated taxes and social-insurance contributions included
+    in disposable income. This pilot composes supplied original employment
+    income, supplied benefits, the encoded ils_tax worker-PIT pilot, the
+    encoded ordinary employee social-security contribution, and the encoded
+    Article 108 special social-security contribution. It is not full
+    disposable-income parity: non-worker income, benefit-list composition,
+    capital/property tax, self-employed and pensioner social contributions,
+    joint assessment, and payment-recipient allocation remain separate
+    surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1981/06/29/1981001048/article/38
+      - be/statute/loi/1969/06/27/1969062710/article/17
+      - be/regulation/arrete/1969/11/28/1969112813/article/19
+      - be/statute/loi/1994/03/30/1994021117/article/106
+      - be/statute/loi/1994/03/30/1994021117/article/107
+      - be/statute/loi/1994/03/30/1994021117/article/108
+      - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-120
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/loi/1989/01/16/1989021010/article/5-2
+    upstream_source_check:
+      status: structural_composition_bridge
+      checked_paths:
+        - be/statute/loi/1981/06/29/1981001048/article/38
+        - be/statute/loi/1994/03/30/1994021117/article/108
+        - be/statute/fisconetplus/cir92/revenus-2025/page-120
+      rationale: |-
+        The aggregate introduces no new statutory tax or contribution amounts.
+        It combines already encoded worker PIT and employee social-security
+        components whose own modules cite the upstream Belgian legal sources.
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_euromod_ils_dispy_original_income_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_origy bridge over supplied original income for the worker disposable-income pilot
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_dispy_supplied_original_income_annual_amount
+  - name: belgium_euromod_ils_dispy_benefit_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_ben bridge over supplied benefits for the worker disposable-income pilot
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_dispy_supplied_benefit_annual_amount
+  - name: belgium_euromod_ils_dispy_tax_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_tax bridge over the encoded worker-PIT tax-list pilot
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_tax_worker_pit_pilot_annual_amount
+  - name: belgium_euromod_ils_dispy_social_insurance_contribution_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_sicdy worker bridge over ordinary employee and Article 108 special social-security contributions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_employee_social_security_ordinary_worker_contribution + belgium_special_social_security_article_108_annual_contribution + belgium_euromod_ils_dispy_supplied_other_social_insurance_contribution_annual_amount
+  - name: belgium_euromod_ils_dispy_worker_pit_sic_pilot_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_dispy worker bridge summing original income and benefits, less taxes and social-insurance contributions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_dispy_original_income_component + belgium_euromod_ils_dispy_benefit_component - belgium_euromod_ils_dispy_tax_component - belgium_euromod_ils_dispy_social_insurance_contribution_component

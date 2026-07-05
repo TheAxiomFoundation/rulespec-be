@@ -1,0 +1,60 @@
+- name: worker_pit_and_social_insurance_flow_to_disposable_income_pilot
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:policies/euromod_disposable_income_list#input.belgium_euromod_ils_dispy_supplied_original_income_annual_amount: 30000
+    be:policies/euromod_disposable_income_list#input.belgium_euromod_ils_dispy_supplied_benefit_annual_amount: 0
+    be:policies/euromod_disposable_income_list#input.belgium_euromod_ils_dispy_supplied_other_social_insurance_contribution_annual_amount: 0
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_include_pit_component: true
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_capital_income_tax_annual_amount: 0
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_property_tax_annual_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 30000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_household_has_article_106_person: true
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_107_household_income: 30000
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_110_retained_or_supplement_paid: 0
+  output:
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_original_income_component: 30000
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_benefit_component: 0
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_tax_component: 1911.3776948
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_social_insurance_contribution_component: 1831.37752
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_worker_pit_sic_pilot_annual_amount: 26257.2447852
+
+- name: supplied_components_flow_to_disposable_income_pilot
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:policies/euromod_disposable_income_list#input.belgium_euromod_ils_dispy_supplied_original_income_annual_amount: 1000
+    be:policies/euromod_disposable_income_list#input.belgium_euromod_ils_dispy_supplied_benefit_annual_amount: 50
+    be:policies/euromod_disposable_income_list#input.belgium_euromod_ils_dispy_supplied_other_social_insurance_contribution_annual_amount: 20
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_include_pit_component: false
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_pit_annual_amount: 100
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_capital_income_tax_annual_amount: 20
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_property_tax_annual_amount: 5
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_household_has_article_106_person: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_107_household_income: 0
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_110_retained_or_supplement_paid: 0
+  output:
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_tax_component: 125
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_social_insurance_contribution_component: 20
+    be:policies/euromod_disposable_income_list#belgium_euromod_ils_dispy_worker_pit_sic_pilot_annual_amount: 905
