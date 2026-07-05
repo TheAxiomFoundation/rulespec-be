@@ -12,6 +12,32 @@
     be:regulations/social_integration/earned_income_disregards#belgium_social_integration_standard_earned_income_monthly_disregard: 177.76
     be:regulations/social_integration/earned_income_disregards#belgium_social_integration_article_35_monthly_earned_income_disregard: 177.76
 
+- name: zero_earned_income_has_no_disregard
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_monthly_net_earned_income: 0
+    be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_income_from_shortage_profession: false
+    be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_income_from_irregular_artistic_activity: false
+  output:
+    be:regulations/social_integration/earned_income_disregards#belgium_social_integration_article_35_monthly_earned_income_disregard: 0
+
+- name: standard_disregard_at_exact_monthly_cap
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_monthly_net_earned_income: 177.76
+    be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_income_from_shortage_profession: false
+    be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_income_from_irregular_artistic_activity: false
+  output:
+    be:regulations/social_integration/earned_income_disregards#belgium_social_integration_article_35_monthly_earned_income_disregard: 177.76
+
 - name: shortage_profession_uses_higher_monthly_disregard
   period:
     period_kind: custom
@@ -38,6 +64,7 @@
     be:regulations/social_integration/earned_income_disregards#input.belgium_social_integration_income_from_irregular_artistic_activity: true
   output:
     be:regulations/social_integration/earned_income_disregards#belgium_social_integration_irregular_artistic_activity_annual_disregard: 2133.12
+    be:regulations/social_integration/earned_income_disregards#belgium_social_integration_irregular_artistic_activity_monthly_equivalent_disregard_scalar_limit: 12
     be:regulations/social_integration/earned_income_disregards#belgium_social_integration_irregular_artistic_activity_monthly_equivalent_disregard: 177.76
     be:regulations/social_integration/earned_income_disregards#belgium_social_integration_article_35_monthly_earned_income_disregard: 177.76
 

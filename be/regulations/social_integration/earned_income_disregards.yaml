@@ -31,6 +31,14 @@ rules:
   unit: EUR
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 35 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
+          span: "les revenus nets qui en résultent sont pris en considération sous déduction d'un montant maximal de 177,76 EUR par mois"
   versions:
   - effective_from: '2022-01-01'
     formula: '177.76'
@@ -40,6 +48,14 @@ rules:
   unit: EUR
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 35 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
+          span: "le montant immunisé est de 2 133,12 EUR par an"
   versions:
   - effective_from: '2022-01-01'
     formula: '2133.12'
@@ -49,6 +65,14 @@ rules:
   unit: EUR
   source: Royal Decree of 11 July 2002 on the general regulation for social integration,
     article 35 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
+          span: "le montant immunisé est de 254,75 EUR par mois"
   versions:
   - effective_from: '2024-01-01'
     formula: '254.75'
@@ -69,19 +93,11 @@ rules:
   - effective_from: '2014-10-01'
     formula: '6'
 - name: belgium_social_integration_irregular_artistic_activity_monthly_equivalent_disregard_scalar_limit
-  kind: parameter
+  kind: derived
+  entity: Person
   dtype: Count
-  source: Royal Decree of 11 July 2002 on the general regulation for social integration,
-    article 35 section 1
-  metadata:
-    proof:
-      atoms:
-      - path: versions[0].formula
-        kind: parameter
-        source:
-          corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
-          span: Royal Decree of 11 July 2002 on the general regulation for social
-            integration, article 35 section 1
+  period: Month
+  source: Calendar conversion from an annual amount to a monthly equivalent
   versions:
   - effective_from: '2022-01-01'
     formula: '12'
