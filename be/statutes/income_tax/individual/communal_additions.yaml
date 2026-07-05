@@ -25,6 +25,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 article 468, agglomeration tax may not exceed 1 percent
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-687
+              span: ce pourcentage ne peut excéder 1 % lorsque la taxe est établie par une agglomération
     versions:
       - effective_from: '2015-01-01'
         formula: |-
@@ -33,6 +41,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 article 469, withholding and prepayment collection rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-688
+              span: le taux total de ces taxes était fixé uniformément à 6,7 %
     versions:
       - effective_from: '2014-05-16'
         formula: |-
