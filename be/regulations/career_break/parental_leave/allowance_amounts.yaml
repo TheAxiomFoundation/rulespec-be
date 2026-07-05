@@ -1,0 +1,346 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The Royal Decree of 29 October 1997 gives an eligible worker a right to
+    parental leave within a career-break interruption. Article 2 sets the four
+    leave forms and their maximum durations: full suspension for four months,
+    half-time reduction for eight months, one-fifth reduction for twenty months,
+    and one-tenth reduction for forty months. The monthly interruption allowance
+    that funds the leave is granted under the Royal Decree of 2 January 1991:
+    Article 6 section 3 sets the full-suspension monthly amount and Article 8
+    sets the partial-reduction monthly amounts (one-fifth, one-tenth, and half).
+    This module encodes the household-level annual allowance interface from the
+    supplied eligible-parent flag, the selected leave form, the selected number
+    of leave months, and a supplied indexation coefficient applied to the
+    statutory base amounts. It leaves the age-of-child eligibility proof, the
+    lone-parent and age-fifty amount increases, the fractioning rules, the
+    sector variations, and the withholding tax to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1997/10/29/1997012760/article/2
+      - be/regulation/arrete/1991/01/02/1991013073/article/6
+      - be/regulation/arrete/1991/01/02/1991013073/article/8
+    values:
+      belgium_parental_leave_full_time_months: "4"
+      belgium_parental_leave_half_time_months: "8"
+      belgium_parental_leave_one_fifth_months: "20"
+      belgium_parental_leave_one_tenth_months: "40"
+      belgium_parental_leave_full_time_monthly_base_amount: "508.92"
+      belgium_parental_leave_half_time_monthly_base_amount: "254.46"
+      belgium_parental_leave_one_fifth_monthly_base_amount: "86.32"
+      belgium_parental_leave_one_tenth_monthly_base_amount: "43.16"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_parental_leave_full_time_months
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, full suspension of a full-time work regime
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: soit de suspendre l'exécution de son contrat de travail comme prévu à l'article 100 de la loi de redressement du 22 janvier 1985 contenant des dispositions sociales pendant une période de quatre mois
+    versions:
+      - effective_from: '1997-11-07'
+        formula: |-
+          4
+  - name: belgium_parental_leave_half_time_months
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, half-time reduction of a full-time work regime
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'un mi-temps durant une période de huit mois comme prévu à l'article 102 de la loi susmentionnée
+    versions:
+      - effective_from: '1997-11-07'
+        formula: |-
+          8
+  - name: belgium_parental_leave_one_fifth_months
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, one-fifth reduction of a full-time work regime
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'une réduction d'un cinquième durant une période de vingt mois comme prévu à l'article 102 de la loi susmentionnée
+    versions:
+      - effective_from: '1997-11-07'
+        formula: |-
+          20
+  - name: belgium_parental_leave_one_tenth_months
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, one-tenth reduction of a full-time work regime
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'une réduction d'un dixième durant une période de quarante mois comme prévu à l'article 102 de la loi susmentionnée
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          40
+  - name: belgium_parental_leave_full_time_monthly_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 2 January 1991, article 6 section 3, monthly interruption allowance for full suspension
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/6
+              span: le montant de l'allocation d'interruption octroyée aux travailleurs qui interrompent un régime de travail à temps plein est fixé à (508,92 euros) par mois
+    versions:
+      - effective_from: '2005-07-28'
+        formula: |-
+          508.92
+  - name: belgium_parental_leave_half_time_monthly_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 2 January 1991, article 8, monthly interruption allowance for a half-time reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
+              span: pour les travailleurs à temps plein qui réduisent leurs prestations de travail de moitié, à (254,46 euros)
+    versions:
+      - effective_from: '2005-07-28'
+        formula: |-
+          254.46
+  - name: belgium_parental_leave_one_fifth_monthly_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 2 January 1991, article 8 item 1, monthly interruption allowance for a one-fifth reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
+              span: pour les travailleurs à temps plein qui réduisent leurs prestations de travail d'un cinquième, à 86,32 euros
+    versions:
+      - effective_from: '2005-07-28'
+        formula: |-
+          86.32
+  - name: belgium_parental_leave_one_tenth_monthly_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Royal Decree of 2 January 1991, article 8 item 2, monthly interruption allowance for a one-tenth reduction in the context of parental leave
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
+              span: pour les travailleurs à temps plein qui réduisent leurs prestations de travail d'un dixième dans le cadre du congé parental, à 43,16 euros
+    versions:
+      - effective_from: '2005-07-28'
+        formula: |-
+          43.16
+  - name: belgium_parental_leave_form_full_time
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, code for the full-suspension leave form
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: soit de suspendre l'exécution de son contrat de travail comme prévu à l'article 100 de la loi de redressement du 22 janvier 1985 contenant des dispositions sociales pendant une période de quatre mois
+    versions:
+      - effective_from: '1997-11-07'
+        formula: |-
+          1
+  - name: belgium_parental_leave_form_half_time
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, code for the half-time reduction leave form
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'un mi-temps durant une période de huit mois comme prévu à l'article 102 de la loi susmentionnée
+    versions:
+      - effective_from: '1997-11-07'
+        formula: |-
+          2
+  - name: belgium_parental_leave_form_one_fifth
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, code for the one-fifth reduction leave form (reduction denominator)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: sous la forme d'une réduction d'un cinquième durant une période de vingt mois
+    versions:
+      - effective_from: '1997-11-07'
+        formula: |-
+          5
+  - name: belgium_parental_leave_form_one_tenth
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 29 October 1997, article 2 section 1, code for the one-tenth reduction leave form (reduction denominator)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              span: sous la forme d'une réduction d'un dixième durant une période de quarante mois
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          10
+  - name: belgium_parental_leave_selected_monthly_base_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree of 2 January 1991, articles 6 and 8, selected by the leave form of Royal Decree of 29 October 1997 article 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
+              excerpt: le montant mensuel de l'allocation d'interruption est fixé comme suit selon la forme de réduction des prestations de travail.
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          if belgium_parental_leave_form == belgium_parental_leave_form_full_time:
+              belgium_parental_leave_full_time_monthly_base_amount
+          else:
+              if belgium_parental_leave_form == belgium_parental_leave_form_half_time:
+                  belgium_parental_leave_half_time_monthly_base_amount
+              else:
+                  if belgium_parental_leave_form == belgium_parental_leave_form_one_fifth:
+                      belgium_parental_leave_one_fifth_monthly_base_amount
+                  else:
+                      belgium_parental_leave_one_tenth_monthly_base_amount
+  - name: belgium_parental_leave_selected_maximum_months
+    kind: derived
+    entity: Person
+    dtype: Integer
+    period: Month
+    source: Royal Decree of 29 October 1997, article 2 section 1, maximum duration selected by the leave form
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              excerpt: la durée maximale de la période de congé parental dépend de la forme d'interruption choisie.
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          if belgium_parental_leave_form == belgium_parental_leave_form_full_time:
+              belgium_parental_leave_full_time_months
+          else:
+              if belgium_parental_leave_form == belgium_parental_leave_form_half_time:
+                  belgium_parental_leave_half_time_months
+              else:
+                  if belgium_parental_leave_form == belgium_parental_leave_form_one_fifth:
+                      belgium_parental_leave_one_fifth_months
+                  else:
+                      belgium_parental_leave_one_tenth_months
+  - name: belgium_parental_leave_selected_monthly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Royal Decree of 2 January 1991, articles 6 and 8, statutory base amount uprated by the supplied indexation coefficient
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
+              excerpt: le montant mensuel de l'allocation d'interruption est lié à l'indice pivot et adapté conformément à la loi du 2 août 1971.
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          belgium_parental_leave_selected_monthly_base_amount * belgium_parental_leave_indexation_coefficient
+  - name: belgium_parental_leave_months_taken
+    kind: derived
+    entity: Person
+    dtype: Integer
+    period: Month
+    source: Royal Decree of 29 October 1997, article 2 section 1, number of leave months taken capped at the selected maximum
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
+              excerpt: le travailleur prend un nombre de mois de congé parental dans la limite de la durée maximale de la forme choisie.
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          min(belgium_parental_leave_requested_months, belgium_parental_leave_selected_maximum_months)
+  - name: belgium_parental_leave_allowance_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 29 October 1997 article 2 and Royal Decree of 2 January 1991 articles 6 and 8
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/6
+              excerpt: le montant de l'allocation d'interruption est octroyé par mois de congé parental pris par le travailleur éligible.
+    versions:
+      - effective_from: '2012-06-01'
+        formula: |-
+          if belgium_parental_leave_eligible_parent:
+              belgium_parental_leave_selected_monthly_amount * belgium_parental_leave_months_taken
+          else:
+              0

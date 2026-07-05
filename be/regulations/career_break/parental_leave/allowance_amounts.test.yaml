@@ -1,0 +1,77 @@
+- name: full_time_parental_leave_eligible_four_months_unindexed
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_eligible_parent: true
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_form: 1
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_requested_months: 4
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_indexation_coefficient: 1
+  output:
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_monthly_base_amount: 508.92
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_maximum_months: 4
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_monthly_amount: 508.92
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_months_taken: 4
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_allowance_amount: 2035.68
+
+- name: one_fifth_parental_leave_eligible_twenty_months_unindexed
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_eligible_parent: true
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_form: 5
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_requested_months: 20
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_indexation_coefficient: 1
+  output:
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_monthly_base_amount: 86.32
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_maximum_months: 20
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_months_taken: 20
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_allowance_amount: 1726.4
+
+- name: half_time_parental_leave_requested_months_capped_at_maximum
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_eligible_parent: true
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_form: 2
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_requested_months: 12
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_indexation_coefficient: 1
+  output:
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_monthly_base_amount: 254.46
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_maximum_months: 8
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_months_taken: 8
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_allowance_amount: 2035.68
+
+- name: one_tenth_parental_leave_applies_supplied_indexation_coefficient
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_eligible_parent: true
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_form: 10
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_requested_months: 40
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_indexation_coefficient: 1.5
+  output:
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_monthly_base_amount: 43.16
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_maximum_months: 40
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_selected_monthly_amount: 64.74
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_allowance_amount: 2589.6
+
+- name: ineligible_parent_gets_no_parental_leave_allowance
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_eligible_parent: false
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_form: 1
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_requested_months: 4
+    be:regulations/career_break/parental_leave/allowance_amounts#input.belgium_parental_leave_indexation_coefficient: 1
+  output:
+    be:regulations/career_break/parental_leave/allowance_amounts#belgium_parental_leave_allowance_amount: 0
