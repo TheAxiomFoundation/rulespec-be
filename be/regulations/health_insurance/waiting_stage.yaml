@@ -68,6 +68,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203 third paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203
+              span: "s'ils ont accompli, au cours d'une période de douze mois, huit cents heures de travail"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -132,6 +140,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 206 second paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/206
+              span: "s'ils totalisent, au cours d'une période de six mois, quatre cents heures de travail ou assimilées"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
