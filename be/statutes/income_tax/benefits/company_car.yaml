@@ -59,6 +59,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 36 paragraph 2, 6/7 of catalogue value
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: est calculé en appliquant un pourcentage-CO2 à 6/7 de la valeur catalogue du véhicule mis gratuitement à disposition
   versions:
   - effective_from: '2026-01-01'
     formula: 6 / 7
@@ -66,6 +74,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 36 paragraph 2 base CO2 percentage
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: Le pourcentage de base CO2 s'élève à 5,5 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.055'
@@ -73,6 +89,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 36 paragraph 2, 0.1 percentage point per CO2 gram
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: le pourcentage de base est augmenté de 0,1 % par gramme de CO2
   versions:
   - effective_from: '2026-01-01'
     formula: '0.001'
@@ -80,6 +104,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 36 paragraph 2 CO2 percentage floor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: avec un minimum de 4 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.04'
@@ -87,6 +119,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 36 paragraph 2 CO2 percentage cap
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
+          span: avec un maximum de 18 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.18'
@@ -95,6 +135,14 @@ rules:
   dtype: Count
   source: Royal Decree of 17 December 2025 amending AR/CIR 92 article 18 paragraph
     3 point 9
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
+          span: la colonne "Année civile" est complétée par "2026", la colonne "Véhicules à moteur alimenté à l'essence, au LPG ou au gaz naturel" par "70 g/km" et la colonne "Véhicules à moteur alimenté au diesel" par "58 g/km"
   versions:
   - effective_from: '2026-01-01'
     formula: '70'
@@ -103,6 +151,14 @@ rules:
   dtype: Count
   source: Royal Decree of 17 December 2025 amending AR/CIR 92 article 18 paragraph
     3 point 9
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
+          span: la colonne "Année civile" est complétée par "2026", la colonne "Véhicules à moteur alimenté à l'essence, au LPG ou au gaz naturel" par "70 g/km" et la colonne "Véhicules à moteur alimenté au diesel" par "58 g/km"
   versions:
   - effective_from: '2026-01-01'
     formula: '58'
@@ -111,6 +167,14 @@ rules:
   dtype: Count
   source: CIR 1992 article 36 paragraph 2 missing CO2 fallback for petrol, LPG, or
     natural-gas vehicles
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-96
+          span: aux véhicules émettant un taux de CO2 de 205 g/km
   versions:
   - effective_from: '2026-01-01'
     formula: '205'
@@ -118,6 +182,14 @@ rules:
   kind: parameter
   dtype: Count
   source: CIR 1992 article 36 paragraph 2 missing CO2 fallback for diesel vehicles
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-96
+          span: aux véhicules émettant un taux de CO2 de 195 g/km
   versions:
   - effective_from: '2026-01-01'
     formula: '195'
@@ -127,6 +199,14 @@ rules:
   unit: EUR
   source: SPF Finances company-car benefit FAQ, indexed minimum for assessment year
     2027 / income year 2026
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/guidance/spf-finances/company-car-benefit/2026-faq/page-3
+          span: 2027 1.690
   versions:
   - effective_from: '2026-01-01'
     formula: '1690'
@@ -142,8 +222,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 0 à 12 mois 100 %
   versions:
   - effective_from: '2026-01-01'
     formula: '12'
@@ -159,8 +238,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 13 à 24 mois 94 %
   versions:
   - effective_from: '2026-01-01'
     formula: '24'
@@ -176,8 +254,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 13 à 24 mois 94 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.94'
@@ -193,8 +270,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 25 à 36 mois 88 %
   versions:
   - effective_from: '2026-01-01'
     formula: '36'
@@ -210,8 +286,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 25 à 36 mois 88 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.88'
@@ -227,8 +302,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 37 à 48 mois 82 %
   versions:
   - effective_from: '2026-01-01'
     formula: '48'
@@ -244,8 +318,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 37 à 48 mois 82 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.82'
@@ -261,8 +334,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 49 à 60 mois 76 %
   versions:
   - effective_from: '2026-01-01'
     formula: '60'
@@ -278,8 +350,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: De 49 à 60 mois 76 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.76'
@@ -295,8 +366,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 catalogue-value age table; a started
-            month counts as a full month
+          span: A partir de 61 mois 70 %
   versions:
   - effective_from: '2026-01-01'
     formula: '0.70'
@@ -427,9 +497,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: CIR 1992 article 36 paragraph 2 false plug-in hybrid and missing CO2
-            rules
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-96
+          span: la valeur de l'émission est multipliée par 2,5
   versions:
   - effective_from: '2026-01-01'
     formula: '2.5'
