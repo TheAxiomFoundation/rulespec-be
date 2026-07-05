@@ -16,6 +16,23 @@
     be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_ffe_less_than_20_workers_commercial_rate_with_wage_moderation: 0.0018
     be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_ffe_at_least_20_workers_commercial_rate_with_wage_moderation: 0.0023
 
+- name: employer_ssc_ordinary_private_commercial_zero_base_creates_no_contribution
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/workers/employer_contributions#input.belgium_employer_social_security_contribution_base: 0
+    be:regulations/social_security/workers/employer_contributions#input.belgium_employer_social_security_employer_has_at_least_10_workers: true
+    be:regulations/social_security/workers/employer_contributions#input.belgium_employer_social_security_employer_has_at_least_20_workers: true
+  output:
+    be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_basic_contribution: 0
+    be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_wage_moderation_contribution: 0
+    be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_one_point_six_contribution: 0
+    be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_company_closing_fund_contribution: 0
+    be:regulations/social_security/workers/employer_contributions#belgium_employer_social_security_ordinary_worker_contribution: 0
+
 - name: employer_ssc_ordinary_private_commercial_less_than_20_workers_uses_official_ffe_rate
   period:
     period_kind: custom
