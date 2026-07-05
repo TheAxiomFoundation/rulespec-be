@@ -185,3 +185,57 @@
   output:
     be:statutes/social_security/non_labour_income_contributions#belgium_rd33_prepension_floor: 469.25
     be:statutes/social_security/non_labour_income_contributions#belgium_rd33_prepension_monthly_withholding: 5.75
+
+- name: combined_pensioner_annual_withholding_isolated_below_solidarity_threshold
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_article_68_index_factor: 1
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_beneficiary_has_family_charge: false
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_monthly_gross_legal_pensions: 1600
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_monthly_gross_complementary_pensions: 100
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_nonmonthly_periodic_pensions_monthly_equivalent: 0
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_capital_pensions_fictive_monthly_rent: 0
+  output:
+    be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_monthly_pension_withholding: 60.35
+    be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_monthly_withholding: 0
+    be:statutes/social_security/non_labour_income_contributions#belgium_pensioner_total_annual_health_and_solidarity_withholding: 724.20
+
+- name: combined_pensioner_annual_withholding_isolated_solidarity_mid_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_article_68_index_factor: 1
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_beneficiary_has_family_charge: false
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_monthly_gross_legal_pensions: 1800
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_monthly_gross_complementary_pensions: 0
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_nonmonthly_periodic_pensions_monthly_equivalent: 0
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_capital_pensions_fictive_monthly_rent: 0
+  output:
+    be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_monthly_pension_withholding: 63.90
+    be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_monthly_withholding: 27.00
+    be:statutes/social_security/non_labour_income_contributions#belgium_pensioner_total_annual_health_and_solidarity_withholding: 1090.80
+
+- name: combined_pensioner_annual_withholding_isolated_solidarity_top_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_article_68_index_factor: 1
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_beneficiary_has_family_charge: false
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_monthly_gross_legal_pensions: 2500
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_monthly_gross_complementary_pensions: 0
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_nonmonthly_periodic_pensions_monthly_equivalent: 0
+    be:statutes/social_security/non_labour_income_contributions#input.belgium_pension_solidarity_capital_pensions_fictive_monthly_rent: 0
+  output:
+    be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_monthly_pension_withholding: 88.75
+    be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_monthly_withholding: 50.00
+    be:statutes/social_security/non_labour_income_contributions#belgium_pensioner_total_annual_health_and_solidarity_withholding: 1665.00
