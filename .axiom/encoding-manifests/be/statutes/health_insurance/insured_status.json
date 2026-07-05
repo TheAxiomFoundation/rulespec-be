@@ -1,0 +1,41 @@
+{
+  "applied_files": [
+    {
+      "path": "be/statutes/health_insurance/insured_status.yaml",
+      "sha256": "72784b78fdee3b421985789e68a645dae5d211e84644bfaf9f7ad2ca8bbf37f7"
+    },
+    {
+      "path": "be/statutes/health_insurance/insured_status.test.yaml",
+      "sha256": "b568fd20a05baca12011883493a3c666657c0aaa56eca687998f36aff5b9201e"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "deb4206cbe86f9708e0ba5d805269cc96af3561d",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode-clean",
+    "version": "0.2.1081",
+    "version_commit": "deb4206cbe86f9708e0ba5d805269cc96af3561d"
+  },
+  "axiom_encode_version": "0.2.1081",
+  "backend": "deterministic",
+  "citation": "be:statutes/health_insurance/insured_status",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-03T08:53:39.934249+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpoou5co1r/deterministic-repair/be/statutes/health_insurance/insured_status.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpoou5co1r",
+  "generated_output_sha256": "72784b78fdee3b421985789e68a645dae5d211e84644bfaf9f7ad2ca8bbf37f7",
+  "generation_prompt_sha256": null,
+  "model": "zero-branch-test-v1",
+  "run_id": "deterministic-repair",
+  "runner": "deterministic-repair",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "bbad23e44e313c7b104223ef5342b7c9a428d244faf511710ff3969ee6e23145"
+  },
+  "tool": "axiom-encode repair-zero-branch-tests",
+  "trace_file": null,
+  "trace_sha256": null
+}

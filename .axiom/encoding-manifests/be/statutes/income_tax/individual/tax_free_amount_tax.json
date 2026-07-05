@@ -1,0 +1,41 @@
+{
+  "applied_files": [
+    {
+      "path": "be/statutes/income_tax/individual/tax_free_amount_tax.yaml",
+      "sha256": "0c93674cb018de36bef7fba3b83671805128fc552e5990def71aed65a2c2b6da"
+    },
+    {
+      "path": "be/statutes/income_tax/individual/tax_free_amount_tax.test.yaml",
+      "sha256": "e68f796b47c4dd75bb9aee76566550bf9d1bb90e9f483e4dd628b750c6cef443"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "deb4206cbe86f9708e0ba5d805269cc96af3561d",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode-clean",
+    "version": "0.2.1081",
+    "version_commit": "deb4206cbe86f9708e0ba5d805269cc96af3561d"
+  },
+  "axiom_encode_version": "0.2.1081",
+  "backend": "deterministic",
+  "citation": "be:statutes/income_tax/individual/tax_free_amount_tax",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-03T08:53:38.241393+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpdl58dbt1/deterministic-repair/be/statutes/income_tax/individual/tax_free_amount_tax.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpdl58dbt1",
+  "generated_output_sha256": "0c93674cb018de36bef7fba3b83671805128fc552e5990def71aed65a2c2b6da",
+  "generation_prompt_sha256": null,
+  "model": "zero-branch-test-v1",
+  "run_id": "deterministic-repair",
+  "runner": "deterministic-repair",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "be5173e57d4508ba321068c6f693dfe07eb42deef3c25a80e1da9fd10ca2a650"
+  },
+  "tool": "axiom-encode repair-zero-branch-tests",
+  "trace_file": null,
+  "trace_sha256": null
+}
