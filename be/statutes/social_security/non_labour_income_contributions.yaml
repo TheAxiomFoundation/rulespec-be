@@ -565,3 +565,22 @@ rules:
       - effective_from: '2006-04-01'
         formula: |-
           belgium_rd33_invalidity_monthly_withholding + belgium_rd33_prepension_monthly_withholding
+  - name: belgium_pensioner_health_and_solidarity_months_in_year
+    kind: parameter
+    dtype: Integer
+    source: Annual bridge from the monthly article 68 solidarity and article 191 health-insurance pension withholdings
+    versions:
+      - effective_from: '1994-03-30'
+        formula: |-
+          12
+  - name: belgium_pensioner_total_annual_health_and_solidarity_withholding
+    kind: derived
+    entity: Family
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Annual total of the Law of 14 July 1994 article 191 health-insurance pension withholding and the Law of 30 March 1994 article 68 pension solidarity withholding. Composed to face EUROMOD BE_2025 tscpe_s, which accumulates both instruments into a single pensioner social-insurance-contribution output; it excludes the Royal Decree No. 33 invalidity/prepension withholding, which EUROMOD carries as a separate instrument.
+    versions:
+      - effective_from: '2019-03-01'
+        formula: |-
+          (belgium_health_insurance_article_191_monthly_pension_withholding + belgium_pension_solidarity_article_68_monthly_withholding) * belgium_pensioner_health_and_solidarity_months_in_year
