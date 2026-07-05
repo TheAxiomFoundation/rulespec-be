@@ -86,6 +86,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: 1° (7,5 p.c.) du montant de sa rémunération, (pour les travailleurs soumis) au régime des pensions de retraite et de survie des travailleurs salariés
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -94,6 +102,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: 2° 1,15 p.c. du montant de sa rémunération (pour les travailleurs soumis) au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités)
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -102,6 +118,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: 3° 0,87 p.c. du montant de sa rémunération (pour les travailleurs soumis) au régime relatif à l'emploi et au chômage
     versions:
       - effective_from: '1994-03-30'
         formula: |-
@@ -110,6 +134,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: 4° (3,55 p.c.) du montant de sa rémunération (pour les travailleurs soumis) au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé).
     versions:
       - effective_from: '1992-07-01'
         formula: |-
