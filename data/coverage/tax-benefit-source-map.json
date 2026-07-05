@@ -1929,6 +1929,7 @@
       "rule_surface": [
         "sickness indemnity",
         "invalidity indemnity",
+        "birth-leave indemnity",
         "replacement rates",
         "ceilings",
         "dependant status"
@@ -1939,11 +1940,13 @@
           "source_priority_role": "primary_law_or_original_publication",
           "works": [
             "Loi relative a l'assurance obligatoire soins de sante et indemnites coordonnee le 14 juillet 1994",
-            "Arrete royal du 3 juillet 1996 portant execution de la loi relative a l'assurance obligatoire soins de sante et indemnites"
+            "Arrete royal du 3 juillet 1996 portant execution de la loi relative a l'assurance obligatoire soins de sante et indemnites",
+            "Loi du 3 juillet 1978 relative aux contrats de travail"
           ],
           "eli_refs": [
             "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/moniteur",
-            "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/moniteur"
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/moniteur",
+            "https://www.ejustice.just.fgov.be/eli/loi/1978/07/03/1978070303/moniteur"
           ],
           "status": "eli_located"
         },
@@ -1952,10 +1955,12 @@
           "source_priority_role": "consolidated_locator_not_legal_authority",
           "eli_refs": [
             "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/justel",
-            "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/justel"
+            "https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/justel",
+            "https://www.ejustice.just.fgov.be/eli/loi/1978/07/03/1978070303/justel"
           ],
           "status": "corpus_ingested",
           "corpus_citation_paths": [
+            "be/statute/loi/1978/07/03/1978070303/article/30",
             "be/statute/loi/1994/07/14/1994071451/article/32",
             "be/statute/loi/1994/07/14/1994071451/article/86",
             "be/statute/loi/1994/07/14/1994071451/article/87",
@@ -1982,7 +1987,8 @@
             "be/regulation/arrete/1996/07/03/1996022344/article/216",
             "be/regulation/arrete/1996/07/03/1996022344/article/217",
             "be/regulation/arrete/1996/07/03/1996022344/article/219bis",
-            "be/regulation/arrete/1996/07/03/1996022344/article/222"
+            "be/regulation/arrete/1996/07/03/1996022344/article/222",
+            "be/regulation/arrete/1996/07/03/1996022344/article/223bis"
           ]
         },
         {
@@ -2076,6 +2082,18 @@
           "oracle_checks": [
             "openfisca-belgium:maternity_benefits",
             "belmod:maternity_benefits"
+          ],
+          "status": "encoded"
+        },
+        {
+          "id": "birth-leave-indemnity-rates",
+          "destination": "be/regulations/health_insurance/birth_leave/indemnity_rates.yaml",
+          "source_requirements": [
+            "3 July 1978 employment-contracts law article 30",
+            "3 July 1996 implementing royal decree article 223bis"
+          ],
+          "oracle_checks": [
+            "euromod-belgium:bpact_s"
           ],
           "status": "encoded"
         }

@@ -1,0 +1,43 @@
+- name: eligible_parent_under_cap_gets_three_wage_days_and_seventeen_indemnity_days
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_eligible_parent: true
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_uncapped_lost_daily_remuneration: 100
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_lost_daily_remuneration_after_article_87_cap: 100
+  output:
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_30_employer_paid_amount: 300
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_223bis_daily_indemnity: 82
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_223bis_health_insurance_amount: 1394
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_total_compensation_amount: 1694
+
+- name: eligible_parent_high_wage_uses_supplied_article_87_cap_for_indemnity_only
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_eligible_parent: true
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_uncapped_lost_daily_remuneration: 200
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_lost_daily_remuneration_after_article_87_cap: 183.13
+  output:
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_30_employer_paid_amount: 600
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_223bis_daily_indemnity: 150.1666
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_223bis_health_insurance_amount: 2552.8322
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_total_compensation_amount: 3152.8322
+
+- name: ineligible_parent_gets_no_birth_leave_compensation
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_eligible_parent: false
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_uncapped_lost_daily_remuneration: 100
+    be:regulations/health_insurance/birth_leave/indemnity_rates#input.belgium_birth_leave_lost_daily_remuneration_after_article_87_cap: 100
+  output:
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_30_employer_paid_amount: 0
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_article_223bis_health_insurance_amount: 0
+    be:regulations/health_insurance/birth_leave/indemnity_rates#belgium_birth_leave_total_compensation_amount: 0
