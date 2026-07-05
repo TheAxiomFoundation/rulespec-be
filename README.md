@@ -48,3 +48,9 @@ The first intake map is `data/coverage/tax-benefit-source-map.json`.
 This first pass is a source-first repo scaffold, not a formula port. The Belgium ELI/Moniteur adapter now exists in `axiom-corpus`, with the first tax-benefit manifest run at `2026-06-30-be-tax-benefit`. RuleSpec modules should cite those corpus artifacts before encoding formulas.
 
 Durable ids should use `be:<path>#<rule>` for federal rules, `be-bru:<path>#<rule>` for Brussels rules, `be-vlg:<path>#<rule>` for Flemish rules, `be-wal:<path>#<rule>` for Walloon rules, and `be-dg:<path>#<rule>` for German-speaking Community rules.
+
+## Money proof-atom coverage
+
+Every policy-bearing monetary value — currency parameters, currency parameter-table cells, and currency literals in derived formulas — must carry a proof atom whose source cites a provision. The shared `validate-rulespec` workflow enforces this with `axiom-encode proof-validate --money-atoms-only`, reading the repo-root ratchet `known-missing-money-atoms.yaml`.
+
+`known-missing-money-atoms.yaml` records the current backlog (`total_allowed`, seeded at 323) so CI blocks any *new* atom-less monetary value while the existing debt is burned down. This is a floor to lower, never raise: add `metadata.proof.atoms` to the monetary rules, then regenerate with `axiom-encode proof-validate --emit-ratchet <files> --money-atom-root .` and lower the number. Issue #31 tracks the burn-down. When the count reaches zero, delete the file — an absent ratchet means a strict zero allowance.
