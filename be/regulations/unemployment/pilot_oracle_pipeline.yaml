@@ -1,0 +1,128 @@
+format: rulespec/v1
+imports:
+  - be:regulations/unemployment/payable_amount#belgium_unemployment_ordinary_monthly_payable_amount
+module:
+  summary: |-
+    This composed pilot module exposes a dense-engine-friendly Person-level
+    path from a prior average daily wage, an Article 110 household-status code,
+    and an indemnification month number into the ordinary Belgian unemployment
+    benefit for the EUROMOD BE_2025 oracle slice. It wires the Article 111
+    capped average daily wage, the Article 114 ordinary degressivity
+    replacement rate, the Article 115 household-status minimum daily allowance,
+    and the payable-amount monthly bridge into a single annualized ordinary
+    unemployment amount. It deliberately keeps existing public rule ids in the
+    imported unemployment modules unchanged and supplies the payable-amount
+    module's free composition inputs (ordinary replacement-rate override,
+    monthly compensable days, and the household-status and Article 114 second-
+    period-condition selectors) as pilot bridge rules. It excludes temporary
+    (short-time) unemployment, the Article 116 readmission and reference-period
+    extension mechanics, sanctions, regional activation, the youth and senior
+    Article 131ter holiday allowance, company-supplement and Article 28(3)
+    minimum schedules, the two-spouse-lowest-minimum increment, and any
+    calendar-date recomputation.
+  source_verification:
+    corpus_citation_paths:
+      - be/regulation/arrete/1991/11/25/1991013192/article/111
+      - be/regulation/arrete/1991/11/25/1991013192/article/114
+    values:
+      belgium_unemployment_pilot_months_per_year: 12
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_unemployment_pilot_months_per_year
+    kind: parameter
+    dtype: Count
+    source: Twelve months per year annualization factor for the unemployment oracle pilot
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          12
+  - name: belgium_unemployment_ordinary_replacement_rate
+    kind: derived
+    entity: Household
+    dtype: Rate
+    period: Day
+    source: >-
+      The worker-only unemployment pilot supplies a zero ordinary
+      replacement-rate override so the imported payable-amount module uses the
+      encoded Article 114 ordinary degressivity replacement rate rather than an
+      external rate
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0
+  - name: belgium_unemployment_temporary_force_majeure
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Day
+    source: >-
+      The ordinary unemployment pilot is not a temporary-unemployment case, so
+      the Article 114 section 6 force-majeure selector is supplied as false
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0
+  - name: belgium_unemployment_two_spouses_only_receive_lowest_minimum
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Day
+    source: >-
+      The ordinary unemployment pilot does not model the Article 115 section 1
+      two-cohabiting-spouses lowest-minimum increment, so the selector is
+      supplied as false
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0
+  - name: belgium_unemployment_article_114_4_1_condition_met
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Day
+    source: >-
+      The ordinary unemployment pilot supplies the Article 114 section 4 item 1
+      second-period cohabitant-minimum condition as not met, selecting the
+      Article 115 section 1 item 3(e) cohabitant second-period amount when a
+      cohabitant reaches the second indemnification period
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          0
+  - name: belgium_unemployment_ordinary_pilot_monthly_payable_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: >-
+      Ordinary monthly unemployment benefit for the worker-only oracle pilot,
+      re-exposed from the imported Article 114 and Article 115 ordinary monthly
+      payable amount so the pilot's supplied composition inputs (ordinary
+      replacement-rate override, force-majeure, two-spouse-lowest-minimum, and
+      Article 114 section 4 item 1 selectors) are in scope. This is the EUROMOD
+      BE_2025 bun_s comparison target: EUROMOD's bun_s stores one month of the
+      ordinary unemployment benefit divided by twelve, so the oracle bridge
+      annualizes bun_s (multiplies by twelve) back to a monthly benefit that is
+      compared against this monthly payable amount
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_ordinary_monthly_payable_amount
+  - name: belgium_unemployment_ordinary_annual_payable_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Annualized ordinary unemployment benefit for the worker-only oracle
+      pilot: the pilot Household-scoped monthly ordinary payable amount
+      multiplied by twelve months
+    versions:
+      - effective_from: '2026-03-01'
+        formula: |-
+          belgium_unemployment_ordinary_pilot_monthly_payable_amount * belgium_unemployment_pilot_months_per_year
