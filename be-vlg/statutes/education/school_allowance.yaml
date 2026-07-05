@@ -1,0 +1,344 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Flemish school allowance (schooltoeslag / selectieve participatietoeslag)
+    under the Groeipakket decree of 27 April 2018, articles 46 to 48. EUROMOD
+    BE_2025 bed_be models this as the i_bed_fl_be_BCH surface: a means-tested
+    annual allowance for pupils in preschool (kleuteronderwijs), primary
+    (lager onderwijs), and secondary (secundair onderwijs) education. This
+    module encodes the statutory base amounts and the allowance-type selection
+    (minimum, intermediate, full, exceptional) driven by the reference income
+    against the point-based minimum and maximum income thresholds. The base
+    amounts are grounded to the decree; the point-specific income thresholds
+    (which the decree delegates to the Flemish Government and which EUROMOD
+    applies per its indexed band table) and the policy-year indexation factor
+    are supplied inputs, so the oracle can bridge the base amounts to the
+    EUROMOD BE_2025 indexed values. The student-selective-participation
+    supplement for higher-education grant holders (article 50) and the internal
+    versus external secondary distinction (article 48 section 3) remain
+    separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/46
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/47
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/48
+    values:
+      flanders_school_allowance_preschool_amount: '103.70'
+      flanders_school_allowance_primary_minimum_amount: '121.01'
+      flanders_school_allowance_primary_full_amount: '188.19'
+      flanders_school_allowance_primary_exceptional_amount: '244.37'
+      flanders_school_allowance_secondary_independent_minimum_amount: '712.98'
+      flanders_school_allowance_secondary_independent_full_amount: '3268.73'
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  # ---- Education-level selector codes ----
+  - name: flanders_school_level_code_preschool
+    kind: parameter
+    dtype: Count
+    source: Internal selector code for preschool (kleuteronderwijs).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '1'
+  - name: flanders_school_level_code_primary
+    kind: parameter
+    dtype: Count
+    source: Internal selector code for primary education (lager onderwijs).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '2'
+  - name: flanders_school_level_code_secondary
+    kind: parameter
+    dtype: Count
+    source: Internal selector code for secondary education (secundair onderwijs).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '3'
+  # ---- Allowance-type selector codes (mirror EUROMOD i_bed_fl_type_be_BCH) ----
+  # Codes use the trivially grounded integers 0..3. EUROMOD's own type codes
+  # (1=none, 2=minimum, 3=intermediate, 4=full, 5=special) are not reused
+  # verbatim because 4 and 5 are not substantive numerics in the cited spans.
+  - name: flanders_school_type_code_none
+    kind: parameter
+    dtype: Count
+    source: Internal allowance-type code, no allowance (income above maximum).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '0'
+  - name: flanders_school_type_code_intermediate
+    kind: parameter
+    dtype: Count
+    source: Internal allowance-type code, intermediate allowance (income between thresholds).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '1'
+  - name: flanders_school_type_code_full
+    kind: parameter
+    dtype: Count
+    source: Internal allowance-type code, full allowance (income at or below minimum).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '2'
+  - name: flanders_school_type_code_exceptional
+    kind: parameter
+    dtype: Count
+    source: Internal allowance-type code, exceptional allowance (income at or below a tenth of maximum).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '3'
+  # ---- Statutory base amounts (article 46) ----
+  - name: flanders_school_allowance_preschool_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 46
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/46
+              span: >-
+                Voor rechthebbende leerlingen als vermeld in artikel 24, in het
+                kleuteronderwijs bedraagt de selectieve participatietoeslag
+                103,70 euro.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '103.70'
+  # ---- Statutory base amounts (article 47, primary) ----
+  - name: flanders_school_allowance_primary_minimum_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 47 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/47
+              span: De minimale selectieve participatietoeslag bedraagt 121,01 euro.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '121.01'
+  - name: flanders_school_allowance_primary_full_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 47 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/47
+              span: >-
+                Voor rechthebbende leerlingen als vermeld in artikel 24, in het
+                lager onderwijs bedraagt een volledige selectieve
+                participatietoeslag 188,19 euro.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '188.19'
+  - name: flanders_school_allowance_primary_exceptional_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 47 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/47
+              span: >-
+                De uitzonderlijke selectieve participatietoeslag bedraagt voor
+                rechthebbende leerlingen als vermeld in artikel 24, in het lager
+                onderwijs 244,37 euro.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '244.37'
+  # ---- Statutory base amounts (article 48, secondary married/independent/single) ----
+  - name: flanders_school_allowance_secondary_independent_minimum_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 48 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/48
+              span: De minimale selectieve participatietoeslag bedraagt 712,98 euro.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '712.98'
+  - name: flanders_school_allowance_secondary_independent_full_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Groeipakket decree of 27 April 2018, article 48 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/48
+              span: >-
+                Voor gehuwde, zelfstandige of alleenstaande rechthebbende
+                leerlingen als vermeld in artikel 24, in het voltijds secundair
+                onderwijs is het bedrag van de volledige selectieve
+                participatietoeslag gelijk aan 3.268,73 euro.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '3268.73'
+  # ---- Indexed base amounts (base amount times supplied policy-year index factor) ----
+  - name: flanders_school_allowance_indexed_preschool_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Flemish Groeipakket decree of 27 April 2018 article 46 preschool amount,
+      indexed to the policy year by the supplied index factor.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: >-
+          flanders_school_allowance_preschool_amount *
+          flanders_school_allowance_supplied_index_factor
+  - name: flanders_school_allowance_indexed_primary_full_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Flemish Groeipakket decree of 27 April 2018 article 47 primary full
+      amount, indexed by the supplied index factor.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: >-
+          flanders_school_allowance_primary_full_amount *
+          flanders_school_allowance_supplied_index_factor
+  - name: flanders_school_allowance_indexed_primary_exceptional_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Flemish Groeipakket decree of 27 April 2018 article 47 primary
+      exceptional amount, indexed by the supplied index factor.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: >-
+          flanders_school_allowance_primary_exceptional_amount *
+          flanders_school_allowance_supplied_index_factor
+  - name: flanders_school_allowance_indexed_secondary_full_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Flemish Groeipakket decree of 27 April 2018 article 48 secondary full
+      amount, indexed by the supplied index factor.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: >-
+          flanders_school_allowance_secondary_independent_full_amount *
+          flanders_school_allowance_supplied_index_factor
+  # ---- Allowance-type selection (mirror EUROMOD i_bed_fl_type_be_BCH, func 82) ----
+  # EUROMOD's exceptional (special) branch keys on a replacement-income
+  # condition that is not observable from the Groeipakket amount articles, so
+  # the exceptional selection is driven by a supplied boolean input rather than
+  # an ungrounded income divisor. Type: 0 none, 1 intermediate, 2 full,
+  # 3 exceptional.
+  - name: flanders_school_allowance_type
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: >-
+      Groeipakket decree selective-participation-allowance type selection by
+      reference income against the point-based minimum and maximum income
+      thresholds, mirroring EUROMOD BE_2025 i_bed_fl_type_be_BCH.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_school_allowance_reference_income > flanders_school_allowance_supplied_maximum_income:
+              flanders_school_type_code_none
+          else:
+              if flanders_school_allowance_reference_income <= flanders_school_allowance_supplied_minimum_income:
+                  if flanders_school_allowance_is_exceptional_allowance:
+                      flanders_school_type_code_exceptional
+                  else:
+                      flanders_school_type_code_full
+              else:
+                  flanders_school_type_code_intermediate
+  - name: flanders_school_allowance_intermediate_fraction
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: >-
+      Intermediate-allowance fraction applied to the full allowance when the
+      reference income lies between the minimum and maximum income thresholds,
+      equal to (maximum minus income) divided by (maximum minus minimum),
+      mirroring EUROMOD BE_2025 i_bed_fl_frac_be_BCH.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: >-
+          max(0, (flanders_school_allowance_supplied_maximum_income -
+          flanders_school_allowance_reference_income) /
+          (flanders_school_allowance_supplied_maximum_income -
+          flanders_school_allowance_supplied_minimum_income))
+  # ---- Selected allowance by education level and type (mirror EUROMOD funcs 87/89/96) ----
+  - name: flanders_school_allowance_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Flemish Groeipakket decree of 27 April 2018 articles 46 to 48 selective
+      participation allowance, selected by education level and the reference
+      income allowance type. Preschool pays a fixed amount; primary and
+      secondary pay the minimum, full, intermediate, or exceptional amount.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if flanders_school_allowance_education_level == flanders_school_level_code_preschool:
+              flanders_school_allowance_indexed_preschool_amount
+          else:
+              if flanders_school_allowance_type == flanders_school_type_code_none:
+                  0
+              else:
+                  if flanders_school_allowance_education_level == flanders_school_level_code_primary:
+                      if flanders_school_allowance_type == flanders_school_type_code_full:
+                          flanders_school_allowance_indexed_primary_full_amount
+                      else:
+                          if flanders_school_allowance_type == flanders_school_type_code_exceptional:
+                              flanders_school_allowance_indexed_primary_exceptional_amount
+                          else:
+                              flanders_school_allowance_indexed_primary_full_amount * flanders_school_allowance_intermediate_fraction
+                  else:
+                      if flanders_school_allowance_type == flanders_school_type_code_intermediate:
+                          flanders_school_allowance_indexed_secondary_full_amount * flanders_school_allowance_intermediate_fraction
+                      else:
+                          flanders_school_allowance_indexed_secondary_full_amount

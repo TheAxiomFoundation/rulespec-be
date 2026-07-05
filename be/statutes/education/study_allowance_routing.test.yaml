@@ -1,0 +1,38 @@
+- name: flanders_routes_to_flemish_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_region: 2
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_supplied_flemish_amount: 3046.30
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_supplied_french_community_amount: 2685.74
+  output:
+    be:statutes/education/study_allowance_routing#belgium_study_allowance_annual_amount: 3046.30
+
+- name: wallonia_routes_to_french_community_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_region: 3
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_supplied_flemish_amount: 3046.30
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_supplied_french_community_amount: 2685.74
+  output:
+    be:statutes/education/study_allowance_routing#belgium_study_allowance_annual_amount: 2685.74
+
+- name: brussels_out_of_deterministic_scope_returns_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_region: 1
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_supplied_flemish_amount: 3046.30
+    be:statutes/education/study_allowance_routing#input.belgium_study_allowance_supplied_french_community_amount: 2685.74
+  output:
+    be:statutes/education/study_allowance_routing#belgium_study_allowance_annual_amount: 0

@@ -1,0 +1,159 @@
+- name: full_allowance_nietkot_zero_points
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_is_residential: false
+    be-vlg:statutes/education/study_grant#input.study_grant_is_exceptional_eligible: false
+    be-vlg:statutes/education/study_grant#input.study_grant_reference_income: 5000
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_min_income_threshold: 6573.55
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_max_income_threshold: 14489.77
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_exceptional_income_ceiling: 1448.977
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_index_factor: 1.0
+  output:
+    be-vlg:statutes/education/study_grant#study_grant_points: 0
+    be-vlg:statutes/education/study_grant#study_grant_full_amount: 2043.43
+    be-vlg:statutes/education/study_grant#study_grant_full_amount_indexed: 2043.43
+    be-vlg:statutes/education/study_grant#study_grant_minimum_amount_indexed: 220
+    be-vlg:statutes/education/study_grant#study_grant_allowance: 2043.43
+
+- name: no_allowance_kot_zero_points_income_above_max
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_is_residential: true
+    be-vlg:statutes/education/study_grant#input.study_grant_is_exceptional_eligible: false
+    be-vlg:statutes/education/study_grant#input.study_grant_reference_income: 20000
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_min_income_threshold: 6573.55
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_max_income_threshold: 14489.77
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_exceptional_income_ceiling: 1448.977
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_index_factor: 1.0
+  output:
+    be-vlg:statutes/education/study_grant#study_grant_allowance: 0
+
+- name: exceptional_allowance_nietkot_zero_points_income_below_tenth_of_max
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_is_residential: false
+    be-vlg:statutes/education/study_grant#input.study_grant_is_exceptional_eligible: true
+    be-vlg:statutes/education/study_grant#input.study_grant_reference_income: 1000
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_min_income_threshold: 6573.55
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_max_income_threshold: 14489.77
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_exceptional_income_ceiling: 1448.977
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_index_factor: 1.0
+  output:
+    be-vlg:statutes/education/study_grant#study_grant_exceptional_income_ceiling: 1448.977
+    be-vlg:statutes/education/study_grant#study_grant_exceptional_amount: 2965.31
+    be-vlg:statutes/education/study_grant#study_grant_exceptional_amount_indexed: 2965.31
+    be-vlg:statutes/education/study_grant#study_grant_allowance: 2965.31
+
+- name: intermediate_allowance_nietkot_zero_points_midrange_income
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 0
+    be-vlg:statutes/education/study_grant#input.study_grant_is_residential: false
+    be-vlg:statutes/education/study_grant#input.study_grant_is_exceptional_eligible: false
+    be-vlg:statutes/education/study_grant#input.study_grant_reference_income: 10000
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_min_income_threshold: 6573.55
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_max_income_threshold: 14489.77
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_exceptional_income_ceiling: 1448.977
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_index_factor: 1.0
+  output:
+    # Hand-computed: full_nietkot(2043.43) * (14489.77 - 10000) / (14489.77 - 6573.55)
+    be-vlg:statutes/education/study_grant#study_grant_allowance: '1158.9534791984052994990033122'
+
+- name: full_allowance_kot_twenty_points
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 15
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 4
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 1
+    be-vlg:statutes/education/study_grant#input.study_grant_is_residential: true
+    be-vlg:statutes/education/study_grant#input.study_grant_is_exceptional_eligible: false
+    be-vlg:statutes/education/study_grant#input.study_grant_reference_income: 25000
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_min_income_threshold: 31177.76
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_max_income_threshold: 75362.09
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_exceptional_income_ceiling: 7536.209
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_index_factor: 1.0
+  output:
+    be-vlg:statutes/education/study_grant#study_grant_points_before_cap: 20
+    be-vlg:statutes/education/study_grant#study_grant_points: 20
+    be-vlg:statutes/education/study_grant#study_grant_full_amount_indexed: 3404.62
+    be-vlg:statutes/education/study_grant#study_grant_allowance: 3404.62
+
+- name: intermediate_allowance_kot_twenty_points_midrange_income
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 15
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 4
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 1
+    be-vlg:statutes/education/study_grant#input.study_grant_is_residential: true
+    be-vlg:statutes/education/study_grant#input.study_grant_is_exceptional_eligible: false
+    be-vlg:statutes/education/study_grant#input.study_grant_reference_income: 50000
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_min_income_threshold: 31177.76
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_max_income_threshold: 75362.09
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_exceptional_income_ceiling: 7536.209
+    be-vlg:statutes/education/study_grant#input.study_grant_supplied_index_factor: 1.0
+  output:
+    # Hand-computed: full_kot(3404.62) * (75362.09 - 50000) / (75362.09 - 31177.76)
+    be-vlg:statutes/education/study_grant#study_grant_allowance: '1954.2738082890472708310842328'
+
+- name: points_formula_sums_dependent_disabled_and_household_category
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 5
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 3
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 1
+  output:
+    be-vlg:statutes/education/study_grant#study_grant_points_before_cap: 9
+    be-vlg:statutes/education/study_grant#study_grant_points: 9
+
+- name: points_formula_caps_at_twenty
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/study_grant#input.study_grant_dependent_person_count: 15
+    be-vlg:statutes/education/study_grant#input.study_grant_disabled_person_count: 10
+    be-vlg:statutes/education/study_grant#input.study_grant_household_category_point: 1
+  output:
+    be-vlg:statutes/education/study_grant#study_grant_points_before_cap: 26
+    be-vlg:statutes/education/study_grant#study_grant_points: 20

@@ -1,0 +1,120 @@
+- name: preschool_fixed_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 1
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 50000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.0
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: false
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_indexed_preschool_amount: 103.70
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 103.70
+
+- name: primary_full_income_below_minimum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 2
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 5000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.0
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: false
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_type: 2
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_indexed_primary_full_amount: 188.19
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 188.19
+
+- name: primary_exceptional_when_flagged
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 2
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 2000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.0
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: true
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_type: 3
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_indexed_primary_exceptional_amount: 244.37
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 244.37
+
+- name: primary_intermediate_between_thresholds
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 2
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 20000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.0
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: false
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_type: 1
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_intermediate_fraction: 0.5
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 94.095
+
+- name: primary_no_allowance_income_above_maximum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 2
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 35000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.0
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: false
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_type: 0
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 0
+
+- name: secondary_full_income_below_minimum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 3
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 5000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.0
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: false
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_indexed_secondary_full_amount: 3268.73
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 3268.73
+
+- name: secondary_indexed_amount_with_index_factor
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_education_level: 3
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_reference_income: 5000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_minimum_income: 10000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_maximum_income: 30000
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_supplied_index_factor: 1.2079
+    be-vlg:statutes/education/school_allowance#input.flanders_school_allowance_is_exceptional_allowance: false
+  output:
+    be-vlg:statutes/education/school_allowance#flanders_school_allowance_amount: 3948.298967

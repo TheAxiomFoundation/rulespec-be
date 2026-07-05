@@ -1,0 +1,69 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Regional routing of the Belgian study allowance (EUROMOD BE_2025 output
+    bed_s). Study allowances are a Community competence: the Flemish Community
+    pays the Flemish school allowance and higher-education study grant, and the
+    French Community (Fédération Wallonie-Bruxelles) pays the allocation
+    d'études. EUROMOD BE_2025 bed_be assigns bed_s by the pupil or student's
+    region of residence (drgn1): Flanders takes the Flemish amount, Wallonia
+    takes the French-Community amount. For Brussels, EUROMOD applies a random
+    ninety-ten split between the two Community systems and a non-take-up
+    correction, both gated on non-hypothetical survey data (Run_Cond
+    !IsUsedDatabase); on hypothetical-household input these branches do not run,
+    so the deterministic routing here covers the Flanders and Wallonia cases
+    that a hypothetical-household oracle can reproduce. The Brussels random
+    allocation and the non-take-up correction are out of scope for this
+    deterministic routing.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/decreet/2007/06/08/2007036095/article/2
+      - be-wal/statute/decret/2021/11/18/2021022504/article/1er
+    values:
+      belgium_study_allowance_region_flanders: '2'
+      belgium_study_allowance_region_wallonia: '3'
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_study_allowance_region_flanders
+    kind: parameter
+    dtype: Count
+    source: >-
+      EUROMOD BE_2025 region-of-residence code drgn1 for Flanders, the region
+      whose Community pays the Flemish study financing (decree of 8 June 2007).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '2'
+  - name: belgium_study_allowance_region_wallonia
+    kind: parameter
+    dtype: Count
+    source: >-
+      EUROMOD BE_2025 region-of-residence code drgn1 for Wallonia, the region
+      whose Community pays the French-Community allocation d'études (decree of
+      18 November 2021).
+    versions:
+      - effective_from: '2019-01-01'
+        formula: '3'
+  - name: belgium_study_allowance_annual_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: >-
+      Belgian study allowance (EUROMOD BE_2025 bed_s), selected by region of
+      residence: the Flemish Community amount for Flanders and the French-
+      Community amount for Wallonia. Flemish and French-Community amounts are
+      supplied by their respective encoded surfaces.
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          if belgium_study_allowance_region == belgium_study_allowance_region_flanders:
+              belgium_study_allowance_supplied_flemish_amount
+          else:
+              if belgium_study_allowance_region == belgium_study_allowance_region_wallonia:
+                  belgium_study_allowance_supplied_french_community_amount
+              else:
+                  0
