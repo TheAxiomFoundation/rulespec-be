@@ -1,0 +1,148 @@
+format: rulespec/v1
+imports:
+  - be:statutes/family_benefits/birth_allowance#belgium_family_benefits_birth_allowance_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_base_2025_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_annual_amount_with_social_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_2025_same_age_children_annual_household_amount_with_social_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_2025_annual_amount_with_social_supplement
+module:
+  summary: |-
+    This module exposes a narrow household-level bridge to EUROMOD's standard
+    ils_ben benefit income list for the family-benefit oracle slice. It
+    composes already encoded regional birth-allowance and child-benefit
+    outputs into one annual household amount for synthetic EUROMOD comparisons
+    where no other benefit categories are present. It is not a full benefit
+    aggregate: unemployment, pensions, disability, leave, social assistance,
+    elderly income guarantees, allocation/payment-recipient rules, and other
+    EUROMOD income-list components remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
+      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
+      - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
+      - be-wal/statute/decret/2018/02/08/2018201006/article/7
+      - be-wal/statute/decret/2018/02/08/2018201006/article/9
+      - be-wal/statute/decret/2018/02/08/2018201006/article/13
+      - be-wal/statute/decret/2018/02/08/2018201006/article/19
+      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+    upstream_source_check:
+      status: structural_composition_bridge
+      checked_paths:
+        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
+        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
+        - be-wal/statute/decret/2018/02/08/2018201006/article/7
+        - be-wal/statute/decret/2018/02/08/2018201006/article/9
+      rationale: |-
+        The aggregate introduces no new statutory amounts. It adds together
+        family-benefit component outputs whose own modules cite the regional
+        and community statutes, decrees, ordinances, and official amount
+        tables that govern the component calculations.
+    values:
+      belgium_euromod_ils_ben_child_benefit_selector_supplied: 0
+      belgium_euromod_ils_ben_child_benefit_selector_base: 1
+      belgium_euromod_ils_ben_child_benefit_selector_brussels_one_child_social_supplement: 2
+      belgium_euromod_ils_ben_child_benefit_selector_brussels_same_age_household_social_supplement: 3
+      belgium_euromod_ils_ben_child_benefit_selector_wallonia_social_supplement: 4
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_euromod_ils_ben_child_benefit_selector_supplied
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for a supplied child-benefit component in the EUROMOD ils_ben bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+  - name: belgium_euromod_ils_ben_child_benefit_selector_base
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for the encoded base child-benefit component in the EUROMOD ils_ben bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1
+  - name: belgium_euromod_ils_ben_child_benefit_selector_brussels_one_child_social_supplement
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for the encoded Brussels one-child social-supplement child-benefit component in the EUROMOD ils_ben bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2
+  - name: belgium_euromod_ils_ben_child_benefit_selector_brussels_same_age_household_social_supplement
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for the encoded Brussels same-age household social-supplement child-benefit component in the EUROMOD ils_ben bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          3
+  - name: belgium_euromod_ils_ben_child_benefit_selector_wallonia_social_supplement
+    kind: parameter
+    dtype: Integer
+    source: Structural selector for the encoded Wallonia social-supplement child-benefit component in the EUROMOD ils_ben bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4
+  - name: belgium_euromod_ils_ben_birth_allowance_family_benefit_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_ben family-benefit bridge over the encoded regional birth-allowance component
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_euromod_ils_ben_include_birth_allowance_component:
+              belgium_family_benefits_birth_allowance_amount
+          else:
+              belgium_euromod_ils_ben_supplied_birth_allowance_annual_amount
+  - name: belgium_euromod_ils_ben_child_benefit_family_benefit_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_ben family-benefit bridge over selected encoded child-benefit components
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_euromod_ils_ben_child_benefit_component_selector == belgium_euromod_ils_ben_child_benefit_selector_base:
+              belgium_family_benefits_child_benefit_base_2025_annual_amount
+          else:
+              if belgium_euromod_ils_ben_child_benefit_component_selector == belgium_euromod_ils_ben_child_benefit_selector_brussels_one_child_social_supplement:
+                  belgium_child_benefit_brussels_2025_annual_amount_with_social_supplement
+              else:
+                  if belgium_euromod_ils_ben_child_benefit_component_selector == belgium_euromod_ils_ben_child_benefit_selector_brussels_same_age_household_social_supplement:
+                      belgium_child_benefit_brussels_2025_same_age_children_annual_household_amount_with_social_supplement
+                  else:
+                      if belgium_euromod_ils_ben_child_benefit_component_selector == belgium_euromod_ils_ben_child_benefit_selector_wallonia_social_supplement:
+                          belgium_child_benefit_wallonia_2025_annual_amount_with_social_supplement
+                      else:
+                          belgium_euromod_ils_ben_supplied_child_benefit_annual_amount
+  - name: belgium_euromod_ils_ben_family_benefit_pilot_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_ben family-benefit bridge summing encoded birth allowance and child benefit components for oracle comparisons
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_ben_birth_allowance_family_benefit_component + belgium_euromod_ils_ben_child_benefit_family_benefit_component
