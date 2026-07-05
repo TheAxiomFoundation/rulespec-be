@@ -42,6 +42,14 @@ rules:
     dtype: Money
     unit: EUR
     source: CIR 1992 article 126 section 2 item 4, indexed threshold for income year 2025 / assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-179
+              span: "lorsqu'un conjoint recueille des revenus professionnels pour un montant supérieur à 13.460 euros (montant indexé) qui sont exonérés conventionnellement"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -51,6 +59,14 @@ rules:
     dtype: Money
     unit: EUR
     source: CIR 1992 article 86, indexed assisting-spouse distinct professional-income limit for income year 2025 / assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
+              span: "le conjoint aidant n'ait pas bénéficié personnellement, pendant la période imposable, de revenus professionnels provenant d'une activité distincte supérieurs à 17.480 euros (montant indexé)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -59,6 +75,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 article 86, default maximum share of aided spouse activity income
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
+              span: "Cette quote-part doit correspondre à la rémunération normale des prestations du conjoint aidant, sans qu'elle puisse dépasser 30 % des revenus de l'activité professionnelle exercée avec l'aide du conjoint"
     versions:
       - effective_from: '1992-01-01'
         formula: |-
@@ -67,6 +91,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 articles 87 and 88, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
+              span: "Cette quote-part est égale à 30 % de ces revenus sans pouvoir excéder 13.460 euros (montant indexé)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -76,6 +108,14 @@ rules:
     dtype: Money
     unit: EUR
     source: CIR 1992 articles 87 and 88, indexed cap for income year 2025 / assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
+              span: "Cette quote-part est égale à 30 % de ces revenus sans pouvoir excéder 13.460 euros (montant indexé)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

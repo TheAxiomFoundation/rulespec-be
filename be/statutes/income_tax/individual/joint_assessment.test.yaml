@@ -17,6 +17,44 @@
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_separate_assessment_exception_applies: 0
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_joint_assessment_established: 1
 
+- name: article_126_convention_exempt_income_at_threshold_keeps_joint_assessment
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 13460
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_convention_exempt_professional_income_exception: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_separate_assessment_exception_applies: 0
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_joint_assessment_established: 1
+
+- name: article_126_convention_exempt_income_above_threshold_blocks_joint_assessment
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_factual_separation_effective_for_entire_taxable_period_after_separation_year: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_year_of_marriage_dissolution_legal_separation_or_cohabitation_cessation: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 13461
+    be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
+  output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_convention_exempt_professional_income_exception: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_separate_assessment_exception_applies: 1
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_joint_assessment_established: 0
+
 - name: article_126_year_of_marriage_exception_blocks_joint_assessment
   period:
     period_kind: custom
