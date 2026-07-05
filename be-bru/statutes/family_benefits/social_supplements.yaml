@@ -86,6 +86,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+              span: dans une famille comptant un enfant bénéficiaire unique
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -94,6 +102,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b) and 9(2)(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+              span: dans une famille comptant 2 enfants bénéficiaires
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -102,6 +118,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c) and 9(2)(b)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
+              span: dans une famille comptant 3 enfants bénéficiaires et plus
     versions:
       - effective_from: '2021-09-01'
         formula: |-
