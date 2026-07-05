@@ -112,6 +112,26 @@
     be:statutes/income_tax/benefits/company_car#belgium_company_car_annual_benefit_before_contribution: "2926.6285714285714285714285713"
     be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: "2426.6285714285714285714285713"
 
+- name: beneficiary_contribution_above_minimum_benefit_floors_taxable_benefit_at_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_catalog_value: 30000
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_started_months_since_first_registration: 12
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_diesel: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_known_co2: true
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_co2_g_per_km: 70
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_is_false_plugin_hybrid: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_has_corresponding_combustion_vehicle: false
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_corresponding_combustion_co2_g_per_km: 0
+    be:statutes/income_tax/benefits/company_car#input.belgium_company_car_beneficiary_contribution: 2000
+  output:
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_annual_benefit_before_contribution: 1690
+    be:statutes/income_tax/benefits/company_car#belgium_company_car_taxable_annual_benefit: 0
+
 - name: false_plugin_hybrid_without_corresponding_vehicle_multiplies_reported_co2
   period:
     period_kind: custom
