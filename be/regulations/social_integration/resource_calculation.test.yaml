@@ -76,6 +76,82 @@
   output:
     be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_supplemental_exemption: 0
     be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_countable_resources: 13000
+- name: zero_resources_do_not_create_article_22_countable_resources
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_gross_resources: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_cpas_aid: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_family_benefits_for_children: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_child_alimony: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_ale_cheque_remuneration: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_non_invalidated_ale_cheques: 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_training_productivity_or_encouragement_premiums
+    : 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_moving_installation_waiting_or_rent_allowances
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_study_grants_specific_costs: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_foster_care_allowances: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_public_office_attendance_tokens: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_non_regular_donations: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_war_service_rents: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_long_term_care_service_allowances: 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_german_wartime_detention_compensation
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_refundable_tax_credit: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_minor_guardianship_flat_rate: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_volunteer_allowances: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transition_internship_indemnity: 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_integration_allowance_for_disabled_people
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_14_category_code: 1
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_14_annual_amount: 12000
+  output:
+    ? be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_resources_before_supplemental_exemption
+    : 0
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_supplemental_exemption: 155
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_countable_resources: 0
+- name: article_22_supplemental_exemption_threshold_is_strict
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_gross_resources: 12000
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_cpas_aid: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_family_benefits_for_children: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_child_alimony: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_ale_cheque_remuneration: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_non_invalidated_ale_cheques: 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_training_productivity_or_encouragement_premiums
+    : 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_moving_installation_waiting_or_rent_allowances
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_study_grants_specific_costs: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_foster_care_allowances: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_public_office_attendance_tokens: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_non_regular_donations: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_war_service_rents: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_long_term_care_service_allowances: 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_german_wartime_detention_compensation
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_refundable_tax_credit: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_minor_guardianship_flat_rate: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_volunteer_allowances: 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transition_internship_indemnity: 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_integration_allowance_for_disabled_people
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_14_category_code: 1
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_14_annual_amount: 12000
+  output:
+    ? be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_resources_before_supplemental_exemption
+    : 12000
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_supplemental_exemption: 0
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_22_countable_resources: 12000
 - name: article_23_and_35_countable_earned_income_applies_monthly_disregard
   period:
     period_kind: custom
@@ -206,6 +282,36 @@
     ? be:regulations/social_integration/resource_calculation#belgium_social_integration_article_27_movable_capital_owner_fraction
     : 0
     be:regulations/social_integration/resource_calculation#belgium_social_integration_article_27_movable_capital_resource: 0
+- name: article_27_first_threshold_boundary_has_no_capital_resource
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_movable_capital_amount: 6200
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_movable_capital_numerator_share: 1
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_movable_capital_account_holder_count
+    : 1
+  output:
+    ? be:regulations/social_integration/resource_calculation#belgium_social_integration_article_27_movable_capital_counted_amount
+    : 6200
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_27_movable_capital_resource: 0
+- name: article_27_second_threshold_boundary_has_only_first_rate_resource
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_movable_capital_amount: 12500
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_movable_capital_numerator_share: 1
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_movable_capital_account_holder_count
+    : 1
+  output:
+    ? be:regulations/social_integration/resource_calculation#belgium_social_integration_article_27_movable_capital_counted_amount
+    : 12500
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_27_movable_capital_resource: 378
 - name: article_28_to_31_qualifying_home_transfer_applies_exemption_and_abatements
   period:
     period_kind: custom
@@ -245,6 +351,37 @@
     : 8300
     be:regulations/social_integration/resource_calculation#belgium_social_integration_article_28_32_counted_transfer_amount: 8300
     be:regulations/social_integration/resource_calculation#belgium_social_integration_article_28_32_transfer_resource: 126
+- name: article_29_transfer_exemption_boundary_zeroes_counted_transfer_amount
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transferred_asset_market_value: 37200
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transferred_asset_right_fraction: 1
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_is_usufruct: false
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_is_for_valuable_consideration
+    : true
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_eligible_debts_paid_from_proceeds
+    : 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_is_article_29_qualifying_home_or_sole_unbuilt_property
+    : true
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_14_category_code: 1
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_months_from_month_after_transfer_to_right_start
+    : 0
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_anniversary_years_since_right_start
+    : 0
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_transfer_within_ten_year_lookback: true
+    be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_32_equity_override_applies: false
+    ? be:regulations/social_integration/resource_calculation#input.belgium_social_integration_article_32_transfer_proceeds_counted_under_article_27
+    : 0
+  output:
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_29_transfer_exemption: 37200
+    ? be:regulations/social_integration/resource_calculation#belgium_social_integration_article_28_31_transfer_value_for_article_27
+    : 0
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_28_32_counted_transfer_amount: 0
+    be:regulations/social_integration/resource_calculation#belgium_social_integration_article_28_32_transfer_resource: 0
 - name: article_28_usufructed_transfer_uses_article_27_top_rate
   period:
     period_kind: custom
