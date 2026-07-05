@@ -102,6 +102,7 @@ FRENCH_NUMBER_WORD_VALUES = {
     "quarante": Decimal("40"),
     "cinquante": Decimal("50"),
     "soixante": Decimal("60"),
+    "moitié": Decimal("0.5"),
 }
 
 
