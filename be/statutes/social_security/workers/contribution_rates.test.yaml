@@ -1,3 +1,18 @@
+- name: zero_base_produces_zero_article_17_component_contributions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/workers/contribution_rates#input.belgium_social_security_worker_is_manual: true
+    be:statutes/social_security/workers/contribution_rates#input.belgium_social_security_article_17_uncapped_contribution_base: 0
+  output:
+    be:statutes/social_security/workers/contribution_rates#belgium_worker_article_17_uncapped_component_rate: 0.101
+    be:statutes/social_security/workers/contribution_rates#belgium_employer_article_17_uncapped_component_rate: 0.3775
+    be:statutes/social_security/workers/contribution_rates#belgium_worker_article_17_uncapped_component_contribution: 0
+    be:statutes/social_security/workers/contribution_rates#belgium_employer_article_17_uncapped_component_contribution: 0
+
 - name: manual_worker_article_17_component_rates
   period:
     period_kind: custom
