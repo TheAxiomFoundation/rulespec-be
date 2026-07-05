@@ -44,11 +44,11 @@ rules:
   metadata:
     proof:
       atoms:
-        - path: versions[0].formula
-          kind: parameter
-          source:
-            corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-            span: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 1; amount 4400 EUR
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
+          span: 1° 4 400 EUR pour toute personne cohabitant avec une ou plusieurs personnes.
   versions:
   - effective_from: '2002-10-01'
     formula: '4400'
@@ -61,11 +61,11 @@ rules:
   metadata:
     proof:
       atoms:
-        - path: versions[0].formula
-          kind: parameter
-          source:
-            corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-            span: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 2; amount 6600 EUR
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
+          span: 2° 6 600 EUR pour une personne isolée
   versions:
   - effective_from: '2002-10-01'
     formula: '6600'
@@ -78,11 +78,11 @@ rules:
   metadata:
     proof:
       atoms:
-        - path: versions[0].formula
-          kind: parameter
-          source:
-            corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-            span: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 3; amount 8800 EUR
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
+          span: 3° 8 800 EUR pour une personne vivant [...] avec une famille à sa charge.
   versions:
   - effective_from: '2002-10-01'
     formula: '8800'
@@ -91,6 +91,14 @@ rules:
   dtype: Rate
   source: Federal law of 26 May 2002 concerning the right to social integration, article
     15
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/15
+          span: Les montants visés à l'article 14, § 1, alinéa 1, sont rattachés à l'indice 103,14 applicable au 1er juin 1999 (base 1996 = 100) des prix à la consommation.
   versions:
   - effective_from: '2002-10-01'
     formula: '103.14'
@@ -118,20 +126,11 @@ rules:
   versions:
   - effective_from: '2002-10-01'
     formula: belgium_social_integration_article_14_base_annual_amount * belgium_social_integration_current_index_factor
-- name: belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
+- name: belgium_social_integration_article_15_months_in_year
   kind: parameter
   dtype: Count
-  source: Federal law of 26 May 2002 concerning the right to social integration, articles
-    14 and 15
-  metadata:
-    proof:
-      atoms:
-      - path: versions[0].formula
-        kind: parameter
-        source:
-          corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-          span: Federal law of 26 May 2002 concerning the right to social integration,
-            articles 14 and 15
+  source: Structural months-in-year denominator for converting Article 15 annual
+    indexed revenu d'integration amounts to monthly amounts
   versions:
   - effective_from: '2002-10-01'
     formula: '12'
@@ -145,15 +144,15 @@ rules:
     14 and 15
   versions:
   - effective_from: '2002-10-01'
-    formula: belgium_social_integration_article_15_indexed_annual_amount / belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
+    formula: belgium_social_integration_article_15_indexed_annual_amount / belgium_social_integration_article_15_months_in_year
   metadata:
     proof:
       atoms:
       - path: versions[0].formula
         kind: import
         import:
-          target: be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
-          output: belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
+          target: be:statutes/social_integration/minimum_income_amounts#belgium_social_integration_article_15_months_in_year
+          output: belgium_social_integration_article_15_months_in_year
           hash: sha256:local
 - name: belgium_social_integration_supplied_current_monthly_amount_for_category
   kind: derived
@@ -192,7 +191,7 @@ rules:
     selected monthly revenu d'integration amount
   versions:
   - effective_from: '2024-05-31'
-    formula: belgium_social_integration_selected_monthly_amount * belgium_social_integration_article_15_indexed_monthly_amount_scalar_limit
+    formula: belgium_social_integration_selected_monthly_amount * belgium_social_integration_article_15_months_in_year
   metadata:
     proof:
       atoms:
