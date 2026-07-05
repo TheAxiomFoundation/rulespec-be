@@ -1,0 +1,174 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Article 30 of the 3 July 1978 employment-contracts law gives an eligible
+    worker birth leave of twenty days for births from 1 January 2023, with the
+    first three days paid by the employer. Article 223bis of the 3 July 1996
+    health-insurance implementing decree gives the worker a health-insurance
+    indemnity for the last seventeen days of birth leave at 82 percent of lost
+    remuneration, subject to the Article 87 daily-remuneration maximum. This
+    module encodes the household-level annual amount interface from supplied
+    eligibility, uncapped lost daily remuneration, and post-cap lost daily
+    remuneration. It leaves filiation/cohabitation proof, ordinary workday
+    scheduling, average-daily-wage construction, the indexed Article 87 maximum,
+    and payment procedure to separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1978/07/03/1978070303/article/30
+      - be/regulation/arrete/1996/07/03/1996022344/article/223bis
+    values:
+      belgium_birth_leave_article_30_total_days: "20"
+      belgium_birth_leave_article_30_employer_paid_days: "3"
+      belgium_birth_leave_article_223bis_health_insurance_days: "17"
+      belgium_birth_leave_article_223bis_indemnity_rate: "0.82"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_birth_leave_article_30_total_days
+    kind: parameter
+    dtype: Integer
+    source: Employment-contracts law of 3 July 1978, article 30 section 2, births from 1 January 2023
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
+              span: Le droit à quinze jours de congé de naissance est étendu à vingt jours pour les naissances qui ont lieu à partir du 1er janvier 2023.
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          20
+  - name: belgium_birth_leave_article_30_employer_paid_days
+    kind: parameter
+    dtype: Integer
+    source: Employment-contracts law of 3 July 1978, article 30 section 2, first three days with continued pay
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
+              span: Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération.
+    versions:
+      - effective_from: '2002-07-01'
+        formula: |-
+          3
+  - name: belgium_birth_leave_article_223bis_health_insurance_days
+    kind: parameter
+    dtype: Integer
+    source: Royal Decree of 3 July 1996, article 223bis section 1, last seventeen days of birth leave
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
+              span: Le travailleur visé a droit à une indemnité pendant les dix-sept derniers jours de congé de naissance.
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          17
+  - name: belgium_birth_leave_article_223bis_indemnity_rate
+    kind: parameter
+    dtype: Rate
+    source: Royal Decree of 3 July 1996, article 223bis section 1, indemnity rate for lost remuneration
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
+              span: Le taux de l'indemnité est fixé à 82 % de la rémunération perdue.
+    versions:
+      - effective_from: '2002-07-01'
+        formula: |-
+          0.82
+  - name: belgium_birth_leave_article_30_employer_paid_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Employment-contracts law of 3 July 1978, article 30 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
+              excerpt: Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération.
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          if belgium_birth_leave_eligible_parent:
+              belgium_birth_leave_uncapped_lost_daily_remuneration * belgium_birth_leave_article_30_employer_paid_days
+          else:
+              0
+  - name: belgium_birth_leave_article_223bis_daily_indemnity
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 223bis section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
+              excerpt: Le travailleur visé a droit à une indemnité pendant les dix-sept derniers jours de congé de naissance; le taux est fixé à 82 % de la rémunération perdue.
+    versions:
+      - effective_from: '2002-07-01'
+        formula: |-
+          belgium_birth_leave_lost_daily_remuneration_after_article_87_cap * belgium_birth_leave_article_223bis_indemnity_rate
+  - name: belgium_birth_leave_article_223bis_health_insurance_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Royal Decree of 3 July 1996, article 223bis section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
+              excerpt: Le travailleur visé a droit à une indemnité pendant les dix-sept derniers jours de congé de naissance; le taux est fixé à 82 % de la rémunération perdue.
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          if belgium_birth_leave_eligible_parent:
+              belgium_birth_leave_article_223bis_daily_indemnity * belgium_birth_leave_article_223bis_health_insurance_days
+          else:
+              0
+  - name: belgium_birth_leave_total_compensation_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Employment-contracts law of 3 July 1978 article 30 and Royal Decree of 3 July 1996 article 223bis
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
+              excerpt: Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération; le congé de naissance est étendu à vingt jours.
+    versions:
+      - effective_from: '2023-01-01'
+        formula: |-
+          belgium_birth_leave_article_30_employer_paid_amount + belgium_birth_leave_article_223bis_health_insurance_amount
