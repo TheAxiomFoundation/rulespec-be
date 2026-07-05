@@ -41,6 +41,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: 20,50 p.c. sur la partie des revenus professionnels qui n'excède pas 15.831,12 EUR
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -49,6 +57,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: 14,16 p.c. sur la partie des revenus professionnels qui dépasse 15.831,12 EUR mais n'excède pas 23.330,06 EUR
     versions:
       - effective_from: '2008-01-01'
         formula: |-
@@ -57,6 +73,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/13
+              span: 14,70 pour cent sur la partie des revenus professionnels qui n'excède pas 15.831,12 euros
     versions:
       - effective_from: '2025-10-01'
         formula: |-
@@ -66,6 +90,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: 20,50 p.c. sur la partie des revenus professionnels qui n'excède pas 15.831,12 EUR
     versions:
       - effective_from: '2008-01-01'
         formula: |-
@@ -75,6 +107,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: 14,16 p.c. sur la partie des revenus professionnels qui dépasse 15.831,12 EUR mais n'excède pas 23.330,06 EUR
     versions:
       - effective_from: '2008-01-01'
         formula: |-
@@ -84,6 +124,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1 paragraph 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: Les revenus professionnels de l'assujetti sont présumés atteindre 3.666,15 EUR
     versions:
       - effective_from: '2003-01-10'
         formula: |-
@@ -93,6 +141,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1bis
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: 1.893,22 EUR pour les quatre premiers trimestres civils d'assujettissement
     versions:
       - effective_from: '2018-04-01'
         formula: |-
@@ -102,6 +158,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1ter
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: Les revenus professionnels du conjoint aidant sont censés atteindre la moitié de 3.221,08 euros
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -111,6 +175,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: N'est redevable d'aucune cotisation si ses revenus professionnels n'atteignent pas 405,60 euros
     versions:
       - effective_from: '2003-01-10'
         formula: |-
@@ -120,6 +192,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/13
+              span: N'est redevable d'aucune cotisation si ses revenus professionnels n'atteignent pas 811,20 euros au moins
     versions:
       - effective_from: '2025-10-01'
         formula: |-
@@ -129,6 +209,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12 section 1bis
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
+              span: Pour le premier desdits trimestres civils d'assujettissement comme travailleur indépendant à titre principal, il y a une réduction de la cotisation trimestrielle de 25,01 euros
     versions:
       - effective_from: '2022-04-01'
         formula: |-
@@ -137,6 +225,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 14 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/14
+              span: Sont liés à l'indice des prix à la consommation 142,75
     versions:
       - effective_from: '1994-01-01'
         formula: |-
