@@ -29,7 +29,6 @@ module:
       belgium_vat_reduced_rate: 0.12
       belgium_vat_super_reduced_rate: 0.06
       belgium_vat_zero_rate: 0
-      belgium_vat_exempt_transaction_rate: 0
       belgium_vat_household_consumption_category_food: 1
       belgium_vat_household_consumption_category_residential_energy: 3
       belgium_vat_household_consumption_category_restaurant_catering: 5
@@ -43,6 +42,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree No. 20 of 20 July 1970, article 1, first paragraph
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
+          span: "Le taux normal de la taxe sur la valeur ajoutée applicable aux biens et services visés par le Code est fixé à 21 p.c."
   versions:
   - effective_from: '2012-01-01'
     formula: '0.21'
@@ -50,6 +57,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree No. 20 of 20 July 1970, article 1, second paragraph b
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
+          span: "b) 12 p.c. en ce qui concerne les biens et services énumérés au tableau B de l'annexe au présent arrêté."
   versions:
   - effective_from: '2012-01-01'
     formula: '0.12'
@@ -57,6 +72,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree No. 20 of 20 July 1970, article 1, second paragraph a
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
+          span: "a) 6 p.c. en ce qui concerne les biens et services énumérés au tableau A de l'annexe au présent arrêté."
   versions:
   - effective_from: '2012-01-01'
     formula: '0.06'
@@ -64,16 +87,36 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree No. 20 of 20 July 1970, article 1, second paragraph c
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
+          span: "c) 0 p.c. en ce qui concerne les biens et services énumérés au tableau C de l'annexe au présent arrêté."
   versions:
   - effective_from: '2019-04-01'
     formula: '0'
 - name: belgium_vat_exempt_transaction_rate
-  kind: parameter
+  kind: derived
+  entity: Household
   dtype: Rate
-  source: VAT Code articles 41 and 44 exempt transaction treatment
+  period: Year
+  source: VAT Code articles 41 and 44 exempt transaction treatment, represented by
+    the Royal Decree No. 20 article 1 zero rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:regulations/vat/rates#belgium_vat_zero_rate
+          output: belgium_vat_zero_rate
+          hash: sha256:local
   versions:
   - effective_from: '2019-04-01'
-    formula: '0'
+    formula: belgium_vat_zero_rate
 - name: belgium_vat_household_consumption_category_standard
   kind: parameter
   dtype: Count
@@ -135,8 +178,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1970/07/20/1970072012/document
-          span: Royal Decree No. 20 of 20 July 1970, article 1
+          corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
+          span: "a) 6 p.c. en ce qui concerne les biens et services énumérés au tableau A de l'annexe au présent arrêté."
   versions:
   - effective_from: '2019-04-01'
     formula: '6'
@@ -150,8 +193,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1970/07/20/1970072012/document
-          span: Royal Decree No. 20 of 20 July 1970, article 1
+          corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
+          span: "b) 12 p.c. en ce qui concerne les biens et services énumérés au tableau B de l'annexe au présent arrêté."
   versions:
   - effective_from: '2019-04-01'
     formula: '12'
