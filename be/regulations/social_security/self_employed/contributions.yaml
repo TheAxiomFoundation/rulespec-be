@@ -82,7 +82,7 @@ rules:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/13
               span: 14,70 pour cent sur la partie des revenus professionnels qui n'excède pas 15.831,12 euros
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           0.147
   - name: belgium_self_employed_article_12_first_threshold_base
@@ -201,7 +201,7 @@ rules:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/13
               span: N'est redevable d'aucune cotisation si ses revenus professionnels n'atteignent pas 811,20 euros au moins
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           811.20
   - name: belgium_self_employed_article_12_starter_first_quarter_reduction_base
@@ -350,7 +350,7 @@ rules:
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 13 and 14
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           belgium_self_employed_article_13_post_pension_exemption_threshold_base * belgium_self_employed_article_14_index_factor
   - name: belgium_self_employed_article_12_section_1_main_adjusted_income
@@ -469,7 +469,7 @@ rules:
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 1
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_13_post_pension_exemption_threshold_indexed:
               0
@@ -483,7 +483,7 @@ rules:
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 2
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           belgium_self_employed_article_12_section_1_main_annual_contribution
   - name: belgium_self_employed_article_13_section_3_suspended_early_retirement_annual_contribution
@@ -494,7 +494,7 @@ rules:
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13 section 3
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           if belgium_self_employed_article_11_professional_income_base < belgium_self_employed_article_13_post_pension_exemption_threshold_indexed:
               0
@@ -508,7 +508,7 @@ rules:
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13bis section 2
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           if belgium_self_employed_starting_category_post_pension_with_pension:
               belgium_self_employed_article_13_post_pension_exemption_threshold_indexed * belgium_self_employed_article_13_post_pension_first_rate
@@ -531,7 +531,7 @@ rules:
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, articles 12, 12bis, and 13
     versions:
-      - effective_from: '2025-10-01'
+      - effective_from: '2018-04-01'
         formula: |-
           if belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling:
               belgium_self_employed_article_13_section_3_suspended_early_retirement_annual_contribution
