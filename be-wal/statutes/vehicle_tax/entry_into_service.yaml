@@ -49,6 +49,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "64,01 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '64.01'
@@ -58,6 +66,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "128,02 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '128.02'
@@ -67,6 +83,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "515,20 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '515.20'
@@ -76,6 +100,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "902,37 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '902.37'
@@ -85,6 +117,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "1.289,55 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '1289.55'
@@ -94,6 +134,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "2.579,10 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '2579.10'
@@ -103,6 +151,14 @@ rules:
   unit: EUR
   source: SPW Finances indexed passenger-car TMC table, valid 1 July 2026 to 30 June
     2027
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "5.159,25 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '5159.25'
@@ -846,6 +902,14 @@ rules:
   unit: EUR
   source: Walloon Code des taxes assimilees article 98 paragraph 3, base amount after
     degressivity minimum
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "La montant de base ne peut jamais être inférieur à 61,50 € même après application du coefficient de dégressivité."
   versions:
   - effective_from: '2025-07-01'
     formula: '61.50'
@@ -1104,6 +1168,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Walloon decree of 30 May 2025, articles 1 and 2, passenger-car family reductions
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "Vous pouvez bénéficier d’une réduction pouvant aller jusqu’à 250 € si vous êtes une famille nombreuse ou une famille monoparentale"
   versions:
   - effective_from: '2026-07-01'
     formula: '250'
@@ -1175,6 +1247,14 @@ rules:
   unit: EUR
   source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car
     TMC minimum
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "Le montant à payer ne sera jamais inférieur à 50 € ni supérieur à 9.000 €."
   versions:
   - effective_from: '2025-07-01'
     formula: '50'
@@ -1184,6 +1264,14 @@ rules:
   unit: EUR
   source: Walloon Code des taxes assimilees article 98 paragraph 3, passenger-car
     TMC maximum
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+            span: "Le montant à payer ne sera jamais inférieur à 50 € ni supérieur à 9.000 €."
   versions:
   - effective_from: '2025-07-01'
     formula: '9000'
@@ -1204,6 +1292,14 @@ rules:
   unit: EUR
   source: Walloon decree of 30 May 2025, article 1, over-30-year special-plate passenger
     vehicles
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+            span: "la taxe est fixée uniformément à 61,50 euros pour les véhicules qui"
   versions:
   - effective_from: '2025-07-01'
     formula: '61.50'

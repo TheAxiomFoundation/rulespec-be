@@ -22,12 +22,17 @@ module:
   source_verification:
     corpus_citation_paths:
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.5/version-1422880
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918/block-1
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227/block-1
     - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227
+    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227/block-1
     values:
       flanders_circulation_tax_cv_0_to_4_amount: 69.72
       flanders_circulation_tax_cv_20_amount: 1783.2
@@ -56,6 +61,14 @@ rules:
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table, passenger
     cars 4 fiscal horsepower and less
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "69,72"
   versions:
   - effective_from: '2026-01-01'
     formula: '69.72'
@@ -64,6 +77,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "87,24"
   versions:
   - effective_from: '2026-01-01'
     formula: '87.24'
@@ -72,6 +93,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "126,12"
   versions:
   - effective_from: '2026-01-01'
     formula: '126.12'
@@ -80,6 +109,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "164,76"
   versions:
   - effective_from: '2026-01-01'
     formula: '164.76'
@@ -88,6 +125,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "203,76"
   versions:
   - effective_from: '2026-01-01'
     formula: '203.76'
@@ -96,6 +141,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "242,64"
   versions:
   - effective_from: '2026-01-01'
     formula: '242.64'
@@ -104,6 +157,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "281,16"
   versions:
   - effective_from: '2026-01-01'
     formula: '281.16'
@@ -112,6 +173,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "364,92"
   versions:
   - effective_from: '2026-01-01'
     formula: '364.92'
@@ -120,6 +189,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "448,56"
   versions:
   - effective_from: '2026-01-01'
     formula: '448.56'
@@ -128,6 +205,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "532,08"
   versions:
   - effective_from: '2026-01-01'
     formula: '532.08'
@@ -136,6 +221,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "615,84"
   versions:
   - effective_from: '2026-01-01'
     formula: '615.84'
@@ -144,6 +237,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "699,48"
   versions:
   - effective_from: '2026-01-01'
     formula: '699.48'
@@ -152,6 +253,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "916,20"
   versions:
   - effective_from: '2026-01-01'
     formula: '916.20'
@@ -160,6 +269,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "1133,16"
   versions:
   - effective_from: '2026-01-01'
     formula: '1133.16'
@@ -168,6 +285,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "1350,00"
   versions:
   - effective_from: '2026-01-01'
     formula: '1350.00'
@@ -176,6 +301,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "1566,36"
   versions:
   - effective_from: '2026-01-01'
     formula: '1566.36'
@@ -184,6 +317,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "1783,20"
   versions:
   - effective_from: '2026-01-01'
     formula: '1783.20'
@@ -193,6 +334,14 @@ rules:
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 table, amount per
     fiscal horsepower above 20
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "97,20"
   versions:
   - effective_from: '2026-01-01'
     formula: '97.20'
@@ -217,6 +366,14 @@ rules:
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 minimum, carried
     into post-2020 calculation
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+            span: "bedraagt de belasting, berekend overeenkomstig het eerste lid, minimum 40 euro."
   versions:
   - effective_from: '2026-01-01'
     formula: '40'
@@ -1069,6 +1226,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, not higher than 7 fiscal horsepower
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
+            span: "89,16 euro"
   versions:
   - effective_from: '2020-10-01'
     formula: '89.16'
@@ -1077,6 +1242,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, 8 to 13 fiscal horsepower
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
+            span: "aanvullende verkeersbelasting van 89,16 euro, 148,68 euro of 208,20 euro"
   versions:
   - effective_from: '2020-10-01'
     formula: '148.68'
@@ -1085,6 +1258,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.4, more than 13 fiscal horsepower
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
+            span: "208,20 euro"
   versions:
   - effective_from: '2020-10-01'
     formula: '208.20'
@@ -1181,6 +1362,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.3.4.1.1 second paragraph
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918/block-1
+            span: "61,50 euro"
   versions:
   - effective_from: '2026-01-01'
     formula: '61.50'
@@ -2120,6 +2309,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.3.4.1.3
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227/block-1
+            span: "41,99 euro"
   versions:
   - effective_from: '2026-05-03'
     formula: '41.99'
@@ -2128,6 +2325,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.3.4.1.3
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227/block-1
+            span: "10.497,70 euro"
   versions:
   - effective_from: '2026-05-03'
     formula: '10497.70'
@@ -2136,6 +2341,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Vlaamse Codex Fiscaliteit article 2.3.5.0.1 first paragraph
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227/block-1
+            span: "wordt de belasting verminderd met vierduizend euro"
   versions:
   - effective_from: '2021-01-01'
     formula: '4000'
