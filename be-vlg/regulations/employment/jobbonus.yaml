@@ -43,6 +43,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 2/1, 2025 lower monthly gross wage threshold for the full jobbonus
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -52,6 +60,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 2/1, 2025 upper monthly gross wage threshold above which no jobbonus is due
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -61,6 +77,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 2/1, 2025 maximum annual amount for full-time complete-year work
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -70,6 +94,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 2/1, 2025 degressive floor amount at the upper wage threshold
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -79,6 +111,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 2/2, fixed top-up for reference years 2023, 2024, and 2025 when the jobbonus is payable
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
+              span: Voor de refertejaren 2023, 2024 en 2025 wordt de jobbonus verhoogd met een vast, onveranderlijk bedrag van 50 euro
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -88,6 +128,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Flemish Government implementing order article 2 section 6, part-time payment suppression threshold
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-5
+              span: De jobbonus wordt niet uitbetaald in de volgende gevallen; 1° P is kleiner dan c bij een voltijdse werknemer; 2° P is kleiner dan 10 euro bij een deeltijdse werknemer
     versions:
       - effective_from: '2025-01-01'
         formula: |-
