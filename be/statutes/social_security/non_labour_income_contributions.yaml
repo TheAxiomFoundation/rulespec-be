@@ -202,6 +202,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 30 March 1994 on social provisions, article 68 section 2 table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
+              span: "(P - 1.711,72) x 50 %"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -210,6 +218,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 30 March 1994 on social provisions, article 68 section 2 table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
+              span: "P x 0,015"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -218,6 +234,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 30 March 1994 on social provisions, article 68 section 2 table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
+              span: "P x 0,02"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -260,6 +284,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 30 March 1994 on social provisions, article 68 section 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
+              span: "une retenue égale à 2 p.c. du montant brut du capital"
     versions:
       - effective_from: '2002-01-01'
         formula: |-
@@ -268,6 +300,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/191
+              span: "le produit d'une retenue de 3,55 % effectuée sur les pensions légales"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -276,6 +316,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree No. 33 of 30 March 1982, article 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1982/03/30/1982000477/article/1
+              span: "Une retenue de 3,5 p.c. est effectuée"
     versions:
       - effective_from: '1982-04-01'
         formula: |-
