@@ -82,6 +82,7 @@ FRENCH_NUMBER_WORD_VALUES = {
     "quatre": Decimal("4"),
     "cinq": Decimal("5"),
     "six": Decimal("6"),
+    "sixième": Decimal("6"),
     "sept": Decimal("7"),
     "huit": Decimal("8"),
     "neuf": Decimal("9"),
