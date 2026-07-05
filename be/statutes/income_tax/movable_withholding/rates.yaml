@@ -2,13 +2,17 @@ format: rulespec/v1
 module:
   summary: |-
     CIR 1992 article 21 exempts the first indexed tranche of qualifying
-    regulated savings-deposit interest, and article 269 sets movable
-    withholding tax rates. This module encodes the main 30% rate, the 15%
-    rate for regulated savings-deposit income above the exemption, and the
-    current indexed exemption amount for income year 2025 / assessment year
-    2026. It also computes the taxable regulated-deposit interest and movable
-    withholding amounts for the general and regulated-deposit rates. Other
-    article 269 special rates remain separate surfaces.
+    regulated savings-deposit interest, article 171 taxes income from capital
+    and movable property separately from the globalised income at distinct
+    rates, and article 269 sets movable withholding tax rates. This module
+    encodes the main 30% rate, the 15% rate for regulated savings-deposit
+    income above the exemption, and the current indexed exemption amount for
+    income year 2025 / assessment year 2026. It also computes the taxable
+    regulated-deposit interest, the general and regulated-deposit movable
+    withholding amounts, and the separately-taxed capital-income tax on taxable
+    movable income at the general 30% rate. Other article 171 and article 269
+    special rates (for example the article 171 1deg reduced rates) remain
+    separate surfaces.
   source_verification:
     corpus_citation_paths:
       - be/statute/fisconetplus/cir92/revenus-2025/page-69
@@ -104,3 +108,14 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_general_movable_income_subject_to_withholding * belgium_movable_withholding_general_rate
+  - name: belgium_capital_income_separate_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 171 separate taxation of capital and movable income and article 269 section 1 item 1 general 30% rate, capital-income tax on taxable movable income
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_capital_income_taxable_movable_income) * belgium_movable_withholding_general_rate

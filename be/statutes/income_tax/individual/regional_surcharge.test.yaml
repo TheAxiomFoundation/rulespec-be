@@ -1,0 +1,124 @@
+- name: regional_additional_tax_on_reduced_state_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: 5000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_additional_tax_rate: 0.33257
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_reduced_state_tax_base: 5000
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_additional_tax: 1662.85
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_state_and_regional_tax: 6662.85
+
+- name: regional_additional_tax_brussels_lower_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: 8000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_additional_tax_rate: 0.32591
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_reduced_state_tax_base: 8000
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_additional_tax: 2607.28
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_state_and_regional_tax: 10607.28
+
+- name: regional_reduced_state_tax_base_floored_at_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: -100
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_additional_tax_rate: 0.33257
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_reduced_state_tax_base: 0
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_additional_tax: 0
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_regional_state_and_regional_tax: 0
+
+- name: local_municipal_additional_tax_flanders_on_state_plus_regional
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: 5000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_supplied_additional_tax_amount: 1662.85
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_low_wage_work_bonus_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_childcare_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_communal_additional_tax_rate: 0.0717
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_additions_base_state_plus_regional: 6662.85
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_municipal_additional_tax: 477.726345
+
+- name: local_municipal_additional_tax_nets_fiscal_expenditure_reduction
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: 6000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_supplied_additional_tax_amount: 2000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_low_wage_work_bonus_reduction_amount: 200
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_childcare_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_communal_additional_tax_rate: 0.062
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_supplied_fiscal_expenditure_reduction_amount: 200
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_additions_base_state_plus_regional: 7800
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_municipal_additional_tax: 483.6
+
+- name: local_municipal_additional_tax_brussels_lower_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: 8000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_supplied_additional_tax_amount: 2607.28
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_low_wage_work_bonus_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_childcare_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_communal_additional_tax_rate: 0.062
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_additions_base_state_plus_regional: 10607.28
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_municipal_additional_tax: 657.65136
+
+- name: local_municipal_additional_tax_sums_work_bonus_and_childcare_reductions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: 6000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_supplied_additional_tax_amount: 2000
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_low_wage_work_bonus_reduction_amount: 150
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_childcare_reduction_amount: 250
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_communal_additional_tax_rate: 0.0717
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_supplied_fiscal_expenditure_reduction_amount: 400
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_additions_base_state_plus_regional: 7600
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_municipal_additional_tax: 544.92
+
+- name: local_municipal_additional_tax_base_floored_at_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_reduced_state_tax_supplied_amount: -100
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_regional_supplied_additional_tax_amount: -50
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_low_wage_work_bonus_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_supplied_childcare_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#input.belgium_pit_local_communal_additional_tax_rate: 0.0717
+  output:
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_supplied_fiscal_expenditure_reduction_amount: 0
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_additions_base_state_plus_regional: 0
+    be:statutes/income_tax/individual/regional_surcharge#belgium_pit_local_municipal_additional_tax: 0

@@ -43,3 +43,36 @@
     be:statutes/income_tax/movable_withholding/rates#input.belgium_general_movable_income_subject_to_withholding: 1000
   output:
     be:statutes/income_tax/movable_withholding/rates#belgium_general_movable_income_withholding: 300
+
+- name: capital_income_separate_tax_at_30_percent
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_capital_income_taxable_movable_income: 5000
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_capital_income_separate_tax: 1500
+
+- name: capital_income_separate_tax_larger_base
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_capital_income_taxable_movable_income: 20000
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_capital_income_separate_tax: 6000
+
+- name: capital_income_separate_tax_floored_at_zero
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/movable_withholding/rates#input.belgium_capital_income_taxable_movable_income: -500
+  output:
+    be:statutes/income_tax/movable_withholding/rates#belgium_capital_income_separate_tax: 0
