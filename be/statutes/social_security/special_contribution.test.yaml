@@ -52,6 +52,22 @@
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_110_overpayment_before_minimum_refund: 1
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_110_refund_amount: 0
 
+- name: article_108_zero_at_first_threshold
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_household_has_article_106_person: true
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_107_household_income: 18592.02
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_110_retained_or_supplement_paid: 0
+  output:
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_108_annual_contribution: 0
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_110_balance_collected: 0
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_110_refund_amount: 0
+
 - name: regular_monthly_withholding_uses_108_percent_wage_base_and_maximum
   period:
     period_kind: custom
@@ -85,6 +101,24 @@
   output:
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_monthly_wage: 1000
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_quarterly_wage: 3000
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_regular_monthly_withholding: 0
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 0
+
+- name: regular_monthly_withholding_zero_at_first_quarterly_threshold
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-06-01'
+    end: '2026-06-30'
+  input:
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_joint_assessment: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_spouse_has_professional_income: false
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_monthly_wage: 1945.38
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_quarterly_wage: 5836.14
+    be:statutes/social_security/special_contribution#input.belgium_special_social_security_article_109_apply_108_percent_wage_base: false
+  output:
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_monthly_wage: 1945.38
+    be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_adjusted_quarterly_wage: 5836.14
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_regular_monthly_withholding: 0
     be:statutes/social_security/special_contribution#belgium_special_social_security_article_109_monthly_withholding: 0
 
