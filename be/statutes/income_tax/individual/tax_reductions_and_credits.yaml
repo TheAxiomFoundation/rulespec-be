@@ -73,6 +73,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/2, general rate for Article 145/1 selected expenses
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-193
+          span: 'La réduction d''impôt est égale à 30 % des dépenses réellement payées.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.30'
@@ -80,6 +88,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/2 paragraph 2, higher pension-savings band rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-193
+          span: 'la réduction d''impôt pour les dépenses visées à l''article 1451, 5°, est calculée au taux de 25 % pour les montants visés à l''article 1458, § 1er, alinéa 3.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.25'
@@ -89,6 +105,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 145/8, income year 2025 indexed standard pension-savings
     ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-200
+          span: 'Le montant pris en considération pour la réduction est limité à 1.050 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '1050'
@@ -98,6 +122,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 145/8, income year 2025 indexed elective higher pension-savings
     ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-200
+          span: 'le contribuable peut choisir de prendre en considération pour la réduction d''impôt un montant plus élevé que le montant visé à l''alinéa 2, avec un maximum de 1.350 euros (montant indexé).'
   versions:
   - effective_from: '2025-01-01'
     formula: '1350'
@@ -107,6 +139,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 145/7, income year 2025 indexed employer-share subscription
     ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-199
+          span: 'Les sommes affectées à la libération d''actions ou parts, ne sont prises en considération pour la réduction qu''à concurrence d''un montant de 840 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '840'
@@ -115,6 +155,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/31, base annual reduction ceiling per dwelling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-225
+          span: 'Le montant total de la réduction d''impôt ne peut excéder par période imposable 500 euros (montant de base) par habitation.'
   versions:
   - effective_from: '2025-01-01'
     formula: '500'
@@ -123,6 +171,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/32, income year 2025 indexed minimum subscription
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
+          span: 'Les sommes versées doivent réellement s''élever à un minimum de 420 euros (montant indexé).'
   versions:
   - effective_from: '2025-01-01'
     formula: '420'
@@ -130,6 +186,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/32, development-fund reduction rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
+          span: 'La réduction d''impôt est égale à 5 % des paiements réellement faits, avec un maximum de 350 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.05'
@@ -138,6 +202,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/32, income year 2025 indexed annual reduction ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
+          span: 'La réduction d''impôt est égale à 5 % des paiements réellement faits, avec un maximum de 350 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '350'
@@ -146,6 +218,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/33, income year 2025 indexed gift minimum
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
+          span: 'La réduction d''impôt pour les libéralités visées à l''alinéa 1er est accordée à condition qu''elles atteignent au moins 40 euros (montant indexé)'
   versions:
   - effective_from: '2025-01-01'
     formula: '40'
@@ -153,6 +233,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/33, gift cap as a share of total net income
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
+          span: 'Le montant total des libéralités pour lequel la réduction d''impôt est accordée ne peut excéder par période imposable ni 10 % de l''ensemble des revenus nets, à l''exclusion des revenus qui sont imposés conformément à l''article 171 ni 420.930 euros (montant indexé).'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.10'
@@ -161,6 +249,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/33, income year 2025 indexed absolute gift base cap
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
+          span: 'Le montant total des libéralités pour lequel la réduction d''impôt est accordée ne peut excéder par période imposable ni 10 % de l''ensemble des revenus nets, à l''exclusion des revenus qui sont imposés conformément à l''article 171 ni 420.930 euros (montant indexé).'
   versions:
   - effective_from: '2025-01-01'
     formula: '420930'
@@ -168,6 +264,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/33, gift reduction rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
+          span: 'La réduction d''impôt est égale à 45 % des libéralités faites réellement.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.45'
@@ -176,6 +280,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/34, income year 2025 indexed minimum remuneration
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-231
+          span: 'les rémunérations atteignent au moins 4.920 euros (montant indexé) par période imposable et sont soumises au régime de la sécurité sociale'
   versions:
   - effective_from: '2025-01-01'
     formula: '4920'
@@ -183,6 +295,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/34, domestic-employee remuneration base fraction
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-231
+          span: 'Le montant pour lequel la réduction d''impôt est accordée est égal à 50 % des rémunérations payées ou attribuées au cours de la période imposable et ne peut excéder 8.420 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.50'
@@ -191,6 +311,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/34, income year 2025 indexed base ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-231
+          span: 'Le montant pour lequel la réduction d''impôt est accordée est égal à 50 % des rémunérations payées ou attribuées au cours de la période imposable et ne peut excéder 8.420 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '8420'
@@ -199,6 +327,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 145/35, income year 2025 indexed daily childcare ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-233
+          span: 'Le montant maximum des dépenses à prendre en considération pour la réduction s''élève à 16,90 euros (montant indexé) par jour de garde et par enfant.'
   versions:
   - effective_from: '2025-01-01'
     formula: '16.90'
@@ -206,6 +342,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/35, childcare reduction rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-233
+          span: 'La réduction d''impôt est égale à 45 % des dépenses réellement faites, limitées le cas échéant conformément à l''alinéa précédent.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.45'
@@ -214,6 +358,14 @@ rules:
   dtype: Rate
   source: CIR 1992 article 145/35, complementary childcare reduction rate for Article
     133 supplement cases
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-233
+          span: 'une réduction d''impôt complémentaire est octroyée qui est calculée au taux de: 1° lorsque le montant du supplément additionnel est déterminé conformément à l''article 133, alinéa 3, premier tiret: 30 %;'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.30'
@@ -221,6 +373,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/48, adoption-procedure expense reduction rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-249
+          span: 'La réduction d''impôt est égale à 20 % des dépenses prises en compte.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.20'
@@ -230,6 +390,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 145/48, income year 2025 indexed reduction ceiling per
     adoption procedure
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-249
+          span: 'Elle ne peut s''élever à plus de 6.730 euros (montant indexé) par procédure d''adoption.'
   versions:
   - effective_from: '2025-01-01'
     formula: '6730'
@@ -239,6 +407,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 145/49, income year 2025 indexed legal-protection insurance
     premium ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-250
+          span: 'Les paiements visés à l''alinéa 1er ne sont pris en considération qu''à concurrence d''un montant de 330 euros (montant indexé) par période imposable.'
   versions:
   - effective_from: '2025-01-01'
     formula: '330'
@@ -246,6 +422,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 145/49, legal-protection insurance reduction rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-250
+          span: 'La réduction d''impôt est égale à 40 % du montant à prendre en considération.'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.40'
@@ -255,6 +439,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 147, income year 2025 indexed basic pension and replacement-income
     reduction
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
+          span: 'une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);'
   versions:
   - effective_from: '2025-01-01'
     formula: '2219.27'
@@ -264,6 +456,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 147, income year 2025 indexed additional pension and replacement-income
     reduction
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
+          span: 'une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);'
   versions:
   - effective_from: '2025-01-01'
     formula: '457.23'
@@ -273,6 +473,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 147, income year 2025 indexed sickness or invalidity indemnity
     reduction
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
+          span: 'lorsque le revenu net se compose exclusivement d''indemnités légales d''assurance en cas de maladie ou d''invalidité: 2.977,93 euros (montant indexé);'
   versions:
   - effective_from: '2025-01-01'
     formula: '2977.93'
@@ -282,6 +490,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 151, income year 2025 indexed unemployment-reduction phaseout
     start
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
+          span: 'Lorsque le revenu imposable est compris entre 28.780 euros (montant indexé) et 35.930 euros (montant indexé), ces réductions ne sont accordées qu''à concurrence d''une quotité déterminée'
   versions:
   - effective_from: '2025-01-01'
     formula: '28780'
@@ -291,6 +507,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 151, income year 2025 indexed unemployment-reduction phaseout
     end
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
+          span: 'Lorsque le revenu imposable atteint ou dépasse 35.930 euros (montant indexé), les réductions pour allocations de chômage autres que celles qui sont attribuées aux chômeurs âgés de 58 ans ou plus'
   versions:
   - effective_from: '2025-01-01'
     formula: '35930'
@@ -300,6 +524,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 151/1, income year 2025 indexed additional-reduction phaseout
     start
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
+          span: 'Lorsque le revenu imposable est compris entre 19.630 euros (montant indexé) et 28.780 euros (montant indexé), ces réductions ne sont accordées qu''à concurrence d''une quotité déterminée'
   versions:
   - effective_from: '2025-01-01'
     formula: '19630'
@@ -309,6 +541,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 151/1, income year 2025 indexed additional-reduction phaseout
     end
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
+          span: 'Les réductions additionnelles pour pensions et autres revenus de remplacement et pour allocations de chômage ne sont pas accordées lorsque le revenu imposable s''élève à 28.780 euros (montant indexé) ou plus.'
   versions:
   - effective_from: '2025-01-01'
     formula: '28780'
@@ -318,6 +558,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 152, income year 2025 indexed replacement-reduction phaseout
     start
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-256
+          span: 'Lorsque le revenu imposable est compris entre 28.780 euros (montant indexé) et 57.560 euros (montant indexé), cette limite du tiers est majorée'
   versions:
   - effective_from: '2025-01-01'
     formula: '28780'
@@ -327,6 +575,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 152, income year 2025 indexed replacement-reduction phaseout
     end
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-256
+          span: 'Lorsque le revenu imposable atteint ou dépasse 57.560 euros (montant indexé), les réductions autres que celles visées aux articles 151 et 151/1 ne sont accordées qu''à concurrence d''un tiers.'
   versions:
   - effective_from: '2025-01-01'
     formula: '57560'
@@ -334,6 +590,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 289bis, self-employed investment credit rate
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-512
+          span: 'il est accordé un crédit d''impôt de 10 %, avec un maximum de 3.750 euros, de l''excédent que représente'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.10'
@@ -342,6 +606,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 289bis, self-employed investment credit ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-512
+          span: 'il est accordé un crédit d''impôt de 10 %, avec un maximum de 3.750 euros, de l''excédent que représente'
   versions:
   - effective_from: '2025-01-01'
     formula: '3750'
@@ -351,6 +623,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed activity-income lower
     threshold
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-513
+          span: 'Pour donner droit au crédit d''impôt, le montant des revenus d''activités doit être supérieur à 6.550 euros (montant indexé).'
   versions:
   - effective_from: '2025-01-01'
     formula: '6550'
@@ -360,6 +640,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed activity-income plateau
     start
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
+          span: 'lorsque le montant des revenus d''activités s''élève à plus de 6.550 euros (montant indexé) tout en ne dépassent pas 8.740 euros (montant indexé): 880 euros (montant indexé)'
   versions:
   - effective_from: '2025-01-01'
     formula: '8740'
@@ -369,6 +657,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed activity-income plateau
     end
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
+          span: 'lorsque le montant des revenus d''activités s''élève à plus de 8.740 euros (montant indexé) tout en ne dépassant pas 21.860 euros (montant indexé): 880 euros (montant indexé);'
   versions:
   - effective_from: '2025-01-01'
     formula: '21860'
@@ -378,6 +674,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed activity-income and total-net-income
     upper threshold
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
+          span: 'lorsque le montant des revenus d''activités s''élève à plus de 21.860 euros (montant indexé) tout en ne dépassant pas 28.420 euros (montant indexé): 880 euros (montant indexé)'
   versions:
   - effective_from: '2025-01-01'
     formula: '28420'
@@ -387,6 +691,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed standard low activity-income
     credit
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
+          span: 'lorsque le montant des revenus d''activités s''élève à plus de 8.740 euros (montant indexé) tout en ne dépassant pas 21.860 euros (montant indexé): 880 euros (montant indexé);'
   versions:
   - effective_from: '2025-01-01'
     formula: '880'
@@ -396,6 +708,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed assisting-spouse low activity-income
     credit
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
+          span: 'le montant de 880 euros (montant indexé) est chaque fois remplacé par: 1° le montant de 400 euros (montant indexé) pour les conjoints aidants visés à l''article 33, alinéa 1er'
   versions:
   - effective_from: '2025-01-01'
     formula: '400'
@@ -405,6 +725,14 @@ rules:
   unit: EUR
   source: CIR 1992 article 289ter, income year 2025 indexed public-worker low activity-income
     credit
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
+          span: '2° le montant de 970 euros (montant indexé) pour les travailleurs qui autrement qu''en vertu d''un contrat de travail exécutent des prestations de travail dans le secteur public.'
   versions:
   - effective_from: '2025-01-01'
     formula: '970'
@@ -412,6 +740,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 289ter/1, work-bonus credit rate for volet A
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
+          span: 'Le crédit d''impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.3314'
@@ -419,6 +755,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 289ter/1, work-bonus credit rate for volet B
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
+          span: 'et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée'
   versions:
   - effective_from: '2025-01-01'
     formula: '0.5254'
@@ -427,6 +771,14 @@ rules:
   dtype: Money
   unit: EUR
   source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
+          span: 'Le crédit d''impôt ne peut excéder par période imposable 1.540 euros (montant indexé).'
   versions:
   - effective_from: '2025-01-01'
     formula: '1540'
