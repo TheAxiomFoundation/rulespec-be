@@ -1,0 +1,128 @@
+- name: higher_education_extern_zero_dependents_income_above_ceiling_no_allowance
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_intern: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_receives_child_benefits: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 0
+    be-wal:statutes/education/study_allowance#input.study_allowance_reference_income: 22030.65
+    be-wal:statutes/education/study_allowance#input.study_allowance_supplied_index_factor: 1.0
+    be-wal:statutes/education/study_allowance#input.study_allowance_pit_minimum_taxable_amount: 10000
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 21030.65
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_income_ceiling: 21030.65
+    be-wal:statutes/education/study_allowance#study_allowance_max_amount: 2116.61
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_max_amount: 2116.61
+    be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: 0
+
+- name: higher_education_extern_with_child_benefits_zero_dependents_income_below_plancher_full_max
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_intern: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_receives_child_benefits: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 0
+    be-wal:statutes/education/study_allowance#input.study_allowance_reference_income: 3427.49
+    be-wal:statutes/education/study_allowance#input.study_allowance_supplied_index_factor: 1.0
+    be-wal:statutes/education/study_allowance#input.study_allowance_pit_minimum_taxable_amount: 10000
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_special_threshold_increment: 0
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 3927.49
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_plancher: 3927.49
+    be-wal:statutes/education/study_allowance#study_allowance_special_allowance_threshold: 10000
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_special_allowance_threshold: 10000
+    be-wal:statutes/education/study_allowance#study_allowance_max_amount: 2116.61
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_max_amount: 2116.61
+    be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: 2116.61
+
+- name: higher_education_extern_with_child_benefits_zero_dependents_income_between_plancher_and_ceiling_factor_k
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_intern: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_receives_child_benefits: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 0
+    be-wal:statutes/education/study_allowance#input.study_allowance_reference_income: 15000.00
+    be-wal:statutes/education/study_allowance#input.study_allowance_supplied_index_factor: 1.0
+    be-wal:statutes/education/study_allowance#input.study_allowance_pit_minimum_taxable_amount: 10000
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 21030.65
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 3927.49
+    be-wal:statutes/education/study_allowance#study_allowance_special_allowance_threshold: 10000
+    be-wal:statutes/education/study_allowance#study_allowance_max_amount: 2116.61
+    be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: '554.19764059333333333333333333'
+
+- name: secondary_extern_two_dependents_income_below_plancher_full_max
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_intern: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_receives_child_benefits: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 2
+    be-wal:statutes/education/study_allowance#input.study_allowance_reference_income: 5355.90
+    be-wal:statutes/education/study_allowance#input.study_allowance_supplied_index_factor: 1.0
+    be-wal:statutes/education/study_allowance#input.study_allowance_pit_minimum_taxable_amount: 10000
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 6355.90
+    be-wal:statutes/education/study_allowance#study_allowance_special_threshold_increment: 4535
+    be-wal:statutes/education/study_allowance#study_allowance_special_allowance_threshold: 14535
+    be-wal:statutes/education/study_allowance#study_allowance_max_amount: 437.33
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_max_amount: 437.33
+    be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: 437.33
+
+- name: secondary_extern_two_dependents_income_above_ceiling_no_allowance
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_intern: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_receives_child_benefits: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 2
+    be-wal:statutes/education/study_allowance#input.study_allowance_reference_income: 32320.26
+    be-wal:statutes/education/study_allowance#input.study_allowance_supplied_index_factor: 1.0
+    be-wal:statutes/education/study_allowance#input.study_allowance_pit_minimum_taxable_amount: 10000
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 31320.26
+    be-wal:statutes/education/study_allowance#study_allowance_indexed_income_ceiling: 31320.26
+    be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: 0
+
+- name: higher_education_extern_without_child_benefits_three_dependents_factor_k_mid_range
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_intern: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_receives_child_benefits: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 3
+    be-wal:statutes/education/study_allowance#input.study_allowance_reference_income: 30000.00
+    be-wal:statutes/education/study_allowance#input.study_allowance_supplied_index_factor: 1.0
+    be-wal:statutes/education/study_allowance#input.study_allowance_pit_minimum_taxable_amount: 10000
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 39226.94
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 7477.55
+    be-wal:statutes/education/study_allowance#study_allowance_special_threshold_increment: 6633
+    be-wal:statutes/education/study_allowance#study_allowance_special_allowance_threshold: 16633
+    be-wal:statutes/education/study_allowance#study_allowance_max_amount: 2650.76
+    be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: '660.70634793333333333333333333'

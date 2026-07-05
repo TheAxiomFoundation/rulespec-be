@@ -1,0 +1,392 @@
+format: rulespec/v1
+module:
+  summary: >-
+    Flemish higher-education study grant (studietoelage hoger onderwijs) under
+    the Decree of 8 June 2007 on the funding of studies of the Flemish
+    Community. EUROMOD BE_2025 bed_be models this as the i_bed_fl_be higher-ed
+    branch, output bed_s. Article 42 sets a points system (one point each for
+    a fiscally dependent person, a fiscally disabled person, and a qualifying
+    leefeenheid category, capped at twenty). Article 43 sets the statutory
+    minimum- and maximum-income-grens anchors at zero and twenty points; the
+    intermediate per-point thresholds are delegated to the Vlaamse Regering
+    under article 43 section 2 and are supplied as inputs, grounded in the
+    decree's zero/twenty-point structure. Article 51 sets the full,
+    exceptional, and minimum allowance base amounts for kot (residential) and
+    niet-kot (non-residential) students; a supplied index factor bridges the
+    2008 base amounts to the applicable EUROMOD-year amount, mirroring the
+    supplied-current-amount bridge pattern used for federal minimum-income
+    amounts. Article 39 sets the allowance computation: no allowance above the
+    maximum threshold, an exceptional allowance for qualifying low-income or
+    replacement-income cases at or below one tenth of the maximum threshold,
+    a full allowance at or below the minimum threshold, and an intermediate
+    allowance elsewhere computed as the full amount times (maximum threshold
+    minus reference income) over (maximum threshold minus minimum threshold).
+    The article 35 reference-income computation, the article 39 section 4
+    exceptional-eligibility condition tests themselves, and the article 42
+    section 2/3/4/5 point adjustments (disabled-person two-point override,
+    enrolled-study-year point, non-relative-in-leefeenheid deduction) remain
+    separate surfaces; this module accepts the resulting point inputs and
+    exceptional-eligibility flag directly.
+  source_verification:
+    corpus_citation_paths:
+      - be-vlg/statute/decreet/2007/06/08/2007036095/article/39
+      - be-vlg/statute/decreet/2007/06/08/2007036095/article/42
+      - be-vlg/statute/decreet/2007/06/08/2007036095/article/43
+      - be-vlg/statute/decreet/2007/06/08/2007036095/article/51
+    values:
+      study_grant_points_cap: '20'
+      study_grant_min_income_threshold_at_zero_points: '6573.55'
+      study_grant_min_income_threshold_at_twenty_points: '31177.76'
+      study_grant_max_income_threshold_at_zero_points: '14489.77'
+      study_grant_max_income_threshold_at_twenty_points: '75362.09'
+      study_grant_full_kot_base_amount: '3404.62'
+      study_grant_full_nietkot_base_amount: '2043.43'
+      study_grant_exceptional_kot_base_amount: '4583.86'
+      study_grant_exceptional_nietkot_base_amount: '2965.31'
+      study_grant_minimum_base_amount: '220'
+      study_grant_exceptional_income_fraction_of_max: '0.10'
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  # ---- Article 42: points system (statutory anchors 0..20) ----
+  - name: study_grant_points_cap
+    kind: parameter
+    dtype: Count
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 43 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
+              span: De minimum- en maximuminkomensgrenzen worden vastgelegd aan
+                de hand van een puntensysteem, gaande van nul tot twintig
+    versions:
+      - effective_from: '2008-09-01'
+        formula: '20'
+  - name: study_grant_points_before_cap
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: >-
+      Flemish Decree of 8 June 2007 on the funding of studies of the Flemish
+      Community, article 42 section 1: "De volgende personen en categorieën
+      worden voor de berekening van de minimum- en maximuminkomensgrenzen
+      gelijkgesteld met een punt : 1° elke persoon in de leefeenheid die
+      fiscaal ten laste is [...]; 3° elke persoon [...] die [...] fiscaal als
+      gehandicapt wordt aangemerkt; 4° de categorie van leefeenheid [...]."
+      One point each for a fiscally dependent person (item 1°), a fiscally
+      disabled person (item 3°), and a qualifying leefeenheid category (item
+      4°).
+    versions:
+      - effective_from: '2008-09-01'
+        formula: study_grant_dependent_person_count + study_grant_disabled_person_count
+          + study_grant_household_category_point
+  - name: study_grant_points
+    kind: derived
+    entity: Person
+    dtype: Count
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, articles 42 and 43 section 1
+    versions:
+      - effective_from: '2008-09-01'
+        formula: min(study_grant_points_before_cap, study_grant_points_cap)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be-vlg:statutes/education/study_grant#study_grant_points_cap
+              output: study_grant_points_cap
+              hash: sha256:local
+  # ---- Article 43: statutory income-threshold anchors at 0 and 20 points ----
+  - name: study_grant_min_income_threshold_at_zero_points
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 43 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
+              span: de minimuminkomensgrens stemt voor een leefeenheid met nul
+                punten overeen met 6573,55 euro
+    versions:
+      - effective_from: '2008-09-01'
+        formula: '6573.55'
+  - name: study_grant_min_income_threshold_at_twenty_points
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 43 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
+              span: voor een leefeenheid met twintig punten met 31.177,76 euro
+    versions:
+      - effective_from: '2008-09-01'
+        formula: '31177.76'
+  - name: study_grant_max_income_threshold_at_zero_points
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 43 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
+              span: de maximuminkomensgrens stemt voor een leefeenheid met nul
+                punten overeen met 14.489,77 euro
+    versions:
+      - effective_from: '2008-09-01'
+        formula: '14489.77'
+  - name: study_grant_max_income_threshold_at_twenty_points
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 43 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
+              span: en voor een leefeenheid met twintig punten met 75.362,09
+                euro
+    versions:
+      - effective_from: '2008-09-01'
+        formula: '75362.09'
+  # ---- Article 51: allowance base amounts (2008 statutory values) ----
+  - name: study_grant_full_kot_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
+              span: 3404,62 euro voor kotstudenten
+    versions:
+      - effective_from: '2008-08-15'
+        formula: '3404.62'
+  - name: study_grant_full_nietkot_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
+              span: 2043,43 euro voor niet-kotstudenten
+    versions:
+      - effective_from: '2008-08-15'
+        formula: '2043.43'
+  - name: study_grant_exceptional_kot_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 2 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
+              span: 4583,86 euro voor kotstudenten
+    versions:
+      - effective_from: '2008-08-15'
+        formula: '4583.86'
+  - name: study_grant_exceptional_nietkot_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 2 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
+              span: 2965,31 euro voor niet-kotstudenten
+    versions:
+      - effective_from: '2008-08-15'
+        formula: '2965.31'
+  - name: study_grant_minimum_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
+              span: De minimumstudietoelage bedraagt 220 euro
+    versions:
+      - effective_from: '2008-08-15'
+        formula: '220'
+  # ---- Article 39 section 4: exceptional-allowance income fraction ----
+  - name: study_grant_exceptional_income_fraction_of_max
+    kind: parameter
+    dtype: Rate
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 39 section 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/39
+              span: De student ontvangt een uitzonderlijke toelage als het in
+                aanmerking te nemen referentie-inkomen, vermeld in artikel 35,
+                gelijk is aan of lager is dan een tiende van de
+                maximuminkomensgrens, vermeld in artikel 43
+    versions:
+      - effective_from: '2008-09-01'
+        formula: '0.10'
+  # ---- Indexed amounts (article 51 base amounts times supplied index factor) ----
+  - name: study_grant_full_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 1
+    versions:
+      - effective_from: '2008-09-01'
+        formula: |-
+          if study_grant_is_residential:
+              study_grant_full_kot_base_amount
+          else:
+              study_grant_full_nietkot_base_amount
+        # times the supplied index factor to reach the applicable-year amount
+  - name: study_grant_full_amount_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 1, indexed via a supplied
+      current-year index factor
+    versions:
+      - effective_from: '2008-09-01'
+        formula: study_grant_full_amount * study_grant_supplied_index_factor
+  - name: study_grant_exceptional_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 2
+    versions:
+      - effective_from: '2008-09-01'
+        formula: |-
+          if study_grant_is_residential:
+              study_grant_exceptional_kot_base_amount
+          else:
+              study_grant_exceptional_nietkot_base_amount
+  - name: study_grant_exceptional_amount_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 2, indexed via a supplied
+      current-year index factor
+    versions:
+      - effective_from: '2008-09-01'
+        formula: study_grant_exceptional_amount * study_grant_supplied_index_factor
+  - name: study_grant_minimum_amount_indexed
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 51 section 3, indexed via a supplied
+      current-year index factor
+    versions:
+      - effective_from: '2008-09-01'
+        formula: study_grant_minimum_base_amount * study_grant_supplied_index_factor
+  # ---- Article 39: allowance computation ----
+  - name: study_grant_exceptional_income_ceiling
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: Flemish Decree of 8 June 2007 on the funding of studies of the
+      Flemish Community, article 39 section 4
+    versions:
+      - effective_from: '2008-09-01'
+        formula: study_grant_supplied_max_income_threshold * study_grant_exceptional_income_fraction_of_max
+  - name: study_grant_allowance
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: EUR
+    source: >-
+      Flemish Decree of 8 June 2007 on the funding of studies of the Flemish
+      Community, article 39 sections 1 to 4. Section 2: "Een student heeft
+      geen recht op een toelage als het referentie-inkomen [...] hoger is dan
+      de [...] maximuminkomensgrens [...]." Section 1: "Een student heeft
+      recht op een volledige toelage als het referentie-inkomen [...] gelijk
+      is aan of lager is dan de [...] minimuminkomensgrens [...]." Section 3:
+      "Als het in aanmerking te nemen referentie-inkomen [...] hoger is dan de
+      minimuminkomensgrens [...] doch lager is dan de maximuminkomensgrens
+      [...], wordt een toelage verleend waarvan het bedrag gelijk is aan het
+      bedrag van de volledige toelage [...] vermenigvuldigd met de
+      coëfficiënt van de formule (maximuminkomensgrens min
+      referentie-inkomen)/(maximuminkomensgrens min minimuminkomensgrens)."
+      Section 4 (exceptional allowance) is applied ahead of the full-allowance
+      test via study_grant_exceptional_income_ceiling and
+      study_grant_is_exceptional_eligible.
+    versions:
+      - effective_from: '2008-09-01'
+        formula: |-
+          if study_grant_reference_income > study_grant_supplied_max_income_threshold:
+              0
+          else:
+              if study_grant_reference_income <= study_grant_exceptional_income_ceiling and study_grant_is_exceptional_eligible:
+                  study_grant_exceptional_amount_indexed
+              else:
+                  if study_grant_reference_income <= study_grant_supplied_min_income_threshold:
+                      study_grant_full_amount_indexed
+                  else:
+                      max(0, study_grant_full_amount_indexed * (study_grant_supplied_max_income_threshold - study_grant_reference_income) / (study_grant_supplied_max_income_threshold - study_grant_supplied_min_income_threshold))

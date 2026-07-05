@@ -1,0 +1,820 @@
+format: rulespec/v1
+module:
+  summary: 'French-Community (Federation Wallonie-Bruxelles) study-allowance decree
+    of 18 November 2021 article 1er sets the covered secondary and higher-education
+    levels and article 4 delegates the means-test amount and criteria to government
+    order. The implementing order of 21 September 2016 article 2 sets the annual
+    means-test resource ceilings by dependent-person count for secondary and
+    higher education, article 3 sets the maximum allowance amounts by education
+    level, boarding status, and orphan-allowance eligibility, and article 4 sets
+    the factor-K proration rule, the minimum-threshold (plancher) amounts, and the
+    special-allowance income thresholds and amounts. This module encodes those
+    amount surfaces and the factor-K means-test selector for extern candidates
+    (EUROMOD BE_2025 bed_be i_bed_fr_be), also encoding intern maximum amounts for
+    completeness even though EUROMOD does not model interns. Eligibility beyond
+    the means test, application procedure, property disqualification, distance
+    supplement, rounding, and payment mechanics remain separate surfaces.'
+  source_verification:
+    corpus_citation_paths:
+    - be-wal/statute/decret/2021/11/18/2021022504/article/1er
+    - be-wal/statute/decret/2021/11/18/2021022504/article/4
+    - be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+    - be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+    - be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+    values:
+      study_allowance_secondary_income_ceiling_0_dependents: '19030.12'
+      study_allowance_secondary_income_ceiling_1_dependent: '25374.56'
+      study_allowance_secondary_income_ceiling_2_dependents: '31320.26'
+      study_allowance_secondary_income_ceiling_3_dependents: '36870.43'
+      study_allowance_secondary_income_ceiling_4_dependents: '42025.11'
+      study_allowance_secondary_income_ceiling_increment: '5154.68'
+      study_allowance_higher_income_ceiling_0_dependents: '21030.65'
+      study_allowance_higher_income_ceiling_1_dependent: '27500.38'
+      study_allowance_higher_income_ceiling_2_dependents: '33567.99'
+      study_allowance_higher_income_ceiling_3_dependents: '39226.94'
+      study_allowance_higher_income_ceiling_4_dependents: '44483.78'
+      study_allowance_higher_income_ceiling_increment: '5256.84'
+      study_allowance_secondary_extern_max_amount: '437.33'
+      study_allowance_secondary_intern_max_amount: '1131.74'
+      study_allowance_higher_extern_with_child_benefits_max_amount: '2116.61'
+      study_allowance_higher_extern_without_child_benefits_max_amount: '2650.76'
+      study_allowance_higher_intern_with_child_benefits_max_amount: '3852.60'
+      study_allowance_higher_intern_without_child_benefits_max_amount: '4370.07'
+      study_allowance_plancher_0_dependents: '3927.49'
+      study_allowance_plancher_1_dependent: '5234.25'
+      study_allowance_plancher_2_dependents: '6355.90'
+      study_allowance_plancher_3_dependents: '7477.55'
+      study_allowance_plancher_4_dependents: '8599.20'
+      study_allowance_plancher_increment: '1121.65'
+      study_allowance_special_threshold_increment_1_dependent: '2437'
+      study_allowance_special_threshold_increment_2_dependents: '4535'
+      study_allowance_special_threshold_increment_3_dependents: '6633'
+      study_allowance_special_threshold_increment_beyond_3rd: '2096'
+units:
+- name: EUR
+  kind: currency
+  minor_units: 2
+rules:
+- name: study_allowance_secondary_income_ceiling_0_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 19.030,12 EUROS lorsque le candidat pourvoit seul à son entretien
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '19030.12'
+- name: study_allowance_secondary_income_ceiling_1_dependent
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 25.374,56 EUROS, lorsqu'il y a une personne à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '25374.56'
+- name: study_allowance_secondary_income_ceiling_2_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 31.320,26 EUROS, lorsqu'il y a deux personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '31320.26'
+- name: study_allowance_secondary_income_ceiling_3_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 36.870,43 EUROS, lorsqu'il y a trois personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '36870.43'
+- name: study_allowance_secondary_income_ceiling_4_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 42.025,11 EUROS, lorsqu'il y a quatre personnes à charge, ce montant
+            augmentant d'une somme de 5.154,68 EUROS pour chaque personne
+            supplémentaire à charge, à partir de et au-delà de la cinquième
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '42025.11'
+- name: study_allowance_secondary_income_ceiling_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: ce montant augmentant d'une somme de 5.154,68 EUROS pour chaque
+            personne supplémentaire à charge, à partir de et au-delà de la
+            cinquième
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '5154.68'
+- name: study_allowance_higher_income_ceiling_0_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 21.030,65 EUROS, lorsque le candidat pourvoit seul à son entretien
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '21030.65'
+- name: study_allowance_higher_income_ceiling_1_dependent
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 27.500,38 EUROS, lorsqu'il y a une personne à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '27500.38'
+- name: study_allowance_higher_income_ceiling_2_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 33.567,99 EUROS, lorsqu'il y a deux personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '33567.99'
+- name: study_allowance_higher_income_ceiling_3_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 39.226,94 EUROS, lorsqu'il y a trois personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '39226.94'
+- name: study_allowance_higher_income_ceiling_4_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: 44.483,78 EUROS, lorsqu'il y a quatre personnes à charge, ce montant
+            augmentant d'une somme de 5.256,84 EUROS pour chaque personne
+            supplémentaire à charge, à partir de et au-delà de la cinquième
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '44483.78'
+- name: study_allowance_higher_income_ceiling_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+    item 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          span: ce montant augmentant d'une somme de 5.256,84 EUROS pour chaque
+            personne supplémentaire à charge, à partir de et au-delà de la
+            cinquième
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '5256.84'
+- name: study_allowance_secondary_extern_max_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1 item 1a
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+          span: 437,33 EUROS, pour les élèves externes
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '437.33'
+- name: study_allowance_secondary_intern_max_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1 item 1b
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+          span: 1.131,74 EUROS, pour les élèves internes
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '1131.74'
+- name: study_allowance_higher_extern_with_child_benefits_max_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1 item 3a
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+          span: 2.116,61 EUROS, pour les étudiants externes donnant lieu au
+            paiement d'allocations familiales ou d'orphelins
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '2116.61'
+- name: study_allowance_higher_extern_without_child_benefits_max_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1 item 3b
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+          span: 2.650,76 EUROS, pour les étudiants externes ne donnant pas lieu
+            au paiement d'allocations familiales ou d'orphelins
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '2650.76'
+- name: study_allowance_higher_intern_with_child_benefits_max_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1 item 3c
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+          span: 3.852,60 EUROS, pour les étudiants internes ou locataires d'un
+            logement d'étudiant donnant lieu au paiement d'allocations
+            familiales ou d'orphelins
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '3852.60'
+- name: study_allowance_higher_intern_without_child_benefits_max_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1 item 3d
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/3
+          span: 4.370,07 EUROS, pour les étudiants internes ou locataires d'un
+            logement d'étudiant ne donnant pas lieu au paiement d'allocations
+            familiales ou d'orphelins
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '4370.07'
+- name: study_allowance_plancher_0_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: 3.927,49 EUROS, lorsque le candidat pourvoit seul à son entretien
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '3927.49'
+- name: study_allowance_plancher_1_dependent
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: 5.234,25 EUROS, lorsqu'il y a une personne à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '5234.25'
+- name: study_allowance_plancher_2_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: 6.355,90 EUROS, lorsqu'il y a deux personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '6355.90'
+- name: study_allowance_plancher_3_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: 7.477,55 EUROS, lorsqu'il y a trois personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '7477.55'
+- name: study_allowance_plancher_4_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: 8.599,20 EUROS, lorsqu'il y a quatre personnes à charge, ce
+            montant augmentant d'une somme de 1.121,65 EUROS pour chaque
+            personne supplémentaire à charge, à partir de et au-delà de la
+            cinquième
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '8599.20'
+- name: study_allowance_plancher_increment
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: ce montant augmentant d'une somme de 1.121,65 EUROS pour chaque
+            personne supplémentaire à charge, à partir de et au-delà de la
+            cinquième
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '1121.65'
+- name: study_allowance_special_threshold_increment_1_dependent
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: le montant minimum imposable augmenté d'une somme de 2.437 EUROS
+            lorsqu'il y a une personne à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '2437'
+- name: study_allowance_special_threshold_increment_2_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: le montant minimum imposable augmenté d'une somme de 4.535 EUROS
+            lorsqu'il y a deux personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '4535'
+- name: study_allowance_special_threshold_increment_3_dependents
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: le montant minimum imposable augmenté d'une somme de 6.633 EUROS
+            lorsqu'il y a trois personnes à charge
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '6633'
+- name: study_allowance_special_threshold_increment_beyond_3rd
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          span: ce dernier montant augmentant d'une somme de 2.096 EUROS pour
+            chaque personne supplémentaire à charge, au-delà de la troisième
+            personne
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '2096'
+- name: study_allowance_dependent_person_count_fifth_dependent_code
+  kind: parameter
+  dtype: Count
+  source: Internal selector code for the fifth-and-beyond dependent-person-count
+    increment threshold shared by articles 2 and 4 section 2 of the French-Community
+    study-allowance order of 21 September 2016
+  versions:
+  - effective_from: '2016-07-01'
+    formula: '4'
+- name: study_allowance_income_ceiling
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2
+  versions:
+  - effective_from: '2016-07-01'
+    formula: "if study_allowance_is_higher_education:\n    if study_allowance_dependent_person_count\
+      \ == 0:\n        study_allowance_higher_income_ceiling_0_dependents\n    else:\n\
+      \        if study_allowance_dependent_person_count == 1:\n            study_allowance_higher_income_ceiling_1_dependent\n\
+      \        else:\n            if study_allowance_dependent_person_count == 2:\n\
+      \                study_allowance_higher_income_ceiling_2_dependents\n     \
+      \       else:\n                if study_allowance_dependent_person_count ==\
+      \ 3:\n                    study_allowance_higher_income_ceiling_3_dependents\n\
+      \                else:\n                    if study_allowance_dependent_person_count\
+      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \                 study_allowance_higher_income_ceiling_4_dependents\n\
+      \                    else:\n                        study_allowance_higher_income_ceiling_4_dependents\
+      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ * study_allowance_higher_income_ceiling_increment\n\
+      else:\n    if study_allowance_dependent_person_count == 0:\n        study_allowance_secondary_income_ceiling_0_dependents\n\
+      \    else:\n        if study_allowance_dependent_person_count == 1:\n     \
+      \       study_allowance_secondary_income_ceiling_1_dependent\n        else:\n\
+      \            if study_allowance_dependent_person_count == 2:\n           \
+      \     study_allowance_secondary_income_ceiling_2_dependents\n            else:\n\
+      \                if study_allowance_dependent_person_count == 3:\n       \
+      \             study_allowance_secondary_income_ceiling_3_dependents\n     \
+      \           else:\n                    if study_allowance_dependent_person_count\
+      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \                 study_allowance_secondary_income_ceiling_4_dependents\n\
+      \                    else:\n                        study_allowance_secondary_income_ceiling_4_dependents\
+      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ * study_allowance_secondary_income_ceiling_increment"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_dependent_person_count_fifth_dependent_code
+          output: study_allowance_dependent_person_count_fifth_dependent_code
+          hash: sha256:local
+- name: study_allowance_plancher
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2
+  versions:
+  - effective_from: '2016-07-01'
+    formula: "if study_allowance_dependent_person_count == 0:\n    study_allowance_plancher_0_dependents\n\
+      else:\n    if study_allowance_dependent_person_count == 1:\n        study_allowance_plancher_1_dependent\n\
+      \    else:\n        if study_allowance_dependent_person_count == 2:\n     \
+      \       study_allowance_plancher_2_dependents\n        else:\n           \
+      \ if study_allowance_dependent_person_count == 3:\n                study_allowance_plancher_3_dependents\n\
+      \            else:\n                if study_allowance_dependent_person_count\
+      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \             study_allowance_plancher_4_dependents\n      \
+      \          else:\n                    study_allowance_plancher_4_dependents\
+      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ * study_allowance_plancher_increment"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_dependent_person_count_fifth_dependent_code
+          output: study_allowance_dependent_person_count_fifth_dependent_code
+          hash: sha256:local
+- name: study_allowance_max_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3
+    section 1
+  versions:
+  - effective_from: '2016-07-01'
+    formula: "if study_allowance_is_higher_education:\n    if study_allowance_is_intern:\n\
+      \        if study_allowance_receives_child_benefits:\n            study_allowance_higher_intern_with_child_benefits_max_amount\n\
+      \        else:\n            study_allowance_higher_intern_without_child_benefits_max_amount\n\
+      \    else:\n        if study_allowance_receives_child_benefits:\n         \
+      \   study_allowance_higher_extern_with_child_benefits_max_amount\n       \
+      \ else:\n            study_allowance_higher_extern_without_child_benefits_max_amount\n\
+      else:\n    if study_allowance_is_intern:\n        study_allowance_secondary_intern_max_amount\n\
+      \    else:\n        study_allowance_secondary_extern_max_amount"
+- name: study_allowance_special_threshold_increment
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3
+  versions:
+  - effective_from: '2016-07-01'
+    formula: "if study_allowance_dependent_person_count == 0:\n    0\nelse:\n   \
+      \ if study_allowance_dependent_person_count == 1:\n        study_allowance_special_threshold_increment_1_dependent\n\
+      \    else:\n        if study_allowance_dependent_person_count == 2:\n     \
+      \       study_allowance_special_threshold_increment_2_dependents\n       \
+      \ else:\n            if study_allowance_dependent_person_count == 3:\n    \
+      \            study_allowance_special_threshold_increment_3_dependents\n  \
+      \          else:\n                study_allowance_special_threshold_increment_3_dependents\
+      \ + (study_allowance_dependent_person_count - 3) * study_allowance_special_threshold_increment_beyond_3rd"
+- name: study_allowance_special_allowance_threshold
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3
+  versions:
+  - effective_from: '2016-07-01'
+    formula: study_allowance_pit_minimum_taxable_amount + study_allowance_special_threshold_increment
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_special_threshold_increment
+          output: study_allowance_special_threshold_increment
+          hash: sha256:local
+- name: study_allowance_indexed_max_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 3,
+    indexed under article 4 of the decree of 18 November 2021
+  versions:
+  - effective_from: '2016-07-01'
+    formula: study_allowance_max_amount * study_allowance_supplied_index_factor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_max_amount
+          output: study_allowance_max_amount
+          hash: sha256:local
+- name: study_allowance_indexed_income_ceiling
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 2,
+    indexed under article 4 of the decree of 18 November 2021
+  versions:
+  - effective_from: '2016-07-01'
+    formula: study_allowance_income_ceiling * study_allowance_supplied_index_factor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_income_ceiling
+          output: study_allowance_income_ceiling
+          hash: sha256:local
+- name: study_allowance_indexed_plancher
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 2, indexed under article 4 of the decree of 18 November 2021
+  versions:
+  - effective_from: '2016-07-01'
+    formula: study_allowance_plancher * study_allowance_supplied_index_factor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_plancher
+          output: study_allowance_plancher
+          hash: sha256:local
+- name: study_allowance_indexed_special_allowance_threshold
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 3, indexed under article 4 of the decree of 18 November 2021
+  versions:
+  - effective_from: '2016-07-01'
+    formula: study_allowance_special_allowance_threshold * study_allowance_supplied_index_factor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_special_allowance_threshold
+          output: study_allowance_special_allowance_threshold
+          hash: sha256:local
+- name: study_allowance_allocation_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: French-Community study-allowance order of 21 September 2016, article 4
+    section 1
+  versions:
+  - effective_from: '2016-07-01'
+    formula: "if study_allowance_reference_income >= study_allowance_indexed_income_ceiling:\n\
+      \    0\nelse:\n    if study_allowance_reference_income <= study_allowance_indexed_special_allowance_threshold:\n\
+      \        study_allowance_indexed_max_amount\n    else:\n        if study_allowance_reference_income\
+      \ > study_allowance_indexed_plancher and study_allowance_reference_income\
+      \ < study_allowance_indexed_income_ceiling:\n            study_allowance_indexed_max_amount\
+      \ * study_allowance_indexed_plancher / study_allowance_reference_income\n\
+      \        else:\n            study_allowance_indexed_max_amount"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_indexed_income_ceiling
+          output: study_allowance_indexed_income_ceiling
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_indexed_special_allowance_threshold
+          output: study_allowance_indexed_special_allowance_threshold
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_indexed_plancher
+          output: study_allowance_indexed_plancher
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be-wal:statutes/education/study_allowance#study_allowance_indexed_max_amount
+          output: study_allowance_indexed_max_amount
+          hash: sha256:local
