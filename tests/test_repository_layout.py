@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 import yaml
@@ -20,6 +21,58 @@ DISALLOWED_GENERIC_RULE_NAMES = {
     "threshold",
     "value",
 }
+POLICY_BEARING_PARAMETER_DTYPES = {"Money", "Rate"}
+POLICY_BEARING_PARAMETER_NAME_TOKENS = (
+    "amount",
+    "rate",
+    "threshold",
+    "cap",
+    "ceiling",
+    "floor",
+    "minimum",
+    "maximum",
+    "premium",
+    "allowance",
+    "reduction",
+    "credit",
+    "disregard",
+    "exemption",
+    "income",
+    "wage",
+    "remuneration",
+    "coefficient",
+    "index",
+    "bracket",
+    "tax",
+    "contribution",
+    "withholding",
+    "forfait",
+    "supplement",
+    "grant",
+    "benefit",
+)
+STRUCTURAL_PARAMETER_NAME_TOKENS = (
+    "selector",
+    "category",
+    "status",
+    "code",
+    "count",
+    "months",
+    "days",
+    "years",
+    "age",
+    "number",
+    "id",
+    "region",
+    "reference_year",
+    "relationship",
+    "source",
+    "denominator",
+)
+NUMERIC_TEXT_RE = re.compile(
+    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:[,.]\d+)?\s*%?(?![\w.,])"
+)
+SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
 
 
 def jurisdiction_dirs() -> list[Path]:
@@ -95,6 +148,76 @@ def canonical_rule_id(path: Path, rule_name: str) -> str:
     prefix = relative.parts[0]
     target = Path(*relative.parts[1:]).with_suffix("").as_posix()
     return f"{prefix}:{target}#{rule_name}"
+
+
+def proof_atoms(rule: dict) -> list[dict]:
+    metadata = rule.get("metadata")
+    if not isinstance(metadata, dict):
+        return []
+    proof = metadata.get("proof")
+    if not isinstance(proof, dict):
+        return []
+    atoms = proof.get("atoms")
+    return atoms if isinstance(atoms, list) else []
+
+
+def is_policy_bearing_parameter(rule: dict) -> bool:
+    if rule.get("kind") != "parameter":
+        return False
+    dtype = rule.get("dtype")
+    name = str(rule.get("name", "")).lower()
+    policy_bearing = dtype in POLICY_BEARING_PARAMETER_DTYPES or any(
+        token in name for token in POLICY_BEARING_PARAMETER_NAME_TOKENS
+    ) or "scalar_limit" in name
+    structural = any(token in name for token in STRUCTURAL_PARAMETER_NAME_TOKENS)
+    return policy_bearing and (
+        not structural
+        or dtype in POLICY_BEARING_PARAMETER_DTYPES
+        or "scalar_limit" in name
+    )
+
+
+def parameter_formula_values(rule: dict) -> list[Decimal]:
+    versions = rule.get("versions")
+    if not isinstance(versions, list) or not versions:
+        return []
+    version = versions[0]
+    if not isinstance(version, dict):
+        return []
+    formula = version.get("formula")
+    if isinstance(formula, int | float):
+        formula = str(formula)
+    if not isinstance(formula, str):
+        return []
+    formula = formula.strip()
+    if not SIMPLE_NUMERIC_FORMULA_RE.fullmatch(formula):
+        return []
+    return [Decimal(formula)]
+
+
+def text_number_values(text: str) -> list[Decimal]:
+    values: list[Decimal] = []
+    for match in NUMERIC_TEXT_RE.finditer(text):
+        token = match.group().strip().replace("\u00a0", " ")
+        is_percent = token.endswith("%")
+        token = token.rstrip("%").strip().replace(" ", "")
+        if "," in token and "." in token:
+            if token.rfind(",") > token.rfind("."):
+                token = token.replace(".", "").replace(",", ".")
+            else:
+                token = token.replace(",", "")
+        elif "," in token:
+            token = token.replace(",", ".")
+        elif re.fullmatch(r"[-+]?\d{1,3}(?:\.\d{3})+", token):
+            token = token.replace(".", "")
+        try:
+            value = Decimal(token)
+        except InvalidOperation:
+            continue
+        values.append(value)
+        if is_percent:
+            values.append(value / Decimal("100"))
+    return values
 
 
 def module_has_source_locator(payload: object) -> bool:
@@ -422,6 +545,122 @@ def test_rulespec_rules_have_source_metadata() -> None:
                 )
 
     assert missing == []
+
+
+def test_policy_bearing_parameters_have_formula_proof_atoms() -> None:
+    missing: list[str] = []
+
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        rules = payload.get("rules")
+        if not isinstance(rules, list):
+            continue
+        for rule in rules:
+            if not isinstance(rule, dict):
+                continue
+            if is_policy_bearing_parameter(rule) and not proof_atoms(rule):
+                name = str(rule.get("name", "<unnamed>"))
+                missing.append(f"{path.relative_to(ROOT).as_posix()}#{name}")
+
+    assert apply_gap_ratchet("policy_parameters_missing_proof_atoms", missing) == []
+
+
+def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
+    invalid: list[str] = []
+
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        rules = payload.get("rules")
+        if not isinstance(rules, list):
+            continue
+        module = payload.get("module")
+        source_verification = (
+            module.get("source_verification") if isinstance(module, dict) else None
+        )
+        module_source_paths: set[str] = set()
+        if isinstance(source_verification, dict):
+            citation_path = source_verification.get("corpus_citation_path")
+            if isinstance(citation_path, str):
+                module_source_paths.add(citation_path)
+            citation_paths = source_verification.get("corpus_citation_paths")
+            if isinstance(citation_paths, list):
+                module_source_paths.update(
+                    path for path in citation_paths if isinstance(path, str)
+                )
+
+        for rule in rules:
+            if not isinstance(rule, dict):
+                continue
+            if not is_policy_bearing_parameter(rule):
+                continue
+            name = str(rule.get("name", "<unnamed>"))
+            for index, atom in enumerate(proof_atoms(rule)):
+                atom_id = f"{path.relative_to(ROOT).as_posix()}#{name}.atoms[{index}]"
+                if not isinstance(atom, dict):
+                    invalid.append(f"{atom_id}: atom is not a mapping")
+                    continue
+                source = atom.get("source")
+                if not isinstance(source, dict):
+                    invalid.append(f"{atom_id}: missing source mapping")
+                    continue
+                citation_path = source.get("corpus_citation_path")
+                if atom.get("path") != "versions[0].formula":
+                    invalid.append(f"{atom_id}: atom must anchor versions[0].formula")
+                if atom.get("kind") != "parameter":
+                    invalid.append(f"{atom_id}: atom kind must be parameter")
+                if not isinstance(citation_path, str) or not citation_path:
+                    invalid.append(f"{atom_id}: missing corpus_citation_path")
+                elif citation_path not in module_source_paths:
+                    invalid.append(
+                        f"{atom_id}: corpus_citation_path is not in module source_verification"
+                    )
+                if not isinstance(source.get("span"), str) or not source["span"].strip():
+                    invalid.append(f"{atom_id}: missing source span")
+
+    assert invalid == []
+
+
+def test_policy_parameter_proof_atom_spans_contain_formula_values() -> None:
+    invalid: list[str] = []
+
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        rules = payload.get("rules")
+        if not isinstance(rules, list):
+            continue
+
+        for rule in rules:
+            if not isinstance(rule, dict):
+                continue
+            if not is_policy_bearing_parameter(rule):
+                continue
+            formula_values = parameter_formula_values(rule)
+            if not formula_values:
+                continue
+            name = str(rule.get("name", "<unnamed>"))
+            for index, atom in enumerate(proof_atoms(rule)):
+                if not isinstance(atom, dict):
+                    continue
+                source = atom.get("source")
+                span = source.get("span") if isinstance(source, dict) else None
+                if not isinstance(span, str):
+                    continue
+                span_values = text_number_values(span)
+                if not any(
+                    formula_value == span_value
+                    for formula_value in formula_values
+                    for span_value in span_values
+                ):
+                    invalid.append(
+                        f"{path.relative_to(ROOT).as_posix()}#{name}.atoms[{index}]"
+                    )
+
+    assert (
+        apply_gap_ratchet(
+            "policy_parameter_proof_atoms_missing_formula_value", invalid
+        )
+        == []
+    )
 
 
 def test_rulespec_files_use_corpus_source_locators() -> None:
