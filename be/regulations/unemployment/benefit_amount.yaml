@@ -115,6 +115,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 111, limit A1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
+          span: Montant limite A1, égal à 92,3956 euros par jour
   versions:
   - effective_from: '2026-03-01'
     formula: '92.3956'
@@ -123,6 +131,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 111, limit A2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
+          span: Montant limite A2, égal à 86,8727 euros par jour
   versions:
   - effective_from: '2026-03-01'
     formula: '86.8727'
@@ -131,6 +147,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 111, limit B
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
+          span: Montant limite B, égal à 70,6721 euros par jour
   versions:
   - effective_from: '2023-07-01'
     formula: '70.6721'
@@ -139,6 +163,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 111, limit C
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
+          span: Montant limite C, égal à 75,8270 euros par jour
   versions:
   - effective_from: '2023-07-01'
     formula: '75.8270'
@@ -148,6 +180,14 @@ rules:
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 111, limit AX for
     youth and senior holiday allowances
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
+          span: Montant limite AX, égal à 65,2262 euros par jour
   versions:
   - effective_from: '2023-07-01'
     formula: '65.2262'
@@ -156,6 +196,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 111, limit AZ
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
+          span: Montant limite AZ, égal à 63,5679 euros par jour
   versions:
   - effective_from: '2023-07-01'
     formula: '63.5679'
@@ -163,6 +211,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Unemployment royal decree of 25 November 1991, article 131ter
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/131ter
+          span: S'élève à 65 % de la rémunération journalière moyenne
   versions:
   - effective_from: '2007-01-01'
     formula: '0.65'
@@ -171,6 +227,15 @@ rules:
   dtype: Money
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 131ter
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/131ter
+          span: Le montant journalier minimum de l'allocation visé aux alinéas précédents
+            est fixé à 31,18 euros
   versions:
   - effective_from: '2023-07-01'
     formula: '31.18'
@@ -178,6 +243,14 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Acquiert ce droit pour une période de douze mois
   versions:
   - effective_from: '2026-03-01'
     formula: '12'
@@ -185,6 +258,15 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Un mois par période de passé professionnel de 104 journées de travail
+            ou journées assimilées
   versions:
   - effective_from: '2026-03-01'
     formula: '104'
@@ -192,6 +274,14 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: L'élargissement est en outre limité à un maximum de douze mois
   versions:
   - effective_from: '2026-03-01'
     formula: '12'
@@ -199,6 +289,15 @@ rules:
   kind: parameter
   dtype: Rate
   source: Unemployment royal decree of 25 November 1991, article 114 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Durant les trois premiers mois de la première période d'indemnisation,
+            le travailleur a droit à un montant d'allocation de 65 %
   versions:
   - effective_from: '2026-03-01'
     formula: '0.65'
@@ -206,6 +305,15 @@ rules:
   kind: parameter
   dtype: Rate
   source: Unemployment royal decree of 25 November 1991, article 114 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Durant les mois quatre à six de la première période d'indemnisation,
+            le travailleur a droit à un montant d'allocations de 60 %
   versions:
   - effective_from: '2026-03-01'
     formula: '0.60'
@@ -214,6 +322,15 @@ rules:
   dtype: Rate
   source: Unemployment royal decree of 25 November 1991, article 114 section 6 item
     1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 65 % de la rémunération journalière moyenne, lorsque le contrat de
+            travail du travailleur est suspendu pour cause de force majeure
   versions:
   - effective_from: '2026-03-01'
     formula: '0.65'
@@ -222,6 +339,15 @@ rules:
   dtype: Rate
   source: Unemployment royal decree of 25 November 1991, article 114 section 6 item
     2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 60 % de la rémunération journalière moyenne, lorsque le contrat de
+            travail du travailleur est suspendu pour un autre motif
   versions:
   - effective_from: '2026-03-01'
     formula: '0.60'
@@ -231,6 +357,15 @@ rules:
   period: Day
   unit: EUR
   source: Unemployment royal decree of 25 November 1991, article 114 section 5
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Le montant journalier de l'allocation de chômage du travailleur qui
+            bénéficie de la dispense prévue à l'article 90 s'élève à 16,48 euros
   versions:
   - effective_from: '2026-03-01'
     formula: '16.48'
@@ -238,6 +373,15 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Le travailleur est présumé prouver un passé professionnel suffisant
+            s'il prouve au moins 31 ans de passé professionnel
   versions:
   - effective_from: '2026-03-01'
     formula: '31'
@@ -245,6 +389,15 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 32 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2027
   versions:
   - effective_from: '2026-03-01'
     formula: '32'
@@ -252,6 +405,15 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 33 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2028
   versions:
   - effective_from: '2026-03-01'
     formula: '33'
@@ -259,6 +421,15 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 34 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2029
   versions:
   - effective_from: '2026-03-01'
     formula: '34'
@@ -266,6 +437,15 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 114 section 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 35 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2030
   versions:
   - effective_from: '2026-03-01'
     formula: '35'
@@ -274,6 +454,15 @@ rules:
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 116 section 1 item
     6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/116
+          span: Pour autant que la durée ininterrompue de l'évènement est d'au moins
+            trois mois
   versions:
   - effective_from: '2026-03-01'
     formula: '3'
@@ -281,6 +470,16 @@ rules:
   kind: parameter
   dtype: Count
   source: Unemployment royal decree of 25 November 1991, article 116 section 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/116
+          span: Le régime de travail à temps partiel comporte durant toute la période
+            ininterrompue de l'occupation normalement en moyenne par semaine au moins
+            19 heures
   versions:
   - effective_from: '2026-03-01'
     formula: '19'
@@ -294,9 +493,9 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/30
-          span: Unemployment royal decree of 25 November 1991, article 114 section
-            2
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 35 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2030
   versions:
   - effective_from: '2026-03-01'
     formula: '2030'
@@ -310,9 +509,9 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/30
-          span: Unemployment royal decree of 25 November 1991, article 114 section
-            2
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 34 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2029
   versions:
   - effective_from: '2026-03-01'
     formula: '2029'
@@ -326,9 +525,9 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/30
-          span: Unemployment royal decree of 25 November 1991, article 114 section
-            2
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 33 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2028
   versions:
   - effective_from: '2026-03-01'
     formula: '2028'
@@ -342,9 +541,9 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/30
-          span: Unemployment royal decree of 25 November 1991, article 114 section
-            2
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: 32 ans, lorsque l'admissibilité au droit aux allocations est constatée
+            en 2027
   versions:
   - effective_from: '2026-03-01'
     formula: '2027'
@@ -414,9 +613,9 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/30
-          span: Unemployment royal decree of 25 November 1991, article 114 section
-            2
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Le travailleur qui, au moment de la demande d'allocations, a atteint
+            l'âge de 55 ans et qui prouve un passé professionnel suffisant
   versions:
   - effective_from: '2026-03-01'
     formula: '55'
@@ -612,9 +811,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/30
-          span: Unemployment royal decree of 25 November 1991, article 114 section
-            3 and article 111
+          corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+          span: Durant les mois quatre à six de la première période d'indemnisation
   versions:
   - effective_from: '2026-03-01'
     formula: '6'
