@@ -43,6 +43,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree of 3 July 1996, article 211 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/211
+              span: Le taux de l'indemnité d'incapacité primaire est fixé à 60 p.c. de la rémunération perdue visée à l'article 87, alinéa 1er, de la loi coordonnée.
     versions:
       - effective_from: '2009-01-01'
         formula: |-
@@ -52,6 +60,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Royal Decree of 3 July 1996, article 212, cap for incapacity or invalidity beginning from 1 January 2024
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/212
+              span: Pour le titulaire dont l'incapacité primaire ou l'invalidité prend cours à partir du 1er janvier 2024, le montant maximum de la rémunération est fixé à 105,1873 euros.
     versions:
       - effective_from: '2024-01-01'
         formula: |-
@@ -68,6 +84,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree of 3 July 1996, article 213, worker with person at charge
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/213
+              span: Le taux de l'indemnité d'invalidité est fixé à 65 p.c. de la rémunération perdue visée à l'article 87, alinéa 1er, de la loi coordonnée.
     versions:
       - effective_from: '1996-10-06'
         formula: |-
@@ -76,6 +100,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree of 3 July 1996, article 213, no dependant and article 226 status
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/213
+              span: Pour les titulaires qui ne sont pas considérés comme travailleurs avec personne à charge, ce taux est réduit à [ 1 55] 1 ou 40 p.c. de la même rémunération, selon qu'il s'agit ou non de titulaires visés à l'article 226.
     versions:
       - effective_from: '2009-05-01'
         formula: |-
@@ -84,6 +116,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Royal Decree of 3 July 1996, article 213, no dependant and not article 226 status
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/213
+              span: Pour les titulaires qui ne sont pas considérés comme travailleurs avec personne à charge, ce taux est réduit à [ 1 55] 1 ou 40 p.c. de la même rémunération, selon qu'il s'agit ou non de titulaires visés à l'article 226.
     versions:
       - effective_from: '1996-10-06'
         formula: |-
@@ -94,6 +134,14 @@ rules:
     period: Day
     unit: EUR
     source: Royal Decree of 3 July 1996, article 214 section 1 item 1, current amount from 1 July 2023
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/214
+              span: pour les titulaires qui sont considérés comme travailleur avec personne à charge, le montant journalier minimum est égal [ 5 à [ 7 45,6685] 7 euros] 5
     versions:
       - effective_from: '2023-07-01'
         formula: |-
@@ -104,6 +152,14 @@ rules:
     period: Day
     unit: EUR
     source: Royal Decree of 3 July 1996, article 214 section 1 item 2 a, current amount from 1 July 2023
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/214
+              span: pour les titulaires visés à l'article 226 ou 226bis, [ 5 à [ 7 36,1906] 7 euros] 5
     versions:
       - effective_from: '2023-07-01'
         formula: |-
@@ -114,6 +170,14 @@ rules:
     period: Day
     unit: EUR
     source: Royal Decree of 3 July 1996, article 214 section 1 item 2 b, current amount from 1 July 2023
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/214
+              span: pour les titulaires non visés à l'article 226 ou 226bis, à [ 7 31,0307] 7 euros.
     versions:
       - effective_from: '2023-07-01'
         formula: |-
