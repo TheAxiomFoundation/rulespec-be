@@ -69,6 +69,14 @@ rules:
   unit: EUR
   source: Royal decree of 25 October 1971 implementing the guaranteed family benefits
     law, article 6
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/6
+            span: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 6; amount 3079.06 EUR
   versions:
   - effective_from: '2002-01-01'
     formula: '3079.06'
@@ -87,6 +95,14 @@ rules:
   unit: EUR
   source: Royal decree of 25 October 1971 implementing the guaranteed family benefits
     law, article 8 section 2ter
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/8
+            span: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 8 section 2ter; amount 45.91 EUR
   versions:
   - effective_from: '2002-01-01'
     formula: '45.91'
@@ -329,9 +345,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/loi/1971/07/20/1971072007/article/1
-          span: Royal decree of 25 October 1971 implementing the guaranteed family
-            benefits law, article 5
+          corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/5
+          span: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 5; limit 6 completed months
   versions:
   - effective_from: '1989-01-01'
     formula: '6'

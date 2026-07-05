@@ -13,8 +13,8 @@ module:
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
       - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
       - be-wal/statute/decret/2018/02/08/2018201006/article/7
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current/block-1
       - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
       - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
       - be-vlg/guidance/gpedia/family-benefits/start-amount-decision-2025-112/page-1
@@ -25,8 +25,8 @@ module:
         - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
         - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
         - be-wal/statute/decret/2018/02/08/2018201006/article/7
-        - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-        - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+        - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+        - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current/block-1
         - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
       rationale: |-
         The Brussels ordinance, Flemish decree, Walloon decree, and
@@ -99,6 +99,14 @@ rules:
     period: Year
     unit: EUR
     source: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
+              span: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025; amount 1367.74 EUR
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -109,6 +117,14 @@ rules:
     period: Year
     unit: EUR
     source: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
+              span: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025; amount 621.70 EUR
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -119,6 +135,14 @@ rules:
     period: Year
     unit: EUR
     source: Flemish Groeipakket decree of 27 April 2018, article 9, indexed amount in force before the September 2025 indexation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/start-amount-decision-2025-112/page-1
+              span: Flemish Groeipakket decree of 27 April 2018, article 9, indexed amount in force before the September 2025 indexation; amount 1238.78 EUR
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -129,6 +153,14 @@ rules:
     period: Year
     unit: EUR
     source: Walloon decree of 8 February 2018 on management and payment of family benefits, article 7, indexed amount in force from 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-5
+              span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 7, indexed amount in force from 1 February 2025; amount 1367.74 EUR
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -145,8 +177,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-              span: German-speaking Community decree of 23 April 2018 on family benefits, article 30
+              corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+              span: German-speaking Community decree of 23 April 2018 on family benefits, article 30; amount 1144 EUR
     versions:
       - effective_from: '2019-01-01'
         formula: |-

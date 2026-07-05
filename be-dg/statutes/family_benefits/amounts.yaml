@@ -19,8 +19,8 @@ module:
     index values, and delegated eligibility tests remain separate surfaces.'
   source_verification:
     corpus_citation_paths:
-    - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-    - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+    - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+    - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current/block-1
     - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
     values:
       german_speaking_community_family_benefits_base_monthly_amount_2019: '157'
@@ -53,6 +53,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     8
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 8; amount 157 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '157'
@@ -63,6 +71,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     15
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 15; amount 52 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '52'
@@ -73,6 +89,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     17
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 17; amount 135 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '135'
@@ -83,6 +107,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     19
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 19; amount 75 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '75'
@@ -93,6 +125,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 1
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 1; amount 85 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '85'
@@ -103,6 +143,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 2
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 2; amount 112 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '112'
@@ -113,6 +161,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 3
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 3; amount 262 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '262'
@@ -123,6 +179,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 4
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 4; amount 432 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '432'
@@ -133,6 +197,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 5
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 5; amount 491 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '491'
@@ -143,6 +215,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 6
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 6; amount 526 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '526'
@@ -153,6 +233,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     21 item 7
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 21 item 7; amount 561 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '561'
@@ -163,6 +251,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     23
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 23; amount 239 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '239'
@@ -173,6 +269,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     25
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 25; amount 120 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '120'
@@ -182,6 +286,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     30
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 30; amount 1144 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '1144'
@@ -191,6 +303,14 @@ rules:
   unit: EUR
   source: German-speaking Community decree of 23 April 2018 on family benefits, article
     34
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+            span: German-speaking Community decree of 23 April 2018 on family benefits, article 34; amount 1144 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '1144'
@@ -217,6 +337,14 @@ rules:
   unit: EUR
   source: German-speaking Community program decree of 22 December 2025, article 18
     inserting article 117.4
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
+            span: German-speaking Community program decree of 22 December 2025, article 18 inserting article 117.4; amount 62.55 EUR
   versions:
   - effective_from: '2025-01-01'
     formula: '62.55'
@@ -268,9 +396,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-          span: German-speaking Community decree of 23 April 2018 on family benefits,
-            articles 15, 16, and 38, and 22 December 2025 program decree article 18
+          corpus_citation_path: be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
+          span: German-speaking Community decree of 23 April 2018 on family benefits, articles 15, 16, and 38, and 22 December 2025 program decree article 18; amount 2025 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '2025'
@@ -341,9 +468,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-          span: German-speaking Community decree of 23 April 2018 on family benefits,
-            articles 21, 22, and 38
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+          span: German-speaking Community decree of 23 April 2018 on family benefits, articles 21, 22, and 38; amount 4 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '4'
@@ -358,9 +484,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-          span: German-speaking Community decree of 23 April 2018 on family benefits,
-            articles 21, 22, and 38
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+          span: German-speaking Community decree of 23 April 2018 on family benefits, articles 21, 22, and 38; amount 5 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '5'
@@ -375,9 +500,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-          span: German-speaking Community decree of 23 April 2018 on family benefits,
-            articles 21, 22, and 38
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+          span: German-speaking Community decree of 23 April 2018 on family benefits, articles 21, 22, and 38; amount 6 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '6'
@@ -392,9 +516,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-          span: German-speaking Community decree of 23 April 2018 on family benefits,
-            articles 21, 22, and 38
+          corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
+          span: German-speaking Community decree of 23 April 2018 on family benefits, articles 21, 22, and 38; amount 7 EUR
   versions:
   - effective_from: '2019-01-01'
     formula: '7'

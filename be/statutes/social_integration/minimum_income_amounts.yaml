@@ -41,6 +41,14 @@ rules:
   unit: EUR
   source: Federal law of 26 May 2002 concerning the right to social integration, article
     14 section 1 item 1
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
+            span: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 1; amount 4400 EUR
   versions:
   - effective_from: '2002-10-01'
     formula: '4400'
@@ -50,6 +58,14 @@ rules:
   unit: EUR
   source: Federal law of 26 May 2002 concerning the right to social integration, article
     14 section 1 item 2
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
+            span: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 2; amount 6600 EUR
   versions:
   - effective_from: '2002-10-01'
     formula: '6600'
@@ -59,6 +75,14 @@ rules:
   unit: EUR
   source: Federal law of 26 May 2002 concerning the right to social integration, article
     14 section 1 item 3
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
+            span: Federal law of 26 May 2002 concerning the right to social integration, article 14 section 1 item 3; amount 8800 EUR
   versions:
   - effective_from: '2002-10-01'
     formula: '8800'
