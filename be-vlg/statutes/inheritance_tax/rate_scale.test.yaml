@@ -1,3 +1,37 @@
+- name: rate_scale_parameters
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  output:
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_first_threshold: 50000
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_second_threshold: 250000
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_other_first_threshold: 35000
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_other_second_threshold: 75000
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_first_rate: 0.03
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_second_rate: 0.09
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_top_rate: 0.27
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_sibling_first_rate: 0.25
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_sibling_second_rate: 0.30
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_sibling_top_rate: 0.55
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_unrelated_first_rate: 0.25
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_unrelated_second_rate: 0.45
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_unrelated_top_rate: 0.55
+
+- name: zero_taxable_acquisition_has_no_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_taxable_acquisition: 0
+    be-vlg:statutes/inheritance_tax/rate_scale#input.flanders_inheritance_tax_relationship_class: 0
+  output:
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_direct_or_partner_tax: 0
+    be-vlg:statutes/inheritance_tax/rate_scale#flanders_inheritance_tax_article_27411_tax: 0
+
 - name: direct_partner_second_bracket
   period:
     period_kind: custom

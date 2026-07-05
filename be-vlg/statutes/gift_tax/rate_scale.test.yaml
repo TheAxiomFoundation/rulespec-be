@@ -1,3 +1,38 @@
+- name: rate_scale_parameters
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  output:
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_first_threshold: 150000
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_second_threshold: 250000
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_third_threshold: 450000
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_first_rate: 0.03
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_second_rate: 0.09
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_third_rate: 0.18
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_top_rate: 0.27
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_other_first_rate: 0.10
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_other_second_rate: 0.20
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_other_third_rate: 0.30
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_other_top_rate: 0.40
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_movable_direct_or_partner_rate: 0.03
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_movable_other_rate: 0.07
+
+- name: zero_taxable_gift_has_no_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_taxable_amount: 0
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_relationship_class: 0
+    be-vlg:statutes/gift_tax/rate_scale#input.flanders_gift_tax_is_movable_property: false
+  output:
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_immovable_direct_or_partner_tax: 0
+    be-vlg:statutes/gift_tax/rate_scale#flanders_gift_tax_article_28411_tax: 0
+
 - name: immovable_direct_partner_third_bracket
   period:
     period_kind: custom
