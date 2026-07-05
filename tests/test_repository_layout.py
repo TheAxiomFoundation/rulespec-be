@@ -73,6 +73,7 @@ NUMERIC_TEXT_RE = re.compile(
     r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:\s*[,.]\d+)?\s*(?:%|p\.c\.|pc|pour cent)?(?![\w.,])"
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
+FORMULA_PROOF_PATH_RE = re.compile(r"^versions\[(\d+)\]\.formula$")
 FRENCH_NUMBER_WORD_VALUES = {
     "un": Decimal("1"),
     "une": Decimal("1"),
@@ -215,18 +216,19 @@ def parameter_formula_values(rule: dict) -> list[Decimal]:
     versions = rule.get("versions")
     if not isinstance(versions, list) or not versions:
         return []
-    version = versions[0]
-    if not isinstance(version, dict):
-        return []
-    formula = version.get("formula")
-    if isinstance(formula, int | float):
-        formula = str(formula)
-    if not isinstance(formula, str):
-        return []
-    formula = formula.strip()
-    if not SIMPLE_NUMERIC_FORMULA_RE.fullmatch(formula):
-        return []
-    return [Decimal(formula)]
+    values: list[Decimal] = []
+    for version in versions:
+        if not isinstance(version, dict):
+            continue
+        formula = version.get("formula")
+        if isinstance(formula, int | float):
+            formula = str(formula)
+        if not isinstance(formula, str):
+            continue
+        formula = formula.strip()
+        if SIMPLE_NUMERIC_FORMULA_RE.fullmatch(formula):
+            values.append(Decimal(formula))
+    return values
 
 
 def text_number_values(text: str) -> list[Decimal]:
@@ -673,8 +675,24 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                     invalid.append(f"{atom_id}: missing source mapping")
                     continue
                 citation_path = source.get("corpus_citation_path")
-                if atom.get("path") != "versions[0].formula":
-                    invalid.append(f"{atom_id}: atom must anchor versions[0].formula")
+                atom_path = atom.get("path")
+                formula_path_match = (
+                    FORMULA_PROOF_PATH_RE.fullmatch(atom_path)
+                    if isinstance(atom_path, str)
+                    else None
+                )
+                if formula_path_match is None:
+                    invalid.append(f"{atom_id}: atom must anchor versions[N].formula")
+                else:
+                    version_index = int(formula_path_match.group(1))
+                    versions = rule.get("versions")
+                    if (
+                        not isinstance(versions, list)
+                        or version_index >= len(versions)
+                    ):
+                        invalid.append(
+                            f"{atom_id}: atom anchors missing version {version_index}"
+                        )
                 if atom.get("kind") != "parameter":
                     invalid.append(f"{atom_id}: atom kind must be parameter")
                 if not isinstance(citation_path, str) or not citation_path:

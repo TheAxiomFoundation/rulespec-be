@@ -22,6 +22,19 @@ rules:
     dtype: Money
     unit: EUR
     source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/2001/03/22/2001022201/article/6
+              span: 6.765,89 euros
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/2001/03/22/2001022201/article/6
+              span: 7.449,26 euros
     versions:
       - effective_from: '2014-01-01'
         formula: |-
@@ -33,6 +46,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 6 sections 2 and 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/2001/03/22/2001022201/article/6
+              span: Le coefficient 1,50 s'applique au montant visé au paragraphe 1er
     versions:
       - effective_from: '2014-01-01'
         formula: |-
