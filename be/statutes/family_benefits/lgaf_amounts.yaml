@@ -70,6 +70,14 @@ rules:
   kind: parameter
   dtype: Decimal
   source: LGAF article 76bis
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/76bis
+          span: rattachés à l'indice pivot 103,14 (base 1996 100)
   versions:
   - effective_from: '2008-06-16'
     formula: '103.14'
@@ -623,7 +631,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-          span: LGAF article 44
+          span: pour un enfant de 6 ans au moins
   versions:
   - effective_from: '2002-01-01'
     formula: '6'
@@ -638,7 +646,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-          span: LGAF article 44
+          span: pour un enfant de 12 ans au moins
   versions:
   - effective_from: '2002-01-01'
     formula: '12'
@@ -653,7 +661,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-          span: LGAF article 44
+          span: pour un enfant de 18 ans au moins
   versions:
   - effective_from: '2002-01-01'
     formula: '18'
@@ -755,7 +763,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-          span: LGAF article 44ter
+          span: n'a pas encore atteint l'âge de 5 ans le 31 décembre
   versions:
   - effective_from: '2014-01-01'
     formula: '5'
@@ -770,7 +778,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-          span: LGAF article 44ter
+          span: n'a pas encore atteint l'âge de 11 ans à cette date
   versions:
   - effective_from: '2014-01-01'
     formula: '11'
@@ -785,7 +793,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-          span: LGAF article 44ter
+          span: n'a pas encore atteint l'âge de 17 ans à cette date
   versions:
   - effective_from: '2014-01-01'
     formula: '17'
