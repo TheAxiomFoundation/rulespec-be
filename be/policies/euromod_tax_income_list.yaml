@@ -1,0 +1,100 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding
+module:
+  summary: |-
+    This module exposes a narrow household-level bridge to EUROMOD's standard
+    ils_tax tax income list for oracle comparisons. EUROMOD defines the
+    aggregate as income taxes plus wealth/property taxes; this pilot composes
+    the already encoded worker PIT output with supplied capital-income-tax and
+    property-tax components. It is not full Belgian tax-list parity: capital
+    income tax, immovable withholding from all cadastral-income cases, joint
+    assessment, social-insurance disposable-income treatment, withholding, and
+    regional/local reductions remain separate surfaces.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-58
+      - be/statute/fisconetplus/cir92/revenus-2025/page-59
+      - be/statute/fisconetplus/cir92/revenus-2025/page-120
+      - be/statute/fisconetplus/cir92/revenus-2025/page-121
+      - be/statute/fisconetplus/cir92/revenus-2025/page-122
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-184
+      - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/fisconetplus/cir92/revenus-2025/page-512
+      - be/statute/fisconetplus/cir92/revenus-2025/page-513
+      - be/statute/fisconetplus/cir92/revenus-2025/page-514
+      - be/statute/fisconetplus/cir92/revenus-2025/page-515
+      - be/statute/fisconetplus/cir92/revenus-2025/page-518
+      - be/statute/fisconetplus/cir92/revenus-2025/page-526
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+      - be/statute/fisconetplus/cir92/revenus-2025/page-687
+      - be/statute/fisconetplus/cir92/revenus-2025/page-688
+      - be/statute/loi/1989/01/16/1989021010/article/5-2
+      - be/regulation/arrete/2017/12/19/2017032216/article/1er
+      - be/regulation/arrete/2017/12/19/2017032216/article/2
+    upstream_source_check:
+      status: structural_composition_bridge
+      checked_paths:
+        - be/statute/fisconetplus/cir92/revenus-2025/page-53
+        - be/statute/fisconetplus/cir92/revenus-2025/page-120
+        - be/statute/fisconetplus/cir92/revenus-2025/page-181
+        - be/statute/loi/1989/01/16/1989021010/article/5-2
+      rationale: |-
+        The aggregate introduces no new statutory tax amounts. It adds together
+        the encoded worker PIT pilot and supplied placeholder components whose
+        own future modules must cite the upstream legal sources for those
+        component calculations.
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_euromod_ils_tax_pit_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_tax bridge over the encoded worker PIT pilot component
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_euromod_ils_tax_include_pit_component:
+              belgium_pit_pilot_federal_and_local_tax_before_withholding
+          else:
+              belgium_euromod_ils_tax_supplied_pit_annual_amount
+  - name: belgium_euromod_ils_tax_income_tax_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_taxin bridge summing PIT and supplied capital-income tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_tax_pit_component + belgium_euromod_ils_tax_supplied_capital_income_tax_annual_amount
+  - name: belgium_euromod_ils_tax_wealth_tax_component
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_taxwl bridge over supplied property and wealth taxes
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_tax_supplied_property_tax_annual_amount
+  - name: belgium_euromod_ils_tax_worker_pit_pilot_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: EUROMOD ils_tax bridge summing PIT, supplied capital-income tax, and supplied property-tax components for oracle comparisons
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_euromod_ils_tax_income_tax_component + belgium_euromod_ils_tax_wealth_tax_component

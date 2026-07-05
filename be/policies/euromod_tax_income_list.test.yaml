@@ -1,0 +1,39 @@
+- name: worker_pit_flows_to_ils_tax_worker_pit_pilot
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_include_pit_component: true
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_capital_income_tax_annual_amount: 0
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_property_tax_annual_amount: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 40000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0.06
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_pit_component: 5109.55630034
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_income_tax_component: 5109.55630034
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_wealth_tax_component: 0
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_worker_pit_pilot_annual_amount: 5109.55630034
+
+- name: supplied_tax_components_flow_to_ils_tax_worker_pit_pilot
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_include_pit_component: false
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_pit_annual_amount: 100
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_capital_income_tax_annual_amount: 20
+    be:policies/euromod_tax_income_list#input.belgium_euromod_ils_tax_supplied_property_tax_annual_amount: 5
+  output:
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_pit_component: 100
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_income_tax_component: 120
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_wealth_tax_component: 5
+    be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_worker_pit_pilot_annual_amount: 125
