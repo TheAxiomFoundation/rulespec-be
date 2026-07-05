@@ -1,0 +1,97 @@
+format: rulespec/v1
+module:
+  summary: |-
+    The sixth state reform gave the regions a personal-income-tax competence
+    exercised as regional additional taxes ("centimes additionnels régionaux" /
+    "gewestelijke opcentiemen") and regional reductions, levied on the reduced
+    State tax defined by the special financing law of 16 January 1989 article
+    5/2. This module encodes the mechanical regional additional tax as the
+    reduced State tax multiplied by a supplied regional additional-tax
+    percentage, the regional total State-plus-regional tax, and the local
+    municipal additional tax (CIR 1992 article 466) levied on the cumulative
+    State-plus-regional tax net of the supplied fiscal-expenditure and
+    refundable-credit reductions that apply before the communal additional tax,
+    at a supplied communal additional-tax percentage. It does not maintain the
+    region-by-region additional-tax percentage tables, the
+    municipality-by-municipality communal-rate tables, the fiscal-expenditure
+    reduction calculations themselves (supplied as a net amount), regional tax
+    reductions and credits, or the regional bracket structure a region may apply
+    instead of a single flat percentage.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/loi/1989/01/16/1989021010/article/5-2
+      - be/regulation/arrete/2017/12/19/2017032216/article/1er
+      - be/regulation/arrete/2017/12/19/2017032216/article/2
+      - be/statute/fisconetplus/cir92/revenus-2025/page-686
+      - be/statute/fisconetplus/cir92/revenus-2025/page-687
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_regional_reduced_state_tax_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law 16 January 1989 article 5/2, reduced State tax as the base on which the regions levy their additional taxes and reductions
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          max(0, belgium_pit_regional_reduced_state_tax_supplied_amount)
+  - name: belgium_pit_regional_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law 16 January 1989 article 5/2, regional additional tax as the reduced State tax multiplied by the supplied regional additional-tax percentage
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          belgium_pit_regional_reduced_state_tax_base * belgium_pit_regional_additional_tax_rate
+  - name: belgium_pit_regional_state_and_regional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law 16 January 1989 article 5/2, total tax as reduced State tax plus the regional additional tax
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          belgium_pit_regional_reduced_state_tax_base + belgium_pit_regional_additional_tax
+  - name: belgium_pit_local_supplied_fiscal_expenditure_reduction_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 466, total supplied fiscal-expenditure and refundable-credit reductions (low-wage work-bonus credit and childcare reduction) that reduce the tax before the communal additional tax
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          max(0, belgium_pit_local_supplied_low_wage_work_bonus_reduction_amount) + max(0, belgium_pit_local_supplied_childcare_reduction_amount)
+  - name: belgium_pit_local_additions_base_state_plus_regional
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 466 and special financing law 16 January 1989 article 5/2, communal additional-tax base as the cumulative reduced State tax plus the supplied regional additional tax net of the supplied fiscal-expenditure and refundable-credit reductions that apply before the communal additional tax
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          max(0, max(0, belgium_pit_regional_reduced_state_tax_supplied_amount) + max(0, belgium_pit_regional_supplied_additional_tax_amount) - belgium_pit_local_supplied_fiscal_expenditure_reduction_amount)
+  - name: belgium_pit_local_municipal_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 466, communal additional tax as the cumulative State-plus-regional tax multiplied by the supplied communal additional-tax percentage
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          belgium_pit_local_additions_base_state_plus_regional * belgium_pit_local_communal_additional_tax_rate
