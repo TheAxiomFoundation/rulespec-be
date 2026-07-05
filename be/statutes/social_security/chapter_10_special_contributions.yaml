@@ -57,6 +57,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: "1° (7,5 p.c.) du montant de sa rémunération, pour les travailleurs soumis au régime des pensions de retraite et de survie des travailleurs salariés"
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -65,6 +73,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: "2° 1,15 p.c. du montant de sa rémunération pour les travailleurs soumis au régime d'assurance obligatoire contre la maladie et l'invalidité"
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -73,6 +89,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: "3° 0,87 p.c. du montant de sa rémunération pour les travailleurs soumis au régime relatif à l'emploi et au chômage"
     versions:
       - effective_from: '1994-03-30'
         formula: |-
@@ -81,6 +105,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 2 item 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: "4° (3,55 p.c.) du montant de sa rémunération pour les travailleurs soumis au régime d'assurance obligatoire contre la maladie et l'invalidité"
     versions:
       - effective_from: '1992-07-01'
         formula: |-
@@ -143,6 +175,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3septies
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: Le taux de cette cotisation est fixé à 13,07 % du montant liquidé.
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -162,6 +202,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3ter
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: A partir du 1er janvier 1989, il est instauré une cotisation spéciale égale à (8,86 p.c.)
     versions:
       - effective_from: '1992-07-01'
         formula: |-
@@ -192,6 +240,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3terdecies
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: La cotisation spéciale due par l'organisateur pour le travailleur concerné est égale à 12,50 % de sa quote-part dans le montant de la variation des réserves acquises.
     versions:
       - effective_from: '2025-07-01'
         formula: |-
@@ -255,7 +311,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3; amount 9 EUR
+              span: "Pour les véhicules à essence : ((Y x 9 euros) - 768) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -272,7 +328,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3; amount 768 EUR
+              span: "Pour les véhicules à essence : ((Y x 9 euros) - 768) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -289,7 +345,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3; amount 600 EUR
+              span: "Pour les véhicules au diesel : ((Y x 9 euros) - 600) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -306,7 +362,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 7; amount 990 EUR
+              span: "Les employeurs qui mettent à disposition des véhicules équipés d'un moteur à allumage commandé fonctionnant au gaz de pétrole liquéfié, au gaz naturel ou méthane, sont soumis une cotisation de solidarité déterminée comme suit : ((Y x 9 euros) - 990) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -339,7 +395,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3; amount 20.83 EUR
+              span: Cette cotisation mensuelle, qui ne peut être inférieure à 20,83 euros, est fixée forfaitairement comme suit
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -356,6 +412,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3, 2026 multiplier
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: "la cotisation calculée : multipliée par un facteur de 4,00 à partir du 1er janvier 2026"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -372,7 +436,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3quater item 3, 2026 minimum; amount 25.99 EUR
+              span: "la cotisation minimale : passer à 23,41 à partir du 1er janvier 2025, à 25,99 à partir du 1er janvier 2026"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -490,7 +554,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies; amount 20 EUR
+              span: Y = 20
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -507,7 +571,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies; amount 40 EUR
+              span: Y = 40
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -524,7 +588,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies; amount 60 EUR
+              span: Y = 60
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -541,7 +605,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies; amount 80 EUR
+              span: Y = 80
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -558,7 +622,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3sexies; amount 100 EUR
+              span: Y = 100
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -623,7 +687,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3novies, indexed cap before delegated annual adaptation; amount 3169 EUR
+              span: "Une cotisation spéciale de 33 % est due par l'employeur sur le montant des avantages non récurrents liés aux résultats, et cela à concurrence d'un plafond de 3.169 euros par année calendrier par travailleur"
     versions:
       - effective_from: '2016-01-01'
         formula: |-
@@ -632,6 +696,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3novies
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: Une cotisation spéciale de 33 % est due par l'employeur sur le montant des avantages non récurrents liés aux résultats.
     versions:
       - effective_from: '2012-01-01'
         formula: |-
@@ -640,6 +712,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 29 June 1981 establishing general principles of employee social security, article 38 section 3novies
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
+              span: Une cotisation de solidarité de 13,07 % est également due par le travailleur sur le montant visé à l'alinéa 1er.
     versions:
       - effective_from: '2012-01-01'
         formula: |-
