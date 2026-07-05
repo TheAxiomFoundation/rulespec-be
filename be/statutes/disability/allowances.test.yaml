@@ -15,6 +15,66 @@
     be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 0
     be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 0
 
+- name: zero_inputs_pay_no_disability_allowance_amounts
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 0
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_income_replacement_annual_amount_by_category: 0
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 0
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 0
+    be:statutes/disability/allowances#belgium_disability_integration_after_institution_suspension_annual_amount: 0
+    be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points: 0
+    be:statutes/disability/allowances#belgium_disability_elderly_care_annual_amount_by_autonomy_points: 0
+
+- name: integration_autonomy_points_at_7_start_category_1
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 7
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 1
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 908.33
+
+- name: integration_autonomy_points_at_8_stay_category_1
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 8
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 1
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 908.33
+
+- name: integration_autonomy_points_at_9_start_category_2
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 9
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 2
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 3004.40
+
 - name: integration_autonomy_points_select_category_3_amount
   period:
     period_kind: custom
@@ -32,6 +92,34 @@
     be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 4778.10
     be:statutes/disability/allowances#belgium_disability_integration_after_institution_suspension_annual_amount: 4778.10
 
+- name: integration_autonomy_points_at_15_start_category_4
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 15
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 4
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 6943.85
+
+- name: integration_autonomy_points_at_17_start_category_5
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 17
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_integration_category_from_autonomy_points: 5
+    be:statutes/disability/allowances#belgium_disability_integration_annual_amount_by_autonomy_points: 7872.29
+
 - name: institutional_suspension_reduces_integration_payment_by_28_percent
   period:
     period_kind: custom
@@ -45,6 +133,34 @@
   output:
     be:statutes/disability/allowances#belgium_disability_integration_institution_suspension_rate: 0.28
     be:statutes/disability/allowances#belgium_disability_integration_after_institution_suspension_annual_amount: 3440.232
+
+- name: elderly_care_autonomy_points_at_16_select_category_4
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 16
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points: 4
+    be:statutes/disability/allowances#belgium_disability_elderly_care_annual_amount_by_autonomy_points: 4065.70
+
+- name: elderly_care_autonomy_points_at_17_start_category_5
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/disability/allowances#input.belgium_disability_income_replacement_category_code: 0
+    be:statutes/disability/allowances#input.belgium_disability_autonomy_points: 17
+    be:statutes/disability/allowances#input.belgium_disability_institution_payment_suspension_applies: false
+  output:
+    be:statutes/disability/allowances#belgium_disability_elderly_care_category_from_autonomy_points: 5
+    be:statutes/disability/allowances#belgium_disability_elderly_care_annual_amount_by_autonomy_points: 4994.14
 
 - name: elderly_care_autonomy_points_select_category_5_amount
   period:

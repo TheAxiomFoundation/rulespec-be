@@ -70,7 +70,7 @@ STRUCTURAL_PARAMETER_NAME_TOKENS = (
     "denominator",
 )
 NUMERIC_TEXT_RE = re.compile(
-    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|p\.c\.|pc)?(?![\w.,])"
+    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:\s*[,.]\d+)?\s*(?:%|p\.c\.|pc|pour cent)?(?![\w.,])"
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
 FRENCH_NUMBER_WORD_VALUES = {
@@ -231,11 +231,17 @@ def text_number_values(text: str) -> list[Decimal]:
     values: list[Decimal] = []
     for match in NUMERIC_TEXT_RE.finditer(text):
         token = match.group().strip().replace("\u00a0", " ")
-        is_percent = token.endswith("%") or token.endswith("p.c.") or token.endswith("pc")
+        is_percent = (
+            token.endswith("%")
+            or token.endswith("p.c.")
+            or token.endswith("pc")
+            or token.endswith("pour cent")
+        )
         token = (
             token.removesuffix("%")
             .removesuffix("p.c.")
             .removesuffix("pc")
+            .removesuffix("pour cent")
             .strip()
             .replace(" ", "")
         )
@@ -271,7 +277,7 @@ def span_contains_formula_value(
         for span_value in span_values
     ):
         return True
-    if "%" not in span and "p.c." not in span:
+    if "%" not in span and "p.c." not in span and "pour cent" not in span:
         return False
     return any(
         Decimal("0") < formula_value < Decimal("1")
