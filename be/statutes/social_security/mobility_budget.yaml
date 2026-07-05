@@ -25,6 +25,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 17 March 2019 introducing a mobility budget, article 22
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/2019/03/17/2019030319/article/22
+              span: une cotisation spéciale de 38,07 p.c. est due par le travailleur
     versions:
       - effective_from: '2019-03-01'
         formula: |-

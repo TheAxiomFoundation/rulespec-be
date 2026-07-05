@@ -30,6 +30,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Brussels ordinance of 23 November 2017 article 14, paragraph 1, as replaced by ordinance of 30 April 2020 article 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-bru/statute/ordonnance/2020/04/30/2020041087/article/2
+              span: Une prime annuelle de 130 euros par ménage est due pour une habitation
     versions:
       - effective_from: '2020-01-01'
         formula: |-

@@ -34,6 +34,24 @@ rules:
     dtype: Rate
     period: Year
     source: CIR 1992 article 518 formula with current annual coefficients published by SPF Finances
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/spf-finances/cadastral-income/previous-years/block-16
+              span: "Coefficient d’indexation 2,1763 2,0915"
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/spf-finances/cadastral-income/definition-usage/block-1
+              span: "Le coefficient d’indexation s’élève à : 2,2446 (année de revenus 2025, exercice d’imposition 2026)"
+          - path: versions[2].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/spf-finances/cadastral-income/definition-usage/block-1
+              span: "2,3000 (pour l’année de revenus 2026, exercice d’imposition 2027)"
     versions:
       - effective_from: '2024-01-01'
         formula: |-

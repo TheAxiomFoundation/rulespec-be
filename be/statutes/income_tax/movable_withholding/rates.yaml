@@ -27,6 +27,14 @@ rules:
     dtype: Money
     unit: EUR
     source: CIR 1992 article 21, first paragraph item 5, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-69
+              span: la première tranche de 1.050 euros (montant indexé) par an des revenus afférents aux dépôts d'épargne
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -35,6 +43,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 article 269 section 1 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-461
+              span: "Le taux du précompte mobilier est fixé: 1° à 30 % pour les revenus de capitaux et biens mobiliers"
     versions:
       - effective_from: '2023-01-01'
         formula: |-
@@ -43,6 +59,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 article 269 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-461
+              span: 2° à 15 % pour les revenus de dépôts d'épargne visés à l'article 21, alinéa 1er, 5°
     versions:
       - effective_from: '2023-01-01'
         formula: |-
