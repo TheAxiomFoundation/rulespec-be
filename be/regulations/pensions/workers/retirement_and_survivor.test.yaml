@@ -8,6 +8,26 @@
   output:
     be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years: 66
 
+- name: article_2_legal_pension_age_boundary_before_1960_is_65
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_birth_year: 1959
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years: 65
+
+- name: article_2_legal_pension_age_boundary_from_1964_is_67
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_birth_year: 1964
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_legal_pension_age_years: 67
+
 - name: article_4_current_early_retirement_exception_for_44_year_career
   period:
     period_kind: tax_year
@@ -31,6 +51,18 @@
   output:
     be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years: 63
     be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_eligible: 0
+
+- name: article_4_current_early_retirement_baseline_boundary_is_eligible
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_age_years: 63
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_for_early_retirement: 42
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_minimum_age_years: 63
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_current_early_retirement_eligible: 1
 
 - name: article_5_isolated_worker_pension_uses_sixty_percent_over_45_years
   period:
@@ -63,6 +95,23 @@
   output:
     be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_selected_article_5_rate: 0.75
     be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount: 30000
+
+- name: article_5_zero_remuneration_and_career_creates_no_retirement_pension
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_spouse_condition_for_family_rate_met: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_minimum_applies_for_year: false
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_article_8_year_fraction: 1
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_revalued_annual_remuneration_after_cap: 0
+    be:regulations/pensions/workers/retirement_and_survivor#input.belgium_worker_pension_career_years_after_statutory_limit: 0
+  output:
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_selected_annual_remuneration_for_representative_year: 0
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount_before_article_8_cap: 0
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_annual_amount: 0
+    be:regulations/pensions/workers/retirement_and_survivor#belgium_worker_pension_article_5_retirement_monthly_amount: 0
 
 - name: article_8_minimum_right_substitutes_annual_remuneration_for_eligible_year
   period:

@@ -48,6 +48,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree of 23 December 1996, article 5 section 1 item a
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/5
+          span: a) 75 p.c. pour les travailleurs dont le conjoint
   versions:
   - effective_from: '1997-07-01'
     formula: '0.75'
@@ -55,6 +63,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree of 23 December 1996, article 5 section 1 item b
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/5
+          span: b) 60 p.c. pour les autres travailleurs.
   versions:
   - effective_from: '1997-07-01'
     formula: '0.60'
@@ -84,6 +100,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Royal Decree of 23 December 1996, article 7 sections 1 and 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/7
+          span: la pension de survie est égale à 80 p.c. du montant de la pension de retraite
   versions:
   - effective_from: '1997-07-01'
     formula: '0.80'
@@ -92,6 +116,14 @@ rules:
   dtype: Money
   unit: EUR
   source: Royal Decree of 23 December 1996, article 8 section 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
+          span: 18.819,12 euros
   versions:
   - effective_from: '2024-01-01'
     formula: '18819.12'
@@ -101,6 +133,14 @@ rules:
   unit: EUR
   source: Royal Decree of 23 December 1996, article 8 section 1 future-note amounts
     for pensions first taking effect from 2024
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
+          span: 16.441,83 euros
   versions:
   - effective_from: '2024-01-01'
     formula: '16441.83'
@@ -110,6 +150,14 @@ rules:
   unit: EUR
   source: Royal Decree of 23 December 1996, article 8 section 1 future-note amounts
     for pensions first taking effect from 2024
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
+          span: 13.153,46 euros
   versions:
   - effective_from: '2024-01-01'
     formula: '13153.46'
@@ -123,8 +171,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 2 section 1
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
+          span: l'intéressé né avant le 1er janvier 1960
   versions:
   - effective_from: '2025-01-01'
     formula: '1960'
@@ -138,8 +186,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 2 section 1
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
+          span: 1° 65 ans pour
   versions:
   - effective_from: '2025-01-01'
     formula: '65'
@@ -153,8 +201,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 2 section 1
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
+          span: avant le 1er janvier 1964
   versions:
   - effective_from: '2025-01-01'
     formula: '1964'
@@ -168,8 +216,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 2 section 1
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
+          span: 2° 66 ans pour
   versions:
   - effective_from: '2025-01-01'
     formula: '66'
@@ -183,8 +231,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 2 section 1
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
+          span: 3° 67 ans pour
   versions:
   - effective_from: '2025-01-01'
     formula: '67'
@@ -245,9 +293,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
-            for pensions first taking effect from 2019
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
+          span: si l'intéressé prouve une carrière d'au moins 44 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 60 ans
   versions:
   - effective_from: '2019-01-01'
     formula: '44'
@@ -262,9 +309,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
-            for pensions first taking effect from 2019
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
+          span: si l'intéressé prouve une carrière d'au moins 44 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 60 ans
   versions:
   - effective_from: '2019-01-01'
     formula: '60'
@@ -279,9 +325,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
-            for pensions first taking effect from 2019
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
+          span: si l'intéressé prouve une carrière d'au moins 43 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 61 ans
   versions:
   - effective_from: '2019-01-01'
     formula: '43'
@@ -296,9 +341,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
-            for pensions first taking effect from 2019
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
+          span: si l'intéressé prouve une carrière d'au moins 43 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 61 ans
   versions:
   - effective_from: '2019-01-01'
     formula: '61'
@@ -313,9 +357,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
-            for pensions first taking effect from 2019
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
+          span: au premier jour du mois suivant celui au cours duquel il atteint l'âge de 63 ans
   versions:
   - effective_from: '2019-01-01'
     formula: '63'
@@ -377,9 +420,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Royal Decree of 23 December 1996, article 4 sections 1 to 3, rules
-            for pensions first taking effect from 2019
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
+          span: 5° d'au moins 42 ans, pour les pensions qui prennent cours effectivement et pour la première fois au plus tôt le 1er janvier 2019.
   versions:
   - effective_from: '2019-01-01'
     formula: '42'
@@ -482,9 +524,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/regulation/arrete/1967/10/24/1967102410/article/7
-          span: Monthly bridge from Royal Decree of 23 December 1996 article 5 annual
-            pension amount
+          corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
+          span: Le montant visé au paragraphe 1er, alinéa 1er correspond à douze fois le revenu minimum mensuel moyen
   versions:
   - effective_from: '2024-01-01'
     formula: '12'
