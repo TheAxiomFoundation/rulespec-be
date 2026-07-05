@@ -70,9 +70,39 @@ STRUCTURAL_PARAMETER_NAME_TOKENS = (
     "denominator",
 )
 NUMERIC_TEXT_RE = re.compile(
-    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:[,.]\d+)?\s*%?(?![\w.,])"
+    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|p\.c\.)?(?![\w.,])"
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
+FRENCH_NUMBER_WORD_VALUES = {
+    "un": Decimal("1"),
+    "une": Decimal("1"),
+    "deux": Decimal("2"),
+    "trois": Decimal("3"),
+    "quatre": Decimal("4"),
+    "cinq": Decimal("5"),
+    "six": Decimal("6"),
+    "sept": Decimal("7"),
+    "huit": Decimal("8"),
+    "neuf": Decimal("9"),
+    "dix": Decimal("10"),
+    "onze": Decimal("11"),
+    "douze": Decimal("12"),
+    "treize": Decimal("13"),
+    "quatorze": Decimal("14"),
+    "quinze": Decimal("15"),
+    "seize": Decimal("16"),
+    "dix-sept": Decimal("17"),
+    "dix sept": Decimal("17"),
+    "dix-huit": Decimal("18"),
+    "dix huit": Decimal("18"),
+    "dix-neuf": Decimal("19"),
+    "dix neuf": Decimal("19"),
+    "vingt": Decimal("20"),
+    "trente": Decimal("30"),
+    "quarante": Decimal("40"),
+    "cinquante": Decimal("50"),
+    "soixante": Decimal("60"),
+}
 
 
 def jurisdiction_dirs() -> list[Path]:
@@ -199,8 +229,8 @@ def text_number_values(text: str) -> list[Decimal]:
     values: list[Decimal] = []
     for match in NUMERIC_TEXT_RE.finditer(text):
         token = match.group().strip().replace("\u00a0", " ")
-        is_percent = token.endswith("%")
-        token = token.rstrip("%").strip().replace(" ", "")
+        is_percent = token.endswith("%") or token.endswith("p.c.")
+        token = token.removesuffix("%").removesuffix("p.c.").strip().replace(" ", "")
         if "," in token and "." in token:
             if token.rfind(",") > token.rfind("."):
                 token = token.replace(".", "").replace(",", ".")
@@ -217,6 +247,10 @@ def text_number_values(text: str) -> list[Decimal]:
         values.append(value)
         if is_percent:
             values.append(value / Decimal("100"))
+    lower_text = text.lower()
+    for word, value in FRENCH_NUMBER_WORD_VALUES.items():
+        if re.search(rf"\b{re.escape(word)}\b", lower_text):
+            values.append(value)
     return values
 
 
