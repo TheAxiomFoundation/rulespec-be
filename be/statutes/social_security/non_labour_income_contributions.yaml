@@ -299,7 +299,7 @@ rules:
   - name: belgium_health_insurance_article_191_pension_withholding_rate
     kind: parameter
     dtype: Rate
-    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7. The 3.55% rate is in effect for the 2025 tax year (EUROMOD BE_2025 tscpe_be $tscpe_rate = 3.55%); backdated from 2026 so the pension health/solidarity surface is computable across the 2025 solidarity-table effective window (article 68 rules from 2019).
     metadata:
       proof:
         atoms:
@@ -309,7 +309,7 @@ rules:
               corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/191
               span: "le produit d'une retenue de 3,55 % effectuée sur les pensions légales"
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           0.0355
   - name: belgium_rd33_invalidity_prepension_withholding_rate
@@ -491,9 +491,9 @@ rules:
     dtype: Money
     period: Month
     unit: EUR
-    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7. Effective from 2025 to align with the backdated 3.55% rate and the 2019 article 68 solidarity surface, so the combined pensioner withholding is computable for the 2025 tax year.
     versions:
-      - effective_from: '2026-01-01'
+      - effective_from: '2025-01-01'
         formula: |-
           belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_health_insurance_article_191_pension_withholding_rate
   - name: belgium_rd33_selected_monthly_floor
