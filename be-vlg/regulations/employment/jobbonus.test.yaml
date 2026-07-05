@@ -36,6 +36,44 @@
     be-vlg:regulations/employment/jobbonus#flanders_jobbonus_fixed_top_up_amount: 50
     be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_amount: 400
 
+- name: upper_threshold_full_time_worker_receives_floor_plus_top_up
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_beneficiary_class: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_domiciled_in_flanders_on_january_1_after_reference_year: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_below_retirement_age_in_worked_quarter: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_average_monthly_gross_wage_at_full_time: 3114.99
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_work_fraction: 1
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_full_time_worker: true
+  output:
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_full_time_amount_before_proration: 50
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_payable_base_amount: 50
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_fixed_top_up_amount: 50
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_amount: 100
+
+- name: above_upper_threshold_full_time_worker_gets_no_jobbonus
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_beneficiary_class: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_domiciled_in_flanders_on_january_1_after_reference_year: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_below_retirement_age_in_worked_quarter: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_average_monthly_gross_wage_at_full_time: 3115
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_work_fraction: 1
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_full_time_worker: true
+  output:
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_full_time_amount_before_proration: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_payable_base_amount: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_fixed_top_up_amount: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_amount: 0
+
 - name: part_time_worker_gets_prorated_amount_plus_top_up
   period:
     period_kind: custom
@@ -54,6 +92,27 @@
     be-vlg:regulations/employment/jobbonus#flanders_jobbonus_prorated_amount_before_suppression: 325
     be-vlg:regulations/employment/jobbonus#flanders_jobbonus_payable_base_amount: 325
     be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_amount: 375
+
+- name: zero_work_fraction_gets_no_jobbonus
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_beneficiary_class: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_domiciled_in_flanders_on_january_1_after_reference_year: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_below_retirement_age_in_worked_quarter: true
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_average_monthly_gross_wage_at_full_time: 0
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_work_fraction: 0
+    be-vlg:regulations/employment/jobbonus#input.flanders_jobbonus_is_full_time_worker: false
+  output:
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_bounded_work_fraction: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_full_time_amount_before_proration: 650
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_prorated_amount_before_suppression: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_payable_base_amount: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_fixed_top_up_amount: 0
+    be-vlg:regulations/employment/jobbonus#flanders_jobbonus_annual_amount: 0
 
 - name: full_time_small_prorated_amount_is_suppressed
   period:
