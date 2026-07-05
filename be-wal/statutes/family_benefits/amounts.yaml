@@ -347,6 +347,14 @@ rules:
   dtype: Rate
   source: Walloon decree of 8 February 2018 on management and payment of family benefits,
     article 15
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/15
+          span: est majorée d'un supplément mensuel équivalent à cinquante pour cent du montant de celle-ci
   versions:
   - effective_from: '2020-01-01'
     formula: '0.50'

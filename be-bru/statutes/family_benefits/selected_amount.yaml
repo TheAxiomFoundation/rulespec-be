@@ -13,21 +13,11 @@ module:
     corpus_citation_paths:
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
       - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-    values:
-      brussels_family_benefits_selected_amount_components: 2
 units:
   - name: EUR
     kind: currency
     minor_units: 2
 rules:
-  - name: brussels_family_benefits_selected_amount_components
-    kind: parameter
-    dtype: Count
-    source: Brussels family-benefits bridge over article 7 base and article 9 social supplement
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          2
   - name: brussels_family_benefits_selected_monthly_amount
     kind: derived
     entity: Child

@@ -319,6 +319,14 @@ rules:
   dtype: Count
   period: Year
   source: German-speaking Community program decree of 22 December 2025, article 17
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
+          span: les mots « en 2025 et en 2026 » sont remplacés par les mots « pour les années 2025 à 2027 incluse »
   versions:
   - effective_from: '2025-01-01'
     formula: '2025'
@@ -327,6 +335,14 @@ rules:
   dtype: Count
   period: Year
   source: German-speaking Community program decree of 22 December 2025, article 17
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
+          span: les mots « en 2025 et en 2026 » sont remplacés par les mots « pour les années 2025 à 2027 incluse »
   versions:
   - effective_from: '2025-01-01'
     formula: '2027'
