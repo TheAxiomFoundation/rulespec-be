@@ -74,6 +74,12 @@ NUMERIC_TEXT_RE = re.compile(
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
 FORMULA_PROOF_PATH_RE = re.compile(r"^versions\[(\d+)\]\.formula$")
+# A parameter *table* stores its policy numbers under `versions[i].values`, not
+# a scalar `versions[i].formula`, so its proof atom anchors the table location.
+# This is the same contract the axiom-encode money-atom gate derives and the
+# base proof validator enforces (axiom-encode#1032); accepting it here lets a
+# single table atom satisfy both gates and closes the money-atom ratchet.
+VALUES_PROOF_PATH_RE = re.compile(r"^versions\[(\d+)\]\.values$")
 FRENCH_NUMBER_WORD_VALUES = {
     "un": Decimal("1"),
     "une": Decimal("1"),
@@ -260,6 +266,20 @@ def parameter_formula_values(rule: dict) -> list[Decimal]:
         if SIMPLE_NUMERIC_FORMULA_RE.fullmatch(formula):
             values.append(Decimal(formula))
     return values
+
+
+def rule_version_is_parameter_table(rule: dict, version_index: int) -> bool:
+    """Whether the rule's ``versions[version_index]`` is a parameter table.
+
+    A parameter table stores its cells under ``values`` (a mapping) rather than
+    a scalar ``formula``. Such a version's proof atom anchors
+    ``versions[i].values`` with ``kind: parameter_table``.
+    """
+    versions = rule.get("versions")
+    if not isinstance(versions, list) or version_index >= len(versions):
+        return False
+    version = versions[version_index]
+    return isinstance(version, dict) and isinstance(version.get("values"), dict)
 
 
 def text_number_values(text: str) -> list[Decimal]:
@@ -734,9 +754,12 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                     if isinstance(atom_path, str)
                     else None
                 )
-                if formula_path_match is None:
-                    invalid.append(f"{atom_id}: atom must anchor versions[N].formula")
-                else:
+                values_path_match = (
+                    VALUES_PROOF_PATH_RE.fullmatch(atom_path)
+                    if isinstance(atom_path, str)
+                    else None
+                )
+                if formula_path_match is not None:
                     version_index = int(formula_path_match.group(1))
                     versions = rule.get("versions")
                     if (
@@ -746,8 +769,27 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                         invalid.append(
                             f"{atom_id}: atom anchors missing version {version_index}"
                         )
-                if atom.get("kind") != "parameter":
-                    invalid.append(f"{atom_id}: atom kind must be parameter")
+                    if atom.get("kind") != "parameter":
+                        invalid.append(f"{atom_id}: atom kind must be parameter")
+                elif values_path_match is not None:
+                    # A parameter table anchors `versions[i].values` (its cells)
+                    # with `kind: parameter_table` — the same contract the
+                    # money-atom gate derives (axiom-encode#1032).
+                    version_index = int(values_path_match.group(1))
+                    if not rule_version_is_parameter_table(rule, version_index):
+                        invalid.append(
+                            f"{atom_id}: atom anchors versions[{version_index}].values "
+                            "but that version is not a parameter table"
+                        )
+                    if atom.get("kind") != "parameter_table":
+                        invalid.append(
+                            f"{atom_id}: table atom kind must be parameter_table"
+                        )
+                else:
+                    invalid.append(
+                        f"{atom_id}: atom must anchor versions[N].formula "
+                        "(or versions[N].values for a parameter table)"
+                    )
                 if not isinstance(citation_path, str) or not citation_path:
                     invalid.append(f"{atom_id}: missing corpus_citation_path")
                 elif citation_path not in module_source_paths:

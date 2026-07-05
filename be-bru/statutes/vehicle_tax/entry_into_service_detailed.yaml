@@ -263,6 +263,18 @@ rules:
     unit: EUR
     indexed_by: power_age_band
     source: Brussels Fiscality MyTax non-leasing TMC table for cars and motorcycles, retrieved on 1 July 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].values
+            kind: parameter_table
+            source:
+              corpus_citation_path: be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-6
+              span: "6.357,85 €"
+              table:
+                header: Voitures et motos non-leasing
+                row_key: power_band
+                column_key: age_band
     versions:
       - effective_from: '2026-07-01'
         values:
@@ -384,6 +396,18 @@ rules:
     unit: EUR
     indexed_by: power_age_band
     source: Brussels Fiscality MyTax leasing TMC table for cars and motorcycles, retrieved on 1 July 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].values
+            kind: parameter_table
+            source:
+              corpus_citation_path: be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01/block-7
+              span: "4.957,00 €"
+              table:
+                header: Voitures et motos en leasing
+                row_key: power_band
+                column_key: age_band
     versions:
       - effective_from: '2026-07-01'
         values:
