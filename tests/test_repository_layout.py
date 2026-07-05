@@ -70,7 +70,7 @@ STRUCTURAL_PARAMETER_NAME_TOKENS = (
     "denominator",
 )
 NUMERIC_TEXT_RE = re.compile(
-    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|p\.c\.)?(?![\w.,])"
+    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:[,.]\d+)?\s*(?:%|p\.c\.|pc)?(?![\w.,])"
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
 FRENCH_NUMBER_WORD_VALUES = {
@@ -231,8 +231,14 @@ def text_number_values(text: str) -> list[Decimal]:
     values: list[Decimal] = []
     for match in NUMERIC_TEXT_RE.finditer(text):
         token = match.group().strip().replace("\u00a0", " ")
-        is_percent = token.endswith("%") or token.endswith("p.c.")
-        token = token.removesuffix("%").removesuffix("p.c.").strip().replace(" ", "")
+        is_percent = token.endswith("%") or token.endswith("p.c.") or token.endswith("pc")
+        token = (
+            token.removesuffix("%")
+            .removesuffix("p.c.")
+            .removesuffix("pc")
+            .strip()
+            .replace(" ", "")
+        )
         if "," in token and "." in token:
             if token.rfind(",") > token.rfind("."):
                 token = token.replace(".", "").replace(",", ".")
