@@ -44,7 +44,6 @@ module:
       study_grant_exceptional_kot_base_amount: '4583.86'
       study_grant_exceptional_nietkot_base_amount: '2965.31'
       study_grant_minimum_base_amount: '220'
-      study_grant_exceptional_income_fraction_of_max: '0.10'
 units:
   - name: EUR
     kind: currency
@@ -72,6 +71,7 @@ rules:
     kind: derived
     entity: Person
     dtype: Count
+    period: Year
     source: >-
       Flemish Decree of 8 June 2007 on the funding of studies of the Flemish
       Community, article 42 section 1: "De volgende personen en categorieën
@@ -90,6 +90,7 @@ rules:
     kind: derived
     entity: Person
     dtype: Count
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
       Flemish Community, articles 42 and 43 section 1
     versions:
@@ -262,32 +263,20 @@ rules:
     versions:
       - effective_from: '2008-08-15'
         formula: '220'
-  # ---- Article 39 section 4: exceptional-allowance income fraction ----
-  - name: study_grant_exceptional_income_fraction_of_max
-    kind: parameter
-    dtype: Rate
-    source: Flemish Decree of 8 June 2007 on the funding of studies of the
-      Flemish Community, article 39 section 4
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/39
-              span: De student ontvangt een uitzonderlijke toelage als het in
-                aanmerking te nemen referentie-inkomen, vermeld in artikel 35,
-                gelijk is aan of lager is dan een tiende van de
-                maximuminkomensgrens, vermeld in artikel 43
-    versions:
-      - effective_from: '2008-09-01'
-        formula: '0.10'
+  # Article 39 section 4 sets the exceptional-allowance income ceiling at a
+  # tenth of the maximum income threshold ("een tiende van de
+  # maximuminkomensgrens"). Because that threshold is itself a supplied,
+  # point-specific input (article 43 delegates the per-point grid to the
+  # Flemish Government), the exceptional-allowance ceiling is likewise a
+  # supplied input rather than a grounded scalar, so the oracle can pass the
+  # applicable-year value. See study_grant_supplied_exceptional_income_ceiling.
   # ---- Indexed amounts (article 51 base amounts times supplied index factor) ----
   - name: study_grant_full_amount
     kind: derived
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
       Flemish Community, article 51 section 1
     versions:
@@ -303,6 +292,7 @@ rules:
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
       Flemish Community, article 51 section 1, indexed via a supplied
       current-year index factor
@@ -314,6 +304,7 @@ rules:
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
       Flemish Community, article 51 section 2
     versions:
@@ -328,6 +319,7 @@ rules:
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
       Flemish Community, article 51 section 2, indexed via a supplied
       current-year index factor
@@ -339,6 +331,7 @@ rules:
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
       Flemish Community, article 51 section 3, indexed via a supplied
       current-year index factor
@@ -351,16 +344,19 @@ rules:
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: Flemish Decree of 8 June 2007 on the funding of studies of the
-      Flemish Community, article 39 section 4
+      Flemish Community, article 39 section 4 (a tenth of the maximum income
+      threshold; supplied for the applicable point-specific and indexed year)
     versions:
       - effective_from: '2008-09-01'
-        formula: study_grant_supplied_max_income_threshold * study_grant_exceptional_income_fraction_of_max
+        formula: study_grant_supplied_exceptional_income_ceiling
   - name: study_grant_allowance
     kind: derived
     entity: Person
     dtype: Money
     unit: EUR
+    period: Year
     source: >-
       Flemish Decree of 8 June 2007 on the funding of studies of the Flemish
       Community, article 39 sections 1 to 4. Section 2: "Een student heeft

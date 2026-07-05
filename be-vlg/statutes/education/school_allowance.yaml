@@ -35,21 +35,21 @@ units:
     minor_units: 2
 rules:
   # ---- Education-level selector codes ----
-  - name: flanders_school_allowance_level_preschool
+  - name: flanders_school_level_code_preschool
     kind: parameter
     dtype: Count
     source: Internal selector code for preschool (kleuteronderwijs).
     versions:
       - effective_from: '2019-01-01'
         formula: '1'
-  - name: flanders_school_allowance_level_primary
+  - name: flanders_school_level_code_primary
     kind: parameter
     dtype: Count
     source: Internal selector code for primary education (lager onderwijs).
     versions:
       - effective_from: '2019-01-01'
         formula: '2'
-  - name: flanders_school_allowance_level_secondary
+  - name: flanders_school_level_code_secondary
     kind: parameter
     dtype: Count
     source: Internal selector code for secondary education (secundair onderwijs).
@@ -60,28 +60,28 @@ rules:
   # Codes use the trivially grounded integers 0..3. EUROMOD's own type codes
   # (1=none, 2=minimum, 3=intermediate, 4=full, 5=special) are not reused
   # verbatim because 4 and 5 are not substantive numerics in the cited spans.
-  - name: flanders_school_allowance_type_none
+  - name: flanders_school_type_code_none
     kind: parameter
     dtype: Count
     source: Internal allowance-type code, no allowance (income above maximum).
     versions:
       - effective_from: '2019-01-01'
         formula: '0'
-  - name: flanders_school_allowance_type_intermediate
+  - name: flanders_school_type_code_intermediate
     kind: parameter
     dtype: Count
     source: Internal allowance-type code, intermediate allowance (income between thresholds).
     versions:
       - effective_from: '2019-01-01'
         formula: '1'
-  - name: flanders_school_allowance_type_full
+  - name: flanders_school_type_code_full
     kind: parameter
     dtype: Count
     source: Internal allowance-type code, full allowance (income at or below minimum).
     versions:
       - effective_from: '2019-01-01'
         formula: '2'
-  - name: flanders_school_allowance_type_exceptional
+  - name: flanders_school_type_code_exceptional
     kind: parameter
     dtype: Count
     source: Internal allowance-type code, exceptional allowance (income at or below a tenth of maximum).
@@ -273,6 +273,7 @@ rules:
     kind: derived
     entity: Person
     dtype: Count
+    period: Year
     source: >-
       Groeipakket decree selective-participation-allowance type selection by
       reference income against the point-based minimum and maximum income
@@ -281,19 +282,20 @@ rules:
       - effective_from: '2019-01-01'
         formula: |-
           if flanders_school_allowance_reference_income > flanders_school_allowance_supplied_maximum_income:
-              flanders_school_allowance_type_none
+              flanders_school_type_code_none
           else:
               if flanders_school_allowance_reference_income <= flanders_school_allowance_supplied_minimum_income:
                   if flanders_school_allowance_is_exceptional_allowance:
-                      flanders_school_allowance_type_exceptional
+                      flanders_school_type_code_exceptional
                   else:
-                      flanders_school_allowance_type_full
+                      flanders_school_type_code_full
               else:
-                  flanders_school_allowance_type_intermediate
+                  flanders_school_type_code_intermediate
   - name: flanders_school_allowance_intermediate_fraction
     kind: derived
     entity: Person
     dtype: Decimal
+    period: Year
     source: >-
       Intermediate-allowance fraction applied to the full allowance when the
       reference income lies between the minimum and maximum income thresholds,
@@ -321,22 +323,22 @@ rules:
     versions:
       - effective_from: '2019-01-01'
         formula: |-
-          if flanders_school_allowance_education_level == flanders_school_allowance_level_preschool:
+          if flanders_school_allowance_education_level == flanders_school_level_code_preschool:
               flanders_school_allowance_indexed_preschool_amount
           else:
-              if flanders_school_allowance_type == flanders_school_allowance_type_none:
+              if flanders_school_allowance_type == flanders_school_type_code_none:
                   0
               else:
-                  if flanders_school_allowance_education_level == flanders_school_allowance_level_primary:
-                      if flanders_school_allowance_type == flanders_school_allowance_type_full:
+                  if flanders_school_allowance_education_level == flanders_school_level_code_primary:
+                      if flanders_school_allowance_type == flanders_school_type_code_full:
                           flanders_school_allowance_indexed_primary_full_amount
                       else:
-                          if flanders_school_allowance_type == flanders_school_allowance_type_exceptional:
+                          if flanders_school_allowance_type == flanders_school_type_code_exceptional:
                               flanders_school_allowance_indexed_primary_exceptional_amount
                           else:
                               flanders_school_allowance_indexed_primary_full_amount * flanders_school_allowance_intermediate_fraction
                   else:
-                      if flanders_school_allowance_type == flanders_school_allowance_type_intermediate:
+                      if flanders_school_allowance_type == flanders_school_type_code_intermediate:
                           flanders_school_allowance_indexed_secondary_full_amount * flanders_school_allowance_intermediate_fraction
                       else:
                           flanders_school_allowance_indexed_secondary_full_amount
