@@ -16,16 +16,22 @@ module:
     values:
       belgium_excise_beer_rate_per_hectolitre_degree_plato: 0.7933
       belgium_excise_beer_special_rate_per_hectolitre_degree_plato: 1.2110
+      belgium_excise_still_wine_rate_per_hectolitre: 0
       belgium_excise_still_wine_special_rate_per_hectolitre: 74.9086
+      belgium_excise_sparkling_wine_rate_per_hectolitre: 0
       belgium_excise_sparkling_wine_special_rate_per_hectolitre: 256.3223
+      belgium_excise_other_fermented_still_special_rate_per_hectolitre: 74.9086
+      belgium_excise_other_fermented_sparkling_special_rate_per_hectolitre: 256.3223
       belgium_excise_intermediate_product_rate_per_hectolitre: 66.9313
       belgium_excise_intermediate_product_special_rate_per_hectolitre: 90.8479
       belgium_excise_ethyl_alcohol_rate_per_hectolitre_pure_alcohol: 223.1042
       belgium_excise_ethyl_alcohol_special_rate_per_hectolitre_pure_alcohol: 2769.6886
       belgium_excise_cigarette_ad_valorem_rate: 0.3150
+      belgium_excise_cigarette_special_ad_valorem_rate: 0
       belgium_excise_cigarette_specific_rate_per_1000_pieces: 6.8914
       belgium_excise_cigarette_special_specific_rate_per_1000_pieces: 182.8889
       belgium_excise_smoking_tobacco_ad_valorem_rate: 0.3150
+      belgium_excise_smoking_tobacco_specific_rate_per_kg: 0
       belgium_excise_smoking_tobacco_special_specific_rate_per_kg: 136.0000
       belgium_excise_unleaded_low_sulfur_gasoline_rate_per_1000_litres: 245.4146
       belgium_excise_unleaded_low_sulfur_gasoline_special_rate_per_1000_litres: 181.4842
@@ -43,6 +49,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 5 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 5
+              span: "droit d'accise : (0,7933 EUR)"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -52,6 +66,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 5 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 5
+              span: "droit d'accise spécial : 1,2110 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -61,6 +83,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 9
+              span: "vins tranquilles : droit d'accise : (0 EUR)"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -70,6 +100,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 9
+              span: "vins tranquilles : droit d'accise : (0 EUR); En vigueur : 01-01-2002> [ 6 droit d'accise spécial : 74,9086 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -79,6 +117,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 9
+              span: "vins mousseux : droit d'accise : (0 EUR)"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -88,6 +134,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 9 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 9
+              span: "vins mousseux : droit d'accise : (0 EUR); En vigueur : 01-01-2002> [ 6 droit d'accise spécial : 256,3223 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -97,6 +151,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 12 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 12
+              span: "boissons non mousseuses : droit d'accise : (0 EUR); En vigueur : 01-01-2002> [ 6 droit d'accise spécial : 74,9086 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -106,6 +168,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 12 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 12
+              span: "boissons mousseuses : droit d'accise : (0 EUR); En vigueur : 01-01-2002> [ 6 droit d'accise spécial : 256,3223 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -115,6 +185,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 15 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 15
+              span: "droit d'accise de (66,9313 EUR)"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -124,6 +202,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 15 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 15
+              span: "droit d'accise spécial de 90,8479 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -133,6 +219,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 17
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 17
+              span: "droit d'accise : (223,1042 EUR)"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -142,6 +236,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 7 January 1998 concerning alcohol excise, article 17
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/alcohol/1998003047/Article 17
+              span: "droit d'accise spécial : 2.769,6886 EUR"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -150,6 +252,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "Cigarettes : a) droit d'accise: 31,50 pour cent du prix de vente au détail"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -158,6 +268,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 1 item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "b) droit d'accise spécial: 0,00 pour cent du prix de vente au détail"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -167,6 +285,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item a
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "droit d'accise: 6,8914 euros par 1000 pièces"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -176,6 +302,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item a
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "droit d'accise spécial: 182,8889 euros par 1000 pièces"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -184,6 +318,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 1 item 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "Tabac à fumer fine coupe destiné à rouler les cigarettes et autres tabacs à fumer: a) droit d'accise: 31,50 pour cent du prix de vente au détail"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -193,6 +335,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item b
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "droit d'accise: 0,0000 euro par kilogramme"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -202,6 +352,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Law of 3 April 1997 concerning manufactured tobacco, article 3 section 2 item b
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/tobacco/1997003241/Article 3
+              span: "droit d'accise spécial: 136,0000 euros par kilogramme"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -211,6 +369,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Programme Law of 27 December 2004, article 419 item c
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/energy-products/2004021170/Article 419
+              span: "essence sans plomb des codes NC [ 26 2710 12 41 et 2710 12 45] 26 : - droit d'accise: 245,4146 euros par 1 000 litres à 15 ° C"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -220,6 +386,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Programme Law of 27 December 2004, article 419 item c
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/energy-products/2004021170/Article 419
+              span: "droit d'accise spécial: 181,4842 euros par 1 000 litres à 15 ° C"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -229,6 +403,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Programme Law of 27 December 2004, article 419 item c
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/energy-products/2004021170/Article 419
+              span: "cotisation sur l'énergie: 28,6317 euros par 1 000 litres à 15 ° C"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -238,6 +420,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Programme Law of 27 December 2004, article 419 item f
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/energy-products/2004021170/Article 419
+              span: "gasoil relevant [ 26 des codes NC 2710 19 43 et 2710 20 11] 26 d'une teneur en poids de soufre n'excédant pas 10 mg/kg : i) [ 25 utilisé comme carburant : - droit d'accise: 198,3148 euros par 1 000 litres à 15 ° C"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -247,6 +437,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Programme Law of 27 December 2004, article 419 item f
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/energy-products/2004021170/Article 419
+              span: "droit d'accise spécial: 242,3421 euros par 1 000 litres à 15 ° C"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
@@ -256,6 +454,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Programme Law of 27 December 2004, article 419 item f
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/justel/excise/energy-products/2004021170/Article 419
+              span: "cotisation sur l'énergie: 14,8736 euros par 1 000 litres à 15 ° C"
     versions:
       - effective_from: '2026-06-30'
         formula: |-
