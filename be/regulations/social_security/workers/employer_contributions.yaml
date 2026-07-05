@@ -53,6 +53,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DmfA 2025 Q1 social-security contributions instructions, basic employer rate after tax shift states 19.88 percent
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift
+              span: Le pourcentage de cotisation applicable est diminué pour ces travailleurs de 22,65 % à 19,88 % à partir du 1 er trimestre 2018.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -61,6 +69,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS DmfA 2025 Q1 social-security contributions instructions, basic employer rate after tax shift
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift
+              span: Le pourcentage de cotisation applicable est diminué pour ces travailleurs de 22,65 % à 19,88 % à partir du 1 er trimestre 2018.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -69,6 +85,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DmfA 2025 Q1 social-security contributions instructions, category 1 wage-moderation percentage after tax shift states 4.27 percent
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
+              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -77,6 +101,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS DmfA 2025 Q1 wage-moderation instructions, tax-shift category 1 percentage applied to remuneration
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
+              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -85,6 +117,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS DmfA 2025 Q1 wage-moderation instructions apply the same percentage to employer contributions due
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
+              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -93,6 +133,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS DmfA 2025 Q1 social-security contributions instructions, wage-moderation after tax shift equals 4.27 percent of remuneration plus 4.27 percent of the basic employer contribution
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
+              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -101,6 +149,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DmfA 2025 Q1 social-security contributions instructions, 1.60 percent contribution is 1.69 percent after wage moderation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution
+              span: La cotisation de 1,60 % (portée à 1,69 % par l'effet de la cotisation de modération salariale)
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -109,6 +165,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS DmfA 2025 Q1 social-security contributions instructions, 1.60 percent contribution after wage moderation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution
+              span: La cotisation de 1,60 % (portée à 1,69 % par l'effet de la cotisation de modération salariale)
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -117,6 +181,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS 2025 FFE workbook, commercial employers with fewer than 20 workers, parenthesized rate including wage moderation states 0.18 percent
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
+              span: b) en moyenne moins de 20 travailleurs | tout le personnel | 0,17% (0,18%)
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -125,6 +197,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS 2025 FFE workbook, commercial employers with fewer than 20 workers, rate including wage moderation in parentheses
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
+              span: b) en moyenne moins de 20 travailleurs | tout le personnel | 0,17% (0,18%)
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -133,6 +213,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS 2025 FFE workbook, commercial employers with at least 20 workers, parenthesized rate including wage moderation states 0.23 percent
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
+              span: a) en moyenne au moins 20 travailleurs | tout le personnel | 0,22% (0,23%)
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -141,6 +229,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: ONSS 2025 FFE workbook, commercial employers with at least 20 workers, rate including wage moderation in parentheses
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
+              span: a) en moyenne au moins 20 travailleurs | tout le personnel | 0,22% (0,23%)
     versions:
       - effective_from: '2025-01-01'
         formula: |-
