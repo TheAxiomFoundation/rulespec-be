@@ -63,6 +63,22 @@
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_scope_condition_met: 0
     be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount_before_suspension: 0
 
+- name: zero_inputs_do_not_pay_brussels_apa
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_domiciled_in_bilingual_brussels_region: false
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_permanent_effective_belgium_residence_or_assimilated: false
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_eu_eea_switzerland_export_condition_met: false
+    be-bru:statutes/disability/elderly_care_allowance#input.brussels_apa_detention_or_social_defense_suspension_applies: false
+  output:
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_scope_condition_met: 0
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_eligibility: 0
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_annual_amount: 0
+    be-bru:statutes/disability/elderly_care_allowance#brussels_apa_monthly_amount: 0
+
 - name: age_condition_zero_below_elderly_care_threshold
   period:
     period_kind: tax_year
