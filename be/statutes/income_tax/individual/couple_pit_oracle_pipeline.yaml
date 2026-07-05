@@ -1,0 +1,375 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_after_imputation
+  - be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_after_imputation
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_top_tax_free_amount_rate
+  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+module:
+  summary: |-
+    This composed pilot module exposes a tax-unit-level path from two spouses'
+    Article 89 post-exclusion professional incomes into joint-assessment
+    Belgian PIT for the EUROMOD oracle slice. It wires the encoded
+    Article 87/88 spouse professional-income imputation from
+    joint_assessment.yaml (single-earner 30-percent imputation capped at
+    13,460 euros indexed, and low-earner imputation up to a 30-percent joint
+    target) into a per-spouse application of the Article 130 rate scale, the
+    Article 131 base tax-free amount, the Article 134 tax-free-amount
+    reduction, and the special-financing-law Article 5/2 autonomy factor,
+    each computed separately on that partner's own post-imputation
+    professional income exactly as CIR 1992 requires under joint assessment,
+    then summed into one tax-unit federal-and-local tax total comparable to
+    the EUROMOD
+    BE_2025 tin_s national-plus-communal aggregate. It deliberately keeps
+    existing public rule ids in joint_assessment.yaml, rate_scale.yaml,
+    tax_free_amount.yaml, tax_free_amount_tax.yaml, and communal_additions.yaml
+    unchanged, defines the Article 5/2 autonomy factor and reduced-State-tax
+    share locally (identical values and proofs to the worker pilot, kept local
+    to avoid a pipeline-to-pipeline import cycle), and excludes the Article
+    134 paragraph 4 cross-spouse tax-free-amount transfer, dependants and
+    Article 132 supplements, the assisting-spouse Article 86 attribution, the
+    Article 129 loss-balance imputation, other income categories, actual-
+    expense proof, replacement-income reductions, regional reductions/
+    credits, the low-wage work-bonus credit, professional withholding
+    tables, treaty allocation, and partial-year cases.
+  source_verification:
+    corpus_citation_paths:
+      - be/statute/fisconetplus/cir92/revenus-2025/page-53
+      - be/statute/fisconetplus/cir92/revenus-2025/page-160
+      - be/statute/fisconetplus/cir92/revenus-2025/page-161
+      - be/statute/fisconetplus/cir92/revenus-2025/page-181
+      - be/statute/fisconetplus/cir92/revenus-2025/page-185
+      - be/statute/loi/1989/01/16/1989021010/article/5-2
+      - be/regulation/arrete/2017/12/19/2017032216/article/1er
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - be/statute/fisconetplus/cir92/revenus-2025/page-161
+        - be/statute/loi/1989/01/16/1989021010/article/5-2
+      rationale: |-
+        This module reuses parameters and derived rule ids already grounded
+        and proof-atom-covered in joint_assessment.yaml, rate_scale.yaml,
+        tax_free_amount.yaml, tax_free_amount_tax.yaml, and
+        communal_additions.yaml. It introduces no new monetary constants. New
+        proof atoms cover only the two per-spouse Article 6 taxable-income
+        entry rules (each citing the CIR 1992 Article 6 definition of taxable
+        income, page 53) and the two Article 5/2 autonomy-factor rate
+        parameters (the 24.957 percent definitive autonomy factor from the
+        19 December 2017 royal decree and the reduced-State-tax share from the
+        special financing law), which are defined locally with identical
+        values and proofs to the worker pilot to avoid a pipeline-to-pipeline
+        import cycle. Every other formula composes imported rule ids or
+        supplied per-spouse inputs.
+rules:
+  - name: belgium_pit_couple_article_5_2_autonomy_factor
+    kind: parameter
+    dtype: Rate
+    source: Special financing law article 5/2 and 19 December 2017 royal decree article 1, definitive autonomy factor applicable to income taxes from assessment year 2018
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/2017/12/19/2017032216/article/1er
+              span: "Le facteur d'autonomie définitif visé à l'article 5/2, § 1er, alinéas 3 et 4, de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, est, sur la base des rapports de la Cour des comptes visés à l'article 81ter de la même loi spéciale, déterminé à 24,957 %."
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          0.24957
+  - name: belgium_pit_couple_article_5_2_state_tax_share_after_autonomy_factor
+    kind: parameter
+    dtype: Rate
+    source: Special financing law article 5/2 defines reduced State tax as State tax less State tax multiplied by the autonomy factor
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1989/01/16/1989021010/article/5-2
+              span: "L'impôt Etat réduit est l'impôt Etat diminué d'un montant égal à l'impôt Etat multiplié par le facteur d'autonomie."
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          1 - belgium_pit_couple_article_5_2_autonomy_factor
+  - name: belgium_pit_couple_spouse_a_taxable_income
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 6, spouse A taxable income for the tax unit under joint assessment, taken from the Article 87/88 post-imputation professional income for the couple oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
+              span: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_87_88_spouse_a_professional_income_after_imputation)
+  - name: belgium_pit_couple_spouse_b_taxable_income
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 6, spouse B taxable income for the tax unit under joint assessment, taken from the Article 87/88 post-imputation professional income for the couple oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
+              span: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_87_88_spouse_b_professional_income_after_imputation)
+  - name: belgium_pit_couple_spouse_a_article_130_base_tax
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 130, spouse A post-imputation taxable income through the ordinary rate scale
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_a_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_couple_spouse_a_taxable_income * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_couple_spouse_a_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_couple_spouse_a_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_couple_spouse_a_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_couple_spouse_a_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_couple_spouse_a_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
+  - name: belgium_pit_couple_spouse_b_article_130_base_tax
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 130, spouse B post-imputation taxable income through the ordinary rate scale
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_b_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_couple_spouse_b_taxable_income * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_couple_spouse_b_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_couple_spouse_b_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_couple_spouse_b_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_couple_spouse_b_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_couple_spouse_b_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
+  - name: belgium_pit_couple_spouse_a_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 131, base tax-free amount applied to spouse A for the couple oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_base_tax_free_amount
+  - name: belgium_pit_couple_spouse_b_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 131, base tax-free amount applied to spouse B for the couple oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_base_tax_free_amount
+  - name: belgium_pit_couple_spouse_a_article_134_tax_on_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, tax on spouse A's tax-free amount for the couple oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_couple_spouse_a_tax_free_amount * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_couple_spouse_b_article_134_tax_on_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 2, tax on spouse B's tax-free amount for the couple oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_couple_spouse_b_tax_free_amount * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134, spouse A federal tax after the base tax-free-amount reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_couple_spouse_a_article_130_base_tax - belgium_pit_couple_spouse_a_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_couple_spouse_b_net_federal_tax_after_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130 and 134, spouse B federal tax after the base tax-free-amount reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_couple_spouse_b_article_130_base_tax - belgium_pit_couple_spouse_b_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law article 5/2, spouse A reduced State tax after the autonomy-factor reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount * belgium_pit_couple_article_5_2_state_tax_share_after_autonomy_factor)
+  - name: belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law article 5/2, spouse B reduced State tax after the autonomy-factor reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_couple_spouse_b_net_federal_tax_after_tax_free_amount * belgium_pit_couple_article_5_2_state_tax_share_after_autonomy_factor)
+  - name: belgium_pit_couple_spouse_a_agglomeration_additional_tax_rate_after_cap
+    kind: derived
+    entity: TaxUnit
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 468, agglomeration rate cap for spouse A in the couple oracle slice
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          min(belgium_pit_couple_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+  - name: belgium_pit_couple_spouse_b_agglomeration_additional_tax_rate_after_cap
+    kind: derived
+    entity: TaxUnit
+    dtype: Rate
+    period: Year
+    source: CIR 1992 article 468, agglomeration rate cap for spouse B in the couple oracle slice
+    versions:
+      - effective_from: '2015-01-01'
+        formula: |-
+          min(belgium_pit_couple_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+  - name: belgium_pit_couple_spouse_a_local_additional_tax
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465 to 468, supplied local additions on spouse A's reduced State tax in the couple oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor * belgium_pit_couple_communal_additional_tax_rate + belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor * belgium_pit_couple_spouse_a_agglomeration_additional_tax_rate_after_cap
+  - name: belgium_pit_couple_spouse_b_local_additional_tax
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 465 to 468, supplied local additions on spouse B's reduced State tax in the couple oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor * belgium_pit_couple_communal_additional_tax_rate + belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor * belgium_pit_couple_spouse_b_agglomeration_additional_tax_rate_after_cap
+  - name: belgium_pit_couple_spouse_a_federal_and_local_tax_before_withholding
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130, 134, and 465 to 468, spouse A's composed couple oracle federal-plus-local PIT before withholding
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor + belgium_pit_couple_spouse_a_local_additional_tax
+  - name: belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130, 134, and 465 to 468, spouse B's composed couple oracle federal-plus-local PIT before withholding
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor + belgium_pit_couple_spouse_b_local_additional_tax
+  - name: belgium_pit_couple_federal_and_local_tax_before_withholding
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 87, 88, 130, 134, and 465 to 468, tax-unit total of both spouses' composed couple oracle federal-plus-local PIT before withholding under joint assessment
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_a_federal_and_local_tax_before_withholding + belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding
