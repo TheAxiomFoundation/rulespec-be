@@ -297,6 +297,19 @@ def text_number_values(text: str) -> list[Decimal]:
         values.append(value)
         if is_percent:
             values.append(value / Decimal("100"))
+    for match in re.finditer(
+        r"(?<![\w.,])(\d+(?:\s*[,.]\d+)?)\s*(?:et|à|a|-)\s*(\d+(?:\s*[,.]\d+)?)\s*%",
+        text,
+        flags=re.IGNORECASE,
+    ):
+        for token in match.groups():
+            try:
+                values.append(
+                    Decimal(token.strip().replace(" ", "").replace(",", "."))
+                    / Decimal("100")
+                )
+            except InvalidOperation:
+                continue
     lower_text = text.lower()
     for word_values in (FRENCH_NUMBER_WORD_VALUES, DUTCH_NUMBER_WORD_VALUES):
         for word, value in word_values.items():
