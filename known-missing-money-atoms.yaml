@@ -6,16 +6,20 @@
 # `axiom-encode proof-validate --require-money-atoms` fails when the
 # untracked missing count exceeds `total_allowed`. Burn this down; do
 # not raise it. Regenerate with `--emit-ratchet`.
-total_allowed: 2
-# Current per-file backlog (informational):
-#   be-bru/statutes/vehicle_tax/entry_into_service_detailed.yaml: 2
+total_allowed: 0
+# Ratchet reached 0: every policy-bearing monetary value in the repo now
+# carries a proof atom citing a provision (397 obligations, 0 missing).
 #
-# The two remaining values are the flattened MyTax TMC parameter *tables*
-# (non-leasing and leasing power/age-band cells). The money-atom gate wants a
-# `versions[0].values` table atom, but the repository's own pytest
-# (test_policy_parameter_proof_atoms_anchor_formula_values) only accepts
-# `versions[N].formula` atoms on policy-bearing parameters, so a table atom
-# cannot satisfy both gates. They stay a documented gap until the repo test
-# convention grows a table-grounding path. The underlying amounts are grounded
-# in be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01
+# The final two values were the flattened MyTax TMC parameter *tables*
+# (non-leasing and leasing power/age-band cells) in
+# be-bru/statutes/vehicle_tax/entry_into_service_detailed.yaml. They were
+# blocked by a gate conflict: the money-atom gate wants a `versions[0].values`
+# table atom, but the repo pytest (test_policy_parameter_proof_atoms_anchor_
+# formula_values) previously accepted only `versions[N].formula` atoms.
+# axiom-encode#1032 resolved this by making `versions[i].values` the single
+# authoritative table-atom contract (enforced by the base proof validator);
+# this repo's pytest now accepts that contract for parameter tables, so one
+# `versions[0].values` / parameter_table atom satisfies both gates. The two
+# tables are grounded in
+# be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-current-2026-07-01
 # blocks 6 (non-leasing) and 7 (leasing).
