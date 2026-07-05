@@ -23,17 +23,7 @@ module:
       - be/statute/fisconetplus/cir92/revenus-2025/page-686
       - be/statute/fisconetplus/cir92/revenus-2025/page-687
       - be/statute/fisconetplus/cir92/revenus-2025/page-688
-    values:
-      belgium_pit_final_tax_components_before_withholding: 2
 rules:
-  - name: belgium_pit_final_tax_components_before_withholding
-    kind: parameter
-    dtype: Count
-    source: Structural bridge over encoded federal tax after Article 134 and local additions under Articles 465 to 468
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          2
   - name: belgium_pit_federal_and_local_tax_before_withholding
     kind: derived
     entity: Person

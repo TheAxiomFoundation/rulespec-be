@@ -10,9 +10,9 @@ module:
     corpus_citation_paths:
       - be/statute/fisconetplus/cir92/revenus-2025/page-686
     values:
-      belgium_immovable_withholding_centimes_to_rate_divisor: 100
+      belgium_immovable_withholding_centimes_rate_denominator: 100
 rules:
-  - name: belgium_immovable_withholding_centimes_to_rate_divisor
+  - name: belgium_immovable_withholding_centimes_rate_denominator
     kind: parameter
     dtype: Count
     source: Additional-centime conversion convention for CIR 1992 article 464/1 surcharge inputs
@@ -39,7 +39,7 @@ rules:
     versions:
       - effective_from: '2015-01-01'
         formula: |-
-          belgium_immovable_withholding_total_additional_centimes / belgium_immovable_withholding_centimes_to_rate_divisor
+          belgium_immovable_withholding_total_additional_centimes / belgium_immovable_withholding_centimes_rate_denominator
   - name: belgium_immovable_withholding_additional_centimes_tax
     kind: derived
     entity: Property

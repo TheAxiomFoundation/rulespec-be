@@ -35,21 +35,11 @@ module:
       - be/statute/fisconetplus/cir92/revenus-2025/page-686
       - be/statute/fisconetplus/cir92/revenus-2025/page-687
       - be/statute/fisconetplus/cir92/revenus-2025/page-688
-    values:
-      belgium_pit_article_6_liability_pipeline_components_before_withholding: 2
 units:
   - name: EUR
     kind: currency
     minor_units: 2
 rules:
-  - name: belgium_pit_article_6_liability_pipeline_components_before_withholding
-    kind: parameter
-    dtype: Count
-    source: Structural bridge over encoded federal tax and supplied local additions
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          2
   - name: belgium_pit_article_6_base_tax_before_reductions
     kind: derived
     entity: Person

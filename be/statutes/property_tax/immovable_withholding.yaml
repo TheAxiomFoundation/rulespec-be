@@ -65,7 +65,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 255
+          span: "Ce taux est ramené à 0,8 % pour les habitations appartenant aux sociétés de construction agréées"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.008'
@@ -80,7 +80,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 255
+          span: "Le précompte immobilier s'élève à 1,25 % du revenu cadastral"
   versions:
   - effective_from: '2025-01-01'
     formula: '0.0125'
@@ -133,6 +133,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: CIR 1992 article 258, professional-use cadastral-income quarter threshold
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-448
+          span: quand la quotité du revenu qui s'y rapporte dépasse le quart du revenu cadastral de l'habitation entière
   versions:
   - effective_from: '2026-01-01'
     formula: '0.25'
@@ -164,8 +172,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 1
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: Cette réduction est portée à 50 % pour une période de 5 ans
   versions:
   - effective_from: '2026-01-01'
     formula: '0.50'
@@ -179,8 +187,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 1
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: une réduction d'un quart du précompte immobilier afférent à l'habitation entièrement occupée par le contribuable
   versions:
   - effective_from: '2026-01-01'
     formula: '0.25'
@@ -220,8 +228,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 1
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: le revenu cadastral de l'ensemble de ses biens immobiliers sis en Belgique ne dépasse pas 745 euros
   versions:
   - effective_from: '2026-01-01'
     formula: '745'
@@ -257,8 +265,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 2
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: Cette réduction est égale à 20 % pour un grand invalide et à 10 % pour une personne handicapée
   versions:
   - effective_from: '2026-01-01'
     formula: '0.10'
@@ -272,8 +280,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 2
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: Cette réduction est égale à 20 % pour un grand invalide et à 10 % pour une personne handicapée
   versions:
   - effective_from: '2026-01-01'
     formula: '0.20'
@@ -315,8 +323,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 3
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: Cette réduction est égale à 10 % pour chaque enfant à charge non handicapé et à 20 % pour chaque personne à charge handicapée
   versions:
   - effective_from: '2026-01-01'
     formula: '0.10'
@@ -330,8 +338,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: CIR 1992 article 257 item 3
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
+          span: Cette réduction est égale à 10 % pour chaque enfant à charge non handicapé et à 20 % pour chaque personne à charge handicapée
   versions:
   - effective_from: '2026-01-01'
     formula: '0.20'

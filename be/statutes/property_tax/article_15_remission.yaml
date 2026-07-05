@@ -39,6 +39,14 @@ rules:
     kind: parameter
     dtype: Rate
     source: CIR 1992 article 15 section 1 items 2 and 3, minimum cadastral-income share for partial equipment/instrument or destruction cases
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-59
+              span: une partie de ceux-ci représentant au moins 25 % de leur revenu cadastral
     versions:
       - effective_from: '2022-01-01'
         formula: |-
