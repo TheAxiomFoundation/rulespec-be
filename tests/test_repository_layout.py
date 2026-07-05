@@ -89,6 +89,8 @@ FRENCH_NUMBER_WORD_VALUES = {
     "dix": Decimal("10"),
     "onze": Decimal("11"),
     "douze": Decimal("12"),
+    "douzième": Decimal("12"),
+    "douzièmes": Decimal("12"),
     "treize": Decimal("13"),
     "quatorze": Decimal("14"),
     "quinze": Decimal("15"),
