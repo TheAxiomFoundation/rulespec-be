@@ -70,7 +70,7 @@ STRUCTURAL_PARAMETER_NAME_TOKENS = (
     "denominator",
 )
 NUMERIC_TEXT_RE = re.compile(
-    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:\s*[,.]\d+)?\s*(?:%|p\.c\.|pc|pour cent)?(?![\w.,])"
+    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:\s*[,.]\d+)?\s*(?:%|p\.c\.|pc|pour cent|procent)?(?![\w.,])"
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
 FORMULA_PROOF_PATH_RE = re.compile(r"^versions\[(\d+)\]\.formula$")
@@ -107,6 +107,33 @@ FRENCH_NUMBER_WORD_VALUES = {
     "quatre cents": Decimal("400"),
     "huit cents": Decimal("800"),
     "moitié": Decimal("0.5"),
+}
+DUTCH_NUMBER_WORD_VALUES = {
+    "nul": Decimal("0"),
+    "twee": Decimal("2"),
+    "drie": Decimal("3"),
+    "vier": Decimal("4"),
+    "vijf": Decimal("5"),
+    "zes": Decimal("6"),
+    "zeven": Decimal("7"),
+    "acht": Decimal("8"),
+    "negen": Decimal("9"),
+    "tien": Decimal("10"),
+    "elf": Decimal("11"),
+    "twaalf": Decimal("12"),
+    "dertien": Decimal("13"),
+    "veertien": Decimal("14"),
+    "vijftien": Decimal("15"),
+    "zestien": Decimal("16"),
+    "zeventien": Decimal("17"),
+    "achttien": Decimal("18"),
+    "negentien": Decimal("19"),
+    "twintig": Decimal("20"),
+    "vijfentwintig": Decimal("25"),
+    "dertig": Decimal("30"),
+    "veertig": Decimal("40"),
+    "vijftig": Decimal("50"),
+    "gehalveerd": Decimal("0.5"),
 }
 
 
@@ -241,12 +268,14 @@ def text_number_values(text: str) -> list[Decimal]:
             or token.endswith("p.c.")
             or token.endswith("pc")
             or token.endswith("pour cent")
+            or token.endswith("procent")
         )
         token = (
             token.removesuffix("%")
             .removesuffix("p.c.")
             .removesuffix("pc")
             .removesuffix("pour cent")
+            .removesuffix("procent")
             .strip()
             .replace(" ", "")
         )
@@ -267,9 +296,10 @@ def text_number_values(text: str) -> list[Decimal]:
         if is_percent:
             values.append(value / Decimal("100"))
     lower_text = text.lower()
-    for word, value in FRENCH_NUMBER_WORD_VALUES.items():
-        if re.search(rf"\b{re.escape(word)}\b", lower_text):
-            values.append(value)
+    for word_values in (FRENCH_NUMBER_WORD_VALUES, DUTCH_NUMBER_WORD_VALUES):
+        for word, value in word_values.items():
+            if re.search(rf"\b{re.escape(word)}\b", lower_text):
+                values.append(value)
     return values
 
 
@@ -282,7 +312,13 @@ def span_contains_formula_value(
         for span_value in span_values
     ):
         return True
-    if "%" not in span and "p.c." not in span and "pour cent" not in span:
+    if (
+        "%"
+        not in span
+        and "p.c." not in span
+        and "pour cent" not in span
+        and "procent" not in span
+    ):
         return False
     return any(
         Decimal("0") < formula_value < Decimal("1")
