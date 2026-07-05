@@ -59,6 +59,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Guaranteed family benefits law of 20 July 1971, article 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1971/07/20/1971072007/article/1
+          span: cette personne supporte plus de la moitié du coût d'entretien de l'enfant
   versions:
   - effective_from: '1998-07-01'
     formula: '0.5'
@@ -76,7 +84,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/6
-            span: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 6; amount 3079.06 EUR
+            span: les ressources visées à l'article 3, alinéa 2, de la loi ne dépassent pas le montant de (3 079,06 euros) par trimestre
   versions:
   - effective_from: '2002-01-01'
     formula: '3079.06'
@@ -85,6 +93,14 @@ rules:
   dtype: Rate
   source: Royal decree of 25 October 1971 implementing the guaranteed family benefits
     law, article 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/6
+          span: augmentées de 20 pour cent pour chaque enfant à partir du deuxième
   versions:
   - effective_from: '2001-10-01'
     formula: '0.20'
@@ -102,7 +118,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/8
-            span: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 8 section 2ter; amount 45.91 EUR
+            span: Le montant mensuel de l'allocation spéciale est fixé à (45,91 EUR)
   versions:
   - effective_from: '2002-01-01'
     formula: '45.91'
@@ -346,7 +362,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/5
-          span: Royal decree of 25 October 1971 implementing the guaranteed family benefits law, article 5; limit 6 completed months
+          span: demander l'allocation de naissance à partir du sixième mois de la grossesse
   versions:
   - effective_from: '1989-01-01'
     formula: '6'
