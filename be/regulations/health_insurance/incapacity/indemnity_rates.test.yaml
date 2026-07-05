@@ -1,3 +1,59 @@
+- name: zero_inputs_produce_zero_incapacity_and_invalidity_amounts
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_temporary_unemployment: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_alignment_elapsed_months: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_worker_has_dependant: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_invalidity_article_226_status: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_regular_worker_status: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_month_number: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_nonregular_worker_social_integration_daily_amount: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_unemployment_daily_allowance: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_compensable_days: 0
+  output:
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_incapacity_daily_remuneration_after_article_212_cap: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_statutory_daily_amount: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_incapacity_minimum_applies: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_monthly_amount: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_invalidity_daily_amount: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_invalidity_monthly_amount: 0
+
+- name: article_214_month_six_does_not_apply_regular_worker_minimum
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_uncapped_lost_daily_remuneration: 50
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_86_worker_in_article_32_1_3_or_5_situation: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_controlled_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_domestic_work_to_end_unemployment: false
+    be:statutes/health_insurance/insured_status#input.belgium_health_article_32_retains_habitual_employee_status_for_unemployment: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_temporary_unemployment: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_alignment_elapsed_months: 6
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_worker_has_dependant: true
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_invalidity_article_226_status: false
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_regular_worker_status: true
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_month_number: 6
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_nonregular_worker_social_integration_daily_amount: 38
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_primary_incapacity_unemployment_daily_allowance: 55
+    be:regulations/health_insurance/incapacity/indemnity_rates#input.belgium_health_incapacity_compensable_days: 26
+  output:
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_incapacity_minimum_applies: 0
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_daily_amount: 30
+    be:regulations/health_insurance/incapacity/indemnity_rates#belgium_health_primary_incapacity_monthly_amount: 780
+
 - name: article_211_primary_incapacity_uses_60_percent_after_article_212_cap
   period:
     period_kind: tax_year

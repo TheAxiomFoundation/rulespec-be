@@ -254,6 +254,25 @@ def text_number_values(text: str) -> list[Decimal]:
     return values
 
 
+def span_contains_formula_value(
+    formula_values: list[Decimal], span_values: list[Decimal], span: str
+) -> bool:
+    if any(
+        formula_value == span_value
+        for formula_value in formula_values
+        for span_value in span_values
+    ):
+        return True
+    if "%" not in span and "p.c." not in span:
+        return False
+    return any(
+        Decimal("0") < formula_value < Decimal("1")
+        and formula_value * Decimal("100") == span_value
+        for formula_value in formula_values
+        for span_value in span_values
+    )
+
+
 def module_has_source_locator(payload: object) -> bool:
     if not isinstance(payload, dict):
         return False
@@ -680,11 +699,7 @@ def test_policy_parameter_proof_atom_spans_contain_formula_values() -> None:
                 if not isinstance(span, str):
                     continue
                 span_values = text_number_values(span)
-                if not any(
-                    formula_value == span_value
-                    for formula_value in formula_values
-                    for span_value in span_values
-                ):
+                if not span_contains_formula_value(formula_values, span_values, span):
                     invalid.append(
                         f"{path.relative_to(ROOT).as_posix()}#{name}.atoms[{index}]"
                     )
