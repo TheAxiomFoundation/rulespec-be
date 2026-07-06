@@ -28,16 +28,20 @@ module:
       - be/regulation/arrete/1982/03/30/1982000477/article/1
       - be/regulation/arrete/1982/09/24/1982001524/article/3
       - be/regulation/arrete/1982/09/24/1982001524/article/10
+      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-4
+      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-5
+      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
+      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
     values:
       belgium_pension_solidarity_article_68_index_pivot: "114.89"
-      belgium_pension_solidarity_article_68_isolated_first_threshold_base: "1711.72"
-      belgium_pension_solidarity_article_68_isolated_second_threshold_base: "1764.65"
-      belgium_pension_solidarity_article_68_isolated_third_threshold_base: "1895.87"
-      belgium_pension_solidarity_article_68_isolated_fourth_threshold_base: "1915.62"
-      belgium_pension_solidarity_article_68_family_first_threshold_base: "1978.96"
-      belgium_pension_solidarity_article_68_family_second_threshold_base: "2040.15"
-      belgium_pension_solidarity_article_68_family_third_threshold_base: "2168.84"
-      belgium_pension_solidarity_article_68_family_fourth_threshold_base: "2191.43"
+      belgium_pension_solidarity_article_68_isolated_first_threshold_base: "3225.74"
+      belgium_pension_solidarity_article_68_isolated_second_threshold_base: "3325.48"
+      belgium_pension_solidarity_article_68_isolated_third_threshold_base: "3572.77"
+      belgium_pension_solidarity_article_68_isolated_fourth_threshold_base: "3610.00"
+      belgium_pension_solidarity_article_68_family_first_threshold_base: "3729.35"
+      belgium_pension_solidarity_article_68_family_second_threshold_base: "3844.66"
+      belgium_pension_solidarity_article_68_family_third_threshold_base: "4087.18"
+      belgium_pension_solidarity_article_68_family_fourth_threshold_base: "4129.76"
       belgium_pension_solidarity_article_68_phase_in_rate: "0.50"
       belgium_pension_solidarity_article_68_mid_rate: "0.015"
       belgium_pension_solidarity_article_68_top_rate: "0.02"
@@ -45,10 +49,34 @@ module:
       belgium_pension_solidarity_article_68_family_transition_base_amount: "32.53"
       belgium_pension_solidarity_article_68_capital_withholding_rate: "0.02"
       belgium_health_insurance_article_191_pension_withholding_rate: "0.0355"
+      belgium_health_insurance_article_191_isolated_health_floor_lower_monthly: "2037.73"
+      belgium_health_insurance_article_191_isolated_health_floor_upper_monthly: "2112.71"
+      belgium_health_insurance_article_191_family_health_floor_lower_monthly: "2414.98"
+      belgium_health_insurance_article_191_family_health_floor_upper_monthly: "2503.85"
       belgium_rd33_invalidity_prepension_withholding_rate: "0.035"
       belgium_rd33_base_monthly_floor_without_family_charge: "938.50"
       belgium_rd33_family_charge_monthly_floor_increment: "191.94"
       belgium_rd33_invalidity_daily_floor_divisor: "26"
+    upstream_source_check:
+      status: delegated_parameter_source
+      checked_paths:
+        - be/statute/loi/1994/07/14/1994071451/article/191
+        - be/statute/loi/1994/03/30/1994021117/article/68
+        - be/regulation/arrete/2013/12/08/2013022585/article/1
+      rationale: |-
+        The statutes and executing royal decree are cited and encoded directly
+        for the withholding mechanics, the base tables, and the 3.55 percent
+        health rate. Article 191, 7 of the coordinated Law of 14 July 1994 fixes
+        the health rate and, as executed by the Royal Decree of 8 December 2013,
+        protects low pensions with an exemption floor and phase-in band; article
+        68 section 2 of the Law of 30 March 1994 fixes the solidarity table on a
+        pivot-index base (114.89). Neither primary source states the indexed
+        monetary thresholds in force in 2025: those amounts are produced by the
+        statutory indexation mechanism and published only in administrative
+        tables. The Service federal des Pensions 2025 withholding tables are the
+        official parameter source for the indexed 2025 thresholds, so the 2025
+        floor and threshold values are grounded there while the mechanics, rates,
+        and base tables remain grounded in the statutes and the royal decree.
 units:
   - name: EUR
     kind: currency
@@ -75,10 +103,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1711.72 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
+              span: "De 0,01 € à 3 225,74 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           1711.72
+      - effective_from: '2025-01-01'
+        formula: |-
+          3225.74
   - name: belgium_pension_solidarity_article_68_isolated_second_threshold_base
     kind: parameter
     dtype: Money
@@ -92,10 +128,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1764.65 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
+              span: "De 3 225,75 € à 3 325,48 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           1764.65
+      - effective_from: '2025-01-01'
+        formula: |-
+          3325.48
   - name: belgium_pension_solidarity_article_68_isolated_third_threshold_base
     kind: parameter
     dtype: Money
@@ -109,10 +153,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1895.87 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
+              span: "De 3 325,49 € à 3 572,77 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           1895.87
+      - effective_from: '2025-01-01'
+        formula: |-
+          3572.77
   - name: belgium_pension_solidarity_article_68_isolated_fourth_threshold_base
     kind: parameter
     dtype: Money
@@ -126,10 +178,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1915.62 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
+              span: "À partir de 3 610,00 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           1915.62
+      - effective_from: '2025-01-01'
+        formula: |-
+          3610.00
   - name: belgium_pension_solidarity_article_68_family_first_threshold_base
     kind: parameter
     dtype: Money
@@ -143,10 +203,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 1978.96 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
+              span: "De 0,01 € à 3 729,35 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           1978.96
+      - effective_from: '2025-01-01'
+        formula: |-
+          3729.35
   - name: belgium_pension_solidarity_article_68_family_second_threshold_base
     kind: parameter
     dtype: Money
@@ -160,10 +228,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 2040.15 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
+              span: "De 3 729,36 € à 3 844,66 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           2040.15
+      - effective_from: '2025-01-01'
+        formula: |-
+          3844.66
   - name: belgium_pension_solidarity_article_68_family_third_threshold_base
     kind: parameter
     dtype: Money
@@ -177,10 +253,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 2168.84 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
+              span: "De 3 844,67 € à 4 087,18 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           2168.84
+      - effective_from: '2025-01-01'
+        formula: |-
+          4087.18
   - name: belgium_pension_solidarity_article_68_family_fourth_threshold_base
     kind: parameter
     dtype: Money
@@ -194,10 +278,18 @@ rules:
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
               span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 2191.43 EUR
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
+              span: "À partir de 4 129,76 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
           2191.43
+      - effective_from: '2025-01-01'
+        formula: |-
+          4129.76
   - name: belgium_pension_solidarity_article_68_phase_in_rate
     kind: parameter
     dtype: Rate
@@ -312,6 +404,102 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           0.0355
+  - name: belgium_health_insurance_article_191_isolated_health_floor_lower_monthly
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, as executed by the Royal Decree of 8 December 2013; indexed 2025 lower bound of the article 191 phase-in band for an isolated beneficiary. Pensions at or below this monthly amount owe no withholding, and within the phase-in band it is the amount subtracted from the pension (Service federal des Pensions 2025 tables, effective 1 February 2025, isolated scale, band starting 2 037,73 EUR).
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-4
+              span: "De 2 037,73 € à 2 112,71 €"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2037.73
+  - name: belgium_health_insurance_article_191_isolated_health_floor_upper_monthly
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, as executed by the Royal Decree of 8 December 2013; indexed 2025 upper bound of the article 191 phase-in band for an isolated beneficiary, above which the full 3.55% applies (Service federal des Pensions 2025 tables, effective 1 February 2025).
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-4
+              span: "De 2 037,73 € à 2 112,71 €"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2112.71
+  - name: belgium_health_insurance_article_191_family_health_floor_lower_monthly
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, as executed by the Royal Decree of 8 December 2013; indexed 2025 lower bound of the article 191 phase-in band for a beneficiary with family charge. Pensions at or below this monthly amount owe no withholding, and within the phase-in band it is the amount subtracted from the pension (Service federal des Pensions 2025 tables, effective 1 February 2025, family-charge scale, band starting 2 414,98 EUR).
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-5
+              span: "De 2 414,98 € à 2 503,85 €"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2414.98
+  - name: belgium_health_insurance_article_191_family_health_floor_upper_monthly
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, as executed by the Royal Decree of 8 December 2013; indexed 2025 upper bound of the article 191 phase-in band for a beneficiary with family charge, above which the full 3.55% applies (Service federal des Pensions 2025 tables, effective 1 February 2025).
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-5
+              span: "De 2 414,98 € à 2 503,85 €"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2503.85
+  - name: belgium_health_insurance_article_191_selected_health_floor_lower_monthly
+    kind: derived
+    entity: Family
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7; selects the isolated or family-charge exemption floor for the article 191 health withholding.
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_health_insurance_article_191_family_health_floor_lower_monthly
+          else:
+              belgium_health_insurance_article_191_isolated_health_floor_lower_monthly
+  - name: belgium_health_insurance_article_191_selected_health_floor_upper_monthly
+    kind: derived
+    entity: Family
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7; selects the isolated or family-charge phase-in ceiling for the article 191 health withholding.
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pension_solidarity_beneficiary_has_family_charge:
+              belgium_health_insurance_article_191_family_health_floor_upper_monthly
+          else:
+              belgium_health_insurance_article_191_isolated_health_floor_upper_monthly
   - name: belgium_rd33_invalidity_prepension_withholding_rate
     kind: parameter
     dtype: Rate
@@ -443,14 +631,11 @@ rules:
     dtype: Money
     period: Month
     unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 68 section 2
+    source: Law of 30 March 1994 on social provisions, article 68 section 2. The third-bracket transition constant equals the second-bracket rate applied to the third threshold (the statutory table writes it out as 28.44 for the isolated base and 32.53 for the family base, each being the third threshold times 1.5 percent); deriving it from the selected third threshold keeps it consistent under indexation, so the same rule reproduces both the 2019 statutory base constants and the indexed 2025 amounts published by the Service federal des Pensions.
     versions:
       - effective_from: '2019-03-01'
         formula: |-
-          if belgium_pension_solidarity_beneficiary_has_family_charge:
-              belgium_pension_solidarity_article_68_family_transition_base_amount * belgium_pension_solidarity_article_68_index_factor
-          else:
-              belgium_pension_solidarity_article_68_isolated_transition_base_amount * belgium_pension_solidarity_article_68_index_factor
+          belgium_pension_solidarity_article_68_selected_third_threshold * belgium_pension_solidarity_article_68_mid_rate
   - name: belgium_pension_solidarity_article_68_monthly_withholding
     kind: derived
     entity: Family
@@ -491,11 +676,17 @@ rules:
     dtype: Money
     period: Month
     unit: EUR
-    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7. Effective from 2025 to align with the backdated 3.55% rate and the 2019 article 68 solidarity surface, so the combined pensioner withholding is computable for the 2025 tax year.
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, as executed by the Royal Decree of 8 December 2013. The 3.55% withholding does not apply to low pensions. Pensions at or below the indexed monthly floor owe nothing, pensions in the phase-in band above the floor owe only the excess over the floor (so the withholding cannot push the pension below the protected floor), and only pensions above the phase-in ceiling owe the full 3.55%. Effective from 2025 with the indexed 2025 thresholds from the Service federal des Pensions tables.
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_health_insurance_article_191_pension_withholding_rate
+          if belgium_pension_solidarity_article_68_total_monthly_gross_pensions <= belgium_health_insurance_article_191_selected_health_floor_lower_monthly:
+              0
+          else:
+              if belgium_pension_solidarity_article_68_total_monthly_gross_pensions <= belgium_health_insurance_article_191_selected_health_floor_upper_monthly:
+                  belgium_pension_solidarity_article_68_total_monthly_gross_pensions - belgium_health_insurance_article_191_selected_health_floor_lower_monthly
+              else:
+                  belgium_pension_solidarity_article_68_total_monthly_gross_pensions * belgium_health_insurance_article_191_pension_withholding_rate
   - name: belgium_rd33_selected_monthly_floor
     kind: derived
     entity: Family
