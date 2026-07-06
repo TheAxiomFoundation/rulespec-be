@@ -1,0 +1,49 @@
+- name: high_wage_single_first_month_ordinary_monthly_payable
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 101.4444
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 2
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_monthly_compensable_days: 26
+  output:
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_ordinary_pilot_monthly_payable_amount: 1561.48564
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_ordinary_annual_payable_amount: 18737.82768
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_ordinary_replacement_rate: 0
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_temporary_force_majeure: 0
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_two_spouses_only_receive_lowest_minimum: 0
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_article_114_4_1_condition_met: 0
+
+- name: low_wage_isolated_first_month_floors_to_article_115_isolated_minimum
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 40.5777
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 2
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_monthly_compensable_days: 26
+  output:
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_ordinary_pilot_monthly_payable_amount: 908.44
+
+- name: low_wage_family_charge_first_month_floors_to_article_115_family_charge_minimum
+  period:
+    period_kind: custom
+    name: calendar_month
+    start: '2026-03-01'
+    end: '2026-03-31'
+  input:
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_average_daily_wage: 40.5777
+    be:regulations/unemployment/benefit_amount#input.belgium_unemployment_article_111_wage_cap_selector: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_household_status_code: 1
+    be:regulations/unemployment/minimum_daily_amounts#input.belgium_unemployment_indemnification_month_number: 1
+    be:regulations/unemployment/payable_amount#input.belgium_unemployment_monthly_compensable_days: 26
+  output:
+    be:regulations/unemployment/pilot_oracle_pipeline#belgium_unemployment_ordinary_pilot_monthly_payable_amount: 1120.86
