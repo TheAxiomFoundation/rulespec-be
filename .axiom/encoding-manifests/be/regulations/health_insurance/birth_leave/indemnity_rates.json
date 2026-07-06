@@ -1,12 +1,12 @@
 {
   "applied_files": [
     {
-      "path": "be/regulations/social_security/self_employed/contributions.test.yaml",
-      "sha256": "5fa745675447a2396f4727b568aa883f93c52657c65303a9944091635b03da78"
+      "path": "be/regulations/health_insurance/birth_leave/indemnity_rates.test.yaml",
+      "sha256": "0fbf339c024f293ca4e7b85c8665c8421efba4ce44707a54ae7bfcfd4270d4eb"
     },
     {
-      "path": "be/regulations/social_security/self_employed/contributions.yaml",
-      "sha256": "0fe0005832dfd0a488458ea8eb5f392177d8548e9100f27b05da8c75c7c88bfd"
+      "path": "be/regulations/health_insurance/birth_leave/indemnity_rates.yaml",
+      "sha256": "075f7f1ab6169d77fb6ba1dc82eb07263cdae5f237aef5f07be8491fe4ebb5f7"
     }
   ],
   "axiom_encode_git": {
@@ -18,13 +18,13 @@
   },
   "axiom_encode_version": "0.2.1180",
   "backend": "manual",
-  "citation": "be:regulations/social_security/self_employed/contributions",
+  "citation": "be:regulations/health_insurance/birth_leave/indemnity_rates",
   "context_manifest_file": null,
   "context_manifest_sha256": null,
-  "generated_at": "2026-07-06T23:25:31.226940+00:00",
-  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpgzj669ij/sign-applied-files/be/regulations/social_security/self_employed/contributions.yaml",
+  "generated_at": "2026-07-06T23:25:31.223474+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpgzj669ij/sign-applied-files/be/regulations/health_insurance/birth_leave/indemnity_rates.yaml",
   "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpgzj669ij",
-  "generated_output_sha256": "0fe0005832dfd0a488458ea8eb5f392177d8548e9100f27b05da8c75c7c88bfd",
+  "generated_output_sha256": "075f7f1ab6169d77fb6ba1dc82eb07263cdae5f237aef5f07be8491fe4ebb5f7",
   "generation_prompt_sha256": null,
   "manual_exception": "#1053",
   "model": "",
@@ -34,7 +34,7 @@
   "signature": {
     "algorithm": "hmac-sha256",
     "key_id": "axiom-encode-apply-v1",
-    "value": "711084fa5ed423f3a2b6196d055e0f6b323189441eba7674822fcbcfc482407c"
+    "value": "1e5a8afd08bb9cd8f6d1f0ea93832fdde1d482b85c6c9ef1f351e8601422c363"
   },
   "tool": "axiom-encode sign-applied-files",
   "trace_file": null,

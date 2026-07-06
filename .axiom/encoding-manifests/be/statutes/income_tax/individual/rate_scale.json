@@ -1,12 +1,12 @@
 {
   "applied_files": [
     {
-      "path": "be/regulations/social_security/self_employed/contributions.test.yaml",
-      "sha256": "5fa745675447a2396f4727b568aa883f93c52657c65303a9944091635b03da78"
+      "path": "be/statutes/income_tax/individual/rate_scale.test.yaml",
+      "sha256": "2a3595f385ef76fb7937bc469c4ca42d37b3c4251d4f6a2e169624317ef4757a"
     },
     {
-      "path": "be/regulations/social_security/self_employed/contributions.yaml",
-      "sha256": "0fe0005832dfd0a488458ea8eb5f392177d8548e9100f27b05da8c75c7c88bfd"
+      "path": "be/statutes/income_tax/individual/rate_scale.yaml",
+      "sha256": "acc3985aa2dd9b1ebe84fef117ee3a87af5def5fb72ff2b912fd3e4f6d105d6b"
     }
   ],
   "axiom_encode_git": {
@@ -18,13 +18,13 @@
   },
   "axiom_encode_version": "0.2.1180",
   "backend": "manual",
-  "citation": "be:regulations/social_security/self_employed/contributions",
+  "citation": "be:statutes/income_tax/individual/rate_scale",
   "context_manifest_file": null,
   "context_manifest_sha256": null,
-  "generated_at": "2026-07-06T23:25:31.226940+00:00",
-  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpgzj669ij/sign-applied-files/be/regulations/social_security/self_employed/contributions.yaml",
+  "generated_at": "2026-07-06T23:25:31.244820+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpgzj669ij/sign-applied-files/be/statutes/income_tax/individual/rate_scale.yaml",
   "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpgzj669ij",
-  "generated_output_sha256": "0fe0005832dfd0a488458ea8eb5f392177d8548e9100f27b05da8c75c7c88bfd",
+  "generated_output_sha256": "acc3985aa2dd9b1ebe84fef117ee3a87af5def5fb72ff2b912fd3e4f6d105d6b",
   "generation_prompt_sha256": null,
   "manual_exception": "#1053",
   "model": "",
@@ -34,7 +34,7 @@
   "signature": {
     "algorithm": "hmac-sha256",
     "key_id": "axiom-encode-apply-v1",
-    "value": "711084fa5ed423f3a2b6196d055e0f6b323189441eba7674822fcbcfc482407c"
+    "value": "be9d4c9eee5a5fc82988574ca5438b26ed505f0a30f4d1cab108e4e2738efc63"
   },
   "tool": "axiom-encode sign-applied-files",
   "trace_file": null,
