@@ -1,0 +1,230 @@
+- name: worker_receives_full_normal_daily_remuneration_during_first_seven_days
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-01-15'
+    end: '2026-01-15'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_has_work_incapacity: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_professional_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.uninterrupted_service_months: 2
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.new_work_incapacity_occurs_after_prior_paid_incapacity: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.weeks_since_end_of_prior_paid_incapacity: 10
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.prior_paid_incapacity_used_less_than_total_guaranteed_wage_days: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.medical_certificate_establishes_other_disease_or_accident: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.organizer_charges_entry_fee_for_that_competition_or_exhibition: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.participants_receive_remuneration_for_that_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_originates_in_worker_serious_fault: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.non_work_accident_occurs_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_commuting_accident: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_occupied_under_article_17_specified_categories_and_conditions
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_provided_by_royally_made_mandatory_collective_agreement
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_day_number: 3
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.normal_daily_remuneration: 100
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.daily_remuneration_cap_for_health_and_disability_benefits: 80
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#qualifying_non_work_incapacity: holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#worker_has_required_service: holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#recurrence_blocks_new_full_guaranteed_wage: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#disqualifying_sporting_accident: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#disqualifying_serious_fault: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#adapted_work_period_excludes_employer_wage_charge: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#article_17_worker_excluded_from_guaranteed_wage: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_entitlement_applies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#total_guaranteed_wage_days: 14
+    be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_amount_for_day: 100
+- name: worker_receives_sixty_percent_of_capped_remuneration_during_following_seven_days
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-01-20'
+    end: '2026-01-20'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_has_work_incapacity: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_work_accident: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_professional_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.uninterrupted_service_months: 1
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.new_work_incapacity_occurs_after_prior_paid_incapacity: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.weeks_since_end_of_prior_paid_incapacity: 9
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.prior_paid_incapacity_used_less_than_total_guaranteed_wage_days: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.medical_certificate_establishes_other_disease_or_accident: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.organizer_charges_entry_fee_for_that_competition_or_exhibition: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.participants_receive_remuneration_for_that_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_originates_in_worker_serious_fault: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.non_work_accident_occurs_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_commuting_accident: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_occupied_under_article_17_specified_categories_and_conditions
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_provided_by_royally_made_mandatory_collective_agreement
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_day_number: 8
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.normal_daily_remuneration: 100
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.daily_remuneration_cap_for_health_and_disability_benefits: 80
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_entitlement_applies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_amount_for_day: 48
+- name: recurrence_within_eight_weeks_blocks_new_full_guaranteed_wage
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-02-10'
+    end: '2026-02-10'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_has_work_incapacity: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_professional_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.uninterrupted_service_months: 2
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.new_work_incapacity_occurs_after_prior_paid_incapacity: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.weeks_since_end_of_prior_paid_incapacity: 8
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.prior_paid_incapacity_used_less_than_total_guaranteed_wage_days: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.medical_certificate_establishes_other_disease_or_accident: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.organizer_charges_entry_fee_for_that_competition_or_exhibition: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.participants_receive_remuneration_for_that_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_originates_in_worker_serious_fault: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.non_work_accident_occurs_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_commuting_accident: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_occupied_under_article_17_specified_categories_and_conditions
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_provided_by_royally_made_mandatory_collective_agreement
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_day_number: 2
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.normal_daily_remuneration: 100
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.daily_remuneration_cap_for_health_and_disability_benefits: 100
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#recurrence_blocks_new_full_guaranteed_wage: holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_entitlement_applies: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_amount_for_day: 0
+- name: employer_reimbursement_claim_includes_paid_remuneration_and_social_contributions
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-03-01'
+    end: '2026-03-01'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.third_party_responsible_for_accident_referred_to_in_paragraph_1: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.remuneration_paid_to_victim_for_that_accident: 500
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.social_contributions_due_on_that_remuneration: 150
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#employer_reimbursement_claim_amount_against_responsible_third_parties: 650
+- name: auto_zero_employer_reimbursement_claim_amount_against_responsible_third_parties
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.daily_remuneration_cap_for_health_and_disability_benefits: 0
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_day_number: 0
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_provided_by_royally_made_mandatory_collective_agreement
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_originates_in_worker_serious_fault: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_professional_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.medical_certificate_establishes_other_disease_or_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.new_work_incapacity_occurs_after_prior_paid_incapacity: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.non_work_accident_occurs_during_that_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.normal_daily_remuneration: 0
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.organizer_charges_entry_fee_for_that_competition_or_exhibition: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.participants_receive_remuneration_for_that_competition_or_exhibition
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.prior_paid_incapacity_used_less_than_total_guaranteed_wage_days: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.remuneration_paid_to_victim_for_that_accident: 0
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.social_contributions_due_on_that_remuneration: 0
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.third_party_responsible_for_accident_referred_to_in_paragraph_1: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.uninterrupted_service_months: 0
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.weeks_since_end_of_prior_paid_incapacity: 0
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_has_work_incapacity: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_occupied_under_article_17_specified_categories_and_conditions
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
+    : false
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#employer_reimbursement_claim_amount_against_responsible_third_parties: 0
+- name: auto_positive_disqualifying_sporting_accident
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.organizer_charges_entry_fee_for_that_competition_or_exhibition: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.participants_receive_remuneration_for_that_competition_or_exhibition
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
+    : true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#disqualifying_sporting_accident: holds
+- name: auto_positive_disqualifying_serious_fault
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_originates_in_worker_serious_fault: true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#disqualifying_serious_fault: holds
+- name: auto_positive_adapted_work_period_excludes_employer_wage_charge
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.accident_during_that_period_is_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.incapacity_results_from_non_professional_disease_during_that_period: true
+    be:statutes/loi/1978/07/03/1978070303/article/52#input.non_work_accident_occurs_during_that_period: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
+    : true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#adapted_work_period_excludes_employer_wage_charge: holds
+- name: auto_positive_article_17_worker_excluded_from_guaranteed_wage
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.guaranteed_wage_provided_by_royally_made_mandatory_collective_agreement
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/52#input.worker_occupied_under_article_17_specified_categories_and_conditions
+    : true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/52#article_17_worker_excluded_from_guaranteed_wage: holds
