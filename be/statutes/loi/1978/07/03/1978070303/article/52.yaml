@@ -1,0 +1,405 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  summary: "Art. 52: en cas d'incapacit\xE9 de travail d'un ouvrier r\xE9sultant d'une\
+    \ maladie autre qu'une maladie professionnelle ou d'un accident autre qu'un accident\
+    \ du travail ou sur le chemin du travail, l'ouvrier a droit \xE0 charge de l'employeur\
+    \ \xE0 sa r\xE9mun\xE9ration normale pendant sept jours puis, pendant les sept\
+    \ jours suivants, \xE0 60 p.c. de la partie de cette r\xE9mun\xE9ration ne d\xE9\
+    passant pas le plafond AMI. Le droit est subordonn\xE9 \xE0 un mois de service\
+    \ ininterrompu; en cas de nouvelle incapacit\xE9 dans les huit premi\xE8res semaines,\
+    \ la r\xE9mun\xE9ration n'est pas due \xE0 nouveau sauf solde des quatorze jours\
+    \ ou autre maladie/accident; exclusions et d\xE9rogations sont pr\xE9vues."
+rules:
+- name: initial_guaranteed_wage_days
+  kind: parameter
+  dtype: Count
+  source: "Art. 52, \xA7 1er, alin\xE9a 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "\xE0 sa r\xE9mun\xE9ration normale pendant une p\xE9riode de sept\
+            \ jours"
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '7'
+- name: subsequent_guaranteed_wage_days
+  kind: parameter
+  dtype: Count
+  source: "Art. 52, \xA7 1er, alin\xE9a 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "pendant les sept jours suivants \xE0 60 p.c."
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '7'
+- name: subsequent_guaranteed_wage_rate
+  kind: parameter
+  dtype: Rate
+  source: "Art. 52, \xA7 1er, alin\xE9a 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "\xE0 60 p.c. de la partie de cette r\xE9mun\xE9ration"
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '0.60'
+- name: required_uninterrupted_service_months
+  kind: parameter
+  dtype: Count
+  source: "Art. 52, \xA7 1er, alin\xE9a 5"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: pendant au moins un mois
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '1'
+- name: recurrence_lookback_weeks
+  kind: parameter
+  dtype: Count
+  source: "Art. 52, \xA7 2, alin\xE9a 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "dans les huit premi\xE8res semaines"
+  versions:
+  - effective_from: '2026-01-01'
+    formula: '8'
+- name: total_guaranteed_wage_days
+  kind: derived
+  entity: Person
+  dtype: Count
+  period: Day
+  source: "Art. 52, \xA7 1er et \xA7 2, 1\xB0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "p\xE9riode de (quatorze) jours"
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#initial_guaranteed_wage_days
+          output: initial_guaranteed_wage_days
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#subsequent_guaranteed_wage_days
+          output: subsequent_guaranteed_wage_days
+          hash: sha256:local
+  versions:
+  - effective_from: '1986-11-01'
+    formula: initial_guaranteed_wage_days + subsequent_guaranteed_wage_days
+- name: qualifying_non_work_incapacity
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 1er, alin\xE9a 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  versions:
+  - effective_from: '1986-11-01'
+    formula: 'worker_has_work_incapacity
+
+      and (incapacity_results_from_non_professional_disease or incapacity_results_from_non_work_accident)
+
+      and not incapacity_results_from_professional_disease
+
+      and not incapacity_results_from_work_accident
+
+      and not incapacity_results_from_commuting_accident'
+- name: worker_has_required_service
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 1er, alin\xE9as 5 et 6"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "demeur\xE9 sans interruption au service de la m\xEAme entreprise\
+            \ pendant au moins un mois"
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#required_uninterrupted_service_months
+          output: required_uninterrupted_service_months
+          hash: sha256:local
+  versions:
+  - effective_from: '1986-11-01'
+    formula: uninterrupted_service_months >= required_uninterrupted_service_months
+- name: recurrence_blocks_new_full_guaranteed_wage
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 2"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "n'est pas due une nouvelle fois lorsqu'une nouvelle incapacit\xE9\
+            \ de travail survient dans les huit premi\xE8res semaines"
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#recurrence_lookback_weeks
+          output: recurrence_lookback_weeks
+          hash: sha256:local
+  versions:
+  - effective_from: '2026-01-01'
+    formula: 'new_work_incapacity_occurs_after_prior_paid_incapacity
+
+      and weeks_since_end_of_prior_paid_incapacity <= recurrence_lookback_weeks
+
+      and not prior_paid_incapacity_used_less_than_total_guaranteed_wage_days
+
+      and not medical_certificate_establishes_other_disease_or_accident'
+- name: disqualifying_sporting_accident
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 3, 1\xB0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  versions:
+  - effective_from: '1986-11-01'
+    formula: 'worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
+
+      and organizer_charges_entry_fee_for_that_competition_or_exhibition
+
+      and participants_receive_remuneration_for_that_competition_or_exhibition'
+- name: disqualifying_serious_fault
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 3, 2\xB0"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  versions:
+  - effective_from: '1986-11-01'
+    formula: incapacity_originates_in_worker_serious_fault
+- name: adapted_work_period_excludes_employer_wage_charge
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 5"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  versions:
+  - effective_from: '2026-01-01'
+    formula: 'worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
+
+      and (incapacity_results_from_non_professional_disease_during_that_period or
+      non_work_accident_occurs_during_that_period)
+
+      and not accident_during_that_period_is_work_accident
+
+      and not accident_during_that_period_is_commuting_accident'
+- name: article_17_worker_excluded_from_guaranteed_wage
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7 7"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  versions:
+  - effective_from: '2022-01-01'
+    formula: 'worker_occupied_under_article_17_specified_categories_and_conditions
+
+      and not guaranteed_wage_provided_by_royally_made_mandatory_collective_agreement'
+- name: guaranteed_wage_entitlement_applies
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: "Art. 52, \xA7\xA7 1er \xE0 3, 5 et 7"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#qualifying_non_work_incapacity
+          output: qualifying_non_work_incapacity
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#worker_has_required_service
+          output: worker_has_required_service
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#recurrence_blocks_new_full_guaranteed_wage
+          output: recurrence_blocks_new_full_guaranteed_wage
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#disqualifying_sporting_accident
+          output: disqualifying_sporting_accident
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#disqualifying_serious_fault
+          output: disqualifying_serious_fault
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#adapted_work_period_excludes_employer_wage_charge
+          output: adapted_work_period_excludes_employer_wage_charge
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#article_17_worker_excluded_from_guaranteed_wage
+          output: article_17_worker_excluded_from_guaranteed_wage
+          hash: sha256:local
+  versions:
+  - effective_from: '2026-01-01'
+    formula: 'qualifying_non_work_incapacity
+
+      and worker_has_required_service
+
+      and not recurrence_blocks_new_full_guaranteed_wage
+
+      and not disqualifying_sporting_accident
+
+      and not disqualifying_serious_fault
+
+      and not adapted_work_period_excludes_employer_wage_charge
+
+      and not article_17_worker_excluded_from_guaranteed_wage'
+- name: guaranteed_wage_amount_for_day
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Day
+  unit: EUR
+  source: "Art. 52, \xA7\xA7 1er \xE0 3, 5 et 7"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "r\xE9mun\xE9ration normale pendant une p\xE9riode de sept jours\
+            \ et pendant les sept jours suivants \xE0 60 p.c."
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#guaranteed_wage_entitlement_applies
+          output: guaranteed_wage_entitlement_applies
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#initial_guaranteed_wage_days
+          output: initial_guaranteed_wage_days
+          hash: sha256:local
+      - path: versions[0].formula
+        kind: import
+        import:
+          target: be:statutes/loi/1978/07/03/1978070303/article/52#subsequent_guaranteed_wage_rate
+          output: subsequent_guaranteed_wage_rate
+          hash: sha256:local
+  versions:
+  - effective_from: '2026-01-01'
+    formula: "if guaranteed_wage_entitlement_applies:\n  if guaranteed_wage_day_number\
+      \ <= initial_guaranteed_wage_days:\n    normal_daily_remuneration\n  else:\n\
+      \    subsequent_guaranteed_wage_rate * min(normal_daily_remuneration, daily_remuneration_cap_for_health_and_disability_benefits)\n\
+      else:\n  0"
+- name: employer_reimbursement_claim_amount_against_responsible_third_parties
+  kind: derived
+  entity: Employer
+  dtype: Money
+  period: Day
+  unit: EUR
+  source: "Art. 52, \xA7 4"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+  versions:
+  - effective_from: '1986-11-01'
+    formula: 'if third_party_responsible_for_accident_referred_to_in_paragraph_1:
+      remuneration_paid_to_victim_for_that_accident + social_contributions_due_on_that_remuneration
+      else: 0'
