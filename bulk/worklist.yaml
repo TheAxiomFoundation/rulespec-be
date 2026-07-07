@@ -1,0 +1,95 @@
+version: 1
+defaults:
+  backend: openai
+  model: gpt-5.5
+# rulespec-be bulk-encode worklist (federal `be` scope).
+#
+# Each `citation` is a corpus citation_path the encoder resolves. Every entry
+# below was verified to exist BEFORE listing (never invent country numbers):
+# its exact citation_path returns provision text in the toolchain-pinned
+# axiom-corpus ref (.axiom/toolchain.toml -> axiom_corpus_ref
+# 8e48989c…), which is the source the bulk workflow's `axiom-encode encode`
+# reads first (local checkout, Supabase only as fallback). All are drawn from
+# the 1978-07-03 employment-contracts law (loi 1978070303) and the coordinated
+# 1994-07-14 health-insurance law (loi 1994071451), both already ingested and
+# committed under data/corpus/provisions/be/statute/.
+#
+# CORPUS-PUBLISH LAG (readiness note): these `be/statute/…` provisions are
+# committed to axiom-corpus and present in the pinned ref, but are NOT YET in
+# the published Supabase `current_provisions` view (0 rows there for all
+# be/statute + be/regulation today; only be/guidance is published). The bulk
+# encoder resolves them locally from the pinned checkout, so it will not
+# invent, but a corpus publish should catch current_provisions up before a
+# full-scale drain. Tracked as a corpus (not dispatcher) gap.
+#
+# Selection: self-contained provisions with clear standalone arithmetic
+# (durations, guaranteed-pay percentages, indemnity multiples). Cross-
+# reference-heavy provisions are skipped (encoder self-import, encode#1058).
+#
+# VOLUME STAYS MINIMAL until the path-scoped CI build lands (org runners are
+# currently saturated; a parallel worker is fixing that). This is a pilot
+# queue, not a full drain.
+entries:
+# --- Batch A: pilot (cleanest standalone arithmetic; canary is article/52) ---
+- citation: be/statute/loi/1978/07/03/1978070303/article/52
+  repo: rulespec-be
+  batch: A
+  status: pending
+  heading: Guaranteed salary on incapacity for manual workers (loi 1978-07-03 art. 52)
+  class: rate
+  note: Self-contained salaire garanti — normal pay for 7 days, then 60 p.c. of
+    the capped portion for the next 7 days. In-article arithmetic; the sickness-
+    insurance ceiling is a parameter input, not a cross-reference.
+- citation: be/statute/loi/1978/07/03/1978070303/article/101
+  repo: rulespec-be
+  batch: A
+  status: pending
+  heading: Commercial representative eviction indemnity (loi 1978-07-03 art. 101)
+  class: rate
+  note: Self-contained indemnité d'éviction — three months' remuneration for 1–5
+    years of service, increased by one month per further period. Pure salary-
+    multiple formula after a one-year service precondition.
+- citation: be/statute/loi/1978/07/03/1978070303/article/30ter
+  repo: rulespec-be
+  batch: A
+  status: pending
+  heading: Adoption leave duration (loi 1978-07-03 art. 30ter)
+  class: mechanics
+  note: Self-contained congé d'adoption — an uninterrupted maximum of six weeks,
+    taken in whole-week multiples of at least one week. Standalone duration rule.
+- citation: be/statute/loi/1978/07/03/1978070303/article/40
+  repo: rulespec-be
+  batch: A
+  status: pending
+  heading: Fixed-term contract early-termination indemnity (loi 1978-07-03 art. 40)
+  class: rate
+  note: Self-contained — indemnity equals remuneration due to term, capped at
+    twice the pay for the notice period a comparable open-ended contract would
+    require. In-article arithmetic.
+# --- Batch B: remaining employment-law + coordinated health-insurance floor ---
+- citation: be/statute/loi/1978/07/03/1978070303/article/130
+  repo: rulespec-be
+  batch: B
+  status: pending
+  heading: Student employment contract notice periods (loi 1978-07-03 art. 130)
+  class: mechanics
+  note: Self-contained notice-day schedule — 3 days (employer) / 1 day (student)
+    for engagements up to one month, 7 / 3 days beyond one month.
+- citation: be/statute/loi/1978/07/03/1978070303/article/37-10
+  repo: rulespec-be
+  batch: B
+  status: pending
+  heading: Fixed-term termination on prolonged incapacity (loi 1978-07-03 art. 37/10)
+  class: rate
+  note: Self-contained — for fixed terms of at least three months, once incapacity
+    exceeds six months the employer may terminate against an indemnity equal to
+    remuneration due to the convened term.
+- citation: be/statute/loi/1994/07/14/1994071451/article/93bis
+  repo: rulespec-be
+  batch: B
+  status: pending
+  heading: Minimum daily invalidity indemnity floor (loi 1994-07-14 art. 93bis)
+  class: rate
+  note: Self-contained floor — the minimum daily invalidity indemnity for
+    non-regular workers with dependants is not below the integration-income
+    amount (in working days) for two cohabitants; a comparative amount rule.
