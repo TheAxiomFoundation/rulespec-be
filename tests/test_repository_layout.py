@@ -366,6 +366,30 @@ def span_contains_formula_value(
     )
 
 
+def proof_atom_anchor_text(source: object) -> str | None:
+    """Return a proof-atom source's anchor text: its ``span`` or ``excerpt``.
+
+    A proof atom pins a parameter's value to a short quote from the cited
+    provision. rulespec-be historically stored that quote under ``span``; the
+    encoder's model-emit path (axiom-encode >= 0.2.1188) writes the identical
+    content under ``excerpt`` -- the field name already used across rulespec-us
+    and rulespec-uk. The two are interchangeable free-text anchors: nothing in
+    the gate battery resolves either against corpus text (the encoder's
+    ``proof-validate`` ignores both fields, and this repo holds no full corpus
+    text to offset-check against), so a ``span`` carries no more verification
+    weight than an ``excerpt`` here. Accept whichever the encoder emitted, and
+    return it so the value-containment gate can still anchor on it.
+    See rulespec-be#100.
+    """
+    if not isinstance(source, dict):
+        return None
+    for key in ("span", "excerpt"):
+        value = source.get(key)
+        if isinstance(value, str) and value.strip():
+            return value
+    return None
+
+
 def module_has_source_locator(payload: object) -> bool:
     if not isinstance(payload, dict):
         return False
@@ -712,6 +736,15 @@ def test_policy_bearing_parameters_have_formula_proof_atoms() -> None:
 
 
 def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
+    """Every policy-bearing parameter proof atom must anchor a corpus provision.
+
+    The atom must cite a ``corpus_citation_path`` in the module's
+    ``source_verification`` and carry a non-empty anchor quote. That quote may
+    live under ``span`` (rulespec-be's original field) or ``excerpt`` (what the
+    encoder now emits on its model path, matching rulespec-us/uk); the two are
+    equivalent, so accept either via ``proof_atom_anchor_text``. See
+    rulespec-be#100.
+    """
     invalid: list[str] = []
 
     for path in iter_rulespec_files():
@@ -798,13 +831,21 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                     invalid.append(
                         f"{atom_id}: corpus_citation_path is not in module source_verification"
                     )
-                if not isinstance(source.get("span"), str) or not source["span"].strip():
-                    invalid.append(f"{atom_id}: missing source span")
+                if proof_atom_anchor_text(source) is None:
+                    invalid.append(f"{atom_id}: missing source span/excerpt anchor")
 
     assert invalid == []
 
 
 def test_policy_parameter_proof_atom_spans_contain_formula_values() -> None:
+    """A parameter's proof anchor quote must contain the parameter's value.
+
+    Reads the anchor from either ``span`` or ``excerpt`` (see
+    ``proof_atom_anchor_text`` and rulespec-be#100) so an excerpt-emitting
+    encoder is held to the same value-containment bar as a span-emitting one --
+    e.g. a 0.60 rate whose anchor reads "a 60 p.c. de ..." is verified to
+    mention 60.
+    """
     invalid: list[str] = []
 
     for path in iter_rulespec_files():
@@ -826,8 +867,8 @@ def test_policy_parameter_proof_atom_spans_contain_formula_values() -> None:
                 if not isinstance(atom, dict):
                     continue
                 source = atom.get("source")
-                span = source.get("span") if isinstance(source, dict) else None
-                if not isinstance(span, str):
+                span = proof_atom_anchor_text(source)
+                if span is None:
                     continue
                 span_values = text_number_values(span)
                 if not span_contains_formula_value(formula_values, span_values, span):
