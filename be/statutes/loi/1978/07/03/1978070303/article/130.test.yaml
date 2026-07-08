@@ -1,0 +1,40 @@
+- name: employer_notice_period_is_three_days_when_engagement_does_not_exceed_one_month
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-01-15'
+    end: '2026-01-15'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/130#input.engagement_duration_months: 1
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/130#employer_notice_period_days_for_student_contract_termination: 3
+- name: employer_notice_period_is_seven_days_when_engagement_exceeds_one_month
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-01-20'
+    end: '2026-01-20'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/130#input.engagement_duration_months: 2
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/130#employer_notice_period_days_for_student_contract_termination: 7
+- name: student_notice_period_is_one_day_when_engagement_does_not_exceed_one_month
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-02-10'
+    end: '2026-02-10'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/130#input.engagement_duration_months: 1
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/130#student_notice_period_days_for_student_contract_termination: 1
+- name: student_notice_period_is_three_days_when_engagement_exceeds_one_month
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-03-01'
+    end: '2026-03-01'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/130#input.engagement_duration_months: 2
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/130#student_notice_period_days_for_student_contract_termination: 3
