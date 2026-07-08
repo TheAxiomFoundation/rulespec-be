@@ -1,0 +1,188 @@
+- name: qualifying_worker_with_valid_notice_has_adoption_leave_entitlement_and_current_maximum_weeks
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-03-01'
+    end: '2026-03-01'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_in_adoption_context_welcomes_child_into_family: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_is_minor: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.leave_starts_within_required_months_after_child_household_registration
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.international_adoption_leave_starts_after_community_central_authority_approval_to_collect_child
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_additional_weeks_allocated_to_this_worker: 4
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_has_disability_or_affection_for_adoption_leave_doubling: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.simultaneous_adoption_of_multiple_minor_children: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_weeks: 10
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_duration_is_whole_week_or_multiple_of_week
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_was_warned_in_writing_of_adoption_leave: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_given_at_least_required_month_in_advance: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_and_worker_agreed_to_reduce_notice_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_sent_by_registered_letter: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.written_notice_delivered_with_employer_signed_receipt_copy: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_mentions_start_and_end_dates_of_adoption_leave: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_provides_documents_attesting_event_opening_adoption_leave_no_later_than_leave_start
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_is_taken_as_uninterrupted_period_or_authorized_international_adoption_derogation_applies
+    : true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#worker_qualifies_for_adoption_leave: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#worker_adoption_leave_may_start: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#adoption_leave_notice_requirement_satisfied: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#maximum_adoption_leave_weeks_per_worker: 10
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#requested_adoption_leave_duration_valid: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#adoption_leave_entitlement_applies: holds
+- name: non_minor_child_blocks_adoption_leave_entitlement
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-03-01'
+    end: '2026-03-01'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_in_adoption_context_welcomes_child_into_family: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_is_minor: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.leave_starts_within_required_months_after_child_household_registration
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.international_adoption_leave_starts_after_community_central_authority_approval_to_collect_child
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_additional_weeks_allocated_to_this_worker: 4
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_has_disability_or_affection_for_adoption_leave_doubling: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.simultaneous_adoption_of_multiple_minor_children: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_weeks: 10
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_duration_is_whole_week_or_multiple_of_week
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_was_warned_in_writing_of_adoption_leave: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_given_at_least_required_month_in_advance: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_and_worker_agreed_to_reduce_notice_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_sent_by_registered_letter: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.written_notice_delivered_with_employer_signed_receipt_copy: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_mentions_start_and_end_dates_of_adoption_leave: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_provides_documents_attesting_event_opening_adoption_leave_no_later_than_leave_start
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_is_taken_as_uninterrupted_period_or_authorized_international_adoption_derogation_applies
+    : true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#worker_qualifies_for_adoption_leave: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#adoption_leave_entitlement_applies: not_holds
+- name: disability_and_multiple_minor_children_increase_maximum_adoption_leave
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-03-01'
+    end: '2026-03-01'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_additional_weeks_allocated_to_this_worker: 4
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_has_disability_or_affection_for_adoption_leave_doubling: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.simultaneous_adoption_of_multiple_minor_children: true
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#maximum_adoption_leave_weeks_per_worker: 22
+- name: unlawful_dismissal_and_nonrenewal_indemnities_apply_when_employer_lacks_unrelated_reason
+  period:
+    period_kind: custom
+    name: day
+    start: '2026-03-01'
+    end: '2026-03-01'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_made_unilateral_act_to_end_contract: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_used_adoption_leave_right: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.act_occurs_during_adoption_leave_dismissal_protection_period: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_proves_reasons_unrelated_to_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.other_special_dismissal_protection_indemnity_is_cumulated: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_warned_employer_of_adoption_leave_under_paragraph_3_first_two_alineas
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_is_for_temporary_work: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_is_fixed_term: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_not_renewed: true
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_proves_nonrenewal_reason_unrelated_to_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.monthly_brute_remuneration: 2500
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_dismissal_during_adoption_leave_protection: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_dismissal_for_adoption_leave_indemnity_amount: 15000
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#nonrenewal_presumed_linked_to_adoption_leave: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_nonrenewal_for_adoption_leave_indemnity_amount: 7500
+- name: auto_zero_unlawful_dismissal_for_adoption_leave_indemnity_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.act_occurs_during_adoption_leave_dismissal_protection_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_additional_weeks_allocated_to_this_worker: 0
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_is_taken_as_uninterrupted_period_or_authorized_international_adoption_derogation_applies
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_has_disability_or_affection_for_adoption_leave_doubling: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_is_minor: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_is_fixed_term: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_is_for_temporary_work: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_not_renewed: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_and_worker_agreed_to_reduce_notice_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_made_unilateral_act_to_end_contract: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_proves_nonrenewal_reason_unrelated_to_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_proves_reasons_unrelated_to_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_was_warned_in_writing_of_adoption_leave: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.international_adoption_leave_starts_after_community_central_authority_approval_to_collect_child
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.leave_starts_within_required_months_after_child_household_registration
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.monthly_brute_remuneration: 0
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_given_at_least_required_month_in_advance: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_mentions_start_and_end_dates_of_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_sent_by_registered_letter: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.other_special_dismissal_protection_indemnity_is_cumulated: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_duration_is_whole_week_or_multiple_of_week
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_weeks: 0
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.simultaneous_adoption_of_multiple_minor_children: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_in_adoption_context_welcomes_child_into_family: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_provides_documents_attesting_event_opening_adoption_leave_no_later_than_leave_start
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_used_adoption_leave_right: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_warned_employer_of_adoption_leave_under_paragraph_3_first_two_alineas
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.written_notice_delivered_with_employer_signed_receipt_copy: false
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_dismissal_for_adoption_leave_indemnity_amount: 0
+- name: auto_zero_unlawful_nonrenewal_for_adoption_leave_indemnity_amount
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.act_occurs_during_adoption_leave_dismissal_protection_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_additional_weeks_allocated_to_this_worker: 0
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.adoption_leave_is_taken_as_uninterrupted_period_or_authorized_international_adoption_derogation_applies
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_has_disability_or_affection_for_adoption_leave_doubling: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.child_is_minor: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_is_fixed_term: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_is_for_temporary_work: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.contract_not_renewed: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_and_worker_agreed_to_reduce_notice_period: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_made_unilateral_act_to_end_contract: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_proves_nonrenewal_reason_unrelated_to_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_proves_reasons_unrelated_to_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.employer_was_warned_in_writing_of_adoption_leave: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.international_adoption_leave_starts_after_community_central_authority_approval_to_collect_child
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.leave_starts_within_required_months_after_child_household_registration
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.monthly_brute_remuneration: 0
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_given_at_least_required_month_in_advance: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_mentions_start_and_end_dates_of_adoption_leave: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.notice_sent_by_registered_letter: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.other_special_dismissal_protection_indemnity_is_cumulated: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_duration_is_whole_week_or_multiple_of_week
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.requested_adoption_leave_weeks: 0
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.simultaneous_adoption_of_multiple_minor_children: false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_in_adoption_context_welcomes_child_into_family: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_provides_documents_attesting_event_opening_adoption_leave_no_later_than_leave_start
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_used_adoption_leave_right: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30ter#input.worker_warned_employer_of_adoption_leave_under_paragraph_3_first_two_alineas
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#input.written_notice_delivered_with_employer_signed_receipt_copy: false
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_nonrenewal_for_adoption_leave_indemnity_amount: 0

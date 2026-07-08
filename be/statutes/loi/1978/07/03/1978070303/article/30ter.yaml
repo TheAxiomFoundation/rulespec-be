@@ -1,0 +1,544 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+  summary: |-
+    Art. 30ter: le travailleur qui, dans le cadre d'une adoption, accueille un enfant mineur dans sa famille a droit à un congé d'adoption pour une période ininterrompue de maximum six semaines; les semaines supplémentaires sont allongées par dates, réparties entre deux parents adoptifs, la durée maximale est doublée en cas d'incapacité ou affection de l'enfant, et allongée de deux semaines par parent adoptif en cas d'adoption simultanée de plusieurs enfants mineurs. Le congé doit prendre cours dans les deux mois de l'inscription de l'enfant au ménage, avec une règle spéciale pour l'adoption internationale. Le travailleur doit avertir l'employeur par écrit au moins un mois à l'avance, sauf réduction d'un commun accord; l'employeur ne peut licencier durant la période protégée sauf motifs étrangers au congé, avec indemnité brute de six mois, et le non-renouvellement de certains contrats est présumé lié au congé avec indemnité brute de trois mois si le motif n'est pas étranger.
+rules:
+  - name: base_adoption_leave_weeks_per_adoptive_parent
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 1er, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "maximum 6 semaines"
+    versions:
+      - effective_from: '2004-07-25'
+        formula: |-
+          6
+
+  - name: minimum_adoption_leave_weeks_when_not_taking_maximum
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 1er, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "au moins d'une semaine ou d'un multiple d'une semaine"
+    versions:
+      - effective_from: '2004-07-25'
+        formula: |-
+          1
+
+  - name: additional_adoption_leave_weeks_per_adoptive_parent_or_parents_together
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 1er, alinéa 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "d'une semaine à partir du 1er janvier 2019"
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "de deux semaines à partir du 1er janvier 2021"
+          - path: versions[2].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "de trois semaines à partir du 1er janvier 2023"
+          - path: versions[3].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "de quatre semaines à partir du 1er janvier 2025"
+          - path: versions[4].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "de cinq semaines à partir du 1er janvier 2027"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          1
+      - effective_from: '2021-01-01'
+        formula: |-
+          2
+      - effective_from: '2023-01-01'
+        formula: |-
+          3
+      - effective_from: '2025-01-01'
+        formula: |-
+          4
+      - effective_from: '2027-01-01'
+        formula: |-
+          5
+
+  - name: multiple_minor_children_adoption_leave_extra_weeks_per_adoptive_parent
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 1er, dernier alinéa"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "allongée de deux semaines par parent adoptif en cas d'adoption simultanée de plusieurs enfants mineurs"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          2
+
+  - name: adoption_leave_start_deadline_months_after_child_household_registration
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 1er/1, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "dans les deux mois qui suivent l'inscription de l'enfant"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          2
+
+  - name: employer_notice_advance_months_for_adoption_leave
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 3, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "au moins un mois à l'avance"
+    versions:
+      - effective_from: '2004-07-25'
+        formula: |-
+          1
+
+  - name: dismissal_protection_months_before_leave_start
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 4, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "commence deux mois avant la prise de cours"
+    versions:
+      - effective_from: '2004-07-25'
+        formula: |-
+          2
+
+  - name: dismissal_protection_months_after_leave_end
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 4, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "finit un mois après la fin de celui-ci"
+    versions:
+      - effective_from: '2004-07-25'
+        formula: |-
+          1
+
+  - name: unlawful_dismissal_indemnity_months_brute_remuneration
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 4, alinéa 3"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "rémunération brute de six mois"
+    versions:
+      - effective_from: '2022-11-10'
+        formula: |-
+          6
+
+  - name: unlawful_nonrenewal_indemnity_months_brute_remuneration
+    kind: parameter
+    dtype: Count
+    source: "Art. 30ter, § 5, alinéa 3"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "rémunération brute de trois mois"
+    versions:
+      - effective_from: '2022-11-10'
+        formula: |-
+          3
+
+  - name: worker_qualifies_for_adoption_leave
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 1er, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "dans le cadre d'une adoption, accueille un enfant mineur dans sa famille"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          worker_in_adoption_context_welcomes_child_into_family
+          and child_is_minor
+
+  - name: worker_adoption_leave_may_start
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 1er/1, alinéas 1er et 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "dans les deux mois qui suivent l'inscription de l'enfant"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "en cas d'adoption internationale, le congé d'adoption peut déjà prendre cours dès le lendemain de l'approbation"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          leave_starts_within_required_months_after_child_household_registration
+          or international_adoption_leave_starts_after_community_central_authority_approval_to_collect_child
+
+  - name: adoption_leave_notice_requirement_satisfied
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 3, alinéas 1er à 3"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "avertir par écrit son employeur au moins un mois à l'avance"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "Ce délai peut être réduit d'un commun accord"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "par lettre recommandée ou par la remise d'un écrit"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "mentionne la date de début et de fin"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "fournit à l'employeur ... les documents attestant l'évènement"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          employer_was_warned_in_writing_of_adoption_leave
+          and (notice_given_at_least_required_month_in_advance or employer_and_worker_agreed_to_reduce_notice_period)
+          and (notice_sent_by_registered_letter or written_notice_delivered_with_employer_signed_receipt_copy)
+          and notice_mentions_start_and_end_dates_of_adoption_leave
+          and worker_provides_documents_attesting_event_opening_adoption_leave_no_later_than_leave_start
+
+  - name: maximum_adoption_leave_weeks_per_worker
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: "Art. 30ter, § 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "maximum 6 semaines"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "Le congé d'adoption de six semaines ... est allongé"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "durée maximale ... est doublée lorsque l'enfant est atteint"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "allongée de deux semaines par parent adoptif"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#base_adoption_leave_weeks_per_adoptive_parent
+              output: base_adoption_leave_weeks_per_adoptive_parent
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#multiple_minor_children_adoption_leave_extra_weeks_per_adoptive_parent
+              output: multiple_minor_children_adoption_leave_extra_weeks_per_adoptive_parent
+              hash: sha256:local
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          (base_adoption_leave_weeks_per_adoptive_parent + adoption_leave_additional_weeks_allocated_to_this_worker) * (if child_has_disability_or_affection_for_adoption_leave_doubling: 2 else: 1) + (if simultaneous_adoption_of_multiple_minor_children: multiple_minor_children_adoption_leave_extra_weeks_per_adoptive_parent else: 0)
+
+  - name: requested_adoption_leave_duration_valid
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 1er, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "au moins d'une semaine ou d'un multiple d'une semaine"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#minimum_adoption_leave_weeks_when_not_taking_maximum
+              output: minimum_adoption_leave_weeks_when_not_taking_maximum
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#maximum_adoption_leave_weeks_per_worker
+              output: maximum_adoption_leave_weeks_per_worker
+              hash: sha256:local
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          requested_adoption_leave_weeks >= minimum_adoption_leave_weeks_when_not_taking_maximum
+          and requested_adoption_leave_weeks <= maximum_adoption_leave_weeks_per_worker
+          and requested_adoption_leave_duration_is_whole_week_or_multiple_of_week
+
+  - name: adoption_leave_entitlement_applies
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 1er, § 1er/1 et § 3"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "a droit ... à un congé d'adoption"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#worker_qualifies_for_adoption_leave
+              output: worker_qualifies_for_adoption_leave
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#worker_adoption_leave_may_start
+              output: worker_adoption_leave_may_start
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#requested_adoption_leave_duration_valid
+              output: requested_adoption_leave_duration_valid
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#adoption_leave_notice_requirement_satisfied
+              output: adoption_leave_notice_requirement_satisfied
+              hash: sha256:local
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          worker_qualifies_for_adoption_leave
+          and worker_adoption_leave_may_start
+          and requested_adoption_leave_duration_valid
+          and adoption_leave_is_taken_as_uninterrupted_period_or_authorized_international_adoption_derogation_applies
+          and adoption_leave_notice_requirement_satisfied
+
+  - name: unlawful_dismissal_during_adoption_leave_protection
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 4, alinéas 1er et 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "ne peut faire un acte tendant à mettre fin unilatéralement"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "sauf pour des motifs étrangers à la prise de ce congé d'adoption"
+    versions:
+      - effective_from: '2004-07-25'
+        formula: |-
+          employer_made_unilateral_act_to_end_contract
+          and worker_used_adoption_leave_right
+          and act_occurs_during_adoption_leave_dismissal_protection_period
+          and not employer_proves_reasons_unrelated_to_adoption_leave
+
+  - name: unlawful_dismissal_for_adoption_leave_indemnity_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    source: "Art. 30ter, § 4, alinéas 3 et 4"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "indemnité forfaitaire égale à la rémunération brute de six mois"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "ne peut être cumulée avec d'autres indemnités"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_dismissal_during_adoption_leave_protection
+              output: unlawful_dismissal_during_adoption_leave_protection
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_dismissal_indemnity_months_brute_remuneration
+              output: unlawful_dismissal_indemnity_months_brute_remuneration
+              hash: sha256:local
+    versions:
+      - effective_from: '2022-11-10'
+        formula: |-
+          if unlawful_dismissal_during_adoption_leave_protection and not other_special_dismissal_protection_indemnity_is_cumulated: monthly_brute_remuneration * unlawful_dismissal_indemnity_months_brute_remuneration else: 0
+
+  - name: nonrenewal_presumed_linked_to_adoption_leave
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: "Art. 30ter, § 5, alinéa 1er"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "contrat de travail pour l'exécution d'un travail temporaire ou ... à durée déterminée non renouvelé"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "présumé être lié à la prise du congé d'adoption"
+    versions:
+      - effective_from: '2022-11-10'
+        formula: |-
+          worker_warned_employer_of_adoption_leave_under_paragraph_3_first_two_alineas
+          and (contract_is_for_temporary_work or contract_is_fixed_term)
+          and contract_not_renewed
+
+  - name: unlawful_nonrenewal_for_adoption_leave_indemnity_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    source: "Art. 30ter, § 5, alinéas 2 et 3"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30ter
+              excerpt: "indemnité forfaitaire égale à la rémunération brute de trois mois"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#nonrenewal_presumed_linked_to_adoption_leave
+              output: nonrenewal_presumed_linked_to_adoption_leave
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/30ter#unlawful_nonrenewal_indemnity_months_brute_remuneration
+              output: unlawful_nonrenewal_indemnity_months_brute_remuneration
+              hash: sha256:local
+    versions:
+      - effective_from: '2022-11-10'
+        formula: |-
+          if nonrenewal_presumed_linked_to_adoption_leave and not employer_proves_nonrenewal_reason_unrelated_to_adoption_leave: monthly_brute_remuneration * unlawful_nonrenewal_indemnity_months_brute_remuneration else: 0
