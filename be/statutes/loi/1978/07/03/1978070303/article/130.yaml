@@ -1,0 +1,167 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+  summary: |-
+    Chacune des parties peut mettre fin au contrat moyennant un préavis donné à l'autre partie. Lorsque la durée de l'engagement ne dépasse pas un mois, le délai de préavis à observer par l'employeur est de trois jours et celui à observer par l'étudiant d'un jour; ces délais sont respectivement de sept jours et de trois jours lorsque la durée dépasse un mois. Les articles 37, 37/1 et 37/4, alinéas 1er et 2, sont applicables à ces délais.
+rules:
+  - name: engagement_duration_notice_threshold_months
+    kind: parameter
+    dtype: Count
+    source: "Art. 130, alinéa 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "Lorsque la durée de l'engagement ne dépasse pas un mois"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          1
+
+  - name: employer_notice_days_engagement_not_exceeding_one_month
+    kind: parameter
+    dtype: Count
+    source: "Art. 130, alinéa 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "le délai de préavis à observer par l'employeur est de trois jours"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          3
+
+  - name: student_notice_days_engagement_not_exceeding_one_month
+    kind: parameter
+    dtype: Count
+    source: "Art. 130, alinéa 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "celui à observer par l'étudiant d'un jour"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          1
+
+  - name: employer_notice_days_engagement_exceeding_one_month
+    kind: parameter
+    dtype: Count
+    source: "Art. 130, alinéa 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "Ces délais sont fixés respectivement à sept jours"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          7
+
+  - name: student_notice_days_engagement_exceeding_one_month
+    kind: parameter
+    dtype: Count
+    source: "Art. 130, alinéa 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "et à trois jours lorsque la durée de l'engagement dépasse un mois"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          3
+
+  - name: employer_notice_period_days_for_student_contract_termination
+    kind: derived
+    entity: Employer
+    dtype: Count
+    period: Day
+    source: "Art. 130, alinéas 1er et 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "le délai de préavis à observer par l'employeur"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/130#engagement_duration_notice_threshold_months
+              output: engagement_duration_notice_threshold_months
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/130#employer_notice_days_engagement_not_exceeding_one_month
+              output: employer_notice_days_engagement_not_exceeding_one_month
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/130#employer_notice_days_engagement_exceeding_one_month
+              output: employer_notice_days_engagement_exceeding_one_month
+              hash: sha256:local
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          if engagement_duration_months > engagement_duration_notice_threshold_months: employer_notice_days_engagement_exceeding_one_month else: employer_notice_days_engagement_not_exceeding_one_month
+
+  - name: student_notice_period_days_for_student_contract_termination
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: "Art. 130, alinéas 1er et 2"
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/130
+              excerpt: "le délai de préavis ... à observer par l'étudiant"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/130#engagement_duration_notice_threshold_months
+              output: engagement_duration_notice_threshold_months
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/130#student_notice_days_engagement_not_exceeding_one_month
+              output: student_notice_days_engagement_not_exceeding_one_month
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/130#student_notice_days_engagement_exceeding_one_month
+              output: student_notice_days_engagement_exceeding_one_month
+              hash: sha256:local
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          if engagement_duration_months > engagement_duration_notice_threshold_months: student_notice_days_engagement_exceeding_one_month else: student_notice_days_engagement_not_exceeding_one_month
