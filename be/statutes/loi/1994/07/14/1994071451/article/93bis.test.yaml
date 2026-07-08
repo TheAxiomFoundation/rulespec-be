@@ -1,0 +1,73 @@
+- name: non_regular_worker_with_dependents_gets_revenu_integration_floor_when_higher
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_is_non_regular_as_determined_by_king: true
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_has_persons_at_charge: true
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.invalidity_minimum_daily_amount_before_article_93bis: 40
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#input.daily_revenu_integration_for_two_cohabiting_persons_evaluated_in_working_days
+    : 50
+  output:
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#minimum_daily_invalidity_indemnity_for_non_regular_worker_with_dependents
+    : 50
+- name: non_regular_worker_with_dependents_keeps_higher_existing_minimum
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_is_non_regular_as_determined_by_king: true
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_has_persons_at_charge: true
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.invalidity_minimum_daily_amount_before_article_93bis: 60
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#input.daily_revenu_integration_for_two_cohabiting_persons_evaluated_in_working_days
+    : 50
+  output:
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#minimum_daily_invalidity_indemnity_for_non_regular_worker_with_dependents
+    : 60
+- name: worker_with_dependents_rule_inoperative_when_not_non_regular
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_is_non_regular_as_determined_by_king: false
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_has_persons_at_charge: true
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.invalidity_minimum_daily_amount_before_article_93bis: 40
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#input.daily_revenu_integration_for_two_cohabiting_persons_evaluated_in_working_days
+    : 50
+  output:
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#minimum_daily_invalidity_indemnity_for_non_regular_worker_with_dependents
+    : 0
+- name: holder_without_dependents_amount_corresponds_to_isolated_revenu_integration
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.holder_has_no_person_at_charge: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#input.daily_revenu_integration_for_isolated_person_evaluated_in_working_days
+    : 45
+  output:
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#minimum_daily_invalidity_indemnity_for_holder_without_dependents: 45
+- name: auto_zero_minimum_daily_invalidity_indemnity_for_holder_without_dependents
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#input.daily_revenu_integration_for_isolated_person_evaluated_in_working_days
+    : false
+    ? be:statutes/loi/1994/07/14/1994071451/article/93bis#input.daily_revenu_integration_for_two_cohabiting_persons_evaluated_in_working_days
+    : false
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.holder_has_no_person_at_charge: false
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.invalidity_minimum_daily_amount_before_article_93bis: 0
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_has_persons_at_charge: false
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#input.worker_is_non_regular_as_determined_by_king: false
+  output:
+    be:statutes/loi/1994/07/14/1994071451/article/93bis#minimum_daily_invalidity_indemnity_for_holder_without_dependents: 0
