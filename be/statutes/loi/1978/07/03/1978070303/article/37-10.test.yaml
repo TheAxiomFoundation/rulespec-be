@@ -1,0 +1,51 @@
+- name: fixed-term qualifying long incapacity caps and deducts indemnity
+  period: 2026-03
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.incapacity_results_from_worker_illness_or_accident: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.incapacity_duration_months: 7
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_is_fixed_term: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_fixed_duration_months: 12
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_term_has_not_expired: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_is_for_clearly_defined_work: false
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.clearly_defined_work_normal_occupation_months: 0
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.clearly_defined_work_has_not_been_completed: false
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.remuneration_remaining_until_term_or_work_completion: 10000
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.monthly_remuneration: 3000
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.remuneration_paid_since_incapacity_began: 1000
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#employer_may_terminate_long_incapacity_contract: holds
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#long_incapacity_contract_termination_indemnity: 8000
+- name: incapacity not exceeding six months blocks termination
+  period: 2026-03
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.incapacity_results_from_worker_illness_or_accident: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.incapacity_duration_months: 6
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_is_fixed_term: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_fixed_duration_months: 12
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_term_has_not_expired: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_is_for_clearly_defined_work: false
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.clearly_defined_work_normal_occupation_months: 0
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.clearly_defined_work_has_not_been_completed: false
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.remuneration_remaining_until_term_or_work_completion: 9000
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.monthly_remuneration: 3000
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.remuneration_paid_since_incapacity_began: 1000
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#employer_may_terminate_long_incapacity_contract: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#long_incapacity_contract_termination_indemnity: 0
+- name: clearly defined work qualifying branch
+  period: 2026-03
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.incapacity_results_from_worker_illness_or_accident: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.incapacity_duration_months: 8
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_is_fixed_term: false
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_fixed_duration_months: 0
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_term_has_not_expired: false
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.contract_is_for_clearly_defined_work: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.clearly_defined_work_normal_occupation_months: 4
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.clearly_defined_work_has_not_been_completed: true
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.remuneration_remaining_until_term_or_work_completion: 5000
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.monthly_remuneration: 3000
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#input.remuneration_paid_since_incapacity_began: 1000
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#employer_may_terminate_long_incapacity_contract: holds
+    be:statutes/loi/1978/07/03/1978070303/article/37-10#long_incapacity_contract_termination_indemnity: 4000
