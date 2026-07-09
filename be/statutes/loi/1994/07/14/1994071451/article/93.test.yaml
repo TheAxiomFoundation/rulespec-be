@@ -1,0 +1,92 @@
+- name: invalidity_indemnity_payable_with_dependent_rate_and_period_rules
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_persons_at_charge_as_determined_by_king: true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_no_persons_at_charge: false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.incapacity_extends_beyond_primary_incapacity_period: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.day_is_working_day_or_assimilated_by_management_committee_regulation
+    : true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_can_claim_invalidity_pension_for_miners_or_assimilated_workers
+    : false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_ceased_to_be_in_invalidity_under_article_100: true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.non_indemnified_period_counts_less_than_three_months: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.maternity_protection_period_under_articles_114_or_114bis_occurs_during_invalidity
+    : true
+  output:
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_minimum_rate_floor: 0.6
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_payable_for_day: holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_not_interrupted_by_short_non_indemnified_period: holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_suspended_by_maternity_protection_period: holds
+- name: miners_pension_claimant_blocks_payment_and_without_dependent_rate_applies
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_persons_at_charge_as_determined_by_king: false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_no_persons_at_charge: true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.incapacity_extends_beyond_primary_incapacity_period: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.day_is_working_day_or_assimilated_by_management_committee_regulation
+    : true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_can_claim_invalidity_pension_for_miners_or_assimilated_workers
+    : true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_ceased_to_be_in_invalidity_under_article_100: false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.non_indemnified_period_counts_less_than_three_months: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.maternity_protection_period_under_articles_114_or_114bis_occurs_during_invalidity
+    : false
+  output:
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_minimum_rate_floor: 0.4
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_payable_for_day: not_holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_not_interrupted_by_short_non_indemnified_period: not_holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_suspended_by_maternity_protection_period: not_holds
+- name: non_working_day_blocks_payment_and_long_non_indemnified_period_interrupts
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_persons_at_charge_as_determined_by_king: false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_no_persons_at_charge: false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.incapacity_extends_beyond_primary_incapacity_period: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.day_is_working_day_or_assimilated_by_management_committee_regulation
+    : false
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_can_claim_invalidity_pension_for_miners_or_assimilated_workers
+    : false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_ceased_to_be_in_invalidity_under_article_100: true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.non_indemnified_period_counts_less_than_three_months: false
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.maternity_protection_period_under_articles_114_or_114bis_occurs_during_invalidity
+    : false
+  output:
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_minimum_rate_floor: 0
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_payable_for_day: not_holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_not_interrupted_by_short_non_indemnified_period: not_holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_suspended_by_maternity_protection_period: not_holds
+- name: primary_incapacity_not_exceeded_blocks_payment
+  period:
+    period_kind: custom
+    name: day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input:
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_persons_at_charge_as_determined_by_king: true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_has_no_persons_at_charge: false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.incapacity_extends_beyond_primary_incapacity_period: false
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.day_is_working_day_or_assimilated_by_management_committee_regulation
+    : true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_can_claim_invalidity_pension_for_miners_or_assimilated_workers
+    : false
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.holder_ceased_to_be_in_invalidity_under_article_100: true
+    be:statutes/loi/1994/07/14/1994071451/article/93#input.non_indemnified_period_counts_less_than_three_months: true
+    ? be:statutes/loi/1994/07/14/1994071451/article/93#input.maternity_protection_period_under_articles_114_or_114bis_occurs_during_invalidity
+    : false
+  output:
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_minimum_rate_floor: 0.6
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_payable_for_day: not_holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_not_interrupted_by_short_non_indemnified_period: holds
+    be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_period_suspended_by_maternity_protection_period: not_holds

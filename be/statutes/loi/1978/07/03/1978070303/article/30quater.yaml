@@ -1,0 +1,143 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+  summary: "Art. 30quater: le travailleur d\xE9sign\xE9 comme parent d'accueil par\
+    \ une autorit\xE9 ou un service comp\xE9tent a le droit de s'absenter pour les\
+    \ obligations, missions ou situations li\xE9es au placement dans sa famille. La\
+    \ dur\xE9e de cette absence ne peut d\xE9passer 5 jours par an; si la famille\
+    \ d'accueil comprend deux travailleurs d\xE9sign\xE9s ensemble comme parents d'accueil,\
+    \ ces jours doivent \xEAtre partag\xE9s entre eux. A partir du 1er janvier 2008,\
+    \ le Roi augmente le nombre de jours \xE0 maximum 10 par ann\xE9e civile et par\
+    \ famille."
+rules:
+- name: foster_care_absence_days_per_year
+  kind: parameter
+  dtype: Count
+  source: "Art. 30quater, \xA7 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+          excerpt: "ne peut d\xE9passer 5 jours par an"
+  versions:
+  - effective_from: '2007-05-08'
+    formula: '5'
+- name: royal_increased_foster_care_absence_maximum_days_per_calendar_year_per_family
+  kind: parameter
+  dtype: Count
+  source: "Art. 30quater, \xA7 2, alin\xE9a 2"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+          excerpt: "\xE0 maximum 10 par ann\xE9e civile et par famille"
+  versions:
+  - effective_from: '2008-01-01'
+    formula: '10'
+- name: worker_is_designated_foster_parent
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Year
+  source: "Art. 30quater, \xA7 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+  versions:
+  - effective_from: '2007-05-08'
+    formula: 'worker_designated_as_foster_parent_by_court
+
+      or worker_designated_as_foster_parent_by_community_approved_placement_service
+
+      or worker_designated_as_foster_parent_by_youth_assistance_services
+
+      or worker_designated_as_foster_parent_by_special_youth_assistance_committee'
+- name: foster_care_absence_purpose_qualifies
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Year
+  source: "Art. 30quater, \xA7 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+  versions:
+  - effective_from: '2007-05-08'
+    formula: 'absence_for_obligations_or_missions_related_to_foster_placement
+
+      or absence_for_situations_related_to_foster_placement'
+- name: foster_parent_absence_entitlement_applies
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Year
+  source: "Art. 30quater, \xA7 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+  versions:
+  - effective_from: '2007-05-08'
+    formula: 'worker_is_designated_foster_parent
+
+      and foster_care_absence_purpose_qualifies
+
+      and one_or_more_persons_entrusted_to_worker_family_under_foster_placement'
+- name: requested_foster_care_absence_within_annual_limit
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Year
+  source: "Art. 30quater, \xA7 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+  versions:
+  - effective_from: '2007-05-08'
+    formula: "((foster_family_has_two_workers_designated_together_as_foster_parents)\
+      \ and requested_foster_care_absence_days <= foster_care_absence_days_allocated_to_this_worker\
+      \ and foster_care_absence_days_allocated_to_this_worker + foster_care_absence_days_allocated_to_other_joint_foster_parent\
+      \ <= foster_care_absence_days_per_year)\n  or (not (foster_family_has_two_workers_designated_together_as_foster_parents)\
+      \ and requested_foster_care_absence_days <= foster_care_absence_days_per_year)"
+- name: requested_foster_care_absence_authorized
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Year
+  source: "Art. 30quater, \xA7 1er"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30quater
+  versions:
+  - effective_from: '2007-05-08'
+    formula: 'foster_parent_absence_entitlement_applies
+
+      and requested_foster_care_absence_within_annual_limit'

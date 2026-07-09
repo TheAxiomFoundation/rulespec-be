@@ -1,0 +1,129 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+  summary: |-
+    Lorsque l'incapacité de travail se prolonge au-delà de la période d'incapacité primaire, une indemnité dite "indemnité d'invalidité" est payée pour chaque jour ouvrable ou assimilé. Une interruption de moins de trois mois n'interrompt pas la période d'invalidité; les périodes de protection de la maternité la suspendent. L'indemnité n'est pas payée aux titulaires pouvant prétendre à la pension d'invalidité des ouvriers mineurs et assimilés. Le taux est d'au moins 60 p.c. de la rémunération pour les titulaires ayant des personnes à charge et d'au moins 40 p.c. pour ceux qui n'en ont pas.
+  deferred_outputs:
+    - output: be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_rate_and_amount_fixed_by_king
+      reason: The article delegates fixing the rate, maximum amount, minimum amount, worker categories, and higher unique-income-loss conditions to the King; this source states only the minimum rate floors encoded here.
+      source_values:
+        - be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_minimum_rate_with_dependents
+        - be:statutes/loi/1994/07/14/1994071451/article/93#invalidity_indemnity_minimum_rate_without_dependents
+    - output: be:statutes/loi/1994/07/14/1994071451/article/93#third_party_assistance_flat_allowance
+      reason: The article authorizes the King to grant a flat allowance for third-party assistance for categories and conditions that He defines, but it does not state the allowance amount or complete eligibility conditions.
+rules:
+  - name: invalidity_indemnity_minimum_rate_with_dependents
+    kind: parameter
+    dtype: Rate
+    source: Art. 93, al. 6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "d'au moins 60 p.c. de la rémunération ... pour les titulaires ayant des personnes à charge"
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          0.60
+  - name: invalidity_indemnity_minimum_rate_without_dependents
+    kind: parameter
+    dtype: Rate
+    source: Art. 93, al. 6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "d'au moins 40 p.c. de la même rémunération pour les titulaires qui n'ont pas de personnes à charge"
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          0.40
+  - name: invalidity_indemnity_minimum_rate_floor
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Day
+    source: Art. 93, al. 6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "Ce taux est d'au moins 60 p.c. ... pour les titulaires ayant des personnes à charge et d'au moins 40 p.c. ... pour les titulaires qui n'ont pas de personnes à charge."
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          if holder_has_persons_at_charge_as_determined_by_king: invalidity_indemnity_minimum_rate_with_dependents else: if holder_has_no_persons_at_charge: invalidity_indemnity_minimum_rate_without_dependents else: 0
+  - name: invalidity_indemnity_payable_for_day
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: Art. 93, al. 1 and al. 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "Lorsque l'incapacité de travail se prolonge au-delà de la période d'incapacité primaire, il est payé pour chaque jour ouvrable ... ou pour chaque jour y assimilé"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "L'indemnité d'invalidité n'est pas payée aux titulaires qui peuvent prétendre à la pension d'invalidité accordée aux ouvriers mineurs et assimilés."
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          incapacity_extends_beyond_primary_incapacity_period
+          and day_is_working_day_or_assimilated_by_management_committee_regulation
+          and not holder_can_claim_invalidity_pension_for_miners_or_assimilated_workers
+  - name: invalidity_period_not_interrupted_by_short_non_indemnified_period
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: Art. 93, al. 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "Si le titulaire cesse d'être en état d'invalidité au sens de l'article 100 pendant une période comptant moins de trois mois, cette période non indemnisée n'interrompt pas le cours de la période d'invalidité."
+    versions:
+      - effective_from: '1994-07-14'
+        formula: |-
+          holder_ceased_to_be_in_invalidity_under_article_100
+          and non_indemnified_period_counts_less_than_three_months
+  - name: invalidity_period_suspended_by_maternity_protection_period
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Day
+    source: Art. 93, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
+              excerpt: "Les périodes de protection de la maternité visées aux articles 114 et 114bis, qui surviennent dans le courant d'une période d'invalidité, suspendent le cours de ladite période."
+    versions:
+      - effective_from: '1996-10-06'
+        formula: |-
+          maternity_protection_period_under_articles_114_or_114bis_occurs_during_invalidity

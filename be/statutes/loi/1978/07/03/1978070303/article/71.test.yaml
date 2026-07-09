@@ -1,0 +1,75 @@
+- name: fixed_term_employee_gets_full_remuneration_first_seven_days
+  period:
+    period_kind: custom
+    name: day
+    start: '2022-01-03'
+    end: '2022-01-03'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.person_is_employee: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_is_fixed_term: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_fixed_duration_months: 2
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_is_for_clearly_defined_work: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.clearly_defined_work_normal_occupation_months: 4
+    ? be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_non_professional_disease_or_non_work_accident
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_occupational_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_day_number: 5
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.daily_remuneration: 120
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.daily_remuneration_cap_for_health_and_disability_benefits: 100
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_short_engagement_employee: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_qualifying_non_work_incapacity: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_remuneration_entitlement_applies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_guaranteed_remuneration_amount_for_day: 120
+- name: clearly_defined_work_employee_gets_reduced_capped_remuneration_next_seven_days
+  period:
+    period_kind: custom
+    name: day
+    start: '2022-01-10'
+    end: '2022-01-10'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.person_is_employee: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_is_fixed_term: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_fixed_duration_months: 4
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_is_for_clearly_defined_work: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.clearly_defined_work_normal_occupation_months: 2
+    ? be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_non_professional_disease_or_non_work_accident
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_occupational_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_work_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_day_number: 10
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.daily_remuneration: 150
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.daily_remuneration_cap_for_health_and_disability_benefits: 100
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_short_engagement_employee: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_qualifying_non_work_incapacity: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_remuneration_entitlement_applies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_guaranteed_remuneration_amount_for_day: 60
+- name: work_accident_blocks_article_71_entitlement
+  period:
+    period_kind: custom
+    name: day
+    start: '2022-01-10'
+    end: '2022-01-10'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.person_is_employee: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_is_fixed_term: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_fixed_duration_months: 2
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.contract_is_for_clearly_defined_work: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.clearly_defined_work_normal_occupation_months: 4
+    ? be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_non_professional_disease_or_non_work_accident
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_occupational_disease: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_work_accident: true
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_results_from_commuting_accident: false
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.incapacity_day_number: 10
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.daily_remuneration: 150
+    be:statutes/loi/1978/07/03/1978070303/article/71#input.daily_remuneration_cap_for_health_and_disability_benefits: 100
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_short_engagement_employee: holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_qualifying_non_work_incapacity: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_remuneration_entitlement_applies: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/71#article_71_guaranteed_remuneration_amount_for_day: 0
