@@ -1,0 +1,118 @@
+- name: designated_foster_parent_request_within_single_worker_annual_limit_is_authorized
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_court: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_community_approved_placement_service
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_youth_assistance_services
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_special_youth_assistance_committee
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_obligations_or_missions_related_to_foster_placement
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_situations_related_to_foster_placement: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.one_or_more_persons_entrusted_to_worker_family_under_foster_placement
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_family_has_two_workers_designated_together_as_foster_parents
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.requested_foster_care_absence_days: 5
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_this_worker: 0
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_other_joint_foster_parent
+    : 0
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#worker_is_designated_foster_parent: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#foster_care_absence_purpose_qualifies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#foster_parent_absence_entitlement_applies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_within_annual_limit: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_authorized: holds
+- name: non_designated_worker_has_no_foster_parent_absence_entitlement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_court: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_community_approved_placement_service
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_youth_assistance_services
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_special_youth_assistance_committee
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_obligations_or_missions_related_to_foster_placement
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_situations_related_to_foster_placement: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.one_or_more_persons_entrusted_to_worker_family_under_foster_placement
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_family_has_two_workers_designated_together_as_foster_parents
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.requested_foster_care_absence_days: 5
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_this_worker: 0
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_other_joint_foster_parent
+    : 0
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#worker_is_designated_foster_parent: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#foster_parent_absence_entitlement_applies: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_authorized: not_holds
+- name: single_worker_request_above_five_days_exceeds_annual_limit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_court: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_community_approved_placement_service
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_youth_assistance_services
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_special_youth_assistance_committee
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_obligations_or_missions_related_to_foster_placement
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_situations_related_to_foster_placement: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.one_or_more_persons_entrusted_to_worker_family_under_foster_placement
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_family_has_two_workers_designated_together_as_foster_parents
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.requested_foster_care_absence_days: 6
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_this_worker: 0
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_other_joint_foster_parent
+    : 0
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_within_annual_limit: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_authorized: not_holds
+- name: two_joint_foster_parent_workers_must_share_family_days
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_court: false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_community_approved_placement_service
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_youth_assistance_services
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.worker_designated_as_foster_parent_by_special_youth_assistance_committee
+    : false
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_obligations_or_missions_related_to_foster_placement
+    : false
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.absence_for_situations_related_to_foster_placement: true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.one_or_more_persons_entrusted_to_worker_family_under_foster_placement
+    : true
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_family_has_two_workers_designated_together_as_foster_parents
+    : true
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.requested_foster_care_absence_days: 3
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_this_worker: 3
+    ? be:statutes/loi/1978/07/03/1978070303/article/30quater#input.foster_care_absence_days_allocated_to_other_joint_foster_parent
+    : 3
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#worker_is_designated_foster_parent: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#foster_care_absence_purpose_qualifies: holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_within_annual_limit: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/30quater#requested_foster_care_absence_authorized: not_holds

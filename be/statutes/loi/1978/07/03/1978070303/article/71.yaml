@@ -1,0 +1,171 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+  summary: "L'employ\xE9 engag\xE9 pour une dur\xE9e d\xE9termin\xE9e de moins de\
+    \ trois mois ou pour un travail nettement d\xE9fini dont l'ex\xE9cution requiert\
+    \ normalement une occupation de moins de trois mois a droit, en cas d'incapacit\xE9\
+    \ r\xE9sultant d'une maladie autre que professionnelle ou d'un accident autre\
+    \ qu'un accident du travail ou sur le chemin du travail, \xE0 sa r\xE9mun\xE9\
+    ration pendant sept jours et pendant les sept jours suivants \xE0 60 p.c. de la\
+    \ partie de cette r\xE9mun\xE9ration ne d\xE9passant pas le plafond de l'assurance\
+    \ maladie-invalidit\xE9."
+rules:
+- name: short_contract_duration_threshold_months
+  kind: parameter
+  dtype: Decimal
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "dur\xE9e d\xE9termin\xE9e de moins de trois mois"
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '3'
+- name: clearly_defined_work_normal_occupation_threshold_months
+  kind: parameter
+  dtype: Decimal
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "travail nettement d\xE9fini dont l'ex\xE9cution requiert normalement\
+            \ une occupation de moins de trois mois"
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '3'
+- name: article_71_initial_full_remuneration_days
+  kind: parameter
+  dtype: Count
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "sa r\xE9mun\xE9ration pour une p\xE9riode de sept jours"
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '7'
+- name: article_71_subsequent_reduced_remuneration_days
+  kind: parameter
+  dtype: Count
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: pendant les sept jours suivants
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '7'
+- name: article_71_subsequent_remuneration_rate
+  kind: parameter
+  dtype: Rate
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "\xE0 60 p.c."
+  versions:
+  - effective_from: '1986-11-01'
+    formula: '0.60'
+- name: article_71_short_engagement_employee
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+  versions:
+  - effective_from: '1986-11-01'
+    formula: "person_is_employee\nand (\n  (contract_is_fixed_term and contract_fixed_duration_months\
+      \ < short_contract_duration_threshold_months)\n  or (contract_is_for_clearly_defined_work\
+      \ and clearly_defined_work_normal_occupation_months < clearly_defined_work_normal_occupation_threshold_months)\n\
+      )"
+- name: article_71_qualifying_non_work_incapacity
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+  versions:
+  - effective_from: '1986-11-01'
+    formula: 'incapacity_results_from_non_professional_disease_or_non_work_accident
+
+      and not incapacity_results_from_occupational_disease
+
+      and not incapacity_results_from_work_accident
+
+      and not incapacity_results_from_commuting_accident'
+- name: article_71_remuneration_entitlement_applies
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: predicate
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+  versions:
+  - effective_from: '1986-11-01'
+    formula: 'article_71_short_engagement_employee
+
+      and article_71_qualifying_non_work_incapacity'
+- name: article_71_guaranteed_remuneration_amount_for_day
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Day
+  source: Article 71
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+  versions:
+  - effective_from: '1986-11-01'
+    formula: "if article_71_remuneration_entitlement_applies:\n  if incapacity_day_number\
+      \ <= article_71_initial_full_remuneration_days:\n    daily_remuneration\n  else:\n\
+      \    if incapacity_day_number <= article_71_initial_full_remuneration_days +\
+      \ article_71_subsequent_reduced_remuneration_days:\n      article_71_subsequent_remuneration_rate\
+      \ * min(daily_remuneration, daily_remuneration_cap_for_health_and_disability_benefits)\n\
+      \    else:\n      0\nelse:\n  0"
