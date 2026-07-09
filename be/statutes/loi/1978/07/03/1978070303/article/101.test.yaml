@@ -1,0 +1,80 @@
+- name: employer_termination_after_one_year_with_commissions
+  period: 2026-01
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.person_is_commercial_representative: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.representative_brought_clientele: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_employer_without_serious_reason: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_representative_for_serious_reason: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.occupation_years_with_same_employer: 4
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.employer_establishes_no_prejudice_from_contract_termination: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.remuneration_consists_in_whole_or_part_of_commissions: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.commissions_earned_during_lookback_period: 12000
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.current_monthly_non_commission_remuneration: 2000
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.monthly_value_of_contractually_acquired_benefits: 300
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_due: holds
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_commission_component_for_eviction_indemnity: 1000
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_remuneration_for_eviction_indemnity: 3300
+    be:statutes/loi/1978/07/03/1978070303/article/101#additional_eviction_indemnity_service_period_count: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_month_count: 3
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_amount: 9900
+- name: representative_termination_for_serious_reason_after_additional_period
+  period: 2026-01
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.person_is_commercial_representative: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.representative_brought_clientele: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_employer_without_serious_reason: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_representative_for_serious_reason: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.occupation_years_with_same_employer: 6
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.employer_establishes_no_prejudice_from_contract_termination: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.remuneration_consists_in_whole_or_part_of_commissions: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.commissions_earned_during_lookback_period: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.current_monthly_non_commission_remuneration: 2500
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.monthly_value_of_contractually_acquired_benefits: 500
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_due: holds
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_commission_component_for_eviction_indemnity: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_remuneration_for_eviction_indemnity: 3000
+    be:statutes/loi/1978/07/03/1978070303/article/101#additional_eviction_indemnity_service_period_count: 1
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_month_count: 4
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_amount: 12000
+- name: employer_establishes_no_prejudice_blocks_indemnity
+  period: 2026-01
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.person_is_commercial_representative: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.representative_brought_clientele: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_employer_without_serious_reason: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_representative_for_serious_reason: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.occupation_years_with_same_employer: 4
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.employer_establishes_no_prejudice_from_contract_termination: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.remuneration_consists_in_whole_or_part_of_commissions: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.commissions_earned_during_lookback_period: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.current_monthly_non_commission_remuneration: 2000
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.monthly_value_of_contractually_acquired_benefits: 300
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_due: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_commission_component_for_eviction_indemnity: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_remuneration_for_eviction_indemnity: 2300
+    be:statutes/loi/1978/07/03/1978070303/article/101#additional_eviction_indemnity_service_period_count: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_month_count: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_amount: 0
+- name: occupation_less_than_one_year_blocks_indemnity
+  period: 2026-01
+  input:
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.person_is_commercial_representative: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.representative_brought_clientele: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_employer_without_serious_reason: true
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.contract_terminated_by_representative_for_serious_reason: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.occupation_years_with_same_employer: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.employer_establishes_no_prejudice_from_contract_termination: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.remuneration_consists_in_whole_or_part_of_commissions: false
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.commissions_earned_during_lookback_period: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.current_monthly_non_commission_remuneration: 2000
+    be:statutes/loi/1978/07/03/1978070303/article/101#input.monthly_value_of_contractually_acquired_benefits: 300
+  output:
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_due: not_holds
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_commission_component_for_eviction_indemnity: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#monthly_remuneration_for_eviction_indemnity: 2300
+    be:statutes/loi/1978/07/03/1978070303/article/101#additional_eviction_indemnity_service_period_count: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_month_count: 0
+    be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_amount: 0

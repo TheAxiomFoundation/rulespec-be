@@ -1,0 +1,141 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+  summary: |-
+    If incapacity resulting from illness or accident of a worker engaged for a fixed term of at least three months, or for clearly defined work normally requiring at least three months, exceeds six months while the term has not expired or the work is not completed, the employer may terminate the contract with indemnity. The indemnity equals remaining remuneration until the agreed term or remaining time needed for the work, capped at three months of remuneration and reduced by remuneration paid since incapacity began.
+rules:
+  - name: fixed_term_contract_minimum_duration_months
+    kind: parameter
+    dtype: Count
+    source: Art. 37/10, fixed-term contract duration threshold
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+              excerpt: "durée déterminée de trois mois au moins"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          3
+
+  - name: clearly_defined_work_minimum_normal_occupation_months
+    kind: parameter
+    dtype: Count
+    source: Art. 37/10, clearly defined work occupation threshold
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+              excerpt: "occupation d'au moins trois mois"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          3
+
+  - name: incapacity_termination_threshold_months
+    kind: parameter
+    dtype: Count
+    source: Art. 37/10, incapacity duration threshold
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+              excerpt: "dépasse six mois"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          6
+
+  - name: termination_indemnity_maximum_remuneration_months
+    kind: parameter
+    dtype: Count
+    source: Art. 37/10, indemnity maximum
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+              excerpt: "maximum de trois mois de rémunération"
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          3
+
+  - name: employer_may_terminate_long_incapacity_contract
+    kind: derived
+    entity: Employer
+    dtype: Judgment
+    period: Month
+    source: Art. 37/10, employer termination right after long incapacity
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/37-10#fixed_term_contract_minimum_duration_months
+              output: fixed_term_contract_minimum_duration_months
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/37-10#clearly_defined_work_minimum_normal_occupation_months
+              output: clearly_defined_work_minimum_normal_occupation_months
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/37-10#incapacity_termination_threshold_months
+              output: incapacity_termination_threshold_months
+              hash: sha256:local
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          incapacity_results_from_worker_illness_or_accident
+          and incapacity_duration_months > incapacity_termination_threshold_months
+          and (
+            (contract_is_fixed_term and contract_fixed_duration_months >= fixed_term_contract_minimum_duration_months and contract_term_has_not_expired)
+            or (contract_is_for_clearly_defined_work and clearly_defined_work_normal_occupation_months >= clearly_defined_work_minimum_normal_occupation_months and clearly_defined_work_has_not_been_completed)
+          )
+
+  - name: long_incapacity_contract_termination_indemnity
+    kind: derived
+    entity: Employer
+    dtype: Money
+    period: Month
+    source: Art. 37/10, indemnity for termination after long incapacity
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/37-10
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/37-10#termination_indemnity_maximum_remuneration_months
+              output: termination_indemnity_maximum_remuneration_months
+              hash: sha256:local
+    versions:
+      - effective_from: '2014-01-01'
+        formula: |-
+          if employer_may_terminate_long_incapacity_contract: max(0, min(remuneration_remaining_until_term_or_work_completion, monthly_remuneration * termination_indemnity_maximum_remuneration_months) - remuneration_paid_since_incapacity_began) else: 0

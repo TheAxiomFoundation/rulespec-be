@@ -1,0 +1,295 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+  summary: |-
+    Indemnité d'éviction due au représentant de commerce qui a apporté une clientèle lorsque le contrat prend fin par le fait de l'employeur sans motif grave ou par le représentant pour motif grave, sauf absence de préjudice établie par l'employeur. Due après une occupation d'un an; égale à trois mois de rémunération pour un à cinq ans, augmentée d'un mois par période supplémentaire de cinq ans. Les commissions sont calculées sur la moyenne mensuelle des douze mois précédant la cessation; l'indemnité comprend rémunération en cours et avantages acquis.
+rules:
+  - name: minimum_occupation_years_for_eviction_indemnity
+    kind: parameter
+    dtype: Count
+    period: Year
+    source: Art. 101, al. 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+              excerpt: "Cette indemnité n'est due qu'après une occupation d'un an."
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          1
+
+  - name: base_service_period_years_for_eviction_indemnity
+    kind: parameter
+    dtype: Count
+    period: Year
+    source: Art. 101, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+              excerpt: "pendant une période de un à cinq ans"
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          5
+
+  - name: base_eviction_indemnity_months
+    kind: parameter
+    dtype: Count
+    period: Month
+    source: Art. 101, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+              excerpt: "Elle est égale à la rémunération de trois mois"
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          3
+
+  - name: additional_service_period_years_for_eviction_indemnity
+    kind: parameter
+    dtype: Count
+    period: Year
+    source: Art. 101, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+              excerpt: "chaque période supplémentaire de cinq ans"
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          5
+
+  - name: additional_eviction_indemnity_months_per_service_period
+    kind: parameter
+    dtype: Count
+    period: Month
+    source: Art. 101, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+              excerpt: "augmentée de la rémunération de un mois"
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          1
+
+  - name: commission_average_lookback_months_for_eviction_indemnity
+    kind: parameter
+    dtype: Count
+    period: Month
+    source: Art. 101, al. 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+              excerpt: "pendant les douze mois qui précèdent la date de la cessation du contrat"
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          12
+
+  - name: eviction_indemnity_due
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Month
+    source: Art. 101, al. 1-2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#minimum_occupation_years_for_eviction_indemnity
+              output: minimum_occupation_years_for_eviction_indemnity
+              hash: sha256:local
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          person_is_commercial_representative
+          and representative_brought_clientele
+          and (contract_terminated_by_employer_without_serious_reason or contract_terminated_by_representative_for_serious_reason)
+          and occupation_years_with_same_employer >= minimum_occupation_years_for_eviction_indemnity
+          and not employer_establishes_no_prejudice_from_contract_termination
+
+  - name: additional_eviction_indemnity_service_period_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Month
+    source: Art. 101, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#base_service_period_years_for_eviction_indemnity
+              output: base_service_period_years_for_eviction_indemnity
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#additional_service_period_years_for_eviction_indemnity
+              output: additional_service_period_years_for_eviction_indemnity
+              hash: sha256:local
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          ceil(max(0, occupation_years_with_same_employer - base_service_period_years_for_eviction_indemnity) / additional_service_period_years_for_eviction_indemnity)
+
+  - name: eviction_indemnity_month_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Month
+    source: Art. 101, al. 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#base_eviction_indemnity_months
+              output: base_eviction_indemnity_months
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#additional_eviction_indemnity_months_per_service_period
+              output: additional_eviction_indemnity_months_per_service_period
+              hash: sha256:local
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          if eviction_indemnity_due: base_eviction_indemnity_months + (additional_eviction_indemnity_service_period_count * additional_eviction_indemnity_months_per_service_period) else: 0
+
+  - name: monthly_commission_component_for_eviction_indemnity
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Art. 101, al. 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#commission_average_lookback_months_for_eviction_indemnity
+              output: commission_average_lookback_months_for_eviction_indemnity
+              hash: sha256:local
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          if remuneration_consists_in_whole_or_part_of_commissions: commissions_earned_during_lookback_period / commission_average_lookback_months_for_eviction_indemnity else: 0
+
+  - name: monthly_remuneration_for_eviction_indemnity
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Art. 101, al. 4-5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: definition
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#monthly_commission_component_for_eviction_indemnity
+              output: monthly_commission_component_for_eviction_indemnity
+              hash: sha256:local
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          current_monthly_non_commission_remuneration + monthly_commission_component_for_eviction_indemnity + monthly_value_of_contractually_acquired_benefits
+
+  - name: eviction_indemnity_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Art. 101, al. 1-5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/101
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_due
+              output: eviction_indemnity_due
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#eviction_indemnity_month_count
+              output: eviction_indemnity_month_count
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/loi/1978/07/03/1978070303/article/101#monthly_remuneration_for_eviction_indemnity
+              output: monthly_remuneration_for_eviction_indemnity
+              hash: sha256:local
+    versions:
+      - effective_from: '1986-11-01'
+        formula: |-
+          if eviction_indemnity_due: monthly_remuneration_for_eviction_indemnity * eviction_indemnity_month_count else: 0
