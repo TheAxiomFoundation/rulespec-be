@@ -10,16 +10,7 @@ module:
     procedure, withdrawal, recovery, fraud penalties, and historical premiums
     based on the 1 January 2016 or 1 January 2017 situations.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/13
-      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/14
-      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/15
-      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/16
-      - be-bru/statute/ordonnance/2017/11/23/2017031630/article/17
-      - be-bru/statute/ordonnance/2020/04/30/2020041087/article/2
-      - be-bru/statute/ordonnance/2020/04/30/2020041087/article/3
-    values:
-      brussels_be_home_base_annual_amount: "130"
+    corpus_citation_path: "be-bru/statute/ordonnance/2017/11/23/2017031630/article/13"
 units:
   - name: EUR
     kind: currency
@@ -37,7 +28,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2020/04/30/2020041087/article/2
-              span: Une prime annuelle de 130 euros par ménage est due pour une habitation
+              excerpt: "Une prime annuelle de 130 euros par ménage est due pour une habitation"
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -48,6 +39,14 @@ rules:
     dtype: Rate
     period: Year
     source: Brussels ordinance of 23 November 2017 article 14, paragraph 1, as replaced by ordinance of 30 April 2020 article 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2017/11/23/2017031630/article/14"
+              excerpt: "L'adaptation est réalisée à l'aide d'un coefficient qui est obtenu en divisant l'indice des prix du mois de décembre de l'année qui précède l'année d'octroi de la prime par l'indice des prix du mois de décembre 2018."
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -83,6 +82,14 @@ rules:
     dtype: Judgment
     period: Year
     source: Brussels ordinance of 23 November 2017 articles 13 and 14
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2017/11/23/2017031630/article/13"
+              excerpt: "2° habitation : un bien immobilier qui est destiné au logement, y compris les dépendances qui sont l'accessoire habituel et souvent indispensable du logement ;"
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -129,6 +136,14 @@ rules:
     period: Year
     unit: EUR
     source: Brussels ordinance of 23 November 2017 article 14
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2020/04/30/2020041087/article/3"
+              excerpt: "L'article 2 de la présente ordonnance sera appliqué pour la première fois aux primes octroyées sur la base de la situation au 1er janvier 2020."
     versions:
       - effective_from: '2020-01-01'
         formula: |-

@@ -32,37 +32,7 @@ module:
 
     monthly day-count formula.'
   source_verification:
-    corpus_citation_paths:
-    - be/regulation/arrete/1991/11/25/1991013192/article/30
-    - be/regulation/arrete/1991/11/25/1991013192/article/33
-    - be/regulation/arrete/1991/11/25/1991013192/article/111
-    - be/regulation/arrete/1991/11/25/1991013192/article/114
-    - be/regulation/arrete/1991/11/25/1991013192/article/116
-    - be/regulation/arrete/1991/11/25/1991013192/article/131ter
-    values:
-      belgium_unemployment_article_111_wage_cap_a1: '92.3956'
-      belgium_unemployment_article_111_wage_cap_a2: '86.8727'
-      belgium_unemployment_article_111_wage_cap_b: '70.6721'
-      belgium_unemployment_article_111_wage_cap_c: '75.8270'
-      belgium_unemployment_article_111_wage_cap_ax: '65.2262'
-      belgium_unemployment_article_111_wage_cap_az: '63.5679'
-      belgium_unemployment_article_114_first_period_months: 12
-      belgium_unemployment_article_114_days_per_second_period_extension_month: 104
-      belgium_unemployment_article_114_max_second_period_extension_months: 12
-      belgium_unemployment_article_114_first_three_months_replacement_rate: '0.65'
-      belgium_unemployment_article_114_later_first_period_replacement_rate: '0.60'
-      belgium_unemployment_article_114_temporary_force_majeure_replacement_rate: '0.65'
-      belgium_unemployment_article_114_temporary_other_reason_replacement_rate: '0.60'
-      belgium_unemployment_article_114_article_90_dispense_daily_amount: '16.48'
-      belgium_unemployment_article_114_required_professional_past_years_2026: 31
-      belgium_unemployment_article_114_required_professional_past_years_2027: 32
-      belgium_unemployment_article_114_required_professional_past_years_2028: 33
-      belgium_unemployment_article_114_required_professional_past_years_2029: 34
-      belgium_unemployment_article_114_required_professional_past_years_2030: 35
-      belgium_unemployment_article_116_non_ui_profession_min_uninterrupted_months: 3
-      belgium_unemployment_article_116_income_guarantee_min_weekly_hours: 19
-      belgium_unemployment_article_131ter_holiday_allowance_rate: '0.65'
-      belgium_unemployment_article_131ter_holiday_allowance_minimum_daily_amount: '31.18'
+    corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/30"
 units:
 - name: EUR
   kind: currency
@@ -122,7 +92,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
-          span: Montant limite A1, égal à 92,3956 euros par jour
+          excerpt: "montant limite A1, égal à 92,3956 euros par jour;]"
   versions:
   - effective_from: '2026-03-01'
     formula: '92.3956'
@@ -138,7 +108,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
-          span: Montant limite A2, égal à 86,8727 euros par jour
+          excerpt: "1° /1 montant limite A2, égal à 86,8727 euros par jour;]"
   versions:
   - effective_from: '2026-03-01'
     formula: '86.8727'
@@ -154,7 +124,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
-          span: Montant limite B, égal à 70,6721 euros par jour
+          excerpt: "2° montant limite B, égal à [\n9\n70,6721 euros]\n9\npar jour;"
   versions:
   - effective_from: '2023-07-01'
     formula: '70.6721'
@@ -170,7 +140,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
-          span: Montant limite C, égal à 75,8270 euros par jour
+          excerpt: "3° montant limite C, égal à [\n9\n75,8270 euros]\n9\npar jour;"
   versions:
   - effective_from: '2023-07-01'
     formula: '75.8270'
@@ -187,7 +157,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
-          span: Montant limite AX, égal à 65,2262 euros par jour
+          excerpt: "4° montant limite AX, égal à [\n9\n65,2262 euros]\n9\npar jour;"
   versions:
   - effective_from: '2023-07-01'
     formula: '65.2262'
@@ -203,7 +173,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/111
-          span: Montant limite AZ, égal à 63,5679 euros par jour
+          excerpt: "6° montant limite AZ, égal à [\n9\n63,5679 euros]\n9\npar jour;"
   versions:
   - effective_from: '2023-07-01'
     formula: '63.5679'
@@ -218,7 +188,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/131ter
-          span: S'élève à 65 % de la rémunération journalière moyenne
+          excerpt: "§ 2, a droit, s'élève à 65 % de la rémunération journalière moyenne à laquelle le travailleur aurait normalement droit au moment où il prend pour la première fois des jours de vacances seniors pendant l'année de vacances.) <AR"
   versions:
   - effective_from: '2007-01-01'
     formula: '0.65'
@@ -234,8 +204,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/131ter
-          span: Le montant journalier minimum de l'allocation visé aux alinéas précédents
-            est fixé à 31,18 euros
+          excerpt: "Le montant journalier minimum de l'allocation visé aux alinéas précédents est fixé à [\n5\n31,18 euros]"
   versions:
   - effective_from: '2023-07-01'
     formula: '31.18'
@@ -250,7 +219,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Acquiert ce droit pour une période de douze mois
+          excerpt: "Le chômeur complet qui, en application des articles 30 ou 33, est admis au droit aux allocations, acquiert ce droit pour une période de douze mois, calculée de date à date à partir de la date de la demande d'allocations."
   versions:
   - effective_from: '2026-03-01'
     formula: '12'
@@ -265,8 +234,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Un mois par période de passé professionnel de 104 journées de travail
-            ou journées assimilées
+          excerpt: "Le droit aux allocations pendant douze mois est élargi d'un mois par période de passé professionnel de 104 journées de travail ou journées assimilées, ou, s'il s'agit d'une admission en application de l'article 33, de 104 demi-journées de travail ou journées assimilées."
   versions:
   - effective_from: '2026-03-01'
     formula: '104'
@@ -281,7 +249,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: L'élargissement est en outre limité à un maximum de douze mois
+          excerpt: "L'élargissement est en outre limité à un maximum de douze mois"
   versions:
   - effective_from: '2026-03-01'
     formula: '12'
@@ -296,8 +264,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Durant les trois premiers mois de la première période d'indemnisation,
-            le travailleur a droit à un montant d'allocation de 65 %
+          excerpt: "Durant les trois premiers mois de la première période d'indemnisation, le travailleur a droit à un montant d'allocation de 65 %"
   versions:
   - effective_from: '2026-03-01'
     formula: '0.65'
@@ -312,8 +279,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Durant les mois quatre à six de la première période d'indemnisation,
-            le travailleur a droit à un montant d'allocations de 60 %
+          excerpt: "Durant les mois quatre à six de la première période d'indemnisation, le travailleur a droit à un montant d'allocations de 60 %"
   versions:
   - effective_from: '2026-03-01'
     formula: '0.60'
@@ -329,8 +295,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 65 % de la rémunération journalière moyenne, lorsque le contrat de
-            travail du travailleur est suspendu pour cause de force majeure
+          excerpt: "65 % de la rémunération journalière moyenne, lorsque le contrat de travail du travailleur est suspendu pour cause de force majeure"
   versions:
   - effective_from: '2026-03-01'
     formula: '0.65'
@@ -346,8 +311,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 60 % de la rémunération journalière moyenne, lorsque le contrat de
-            travail du travailleur est suspendu pour un autre motif
+          excerpt: "60 % de la rémunération journalière moyenne, lorsque le contrat de travail du travailleur est suspendu pour un autre motif"
   versions:
   - effective_from: '2026-03-01'
     formula: '0.60'
@@ -364,8 +328,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Le montant journalier de l'allocation de chômage du travailleur qui
-            bénéficie de la dispense prévue à l'article 90 s'élève à 16,48 euros
+          excerpt: "Par dérogation aux paragraphes précédents, le montant journalier de l'allocation de chômage du travailleur qui bénéficie de la dispense prévue à l'article 90 s'élève à [\n2\n16,48 euros]"
   versions:
   - effective_from: '2026-03-01'
     formula: '16.48'
@@ -380,8 +343,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Le travailleur est présumé prouver un passé professionnel suffisant
-            s'il prouve au moins 31 ans de passé professionnel
+          excerpt: "Pour l'application de l'alinéa 1er, 2°, le travailleur est présumé prouver un passé professionnel suffisant s'il prouve au moins 31 ans de passé professionnel, calculé conformément à l'article 119, 3°."
   versions:
   - effective_from: '2026-03-01'
     formula: '31'
@@ -396,8 +358,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 32 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2027
+          excerpt: "32 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2027"
   versions:
   - effective_from: '2026-03-01'
     formula: '32'
@@ -412,8 +373,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 33 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2028
+          excerpt: "33 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2028"
   versions:
   - effective_from: '2026-03-01'
     formula: '33'
@@ -428,8 +388,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 34 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2029
+          excerpt: "34 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2029"
   versions:
   - effective_from: '2026-03-01'
     formula: '34'
@@ -444,8 +403,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 35 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2030
+          excerpt: "35 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2030"
   versions:
   - effective_from: '2026-03-01'
     formula: '35'
@@ -461,8 +419,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/116
-          span: Pour autant que la durée ininterrompue de l'évènement est d'au moins
-            trois mois
+          excerpt: "6° pour autant que la durée ininterrompue de l'évènement est d'au moins trois mois et pour autant qu'aucune allocation n'ait été octroyée pour cette période: l'exercice d'une profession qui n'assujettit pas le travailleur à la sécurité sociale pour le secteur chômage."
   versions:
   - effective_from: '2026-03-01'
     formula: '3'
@@ -477,9 +434,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/116
-          span: Le régime de travail à temps partiel comporte durant toute la période
-            ininterrompue de l'occupation normalement en moyenne par semaine au moins
-            19 heures
+          excerpt: "§ 2bis, est une allocation de chômage, peut maintenir le droit à cette allocation jusqu'à la fin de la période ininterrompue de travail à temps partiel avec maintien des droits à la condition que le régime de travail à temps partiel comporte durant toute la période ininterrompue de l'occupation normalement en moyenne par semaine au moins 19 heures ou au moins la moitié du nombre moyen normal des heures de travail hebdomadaire de la personne de référence."
   versions:
   - effective_from: '2026-03-01'
     formula: '19'
@@ -494,8 +449,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 35 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2030
+          excerpt: "35 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2030"
   versions:
   - effective_from: '2026-03-01'
     formula: '2030'
@@ -510,8 +464,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 34 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2029
+          excerpt: "34 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2029"
   versions:
   - effective_from: '2026-03-01'
     formula: '2029'
@@ -526,8 +479,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 33 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2028
+          excerpt: "33 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2028"
   versions:
   - effective_from: '2026-03-01'
     formula: '2028'
@@ -542,8 +494,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: 32 ans, lorsque l'admissibilité au droit aux allocations est constatée
-            en 2027
+          excerpt: "32 ans, lorsque l'admissibilité au droit aux allocations est constatée en 2027"
   versions:
   - effective_from: '2026-03-01'
     formula: '2027'
@@ -614,8 +565,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Le travailleur qui, au moment de la demande d'allocations, a atteint
-            l'âge de 55 ans et qui prouve un passé professionnel suffisant
+          excerpt: "2° le travailleur qui, au moment de la demande d'allocations à la suite de laquelle le droit aux allocations a été constaté en application des articles 30 ou 33, a atteint l'âge de 55 ans et qui prouve un passé professionnel suffisant;"
   versions:
   - effective_from: '2026-03-01'
     formula: '55'
@@ -812,7 +762,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
-          span: Durant les mois quatre à six de la première période d'indemnisation
+          excerpt: "Durant les mois quatre à six de la première période d'indemnisation"
   versions:
   - effective_from: '2026-03-01'
     formula: '6'

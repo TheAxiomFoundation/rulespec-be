@@ -26,49 +26,7 @@ module:
 
     axiom-oracles/docs/be-family-benefit-indexation-convention.md.'
   source_verification:
-    corpus_citation_paths:
-    - be-wal/statute/decret/2018/02/08/2018201006/article/7
-    - be-wal/statute/decret/2018/02/08/2018201006/article/8
-    - be-wal/statute/decret/2018/02/08/2018201006/article/9
-    - be-wal/statute/decret/2018/02/08/2018201006/article/10
-    - be-wal/statute/decret/2018/02/08/2018201006/article/11
-    - be-wal/statute/decret/2018/02/08/2018201006/article/12
-    - be-wal/statute/decret/2018/02/08/2018201006/article/13
-    - be-wal/statute/decret/2018/02/08/2018201006/article/14
-    - be-wal/statute/decret/2018/02/08/2018201006/article/15
-    - be-wal/statute/decret/2018/02/08/2018201006/article/16
-    - be-wal/statute/decret/2018/02/08/2018201006/article/17
-    - be-wal/statute/decret/2018/02/08/2018201006/article/18
-    - be-wal/statute/decret/2018/02/08/2018201006/article/19
-    values:
-      wallonia_family_benefits_birth_grant_amount: '1100'
-      wallonia_family_benefits_adoption_grant_amount: '1100'
-      wallonia_family_benefits_under_18_base_monthly_amount: '155'
-      wallonia_family_benefits_18_to_24_base_monthly_amount: '165'
-      wallonia_family_benefits_double_orphan_base_monthly_amount: '350'
-      wallonia_family_benefits_foster_care_monthly_amount: '61'
-      wallonia_family_benefits_large_family_low_income_monthly_amount: '35'
-      wallonia_family_benefits_large_family_middle_income_monthly_amount: '20'
-      wallonia_family_benefits_single_parent_low_income_monthly_amount: '20'
-      wallonia_family_benefits_single_parent_middle_income_monthly_amount: '10'
-      wallonia_family_benefits_social_low_income_monthly_amount: '55'
-      wallonia_family_benefits_social_middle_income_monthly_amount: '25'
-      wallonia_family_benefits_loss_capacity_extra_monthly_amount: '10'
-      wallonia_family_benefits_disabled_household_member_monthly_amount: '65'
-      wallonia_family_benefits_income_low_threshold: '30386.48'
-      wallonia_family_benefits_income_middle_threshold: '50000'
-      wallonia_family_benefits_one_parent_orphan_supplement_rate: '0.50'
-      wallonia_family_benefits_disability_tier_1_monthly_amount: '82.37'
-      wallonia_family_benefits_disability_tier_2_monthly_amount: '109.70'
-      wallonia_family_benefits_disability_tier_3_monthly_amount: '255.99'
-      wallonia_family_benefits_disability_tier_4_monthly_amount: '422.56'
-      wallonia_family_benefits_disability_tier_5_monthly_amount: '480.48'
-      wallonia_family_benefits_disability_tier_6_monthly_amount: '514.80'
-      wallonia_family_benefits_disability_tier_7_monthly_amount: '549.12'
-      wallonia_family_benefits_age_supplement_under_5_annual_amount: '20'
-      wallonia_family_benefits_age_supplement_5_to_10_annual_amount: '30'
-      wallonia_family_benefits_age_supplement_11_to_16_annual_amount: '50'
-      wallonia_family_benefits_age_supplement_17_plus_annual_amount: '80'
+    corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/7"
 units:
 - name: EUR
   kind: currency
@@ -87,7 +45,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/7
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 7 section 1; amount 1100 EUR
+            excerpt: "Art. 7. § 1er. Une prime de naissance d'un montant de 1.100 euros est octroyée à l'occasion :"
   versions:
   - effective_from: '2020-01-01'
     formula: '1100'
@@ -104,7 +62,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/8
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 8 section 1; amount 1100 EUR
+            excerpt: "Art. 8. § 1er. Une prime d'adoption d'un montant forfaitaire de 1.100 euros est octroyée à l'occasion de l'adoption de tout enfant bénéficiaire aux conditions suivantes :"
   versions:
   - effective_from: '2020-01-01'
     formula: '1100'
@@ -122,7 +80,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/9
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 9 section 1 item 1; amount 155 EUR
+            excerpt: "9. § 1er. Il est octroyé mensuellement à l'allocataire désigné conformément à l'article 22, en faveur de l'enfant bénéficiaire, une allocation de base dont le montant s'élève à :\n1° 155 euros jusqu'à la fin du mois au cours duquel il atteint l'âge de dix-huit ans;"
   versions:
   - effective_from: '2020-01-01'
     formula: '155'
@@ -140,7 +98,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/9
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 9 section 1 item 2; amount 165 EUR
+            excerpt: "9. § 1er. Il est octroyé mensuellement à l'allocataire désigné conformément à l'article 22, en faveur de l'enfant bénéficiaire, une allocation de base dont le montant s'élève à :\n1° 155 euros jusqu'à la fin du mois au cours duquel il atteint l'âge de dix-huit ans;\n2° 165 euros à partir du premier jour du mois suivant celui de son 18"
   versions:
   - effective_from: '2020-01-01'
     formula: '165'
@@ -158,7 +116,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/9
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 9 section 2; amount 350 EUR
+            excerpt: "Art. 9. § 1er. Il est octroyé mensuellement à l'allocataire désigné conformément à l'article 22, en faveur de l'enfant bénéficiaire, une allocation de base dont le montant s'élève à :\n1° 155 euros jusqu'à la fin du mois au cours duquel il atteint l'âge de dix-huit ans;\n2° 165 euros à partir du premier jour du mois suivant celui de son 18\nème\nanniversaire et jusqu'au plus tard, en ce compris, le mois au cours duquel il atteint l'âge de vingt-cinq ans.\n§ 2. Par dérogation aux montants visés au paragraphe 1er, il est octroyé mensuellement à l'allocataire désigné conformément à l'article 22, en faveur de l'enfant bénéficiaire orphelin de ses deux parents, ou orphelin du seul parent à l'égard duquel sa filiation est établie, un montant de base de 350 euros.\nLa déclaration d'absence conforme aux dispositions du Code civil, est assimilée au décès.\nLe bénéfice du montant visé à l'alinéa 1erest"
   versions:
   - effective_from: '2020-01-01'
     formula: '350'
@@ -176,7 +134,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/10
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 10; amount 61 EUR
+            excerpt: "Art. 10. Une allocation forfaitaire d'un montant mensuel de 61 euros, dont le Gouvernement fixe les conditions d'octroi, est due lorsque l'enfant est placé chez un particulier par l'intermédiaire ou à charge d'une autorité publique."
   versions:
   - effective_from: '2020-01-01'
     formula: '61'
@@ -194,7 +152,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/13
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, articles 11 to 13; amount 30386.48 EUR
+            excerpt: "Art. 13. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de :\n1° 55 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;"
   versions:
   - effective_from: '2020-01-01'
     formula: '30386.48'
@@ -212,7 +170,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/13
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, articles 11 to 13; amount 50000 EUR
+            excerpt: "Art. 13. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de :\n1° 55 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;\n2° 25 euros par enfant lorsque les revenus se situent entre le plafond visé au 1° et 50.000 euros bruts annuels.\nLe Gouvernement détermine les personnes et les revenus à prendre en considération pour la détermination des plafonds visés à l'alinéa 1er.\n§ 2. Un supplément de 10 euros est, en"
   versions:
   - effective_from: '2020-01-01'
     formula: '50000'
@@ -230,7 +188,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/11
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 11 item 1; amount 35 EUR
+            excerpt: "11. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des ménages composés d'au moins trois enfants en faveur desquels des prestations familiales sont accordées.\nLe montant de ce supplément mensuel est de :\n1° 35 euros par enfant bénéficiaire lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;"
   versions:
   - effective_from: '2020-01-01'
     formula: '35'
@@ -248,7 +206,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/11
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 11 item 2; amount 20 EUR
+            excerpt: "Art. 11. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des ménages composés d'au moins trois enfants en faveur desquels des prestations familiales sont accordées.\nLe montant de ce supplément mensuel est de :\n1° 35 euros par enfant bénéficiaire lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;\n2° 20 euros par enfant bénéficiaire lorsque les revenus se situent entre le plafond visé au 1° et 50.000 euros bruts annuels.\nLe"
   versions:
   - effective_from: '2020-01-01'
     formula: '20'
@@ -266,7 +224,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/12
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 12 item 1; amount 20 EUR
+            excerpt: "12. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel pour famille monoparentale de :\n1° 20 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;"
   versions:
   - effective_from: '2020-01-01'
     formula: '20'
@@ -284,7 +242,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/12
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 12 item 2; amount 10 EUR
+            excerpt: "Art. 12. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel pour famille monoparentale de :\n1° 20 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;\n2° 10 euros par enfant lorsque les revenus se situent entre le plafond visé au 1° et 50.000 euros bruts annuels."
   versions:
   - effective_from: '2020-01-01'
     formula: '10'
@@ -303,7 +261,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/13
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 13 section 1 item 1; amount 55 EUR
+            excerpt: "Art. 13. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de :\n1° 55 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;"
   versions:
   - effective_from: '2020-01-01'
     formula: '55'
@@ -322,7 +280,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/13
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 13 section 1 item 2; amount 25 EUR
+            excerpt: "13. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de :\n1° 55 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;\n2° 25 euros par enfant lorsque les revenus se situent entre le plafond visé au 1° et 50.000 euros bruts annuels."
   versions:
   - effective_from: '2020-01-01'
     formula: '25'
@@ -340,7 +298,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/13
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 13 section 2; amount 10 EUR
+            excerpt: "Art. 13. § 1er. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de :\n1° 55 euros par enfant lorsque les revenus sont inférieurs à 30.386,48 euros bruts annuels;\n2° 25 euros par enfant lorsque les revenus se situent entre le plafond visé au 1° et 50.000 euros bruts annuels.\nLe Gouvernement détermine les personnes et les revenus à prendre en considération pour la détermination des plafonds visés à l'alinéa 1er.\n§ 2. Un supplément de 10 euros est, en"
   versions:
   - effective_from: '2020-01-01'
     formula: '10'
@@ -358,7 +316,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/14
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 14; amount 65 EUR
+            excerpt: "Art. 14. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de 65 euros en faveur de l'enfant bénéficiaire si un des membres du ménage dont l'enfant fait partie est une personne handicapée qui n'exerce aucune activité professionnelle lucrative et bénéficie d'une allocation de remplacement de revenus, d'une allocation pour l'aide aux personnes âgées ou d'une allocation d'intégration correspondant à une réduction d'autonomie de neuf points au moins en"
   versions:
   - effective_from: '2020-01-01'
     formula: '65'
@@ -374,7 +332,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/15
-          span: est majorée d'un supplément mensuel équivalent à cinquante pour cent du montant de celle-ci
+          excerpt: "est majorée d'un supplément mensuel équivalent à cinquante pour cent du montant de celle-ci"
   versions:
   - effective_from: '2020-01-01'
     formula: '0.50'
@@ -392,7 +350,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 82.37 EUR
+            excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;"
   versions:
   - effective_from: '2020-01-01'
     formula: '82.37'
@@ -410,7 +368,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 109.70 EUR
+            excerpt: "16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;"
   versions:
   - effective_from: '2020-01-01'
     formula: '109.70'
@@ -428,7 +386,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 255.99 EUR
+            excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '255.99'
@@ -446,7 +404,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 422.56 EUR
+            excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '422.56'
@@ -464,7 +422,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 480.48 EUR
+            excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '480.48'
@@ -482,7 +440,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 514.80 EUR
+            excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '514.80'
@@ -500,7 +458,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 549.12 EUR
+            excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '549.12'
@@ -518,7 +476,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17 item 1; amount 20 EUR
+            excerpt: "17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;"
   versions:
   - effective_from: '2020-01-01'
     formula: '20'
@@ -536,7 +494,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17 item 2; amount 30 EUR
+            excerpt: "Art. 17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\n2° 30 euros pour un enfant bénéficiaire âgé de cinq ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de onze ans à cette"
   versions:
   - effective_from: '2020-01-01'
     formula: '30'
@@ -554,7 +512,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17 item 3; amount 50 EUR
+            excerpt: "17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\n2° 30 euros pour un enfant bénéficiaire âgé de cinq ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de onze ans à cette date;\n3° 50 euros pour un enfant bénéficiaire âgé de onze ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de dix-sept ans à cette date;"
   versions:
   - effective_from: '2020-01-01'
     formula: '50'
@@ -572,7 +530,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-            span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17 item 4; amount 80 EUR
+            excerpt: "Art. 17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\n2° 30 euros pour un enfant bénéficiaire âgé de cinq ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de onze ans à cette date;\n3° 50 euros pour un enfant bénéficiaire âgé de onze ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de dix-sept ans à cette date;\n4° 80 euros pour un enfant bénéficiaire âgé de dix-sept ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû.\nLe"
   versions:
   - effective_from: '2020-01-01'
     formula: '80'
@@ -588,7 +546,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/9
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 9; amount 18 EUR
+          excerpt: "Art. 9. § 1er. Il est octroyé mensuellement à l'allocataire désigné conformément à l'article 22, en faveur de l'enfant bénéficiaire, une allocation de base dont le montant s'élève à :\n1° 155 euros jusqu'à la fin du mois au cours duquel il atteint l'âge de dix-huit ans;\n2° 165 euros à partir du premier jour du mois suivant celui de son 18\nème\nanniversaire et jusqu'au plus tard, en ce compris, le mois au cours duquel il atteint l'âge de vingt-cinq ans.\n§ 2. Par dérogation aux montants visés au"
   versions:
   - effective_from: '2020-01-01'
     formula: '18'
@@ -604,7 +562,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/9
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 9; amount 25 EUR
+          excerpt: "2° 165 euros à partir du premier jour du mois suivant celui de son 18\nème\nanniversaire et jusqu'au plus tard, en ce compris, le mois au cours duquel il atteint l'âge de vingt-cinq ans."
   versions:
   - effective_from: '2020-01-01'
     formula: '25'
@@ -727,7 +685,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 4 EUR
+          excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '4'
@@ -743,7 +701,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 5 EUR
+          excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '5'
@@ -759,7 +717,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 6 EUR
+          excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '6'
@@ -775,7 +733,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/16
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 16; amount 7 EUR
+          excerpt: "Art. 16. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément mensuel en faveur des enfants bénéficiaires atteints d'un handicap. Ce supplément varie comme suit en fonction de la gravité et des conséquences de l'affection :\n1° 82,37 euros;\n2° 109,70 euros;\n3° 255,99 euros;\n4° 422,56 euros;\n5° 480,48 euros;\n6° 514,80 euros;\n7° 549,12 euros.\nLe Gouvernement détermine les conditions d'octroi de ce supplément."
   versions:
   - effective_from: '2020-01-01'
     formula: '7'
@@ -844,7 +802,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17; amount 5 EUR
+          excerpt: "17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;"
   versions:
   - effective_from: '2020-01-01'
     formula: '5'
@@ -860,7 +818,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17; amount 11 EUR
+          excerpt: "17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\n2° 30 euros pour un enfant bénéficiaire âgé de cinq ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de onze ans à cette date;"
   versions:
   - effective_from: '2020-01-01'
     formula: '11'
@@ -876,7 +834,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/17
-          span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 17; amount 17 EUR
+          excerpt: "17. L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément d'âge annuel de :\n1° 20 euros pour un enfant bénéficiaire qui n'a pas atteint l'âge de cinq ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\n2° 30 euros pour un enfant bénéficiaire âgé de cinq ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de onze ans à cette date;\n3° 50 euros pour un enfant bénéficiaire âgé de onze ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de dix-sept ans à cette date;"
   versions:
   - effective_from: '2020-01-01'
     formula: '17'

@@ -13,15 +13,7 @@ module:
     local centime table lookup, reductions, remissions, exemptions, credits,
     application procedures, and proof rules.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.2/version-1302348/block-1
-      - be/statute/fisconetplus/cir92/revenus-2025/page-446
-      - be/statute/fisconetplus/cir92/revenus-2025/page-686
-    values:
-      belgium_immovable_withholding_supplied_centimes_region_flanders: 0
-      belgium_immovable_withholding_supplied_centimes_region_brussels: 1
-      belgium_immovable_withholding_supplied_centimes_region_wallonia: 2
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1"
 rules:
   - name: belgium_immovable_withholding_supplied_centimes_region_flanders
     kind: parameter
@@ -68,6 +60,14 @@ rules:
     period: Year
     unit: EUR
     source: Supplied local additional centimes applied to the selected regional immovable-withholding gross tax
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.2/version-1302348/block-1"
+              excerpt: "Overeenkomstig artikel 464/1, 1°, van het Wetboek van de Inkomstenbelastingen 1992, zijn de provincies, gemeenten en de agglomeraties gemachtigd om opcentiemen op de onroerende voorheffing te heffen."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

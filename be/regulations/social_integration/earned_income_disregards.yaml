@@ -12,14 +12,7 @@ module:
 
     and the full resource test remain separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/regulation/arrete/2002/07/11/2002022564/article/35
-    values:
-      belgium_social_integration_standard_earned_income_monthly_disregard: '177.76'
-      belgium_social_integration_irregular_artistic_activity_annual_disregard: '2133.12'
-      belgium_social_integration_shortage_profession_monthly_disregard: '254.75'
-      belgium_social_integration_earned_income_disregard_total_years: '3'
-      belgium_social_integration_earned_income_disregard_outer_limit_years: '6'
+    corpus_citation_path: "be/regulation/arrete/2002/07/11/2002022564/article/35"
 units:
 - name: EUR
   kind: currency
@@ -38,7 +31,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
-          span: "les revenus nets qui en résultent sont pris en considération sous déduction d'un montant maximal de 177,76 EUR par mois"
+          excerpt: "les revenus nets qui en résultent sont pris en considération sous déduction d'un montant maximal de 177,76 EUR par mois"
   versions:
   - effective_from: '2022-01-01'
     formula: '177.76'
@@ -55,7 +48,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
-          span: "le montant immunisé est de 2 133,12 EUR par an"
+          excerpt: "le montant immunisé est de 2 133,12 EUR par an"
   versions:
   - effective_from: '2022-01-01'
     formula: '2133.12'
@@ -72,7 +65,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/35
-          span: "le montant immunisé est de 254,75 EUR par mois"
+          excerpt: "le montant immunisé est de 254,75 EUR par mois"
   versions:
   - effective_from: '2024-01-01'
     formula: '254.75'

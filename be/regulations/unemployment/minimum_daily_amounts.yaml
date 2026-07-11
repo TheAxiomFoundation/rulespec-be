@@ -18,24 +18,7 @@ module:
 
     separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/regulation/arrete/1991/11/25/1991013192/article/115
-    values:
-      belgium_unemployment_minimum_family_charge_first_six_months_daily_amount: '43.11'
-      belgium_unemployment_minimum_family_charge_later_daily_amount: '39.19'
-      belgium_unemployment_minimum_isolated_first_six_months_daily_amount: '34.94'
-      belgium_unemployment_minimum_isolated_later_daily_amount: '31.76'
-      belgium_unemployment_minimum_cohabiting_first_three_months_daily_amount: '33.63'
-      belgium_unemployment_minimum_cohabiting_months_four_to_six_daily_amount: '31.04'
-      belgium_unemployment_minimum_cohabiting_months_seven_to_twelve_daily_amount: '28.22'
-      belgium_unemployment_minimum_cohabiting_second_period_condition_met_daily_amount: '23.39'
-      belgium_unemployment_minimum_cohabiting_second_period_condition_not_met_daily_amount: '16.48'
-      belgium_unemployment_minimum_two_spouse_increment_daily_amount: '3.12'
-      belgium_unemployment_company_supplement_family_charge_daily_amount: '37.89'
-      belgium_unemployment_company_supplement_isolated_daily_amount: '30.71'
-      belgium_unemployment_company_supplement_cohabiting_daily_amount: '27.29'
-      belgium_unemployment_temporary_force_majeure_daily_amount: '38.72'
-      belgium_unemployment_temporary_other_reason_daily_amount: '35.74'
+    corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/115"
 units:
 - name: EUR
   kind: currency
@@ -54,9 +37,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '1° pour le travailleur ayant charge de famille: a) à 43,11 euros,
-            pendant les six premiers mois de la première période d''indemnisation;
-            b) à 39,19 euros, pendant les mois suivants'
+          excerpt: "1° pour le travailleur ayant charge de famille:\na) à 43,11 euros, pendant les six premiers mois de la première période d'indemnisation;\nb) à 39,19 euros, pendant les mois suivants"
   versions:
   - effective_from: '2026-03-01'
     formula: '43.11'
@@ -73,9 +54,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '1° pour le travailleur ayant charge de famille: a) à 43,11 euros,
-            pendant les six premiers mois de la première période d''indemnisation;
-            b) à 39,19 euros, pendant les mois suivants'
+          excerpt: "1° pour le travailleur ayant charge de famille:\na) à 43,11 euros, pendant les six premiers mois de la première période d'indemnisation;\nb) à 39,19 euros, pendant les mois suivants"
   versions:
   - effective_from: '2026-03-01'
     formula: '39.19'
@@ -92,9 +71,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '2° pour le travailleur isolé: a) à 34,94 euros, pendant les six premiers
-            mois de la première période d''indemnisation; b) à 31,76 euros, pendant
-            les mois suivants'
+          excerpt: "2° pour le travailleur isolé:\na) à 34,94 euros, pendant les six premiers mois de la première période d'indemnisation;\nb) à 31,76 euros, pendant les mois suivants"
   versions:
   - effective_from: '2026-03-01'
     formula: '34.94'
@@ -111,9 +88,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '2° pour le travailleur isolé: a) à 34,94 euros, pendant les six premiers
-            mois de la première période d''indemnisation; b) à 31,76 euros, pendant
-            les mois suivants'
+          excerpt: "2° pour le travailleur isolé:\na) à 34,94 euros, pendant les six premiers mois de la première période d'indemnisation;\nb) à 31,76 euros, pendant les mois suivants"
   versions:
   - effective_from: '2026-03-01'
     formula: '31.76'
@@ -130,14 +105,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '3° pour le travailleur cohabitant: a) à 33,63 euros pendant les trois
-            premiers mois de la première période d''indemnisation; b) à 31,04 euros
-            pendant les mois quatre à six de la première période d''indemnisation;
-            c) à 28,22 euros pendant les mois sept à douze de la première période
-            d''indemnisation; d) pendant la deuxième période d''indemnisation, à 23,39
-            euros, s''il remplit les conditions de l''article 114, § 4, 1° ; e) pendant
-            la deuxième période d''indemnisation, à 16,48 euros, s''il ne remplit
-            pas les conditions de l''article 114, § 4, 1°'
+          excerpt: "3° pour le travailleur cohabitant:\na) à 33,63 euros pendant les trois premiers mois de la première période d'indemnisation;\nb) à 31,04 euros pendant les mois quatre à six de la première période d'indemnisation;\nc) à 28,22 euros pendant les mois sept à douze de la première période d'indemnisation;\nd) pendant la deuxième période d'indemnisation, à 23,39 euros, s'il remplit les conditions de l'article 114, § 4, 1° ;\ne) pendant la deuxième période d'indemnisation, à 16,48 euros, s'il ne remplit pas les conditions de l'article 114, § 4, 1°"
   versions:
   - effective_from: '2026-03-01'
     formula: '33.63'
@@ -154,14 +122,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '3° pour le travailleur cohabitant: a) à 33,63 euros pendant les trois
-            premiers mois de la première période d''indemnisation; b) à 31,04 euros
-            pendant les mois quatre à six de la première période d''indemnisation;
-            c) à 28,22 euros pendant les mois sept à douze de la première période
-            d''indemnisation; d) pendant la deuxième période d''indemnisation, à 23,39
-            euros, s''il remplit les conditions de l''article 114, § 4, 1° ; e) pendant
-            la deuxième période d''indemnisation, à 16,48 euros, s''il ne remplit
-            pas les conditions de l''article 114, § 4, 1°'
+          excerpt: "3° pour le travailleur cohabitant:\na) à 33,63 euros pendant les trois premiers mois de la première période d'indemnisation;\nb) à 31,04 euros pendant les mois quatre à six de la première période d'indemnisation;\nc) à 28,22 euros pendant les mois sept à douze de la première période d'indemnisation;\nd) pendant la deuxième période d'indemnisation, à 23,39 euros, s'il remplit les conditions de l'article 114, § 4, 1° ;\ne) pendant la deuxième période d'indemnisation, à 16,48 euros, s'il ne remplit pas les conditions de l'article 114, § 4, 1°"
   versions:
   - effective_from: '2026-03-01'
     formula: '31.04'
@@ -178,14 +139,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '3° pour le travailleur cohabitant: a) à 33,63 euros pendant les trois
-            premiers mois de la première période d''indemnisation; b) à 31,04 euros
-            pendant les mois quatre à six de la première période d''indemnisation;
-            c) à 28,22 euros pendant les mois sept à douze de la première période
-            d''indemnisation; d) pendant la deuxième période d''indemnisation, à 23,39
-            euros, s''il remplit les conditions de l''article 114, § 4, 1° ; e) pendant
-            la deuxième période d''indemnisation, à 16,48 euros, s''il ne remplit
-            pas les conditions de l''article 114, § 4, 1°'
+          excerpt: "3° pour le travailleur cohabitant:\na) à 33,63 euros pendant les trois premiers mois de la première période d'indemnisation;\nb) à 31,04 euros pendant les mois quatre à six de la première période d'indemnisation;\nc) à 28,22 euros pendant les mois sept à douze de la première période d'indemnisation;\nd) pendant la deuxième période d'indemnisation, à 23,39 euros, s'il remplit les conditions de l'article 114, § 4, 1° ;\ne) pendant la deuxième période d'indemnisation, à 16,48 euros, s'il ne remplit pas les conditions de l'article 114, § 4, 1°"
   versions:
   - effective_from: '2026-03-01'
     formula: '28.22'
@@ -202,14 +156,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '3° pour le travailleur cohabitant: a) à 33,63 euros pendant les trois
-            premiers mois de la première période d''indemnisation; b) à 31,04 euros
-            pendant les mois quatre à six de la première période d''indemnisation;
-            c) à 28,22 euros pendant les mois sept à douze de la première période
-            d''indemnisation; d) pendant la deuxième période d''indemnisation, à 23,39
-            euros, s''il remplit les conditions de l''article 114, § 4, 1° ; e) pendant
-            la deuxième période d''indemnisation, à 16,48 euros, s''il ne remplit
-            pas les conditions de l''article 114, § 4, 1°'
+          excerpt: "3° pour le travailleur cohabitant:\na) à 33,63 euros pendant les trois premiers mois de la première période d'indemnisation;\nb) à 31,04 euros pendant les mois quatre à six de la première période d'indemnisation;\nc) à 28,22 euros pendant les mois sept à douze de la première période d'indemnisation;\nd) pendant la deuxième période d'indemnisation, à 23,39 euros, s'il remplit les conditions de l'article 114, § 4, 1° ;\ne) pendant la deuxième période d'indemnisation, à 16,48 euros, s'il ne remplit pas les conditions de l'article 114, § 4, 1°"
   versions:
   - effective_from: '2026-03-01'
     formula: '23.39'
@@ -226,14 +173,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '3° pour le travailleur cohabitant: a) à 33,63 euros pendant les trois
-            premiers mois de la première période d''indemnisation; b) à 31,04 euros
-            pendant les mois quatre à six de la première période d''indemnisation;
-            c) à 28,22 euros pendant les mois sept à douze de la première période
-            d''indemnisation; d) pendant la deuxième période d''indemnisation, à 23,39
-            euros, s''il remplit les conditions de l''article 114, § 4, 1° ; e) pendant
-            la deuxième période d''indemnisation, à 16,48 euros, s''il ne remplit
-            pas les conditions de l''article 114, § 4, 1°'
+          excerpt: "3° pour le travailleur cohabitant:\na) à 33,63 euros pendant les trois premiers mois de la première période d'indemnisation;\nb) à 31,04 euros pendant les mois quatre à six de la première période d'indemnisation;\nc) à 28,22 euros pendant les mois sept à douze de la première période d'indemnisation;\nd) pendant la deuxième période d'indemnisation, à 23,39 euros, s'il remplit les conditions de l'article 114, § 4, 1° ;\ne) pendant la deuxième période d'indemnisation, à 16,48 euros, s'il ne remplit pas les conditions de l'article 114, § 4, 1°"
   versions:
   - effective_from: '2026-03-01'
     formula: '16.48'
@@ -250,10 +190,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: Lorsque deux conjoints qui cohabitent ne bénéficient, au cours d'un
-            mois calendrier, que de l'allocation minimum visée à l'alinéa 1er, 3°,
-            e), le montant de cette allocation minimum est augmenté, pour le mois
-            considéré, de 3,12 euros.
+          excerpt: "Lorsque deux conjoints qui cohabitent ne bénéficient, au cours d'un mois calendrier, que de l'allocation minimum visée à l'alinéa 1er, 3°, e), le montant de cette allocation minimum est augmenté, pour le mois considéré, de 3,12 euros."
   versions:
   - effective_from: '2026-03-01'
     formula: '3.12'
@@ -270,12 +207,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '§ 2. Le montant journalier minimum de l''allocation de chômage pour
-            le travailleur qui bénéficie du régime de chômage avec complément d''entreprise
-            ou qui bénéficie de l''indemnité complémentaire pour les travailleurs
-            frontaliers âgés licenciés, est fixé à: 1° 37,89 euros pour le travailleur
-            ayant charge de famille; 2° 30,71 euros pour le travailleur isolé; 3°
-            27,29 euros pour le travailleur cohabitant.'
+          excerpt: "§ 2. Le montant journalier minimum de l'allocation de chômage pour le travailleur qui bénéficie du régime de chômage avec complément d'entreprise ou qui bénéficie de l'indemnité complémentaire pour les travailleurs frontaliers âgés licenciés, est fixé à:\n1° 37,89 euros pour le travailleur ayant charge de famille;\n2° 30,71 euros pour le travailleur isolé;\n3° 27,29 euros pour le travailleur cohabitant."
   versions:
   - effective_from: '2026-03-01'
     formula: '37.89'
@@ -292,12 +224,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '§ 2. Le montant journalier minimum de l''allocation de chômage pour
-            le travailleur qui bénéficie du régime de chômage avec complément d''entreprise
-            ou qui bénéficie de l''indemnité complémentaire pour les travailleurs
-            frontaliers âgés licenciés, est fixé à: 1° 37,89 euros pour le travailleur
-            ayant charge de famille; 2° 30,71 euros pour le travailleur isolé; 3°
-            27,29 euros pour le travailleur cohabitant.'
+          excerpt: "§ 2. Le montant journalier minimum de l'allocation de chômage pour le travailleur qui bénéficie du régime de chômage avec complément d'entreprise ou qui bénéficie de l'indemnité complémentaire pour les travailleurs frontaliers âgés licenciés, est fixé à:\n1° 37,89 euros pour le travailleur ayant charge de famille;\n2° 30,71 euros pour le travailleur isolé;\n3° 27,29 euros pour le travailleur cohabitant."
   versions:
   - effective_from: '2026-03-01'
     formula: '30.71'
@@ -314,12 +241,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '§ 2. Le montant journalier minimum de l''allocation de chômage pour
-            le travailleur qui bénéficie du régime de chômage avec complément d''entreprise
-            ou qui bénéficie de l''indemnité complémentaire pour les travailleurs
-            frontaliers âgés licenciés, est fixé à: 1° 37,89 euros pour le travailleur
-            ayant charge de famille; 2° 30,71 euros pour le travailleur isolé; 3°
-            27,29 euros pour le travailleur cohabitant.'
+          excerpt: "§ 2. Le montant journalier minimum de l'allocation de chômage pour le travailleur qui bénéficie du régime de chômage avec complément d'entreprise ou qui bénéficie de l'indemnité complémentaire pour les travailleurs frontaliers âgés licenciés, est fixé à:\n1° 37,89 euros pour le travailleur ayant charge de famille;\n2° 30,71 euros pour le travailleur isolé;\n3° 27,29 euros pour le travailleur cohabitant."
   versions:
   - effective_from: '2026-03-01'
     formula: '27.29'
@@ -336,13 +258,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '§ 4. Par dérogation aux paragraphes précédents, le montant journalier
-            minimum de l''allocation de chômage du chômeur temporaire visé à l''article
-            114, § 6, peu importe sa situation familiale, est fixé à: 1° 38,72 euros
-            si le contrat de travail du travailleur est suspendu pour cause de force
-            majeure au sens de l''article 26 de la loi du 3 juillet 1978 relative
-            aux contrats de travail; 2° 35,74 euros si le contrat de travail du travailleur
-            est suspendu pour un autre motif.'
+          excerpt: "§ 4. Par dérogation aux paragraphes précédents, le montant journalier minimum de l'allocation de chômage du chômeur temporaire visé à l'article 114, § 6, peu importe sa situation familiale, est fixé à:\n1° 38,72 euros si le contrat de travail du travailleur est suspendu pour cause de force majeure au sens de l'article 26 de la loi du 3 juillet 1978 relative aux contrats de travail;\n2° 35,74 euros si le contrat de travail du travailleur est suspendu pour un autre motif."
   versions:
   - effective_from: '2026-03-01'
     formula: '38.72'
@@ -359,13 +275,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: '§ 4. Par dérogation aux paragraphes précédents, le montant journalier
-            minimum de l''allocation de chômage du chômeur temporaire visé à l''article
-            114, § 6, peu importe sa situation familiale, est fixé à: 1° 38,72 euros
-            si le contrat de travail du travailleur est suspendu pour cause de force
-            majeure au sens de l''article 26 de la loi du 3 juillet 1978 relative
-            aux contrats de travail; 2° 35,74 euros si le contrat de travail du travailleur
-            est suspendu pour un autre motif.'
+          excerpt: "§ 4. Par dérogation aux paragraphes précédents, le montant journalier minimum de l'allocation de chômage du chômeur temporaire visé à l'article 114, § 6, peu importe sa situation familiale, est fixé à:\n1° 38,72 euros si le contrat de travail du travailleur est suspendu pour cause de force majeure au sens de l'article 26 de la loi du 3 juillet 1978 relative aux contrats de travail;\n2° 35,74 euros si le contrat de travail du travailleur est suspendu pour un autre motif."
   versions:
   - effective_from: '2026-03-01'
     formula: '35.74'
@@ -392,7 +302,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: pendant les six premiers mois de la première période d'indemnisation
+          excerpt: "pendant les six premiers mois de la première période d'indemnisation"
   versions:
   - effective_from: '2026-03-01'
     formula: '6'
@@ -408,7 +318,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/115
-          span: pendant les mois sept à douze de la première période d'indemnisation
+          excerpt: "pendant les mois sept à douze de la première période d'indemnisation"
   versions:
   - effective_from: '2026-03-01'
     formula: '12'

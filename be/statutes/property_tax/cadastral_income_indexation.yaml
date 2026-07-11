@@ -10,20 +10,7 @@ module:
     cadastral-income establishment, reassessment, claims, and regional
     reductions or surcharges.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-721
-      - be/guidance/spf-finances/cadastral-income/definition-usage/block-1
-      - be/guidance/spf-finances/cadastral-income/previous-years/block-16
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/fisconetplus/cir92/revenus-2025/page-721
-      rationale: |-
-        CIR 1992 article 518 supplies the statutory indexation formula and
-        rounding rule. The annual cadastral-income index coefficients are
-        official SPF Finances current and previous-year parameters published
-        for applying that statutory formula, so those guidance rows are used
-        only after checking the statute source.
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-721"
 units:
   - name: EUR
     kind: currency
@@ -41,17 +28,17 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/spf-finances/cadastral-income/previous-years/block-16
-              span: "Coefficient d’indexation 2,1763 2,0915"
+              excerpt: "Coefficient d’indexation 2,1763 2,0915"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/spf-finances/cadastral-income/definition-usage/block-1
-              span: "Le coefficient d’indexation s’élève à : 2,2446 (année de revenus 2025, exercice d’imposition 2026)"
+              excerpt: "Le coefficient d’indexation s’élève à : 2,2446 (année de revenus 2025, exercice d’imposition 2026)"
           - path: versions[2].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/spf-finances/cadastral-income/definition-usage/block-1
-              span: "2,3000 (pour l’année de revenus 2026, exercice d’imposition 2027)"
+              excerpt: "2,3000 (pour l’année de revenus 2026, exercice d’imposition 2027)"
     versions:
       - effective_from: '2024-01-01'
         formula: |-

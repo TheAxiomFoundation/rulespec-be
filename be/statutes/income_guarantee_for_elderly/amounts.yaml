@@ -7,11 +7,7 @@ module:
     person. This module encodes article 6 amount selection only; article 7
     resource and pension calculations remain separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/2001/03/22/2001022201/article/6
-    values:
-      belgium_grapa_base_annual_amount: "7449.26"
-      belgium_grapa_isolated_multiplier: "1.5"
+    corpus_citation_path: "be/statute/loi/2001/03/22/2001022201/article/6"
 units:
   - name: EUR
     kind: currency
@@ -29,12 +25,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/2001/03/22/2001022201/article/6
-              span: 6.765,89 euros
+              excerpt: "6.765,89 euros"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/2001/03/22/2001022201/article/6
-              span: 7.449,26 euros
+              excerpt: "7.449,26 euros"
     versions:
       - effective_from: '2014-01-01'
         formula: |-
@@ -53,7 +49,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/2001/03/22/2001022201/article/6
-              span: Le coefficient 1,50 s'applique au montant visé au paragraphe 1er
+              excerpt: "Le coefficient 1,50 s'applique au montant visé au paragraphe 1er"
     versions:
       - effective_from: '2014-01-01'
         formula: |-

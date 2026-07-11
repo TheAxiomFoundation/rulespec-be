@@ -7,22 +7,7 @@ module:
     does not yet model estate filing, exemptions, movable/immovable base
     separation, partner home exclusions, or grouping of "all other" successors.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-    values:
-      flanders_inheritance_tax_direct_first_threshold: 50000
-      flanders_inheritance_tax_direct_second_threshold: 250000
-      flanders_inheritance_tax_direct_first_rate: "0.03"
-      flanders_inheritance_tax_direct_second_rate: "0.09"
-      flanders_inheritance_tax_direct_top_rate: "0.27"
-      flanders_inheritance_tax_other_first_threshold: 35000
-      flanders_inheritance_tax_other_second_threshold: 75000
-      flanders_inheritance_tax_sibling_first_rate: "0.25"
-      flanders_inheritance_tax_sibling_second_rate: "0.30"
-      flanders_inheritance_tax_sibling_top_rate: "0.55"
-      flanders_inheritance_tax_unrelated_first_rate: "0.25"
-      flanders_inheritance_tax_unrelated_second_rate: "0.45"
-      flanders_inheritance_tax_unrelated_top_rate: "0.55"
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1"
 units:
   - name: EUR
     kind: currency
@@ -64,7 +49,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
+              excerpt: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -81,7 +66,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
+              excerpt: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -98,7 +83,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -115,7 +100,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -131,7 +116,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
+              excerpt: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -147,7 +132,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
+              excerpt: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -163,7 +148,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
+              excerpt: "TABEL I. Tarief voor een verkrijging in rechte lijn en tussen partners A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met 0,01 50.000 3 50.000,01 250.000 9 1500 250.000,01 27 19.500"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -179,7 +164,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -195,7 +180,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -211,7 +196,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -227,7 +212,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -243,7 +228,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-
@@ -259,7 +244,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1
-              span: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
+              excerpt: "TABEL II. Tarief voor een andere verkrijging dan de verkrijgingen, vermeld in tabel I A schijf in euro tarief, toepasselijk op het overeenstemmende gedeelte in kolom A, in % totaalbedrag van de belasting op de voorgaande gedeelten, in euro vanaf tot en met tussen broers en zussen tussen anderen tussen broers en zussen tussen anderen 0,01 35.000 25 25 35.000,01 75.000 30 45 8750 8750 75.000,01 55 55 20.750 26.750"
     versions:
       - effective_from: '2018-09-01'
         formula: |-

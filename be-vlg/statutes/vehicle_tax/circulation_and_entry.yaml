@@ -20,36 +20,7 @@ module:
 
     rules, legacy pre-2021 BIV formulas, and detailed exemption administration.'
   source_verification:
-    corpus_citation_paths:
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.5/version-1422880
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918/block-1
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227/block-1
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227
-    - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227/block-1
-    values:
-      flanders_circulation_tax_cv_0_to_4_amount: 69.72
-      flanders_circulation_tax_cv_20_amount: 1783.2
-      flanders_circulation_tax_above_20_increment: 97.2
-      flanders_circulation_tax_post_2020_co2_neutral_grams: 149
-      flanders_circulation_tax_co2_adjustment_per_gram: '0.003'
-      flanders_circulation_tax_post_2015_minimum: 40
-      flanders_additional_lpg_tax_low_power_amount: 89.16
-      flanders_additional_lpg_tax_middle_power_amount: 148.68
-      flanders_additional_lpg_tax_high_power_amount: 208.2
-      flanders_circulation_tax_municipal_decime_rate: '0.10'
-      flanders_biv_electric_or_hydrogen_after_2025_amount: 61.5
-      flanders_biv_q_base_2021: 1.07
-      flanders_biv_q_annual_increment_after_2021: 0.035
-      flanders_biv_minimum: 41.99
-      flanders_biv_maximum: 10497.7
-      flanders_biv_natural_gas_reduction_amount: 4000
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
 units:
 - name: EUR
   kind: currency
@@ -68,7 +39,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "69,72"
+            excerpt: "69,72"
   versions:
   - effective_from: '2026-01-01'
     formula: '69.72'
@@ -84,7 +55,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "87,24"
+            excerpt: "87,24"
   versions:
   - effective_from: '2026-01-01'
     formula: '87.24'
@@ -100,7 +71,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "126,12"
+            excerpt: "126,12"
   versions:
   - effective_from: '2026-01-01'
     formula: '126.12'
@@ -116,7 +87,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "164,76"
+            excerpt: "164,76"
   versions:
   - effective_from: '2026-01-01'
     formula: '164.76'
@@ -132,7 +103,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "203,76"
+            excerpt: "203,76"
   versions:
   - effective_from: '2026-01-01'
     formula: '203.76'
@@ -148,7 +119,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "242,64"
+            excerpt: "242,64"
   versions:
   - effective_from: '2026-01-01'
     formula: '242.64'
@@ -164,7 +135,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "281,16"
+            excerpt: "281,16"
   versions:
   - effective_from: '2026-01-01'
     formula: '281.16'
@@ -180,7 +151,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "364,92"
+            excerpt: "364,92"
   versions:
   - effective_from: '2026-01-01'
     formula: '364.92'
@@ -196,7 +167,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "448,56"
+            excerpt: "448,56"
   versions:
   - effective_from: '2026-01-01'
     formula: '448.56'
@@ -212,7 +183,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "532,08"
+            excerpt: "532,08"
   versions:
   - effective_from: '2026-01-01'
     formula: '532.08'
@@ -228,7 +199,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "615,84"
+            excerpt: "615,84"
   versions:
   - effective_from: '2026-01-01'
     formula: '615.84'
@@ -244,7 +215,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "699,48"
+            excerpt: "699,48"
   versions:
   - effective_from: '2026-01-01'
     formula: '699.48'
@@ -260,7 +231,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "916,20"
+            excerpt: "916,20"
   versions:
   - effective_from: '2026-01-01'
     formula: '916.20'
@@ -276,7 +247,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "1133,16"
+            excerpt: "1133,16"
   versions:
   - effective_from: '2026-01-01'
     formula: '1133.16'
@@ -292,7 +263,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "1350,00"
+            excerpt: "1350,00"
   versions:
   - effective_from: '2026-01-01'
     formula: '1350.00'
@@ -308,7 +279,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "1566,36"
+            excerpt: "1566,36"
   versions:
   - effective_from: '2026-01-01'
     formula: '1566.36'
@@ -324,7 +295,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "1783,20"
+            excerpt: "1783,20"
   versions:
   - effective_from: '2026-01-01'
     formula: '1783.20'
@@ -341,7 +312,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "97,20"
+            excerpt: "97,20"
   versions:
   - effective_from: '2026-01-01'
     formula: '97.20'
@@ -349,6 +320,14 @@ rules:
   kind: parameter
   dtype: Count
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+          excerpt: "§2/2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibus- sen die voor de eerste keer na 31 december 2020 worden ingeschreven in het repertorium van het Directoraat-generaal Mobiliteit en Verkeersveiligheid wordt de belasting berekend, vermeld in paragraaf 2/1, met dien verstande dat het element, vermeld onder paragraaf 2/1, 1°, als volgt wordt toegepast: in functie van de CO2-uitstoot van het voertuig, gemeten tijdens de homologatie ervan volgens de geldende Europese regelgeving, wordt het tarief: a) vermeerderd met 0,30% voor iedere gram CO2-uitstoot per kilometer boven 149 gram en niet hoger dan 500 gram; b) verminderd met 0,30% voor iedere gram CO2-uitstoot per kilometer onder 149 gram, maar hoger dan 24 gram."
   versions:
   - effective_from: '2026-01-01'
     formula: '149'
@@ -357,6 +336,14 @@ rules:
   dtype: Rate
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2, 0.30 percent
     per CO2 gram
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
+          excerpt: "§2/2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibus- sen die voor de eerste keer na 31 december 2020 worden ingeschreven in het repertorium van het Directoraat-generaal Mobiliteit en Verkeersveiligheid wordt de belasting berekend, vermeld in paragraaf 2/1, met dien verstande dat het element, vermeld onder paragraaf 2/1, 1°, als volgt wordt toegepast: in functie van de CO2-uitstoot van het voertuig, gemeten tijdens de homologatie ervan volgens de geldende Europese regelgeving, wordt het tarief: a) vermeerderd met 0,30% voor iedere gram CO2-uitstoot per kilometer boven 149 gram en niet hoger dan 500 gram; b) verminderd met 0,30% voor iedere gram CO2-uitstoot per kilometer onder 149 gram, maar hoger dan 24 gram."
   versions:
   - effective_from: '2026-01-01'
     formula: '0.003'
@@ -373,7 +360,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1
-            span: "bedraagt de belasting, berekend overeenkomstig het eerste lid, minimum 40 euro."
+            excerpt: "bedraagt de belasting, berekend overeenkomstig het eerste lid, minimum 40 euro."
   versions:
   - effective_from: '2026-01-01'
     formula: '40'
@@ -388,9 +375,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '4'
@@ -405,9 +391,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '5'
@@ -422,9 +407,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '6'
@@ -439,9 +423,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '7'
@@ -456,9 +439,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '8'
@@ -473,9 +455,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '9'
@@ -490,9 +471,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '10'
@@ -507,9 +487,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '11'
@@ -524,9 +503,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '12'
@@ -541,9 +519,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '13'
@@ -558,9 +535,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '14'
@@ -575,9 +551,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '15'
@@ -592,9 +567,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '16'
@@ -609,9 +583,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '17'
@@ -626,9 +599,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '18'
@@ -643,9 +615,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '19'
@@ -660,9 +631,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2 passenger-car
-            fiscal-power table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibussen wordt de belasting berekend, op basis van fiscale paardenkracht (pk), volgens de volgende tabel : aantal pk totaalbedrag van de belasting in euro 4 en minder 69,72 5 87,24 6 126,12 7 164,76 8 203,76 9 242,64 10 281,16 11 364,92 12 448,56 13 532,08 14 615,84 15 699,48 16 916,20 17 1133,16 18 1350,00 19 1566,36 20 1783,20 meer dan 20 1783,20 verhoogd met 97,20 per pk boven 20"
   versions:
   - effective_from: '2026-01-01'
     formula: '20'
@@ -844,8 +814,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2/2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibus- sen die voor de eerste keer na 31 december 2020 worden ingeschreven in het repertorium van het Directoraat-generaal Mobiliteit en Verkeersveiligheid wordt de belasting berekend, vermeld in paragraaf 2/1, met dien verstande dat het element, vermeld onder paragraaf 2/1, 1°, als volgt wordt toegepast: in functie van de CO2-uitstoot van het voertuig, gemeten tijdens de homologatie ervan volgens de geldende Europese regelgeving, wordt het tarief: a) vermeerderd met 0,30% voor iedere gram CO2-uitstoot per kilometer boven 149 gram en niet hoger dan 500 gram; b) verminderd met 0,30% voor iedere gram CO2-uitstoot per kilometer onder 149 gram, maar hoger dan 24 gram."
   versions:
   - effective_from: '2026-01-01'
     formula: '500'
@@ -859,8 +829,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/2
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "§2/2. Voor de personenauto's, de auto's voor dubbel gebruik en de minibus- sen die voor de eerste keer na 31 december 2020 worden ingeschreven in het repertorium van het Directoraat-generaal Mobiliteit en Verkeersveiligheid wordt de belasting berekend, vermeld in paragraaf 2/1, met dien verstande dat het element, vermeld onder paragraaf 2/1, 1°, als volgt wordt toegepast: in functie van de CO2-uitstoot van het voertuig, gemeten tijdens de homologatie ervan volgens de geldende Europese regelgeving, wordt het tarief: a) vermeerderd met 0,30% voor iedere gram CO2-uitstoot per kilometer boven 149 gram en niet hoger dan 500 gram; b) verminderd met 0,30% voor iedere gram CO2-uitstoot per kilometer onder 149 gram, maar hoger dan 24 gram."
   versions:
   - effective_from: '2026-01-01'
     formula: '24'
@@ -904,9 +874,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.50'
@@ -921,9 +890,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.40'
@@ -938,9 +906,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.35'
@@ -955,9 +922,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.25'
@@ -972,9 +938,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.30'
@@ -989,9 +954,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '4'
@@ -1006,9 +970,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.175'
@@ -1023,9 +986,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '5'
@@ -1040,9 +1002,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.15'
@@ -1057,9 +1018,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.10'
@@ -1074,9 +1034,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.05'
@@ -1091,9 +1050,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.1 paragraph 2/1 euronorm/fuel
-            table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910/block-1"
+          excerpt: "2° in functie van de euronorm en de brandstofsoort van het voertuig en desgevallend de aanwezigheid van een roetfilter wordt het tarief met een percentage vermeerderd of verminderd overeenkomstig de volgende tabel: Euronorm Benzine en andere brandstoffen Diesel euro 0 30 % 50 % euro 1 10 % 40 % euro 2 5 % 35 % euro 3 0 % 30 % euro 3 + roetfilter / +25 % euro 4 - 12,5 % 25 % euro 4 + roetfilter / 17,5 % euro 5 of EEV - 15 % 17,5 % euro 6 - 15 % 15 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '-0.125'
@@ -1233,7 +1191,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
-            span: "89,16 euro"
+            excerpt: "89,16 euro"
   versions:
   - effective_from: '2020-10-01'
     formula: '89.16'
@@ -1249,7 +1207,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
-            span: "aanvullende verkeersbelasting van 89,16 euro, 148,68 euro of 208,20 euro"
+            excerpt: "aanvullende verkeersbelasting van 89,16 euro, 148,68 euro of 208,20 euro"
   versions:
   - effective_from: '2020-10-01'
     formula: '148.68'
@@ -1265,7 +1223,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1
-            span: "208,20 euro"
+            excerpt: "208,20 euro"
   versions:
   - effective_from: '2020-10-01'
     formula: '208.20'
@@ -1279,8 +1237,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1"
+          excerpt: "De personenauto's, de auto's voor dubbel gebruik en de minibussen, met inbegrip van de lichte vrachtauto's, vermeld in artikel 1.1.0.0.2, derde lid, 2°, laatste zin, waarvan de motor, zelfs gedeeltelijk of tijdelijk, gedreven wordt met vloeibaar petroleumgas of andere vloeibare koolwaterstofgassen, zijn onderworpen aan een aanvullende verkeersbelasting van 89,16 euro, 148,68 euro of 208,20 euro, naargelang het belastbaar vermogen niet hoger is dan 7 pk, 8 pk bereikt zonder 13 pk te overschrijden of meer bedraagt dan 13 pk."
   versions:
   - effective_from: '2020-10-01'
     formula: '7'
@@ -1294,8 +1252,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.2.4.0.4
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.4/version-1402374/block-1"
+          excerpt: "De personenauto's, de auto's voor dubbel gebruik en de minibussen, met inbegrip van de lichte vrachtauto's, vermeld in artikel 1.1.0.0.2, derde lid, 2°, laatste zin, waarvan de motor, zelfs gedeeltelijk of tijdelijk, gedreven wordt met vloeibaar petroleumgas of andere vloeibare koolwaterstofgassen, zijn onderworpen aan een aanvullende verkeersbelasting van 89,16 euro, 148,68 euro of 208,20 euro, naargelang het belastbaar vermogen niet hoger is dan 7 pk, 8 pk bereikt zonder 13 pk te overschrijden of meer bedraagt dan 13 pk."
   versions:
   - effective_from: '2020-10-01'
     formula: '13'
@@ -1332,6 +1290,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Vlaamse Codex Fiscaliteit article 2.2.4.0.5 paragraph 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.5/version-1422880/block-1
+          excerpt: "§ 2. In afwijking van paragraaf 1 wordt voor de gemeenten een opdeciem geheven op de verkeersbelasting die het Vlaamse Gewest op autovoertuigen heft."
   versions:
   - effective_from: '2021-04-25'
     formula: '0.10'
@@ -1369,7 +1335,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918/block-1
-            span: "61,50 euro"
+            excerpt: "61,50 euro"
   versions:
   - effective_from: '2026-01-01'
     formula: '61.50'
@@ -1383,8 +1349,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "2° f = 0,88 voor wegvoertuigen die aangedreven worden door lpg; f = 0,93 voor wegvoertuigen die aangedreven worden door aardgas; f = 0,744 voor wegvoertuigen die aangedreven worden door zowel aardgas als benzine, als ze als benzinewagen gehomologeerd zijn; f = 1 voor andere wegvoertuigen;"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.88'
@@ -1398,8 +1364,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "2° f = 0,88 voor wegvoertuigen die aangedreven worden door lpg; f = 0,93 voor wegvoertuigen die aangedreven worden door aardgas; f = 0,744 voor wegvoertuigen die aangedreven worden door zowel aardgas als benzine, als ze als benzinewagen gehomologeerd zijn; f = 1 voor andere wegvoertuigen;"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.744'
@@ -1413,8 +1379,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 2
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "2° f = 0,88 voor wegvoertuigen die aangedreven worden door lpg; f = 0,93 voor wegvoertuigen die aangedreven worden door aardgas; f = 0,744 voor wegvoertuigen die aangedreven worden door zowel aardgas als benzine, als ze als benzinewagen gehomologeerd zijn; f = 1 voor andere wegvoertuigen;"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.93'
@@ -1457,6 +1423,14 @@ rules:
   dtype: Rate
   source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 3, Q equals
     1.07 in 2021
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1
+          excerpt: "3° q = een factor in functie van de Europese emissienormen voor 2025 en 2030; q is gelijk aan 1,07 in 2021 en wordt jaarlijks verhoogd met 0,035 vanaf het jaar 2022;"
   versions:
   - effective_from: '2021-01-01'
     formula: '1.07'
@@ -1465,6 +1439,14 @@ rules:
   dtype: Rate
   source: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 3, Q annual
     increase from 2022
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1
+          excerpt: "3° q = een factor in functie van de Europese emissienormen voor 2025 en 2030; q is gelijk aan 1,07 in 2021 en wordt jaarlijks verhoogd met 0,035 vanaf het jaar 2022;"
   versions:
   - effective_from: '2022-01-01'
     formula: '0.035'
@@ -1488,8 +1470,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '2863.15'
@@ -1503,8 +1485,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '840.00'
@@ -1518,8 +1500,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '622.57'
@@ -1533,8 +1515,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '467.06'
@@ -1548,8 +1530,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '493.36'
@@ -1563,8 +1545,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '4'
@@ -1578,8 +1560,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '459.35'
@@ -1593,8 +1575,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '5'
@@ -1608,8 +1590,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '454.07'
@@ -1623,8 +1605,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '1138.78'
@@ -1638,8 +1620,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '509.28'
@@ -1653,8 +1635,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '152.29'
@@ -1668,8 +1650,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '95.53'
@@ -1683,8 +1665,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '22.93'
@@ -1698,8 +1680,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 4 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "4° c = constante (luchtcomponent) in functie van de euronorm en de brand- stofsoort van het wegvoertuig, vermeld in de volgende tabel: Brandstofsoort Euronorm Bedrag in euro Diesel euro 0 2.863,15 euro 1 840,00 euro 2 622,57 euro 3 493,36 euro 3 + roetfilter 467,06 euro 4 467,06 euro 4 + roetfilter 459,35 euro 5 of EEV 459,35 euro 6 454,07 Benzine, en andere brandstoffen euro 0 1138,78 euro 1 509,28 euro 2 152,29 euro 3 95,53 euro 4 22,93 euro 5 of EEV 20,61 euro 6 20,61"
   versions:
   - effective_from: '2021-01-01'
     formula: '20.61'
@@ -1839,8 +1821,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '12'
@@ -1854,8 +1836,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '24'
@@ -1869,8 +1851,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.90'
@@ -1884,8 +1866,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '36'
@@ -1899,8 +1881,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.80'
@@ -1914,8 +1896,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '48'
@@ -1929,8 +1911,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.70'
@@ -1944,8 +1926,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '60'
@@ -1959,8 +1941,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.60'
@@ -1974,8 +1956,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '72'
@@ -1989,8 +1971,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.50'
@@ -2004,8 +1986,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '84'
@@ -2019,8 +2001,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.40'
@@ -2034,8 +2016,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '96'
@@ -2049,8 +2031,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.30'
@@ -2064,8 +2046,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '107'
@@ -2079,8 +2061,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.20'
@@ -2094,8 +2076,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 paragraph 2 item 5 table
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "5° LC = leeftijdscorrectie in functie van de ouderdom van het wegvoertuig, ver- meld in de volgende tabel: ouderdom van het wegvoertuig op basis van de datum van de eerste inschrijving ervan, in het binnenland of in het buitenland, vermeld op het inschrijvingsbewijs waarde LC in % minder dan 12 volle maanden 100 van 12 volle maanden tot en met 23 volle maanden 90 van 24 volle maanden tot en met 35 volle maanden 80 van 36 volle maanden tot en met 47 volle maanden 70 van 48 volle maanden tot en met 59 volle maanden 60 van 60 volle maanden tot en met 71 volle maanden 50 van 72 volle maanden tot en met 83 volle maanden 40 van 84 volle maanden tot en met 95 volle maanden 30 van 96 volle maanden tot en met 107 volle maanden 20 meer dan 107 volle maanden 10"
   versions:
   - effective_from: '2021-01-01'
     formula: '0.10'
@@ -2249,8 +2231,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "De belasting wordt voor de voertuigen, vermeld in artikel 2.3.4.1.1, die voor de eerste keer worden ingeschreven in het repertorium van het Directoraat-generaal Mobiliteit en Verkeersveiligheid na 31 december 2020, berekend volgens de volgende formule: BIV= ((CO 2 * f * q) /246)6 * 4500 + c) * LC"
   versions:
   - effective_from: '2026-01-01'
     formula: '246'
@@ -2264,8 +2246,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-          span: Vlaamse Codex Fiscaliteit article 2.3.4.1.2/1 formula
+          corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.2-1/version-1417224/block-1"
+          excerpt: "De belasting wordt voor de voertuigen, vermeld in artikel 2.3.4.1.1, die voor de eerste keer worden ingeschreven in het repertorium van het Directoraat-generaal Mobiliteit en Verkeersveiligheid na 31 december 2020, berekend volgens de volgende formule: BIV= ((CO 2 * f * q) /246)6 * 4500 + c) * LC"
   versions:
   - effective_from: '2026-01-01'
     formula: '4500'
@@ -2316,7 +2298,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227/block-1
-            span: "41,99 euro"
+            excerpt: "41,99 euro"
   versions:
   - effective_from: '2026-05-03'
     formula: '41.99'
@@ -2332,7 +2314,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.3/version-1542227/block-1
-            span: "10.497,70 euro"
+            excerpt: "10.497,70 euro"
   versions:
   - effective_from: '2026-05-03'
     formula: '10497.70'
@@ -2348,7 +2330,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.5.0.1/version-1417227/block-1
-            span: "wordt de belasting verminderd met vierduizend euro"
+            excerpt: "wordt de belasting verminderd met vierduizend euro"
   versions:
   - effective_from: '2021-01-01'
     formula: '4000'

@@ -11,10 +11,7 @@ module:
     delegated resource-exclusion amounts, and household relationships beyond
     the supplied principal-residence and spouse/legal-cohabitant predicates.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/2001/03/22/2001022201/article/6
-      - be/statute/loi/2001/03/22/2001022201/article/7
-      - be/statute/loi/2001/03/22/2001022201/article/11
+    corpus_citation_path: "be/statute/loi/2001/03/22/2001022201/article/6"
 rules:
   - name: belgium_grapa_article_6_selected_maximum_annual_amount
     kind: derived

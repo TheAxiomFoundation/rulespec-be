@@ -16,13 +16,7 @@ module:
     bridge when no positive status-code override is supplied. It does not encode
     sanctions, activation, or payment-calendar rules.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1991/11/25/1991013192/article/110
-      - be/regulation/arrete/1991/11/25/1991013192/article/111
-      - be/regulation/arrete/1991/11/25/1991013192/article/114
-      - be/regulation/arrete/1991/11/25/1991013192/article/115
-    values:
-      belgium_unemployment_payable_amount_source_components: 4
+    corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/110"
 units:
   - name: EUR
     kind: currency

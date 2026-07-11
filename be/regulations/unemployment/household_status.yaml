@@ -9,12 +9,7 @@ module:
     replacement income, foster-parent status, financial dependence, and proof
     document contents remain upstream inputs.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1991/11/25/1991013192/article/110
-    values:
-      belgium_unemployment_article_110_family_charge_status_code: 1
-      belgium_unemployment_article_110_isolated_status_code: 2
-      belgium_unemployment_article_110_cohabiting_status_code: 3
+    corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/110"
 rules:
   - name: belgium_unemployment_article_110_family_charge_status_code
     kind: parameter
@@ -208,6 +203,14 @@ rules:
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 110 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/110"
+              excerpt: "4° habite seul et dont le conjoint a été autorisé, en application de l'article 221 du Code civil, à percevoir des sommes dues par des tiers;"
     versions:
       - effective_from: '2026-03-01'
         formula: |-

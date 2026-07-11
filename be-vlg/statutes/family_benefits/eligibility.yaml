@@ -12,12 +12,7 @@ module:
     studying outside Belgium unless an exemption applies. Delegated proof and
     implementing conditions remain supplied inputs.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/8
-    values:
-      flanders_family_benefits_standard_age_limit_years: 18
-      flanders_family_benefits_support_need_age_limit_years: 21
-      flanders_family_benefits_student_age_limit_years: 25
+    corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/8"
 units:
   - name: EUR
     kind: currency
@@ -129,6 +124,14 @@ rules:
     dtype: Count
     period: Month
     source: Flemish Groeipakket decree article 8 child entitlement gate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/8"
+              excerpt: "Onder kind dat het voorwerp uitmaakt van een ontvoering moet worden verstaan het kind dat met een handeling wederrechtelijk onttrokken wordt aan het gezag van één ouder of van beide ouders, van vader of moeder, of van de persoon die de begunstigde was onmiddellijk voor die handeling, overeenkomstig dit decreet, of aan het gezag van de instelling waar het kind door bemiddeling of ten laste van een openbare overheid geplaatst was, als de handeling:"
     versions:
       - effective_from: '2019-01-01'
         formula: |-

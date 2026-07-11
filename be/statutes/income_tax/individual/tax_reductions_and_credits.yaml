@@ -16,54 +16,7 @@ module:
 
     remain separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/fisconetplus/cir92/revenus-2025/page-193
-    - be/statute/fisconetplus/cir92/revenus-2025/page-199
-    - be/statute/fisconetplus/cir92/revenus-2025/page-200
-    - be/statute/fisconetplus/cir92/revenus-2025/page-225
-    - be/statute/fisconetplus/cir92/revenus-2025/page-226
-    - be/statute/fisconetplus/cir92/revenus-2025/page-229
-    - be/statute/fisconetplus/cir92/revenus-2025/page-231
-    - be/statute/fisconetplus/cir92/revenus-2025/page-233
-    - be/statute/fisconetplus/cir92/revenus-2025/page-249
-    - be/statute/fisconetplus/cir92/revenus-2025/page-250
-    - be/statute/fisconetplus/cir92/revenus-2025/page-253
-    - be/statute/fisconetplus/cir92/revenus-2025/page-255
-    - be/statute/fisconetplus/cir92/revenus-2025/page-256
-    - be/statute/fisconetplus/cir92/revenus-2025/page-512
-    - be/statute/fisconetplus/cir92/revenus-2025/page-513
-    - be/statute/fisconetplus/cir92/revenus-2025/page-514
-    - be/statute/fisconetplus/cir92/revenus-2025/page-515
-    values:
-      belgium_pit_article_1452_general_reduction_rate: '0.30'
-      belgium_pit_article_1458_standard_pension_savings_ceiling: 1050
-      belgium_pit_article_1458_higher_pension_savings_ceiling: 1350
-      belgium_pit_article_1458_higher_pension_savings_rate: '0.25'
-      belgium_pit_article_1457_employer_share_ceiling: 840
-      belgium_pit_article_14531_home_security_reduction_ceiling: 500
-      belgium_pit_article_14532_development_fund_minimum_subscription: 420
-      belgium_pit_article_14532_development_fund_rate: '0.05'
-      belgium_pit_article_14532_development_fund_reduction_ceiling: 350
-      belgium_pit_article_14533_gift_minimum: 40
-      belgium_pit_article_14533_gift_net_income_cap_rate: '0.10'
-      belgium_pit_article_14533_gift_absolute_cap: 420930
-      belgium_pit_article_14533_gift_reduction_rate: '0.45'
-      belgium_pit_article_14534_domestic_employee_minimum_remuneration: 4920
-      belgium_pit_article_14534_domestic_employee_base_rate: '0.50'
-      belgium_pit_article_14534_domestic_employee_base_ceiling: 8420
-      belgium_pit_article_14535_childcare_daily_ceiling: '16.90'
-      belgium_pit_article_14535_childcare_reduction_rate: '0.45'
-      belgium_pit_article_14548_adoption_rate: '0.20'
-      belgium_pit_article_14548_adoption_reduction_ceiling: 6730
-      belgium_pit_article_14549_legal_protection_premium_ceiling: 330
-      belgium_pit_article_14549_legal_protection_rate: '0.40'
-      belgium_pit_article_147_basic_replacement_reduction: '2219.27'
-      belgium_pit_article_147_additional_replacement_reduction: '457.23'
-      belgium_pit_article_147_sickness_invalidity_reduction: '2977.93'
-      belgium_pit_article_289bis_self_employed_investment_credit_rate: '0.10'
-      belgium_pit_article_289bis_self_employed_investment_credit_ceiling: 3750
-      belgium_pit_article_289ter_standard_credit: 880
-      belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1540
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-193"
 units:
 - name: EUR
   kind: currency
@@ -80,7 +33,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-193
-          span: 'La réduction d''impôt est égale à 30 % des dépenses réellement payées.'
+          excerpt: "La réduction d'impôt est égale à 30 % des dépenses réellement payées."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.30'
@@ -95,7 +48,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-193
-          span: 'la réduction d''impôt pour les dépenses visées à l''article 1451, 5°, est calculée au taux de 25 % pour les montants visés à l''article 1458, § 1er, alinéa 3.'
+          excerpt: "la réduction d'impôt pour les dépenses visées à l'article 1451, 5°, est calculée au taux de 25 % pour les montants visés à l'article 1458, § 1er, alinéa 3."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.25'
@@ -112,7 +65,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-200
-          span: 'Le montant pris en considération pour la réduction est limité à 1.050 euros (montant indexé) par période imposable.'
+          excerpt: "Le montant pris en considération pour la réduction est limité à 1.050 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '1050'
@@ -129,7 +82,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-200
-          span: 'le contribuable peut choisir de prendre en considération pour la réduction d''impôt un montant plus élevé que le montant visé à l''alinéa 2, avec un maximum de 1.350 euros (montant indexé).'
+          excerpt: "le contribuable peut choisir de prendre en considération pour la réduction d'impôt un montant plus élevé que le montant visé à l'alinéa 2, avec un maximum de 1.350 euros (montant indexé)."
   versions:
   - effective_from: '2025-01-01'
     formula: '1350'
@@ -146,7 +99,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-199
-          span: 'Les sommes affectées à la libération d''actions ou parts, ne sont prises en considération pour la réduction qu''à concurrence d''un montant de 840 euros (montant indexé) par période imposable.'
+          excerpt: "Les sommes affectées à la libération d'actions ou parts, ne sont prises en considération pour la réduction qu'à concurrence d'un montant de 840 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '840'
@@ -162,7 +115,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-225
-          span: 'Le montant total de la réduction d''impôt ne peut excéder par période imposable 500 euros (montant de base) par habitation.'
+          excerpt: "Le montant total de la réduction d'impôt ne peut excéder par période imposable 500 euros (montant de base) par habitation."
   versions:
   - effective_from: '2025-01-01'
     formula: '500'
@@ -178,7 +131,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
-          span: 'Les sommes versées doivent réellement s''élever à un minimum de 420 euros (montant indexé).'
+          excerpt: "Les sommes versées doivent réellement s'élever à un minimum de 420 euros (montant indexé)."
   versions:
   - effective_from: '2025-01-01'
     formula: '420'
@@ -193,7 +146,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
-          span: 'La réduction d''impôt est égale à 5 % des paiements réellement faits, avec un maximum de 350 euros (montant indexé) par période imposable.'
+          excerpt: "La réduction d'impôt est égale à 5 % des paiements réellement faits, avec un maximum de 350 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.05'
@@ -209,7 +162,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
-          span: 'La réduction d''impôt est égale à 5 % des paiements réellement faits, avec un maximum de 350 euros (montant indexé) par période imposable.'
+          excerpt: "La réduction d'impôt est égale à 5 % des paiements réellement faits, avec un maximum de 350 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '350'
@@ -225,7 +178,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
-          span: 'La réduction d''impôt pour les libéralités visées à l''alinéa 1er est accordée à condition qu''elles atteignent au moins 40 euros (montant indexé)'
+          excerpt: "La réduction d'impôt pour les libéralités visées à l'alinéa 1er est accordée à condition qu'elles atteignent au moins 40 euros (montant indexé)"
   versions:
   - effective_from: '2025-01-01'
     formula: '40'
@@ -240,7 +193,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
-          span: 'Le montant total des libéralités pour lequel la réduction d''impôt est accordée ne peut excéder par période imposable ni 10 % de l''ensemble des revenus nets, à l''exclusion des revenus qui sont imposés conformément à l''article 171 ni 420.930 euros (montant indexé).'
+          excerpt: "Le montant total des libéralités pour lequel la réduction d'impôt est accordée ne peut excéder par période imposable ni 10 % de l'ensemble des revenus nets, à l'exclusion des revenus qui sont imposés conformément à l'article 171 ni 420.930 euros (montant indexé)."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.10'
@@ -256,7 +209,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
-          span: 'Le montant total des libéralités pour lequel la réduction d''impôt est accordée ne peut excéder par période imposable ni 10 % de l''ensemble des revenus nets, à l''exclusion des revenus qui sont imposés conformément à l''article 171 ni 420.930 euros (montant indexé).'
+          excerpt: "Le montant total des libéralités pour lequel la réduction d'impôt est accordée ne peut excéder par période imposable ni 10 % de l'ensemble des revenus nets, à l'exclusion des revenus qui sont imposés conformément à l'article 171 ni 420.930 euros (montant indexé)."
   versions:
   - effective_from: '2025-01-01'
     formula: '420930'
@@ -271,7 +224,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-229
-          span: 'La réduction d''impôt est égale à 45 % des libéralités faites réellement.'
+          excerpt: "La réduction d'impôt est égale à 45 % des libéralités faites réellement."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.45'
@@ -287,7 +240,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-231
-          span: 'les rémunérations atteignent au moins 4.920 euros (montant indexé) par période imposable et sont soumises au régime de la sécurité sociale'
+          excerpt: "les rémunérations atteignent au moins 4.920 euros (montant indexé) par période imposable et sont soumises au régime de la sécurité sociale"
   versions:
   - effective_from: '2025-01-01'
     formula: '4920'
@@ -302,7 +255,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-231
-          span: 'Le montant pour lequel la réduction d''impôt est accordée est égal à 50 % des rémunérations payées ou attribuées au cours de la période imposable et ne peut excéder 8.420 euros (montant indexé) par période imposable.'
+          excerpt: "Le montant pour lequel la réduction d'impôt est accordée est égal à 50 % des rémunérations payées ou attribuées au cours de la période imposable et ne peut excéder 8.420 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.50'
@@ -318,7 +271,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-231
-          span: 'Le montant pour lequel la réduction d''impôt est accordée est égal à 50 % des rémunérations payées ou attribuées au cours de la période imposable et ne peut excéder 8.420 euros (montant indexé) par période imposable.'
+          excerpt: "Le montant pour lequel la réduction d'impôt est accordée est égal à 50 % des rémunérations payées ou attribuées au cours de la période imposable et ne peut excéder 8.420 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '8420'
@@ -334,7 +287,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-233
-          span: 'Le montant maximum des dépenses à prendre en considération pour la réduction s''élève à 16,90 euros (montant indexé) par jour de garde et par enfant.'
+          excerpt: "Le montant maximum des dépenses à prendre en considération pour la réduction s'élève à 16,90 euros (montant indexé) par jour de garde et par enfant."
   versions:
   - effective_from: '2025-01-01'
     formula: '16.90'
@@ -349,7 +302,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-233
-          span: 'La réduction d''impôt est égale à 45 % des dépenses réellement faites, limitées le cas échéant conformément à l''alinéa précédent.'
+          excerpt: "La réduction d'impôt est égale à 45 % des dépenses réellement faites, limitées le cas échéant conformément à l'alinéa précédent."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.45'
@@ -365,7 +318,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-233
-          span: 'une réduction d''impôt complémentaire est octroyée qui est calculée au taux de: 1° lorsque le montant du supplément additionnel est déterminé conformément à l''article 133, alinéa 3, premier tiret: 30 %;'
+          excerpt: "une réduction d'impôt complémentaire est octroyée qui est calculée au taux de: 1° lorsque le montant du supplément additionnel est déterminé conformément à l'article 133, alinéa 3, premier tiret: 30 %;"
   versions:
   - effective_from: '2025-01-01'
     formula: '0.30'
@@ -380,7 +333,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-249
-          span: 'La réduction d''impôt est égale à 20 % des dépenses prises en compte.'
+          excerpt: "La réduction d'impôt est égale à 20 % des dépenses prises en compte."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.20'
@@ -397,7 +350,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-249
-          span: 'Elle ne peut s''élever à plus de 6.730 euros (montant indexé) par procédure d''adoption.'
+          excerpt: "Elle ne peut s'élever à plus de 6.730 euros (montant indexé) par procédure d'adoption."
   versions:
   - effective_from: '2025-01-01'
     formula: '6730'
@@ -414,7 +367,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-250
-          span: 'Les paiements visés à l''alinéa 1er ne sont pris en considération qu''à concurrence d''un montant de 330 euros (montant indexé) par période imposable.'
+          excerpt: "Les paiements visés à l'alinéa 1er ne sont pris en considération qu'à concurrence d'un montant de 330 euros (montant indexé) par période imposable."
   versions:
   - effective_from: '2025-01-01'
     formula: '330'
@@ -429,7 +382,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-250
-          span: 'La réduction d''impôt est égale à 40 % du montant à prendre en considération.'
+          excerpt: "La réduction d'impôt est égale à 40 % du montant à prendre en considération."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.40'
@@ -446,7 +399,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
-          span: 'une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);'
+          excerpt: "une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);"
   versions:
   - effective_from: '2025-01-01'
     formula: '2219.27'
@@ -463,7 +416,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
-          span: 'une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);'
+          excerpt: "une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);"
   versions:
   - effective_from: '2025-01-01'
     formula: '457.23'
@@ -480,7 +433,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
-          span: 'lorsque le revenu net se compose exclusivement d''indemnités légales d''assurance en cas de maladie ou d''invalidité: 2.977,93 euros (montant indexé);'
+          excerpt: "lorsque le revenu net se compose exclusivement d'indemnités légales d'assurance en cas de maladie ou d'invalidité: 2.977,93 euros (montant indexé);"
   versions:
   - effective_from: '2025-01-01'
     formula: '2977.93'
@@ -497,7 +450,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
-          span: 'Lorsque le revenu imposable est compris entre 28.780 euros (montant indexé) et 35.930 euros (montant indexé), ces réductions ne sont accordées qu''à concurrence d''une quotité déterminée'
+          excerpt: "Lorsque le revenu imposable est compris entre 28.780 euros (montant indexé) et 35.930 euros (montant indexé), ces réductions ne sont accordées qu'à concurrence d'une quotité déterminée"
   versions:
   - effective_from: '2025-01-01'
     formula: '28780'
@@ -514,7 +467,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
-          span: 'Lorsque le revenu imposable atteint ou dépasse 35.930 euros (montant indexé), les réductions pour allocations de chômage autres que celles qui sont attribuées aux chômeurs âgés de 58 ans ou plus'
+          excerpt: "Lorsque le revenu imposable atteint ou dépasse 35.930 euros (montant indexé), les réductions pour allocations de chômage autres que celles qui sont attribuées aux chômeurs âgés de 58 ans ou plus"
   versions:
   - effective_from: '2025-01-01'
     formula: '35930'
@@ -531,7 +484,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
-          span: 'Lorsque le revenu imposable est compris entre 19.630 euros (montant indexé) et 28.780 euros (montant indexé), ces réductions ne sont accordées qu''à concurrence d''une quotité déterminée'
+          excerpt: "Lorsque le revenu imposable est compris entre 19.630 euros (montant indexé) et 28.780 euros (montant indexé), ces réductions ne sont accordées qu'à concurrence d'une quotité déterminée"
   versions:
   - effective_from: '2025-01-01'
     formula: '19630'
@@ -548,7 +501,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-255
-          span: 'Les réductions additionnelles pour pensions et autres revenus de remplacement et pour allocations de chômage ne sont pas accordées lorsque le revenu imposable s''élève à 28.780 euros (montant indexé) ou plus.'
+          excerpt: "Les réductions additionnelles pour pensions et autres revenus de remplacement et pour allocations de chômage ne sont pas accordées lorsque le revenu imposable s'élève à 28.780 euros (montant indexé) ou plus."
   versions:
   - effective_from: '2025-01-01'
     formula: '28780'
@@ -565,7 +518,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-256
-          span: 'Lorsque le revenu imposable est compris entre 28.780 euros (montant indexé) et 57.560 euros (montant indexé), cette limite du tiers est majorée'
+          excerpt: "Lorsque le revenu imposable est compris entre 28.780 euros (montant indexé) et 57.560 euros (montant indexé), cette limite du tiers est majorée"
   versions:
   - effective_from: '2025-01-01'
     formula: '28780'
@@ -582,7 +535,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-256
-          span: 'Lorsque le revenu imposable atteint ou dépasse 57.560 euros (montant indexé), les réductions autres que celles visées aux articles 151 et 151/1 ne sont accordées qu''à concurrence d''un tiers.'
+          excerpt: "Lorsque le revenu imposable atteint ou dépasse 57.560 euros (montant indexé), les réductions autres que celles visées aux articles 151 et 151/1 ne sont accordées qu'à concurrence d'un tiers."
   versions:
   - effective_from: '2025-01-01'
     formula: '57560'
@@ -597,7 +550,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-512
-          span: 'il est accordé un crédit d''impôt de 10 %, avec un maximum de 3.750 euros, de l''excédent que représente'
+          excerpt: "il est accordé un crédit d'impôt de 10 %, avec un maximum de 3.750 euros, de l'excédent que représente"
   versions:
   - effective_from: '2025-01-01'
     formula: '0.10'
@@ -613,7 +566,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-512
-          span: 'il est accordé un crédit d''impôt de 10 %, avec un maximum de 3.750 euros, de l''excédent que représente'
+          excerpt: "il est accordé un crédit d'impôt de 10 %, avec un maximum de 3.750 euros, de l'excédent que représente"
   versions:
   - effective_from: '2025-01-01'
     formula: '3750'
@@ -630,7 +583,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-513
-          span: 'Pour donner droit au crédit d''impôt, le montant des revenus d''activités doit être supérieur à 6.550 euros (montant indexé).'
+          excerpt: "Pour donner droit au crédit d'impôt, le montant des revenus d'activités doit être supérieur à 6.550 euros (montant indexé)."
   versions:
   - effective_from: '2025-01-01'
     formula: '6550'
@@ -647,7 +600,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
-          span: 'lorsque le montant des revenus d''activités s''élève à plus de 6.550 euros (montant indexé) tout en ne dépassent pas 8.740 euros (montant indexé): 880 euros (montant indexé)'
+          excerpt: "lorsque le montant des revenus d'activités s'élève à plus de 6.550 euros (montant indexé) tout en ne dépassent pas 8.740 euros (montant indexé): 880 euros (montant indexé)"
   versions:
   - effective_from: '2025-01-01'
     formula: '8740'
@@ -664,7 +617,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
-          span: 'lorsque le montant des revenus d''activités s''élève à plus de 8.740 euros (montant indexé) tout en ne dépassant pas 21.860 euros (montant indexé): 880 euros (montant indexé);'
+          excerpt: "lorsque le montant des revenus d'activités s'élève à plus de 8.740 euros (montant indexé) tout en ne dépassant pas 21.860 euros (montant indexé): 880 euros (montant indexé);"
   versions:
   - effective_from: '2025-01-01'
     formula: '21860'
@@ -681,7 +634,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
-          span: 'lorsque le montant des revenus d''activités s''élève à plus de 21.860 euros (montant indexé) tout en ne dépassant pas 28.420 euros (montant indexé): 880 euros (montant indexé)'
+          excerpt: "lorsque le montant des revenus d'activités s'élève à plus de 21.860 euros (montant indexé) tout en ne dépassant pas 28.420 euros (montant indexé): 880 euros (montant indexé)"
   versions:
   - effective_from: '2025-01-01'
     formula: '28420'
@@ -698,7 +651,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
-          span: 'lorsque le montant des revenus d''activités s''élève à plus de 8.740 euros (montant indexé) tout en ne dépassant pas 21.860 euros (montant indexé): 880 euros (montant indexé);'
+          excerpt: "lorsque le montant des revenus d'activités s'élève à plus de 8.740 euros (montant indexé) tout en ne dépassant pas 21.860 euros (montant indexé): 880 euros (montant indexé);"
   versions:
   - effective_from: '2025-01-01'
     formula: '880'
@@ -715,7 +668,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
-          span: 'le montant de 880 euros (montant indexé) est chaque fois remplacé par: 1° le montant de 400 euros (montant indexé) pour les conjoints aidants visés à l''article 33, alinéa 1er'
+          excerpt: "le montant de 880 euros (montant indexé) est chaque fois remplacé par: 1° le montant de 400 euros (montant indexé) pour les conjoints aidants visés à l'article 33, alinéa 1er"
   versions:
   - effective_from: '2025-01-01'
     formula: '400'
@@ -732,7 +685,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-514
-          span: '2° le montant de 970 euros (montant indexé) pour les travailleurs qui autrement qu''en vertu d''un contrat de travail exécutent des prestations de travail dans le secteur public.'
+          excerpt: "2° le montant de 970 euros (montant indexé) pour les travailleurs qui autrement qu'en vertu d'un contrat de travail exécutent des prestations de travail dans le secteur public."
   versions:
   - effective_from: '2025-01-01'
     formula: '970'
@@ -747,7 +700,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-          span: 'Le crédit d''impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée'
+          excerpt: "Le crédit d'impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
   versions:
   - effective_from: '2025-01-01'
     formula: '0.3314'
@@ -762,7 +715,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-          span: 'et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée'
+          excerpt: "et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
   versions:
   - effective_from: '2025-01-01'
     formula: '0.5254'
@@ -778,7 +731,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-          span: 'Le crédit d''impôt ne peut excéder par période imposable 1.540 euros (montant indexé).'
+          excerpt: "Le crédit d'impôt ne peut excéder par période imposable 1.540 euros (montant indexé)."
   versions:
   - effective_from: '2025-01-01'
     formula: '1540'
@@ -856,9 +809,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-193
-          span: CIR 1992 article 145/32 paragraph 2, development-fund recapture when
-            shares are ceded inside 60 months
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-226
+          excerpt: "§ 2. Lorsque la condition visée au paragraphe 1er, alinéa 2, 1°, n'a pas été observée durant une des années suivant l'année de versement parce que le souscripteur a cédé les actions dans les 60 mois suivant leur acquisition, l'impôt total afférent aux revenus de cette année est majoré d'un montant correspondant à autant de fois un soixantième de la réduction d'impôt réellement obtenue conformément au paragraphe 1er, qu'il reste de mois entiers jusqu'à l'expiration du délai de 60 mois."
   versions:
   - effective_from: '2025-01-01'
     formula: '60'

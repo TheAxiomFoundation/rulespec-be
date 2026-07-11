@@ -14,30 +14,7 @@ module:
     voluntary Brussels affiliation routing, and downstream care-budget
     entitlement sanctions.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-22
-      - be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-23
-      - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-      - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25
-      - be/guidance/statbel/consumer-price-index-and-health-index/sheet-1
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-      rationale: |-
-        The implementing order sets the premium base amounts and requires
-        health-index adjustment. Statbel is Belgium's official statistical
-        source for the April health-index values used in that statutory
-        formula.
-    values:
-      flanders_social_protection_premium_start_age_years: 26
-      flanders_social_protection_article_68_base_ordinary_annual_premium_2022_2025: 54
-      flanders_social_protection_article_68_base_reduced_annual_premium_2022_2025: 27
-      flanders_social_protection_article_68_statbel_april_2024_health_index_2013: 130.85
-      flanders_social_protection_article_68_statbel_april_2020_health_index_2013: 110.22
-      flanders_social_protection_article_68_premium_year_2025: 2025
-      flanders_social_protection_ordinary_annual_premium_2026: 100
-      flanders_social_protection_reduced_annual_premium_2026: 35
+    corpus_citation_path: "be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-22"
 units:
   - name: EUR
     kind: currency
@@ -71,7 +48,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: De jaarlijkse premie voor de Vlaamse sociale bescherming, vermeld in artikel 45, § 1, van het decreet van 18 mei 2018, bedraagt 54 euro.
+              excerpt: "De jaarlijkse premie voor de Vlaamse sociale bescherming, vermeld in artikel 45, § 1, van het decreet van 18 mei 2018, bedraagt 54 euro."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -88,7 +65,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: In afwijking van het tweede lid bedraagt de jaarlijkse premie voor de Vlaamse sociale bescherming 27 euro
+              excerpt: "In afwijking van het tweede lid bedraagt de jaarlijkse premie voor de Vlaamse sociale bescherming 27 euro"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -104,17 +81,17 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: aangepast aan de ontwikkeling van het gezondheidsindexcijfer van de consumptieprijzen van de maand april van het voorgaande jaar ten opzichte van het gezondheidsindexcijfer van de consumptieprijzen van de maand april in 2020
+              excerpt: "aangepast aan de ontwikkeling van het gezondheidsindexcijfer van de consumptieprijzen van de maand april van het voorgaande jaar ten opzichte van het gezondheidsindexcijfer van de consumptieprijzen van de maand april in 2020"
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/statbel/consumer-price-index-and-health-index/sheet-1
-              span: 2024 | 4 | 130.85 | 2013
+              excerpt: "2024 | 4 | 130.85 | 2013"
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/statbel/consumer-price-index-and-health-index/sheet-1
-              span: 2020 | 4 | 110.22 | 2013
+              excerpt: "2020 | 4 | 110.22 | 2013"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -130,7 +107,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/statbel/consumer-price-index-and-health-index/sheet-1
-              span: 2024 | 4 | 130.85 | 2013
+              excerpt: "2024 | 4 | 130.85 | 2013"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -146,7 +123,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/statbel/consumer-price-index-and-health-index/sheet-1
-              span: 2020 | 4 | 110.22 | 2013
+              excerpt: "2020 | 4 | 110.22 | 2013"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -163,17 +140,17 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: Na de jaarlijkse berekening, vermeld in het vierde lid, worden de bedragen naar beneden afgerond als het eerste cijfer na de komma minder dan vijf bedraagt.
+              excerpt: "Na de jaarlijkse berekening, vermeld in het vierde lid, worden de bedragen naar beneden afgerond als het eerste cijfer na de komma minder dan vijf bedraagt."
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: De jaarlijkse premie voor de Vlaamse sociale bescherming, vermeld in artikel 45, § 1, van het decreet van 18 mei 2018, bedraagt 54 euro.
+              excerpt: "De jaarlijkse premie voor de Vlaamse sociale bescherming, vermeld in artikel 45, § 1, van het decreet van 18 mei 2018, bedraagt 54 euro."
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: aangepast aan de ontwikkeling van het gezondheidsindexcijfer van de consumptieprijzen van de maand april van het voorgaande jaar ten opzichte van het gezondheidsindexcijfer van de consumptieprijzen van de maand april in 2020
+              excerpt: "aangepast aan de ontwikkeling van het gezondheidsindexcijfer van de consumptieprijzen van de maand april van het voorgaande jaar ten opzichte van het gezondheidsindexcijfer van de consumptieprijzen van de maand april in 2020"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -190,17 +167,17 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: De bedragen worden naar boven afgerond, als het eerste cijfer na de komma vijf of meer bedraagt.
+              excerpt: "De bedragen worden naar boven afgerond, als het eerste cijfer na de komma vijf of meer bedraagt."
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: In afwijking van het tweede lid bedraagt de jaarlijkse premie voor de Vlaamse sociale bescherming 27 euro
+              excerpt: "In afwijking van het tweede lid bedraagt de jaarlijkse premie voor de Vlaamse sociale bescherming 27 euro"
           - path: versions[0].formula
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: aangepast aan de ontwikkeling van het gezondheidsindexcijfer van de consumptieprijzen van de maand april van het voorgaande jaar ten opzichte van het gezondheidsindexcijfer van de consumptieprijzen van de maand april in 2020
+              excerpt: "aangepast aan de ontwikkeling van het gezondheidsindexcijfer van de consumptieprijzen van de maand april van het voorgaande jaar ten opzichte van het gezondheidsindexcijfer van de consumptieprijzen van de maand april in 2020"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -216,7 +193,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26
-              span: Artikel 68. ( 01/01/2022 - 31/12/2025 )
+              excerpt: "Artikel 68. ( 01/01/2022 - 31/12/2025 )"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -233,7 +210,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25
-              span: De jaarlijkse premie voor de Vlaamse sociale bescherming, vermeld in artikel 45, § 1, van het decreet van 18 mei 2018, bedraagt 100 euro.
+              excerpt: "De jaarlijkse premie voor de Vlaamse sociale bescherming, vermeld in artikel 45, § 1, van het decreet van 18 mei 2018, bedraagt 100 euro."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -250,7 +227,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order/block-25
-              span: In afwijking van het tweede lid bedraagt de jaarlijkse premie voor de Vlaamse sociale bescherming 35 euro
+              excerpt: "In afwijking van het tweede lid bedraagt de jaarlijkse premie voor de Vlaamse sociale bescherming 35 euro"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -304,6 +281,14 @@ rules:
     period: Year
     unit: EUR
     source: Flemish Social Protection Decree articles 42 and 45 and implementing order article 68
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/codex-vlaanderen/social-protection/decree-2018-05-18/block-23"
+              excerpt: "De personen die aangesloten zijn bij een zorgkas moeten vanaf de leeftijd die de Vlaamse Regering bepaalt, jaarlijks een premie betalen voor de Vlaamse sociale bescherming."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

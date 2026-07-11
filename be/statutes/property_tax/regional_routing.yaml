@@ -17,19 +17,7 @@ module:
     eligibility predicates beyond the supplied inputs used by the imported
     modules.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170
-      - be/statute/fisconetplus/cir92/revenus-2025/page-446
-      - be/statute/fisconetplus/cir92/revenus-2025/page-447
-      - be/statute/fisconetplus/cir92/revenus-2025/page-448
-      - be/statute/fisconetplus/cir92/revenus-2025/page-58
-      - be/statute/fisconetplus/cir92/revenus-2025/page-59
-      - be/statute/fisconetplus/cir92/revenus-2025/page-686
-    values:
-      belgium_property_tax_region_flanders: 0
-      belgium_property_tax_region_brussels: 1
-      belgium_property_tax_region_wallonia: 2
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/block-1"
 rules:
   - name: belgium_property_tax_region_flanders
     kind: parameter
@@ -62,6 +50,19 @@ rules:
     period: Year
     unit: EUR
     source: Regional bridge over encoded Flemish and non-Flemish immovable-withholding base rules
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-447"
+              excerpt: "Sur la demande de l'intéressé, il est accordé: 1° une réduction d'un quart du précompte immobilier afférent à l'habitation entièrement occupée par le contribuable lorsque le revenu cadastral de l'ensemble de ses biens immobiliers sis en Belgique ne dépasse pas 745 euros."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-448"
+              excerpt: "Les réductions prévues à l'article 257, 1° à 3° s'apprécient eu égard à la situation existant au 1er janvier de l'année dont le millésime désigne l'exercice d'imposition au précompte immobilier et elles peuvent être cumulées."
     versions:
       - effective_from: '2026-01-01'
         formula: |-

@@ -18,27 +18,7 @@ module:
     joint assessment, and payment-recipient allocation remain separate
     surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1981/06/29/1981001048/article/38
-      - be/statute/loi/1969/06/27/1969062710/article/17
-      - be/regulation/arrete/1969/11/28/1969112813/article/19
-      - be/statute/loi/1994/03/30/1994021117/article/106
-      - be/statute/loi/1994/03/30/1994021117/article/107
-      - be/statute/loi/1994/03/30/1994021117/article/108
-      - be/statute/fisconetplus/cir92/revenus-2025/page-53
-      - be/statute/fisconetplus/cir92/revenus-2025/page-120
-      - be/statute/fisconetplus/cir92/revenus-2025/page-181
-      - be/statute/loi/1989/01/16/1989021010/article/5-2
-    upstream_source_check:
-      status: structural_composition_bridge
-      checked_paths:
-        - be/statute/loi/1981/06/29/1981001048/article/38
-        - be/statute/loi/1994/03/30/1994021117/article/108
-        - be/statute/fisconetplus/cir92/revenus-2025/page-120
-      rationale: |-
-        The aggregate introduces no new statutory tax or contribution amounts.
-        It combines already encoded worker PIT and employee social-security
-        components whose own modules cite the upstream Belgian legal sources.
+    corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/38"
 units:
   - name: EUR
     kind: currency

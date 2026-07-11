@@ -28,22 +28,7 @@ module:
     separate surfaces; this module accepts the resulting point inputs and
     exceptional-eligibility flag directly.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/decreet/2007/06/08/2007036095/article/39
-      - be-vlg/statute/decreet/2007/06/08/2007036095/article/42
-      - be-vlg/statute/decreet/2007/06/08/2007036095/article/43
-      - be-vlg/statute/decreet/2007/06/08/2007036095/article/51
-    values:
-      study_grant_points_cap: '20'
-      study_grant_min_income_threshold_at_zero_points: '6573.55'
-      study_grant_min_income_threshold_at_twenty_points: '31177.76'
-      study_grant_max_income_threshold_at_zero_points: '14489.77'
-      study_grant_max_income_threshold_at_twenty_points: '75362.09'
-      study_grant_full_kot_base_amount: '3404.62'
-      study_grant_full_nietkot_base_amount: '2043.43'
-      study_grant_exceptional_kot_base_amount: '4583.86'
-      study_grant_exceptional_nietkot_base_amount: '2965.31'
-      study_grant_minimum_base_amount: '220'
+    corpus_citation_path: "be-vlg/statute/decreet/2007/06/08/2007036095/article/39"
 units:
   - name: EUR
     kind: currency
@@ -62,8 +47,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
-              span: De minimum- en maximuminkomensgrenzen worden vastgelegd aan
-                de hand van een puntensysteem, gaande van nul tot twintig
+              excerpt: "De minimum- en maximuminkomensgrenzen worden vastgelegd aan de hand van een puntensysteem, gaande van nul tot twintig"
     versions:
       - effective_from: '2008-09-01'
         formula: '20'
@@ -119,8 +103,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
-              span: de minimuminkomensgrens stemt voor een leefeenheid met nul
-                punten overeen met 6573,55 euro
+              excerpt: "de minimuminkomensgrens stemt voor een leefeenheid met nul punten overeen met 6573,55 euro"
     versions:
       - effective_from: '2008-09-01'
         formula: '6573.55'
@@ -137,7 +120,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
-              span: voor een leefeenheid met twintig punten met 31.177,76 euro
+              excerpt: "voor een leefeenheid met twintig punten met 31.177,76 euro"
     versions:
       - effective_from: '2008-09-01'
         formula: '31177.76'
@@ -154,8 +137,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
-              span: de maximuminkomensgrens stemt voor een leefeenheid met nul
-                punten overeen met 14.489,77 euro
+              excerpt: "de maximuminkomensgrens stemt voor een leefeenheid met nul punten overeen met 14.489,77 euro"
     versions:
       - effective_from: '2008-09-01'
         formula: '14489.77'
@@ -172,8 +154,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/43
-              span: en voor een leefeenheid met twintig punten met 75.362,09
-                euro
+              excerpt: "en voor een leefeenheid met twintig punten met 75.362,09 euro"
     versions:
       - effective_from: '2008-09-01'
         formula: '75362.09'
@@ -191,7 +172,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
-              span: 3404,62 euro voor kotstudenten
+              excerpt: "3404,62 euro voor kotstudenten"
     versions:
       - effective_from: '2008-08-15'
         formula: '3404.62'
@@ -208,7 +189,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
-              span: 2043,43 euro voor niet-kotstudenten
+              excerpt: "2043,43 euro voor niet-kotstudenten"
     versions:
       - effective_from: '2008-08-15'
         formula: '2043.43'
@@ -225,7 +206,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
-              span: 4583,86 euro voor kotstudenten
+              excerpt: "4583,86 euro voor kotstudenten"
     versions:
       - effective_from: '2008-08-15'
         formula: '4583.86'
@@ -242,7 +223,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
-              span: 2965,31 euro voor niet-kotstudenten
+              excerpt: "2965,31 euro voor niet-kotstudenten"
     versions:
       - effective_from: '2008-08-15'
         formula: '2965.31'
@@ -259,7 +240,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2007/06/08/2007036095/article/51
-              span: De minimumstudietoelage bedraagt 220 euro
+              excerpt: "De minimumstudietoelage bedraagt 220 euro"
     versions:
       - effective_from: '2008-08-15'
         formula: '220'

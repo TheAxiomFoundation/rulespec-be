@@ -16,19 +16,7 @@ module:
     lone-parent and age-fifty amount increases, the fractioning rules, the
     sector variations, and the withholding tax to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1997/10/29/1997012760/article/2
-      - be/regulation/arrete/1991/01/02/1991013073/article/6
-      - be/regulation/arrete/1991/01/02/1991013073/article/8
-    values:
-      belgium_parental_leave_full_time_months: "4"
-      belgium_parental_leave_half_time_months: "8"
-      belgium_parental_leave_one_fifth_months: "20"
-      belgium_parental_leave_one_tenth_months: "40"
-      belgium_parental_leave_full_time_monthly_base_amount: "508.92"
-      belgium_parental_leave_half_time_monthly_base_amount: "254.46"
-      belgium_parental_leave_one_fifth_monthly_base_amount: "86.32"
-      belgium_parental_leave_one_tenth_monthly_base_amount: "43.16"
+    corpus_citation_path: "be/regulation/arrete/1997/10/29/1997012760/article/2"
 units:
   - name: EUR
     kind: currency
@@ -45,7 +33,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: soit de suspendre l'exécution de son contrat de travail comme prévu à l'article 100 de la loi de redressement du 22 janvier 1985 contenant des dispositions sociales pendant une période de quatre mois
+              excerpt: "soit de suspendre l'exécution de son contrat de travail comme prévu à l'article 100 de la loi de redressement du 22 janvier 1985 contenant des dispositions sociales pendant une période de quatre mois"
     versions:
       - effective_from: '1997-11-07'
         formula: |-
@@ -61,7 +49,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'un mi-temps durant une période de huit mois comme prévu à l'article 102 de la loi susmentionnée
+              excerpt: "soit de poursuivre ses prestations de travail à temps partiel sous la forme d'un mi-temps durant une période de huit mois comme prévu à l'article 102 de la loi susmentionnée"
     versions:
       - effective_from: '1997-11-07'
         formula: |-
@@ -77,7 +65,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'une réduction d'un cinquième durant une période de vingt mois comme prévu à l'article 102 de la loi susmentionnée
+              excerpt: "soit de poursuivre ses prestations de travail à temps partiel sous la forme d'une réduction d'un cinquième durant une période de vingt mois comme prévu à l'article 102 de la loi susmentionnée"
     versions:
       - effective_from: '1997-11-07'
         formula: |-
@@ -93,7 +81,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'une réduction d'un dixième durant une période de quarante mois comme prévu à l'article 102 de la loi susmentionnée
+              excerpt: "soit de poursuivre ses prestations de travail à temps partiel sous la forme d'une réduction d'un dixième durant une période de quarante mois comme prévu à l'article 102 de la loi susmentionnée"
     versions:
       - effective_from: '2012-06-01'
         formula: |-
@@ -110,7 +98,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/6
-              span: le montant de l'allocation d'interruption octroyée aux travailleurs qui interrompent un régime de travail à temps plein est fixé à (508,92 euros) par mois
+              excerpt: "le montant de l'allocation d'interruption octroyée aux travailleurs qui interrompent un régime de travail à temps plein est fixé à (508,92 euros) par mois"
     versions:
       - effective_from: '2005-07-28'
         formula: |-
@@ -127,7 +115,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
-              span: pour les travailleurs à temps plein qui réduisent leurs prestations de travail de moitié, à (254,46 euros)
+              excerpt: "pour les travailleurs à temps plein qui réduisent leurs prestations de travail de moitié, à (254,46 euros)"
     versions:
       - effective_from: '2005-07-28'
         formula: |-
@@ -144,7 +132,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
-              span: pour les travailleurs à temps plein qui réduisent leurs prestations de travail d'un cinquième, à 86,32 euros
+              excerpt: "pour les travailleurs à temps plein qui réduisent leurs prestations de travail d'un cinquième, à 86,32 euros"
     versions:
       - effective_from: '2005-07-28'
         formula: |-
@@ -161,7 +149,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
-              span: pour les travailleurs à temps plein qui réduisent leurs prestations de travail d'un dixième dans le cadre du congé parental, à 43,16 euros
+              excerpt: "pour les travailleurs à temps plein qui réduisent leurs prestations de travail d'un dixième dans le cadre du congé parental, à 43,16 euros"
     versions:
       - effective_from: '2005-07-28'
         formula: |-
@@ -177,7 +165,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: soit de suspendre l'exécution de son contrat de travail comme prévu à l'article 100 de la loi de redressement du 22 janvier 1985 contenant des dispositions sociales pendant une période de quatre mois
+              excerpt: "soit de suspendre l'exécution de son contrat de travail comme prévu à l'article 100 de la loi de redressement du 22 janvier 1985 contenant des dispositions sociales pendant une période de quatre mois"
     versions:
       - effective_from: '1997-11-07'
         formula: |-
@@ -193,7 +181,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: soit de poursuivre ses prestations de travail à temps partiel sous la forme d'un mi-temps durant une période de huit mois comme prévu à l'article 102 de la loi susmentionnée
+              excerpt: "soit de poursuivre ses prestations de travail à temps partiel sous la forme d'un mi-temps durant une période de huit mois comme prévu à l'article 102 de la loi susmentionnée"
     versions:
       - effective_from: '1997-11-07'
         formula: |-
@@ -209,7 +197,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: sous la forme d'une réduction d'un cinquième durant une période de vingt mois
+              excerpt: "sous la forme d'une réduction d'un cinquième durant une période de vingt mois"
     versions:
       - effective_from: '1997-11-07'
         formula: |-
@@ -225,7 +213,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              span: sous la forme d'une réduction d'un dixième durant une période de quarante mois
+              excerpt: "sous la forme d'une réduction d'un dixième durant une période de quarante mois"
     versions:
       - effective_from: '2012-06-01'
         formula: |-
@@ -244,7 +232,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
-              excerpt: le montant mensuel de l'allocation d'interruption est fixé comme suit selon la forme de réduction des prestations de travail.
+              excerpt: "E) l'alinéa 2, 5° de ce paragraphe, est augmenté jusqu'à la partie du montant visé au D) proportionnelle au nombre d'heures de réduction des prestations de travail.\n(§ 2bis. Pour les travailleurs visés à l'article 7bis, le montant mensuel de l'allocation d'interruption est fixé comme suit :"
     versions:
       - effective_from: '2012-06-01'
         formula: |-
@@ -271,7 +259,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              excerpt: la durée maximale de la période de congé parental dépend de la forme d'interruption choisie.
+              excerpt: "à l'article 102 de la loi susmentionnée, lorsqu'il est occupé à temps plein et moyennant l'accord de l'employeur; cette période peut être fractionnée en périodes de dix mois ou un multiple de ce chiffre.]\n2\n§ 2. Le travailleur a la possibilité dans le cadre de l'exercice de son droit au congé parental de faire usage des différentes modalités prévues au paragraphe 1er. [\n2\nLors d'un changement de forme, il convient de tenir compte du principe selon lequel un mois de suspension de l'exécution"
     versions:
       - effective_from: '2012-06-01'
         formula: |-
@@ -299,7 +287,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/8
-              excerpt: le montant mensuel de l'allocation d'interruption est lié à l'indice pivot et adapté conformément à la loi du 2 août 1971.
+              excerpt: "§ 2bis. Pour les travailleurs visés à l'article 7bis, le montant mensuel de l'allocation d'interruption est fixé comme suit :"
     versions:
       - effective_from: '2012-06-01'
         formula: |-
@@ -317,7 +305,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1997/10/29/1997012760/article/2
-              excerpt: le travailleur prend un nombre de mois de congé parental dans la limite de la durée maximale de la forme choisie.
+              excerpt: "à l'article 102 de la loi susmentionnée, lorsqu'il est occupé à temps plein et moyennant l'accord de l'employeur; cette période peut être fractionnée en périodes de dix mois ou un multiple de ce chiffre.]\n2\n§ 2. Le travailleur a la possibilité dans le cadre de l'exercice de son droit au congé parental de faire usage des différentes modalités prévues au paragraphe 1er. [\n2\nLors d'un changement de forme, il convient de tenir compte du principe selon lequel un mois de suspension de l'exécution"
     versions:
       - effective_from: '2012-06-01'
         formula: |-
@@ -336,7 +324,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1991/01/02/1991013073/article/6
-              excerpt: le montant de l'allocation d'interruption est octroyé par mois de congé parental pris par le travailleur éligible.
+              excerpt: "Le montant de l'allocation d'interruption octroyée aux travailleurs qui interrompent un régime de travail à temps plein est fixé à 10 504 francs par mois."
     versions:
       - effective_from: '2012-06-01'
         formula: |-

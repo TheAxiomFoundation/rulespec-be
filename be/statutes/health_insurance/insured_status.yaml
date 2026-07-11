@@ -13,13 +13,7 @@ module:
     date reconstruction, independent-worker delegated insurance, contribution
     proof, medical recognition, and payment procedure to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1994/07/14/1994071451/article/32
-      - be/statute/loi/1994/07/14/1994071451/article/86
-      - be/statute/loi/1994/07/14/1994071451/article/112
-      - be/statute/loi/1994/07/14/1994071451/article/131
-    values:
-      belgium_health_article_131_max_uninterrupted_gap_days: 30
+    corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/32"
 rules:
   - name: belgium_health_article_131_max_uninterrupted_gap_days
     kind: parameter
@@ -61,6 +55,14 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law of 14 July 1994, article 32 first paragraph items 3 and 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/32"
+              excerpt: "12° (les personnes, déterminées par le Roi, auxquelles le décret du 4 août 1959 remplaçant le décret du 5 septembre 1955 sur l'assurance relative aux soins de santé des agents et anciens agents administratifs et militaires, des magistrats et anciens magistrats de carrière et des agents et anciens agents de l'ordre judiciaire et de la police judiciaire des parquets, était applicable avant le 1er janvier 1994;"
     versions:
       - effective_from: '1994-07-14'
         formula: |-
@@ -204,6 +206,14 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law of 14 July 1994, article 86 section 1 items 1 a and 1 b
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/86"
+              excerpt: "d'une convention conclue soit au début ou durant l'exécution du contrat de travail, soit dans un délai de douze mois après la fin du contrat de travail, sur la base de laquelle le travailleur s'engage à ne pas débaucher de personnel ou de cocontractants indépendants de l'ancien employeur, soit en son propre nom et pour son propre compte, soit au nom et pour le compte d'un ou plusieurs tiers, et/ou s'engage à ne pas exercer d'activités similaires à celles qu'il exerçait chez son ancien employeur, soit en exploitant lui-même une entreprise, soit en entrant en service auprès d'un employeur concurrent;"
     versions:
       - effective_from: '2016-01-01'
         formula: |-
@@ -217,6 +227,14 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law of 14 July 1994, article 112
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/112"
+              excerpt: "Sont bénéficiaires du droit à l'indemnité de maternité telle qu'elle est définie au titre V, chapitre III, de la présente loi coordonnée et dans les conditions prévues par celle-ci, les titulaires visées à l'article 86, § 1er."
     versions:
       - effective_from: '1996-10-06'
         formula: |-
@@ -227,6 +245,14 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law of 14 July 1994, article 131
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/131"
+              excerpt: "Les indemnités incapacité de travail ne sont dues aux titulaires qu'à la condition qu'il ne se soit pas écoulé une période ininterrompue de plus de trente jours entre la date de début de leur incapacité de travail et le dernier jour d'une période pendant laquelle ils avaient la qualité de titulaire visée à l'article 86, § 1er, ou étaient reconnus incapables de travailler au sens de la présent loi coordonnée."
     versions:
       - effective_from: '1994-07-14'
         formula: |-

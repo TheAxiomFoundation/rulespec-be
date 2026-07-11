@@ -3,6 +3,7 @@ axiom_encode_version = "0.2.1188"
 axiom_encode_ref = "a8e70e54517ad90e17e503f6f97f55dc5e0e754a"
 axiom_rules_engine_ref = "c6cc389a8f5e7238019e4fa06849325fad9acd46"
 axiom_corpus_ref = "8e48989c9e46faa6d85a9624b7a2ebda0880656d"
-rulespec_nz_ref = "7d132f7538cc74c69f4df66bd5899a716b8bf569"
-rulespec_uk_ref = "e79d988049deaf5b1f53d3bf23888b97d3e77280"
 rulespec_us_ref = "f33865bb425912461ad5dea642eaa46774e968af"
+# Deliberately fail closed until axiom-corpus#296 is explicitly approved,
+# published, and activated. Do not substitute `current` or an invented release.
+axiom_corpus_release_selector = ""

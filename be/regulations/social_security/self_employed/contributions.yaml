@@ -12,26 +12,7 @@ module:
     reductions, late-payment sanctions, detailed pension entitlement tests, and
     runnable household-oracle parity as separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1967/07/27/1967072702/article/11
-      - be/regulation/arrete/1967/07/27/1967072702/article/12
-      - be/regulation/arrete/1967/07/27/1967072702/article/12bis
-      - be/regulation/arrete/1967/07/27/1967072702/article/13
-      - be/regulation/arrete/1967/07/27/1967072702/article/13bis
-      - be/regulation/arrete/1967/07/27/1967072702/article/14
-    values:
-      belgium_self_employed_article_12_first_rate: "0.205"
-      belgium_self_employed_article_12_second_rate: "0.1416"
-      belgium_self_employed_article_12_first_threshold_base: "15831.12"
-      belgium_self_employed_article_12_second_threshold_base: "23330.06"
-      belgium_self_employed_article_12_main_minimum_income_base: "3666.15"
-      belgium_self_employed_article_12_starter_minimum_income_base: "1893.22"
-      belgium_self_employed_article_12_spouse_helper_reference_income_base: "3221.08"
-      belgium_self_employed_article_12_secondary_exemption_threshold_base: "405.60"
-      belgium_self_employed_article_13_post_pension_exemption_threshold_base: "811.20"
-      belgium_self_employed_article_13_post_pension_first_rate: "0.147"
-      belgium_self_employed_article_12_starter_first_quarter_reduction_base: "25.01"
-      belgium_self_employed_article_14_index_base: "142.75"
+    corpus_citation_path: "be/regulation/arrete/1967/07/27/1967072702/article/11"
 units:
   - name: EUR
     kind: currency
@@ -48,7 +29,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: 20,50 p.c. sur la partie des revenus professionnels qui n'excède pas 15.831,12 EUR
+              excerpt: "20,50 p.c.]\n2\nsur la partie des revenus professionnels qui n'excède pas 15.831,12 EUR;"
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -64,7 +45,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: 14,16 p.c. sur la partie des revenus professionnels qui dépasse 15.831,12 EUR mais n'excède pas 23.330,06 EUR
+              excerpt: "14,16 p.c. sur la partie des revenus professionnels qui dépasse 15.831,12 EUR mais n'excède pas 23.330,06 EUR"
     versions:
       - effective_from: '2008-01-01'
         formula: |-
@@ -80,7 +61,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/13
-              span: 14,70 p.c. sur la partie des revenus professionnels qui n'excède pas 15.831,12 euros
+              excerpt: "14,70 p.c. sur la partie des revenus professionnels qui n'excède pas 15.831,12 euros"
     versions:
       - effective_from: '2018-04-01'
         formula: |-
@@ -97,7 +78,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: 20,50 p.c. sur la partie des revenus professionnels qui n'excède pas 15.831,12 EUR
+              excerpt: "20,50 p.c.]\n2\nsur la partie des revenus professionnels qui n'excède pas 15.831,12 EUR;"
     versions:
       - effective_from: '2008-01-01'
         formula: |-
@@ -114,7 +95,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: 14,16 p.c. sur la partie des revenus professionnels qui dépasse 15.831,12 EUR mais n'excède pas 23.330,06 EUR
+              excerpt: "14,16 p.c. sur la partie des revenus professionnels qui dépasse 15.831,12 EUR mais n'excède pas 23.330,06 EUR"
     versions:
       - effective_from: '2008-01-01'
         formula: |-
@@ -131,7 +112,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: Les revenus professionnels de l'assujetti sont présumés atteindre 3.666,15 EUR
+              excerpt: "(Pour le calcul des cotisations visées au 1°, les revenus professionnels de l'assujetti sont présumés atteindre (3.666,15 EUR), ["
     versions:
       - effective_from: '2003-01-10'
         formula: |-
@@ -148,7 +129,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: 1.893,22 EUR pour les quatre premiers trimestres civils d'assujettissement
+              excerpt: "1.893,22 EUR pour les quatre premiers trimestres civils d'assujettissement"
     versions:
       - effective_from: '2018-04-01'
         formula: |-
@@ -165,7 +146,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: Les revenus professionnels du conjoint aidant sont censés atteindre la moitié de 3.221,08 euros
+              excerpt: "§ 1er, 1°, les revenus professionnels du conjoint aidant assujetti à cet arrêté royal en vertu de l'article 7bis sont censés atteindre la moitié de 3.221,08 euros lorsque ceux-ci n'atteignent pas la moitié de ce montant."
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -182,7 +163,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: N'est redevable d'aucune cotisation si ses revenus professionnels n'atteignent pas 405,60 euros
+              excerpt: "(L'assujetti qui, en dehors de l'activité donnant lieu à l'assujettissement au présent arrêté, exerce habituellement et en ordre principal une autre activité professionnelle, n'est redevable d'aucune cotisation si [\n1\nses revenus professionnels en qualité de travailleur indépendant, acquis au cours de l'année de cotisation visée à l'article 11, § 2, n'atteignent pas 405,60 euros.]"
     versions:
       - effective_from: '2003-01-10'
         formula: |-
@@ -199,7 +180,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/13
-              span: l'assujetti n'est redevable d'aucune cotisation si ses revenus professionnels en qualité de travailleur indépendant, acquis au cours de l'année de cotisation visée à l'article 11, § 2, n'atteignent pas 811,20 euros au moins
+              excerpt: "l'assujetti n'est redevable d'aucune cotisation si ses revenus professionnels en qualité de travailleur indépendant, acquis au cours de l'année de cotisation visée à l'article 11, § 2, n'atteignent pas 811,20 euros au moins"
     versions:
       - effective_from: '2018-04-01'
         formula: |-
@@ -216,7 +197,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/12
-              span: Pour le premier desdits trimestres civils d'assujettissement comme travailleur indépendant à titre principal, il y a une réduction de la cotisation trimestrielle de 25,01 euros
+              excerpt: "Pour le premier desdits trimestres civils d'assujettissement comme travailleur indépendant à titre principal, il y a une réduction de la cotisation trimestrielle de 25,01 euros"
     versions:
       - effective_from: '2022-04-01'
         formula: |-
@@ -232,7 +213,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1967/07/27/1967072702/article/14
-              span: Sont liés à l'indice des prix à la consommation 142,75
+              excerpt: "sont liés à l'indice des prix à la consommation 142,75. En vue de la perception des cotisations pour une année déterminée, ils sont multipliés par une fraction déterminée par le Roi au début de chaque année. Le dénominateur de cette fraction est 142,75;"
     versions:
       - effective_from: '1994-01-01'
         formula: |-
@@ -244,6 +225,14 @@ rules:
     period: Year
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 11 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1967/07/27/1967072702/article/11"
+              excerpt: "c) pour les travailleurs indépendants qui appartiennent à la catégorie de cotisants visée à l'article 12, § 2, et les travailleurs indépendants visés à l'article 37 de l'arrêté royal du 19 décembre 1967 portant règlement général en exécution de l'arrêté royal n° 38 du 27 juillet 1967 organisant le statut social des travailleurs indépendants : payer une cotisation égale à celle due sur la base d'un revenu estimé par le travailleur indépendant s'ils peuvent démontrer que leur revenu pour l'année de cotisation ne dépassera pas le revenu estimé;"
     versions:
       - effective_from: '2015-01-01'
         formula: |-
@@ -451,6 +440,14 @@ rules:
     period: Year
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 12bis
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1967/07/27/1967072702/article/12bis"
+              excerpt: "Lorsque l'étudiant-indépendant recueille des revenus professionnels qui atteignent le montant du revenu visé à l'article 12, § 1er, alinéa 2, pour l'année concernée, il est redevable des cotisations en application de l'article 12, § 1er."
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -507,6 +504,14 @@ rules:
     period: Year
     unit: EUR
     source: Royal Decree No. 38 of 27 July 1967 organizing self-employed social status, article 13bis section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1967/07/27/1967072702/article/13bis"
+              excerpt: "2° lorsqu'il s'agit d'aidants visés à l'article 7bis assujettis volontairement ou non au statut social des indépendants et appartenant au groupe général des cotisants visé à l'article 12, § 1er : des cotisations, calculées de la manière suivante :"
     versions:
       - effective_from: '2018-04-01'
         formula: |-

@@ -21,15 +21,7 @@ module:
 
     calculations remain separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/loi/2002/05/26/2002022559/article/14
-    - be/statute/loi/2002/05/26/2002022559/article/15
-    - be/statute/loi/2002/05/26/2002022559/article/60
-    values:
-      belgium_social_integration_cohabitant_base_annual_amount: '4400'
-      belgium_social_integration_isolated_base_annual_amount: '6600'
-      belgium_social_integration_dependent_family_base_annual_amount: '8800'
-      belgium_social_integration_article_15_base_consumer_price_index: '103.14'
+    corpus_citation_path: "be/statute/loi/2002/05/26/2002022559/article/14"
 units:
 - name: EUR
   kind: currency
@@ -48,7 +40,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-          span: 1° 4 400 EUR pour toute personne cohabitant avec une ou plusieurs personnes.
+          excerpt: "1° 4 400 EUR pour toute personne cohabitant avec une ou plusieurs personnes."
   versions:
   - effective_from: '2002-10-01'
     formula: '4400'
@@ -65,7 +57,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-          span: 2° 6 600 EUR pour une personne isolée
+          excerpt: "2° 6 600 EUR pour une personne isolée"
   versions:
   - effective_from: '2002-10-01'
     formula: '6600'
@@ -82,7 +74,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/14
-          span: 3° 8 800 EUR pour une personne vivant [...] avec une famille à sa charge.
+          excerpt: "3° 8 800 EUR pour une personne vivant\n[...]\navec une famille à sa charge."
   versions:
   - effective_from: '2002-10-01'
     formula: '8800'
@@ -98,7 +90,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/2002/05/26/2002022559/article/15
-          span: Les montants visés à l'article 14, § 1, alinéa 1, sont rattachés à l'indice 103,14 applicable au 1er juin 1999 (base 1996 = 100) des prix à la consommation.
+          excerpt: "Les montants visés à l'article 14, § 1, alinéa 1, sont rattachés à l'indice 103,14 applicable au 1er juin 1999 (base 1996 = 100) des prix à la consommation."
   versions:
   - effective_from: '2002-10-01'
     formula: '103.14'

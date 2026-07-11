@@ -10,21 +10,7 @@ module:
     Article 19 exclusion, ONSS administrative safe harbours, quarterly
     declarations, reductions, or current effective contribution tables.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1969/11/28/1969112813/article/19
-    values:
-      belgium_social_security_article_19_onva_holiday_pay_rate: "0.08"
-      belgium_social_security_article_19_old_mobility_indemnity_per_km_cap: "0.1929"
-      belgium_social_security_article_19_gift_worker_holiday_cap: "40"
-      belgium_social_security_article_19_gift_dependent_child_holiday_cap: "40"
-      belgium_social_security_article_19_gift_honorific_cap: "120"
-      belgium_social_security_article_19_gift_retirement_cap_per_service_year: "40"
-      belgium_social_security_article_19_gift_retirement_minimum_total: "120"
-      belgium_social_security_article_19_gift_retirement_maximum_total: "1000"
-      belgium_social_security_article_19_gift_marriage_or_legal_cohabitation_cap: "245"
-      belgium_social_security_article_19_employee_discount_exempt_rate: "0.30"
-      belgium_social_security_article_19_bicycle_indemnity_annual_cap: "1795"
-      belgium_social_security_article_19_copyright_compensation_cap_rate: "0.30"
+    corpus_citation_path: "be/regulation/arrete/1969/11/28/1969112813/article/19"
 units:
   - name: EUR
     kind: currency
@@ -41,7 +27,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Est forfaitairement fixée à 8 p.c. des autres sommes et avantages constituant la rémunération
+              excerpt: "[La partie du pécule de vacances qui est payée par l'Office national des vacances annuelles ou par une Caisse spéciale de vacances, et qui donne lieu à la perception des cotisations en application de l'alinéa précédent, est forfaitairement fixée à 8 p.c. des autres sommes et avantages constituant la rémunération."
     versions:
       - effective_from: '1975-03-28'
         formula: |-
@@ -58,7 +44,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Le montant de l'indemnité ne peut excéder la somme de 0,1929 euro par kilomètre
+              excerpt: "c) le montant de l'indemnité ne peut excéder la somme de [\n30\n0,1929 euro]\n30\npar kilomètre de distance entre le domicile et le lieu de travail, à calculer sur la distance aller et retour;] <AR"
     versions:
       - effective_from: '2024-07-01'
         formula: |-
@@ -115,7 +101,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Leur montant annuel total ne dépasse pas 40 EUR par travailleur et 40 EUR par enfant à charge
+              excerpt: "40]\n9\nEUR par enfant à charge du travailleur et s'ils sont distribués à l'occasion des fêtes de la Saint-Nicolas, de Noël ou du Nouvel-An;\nb) les cadeaux en espèces ou sous forme de chèques-cadeaux, remis à un travailleur lorsqu'il reçoit une distinction honorifique, si leur montant annuel total ne dépasse pas ["
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -132,7 +118,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Leur montant annuel total ne dépasse pas 40 EUR par travailleur et 40 EUR par enfant à charge
+              excerpt: "40]\n9\nEUR par enfant à charge du travailleur et s'ils sont distribués à l'occasion des fêtes de la Saint-Nicolas, de Noël ou du Nouvel-An;\nb) les cadeaux en espèces ou sous forme de chèques-cadeaux, remis à un travailleur lorsqu'il reçoit une distinction honorifique, si leur montant annuel total ne dépasse pas ["
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -149,7 +135,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Leur montant annuel total ne dépasse pas 120 EUR par travailleur
+              excerpt: "b) les cadeaux en espèces ou sous forme de chèques-cadeaux, remis à un travailleur lorsqu'il reçoit une distinction honorifique, si leur montant annuel total ne dépasse pas [\n9\n120]\n9\nEUR par travailleur;"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -166,7 +152,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Leur montant ne dépasse pas 40 EUR par année de service complète
+              excerpt: "c) les cadeaux en espèces ou sous forme de chèques-cadeaux, remis à un travailleur à l'occasion de sa mise à la retraite, si leur montant ne dépasse pas [\n9\n40]\n9\nEUR par année de service complète que le travailleur a effectuée chez l'employeur et si leur montant total est d'au moins ["
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -183,7 +169,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Leur montant total est d'au moins 120 EUR et de maximum 1000 EUR
+              excerpt: "retraite, si leur montant ne dépasse pas [\n9\n40]\n9\nEUR par année de service complète que le travailleur a effectuée chez l'employeur et si leur montant total est d'au moins [\n9\n120]\n9\nEUR et de maximum [\n9\n1000]\n9\nEUR;\nd) les cadeaux en nature, en espèces ou sous forme de chèques-cadeaux remis à un travailleur à l'occasion de son mariage ou de l'accomplissement de la déclaration de cohabitation légale pour autant que le montant octroyé ne dépasse pas [\n9\n245]\n9\nEUR par travailleur.\nLes"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -200,7 +186,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Leur montant total est d'au moins 120 EUR et de maximum 1000 EUR
+              excerpt: "retraite, si leur montant ne dépasse pas [\n9\n40]\n9\nEUR par année de service complète que le travailleur a effectuée chez l'employeur et si leur montant total est d'au moins [\n9\n120]\n9\nEUR et de maximum [\n9\n1000]\n9\nEUR;\nd) les cadeaux en nature, en espèces ou sous forme de chèques-cadeaux remis à un travailleur à l'occasion de son mariage ou de l'accomplissement de la déclaration de cohabitation légale pour autant que le montant octroyé ne dépasse pas [\n9\n245]\n9\nEUR par travailleur.\nLes"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -217,7 +203,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Pour autant que le montant octroyé ne dépasse pas 245 EUR par travailleur
+              excerpt: "d) les cadeaux en nature, en espèces ou sous forme de chèques-cadeaux remis à un travailleur à l'occasion de son mariage ou de l'accomplissement de la déclaration de cohabitation légale pour autant que le montant octroyé ne dépasse pas [\n9\n245]\n9\nEUR par travailleur."
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -233,7 +219,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: Lorsque la réduction de prix dépasse 30 % du montant du prix normal
+              excerpt: "Lorsque la réduction de prix dépasse 30 % du montant du prix normal"
     versions:
       - effective_from: '2002-04-01'
         formula: |-
@@ -250,7 +236,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: La partie de l'indemnité kilométrique qui dépasse le montant de 1.795 euros par année civile
+              excerpt: "La partie de l'indemnité kilométrique qui dépasse le montant de [\n28\n1.795 euros]\n28\npar année civile à partir du 1er janvier 2024, est considérée comme une rémunération pour le calcul des cotisations de sécurité sociale."
     versions:
       - effective_from: '2024-01-01'
         formula: |-
@@ -266,7 +252,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1969/11/28/1969112813/article/19
-              span: S'élève à maximum 30 p.c. de la somme
+              excerpt: "a) durant la période de quatre trimestres de l'année civile, le montant accordé en tant qu'indemnité pour la cession ou la concession sous licence de droits d'auteur et de droits voisins, s'élève à maximum 30 p.c. de la somme :"
     versions:
       - effective_from: '2023-01-01'
         formula: |-

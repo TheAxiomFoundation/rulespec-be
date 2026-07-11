@@ -9,28 +9,7 @@ module:
     administrative current-rate tables, reductions, student/flexi-job
     categories, and self-employed rules remain separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1969/06/27/1969062710/article/17
-    values:
-      belgium_worker_manual_pension_rate: "0.06"
-      belgium_worker_manual_indemnities_rate: "0.011"
-      belgium_worker_manual_unemployment_rate: "0.012"
-      belgium_worker_manual_health_care_rate: "0.018"
-      belgium_worker_intellectual_pension_rate: "0.06"
-      belgium_worker_intellectual_indemnities_rate: "0.007"
-      belgium_worker_intellectual_unemployment_rate: "0.012"
-      belgium_worker_intellectual_health_care_rate: "0.018"
-      belgium_employer_manual_pension_rate: "0.08"
-      belgium_employer_manual_indemnities_rate: "0.018"
-      belgium_employer_manual_unemployment_rate: "0.017"
-      belgium_employer_manual_health_care_rate: "0.0375"
-      belgium_employer_manual_family_allowances_rate: "0.0775"
-      belgium_employer_manual_annual_vacation_rate: "0.1475"
-      belgium_employer_intellectual_pension_rate: "0.08"
-      belgium_employer_intellectual_indemnities_rate: "0.018"
-      belgium_employer_intellectual_unemployment_rate: "0.017"
-      belgium_employer_intellectual_health_care_rate: "0.0375"
-      belgium_employer_intellectual_family_allowances_rate: "0.0772"
+    corpus_citation_path: "be/statute/loi/1969/06/27/1969062710/article/17"
 units:
   - name: EUR
     kind: currency
@@ -47,7 +26,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: a) (5,75 p.c. du montant de sa rémunération, destinés au régime de pension de retraite et de survie des travailleurs salariés; ce taux est porté à 6 p.c. à partir du 1er juillet 1970.)
+              excerpt: "a) (5,75 p.c. du montant de sa rémunération, destinés au régime de pension de retraite et de survie des travailleurs salariés; ce taux est porté à 6 p.c. à partir du 1er juillet 1970.)"
     versions:
       - effective_from: '1970-07-01'
         formula: |-
@@ -63,7 +42,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: b) (1,10 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités).
+              excerpt: "b) (1,10 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités)."
     versions:
       - effective_from: '1974-07-16'
         formula: |-
@@ -79,7 +58,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: c)(1,20 p.c. du montant de sa rémunération limitée à (34.500) francs par mois, destiné au régime relatif à l'emploi et au chômage.
+              excerpt: "c)(1,20 p.c. du montant de sa rémunération limitée à (34.500) francs par mois, destiné au régime relatif à l'emploi et au chômage."
     versions:
       - effective_from: '1974-12-24'
         formula: |-
@@ -95,7 +74,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: d) (1,80 p.c. du montant de sa rémunération destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé)).
+              excerpt: "d) (1,80 p.c. du montant de sa rémunération destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé))."
     versions:
       - effective_from: '1974-12-20'
         formula: |-
@@ -111,7 +90,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: Ce taux est porté à 6 p.c. à partir du 1er juillet 1975.
+              excerpt: "Ce taux est porté à 6 p.c. à partir du 1er juillet 1975."
     versions:
       - effective_from: '1975-07-01'
         formula: |-
@@ -127,7 +106,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: b) (0,70 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité ( secteur des indemnités).
+              excerpt: "b) (0,70 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité ( secteur des indemnités)."
     versions:
       - effective_from: '1974-07-16'
         formula: |-
@@ -143,7 +122,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: c) (1,20 p.c. du montant de sa rémunération, limitée à (34.500) francs par mois, destiné au régime relatif à l'emploi et au chômage.
+              excerpt: "c) (1,20 p.c. du montant de sa rémunération, limitée à (34.500) francs par mois, destiné au régime relatif à l'emploi et au chômage."
     versions:
       - effective_from: '1974-12-24'
         formula: |-
@@ -159,7 +138,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: d) (1,80 p.c. du montant de sa rémunération destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé) )
+              excerpt: "d) (1,80 p.c. du montant de sa rémunération destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé) )"
     versions:
       - effective_from: '1974-12-20'
         formula: |-
@@ -175,7 +154,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: a (7,50 p.c. du montant de sa rémunération, destinés au régime de pension de retraite et de survie des travailleurs salariés, ce taux est porté à 8 p.c. à partir du 1er juillet 1970)
+              excerpt: "a (7,50 p.c. du montant de sa rémunération, destinés au régime de pension de retraite et de survie des travailleurs salariés, ce taux est porté à 8 p.c. à partir du 1er juillet 1970)"
     versions:
       - effective_from: '1970-07-01'
         formula: |-
@@ -191,7 +170,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: b (1,80 p.c. du montant de sa rémunération limitée à (34.500) F par mois destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités).
+              excerpt: "b (1,80 p.c. du montant de sa rémunération limitée à (34.500) F par mois destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités)."
     versions:
       - effective_from: '1974-07-16'
         formula: |-
@@ -207,7 +186,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: c (1,70 p.c. du montant de sa rémunération, limitée à (34.500) F par mois, destiné au régime relatif à l'emploi et au chômage.
+              excerpt: "c (1,70 p.c. du montant de sa rémunération, limitée à (34.500) F par mois, destiné au régime relatif à l'emploi et au chômage."
     versions:
       - effective_from: '1974-12-24'
         formula: |-
@@ -223,7 +202,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: d (3,75 p.c. du montant de sa rémunération destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités))
+              excerpt: "d (3,75 p.c. du montant de sa rémunération destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités))"
     versions:
       - effective_from: '1974-12-20'
         formula: |-
@@ -239,7 +218,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: e (7,75 p.c. du montant de sa rémunération destinés au régime des allocations familiales pour travailleurs salariés;)
+              excerpt: "e (7,75 p.c. du montant de sa rémunération destinés au régime des allocations familiales pour travailleurs salariés;)"
     versions:
       - effective_from: '1976-01-05'
         formula: |-
@@ -255,7 +234,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: f (14,75) p.c.du montant de sa rémunération, destiné au régime des vacances annuelles des travailleurs.
+              excerpt: "f (14,75) p.c.du montant de sa rémunération, destiné au régime des vacances annuelles des travailleurs."
     versions:
       - effective_from: '1977-03-09'
         formula: |-
@@ -271,7 +250,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: a) (8 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime des pensions de retraite et de survie des travailleurs.
+              excerpt: "a) (8 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime des pensions de retraite et de survie des travailleurs."
     versions:
       - effective_from: '1974-12-24'
         formula: |-
@@ -287,7 +266,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: b) (1,80 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités).
+              excerpt: "b) (1,80 p.c. du montant de sa rémunération limitée à (34.500) F par mois, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités)."
     versions:
       - effective_from: '1974-07-16'
         formula: |-
@@ -303,7 +282,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: c) (1,70 p.c. du montant de sa rémunération, limitée à (34.500) F par mois, destiné au régime relatif à l'emploi et au chômage.
+              excerpt: "c) (1,70 p.c. du montant de sa rémunération, limitée à (34.500) F par mois, destiné au régime relatif à l'emploi et au chômage."
     versions:
       - effective_from: '1974-12-24'
         formula: |-
@@ -319,7 +298,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: d) (3,75 p.c. du montant de sa rémunération, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé))
+              excerpt: "d) (3,75 p.c. du montant de sa rémunération, destiné au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé))"
     versions:
       - effective_from: '1974-12-20'
         formula: |-
@@ -335,7 +314,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1969/06/27/1969062710/article/17
-              span: e) (7,72 p.c. du montant de sa rémunération destinés au régime des allocations familiales pour travailleurs salariés;)
+              excerpt: "e) (7,72 p.c. du montant de sa rémunération destinés au régime des allocations familiales pour travailleurs salariés;)"
     versions:
       - effective_from: '1976-01-05'
         formula: |-

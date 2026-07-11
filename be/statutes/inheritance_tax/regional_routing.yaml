@@ -11,14 +11,7 @@ module:
     exemptions, partner-home exclusions, estate grouping, debt deductibility,
     filing rules, or household beneficiary classification.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092
-      - be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-      - be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f/block-1
-    values:
-      belgium_tax_region_flanders: 0
-      belgium_tax_region_brussels: 1
-      belgium_tax_region_wallonia: 2
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.7.4.1.1/version-1344092/block-1"
 rules:
   - name: belgium_tax_region_flanders
     kind: parameter

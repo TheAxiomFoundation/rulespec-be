@@ -12,9 +12,7 @@ module:
     offset mechanics, expecting excluded resources and the Article 11 exemption
     amount to be supplied by delegated-rule modules or inputs.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/2001/03/22/2001022201/article/7
-      - be/statute/loi/2001/03/22/2001022201/article/11
+    corpus_citation_path: "be/statute/loi/2001/03/22/2001022201/article/7"
 units:
   - name: EUR
     kind: currency
@@ -27,6 +25,14 @@ rules:
     period: Year
     unit: EUR
     source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2001/03/22/2001022201/article/7"
+              excerpt: "Toutes les ressources et pensions, de quelque nature qu'elles soient, dont disposent l'intéressé ou le conjoint ou cohabitant légal avec lequel il partage la même résidence principale, sont prises en considération pour le calcul de la garantie de revenus, sauf les exceptions prévues par le Roi."
     versions:
       - effective_from: '2014-01-01'
         formula: |-
@@ -41,6 +47,14 @@ rules:
     period: Year
     unit: EUR
     source: Federal law of 22 March 2001 instituting the income guarantee for elderly people, article 11
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2001/03/22/2001022201/article/11"
+              excerpt: "La garantie de revenus n'est réduite que de cette partie des ressources qui dépasse le montant fixé par le Roi."
     versions:
       - effective_from: '2014-01-01'
         formula: |-

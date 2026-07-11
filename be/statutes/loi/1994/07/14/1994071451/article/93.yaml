@@ -26,7 +26,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
-              excerpt: "d'au moins 60 p.c. de la rémunération ... pour les titulaires ayant des personnes à charge"
+              excerpt: "Ce taux est d'au moins 60 p.c. de la rémunération telle qu'elle est définie à l'article 87, alinéa 1er, pour les titulaires ayant des personnes à charge et d'au moins 40 p.c."
     versions:
       - effective_from: '1994-07-14'
         formula: |-
@@ -60,7 +60,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
-              excerpt: "Ce taux est d'au moins 60 p.c. ... pour les titulaires ayant des personnes à charge et d'au moins 40 p.c. ... pour les titulaires qui n'ont pas de personnes à charge."
+              excerpt: "Ce taux est d'au moins 60 p.c. de la rémunération telle qu'elle est définie à l'article 87, alinéa 1er, pour les titulaires ayant des personnes à charge et d'au moins 40 p.c. de la même rémunération pour les titulaires qui n'ont pas de personnes à charge."
     versions:
       - effective_from: '1994-07-14'
         formula: |-
@@ -78,7 +78,7 @@ rules:
             kind: condition
             source:
               corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
-              excerpt: "Lorsque l'incapacité de travail se prolonge au-delà de la période d'incapacité primaire, il est payé pour chaque jour ouvrable ... ou pour chaque jour y assimilé"
+              excerpt: "Lorsque l'incapacité de travail se prolonge au-delà de la période d'incapacité primaire, il est payé pour chaque jour ouvrable de l'incapacité de travail ou pour chaque jour y assimilé par un règlement du Comité de gestion du Service des indemnités, une indemnité dite \"indemnité d'invalidité\"."
           - path: versions[0].formula
             kind: exception
             source:
@@ -122,7 +122,7 @@ rules:
             kind: condition
             source:
               corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93
-              excerpt: "Les périodes de protection de la maternité visées aux articles 114 et 114bis, qui surviennent dans le courant d'une période d'invalidité, suspendent le cours de ladite période."
+              excerpt: "(Les périodes de protection de la maternité visées aux articles 114 et 114bis, qui surviennent dans le courant d'une période d'invalidité, suspendent le cours de ladite période)."
     versions:
       - effective_from: '1996-10-06'
         formula: |-

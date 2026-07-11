@@ -12,30 +12,7 @@ module:
     structural employer contributions, quarter-specific payroll declarations,
     and non-commercial FFE categories to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1981/06/29/1981001048/article/38
-      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift
-      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-contribution
-      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
-      - be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution
-      - be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/loi/1981/06/29/1981001048/article/38
-      rationale: |-
-        Article 38 establishes the employer contribution legal base and wage
-        moderation structure. The ONSS DmfA instructions and linked FFE workbook
-        are the official employer-facing 2025 administrative rate tables for the
-        current tax-shift basic rate, wage-moderation rate, 1.60 percent
-        contribution with wage moderation, and company-closing-fund percentages.
-    values:
-      belgium_employer_social_security_source_percent_denominator: "100"
-      belgium_employer_social_security_ordinary_worker_basic_percent_after_tax_shift: "19.88"
-      belgium_employer_social_security_ordinary_worker_wage_moderation_percent_after_tax_shift: "4.27"
-      belgium_employer_social_security_one_point_six_contribution_with_wage_moderation_percent: "1.69"
-      belgium_employer_social_security_ffe_less_than_20_workers_commercial_percent_with_wage_moderation: "0.18"
-      belgium_employer_social_security_ffe_at_least_20_workers_commercial_percent_with_wage_moderation: "0.23"
+    corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/38"
 units:
   - name: EUR
     kind: currency
@@ -60,7 +37,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift
-              span: Le pourcentage de cotisation applicable est diminué pour ces travailleurs de 22,65 % à 19,88 % à partir du 1 er trimestre 2018.
+              excerpt: "Le pourcentage de cotisation applicable est diminué pour ces travailleurs de 22,65 % à 19,88 % à partir du 1 er trimestre 2018."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -76,7 +53,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/basic-rate-tax-shift
-              span: Le pourcentage de cotisation applicable est diminué pour ces travailleurs de 22,65 % à 19,88 % à partir du 1 er trimestre 2018.
+              excerpt: "Le pourcentage de cotisation applicable est diminué pour ces travailleurs de 22,65 % à 19,88 % à partir du 1 er trimestre 2018."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -92,7 +69,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
-              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
+              excerpt: "Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-contribution"
+              excerpt: "Elle s'élève à 5,67 % de la rémunération du travailleur, augmentée de 5,67 % des cotisations patronales dues."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -108,7 +90,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
-              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
+              excerpt: "Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -124,7 +106,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
-              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
+              excerpt: "Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -140,7 +122,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/wage-moderation-tax-shift
-              span: Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018.
+              excerpt: "Le pourcentage de modération salariale applicable pour ces travailleurs est diminué de 5,67 % à 4,27 % à partir du 1 er trimestre 2018."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -156,7 +138,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution
-              span: La cotisation de 1,60 % (portée à 1,69 % par l'effet de la cotisation de modération salariale)
+              excerpt: "La cotisation de 1,60 % (portée à 1,69 % par l'effet de la cotisation de modération salariale)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -172,7 +154,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/social-security-contributions/one-point-six-contribution
-              span: La cotisation de 1,60 % (portée à 1,69 % par l'effet de la cotisation de modération salariale)
+              excerpt: "La cotisation de 1,60 % (portée à 1,69 % par l'effet de la cotisation de modération salariale)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -188,7 +170,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
-              span: b) en moyenne moins de 20 travailleurs | tout le personnel | 0,17% (0,18%)
+              excerpt: "b) en moyenne moins de 20 travailleurs | tout le personnel | 0,17% (0,18%)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -204,7 +186,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
-              span: b) en moyenne moins de 20 travailleurs | tout le personnel | 0,17% (0,18%)
+              excerpt: "b) en moyenne moins de 20 travailleurs | tout le personnel | 0,17% (0,18%)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -220,7 +202,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
-              span: a) en moyenne au moins 20 travailleurs | tout le personnel | 0,22% (0,23%)
+              excerpt: "a) en moyenne au moins 20 travailleurs | tout le personnel | 0,22% (0,23%)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -236,7 +218,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates
-              span: a) en moyenne au moins 20 travailleurs | tout le personnel | 0,22% (0,23%)
+              excerpt: "a) en moyenne au moins 20 travailleurs | tout le personnel | 0,22% (0,23%)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

@@ -22,23 +22,7 @@ module:
 
     separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/regulation/arrete/1967/10/24/1967102410/article/7
-    - be/regulation/arrete/1996/12/23/1997022010/article/2
-    - be/regulation/arrete/1996/12/23/1997022010/article/4
-    - be/regulation/arrete/1996/12/23/1997022010/article/5
-    - be/regulation/arrete/1996/12/23/1997022010/article/7
-    - be/regulation/arrete/1996/12/23/1997022010/article/7bis
-    - be/regulation/arrete/1996/12/23/1997022010/article/8
-    values:
-      belgium_worker_pension_household_rate: '0.75'
-      belgium_worker_pension_isolated_rate: '0.60'
-      belgium_worker_pension_standard_denominator_years: '45'
-      belgium_worker_pension_working_days_per_year: '312'
-      belgium_worker_pension_survivor_rate: '0.80'
-      belgium_worker_pension_article_8_minimum_annual_remuneration: '18819.12'
-      belgium_worker_pension_article_8_family_cap: '16441.83'
-      belgium_worker_pension_article_8_isolated_cap: '13153.46'
+    corpus_citation_path: "be/regulation/arrete/1967/10/24/1967102410/article/7"
 units:
 - name: EUR
   kind: currency
@@ -55,7 +39,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/5
-          span: a) 75 p.c. pour les travailleurs dont le conjoint
+          excerpt: "a) 75 p.c. pour les travailleurs dont le conjoint"
   versions:
   - effective_from: '1997-07-01'
     formula: '0.75'
@@ -70,7 +54,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/5
-          span: b) 60 p.c. pour les autres travailleurs.
+          excerpt: "b) 60 p.c. pour les autres travailleurs."
   versions:
   - effective_from: '1997-07-01'
     formula: '0.60'
@@ -107,7 +91,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/7
-          span: la pension de survie est égale à 80 p.c. du montant de la pension de retraite
+          excerpt: "la pension de survie est égale à 80 p.c. du montant de la pension de retraite"
   versions:
   - effective_from: '1997-07-01'
     formula: '0.80'
@@ -123,7 +107,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
-          span: 18.819,12 euros
+          excerpt: "18.819,12 euros"
   versions:
   - effective_from: '2024-01-01'
     formula: '18819.12'
@@ -140,7 +124,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
-          span: 16.441,83 euros
+          excerpt: "16.441,83 euros"
   versions:
   - effective_from: '2024-01-01'
     formula: '16441.83'
@@ -157,7 +141,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
-          span: 13.153,46 euros
+          excerpt: "13.153,46 euros"
   versions:
   - effective_from: '2024-01-01'
     formula: '13153.46'
@@ -172,7 +156,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
-          span: l'intéressé né avant le 1er janvier 1960
+          excerpt: "l'intéressé né avant le 1er janvier 1960"
   versions:
   - effective_from: '2025-01-01'
     formula: '1960'
@@ -187,7 +171,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
-          span: 1° 65 ans pour
+          excerpt: "1° 65 ans pour"
   versions:
   - effective_from: '2025-01-01'
     formula: '65'
@@ -202,7 +186,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
-          span: avant le 1er janvier 1964
+          excerpt: "avant le 1er janvier 1964"
   versions:
   - effective_from: '2025-01-01'
     formula: '1964'
@@ -217,7 +201,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
-          span: 2° 66 ans pour
+          excerpt: "2° 66 ans pour"
   versions:
   - effective_from: '2025-01-01'
     formula: '66'
@@ -232,7 +216,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/2
-          span: 3° 67 ans pour
+          excerpt: "3° 67 ans pour"
   versions:
   - effective_from: '2025-01-01'
     formula: '67'
@@ -294,7 +278,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
-          span: si l'intéressé prouve une carrière d'au moins 44 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 60 ans
+          excerpt: "si l'intéressé prouve une carrière d'au moins 44 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 60 ans"
   versions:
   - effective_from: '2019-01-01'
     formula: '44'
@@ -310,7 +294,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
-          span: si l'intéressé prouve une carrière d'au moins 44 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 60 ans
+          excerpt: "si l'intéressé prouve une carrière d'au moins 44 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 60 ans"
   versions:
   - effective_from: '2019-01-01'
     formula: '60'
@@ -326,7 +310,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
-          span: si l'intéressé prouve une carrière d'au moins 43 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 61 ans
+          excerpt: "si l'intéressé prouve une carrière d'au moins 43 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 61 ans"
   versions:
   - effective_from: '2019-01-01'
     formula: '43'
@@ -342,7 +326,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
-          span: si l'intéressé prouve une carrière d'au moins 43 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 61 ans
+          excerpt: "si l'intéressé prouve une carrière d'au moins 43 années civiles telles que définies au paragraphe 2, sa pension de retraite anticipée peut prendre cours au premier jour du mois suivant celui au cours duquel il atteint l'âge de 61 ans"
   versions:
   - effective_from: '2019-01-01'
     formula: '61'
@@ -358,7 +342,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
-          span: au premier jour du mois suivant celui au cours duquel il atteint l'âge de 63 ans
+          excerpt: "au premier jour du mois suivant celui au cours duquel il atteint l'âge de 63 ans"
   versions:
   - effective_from: '2019-01-01'
     formula: '63'
@@ -421,7 +405,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/4
-          span: 5° d'au moins 42 ans, pour les pensions qui prennent cours effectivement et pour la première fois au plus tôt le 1er janvier 2019.
+          excerpt: "5° d'au moins 42 ans, pour les pensions qui prennent cours effectivement et pour la première fois au plus tôt le 1er janvier 2019."
   versions:
   - effective_from: '2019-01-01'
     formula: '42'
@@ -525,7 +509,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/12/23/1997022010/article/8
-          span: Le montant visé au paragraphe 1er, alinéa 1er correspond à douze fois le revenu minimum mensuel moyen
+          excerpt: "Le montant visé au paragraphe 1er, alinéa 1er correspond à douze fois le revenu minimum mensuel moyen"
   versions:
   - effective_from: '2024-01-01'
     formula: '12'

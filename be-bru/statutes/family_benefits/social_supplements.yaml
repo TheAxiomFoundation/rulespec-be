@@ -7,26 +7,7 @@ module:
     child count, child age band, single-parent status, and the cadastral-income
     exclusion.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-    values:
-      brussels_family_benefits_social_supplement_age_12_years: "12"
-      brussels_family_benefits_social_supplement_age_24_years: "24"
-      brussels_family_benefits_social_supplement_one_child_family_size: "1"
-      brussels_family_benefits_social_supplement_two_child_family_size: "2"
-      brussels_family_benefits_social_supplement_three_child_family_size: "3"
-      brussels_family_benefits_social_supplement_low_income_one_child_under_12_amount: "40"
-      brussels_family_benefits_social_supplement_low_income_one_child_12_to_24_amount: "50"
-      brussels_family_benefits_social_supplement_low_income_two_child_single_parent_under_12_amount: "80"
-      brussels_family_benefits_social_supplement_low_income_two_child_other_under_12_amount: "70"
-      brussels_family_benefits_social_supplement_low_income_two_child_single_parent_12_to_24_amount: "90"
-      brussels_family_benefits_social_supplement_low_income_two_child_other_12_to_24_amount: "80"
-      brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_under_12_amount: "130"
-      brussels_family_benefits_social_supplement_low_income_three_plus_other_under_12_amount: "110"
-      brussels_family_benefits_social_supplement_low_income_three_plus_single_parent_12_to_24_amount: "140"
-      brussels_family_benefits_social_supplement_low_income_three_plus_other_12_to_24_amount: "120"
-      brussels_family_benefits_social_supplement_middle_income_two_child_amount: "25"
-      brussels_family_benefits_social_supplement_middle_income_three_plus_amount: "72"
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/9"
 units:
   - name: EUR
     kind: currency
@@ -44,7 +25,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1); amount 31000 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -61,7 +42,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(2); amount 45000 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -93,7 +74,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: dans une famille comptant un enfant bénéficiaire unique
+              excerpt: "dans une famille comptant un enfant bénéficiaire unique"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -109,7 +90,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: dans une famille comptant 2 enfants bénéficiaires
+              excerpt: "dans une famille comptant 2 enfants bénéficiaires"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -125,7 +106,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: dans une famille comptant 3 enfants bénéficiaires et plus
+              excerpt: "dans une famille comptant 3 enfants bénéficiaires et plus"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -142,7 +123,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(a); amount 40 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -159,7 +140,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(a); amount 50 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -176,7 +157,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b); amount 80 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -193,7 +174,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b); amount 70 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -210,7 +191,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b); amount 90 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -227,7 +208,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(b); amount 80 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -244,7 +225,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c); amount 130 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -261,7 +242,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c); amount 110 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -278,7 +259,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c); amount 140 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -295,7 +276,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(1)(c); amount 120 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -312,7 +293,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(2)(a); amount 25 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-
@@ -329,7 +310,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 9(2)(b); amount 72 EUR
+              excerpt: "Art.\n9\n.L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :\n1° lorsque les revenus annuels du ménage n'atteignent pas 31.000 euros, le supplément social s'élève :\na) dans une famille comptant un enfant bénéficiaire unique, à :\n- 40 euros pour un enfant de 0 à 11 ans ;\n- 50 euros pour un enfant de 12 à 24 ans ;\nb) dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire, à :\n- 80 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 70 euros dans le cas contraire ;\n- 90 euros pour un enfant de 12 à 24 ans s'il est élevé dans une famille monoparentale ou 80 euros dans le cas contraire;\nc) dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire, à :\n- 130 euros pour un enfant de 0 à 11 ans s'il est élevé dans une famille monoparentale ou 110 euros dans le cas contraire ;\n- 140 euros pour un enfant de 12 à 24 ans, s'il est élevé dans une famille monoparentale ou 120 dans le cas contraire ;\n2° lorsque les revenus annuels du ménage se situent entre 31.000 euros et moins de 45.000 euros, le supplément social s'élève à :\na) 25 euros dans une famille comptant 2 enfants bénéficiaires, pour chaque enfant bénéficiaire ;\nb) 72 euros dans une famille comptant 3 enfants bénéficiaires et plus, pour chaque enfant bénéficiaire.\nEn toute"
     versions:
       - effective_from: '2021-09-01'
         formula: |-

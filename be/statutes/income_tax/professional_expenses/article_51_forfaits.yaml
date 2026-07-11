@@ -7,23 +7,7 @@ module:
     selectors only. It does not decide whether the taxpayer may choose actual
     expenses, nor does it model the extra commuting scale delegated to the King.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-121
-      - be/statute/fisconetplus/cir92/revenus-2025/page-122
-    values:
-      belgium_pit_article_51_employee_forfait_rate: "0.30"
-      belgium_pit_article_51_company_director_forfait_rate: "0.03"
-      belgium_pit_article_51_assisting_spouse_forfait_rate: "0.05"
-      belgium_pit_article_51_profit_first_threshold: 7540
-      belgium_pit_article_51_profit_second_threshold: 14970
-      belgium_pit_article_51_profit_third_threshold: 24920
-      belgium_pit_article_51_profit_first_rate: "0.287"
-      belgium_pit_article_51_profit_second_rate: "0.10"
-      belgium_pit_article_51_profit_third_rate: "0.05"
-      belgium_pit_article_51_profit_top_rate: "0.03"
-      belgium_pit_article_51_employee_and_business_profit_cap: 5930
-      belgium_pit_article_51_company_director_cap: 3130
-      belgium_pit_article_51_assisting_spouse_and_profit_cap: 5210
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-121"
 units:
   - name: EUR
     kind: currency
@@ -40,7 +24,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-            span: '1° pour les rémunérations des travailleurs: 30 %;'
+            excerpt: "1° pour les rémunérations des travailleurs: 30 %;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -56,7 +40,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-            span: '2° pour les rémunérations des dirigeants d''entreprise: 3 %;'
+            excerpt: "2° pour les rémunérations des dirigeants d'entreprise: 3 %;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -72,7 +56,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-            span: '3° les rémunérations des conjoints aidants: 5 %;'
+            excerpt: "3° les rémunérations des conjoints aidants: 5 %;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -89,7 +73,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-            span: '4° pour les profits: a) 28,7 % de la première tranche de 7.540 euros (montant indexé);'
+            excerpt: "4° pour les profits: a) 28,7 % de la première tranche de 7.540 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -106,7 +90,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'b) 10 % de la tranche de 7.540 euros (montant indexé) à 14.970 euros (montant indexé);'
+            excerpt: "b) 10 % de la tranche de 7.540 euros (montant indexé) à 14.970 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -123,7 +107,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'c) 5 % de la tranche de 14.970 euros (montant indexé) à 24.920 euros (montant indexé);'
+            excerpt: "c) 5 % de la tranche de 14.970 euros (montant indexé) à 24.920 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -139,7 +123,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-            span: '4° pour les profits: a) 28,7 % de la première tranche de 7.540 euros (montant indexé);'
+            excerpt: "4° pour les profits: a) 28,7 % de la première tranche de 7.540 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -155,7 +139,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'b) 10 % de la tranche de 7.540 euros (montant indexé) à 14.970 euros (montant indexé);'
+            excerpt: "b) 10 % de la tranche de 7.540 euros (montant indexé) à 14.970 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -171,7 +155,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'c) 5 % de la tranche de 14.970 euros (montant indexé) à 24.920 euros (montant indexé);'
+            excerpt: "c) 5 % de la tranche de 14.970 euros (montant indexé) à 24.920 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -187,7 +171,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'd) 3 % de la tranche excédant 24.920 euros (montant indexé).'
+            excerpt: "d) 3 % de la tranche excédant 24.920 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -204,7 +188,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visés à l''alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l''ensemble des revenus visés à l''alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visée à l''alinéa 2, 3° et 4°.'
+            excerpt: "Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visés à l'alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l'ensemble des revenus visés à l'alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visée à l'alinéa 2, 3° et 4°."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -221,7 +205,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visés à l''alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l''ensemble des revenus visés à l''alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visée à l''alinéa 2, 3° et 4°.'
+            excerpt: "Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visés à l'alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l'ensemble des revenus visés à l'alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visée à l'alinéa 2, 3° et 4°."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -238,7 +222,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-            span: 'Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visés à l''alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l''ensemble des revenus visés à l''alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visée à l''alinéa 2, 3° et 4°.'
+            excerpt: "Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visés à l'alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l'ensemble des revenus visés à l'alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visée à l'alinéa 2, 3° et 4°."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

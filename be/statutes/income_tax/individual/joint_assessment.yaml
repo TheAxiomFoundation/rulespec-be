@@ -18,20 +18,7 @@ module:
     delegated modalities, the Article 134 joint tax-free-amount allocation, and
     final assessment procedure to separate modules or supplied predicates.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-34
-      - be/statute/fisconetplus/cir92/revenus-2025/page-160
-      - be/statute/fisconetplus/cir92/revenus-2025/page-161
-      - be/statute/fisconetplus/cir92/revenus-2025/page-162
-      - be/statute/fisconetplus/cir92/revenus-2025/page-178
-      - be/statute/fisconetplus/cir92/revenus-2025/page-179
-      - be/statute/fisconetplus/cir92/revenus-2025/page-180
-    values:
-      belgium_pit_article_126_convention_exempt_professional_income_threshold: 13460
-      belgium_pit_article_86_distinct_professional_income_limit: 17480
-      belgium_pit_article_86_default_max_share_rate: "0.30"
-      belgium_pit_article_87_88_spouse_professional_income_share_rate: "0.30"
-      belgium_pit_article_87_88_spouse_imputation_cap: 13460
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-34"
 units:
   - name: EUR
     kind: currency
@@ -49,7 +36,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-179
-              span: "lorsqu'un conjoint recueille des revenus professionnels pour un montant supérieur à 13.460 euros (montant indexé) qui sont exonérés conventionnellement"
+              excerpt: "lorsqu'un conjoint recueille des revenus professionnels pour un montant supérieur à 13.460 euros (montant indexé) qui sont exonérés conventionnellement"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -66,7 +53,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
-              span: "le conjoint aidant n'ait pas bénéficié personnellement, pendant la période imposable, de revenus professionnels provenant d'une activité distincte supérieurs à 17.480 euros (montant indexé)"
+              excerpt: "le conjoint aidant n'ait pas bénéficié personnellement, pendant la période imposable, de revenus professionnels provenant d'une activité distincte supérieurs à 17.480 euros (montant indexé)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -82,7 +69,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
-              span: "Cette quote-part doit correspondre à la rémunération normale des prestations du conjoint aidant, sans qu'elle puisse dépasser 30 % des revenus de l'activité professionnelle exercée avec l'aide du conjoint"
+              excerpt: "Cette quote-part doit correspondre à la rémunération normale des prestations du conjoint aidant, sans qu'elle puisse dépasser 30 % des revenus de l'activité professionnelle exercée avec l'aide du conjoint"
     versions:
       - effective_from: '1992-01-01'
         formula: |-
@@ -98,7 +85,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
-              span: "Cette quote-part est égale à 30 % de ces revenus sans pouvoir excéder 13.460 euros (montant indexé)"
+              excerpt: "Cette quote-part est égale à 30 % de ces revenus sans pouvoir excéder 13.460 euros (montant indexé)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -115,7 +102,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-161
-              span: "Cette quote-part est égale à 30 % de ces revenus sans pouvoir excéder 13.460 euros (montant indexé)"
+              excerpt: "Cette quote-part est égale à 30 % de ces revenus sans pouvoir excéder 13.460 euros (montant indexé)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -177,6 +164,14 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 article 126 sections 1 through 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-178"
+              excerpt: "En cas de mariage ou de cohabitation légale, une imposition commune est établie au nom des deux conjoints."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -247,6 +242,14 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 129, supplied spouse A deductible loss balance after Article 23/103 limitations imputed to spouse B
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-180"
+              excerpt: "Lorsque les revenus d'un conjoint sont insuffisants pour apurer les pertes déductibles conformément aux articles 23, § 2, 2° et 3°, et 103, le solde est imputé sur les revenus de l'autre conjoint en tenant compte des limitations prévues par lesdits articles."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -261,6 +264,14 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 129, supplied spouse B deductible loss balance after Article 23/103 limitations imputed to spouse A
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-180"
+              excerpt: "Lorsque les revenus d'un conjoint sont insuffisants pour apurer les pertes déductibles conformément aux articles 23, § 2, 2° et 3°, et 103, le solde est imputé sur les revenus de l'autre conjoint en tenant compte des limitations prévues par lesdits articles."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -322,6 +333,14 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 86, normal remuneration share attributed to assisting spouse
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-160"
+              excerpt: "Lorsqu'une imposition commune est établie à charge de deux conjoints, une quote-part des bénéfices"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -347,6 +366,14 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 89, separately taxed professional income excluded from Article 87/88 base
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-162"
+              excerpt: "Pour l'attribution et l'imputation d'une quote-part des revenus professionnels au conjoint, les revenus professionnels imposés distinctement ne sont pas pris en considération."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

@@ -7,10 +7,7 @@ module:
     immovable-withholding amount and supplied local centime counts. It does not
     maintain province, agglomeration, or municipality rate tables.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-686
-    values:
-      belgium_immovable_withholding_centimes_rate_denominator: 100
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-686"
 rules:
   - name: belgium_immovable_withholding_centimes_rate_denominator
     kind: parameter

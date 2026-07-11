@@ -16,29 +16,7 @@ module:
     leasing-company routing beyond the selected Brussels non-leasing passenger
     car surface, and household vehicle-ownership inputs.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-1
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
-      - be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-      - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/justel/code-taxes-assimilees/1965112350
-        - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.2.4.0.1/version-1536910
-        - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.3.4.1.1/version-1536918
-        - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
-      rationale: |-
-        The national Code des taxes assimilees and the Flemish and Walloon
-        statutory vehicle-tax provisions are the upstream legal framework.
-        Brussels Fiscality guidance rows are retained only as official current
-        Brussels parameter/routing material after the code locator is checked.
-    values:
-      belgium_vehicle_tax_region_flanders: 0
-      belgium_vehicle_tax_region_brussels: 1
-      belgium_vehicle_tax_region_wallonia: 2
+    corpus_citation_path: "be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1"
 rules:
   - name: belgium_vehicle_tax_region_flanders
     kind: parameter

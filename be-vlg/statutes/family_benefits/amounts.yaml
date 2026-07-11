@@ -10,43 +10,7 @@ module:
 
     remain separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/4
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/11
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/15
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/17
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-    - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
-    values:
-      flanders_family_benefits_index_pivot_2013: '103.04'
-      flanders_family_benefits_birth_grant_amount: '1100'
-      flanders_family_benefits_adoption_grant_amount: '1100'
-      flanders_family_benefits_base_monthly_amount: '160'
-      flanders_family_benefits_one_parent_orphan_supplement_rate: '0.50'
-      flanders_family_benefits_double_orphan_supplement_rate: '1.00'
-      flanders_family_benefits_disability_tier_1_monthly_amount: '80.75'
-      flanders_family_benefits_disability_tier_2_monthly_amount: '107.55'
-      flanders_family_benefits_disability_tier_3_monthly_amount: '250.97'
-      flanders_family_benefits_disability_tier_4_monthly_amount: '414.28'
-      flanders_family_benefits_disability_tier_5_monthly_amount: '471.07'
-      flanders_family_benefits_disability_tier_6_monthly_amount: '504.71'
-      flanders_family_benefits_disability_tier_7_monthly_amount: '538.36'
-      flanders_family_benefits_foster_care_monthly_amount: '61.79'
-      flanders_family_benefits_social_low_income_small_family_monthly_amount: '50'
-      flanders_family_benefits_social_low_income_large_family_monthly_amount: '80'
-      flanders_family_benefits_social_middle_income_large_family_monthly_amount: '60'
-      flanders_family_benefits_social_low_income_threshold: '30386.52'
-      flanders_family_benefits_social_middle_income_threshold: '60000'
-      flanders_family_benefits_participation_under_4_annual_amount: '20'
-      flanders_family_benefits_participation_4_to_10_annual_amount: '35'
-      flanders_family_benefits_participation_11_to_16_annual_amount: '50'
-      flanders_family_benefits_participation_17_to_24_annual_amount: '60'
+    corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/4"
 units:
 - name: EUR
   kind: currency
@@ -64,7 +28,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/4
-          span: Die bedragen zijn gekoppeld aan het spilindexcijfer 103,04 (basis 2013 = 100).
+          excerpt: "Die bedragen zijn gekoppeld aan het spilindexcijfer 103,04 (basis 2013 = 100)."
   versions:
   - effective_from: '2019-01-01'
     formula: '103.04'
@@ -81,7 +45,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-          span: De geboorte van een rechtgevend kind geeft recht op een startbedrag geboorte van 1100 euro.
+          excerpt: "De geboorte van een rechtgevend kind geeft recht op een startbedrag geboorte van 1100 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '1100'
@@ -98,7 +62,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/11
-          span: De adoptie van een rechtgevend kind geeft recht op een startbedrag adoptie van 1100 euro.
+          excerpt: "De adoptie van een rechtgevend kind geeft recht op een startbedrag adoptie van 1100 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '1100'
@@ -116,7 +80,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-          span: Het rechtgevende kind, met uitzondering van het kind, vermeld in artikel 210, § 1, of in titel 2 van deel 2 van boek 5, geeft recht op een maandelijks basisbedrag van 160 euro.
+          excerpt: "Het rechtgevende kind, met uitzondering van het kind, vermeld in artikel 210, § 1, of in titel 2 van deel 2 van boek 5, geeft recht op een maandelijks basisbedrag van 160 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '160'
@@ -132,7 +96,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/15
-          span: De wezentoeslag bedraagt 50 procent van het basisbedrag
+          excerpt: "De wezentoeslag bedraagt 50 procent van het basisbedrag"
   versions:
   - effective_from: '2019-01-01'
     formula: '0.50'
@@ -148,7 +112,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/15
-          span: De wezentoeslag bedraagt 100 procent van het basisbedrag
+          excerpt: "De wezentoeslag bedraagt 100 procent van het basisbedrag"
   versions:
   - effective_from: '2019-01-01'
     formula: '1.00'
@@ -166,7 +130,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '80.75'
@@ -184,7 +148,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '107.55'
@@ -202,7 +166,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '250.97'
@@ -220,7 +184,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '414.28'
@@ -238,7 +202,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '471.07'
@@ -256,7 +220,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '504.71'
@@ -274,7 +238,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/16
-          span: Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro.
+          excerpt: "Naargelang de ernst van de ondersteuningsbehoefte bedraagt de toeslag, vermeld in het eerste lid, 80,75 euro, 107,55 euro, 250,97 euro, 414,28 euro, 471,07 euro, 504,71 euro of 538,36 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '538.36'
@@ -292,7 +256,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/17
-          span: De toeslag, vermeld in het eerste lid, bedraagt 61,79 euro.
+          excerpt: "De toeslag, vermeld in het eerste lid, bedraagt 61,79 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '61.79'
@@ -310,7 +274,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-          span: 50 euro per kind voor gezinnen tot en met twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen; 80 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen; 60 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis tussen 30.386,52 euro en 60.000 euro liggen.
+          excerpt: "1° 50 euro per kind voor gezinnen tot en met twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen;\n2° 80 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen;\n3° 60 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis tussen 30.386,52 euro en 60.000 euro liggen."
   versions:
   - effective_from: '2019-01-01'
     formula: '30386.52'
@@ -328,7 +292,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-          span: 50 euro per kind voor gezinnen tot en met twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen; 80 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen; 60 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis tussen 30.386,52 euro en 60.000 euro liggen.
+          excerpt: "1° 50 euro per kind voor gezinnen tot en met twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen;\n2° 80 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen;\n3° 60 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis tussen 30.386,52 euro en 60.000 euro liggen."
   versions:
   - effective_from: '2019-01-01'
     formula: '60000'
@@ -346,7 +310,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-          span: 50 euro per kind voor gezinnen tot en met twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen
+          excerpt: "50 euro per kind voor gezinnen tot en met twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen"
   versions:
   - effective_from: '2019-01-01'
     formula: '50'
@@ -364,7 +328,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-          span: 80 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen
+          excerpt: "80 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis niet meer dan 30.386,52 euro bedragen"
   versions:
   - effective_from: '2019-01-01'
     formula: '80'
@@ -382,7 +346,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-          span: 60 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis tussen 30.386,52 euro en 60.000 euro liggen
+          excerpt: "60 euro per kind voor gezinnen met meer dan twee rechtgevende kinderen, waarvan de gezinsinkomsten op jaarbasis tussen 30.386,52 euro en 60.000 euro liggen"
   versions:
   - effective_from: '2019-01-01'
     formula: '60'
@@ -400,7 +364,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-          span: recht op een jaarlijkse universele participatietoeslag van 20 euro
+          excerpt: "recht op een jaarlijkse universele participatietoeslag van 20 euro"
   versions:
   - effective_from: '2019-01-01'
     formula: '20'
@@ -418,7 +382,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-          span: recht op een jaarlijkse universele participatietoeslag van 35 euro
+          excerpt: "recht op een jaarlijkse universele participatietoeslag van 35 euro"
   versions:
   - effective_from: '2019-01-01'
     formula: '35'
@@ -436,7 +400,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-          span: recht op een jaarlijkse universele participatietoeslag van 50 euro
+          excerpt: "recht op een jaarlijkse universele participatietoeslag van 50 euro"
   versions:
   - effective_from: '2019-01-01'
     formula: '50'
@@ -454,7 +418,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/22
-          span: recht op een jaarlijkse universele participatietoeslag van 60 euro
+          excerpt: "recht op een jaarlijkse universele participatietoeslag van 60 euro"
   versions:
   - effective_from: '2019-01-01'
     formula: '60'
@@ -569,7 +533,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/18
-          span: Als ten gevolge van een gelijkmatig verdeelde huisvesting, bepaald of bekrachtigd door de bevoegde rechtbank, de huisvesting van het rechtgevende kind gelijk is verdeeld tussen de ouders, wordt het bedrag van de toeslag gehalveerd toegekend in elk rechtgevend gezin.
+          excerpt: "Als ten gevolge van een gelijkmatig verdeelde huisvesting, bepaald of bekrachtigd door de bevoegde rechtbank, de huisvesting van het rechtgevende kind gelijk is verdeeld tussen de ouders, wordt het bedrag van de toeslag gehalveerd toegekend in elk rechtgevend gezin."
   versions:
   - effective_from: '2019-01-01'
     formula: '0.5'
@@ -607,7 +571,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-          span: Het rechtgevende kind geeft vanaf de geboorte en zolang het minder dan vier jaar is op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is, recht op een jaarlijkse universele participatietoeslag van 20 euro.
+          excerpt: "Het rechtgevende kind geeft vanaf de geboorte en zolang het minder dan vier jaar is op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is, recht op een jaarlijkse universele participatietoeslag van 20 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '4'
@@ -623,7 +587,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-          span: Het rechtgevende kind geeft vanaf de leeftijd van vier jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan elf jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 35 euro.
+          excerpt: "Het rechtgevende kind geeft vanaf de leeftijd van vier jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan elf jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 35 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '11'
@@ -639,7 +603,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-          span: Het rechtgevende kind geeft vanaf de leeftijd van elf jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan zeventien jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 50 euro.
+          excerpt: "Het rechtgevende kind geeft vanaf de leeftijd van elf jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan zeventien jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 50 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '17'
@@ -655,7 +619,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/22
-          span: Het rechtgevende kind geeft vanaf de leeftijd van zeventien jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan vijfentwintig jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 60 euro.
+          excerpt: "Het rechtgevende kind geeft vanaf de leeftijd van zeventien jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan vijfentwintig jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 60 euro."
   versions:
   - effective_from: '2019-01-01'
     formula: '25'

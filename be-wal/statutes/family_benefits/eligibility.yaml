@@ -11,14 +11,7 @@ module:
     Delegated obstacles, education proof, individual derogations, and payment
     procedures remain supplied inputs.
   source_verification:
-    corpus_citation_paths:
-      - be-wal/statute/decret/2018/02/08/2018201006/article/4
-      - be-wal/statute/decret/2018/02/08/2018201006/article/5
-      - be-wal/statute/decret/2018/02/08/2018201006/article/6
-    values:
-      wallonia_family_benefits_unconditional_age_years: 18
-      wallonia_family_benefits_intermediate_age_years: 21
-      wallonia_family_benefits_extended_age_years: 25
+    corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/4"
 units:
   - name: EUR
     kind: currency
@@ -54,6 +47,14 @@ rules:
     dtype: Count
     period: Month
     source: Walloon family-benefits decree article 4 residence, status, and supranational conditions
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/4"
+              excerpt: "Pour l'octroi des allocations familiales au sens du présent décret, est dispensé des conditions fixées à l'alinéa 1er, l'enfant dont les parents sont des ressortissants européens, ou des ressortissants d'Etats tiers entrant dans le champ d'application du règlement n° 883/2004 du Parlement européen et du Conseil du 29 avril 2004 portant sur la coordination des systèmes de sécurité sociale, et qui exercent une activité économique sur le territoire de la région de langue française."
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -86,6 +87,14 @@ rules:
     dtype: Count
     period: Month
     source: Walloon family-benefits decree article 5 age and status windows
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/5"
+              excerpt: "Les prestations familiales sont accordées, sans condition, en faveur de l'enfant bénéficiaire visé à l'article 4 jusqu'au 31 août de l'année civile au cours de laquelle il atteint l'âge de dix-huit ans."
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -108,6 +117,14 @@ rules:
     dtype: Count
     period: Month
     source: Walloon family-benefits decree article 6 disappeared-child maintenance rule
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/6"
+              excerpt: "Le droit visé au paragraphe 1erest ouvert uniquement en l'absence d'un droit aux prestations familiales en application d'autres règlementations belges ou étrangères, ou en vertu de dispositions applicables au personnel d'une institution de droit international public."
     versions:
       - effective_from: '2020-01-01'
         formula: |-

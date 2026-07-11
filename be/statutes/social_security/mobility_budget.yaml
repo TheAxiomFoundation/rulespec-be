@@ -10,12 +10,7 @@ module:
     transport classification, indexed budget minimum/maximum checks, and
     employer remittance administration as separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/2019/03/17/2019030319/article/8
-      - be/statute/loi/2019/03/17/2019030319/article/22
-      - be/statute/loi/2019/03/17/2019030319/article/23
-    values:
-      belgium_mobility_budget_cash_balance_special_contribution_rate: "0.3807"
+    corpus_citation_path: "be/statute/loi/2019/03/17/2019030319/article/8"
 units:
   - name: EUR
     kind: currency
@@ -32,7 +27,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/2019/03/17/2019030319/article/22
-              span: une cotisation spéciale de 38,07 p.c. est due par le travailleur
+              excerpt: "une cotisation spéciale de 38,07 p.c. est due par le travailleur"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -44,6 +39,14 @@ rules:
     period: Year
     unit: EUR
     source: Law of 17 March 2019 introducing a mobility budget, article 8 section 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2019/03/17/2019030319/article/8"
+              excerpt: "des moyens de transport durables tant en Belgique que dans l'Espace économique européen, dont l'employeur fait au moins une offre au travailleur, et, le cas échéant, les frais de gestion du budget mobilité."
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -66,6 +69,14 @@ rules:
     period: Year
     unit: EUR
     source: Law of 17 March 2019 introducing a mobility budget, article 23
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2019/03/17/2019030319/article/23"
+              excerpt: "La partie du solde du budget de mobilité qui, conformément à l'article 8, § 3, de la loi du 17 mars 2019 concernant l'instauration d'un budget mobilité, est versée au travailleur en espèces, est considérée comme faisant partie de la rémunération servant de base au calcul des prestations dues dans les branches de la sécurité sociale visées à l'article 21, § 1er, 1° à 6°, de la loi du 29 juin 1981 établissant les principes généraux de la sécurité sociale des travailleurs salariés."
     versions:
       - effective_from: '2019-03-01'
         formula: |-

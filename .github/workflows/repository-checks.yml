@@ -10,7 +10,3 @@ jobs:
   validate:
     uses: TheAxiomFoundation/.github/.github/workflows/validate-rulespec.yml@main
     secrets: inherit
-    with:
-      validate-roots: auto
-      run-generated-guard: false
-

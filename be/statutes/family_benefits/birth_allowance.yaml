@@ -9,45 +9,7 @@ module:
     administration, adoption premiums, and monthly child benefits remain
     separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-      - be-wal/statute/decret/2018/02/08/2018201006/article/7
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current/block-1
-      - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
-      - be-vlg/guidance/gpedia/family-benefits/start-amount-decision-2025-112/page-1
-      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-5
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-        - be-wal/statute/decret/2018/02/08/2018201006/article/7
-        - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-        - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current/block-1
-        - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
-      rationale: |-
-        The Brussels ordinance, Flemish decree, Walloon decree, and
-        German-speaking Community decree establish the entitlement and base
-        birth-allowance structures. The 2025 current amount tables are official
-        administrative publications used only to ground the indexed amounts in
-        force for the BE_2025 oracle slice after checking those statutory
-        sources. For the German-speaking Community, Article 30 establishes the
-        2019 birth premium and the 2025-2027 freeze module supplies the
-        pre-2025 index factor used by the oracle bridge.
-    values:
-      belgium_family_benefits_birth_allowance_region_brussels: 1
-      belgium_family_benefits_birth_allowance_region_flanders: 2
-      belgium_family_benefits_birth_allowance_region_wallonia: 3
-      belgium_family_benefits_birth_allowance_region_german_speaking_community: 4
-      belgium_family_benefits_birth_allowance_newborn_age_years: 0
-      belgium_family_benefits_birth_allowance_brussels_first_child_or_multiple_birth_2025_amount: "1367.74"
-      belgium_family_benefits_birth_allowance_brussels_later_child_2025_amount: "621.70"
-      belgium_family_benefits_birth_allowance_flanders_2025_amount: "1238.78"
-      belgium_family_benefits_birth_allowance_wallonia_2025_amount: "1367.74"
-      belgium_family_benefits_birth_allowance_german_speaking_community_birth_premium_2019_amount: "1144"
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/16"
 units:
   - name: EUR
     kind: currency
@@ -106,7 +68,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
-              span: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025; amount 1367.74 EUR
+              excerpt: "Premier né pour un des parents 1.367,74 EUR Chaque enfant issu d'un accouhement mutiple 1.367,74 EUR Toute autre situation 621,70 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -124,7 +86,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-13
-              span: Brussels family-benefits ordinance of 25 April 2019, article 16, indexed amount in force from 1 February 2025; amount 621.70 EUR
+              excerpt: "Premier né pour un des parents 1.367,74 EUR Chaque enfant issu d'un accouhement mutiple 1.367,74 EUR Toute autre situation 621,70 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -142,7 +104,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/start-amount-decision-2025-112/page-1
-              span: Flemish Groeipakket decree of 27 April 2018, article 9, indexed amount in force before the September 2025 indexation; amount 1238.78 EUR
+              excerpt: "www.groeipakket.be Beslissing Geschillencommissie nr. 2025/112 van 19 december 2025\n\nINLEIDENDE SAMENVATTING\n\nDe uitbetalingsactor vordert het startbedrag geboorte van €1.238,78 terug omdat het kind, geboren in Nederland, niet binnen de twee maanden na de geboorte werd ingeschreven in België. Omwille van de verrekening van de verschilbetaling, vordert de uitbetaler uiteindelijk €1.058,59 terug."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -160,7 +122,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-5
-              span: Walloon decree of 8 February 2018 on management and payment of family benefits, article 7, indexed amount in force from 1 February 2025; amount 1367.74 EUR
+              excerpt: "dans les trois 104,46 € 6 - 8 points dans les trois piliers et moins de 4 points dans le 1er pilier 139,12 € 6 - 8 points dans les trois piliers et au moins 4 points dans le 1er pilier 535,90 € Prime d’adoption Par enfant adopté 1.367,74 € Allocation supplémentaire pour enfants atteints d’une affection et âgés de moins de 21 ans (nouveau système) Gravité de l’affection Prime de naissance Par enfant né 1.367,74 € Montants au 01.02.2025 5"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -178,7 +140,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-              span: Art. 30 - Geburtsprämie Die Regierung gewährt eine Geburtsprämie, die 1.144 Euro beträgt.
+              excerpt: "Art. 30 - Geburtsprämie Die Regierung gewährt eine Geburtsprämie, die 1.144 Euro beträgt."
     versions:
       - effective_from: '2019-01-01'
         formula: |-
@@ -201,6 +163,29 @@ rules:
     period: Year
     unit: EUR
     source: Belgian regional and community bridge over encoded birth-allowance amount rules for BE_2025 oracle comparisons
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/9"
+              excerpt: "De geboorte van een rechtgevend kind geeft recht op een startbedrag geboorte van 1100 euro."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/7"
+              excerpt: "Une prime de naissance d'un montant de 1.100 euros est octroyée à l'occasion"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current/block-1"
+              excerpt: "Par dérogation à l'article 38, il n'est pas procédé à une adaptation des prestations familiales"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1"
+              excerpt: "les mots « en 2025 et en 2026 » sont remplacés par les mots « pour les années 2025 à 2027 incluse »;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

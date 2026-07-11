@@ -20,21 +20,7 @@ module:
 
     separately under the Flemish Fiscal Code.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/fisconetplus/cir92/revenus-2025/page-446
-    - be/statute/fisconetplus/cir92/revenus-2025/page-447
-    - be/statute/fisconetplus/cir92/revenus-2025/page-448
-    values:
-      belgium_immovable_withholding_selected_rate_scalar_limit: '0.008'
-      belgium_immovable_withholding_selected_rate_scalar_limit_2: '0.0125'
-      belgium_immovable_withholding_modest_or_new_dwelling_reduction_scalar_limit: 745
-      belgium_immovable_withholding_modest_or_new_dwelling_reduction_rate_scalar_limit: '0.50'
-      belgium_immovable_withholding_modest_or_new_dwelling_reduction_rate_scalar_limit_2: '0.25'
-      belgium_immovable_withholding_disability_reduction_scalar_limit: '0.10'
-      belgium_immovable_withholding_disability_reduction_scalar_limit_2: '0.20'
-      belgium_immovable_withholding_family_reduction_scalar_limit: '0.10'
-      belgium_immovable_withholding_family_reduction_scalar_limit_2: '0.20'
-      belgium_immovable_withholding_article_258_professional_use_threshold_rate: '0.25'
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-446"
 units:
 - name: EUR
   kind: currency
@@ -65,7 +51,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: "Ce taux est ramené à 0,8 % pour les habitations appartenant aux sociétés de construction agréées"
+          excerpt: "Ce taux est ramené à 0,8 % pour les habitations appartenant aux sociétés de construction agréées"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.008'
@@ -80,7 +66,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-446
-          span: "Le précompte immobilier s'élève à 1,25 % du revenu cadastral"
+          excerpt: "Le précompte immobilier s'élève à 1,25 % du revenu cadastral"
   versions:
   - effective_from: '2025-01-01'
     formula: '0.0125'
@@ -140,7 +126,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-448
-          span: quand la quotité du revenu qui s'y rapporte dépasse le quart du revenu cadastral de l'habitation entière
+          excerpt: "quand la quotité du revenu qui s'y rapporte dépasse le quart du revenu cadastral de l'habitation entière"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.25'
@@ -173,7 +159,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: Cette réduction est portée à 50 % pour une période de 5 ans
+          excerpt: "Cette réduction est portée à 50 % pour une période de 5 ans"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.50'
@@ -188,7 +174,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: une réduction d'un quart du précompte immobilier afférent à l'habitation entièrement occupée par le contribuable
+          excerpt: "une réduction d'un quart du précompte immobilier afférent à l'habitation entièrement occupée par le contribuable"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.25'
@@ -229,7 +215,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: le revenu cadastral de l'ensemble de ses biens immobiliers sis en Belgique ne dépasse pas 745 euros
+          excerpt: "le revenu cadastral de l'ensemble de ses biens immobiliers sis en Belgique ne dépasse pas 745 euros"
   versions:
   - effective_from: '2026-01-01'
     formula: '745'
@@ -266,7 +252,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: Cette réduction est égale à 20 % pour un grand invalide et à 10 % pour une personne handicapée
+          excerpt: "Cette réduction est égale à 20 % pour un grand invalide et à 10 % pour une personne handicapée"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.10'
@@ -281,7 +267,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: Cette réduction est égale à 20 % pour un grand invalide et à 10 % pour une personne handicapée
+          excerpt: "Cette réduction est égale à 20 % pour un grand invalide et à 10 % pour une personne handicapée"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.20'
@@ -324,7 +310,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: Cette réduction est égale à 10 % pour chaque enfant à charge non handicapé et à 20 % pour chaque personne à charge handicapée
+          excerpt: "Cette réduction est égale à 10 % pour chaque enfant à charge non handicapé et à 20 % pour chaque personne à charge handicapée"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.10'
@@ -339,7 +325,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-447
-          span: Cette réduction est égale à 10 % pour chaque enfant à charge non handicapé et à 20 % pour chaque personne à charge handicapée
+          excerpt: "Cette réduction est égale à 10 % pour chaque enfant à charge non handicapé et à 20 % pour chaque personne à charge handicapée"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.20'
