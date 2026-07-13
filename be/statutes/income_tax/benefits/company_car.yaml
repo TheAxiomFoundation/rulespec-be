@@ -20,36 +20,7 @@ module:
 
     and administrative evidence rules.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/fisconetplus/cir92/revenus-2025/page-95
-    - be/statute/fisconetplus/cir92/revenus-2025/page-96
-    - be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
-    - be/guidance/spf-finances/company-car-benefit/2026-faq/page-2
-    - be/guidance/spf-finances/company-car-benefit/2026-faq/page-3
-    - be/guidance/spf-finances/company-car-benefit/2026-faq/page-27
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-95
-      - be/statute/fisconetplus/cir92/revenus-2025/page-96
-      - be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
-      rationale: |-
-        CIR 1992 article 36 sets the company-car benefit formula, CO2
-        percentage bounds, missing-CO2 fallbacks, age coefficients, and
-        statutory fraction. The royal decree sets the 2026 reference CO2
-        values. SPF Finances FAQ rows are used only as official administrative
-        current-year guidance for indexed minimum and false plug-in-hybrid
-        application details after those statute/regulation sources are checked.
-    values:
-      belgium_company_car_petrol_lpg_natural_gas_reference_co2_2026: 70
-      belgium_company_car_diesel_reference_co2_2026: 58
-      belgium_company_car_base_co2_percentage: '0.055'
-      belgium_company_car_co2_percentage_step_per_gram: '0.001'
-      belgium_company_car_minimum_co2_percentage: '0.04'
-      belgium_company_car_maximum_co2_percentage: '0.18'
-      belgium_company_car_missing_petrol_lpg_natural_gas_co2: 205
-      belgium_company_car_missing_diesel_co2: 195
-      belgium_company_car_minimum_annual_benefit_assessment_year_2027: 1690
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-95"
 units:
 - name: EUR
   kind: currency
@@ -66,7 +37,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: est calculé en appliquant un pourcentage-CO2 à 6/7 de la valeur catalogue du véhicule mis gratuitement à disposition
+          excerpt: "est calculé en appliquant un pourcentage-CO2 à 6/7 de la valeur catalogue du véhicule mis gratuitement à disposition"
   versions:
   - effective_from: '2026-01-01'
     formula: 6 / 7
@@ -81,7 +52,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: Le pourcentage de base CO2 s'élève à 5,5 %
+          excerpt: "Le pourcentage de base CO2 s'élève à 5,5 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.055'
@@ -96,7 +67,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: le pourcentage de base est augmenté de 0,1 % par gramme de CO2
+          excerpt: "le pourcentage de base est augmenté de 0,1 % par gramme de CO2"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.001'
@@ -111,7 +82,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: avec un minimum de 4 %
+          excerpt: "avec un minimum de 4 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.04'
@@ -126,7 +97,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: avec un maximum de 18 %
+          excerpt: "avec un maximum de 18 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.18'
@@ -142,7 +113,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
-          span: la colonne "Année civile" est complétée par "2026", la colonne "Véhicules à moteur alimenté à l'essence, au LPG ou au gaz naturel" par "70 g/km" et la colonne "Véhicules à moteur alimenté au diesel" par "58 g/km"
+          excerpt: "la colonne \"Année civile\" est complétée par \"2026\", la colonne \"Véhicules à moteur alimenté à l'essence, au LPG ou au gaz naturel\" par \"70 g/km\" et la colonne \"Véhicules à moteur alimenté au diesel\" par \"58 g/km\""
   versions:
   - effective_from: '2026-01-01'
     formula: '70'
@@ -158,7 +129,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026/block-1
-          span: la colonne "Année civile" est complétée par "2026", la colonne "Véhicules à moteur alimenté à l'essence, au LPG ou au gaz naturel" par "70 g/km" et la colonne "Véhicules à moteur alimenté au diesel" par "58 g/km"
+          excerpt: "la colonne \"Année civile\" est complétée par \"2026\", la colonne \"Véhicules à moteur alimenté à l'essence, au LPG ou au gaz naturel\" par \"70 g/km\" et la colonne \"Véhicules à moteur alimenté au diesel\" par \"58 g/km\""
   versions:
   - effective_from: '2026-01-01'
     formula: '58'
@@ -174,7 +145,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-96
-          span: aux véhicules émettant un taux de CO2 de 205 g/km
+          excerpt: "aux véhicules émettant un taux de CO2 de 205 g/km"
   versions:
   - effective_from: '2026-01-01'
     formula: '205'
@@ -189,7 +160,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-96
-          span: aux véhicules émettant un taux de CO2 de 195 g/km
+          excerpt: "aux véhicules émettant un taux de CO2 de 195 g/km"
   versions:
   - effective_from: '2026-01-01'
     formula: '195'
@@ -206,7 +177,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/guidance/spf-finances/company-car-benefit/2026-faq/page-3
-          span: 2027 1.690
+          excerpt: "2027 1.690"
   versions:
   - effective_from: '2026-01-01'
     formula: '1690'
@@ -222,7 +193,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 0 à 12 mois 100 %
+          excerpt: "De 0 à 12 mois 100 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '12'
@@ -238,7 +209,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 13 à 24 mois 94 %
+          excerpt: "De 13 à 24 mois 94 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '24'
@@ -254,7 +225,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 13 à 24 mois 94 %
+          excerpt: "De 13 à 24 mois 94 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.94'
@@ -270,7 +241,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 25 à 36 mois 88 %
+          excerpt: "De 25 à 36 mois 88 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '36'
@@ -286,7 +257,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 25 à 36 mois 88 %
+          excerpt: "De 25 à 36 mois 88 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.88'
@@ -302,7 +273,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 37 à 48 mois 82 %
+          excerpt: "De 37 à 48 mois 82 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '48'
@@ -318,7 +289,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 37 à 48 mois 82 %
+          excerpt: "De 37 à 48 mois 82 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.82'
@@ -334,7 +305,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 49 à 60 mois 76 %
+          excerpt: "De 49 à 60 mois 76 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '60'
@@ -350,7 +321,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: De 49 à 60 mois 76 %
+          excerpt: "De 49 à 60 mois 76 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.76'
@@ -366,7 +337,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-95
-          span: A partir de 61 mois 70 %
+          excerpt: "A partir de 61 mois 70 %"
   versions:
   - effective_from: '2026-01-01'
     formula: '0.70'
@@ -498,7 +469,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-96
-          span: la valeur de l'émission est multipliée par 2,5
+          excerpt: "la valeur de l'émission est multipliée par 2,5"
   versions:
   - effective_from: '2026-01-01'
     formula: '2.5'

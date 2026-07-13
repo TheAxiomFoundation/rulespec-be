@@ -10,29 +10,7 @@ module:
     administrative application/payment procedure, recovery, and objections to
     later payroll-administration surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/codex-vlaanderen/jobbonus/decree-2022-05-20/block-4
-      - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-5
-      - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be-vlg/statute/codex-vlaanderen/jobbonus/decree-2022-05-20/block-4
-        - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-5
-        - be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-      rationale: |-
-        The decree establishes the beneficiary classes, domicile, wage, and
-        retirement-age conditions and delegates amount adjustment to the
-        Flemish Government. The dated 1 January 2025 implementing order is the
-        operative statutory source for the 2025 wage thresholds, amount formula,
-        proration, payment suppression thresholds, and fixed top-up.
-    values:
-      flanders_jobbonus_2025_lower_monthly_gross_wage_threshold: "2115.00"
-      flanders_jobbonus_2025_upper_monthly_gross_wage_threshold: "3114.99"
-      flanders_jobbonus_2025_maximum_annual_full_time_amount: "650.00"
-      flanders_jobbonus_2025_degressive_floor_annual_full_time_amount: "50.00"
-      flanders_jobbonus_2025_fixed_top_up: "50.00"
-      flanders_jobbonus_2025_part_time_minimum_payable_amount: "10.00"
+    corpus_citation_path: "be-vlg/statute/codex-vlaanderen/jobbonus/decree-2022-05-20/block-4"
 units:
   - name: EUR
     kind: currency
@@ -50,7 +28,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
+              excerpt: "voor de prestaties die zijn geleverd in de periode vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar: 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro volgens de formule, vermeld in artikel 2, §5,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -67,7 +45,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
+              excerpt: "voor de prestaties die zijn geleverd in de periode vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar: 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro volgens de formule, vermeld in artikel 2, §5,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -84,7 +62,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
+              excerpt: "voor de prestaties die zijn geleverd in de periode vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar: 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro volgens de formule, vermeld in artikel 2, §5,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -101,7 +79,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-              span: vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar; 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro
+              excerpt: "voor de prestaties die zijn geleverd in de periode vanaf 1 januari 2025, op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar: 1° 650 euro bij een gemiddeld maandelijks brutoloon van maximaal 2115 euro; 2° 0 euro bij een gemiddeld maandelijks brutoloon dat hoger is dan 3114,99 euro; 3° een bedrag dat degressief afneemt van 650 euro tot 50 euro bij een gemiddeld maandelijks brutoloon tussen 2115 euro en 3114,99 euro volgens de formule, vermeld in artikel 2, §5,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -118,7 +96,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-6
-              span: Voor de refertejaren 2023, 2024 en 2025 wordt de jobbonus verhoogd met een vast, onveranderlijk bedrag van 50 euro
+              excerpt: "Voor de refertejaren 2023, 2024 en 2025 wordt de jobbonus verhoogd met een vast, onveranderlijk bedrag van 50 euro"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -135,7 +113,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/regulation/codex-vlaanderen/jobbonus/implementation-order-2025/block-5
-              span: De jobbonus wordt niet uitbetaald in de volgende gevallen; 1° P is kleiner dan c bij een voltijdse werknemer; 2° P is kleiner dan 10 euro bij een deeltijdse werknemer
+              excerpt: "De jobbonus wordt niet uitbetaald in de volgende gevallen: 1° P is kleiner dan c bij een voltijdse werknemer als vermeld in paragraaf 2, eerste lid, 5° en 6°; 2° P is kleiner dan 10 euro bij een deeltijdse werknemer als vermeld in paragraaf 2, eerste lid, 7°."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

@@ -12,8 +12,7 @@ module:
 
     beyond the relationship-class selector.'
   source_verification:
-    corpus_citation_paths:
-    - be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
+    corpus_citation_path: "be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1"
 units:
 - name: EUR
   kind: currency
@@ -58,7 +57,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '50000'
@@ -73,7 +72,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en situation de cohabitation légale avec le défunt au sens du titre V bis du livre III de l'ancien Code civil ; c) la personne qui, au jour de l'ouverture de la succession, cohabitait avec le défunt de façon ininterrompue et formait avec lui un ménage commun depuis au moins un an ou, pour l'application des articles 60 bis à 60 bis /3 et 60 ter ,"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.03'
@@ -88,7 +87,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '100000'
@@ -103,7 +102,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "TABLEAU I Tarif en ligne directe, et entre partenaires A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR 250.000 EUR - 500.000 EUR au-delà de 500.000 EUR 3 % 8 % 9 % 18 % 24 % 30 % 1.500 EUR 5.500 EUR 12.250 EUR 25.750 EUR 85.750 EUR TABLEAU II Tarif entre frères et sœurs A tranches d’imposition B pourcentage"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.08'
@@ -118,7 +117,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_direct_or_partner_tax_scalar_limit * brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_2
@@ -133,7 +132,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '175000'
@@ -148,7 +147,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "TABLEAU I Tarif en ligne directe, et entre partenaires A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR 250.000 EUR - 500.000 EUR au-delà de 500.000 EUR 3 % 8 % 9 % 18 % 24 % 30 % 1.500 EUR 5.500 EUR 12.250 EUR 25.750 EUR 85.750 EUR TABLEAU II Tarif entre frères et sœurs A tranches d’imposition B pourcentage"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.09'
@@ -163,7 +162,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_5 + ((brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_3 - brussels_inheritance_tax_direct_or_partner_tax_scalar_limit) * brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_4)
@@ -178,7 +177,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "12.500 EUR - 25.000 EUR 25.000 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR au-delà de 250.000 EUR 20 % 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en situation de cohabitation légale avec le défunt au sens du titre V bis du livre III de l'ancien Code civil ; c) la personne qui, au jour de l'ouverture de la succession, cohabitait avec le défunt de façon ininterrompue et formait avec lui un ménage"
   versions:
   - effective_from: '2024-01-01'
     formula: '250000'
@@ -193,7 +192,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "TABLEAU I Tarif en ligne directe, et entre partenaires A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR 250.000 EUR - 500.000 EUR au-delà de 500.000 EUR 3 % 8 % 9 % 18 % 24 % 30 % 1.500 EUR 5.500 EUR 12.250 EUR 25.750 EUR 85.750 EUR TABLEAU II Tarif entre frères et sœurs A tranches d’imposition B pourcentage"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.18'
@@ -208,7 +207,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_8 + ((brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_6 - brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_3) * brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_7)
@@ -223,7 +222,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "TABLEAU I Tarif en ligne directe, et entre partenaires A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR 250.000 EUR - 500.000 EUR au-delà de 500.000 EUR 3 % 8 % 9 % 18 % 24 % 30 % 1.500 EUR 5.500 EUR 12.250 EUR 25.750 EUR 85.750 EUR TABLEAU II Tarif entre frères et sœurs A tranches d’imposition B pourcentage"
   versions:
   - effective_from: '2024-01-01'
     formula: '500000'
@@ -238,7 +237,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "TABLEAU I Tarif en ligne directe, et entre partenaires A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR 250.000 EUR - 500.000 EUR au-delà de 500.000 EUR 3 % 8 % 9 % 18 % 24 % 30 % 1.500 EUR 5.500 EUR 12.250 EUR 25.750 EUR 85.750 EUR TABLEAU II Tarif entre frères et sœurs A tranches d’imposition B pourcentage"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.24'
@@ -253,7 +252,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_11 + ((brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_9 - brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_6) * brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_10)
@@ -268,7 +267,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.30'
@@ -283,7 +282,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table I
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_14 + ((brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_12 - brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_9) * brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_13)
@@ -427,7 +426,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "12.500 EUR - 25.000 EUR 25.000 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR au-delà de 250.000 EUR 20 % 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en situation de cohabitation légale avec le défunt au sens du titre V bis du livre III de l'ancien Code civil ; c) la personne qui, au jour de l'ouverture de la succession, cohabitait avec le défunt de façon ininterrompue et formait avec lui un ménage"
   versions:
   - effective_from: '2024-01-01'
     formula: '12500'
@@ -442,7 +441,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "12.500 EUR - 25.000 EUR 25.000 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR au-delà de 250.000 EUR 20 % 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en situation de cohabitation légale avec le défunt au sens du titre V bis du livre III de l'ancien Code civil ; c) la personne qui, au jour de l'ouverture de la succession, cohabitait avec le défunt de façon ininterrompue et formait avec lui un ménage"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.20'
@@ -457,7 +456,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "12.500 EUR - 25.000 EUR 25.000 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR au-delà de 250.000 EUR 20 % 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en situation de cohabitation légale avec le défunt au sens du titre V bis du livre III de l'ancien Code civil ; c) la personne qui, au jour de l'ouverture de la succession, cohabitait avec le défunt de façon ininterrompue et formait avec lui un ménage"
   versions:
   - effective_from: '2024-01-01'
     formula: '25000'
@@ -472,7 +471,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.25'
@@ -487,7 +486,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_sibling_tax_scalar_limit * brussels_inheritance_tax_sibling_tax_scalar_limit_2
@@ -502,7 +501,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '50000'
@@ -517,7 +516,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.30'
@@ -532,7 +531,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_sibling_tax_scalar_limit_5 + ((brussels_inheritance_tax_sibling_tax_scalar_limit_3 - brussels_inheritance_tax_sibling_tax_scalar_limit) * brussels_inheritance_tax_sibling_tax_scalar_limit_4)
@@ -547,7 +546,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '100000'
@@ -562,7 +561,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.40'
@@ -577,7 +576,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_sibling_tax_scalar_limit_8 + ((brussels_inheritance_tax_sibling_tax_scalar_limit_6 - brussels_inheritance_tax_sibling_tax_scalar_limit_3) * brussels_inheritance_tax_sibling_tax_scalar_limit_7)
@@ -592,7 +591,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '175000'
@@ -607,7 +606,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.55'
@@ -622,7 +621,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_sibling_tax_scalar_limit_11 + ((brussels_inheritance_tax_sibling_tax_scalar_limit_9 - brussels_inheritance_tax_sibling_tax_scalar_limit_6) * brussels_inheritance_tax_sibling_tax_scalar_limit_10)
@@ -637,7 +636,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "12.500 EUR - 25.000 EUR 25.000 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR 175.000 EUR - 250.000 EUR au-delà de 250.000 EUR 20 % 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en situation de cohabitation légale avec le défunt au sens du titre V bis du livre III de l'ancien Code civil ; c) la personne qui, au jour de l'ouverture de la succession, cohabitait avec le défunt de façon ininterrompue et formait avec lui un ménage"
   versions:
   - effective_from: '2024-01-01'
     formula: '250000'
@@ -652,7 +651,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.60'
@@ -667,7 +666,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_sibling_tax_scalar_limit_14 + ((brussels_inheritance_tax_sibling_tax_scalar_limit_12 - brussels_inheritance_tax_sibling_tax_scalar_limit_9) * brussels_inheritance_tax_sibling_tax_scalar_limit_13)
@@ -682,7 +681,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.65'
@@ -697,7 +696,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table II
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_sibling_tax_scalar_limit_17 + ((brussels_inheritance_tax_sibling_tax_scalar_limit_15 - brussels_inheritance_tax_sibling_tax_scalar_limit_12) * brussels_inheritance_tax_sibling_tax_scalar_limit_16)
@@ -861,7 +860,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '50000'
@@ -876,7 +875,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.35'
@@ -891,7 +890,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '100000'
@@ -906,7 +905,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.50'
@@ -921,7 +920,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général Article 48 ( applicable à partir du 01.01.2024 ) (modifié par l’art. 4 de l’ordonnance du 06.07.2023 (M.B., 27.09.2023) . Texte applicable à partir du 01.01.2024 et aux successions ouvertes à partir de cette date (art. 18)) Les droits de succession et de mutation par décès sont perçus d'après le tarif indiqué dans les tableaux ci-après. Le tableau I contient le tarif applicable en ligne directe, et entre partenaires . Ce tarif est appliqué par ayant droit sur sa part dans la valeur des biens imposables. Le tableau II contient le tarif applicable entre les frères et sœurs. Ce tarif est appliqué par ayant droit sur sa part dans la valeur imposable des biens. Le tableau III contient le tarif applicable entre les oncles ou tantes et neveux ou nièces. Ce"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit * brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2
@@ -936,7 +935,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '175000'
@@ -951,7 +950,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.60'
@@ -966,7 +965,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général Article 48 ( applicable à partir du 01.01.2024 ) (modifié par l’art. 4 de l’ordonnance du 06.07.2023 (M.B., 27.09.2023) . Texte applicable à partir du 01.01.2024 et aux successions ouvertes à partir de cette date (art. 18)) Les droits de succession et de mutation par décès sont perçus d'après le tarif indiqué dans les tableaux ci-après. Le tableau I contient le tarif applicable en ligne directe, et entre partenaires . Ce tarif est appliqué par ayant droit sur sa part dans la valeur des biens imposables. Le tableau II contient le tarif applicable entre les frères et sœurs. Ce tarif est appliqué par ayant droit sur sa part dans la valeur imposable des biens. Le tableau III contient le tarif applicable entre les oncles ou tantes et neveux ou nièces. Ce"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_5 + ((brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3 - brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit) * brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4)
@@ -981,7 +980,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "% 25 % 30 % 40 % 55 % 60 % 65 % 2.500 EUR 5.625 EUR 13.125 EUR 33.125 EUR 74.375 EUR 119.375 EUR TABLEAU III Tarif entre oncles ou tantes et neveux ou nièces A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 100.000 EUR 100.000 EUR - 175.000 EUR au-delà de 175.000 EUR 35 % 50 % 60 % 70 % 17.500 EUR 42.500 EUR 87.500 EUR TABLEAU IV Tarif entre toutes les autres personnes A tranches d’imposition B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.70'
@@ -996,7 +995,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table III
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général Article 48 ( applicable à partir du 01.01.2024 ) (modifié par l’art. 4 de l’ordonnance du 06.07.2023 (M.B., 27.09.2023) . Texte applicable à partir du 01.01.2024 et aux successions ouvertes à partir de cette date (art. 18)) Les droits de succession et de mutation par décès sont perçus d'après le tarif indiqué dans les tableaux ci-après. Le tableau I contient le tarif applicable en ligne directe, et entre partenaires . Ce tarif est appliqué par ayant droit sur sa part dans la valeur des biens imposables. Le tableau II contient le tarif applicable entre les frères et sœurs. Ce tarif est appliqué par ayant droit sur sa part dans la valeur imposable des biens. Le tableau III contient le tarif applicable entre les oncles ou tantes et neveux ou nièces. Ce"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_8 + ((brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6 - brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3) * brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7)
@@ -1096,7 +1095,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '50000'
@@ -1111,7 +1110,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.40'
@@ -1126,7 +1125,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '75000'
@@ -1141,7 +1140,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.55'
@@ -1156,7 +1155,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_other_tax_scalar_limit * brussels_inheritance_tax_other_tax_scalar_limit_2
@@ -1171,7 +1170,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '175000'
@@ -1186,7 +1185,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.65'
@@ -1201,7 +1200,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_other_tax_scalar_limit_5 + ((brussels_inheritance_tax_other_tax_scalar_limit_3 - brussels_inheritance_tax_other_tax_scalar_limit) * brussels_inheritance_tax_other_tax_scalar_limit_4)
@@ -1216,7 +1215,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "B pourcentage d’imposition par tranche C montant total de l’impôt sur les tranches précédentes de à 0,01 EUR - 50.000 EUR 50.000 EUR - 75.000 EUR 75.000 EUR - 175.000 EUR au-delà de 175.000 EUR 40 % 55 % 65 % 80 % 20.000 EUR 33.750 EUR 98.750 EUR Pour l'application des chapitres VI et VII, l'on entend par « partenaire » : a) la personne qui, au jour de l'ouverture de la succession, était mariée avec le défunt ; b) la personne qui, au jour de l'ouverture de la succession, se trouvait en"
   versions:
   - effective_from: '2024-01-01'
     formula: '0.80'
@@ -1231,7 +1230,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05/block-1
-          span: Brussels succession-duty code article 48 table IV
+          excerpt: "Article 48 du Code des droits de succession - Région de Bruxelles-Capitale CHAPITRE VI - Tarif des droits Section première - Tarif général"
   versions:
   - effective_from: '2024-01-01'
     formula: brussels_inheritance_tax_other_tax_scalar_limit_8 + ((brussels_inheritance_tax_other_tax_scalar_limit_6 - brussels_inheritance_tax_other_tax_scalar_limit_3) * brussels_inheritance_tax_other_tax_scalar_limit_7)

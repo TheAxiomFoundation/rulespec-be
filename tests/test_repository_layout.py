@@ -9,8 +9,14 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
-JURISDICTION_DIR_RE = re.compile(r"^[a-z]{2}(-[a-z0-9-]+)*$")
-CONTENT_DIRS = ("statutes", "regulations", "policies", "legislation")
+JURISDICTION_DIR_RE = re.compile(r"^be(?:-[a-z0-9]+)*$")
+ATOMIC_CONTENT_DIRS = ("legislation", "policies", "regulations", "statutes")
+CANONICAL_CONTENT_DIRS = (*ATOMIC_CONTENT_DIRS, "programs")
+CORPUS_CITATION_PATH_RE = re.compile(
+    r"^be(?:-[a-z]{2,4})?/(?:guidance|regulation|statute)"
+    r"(?:/[A-Za-z0-9][A-Za-z0-9 .\-–]*)+$"
+)
+SOURCE_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 IGNORED_DIRS = {".git", ".pytest_cache", ".venv", "__pycache__", "_axiom"}
 DISALLOWED_GENERIC_RULE_NAMES = {
     "amount",
@@ -70,351 +76,16 @@ STRUCTURAL_PARAMETER_NAME_TOKENS = (
     "denominator",
 )
 NUMERIC_TEXT_RE = re.compile(
-    r"(?<![\w.,])[-+]?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:\s*[,.]\d+)?\s*(?:%|p\.c\.|pc|pour cent|procent)?(?![\w.,])"
+    r"(?<![\w.,])(?:[-+]\s*)?(?:\d+(?:[ .\u00a0]\d{3})+|\d+)(?:\s*[,.]\s*\d+)?\s*(?:%|p\.c\.|pc|pour cent|procent|EUR|euros?)?(?![\w.,])",
+    flags=re.IGNORECASE,
 )
 SIMPLE_NUMERIC_FORMULA_RE = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
 FORMULA_PROOF_PATH_RE = re.compile(r"^versions\[(\d+)\]\.formula$")
-LEGACY_PROOF_ATOM_BUDGETS = {
-    "policy_parameters_missing_proof_atoms": frozenset(
-        {
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_vehicle_tax_zero_amount",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_0_to_4_max_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_5_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_6_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_7_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_8_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_9_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_10_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_11_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_12_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_13_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_14_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_15_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_16_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_17_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_18_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_19_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_cv_20_fiscal_power",
-        "be-bru/statutes/vehicle_tax/circulation_and_entry.yaml#brussels_circulation_tax_motorcycle_exempt_max_engine_cc",
-        "be-bru/statutes/vehicle_tax/entry_into_service_detailed.yaml#brussels_entry_into_service_tax_fiscal_power_band_max_cv",
-        "be-bru/statutes/vehicle_tax/entry_into_service_detailed.yaml#brussels_entry_into_service_tax_thermal_power_band_max_kw",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_post_2020_co2_neutral_grams",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_co2_adjustment_per_gram",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_municipal_decime_rate",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_q_base_2021",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_q_annual_increment_after_2021",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_electric_power_120_kw_or_less_coefficient",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_electric_power_121_to_155_kw_coefficient",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_electric_power_156_to_249_kw_coefficient",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_electric_power_250_kw_or_more_coefficient",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_hybrid_coefficient",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_other_fuel_coefficient",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_family_reduction_max_mass_kg",
-        }
-    ),
-    "policy_parameter_proof_atoms_missing_formula_value": frozenset(
-        {
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_3.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_4.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_6.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_7.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_direct_or_partner_tax_scalar_limit_9.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit_3.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit_4.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit_6.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit_7.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_immovable_other_tax_scalar_limit_9.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_movable_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/gift_tax/rate_scale.yaml#brussels_gift_tax_movable_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_3.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_4.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_6.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_7.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_9.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_10.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_12.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_13.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_direct_or_partner_tax_scalar_limit_15.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_3.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_4.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_6.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_7.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_9.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_10.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_12.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_13.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_15.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_16.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_sibling_tax_scalar_limit_18.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit_2.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit_3.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit_4.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit_6.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit_7.atoms[0]",
-        "be-bru/statutes/inheritance_tax/rate_scale.yaml#brussels_inheritance_tax_other_tax_scalar_limit_9.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_3.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_4.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_5.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_6.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_7.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_8.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_9.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_10.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_11.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_12.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_13.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_14.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_15.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_16.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_passenger_base_table_amount_scalar_limit_17.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_co2_adjustment_rate_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_co2_adjustment_rate_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_3.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_4.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_5.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_6.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_7.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_8.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_9.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_10.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_11.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_euronorm_fuel_adjustment_rate_scalar_limit_12.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_additional_lpg_amount_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_circulation_tax_additional_lpg_amount_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_fuel_factor_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_fuel_factor_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_fuel_factor_scalar_limit_3.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_3.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_4.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_5.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_7.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_8.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_9.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_10.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_11.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_12.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_13.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_14.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_air_component_scalar_limit_15.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_2.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_3.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_4.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_5.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_6.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_7.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_8.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_9.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_10.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_11.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_12.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_13.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_14.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_15.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_16.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_17.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_age_correction_factor_scalar_limit_18.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_post_2020_raw_formula_amount_scalar_limit.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_post_2020_raw_formula_amount_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_immovable_other_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_movable_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_movable_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_2028_immovable_other_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/gift_tax/rate_scale.yaml#wallonia_gift_tax_articles_131_131bis_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_19.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_21.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_22.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_direct_spouse_or_legal_cohabitant_tax_scalar_limit_24.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_sibling_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_uncle_aunt_nephew_niece_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_other_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_13.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_15.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_16.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_direct_spouse_or_legal_cohabitant_tax_scalar_limit_18.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_sibling_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_uncle_aunt_nephew_niece_tax_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_2028_other_tax_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/inheritance_tax/rate_scale.yaml#wallonia_inheritance_tax_article_48_tax_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_5.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_8.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_11.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_13.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_14.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_15.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_16.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_passenger_base_amount_scalar_limit_17.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_additional_lpg_amount_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/circulation_tax.yaml#wallonia_circulation_tax_additional_lpg_amount_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_by_engine_power_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_by_engine_power_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_by_engine_power_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_by_engine_power_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_by_engine_power_scalar_limit_5.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_by_engine_power_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_3.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_4.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_5.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_6.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_7.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_8.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_9.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_10.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_11.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_12.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_13.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_14.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_15.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_16.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_17.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_18.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_19.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_20.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_21.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_22.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_23.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_24.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_vehicle_age_factor_scalar_limit_25.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_base_amount_after_age_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_energy_coefficient_scalar_limit.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_energy_coefficient_scalar_limit_2.atoms[0]",
-        "be-wal/statutes/vehicle_tax/entry_into_service.yaml#wallonia_tmc_energy_coefficient_scalar_limit_3.atoms[0]",
-        "be-vlg/statutes/vehicle_tax/circulation_and_entry.yaml#flanders_biv_natural_gas_reduction_amount.atoms[0]",
-        }
-    ),
-}
 # A parameter *table* stores its policy numbers under `versions[i].values`, not
 # a scalar `versions[i].formula`, so its proof atom anchors the table location.
 # This is the same contract the axiom-encode money-atom gate derives and the
 # base proof validator enforces (axiom-encode#1032); accepting it here lets a
-# single table atom satisfy both gates and closes the money-atom ratchet.
+# single table atom satisfy both strict gates.
 VALUES_PROOF_PATH_RE = re.compile(r"^versions\[(\d+)\]\.values$")
 FRENCH_NUMBER_WORD_VALUES = {
     "un": Decimal("1"),
@@ -444,6 +115,7 @@ FRENCH_NUMBER_WORD_VALUES = {
     "dix-neuf": Decimal("19"),
     "dix neuf": Decimal("19"),
     "vingt": Decimal("20"),
+    "vingt-cinq": Decimal("25"),
     "trente": Decimal("30"),
     "quarante": Decimal("40"),
     "cinquante": Decimal("50"),
@@ -478,6 +150,8 @@ DUTCH_NUMBER_WORD_VALUES = {
     "dertig": Decimal("30"),
     "veertig": Decimal("40"),
     "vijftig": Decimal("50"),
+    "vierduizend": Decimal("4000"),
+    "opdeciem": Decimal("0.1"),
     "gehalveerd": Decimal("0.5"),
 }
 
@@ -488,7 +162,7 @@ def jurisdiction_dirs() -> list[Path]:
         for child in ROOT.iterdir()
         if child.is_dir()
         and JURISDICTION_DIR_RE.match(child.name)
-        and any((child / marker).is_dir() for marker in CONTENT_DIRS)
+        and any((child / marker).is_dir() for marker in CANONICAL_CONTENT_DIRS)
     )
 
 
@@ -496,7 +170,7 @@ def rulespec_content_roots() -> list[Path]:
     return [
         jurisdiction / marker
         for jurisdiction in jurisdiction_dirs()
-        for marker in CONTENT_DIRS
+        for marker in ATOMIC_CONTENT_DIRS
         if (jurisdiction / marker).is_dir()
     ]
 
@@ -505,35 +179,11 @@ def allowed_yaml_roots() -> set[str]:
     return {
         ".axiom",
         ".github",
-        "bulk",
         "data",
-        "known-dangling.yaml",
-        "known-missing-money-atoms.yaml",
         "known-validation-gaps.yaml",
         "oracle-coverage-pending.yaml",
         *(d.name for d in jurisdiction_dirs()),
     }
-
-
-def _validation_gaps(section: str) -> set[str]:
-    if section in LEGACY_PROOF_ATOM_BUDGETS:
-        return set(LEGACY_PROOF_ATOM_BUDGETS[section])
-    path = ROOT / "known-validation-gaps.yaml"
-    if not path.exists():
-        return set()
-    payload = yaml.safe_load(path.read_text()) or {}
-    return set(payload.get(section) or [])
-
-
-def apply_gap_ratchet(section: str, found: list[str]) -> list[str]:
-    allowlisted = _validation_gaps(section)
-    found_set = set(found)
-    problems = [item for item in found if item not in allowlisted]
-    problems.extend(
-        f"known-validation-gaps.yaml {section} entry is fixed - remove it: {stale}"
-        for stale in sorted(allowlisted - found_set)
-    )
-    return problems
 
 
 def iter_repo_files() -> list[Path]:
@@ -553,6 +203,17 @@ def iter_rulespec_files() -> list[Path]:
             path for path in root.rglob("*.yaml") if not path.name.endswith(".test.yaml")
         )
     return sorted(files)
+
+
+def nested_keys(value: object):
+    if isinstance(value, dict):
+        for key, nested in value.items():
+            if isinstance(key, str):
+                yield key
+            yield from nested_keys(nested)
+    elif isinstance(value, list):
+        for nested in value:
+            yield from nested_keys(nested)
 
 
 def canonical_rule_id(path: Path, rule_name: str) -> str:
@@ -626,22 +287,21 @@ def text_number_values(text: str) -> list[Decimal]:
     values: list[Decimal] = []
     for match in NUMERIC_TEXT_RE.finditer(text):
         token = match.group().strip().replace("\u00a0", " ")
+        lower_token = token.lower()
         is_percent = (
-            token.endswith("%")
-            or token.endswith("p.c.")
-            or token.endswith("pc")
-            or token.endswith("pour cent")
-            or token.endswith("procent")
+            lower_token.endswith("%")
+            or lower_token.endswith("p.c.")
+            or lower_token.endswith("pc")
+            or lower_token.endswith("pour cent")
+            or lower_token.endswith("procent")
         )
-        token = (
-            token.removesuffix("%")
-            .removesuffix("p.c.")
-            .removesuffix("pc")
-            .removesuffix("pour cent")
-            .removesuffix("procent")
-            .strip()
-            .replace(" ", "")
+        token = re.sub(
+            r"(?:%|p\.c\.|pc|pour cent|procent|EUR|euros?)$",
+            "",
+            token,
+            flags=re.IGNORECASE,
         )
+        token = re.sub(r"\s+", "", token)
         if "," in token and "." in token:
             if token.rfind(",") > token.rfind("."):
                 token = token.replace(".", "").replace(",", ".")
@@ -656,8 +316,26 @@ def text_number_values(text: str) -> list[Decimal]:
         except InvalidOperation:
             continue
         values.append(value)
+        # A separated hyphen is ambiguous in flattened legal text: it may be a
+        # negative sign (``- 12,5 %``) or a list/range separator
+        # (``- 33,14 %`` / ``25.000,01 - 50.000,00``). Retain both readings.
+        if value < 0:
+            values.append(abs(value))
         if is_percent:
             values.append(value / Decimal("100"))
+            if value < 0:
+                values.append(abs(value) / Decimal("100"))
+    # Table extraction can flatten adjacent columns into ambiguous text such as
+    # ``6 126,12`` (fiscal-power value 6, amount EUR 126.12). Preserve both
+    # column interpretations in addition to the thousands-group interpretation.
+    for match in re.finditer(
+        r"(?<![\w.,])(\d{1,3})\s+(\d{2,3}[,.]\d{2})(?![\w.,])", text
+    ):
+        values.append(Decimal(match.group(1)))
+        values.append(Decimal(match.group(2).replace(",", ".")))
+    # Effective-date parameters are proven by dates such as ``01.01.2028``.
+    for year in re.findall(r"\b\d{1,2}[./-]\d{1,2}[./-](\d{4})\b", text):
+        values.append(Decimal(year))
     for match in re.finditer(
         r"(?<![\w.,])(\d+(?:\s*[,.]\d+)?)\s*(?:et|à|a|-)\s*(\d+(?:\s*[,.]\d+)?)\s*%",
         text,
@@ -679,52 +357,49 @@ def text_number_values(text: str) -> list[Decimal]:
     return values
 
 
-def span_contains_formula_value(
-    formula_values: list[Decimal], span_values: list[Decimal], span: str
+def excerpt_contains_formula_value(
+    formula_values: list[Decimal], excerpt_values: list[Decimal], excerpt: str
 ) -> bool:
     if any(
-        formula_value == span_value
+        formula_value == excerpt_value
         for formula_value in formula_values
-        for span_value in span_values
+        for excerpt_value in excerpt_values
+    ):
+        return True
+    lower_excerpt = excerpt.lower()
+    if Decimal("0") in formula_values and any(
+        marker in lower_excerpt
+        for marker in (
+            "ne devez pas payer de taxe",
+            "géén verkeersbelasting verschuldigd",
+            "geen verkeersbelasting verschuldigd",
+            "exonération",
+            "vrijgesteld",
+        )
     ):
         return True
     if (
-        "%"
-        not in span
-        and "p.c." not in span
-        and "pour cent" not in span
-        and "procent" not in span
+        "%" not in excerpt
+        and "p.c." not in excerpt
+        and "pour cent" not in excerpt
+        and "procent" not in excerpt
     ):
         return False
     return any(
         Decimal("0") < formula_value < Decimal("1")
-        and formula_value * Decimal("100") == span_value
+        and formula_value * Decimal("100") == excerpt_value
         for formula_value in formula_values
-        for span_value in span_values
+        for excerpt_value in excerpt_values
     )
 
 
 def proof_atom_anchor_text(source: object) -> str | None:
-    """Return a proof-atom source's anchor text: its ``span`` or ``excerpt``.
-
-    A proof atom pins a parameter's value to a short quote from the cited
-    provision. rulespec-be historically stored that quote under ``span``; the
-    encoder's model-emit path (axiom-encode >= 0.2.1188) writes the identical
-    content under ``excerpt`` -- the field name already used across rulespec-us
-    and rulespec-uk. The two are interchangeable free-text anchors: nothing in
-    the gate battery resolves either against corpus text (the encoder's
-    ``proof-validate`` ignores both fields, and this repo holds no full corpus
-    text to offset-check against), so a ``span`` carries no more verification
-    weight than an ``excerpt`` here. Accept whichever the encoder emitted, and
-    return it so the value-containment gate can still anchor on it.
-    See rulespec-be#100.
-    """
+    """Return the exact corpus-body excerpt for a direct proof atom."""
     if not isinstance(source, dict):
         return None
-    for key in ("span", "excerpt"):
-        value = source.get(key)
-        if isinstance(value, str) and value.strip():
-            return value
+    value = source.get("excerpt")
+    if isinstance(value, str) and value.strip():
+        return value
     return None
 
 
@@ -737,10 +412,8 @@ def module_has_source_locator(payload: object) -> bool:
     source_verification = module.get("source_verification")
     if not isinstance(source_verification, dict):
         return False
-    if source_verification.get("corpus_citation_path"):
-        return True
-    citation_paths = source_verification.get("corpus_citation_paths")
-    return isinstance(citation_paths, list) and any(citation_paths)
+    citation_path = source_verification.get("corpus_citation_path")
+    return isinstance(citation_path, str) and bool(citation_path.strip())
 
 
 def source_spine() -> dict:
@@ -771,6 +444,152 @@ def test_has_full_belgium_jurisdiction_namespaces() -> None:
         "be-vlg",
         "be-wal",
     ]
+
+
+def test_canonical_jurisdiction_layout_is_a_hard_cut() -> None:
+    problems: list[str] = []
+    for marker in CANONICAL_CONTENT_DIRS:
+        root_path = ROOT / marker
+        if root_path.exists() or root_path.is_symlink():
+            problems.append(f"repository-root content tree: {marker}")
+
+    for jurisdiction in jurisdiction_dirs():
+        for child in sorted(jurisdiction.iterdir()):
+            relative = child.relative_to(ROOT).as_posix()
+            if child.is_symlink():
+                problems.append(f"symlink: {relative}")
+            elif child.is_dir() and child.name not in CANONICAL_CONTENT_DIRS:
+                problems.append(f"noncanonical content root: {relative}")
+        for marker in CANONICAL_CONTENT_DIRS:
+            content_root = jurisdiction / marker
+            if not content_root.is_dir():
+                continue
+            for path in sorted(content_root.rglob("*")):
+                if path.is_dir():
+                    continue
+                relative = path.relative_to(ROOT).as_posix()
+                if path.is_symlink() or not path.is_file():
+                    problems.append(f"non-regular content file: {relative}")
+                elif path.suffix != ".yaml":
+                    problems.append(f"content file must use exact .yaml: {relative}")
+
+    assert problems == []
+
+
+def test_program_roots_are_declarative_axiom_compose_only() -> None:
+    problems: list[str] = []
+    for jurisdiction in jurisdiction_dirs():
+        program_root = jurisdiction / "programs"
+        if not program_root.is_dir():
+            continue
+        for path in sorted(program_root.rglob("*.yaml")):
+            relative = path.relative_to(ROOT).as_posix()
+            payload = yaml.safe_load(path.read_text()) or {}
+            if not isinstance(payload, dict):
+                problems.append(f"{relative}: program spec is not a mapping")
+                continue
+            forbidden = sorted(set(payload) & {"format", "module", "rules"})
+            if forbidden:
+                problems.append(
+                    f"{relative}: atomic RuleSpec keys in program spec {forbidden}"
+                )
+            if not isinstance(payload.get("program"), str) or not payload["program"]:
+                problems.append(f"{relative}: missing declarative program id")
+            if "period" not in payload:
+                problems.append(f"{relative}: missing period")
+            outputs = payload.get("outputs")
+            if not isinstance(outputs, list) or not outputs:
+                problems.append(f"{relative}: missing non-empty outputs")
+
+    assert problems == []
+
+
+def test_atomic_roots_contain_no_composition_modules() -> None:
+    compositions: list[str] = []
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        module = payload.get("module") if isinstance(payload, dict) else None
+        if isinstance(module, dict) and module.get("kind") == "composition":
+            compositions.append(path.relative_to(ROOT).as_posix())
+
+    assert compositions == []
+
+
+def test_source_verification_uses_exact_singular_contract() -> None:
+    problems: list[str] = []
+    allowed_keys = {"corpus_citation_path", "source_sha256"}
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        relative = path.relative_to(ROOT).as_posix()
+        module = payload.get("module") if isinstance(payload, dict) else None
+        verification = (
+            module.get("source_verification") if isinstance(module, dict) else None
+        )
+        if not isinstance(verification, dict):
+            problems.append(f"{relative}: source_verification is not a mapping")
+            continue
+        unknown = sorted(set(verification) - allowed_keys)
+        if unknown:
+            problems.append(f"{relative}: unknown source_verification keys {unknown}")
+        citation_path = verification.get("corpus_citation_path")
+        if not isinstance(citation_path, str) or not citation_path.strip():
+            problems.append(f"{relative}: missing singular corpus_citation_path")
+        elif CORPUS_CITATION_PATH_RE.fullmatch(citation_path) is None:
+            problems.append(f"{relative}: invalid corpus citation path {citation_path!r}")
+        source_sha256 = verification.get("source_sha256")
+        if source_sha256 is not None and (
+            not isinstance(source_sha256, str)
+            or SOURCE_SHA256_RE.fullmatch(source_sha256) is None
+        ):
+            problems.append(f"{relative}: source_sha256 must be lowercase hex")
+
+    assert problems == []
+
+
+def test_legacy_source_claim_and_plural_provenance_is_absent() -> None:
+    problems: list[str] = []
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        relative = path.relative_to(ROOT).as_posix()
+        keys = set(nested_keys(payload))
+        if "corpus_citation_paths" in keys:
+            problems.append(f"{relative}: plural corpus_citation_paths")
+        if "source_claims" in keys:
+            problems.append(f"{relative}: source_claims")
+        rules = payload.get("rules") if isinstance(payload, dict) else None
+        if not isinstance(rules, list):
+            continue
+        for rule in rules:
+            if not isinstance(rule, dict):
+                continue
+            for atom in proof_atoms(rule):
+                if not isinstance(atom, dict):
+                    continue
+                atom_keys = set(nested_keys(atom))
+                if "claim" in atom_keys:
+                    problems.append(
+                        f"{relative}#{rule.get('name', '<unnamed>')}: proof claim"
+                    )
+                if "span" in atom_keys:
+                    problems.append(
+                        f"{relative}#{rule.get('name', '<unnamed>')}: legacy span"
+                    )
+                source = atom.get("source")
+                if isinstance(source, dict) and source.get("corpus_citation_path"):
+                    excerpt = source.get("excerpt")
+                    if not isinstance(excerpt, str) or not excerpt.strip():
+                        problems.append(
+                            f"{relative}#{rule.get('name', '<unnamed>')}: "
+                            "direct source lacks exact excerpt"
+                        )
+
+    assert problems == []
+
+
+def test_legacy_encoding_manifests_are_deleted() -> None:
+    legacy_root = ROOT / ".axiom" / "encoding-manifests"
+    legacy = sorted(legacy_root.rglob("*.json")) if legacy_root.exists() else []
+    assert legacy == []
 
 
 def test_oracle_index_requires_household_level_executable_comparisons() -> None:
@@ -965,7 +784,7 @@ def test_rulespec_files_have_companion_tests() -> None:
         if not path.with_name(f"{path.stem}.test.yaml").exists()
     ]
 
-    assert apply_gap_ratchet("missing_companion_tests", missing) == []
+    assert missing == []
 
 
 def test_companion_tests_have_rulespec_files() -> None:
@@ -1008,8 +827,7 @@ def test_rulespec_files_use_rulespec_v1_shape() -> None:
             if rule.get("kind") in {"parameter", "derived"} and "versions" not in rule:
                 invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] missing versions")
 
-    invalid_paths = sorted({item.split(":", 1)[0] for item in invalid})
-    assert apply_gap_ratchet("shape_issues", invalid_paths) == []
+    assert invalid == []
 
 
 def test_derived_rules_declare_period_metadata() -> None:
@@ -1070,18 +888,15 @@ def test_policy_bearing_parameters_have_formula_proof_atoms() -> None:
                 name = str(rule.get("name", "<unnamed>"))
                 missing.append(f"{path.relative_to(ROOT).as_posix()}#{name}")
 
-    assert apply_gap_ratchet("policy_parameters_missing_proof_atoms", missing) == []
+    assert missing == []
 
 
 def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
     """Every policy-bearing parameter proof atom must anchor a corpus provision.
 
-    The atom must cite a ``corpus_citation_path`` in the module's
-    ``source_verification`` and carry a non-empty anchor quote. That quote may
-    live under ``span`` (rulespec-be's original field) or ``excerpt`` (what the
-    encoder now emits on its model path, matching rulespec-us/uk); the two are
-    equivalent, so accept either via ``proof_atom_anchor_text``. See
-    rulespec-be#100.
+    A rule-level atom may cite an independently operative provision instead of
+    repeating the module's single review anchor. It must use a canonical corpus
+    citation path and carry a non-empty exact anchor quote.
     """
     invalid: list[str] = []
 
@@ -1090,21 +905,6 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
         rules = payload.get("rules")
         if not isinstance(rules, list):
             continue
-        module = payload.get("module")
-        source_verification = (
-            module.get("source_verification") if isinstance(module, dict) else None
-        )
-        module_source_paths: set[str] = set()
-        if isinstance(source_verification, dict):
-            citation_path = source_verification.get("corpus_citation_path")
-            if isinstance(citation_path, str):
-                module_source_paths.add(citation_path)
-            citation_paths = source_verification.get("corpus_citation_paths")
-            if isinstance(citation_paths, list):
-                module_source_paths.update(
-                    path for path in citation_paths if isinstance(path, str)
-                )
-
         for rule in rules:
             if not isinstance(rule, dict):
                 continue
@@ -1165,25 +965,18 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                     )
                 if not isinstance(citation_path, str) or not citation_path:
                     invalid.append(f"{atom_id}: missing corpus_citation_path")
-                elif citation_path not in module_source_paths:
+                elif CORPUS_CITATION_PATH_RE.fullmatch(citation_path) is None:
                     invalid.append(
-                        f"{atom_id}: corpus_citation_path is not in module source_verification"
+                        f"{atom_id}: invalid corpus_citation_path {citation_path!r}"
                     )
                 if proof_atom_anchor_text(source) is None:
-                    invalid.append(f"{atom_id}: missing source span/excerpt anchor")
+                    invalid.append(f"{atom_id}: missing exact source excerpt")
 
     assert invalid == []
 
 
-def test_policy_parameter_proof_atom_spans_contain_formula_values() -> None:
-    """A parameter's proof anchor quote must contain the parameter's value.
-
-    Reads the anchor from either ``span`` or ``excerpt`` (see
-    ``proof_atom_anchor_text`` and rulespec-be#100) so an excerpt-emitting
-    encoder is held to the same value-containment bar as a span-emitting one --
-    e.g. a 0.60 rate whose anchor reads "a 60 p.c. de ..." is verified to
-    mention 60.
-    """
+def test_policy_parameter_proof_excerpts_contain_formula_values() -> None:
+    """A parameter's exact proof excerpt must contain its encoded value."""
     invalid: list[str] = []
 
     for path in iter_rulespec_files():
@@ -1205,21 +998,18 @@ def test_policy_parameter_proof_atom_spans_contain_formula_values() -> None:
                 if not isinstance(atom, dict):
                     continue
                 source = atom.get("source")
-                span = proof_atom_anchor_text(source)
-                if span is None:
+                excerpt = proof_atom_anchor_text(source)
+                if excerpt is None:
                     continue
-                span_values = text_number_values(span)
-                if not span_contains_formula_value(formula_values, span_values, span):
+                excerpt_values = text_number_values(excerpt)
+                if not excerpt_contains_formula_value(
+                    formula_values, excerpt_values, excerpt
+                ):
                     invalid.append(
                         f"{path.relative_to(ROOT).as_posix()}#{name}.atoms[{index}]"
                     )
 
-    assert (
-        apply_gap_ratchet(
-            "policy_parameter_proof_atoms_missing_formula_value", invalid
-        )
-        == []
-    )
+    assert invalid == []
 
 
 def test_rulespec_files_use_corpus_source_locators() -> None:
@@ -1305,4 +1095,4 @@ def test_derived_rules_are_exercised_by_companion_tests() -> None:
             if canonical_rule_id(path, rule_name) not in covered_outputs
         )
 
-    assert apply_gap_ratchet("uncovered_derived_rules", missing) == []
+    assert missing == []

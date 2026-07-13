@@ -13,38 +13,7 @@ module:
     vacation-pay carryover, special social-insurance categories, and
     employer-side calculations to separate payroll surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1999/12/20/2000022052/article/2
-      - be/regulation/arrete/2000/01/17/2000022082/article/1
-      - be/regulation/arrete/2024/03/05/2024002162/article/1er
-      - be/guidance/onss/dmfa/2025-2/workbonus/block-6
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/loi/1999/12/20/2000022052/article/2
-        - be/regulation/arrete/2000/01/17/2000022082/article/1
-        - be/regulation/arrete/2024/03/05/2024002162/article/1er
-      rationale: |-
-        The statute and royal decree establish the work-bonus formula and
-        delegate the detailed indexed payroll parameters. The ONSS DMFA
-        instructions are the official employer-facing administrative table for
-        the current thresholds, maximum reductions, and alpha coefficients after
-        those legal sources are checked.
-    values:
-      belgium_worker_work_bonus_january_2025_s1_threshold: "2132.59"
-      belgium_worker_work_bonus_january_2025_s1bis_threshold: "2723.36"
-      belgium_worker_work_bonus_january_2025_s2_threshold: "3207.40"
-      belgium_worker_work_bonus_january_2025_a_monthly_maximum: "118.22"
-      belgium_worker_work_bonus_january_2025_b_monthly_maximum: "159.43"
-      belgium_worker_work_bonus_january_2025_alpha_a: "0.2442"
-      belgium_worker_work_bonus_january_2025_alpha_b: "0.2699"
-      belgium_worker_work_bonus_s1_threshold: "2175.25"
-      belgium_worker_work_bonus_s1bis_threshold: "2777.83"
-      belgium_worker_work_bonus_s2_threshold: "3271.48"
-      belgium_worker_work_bonus_a_monthly_maximum: "120.59"
-      belgium_worker_work_bonus_b_monthly_maximum: "162.62"
-      belgium_worker_work_bonus_alpha_a: "0.2443"
-      belgium_worker_work_bonus_alpha_b: "0.2699"
+    corpus_citation_path: "be/statute/loi/1999/12/20/2000022052/article/2"
 units:
   - name: EUR
     kind: currency
@@ -130,7 +99,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, S1 threshold applicable in January 2025; amount 2132.59 EUR
+              excerpt: "Tranches et montants d'application applicables en janvier 2025 :\n\n(*) Employés\n\nVOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.723,36 118,22 ≤ 2.132,59 159,43 > 2.723,36 et ≤ 3.207,40 118,22 - ( 0,2442 x (S - 2.723,36)) > 2.132,59 et ≤ 2.723,36 159,43 - ( 0,2699 x (S - 2.132,59)) > 3.207,40 0,00 > 2.723,36 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -147,7 +116,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, S1bis threshold applicable in January 2025; amount 2723.36 EUR
+              excerpt: "Tranches et montants d'application applicables en janvier 2025 :\n\n(*) Employés\n\nVOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.723,36 118,22 ≤ 2.132,59 159,43 > 2.723,36 et ≤ 3.207,40 118,22 - ( 0,2442 x (S - 2.723,36)) > 2.132,59 et ≤ 2.723,36 159,43 - ( 0,2699 x (S - 2.132,59)) > 3.207,40 0,00 > 2.723,36 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -164,7 +133,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, S2 threshold applicable in January 2025; amount 3207.40 EUR
+              excerpt: "Tranches et montants d'application applicables en janvier 2025 :\n\n(*) Employés\n\nVOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.723,36 118,22 ≤ 2.132,59 159,43 > 2.723,36 et ≤ 3.207,40 118,22 - ( 0,2442 x (S - 2.723,36)) > 2.132,59 et ≤ 2.723,36 159,43 - ( 0,2699 x (S - 2.132,59)) > 3.207,40 0,00 > 2.723,36 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -181,7 +150,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, volet A maximum monthly reduction applicable in January 2025; amount 118.22 EUR
+              excerpt: "Tranches et montants d'application applicables en janvier 2025 :\n\n(*) Employés\n\nVOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.723,36 118,22 ≤ 2.132,59 159,43 > 2.723,36 et ≤ 3.207,40 118,22 - ( 0,2442 x (S - 2.723,36)) > 2.132,59 et ≤ 2.723,36 159,43 - ( 0,2699 x (S - 2.132,59)) > 3.207,40 0,00 > 2.723,36 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -198,7 +167,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, volet B maximum monthly reduction applicable in January 2025; amount 159.43 EUR
+              excerpt: "d'application applicables en janvier 2025 :\n\n(*) Employés\n\nVOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.723,36 118,22 ≤ 2.132,59 159,43 > 2.723,36 et ≤ 3.207,40 118,22 - ( 0,2442 x (S - 2.723,36)) > 2.132,59 et ≤ 2.723,36 159,43 - ( 0,2699 x (S - 2.132,59)) > 3.207,40 0,00 > 2.723,36 0,00\n\nVOLET A (bas salaires) VOLET B (très bas"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -207,6 +176,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DMFA 2025/2 work-bonus employee table, volet A alpha coefficient applicable in January 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
+              excerpt: "118,22 - ( 0,2442 x (S - 2.723,36))"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -215,6 +192,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DMFA 2025/2 work-bonus employee table, volet B alpha coefficient applicable in January 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
+              excerpt: "159,43 - ( 0,2699 x (S - 2.132,59))"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -231,7 +216,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, S1 threshold applicable from 1 February 2025; amount 2175.25 EUR
+              excerpt: "Le bonus à l'emploi social final est la somme des deux composantes.\n\nTranches et montants d'application à partir du 1 er février 2025:\n\nEmployés (*) VOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.777,83 120,59 ≤ 2.175,25 162,62 > 2.777,83 et ≤ 3.271,48 120,59 - ( 0,2443 x (S - 2.777,83 )) > 2.175,25 et ≤ 2.777,83 162,62 - ( 0,2699 x (S - 2.175,25 )) > 3.271,48 0,00 > 2.777,83 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -248,7 +233,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, S1bis threshold applicable from 1 February 2025; amount 2777.83 EUR
+              excerpt: "Le bonus à l'emploi social final est la somme des deux composantes.\n\nTranches et montants d'application à partir du 1 er février 2025:\n\nEmployés (*) VOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.777,83 120,59 ≤ 2.175,25 162,62 > 2.777,83 et ≤ 3.271,48 120,59 - ( 0,2443 x (S - 2.777,83 )) > 2.175,25 et ≤ 2.777,83 162,62 - ( 0,2699 x (S - 2.175,25 )) > 3.271,48 0,00 > 2.777,83 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -265,7 +250,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, S2 threshold applicable from 1 February 2025; amount 3271.48 EUR
+              excerpt: "Le bonus à l'emploi social final est la somme des deux composantes.\n\nTranches et montants d'application à partir du 1 er février 2025:\n\nEmployés (*) VOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.777,83 120,59 ≤ 2.175,25 162,62 > 2.777,83 et ≤ 3.271,48 120,59 - ( 0,2443 x (S - 2.777,83 )) > 2.175,25 et ≤ 2.777,83 162,62 - ( 0,2699 x (S - 2.175,25 )) > 3.271,48 0,00 > 2.777,83 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -282,7 +267,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, volet A maximum monthly reduction applicable from 1 February 2025; amount 120.59 EUR
+              excerpt: "(RMMMG) conformément à la CCT n° 43-17, outre la scission en deux composantes, une adaptation des plafonds salariaux, des coefficients d'écart et des montants de réduction maximaux est nécessaire pour le calcul du bonus à l'emploi. Le bonus à l'emploi social final est la somme des deux composantes.\n\nTranches et montants d'application à partir du 1 er février 2025:\n\nEmployés (*) VOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.777,83 120,59 ≤ 2.175,25 162,62 > 2.777,83 et ≤ 3.271,48 120,59 - ( 0,2443 x (S - 2.777,83 )) > 2.175,25 et ≤ 2.777,83 162,62 - ( 0,2699 x (S - 2.175,25 )) > 3.271,48 0,00 > 2.777,83 0,00\n\nOuvriers (**) VOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -299,7 +284,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
-              span: ONSS DMFA 2025/2 work-bonus employee table, volet B maximum monthly reduction applicable from 1 February 2025; amount 162.62 EUR
+              excerpt: "Suite à l'augmentation du revenu minimum mensuel moyen garanti (RMMMG) conformément à la CCT n° 43-17, outre la scission en deux composantes, une adaptation des plafonds salariaux, des coefficients d'écart et des montants de réduction maximaux est nécessaire pour le calcul du bonus à l'emploi. Le bonus à l'emploi social final est la somme des deux composantes.\n\nTranches et montants d'application à partir du 1 er février 2025:\n\nEmployés (*) VOLET A (bas salaires) VOLET B (très bas salaires) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) S (salaire mensuel de référence à 100% en EUR) R (montant de base en EUR) ≤ 2.777,83 120,59 ≤ 2.175,25 162,62 > 2.777,83 et ≤ 3.271,48 120,59 - ( 0,2443 x (S - 2.777,83 )) > 2.175,25 et ≤ 2.777,83 162,62 - ( 0,2699 x (S - 2.175,25 )) > 3.271,48 0,00 > 2.777,83 0,00"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -308,6 +293,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DMFA 2025/2 work-bonus employee table, volet A alpha coefficient applicable from 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
+              excerpt: "120,59 - ( 0,2443 x (S - 2.777,83 ))"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -316,6 +309,14 @@ rules:
     kind: parameter
     dtype: Decimal
     source: ONSS DMFA 2025/2 work-bonus employee table, volet B alpha coefficient applicable from 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/guidance/onss/dmfa/2025-2/workbonus/block-6
+              excerpt: "162,62 - ( 0,2699 x (S - 2.175,25 ))"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -461,6 +462,19 @@ rules:
     period: Year
     unit: EUR
     source: Royal Decree of 17 January 2000, article 1, P equals PA plus PB, annualized for the 2025 full-year equal-month worker slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/2000/01/17/2000022082/article/1"
+              excerpt: "Pour les travailleurs qui sont au service d'employeurs bénéficiant d'une des réductions prévues à l'article 9 de l'arrêté royal du 24 février 1997 contenant des conditions plus précises relatives aux accords pour l'emploi en application des articles 7, § 2, 30, § 2, et 33, de la loi du 26 juillet 1996 relative à la promotion de l'emploi et à la sauvegarde préventive de la compétitivité, à l'arrêté royal du 24 novembre 1997 contenant des conditions plus précises relatives à l'instauration de la réduction de cotisations pour la redistribution du travail en application de l'article 7, § 2, de la loi du 26 juillet 1996 relative à la promotion de l'emploi"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/2024/03/05/2024002162/article/1er"
+              excerpt: "P = PA + PB"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

@@ -20,24 +20,7 @@ module:
 
     characteristic imputations, and administrative claim procedures.'
   source_verification:
-    corpus_citation_paths:
-    - be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-    - be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
-    - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
-    - be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-    values:
-      wallonia_tmc_base_amount_kw_0_to_70: 64.01
-      wallonia_tmc_base_amount_kw_86_to_100: 515.2
-      wallonia_tmc_base_amount_kw_above_155: 5159.25
-      wallonia_tmc_wltp_denominator: 136
-      wallonia_tmc_nedc_denominator: 115
-      wallonia_tmc_mass_denominator_kg: 1838
-      wallonia_tmc_electric_power_120_kw_or_less_coefficient: '0.01'
-      wallonia_tmc_hybrid_coefficient: '0.80'
-      wallonia_tmc_family_reduction_amount: 250
-      wallonia_tmc_minimum: 50
-      wallonia_tmc_maximum: 9000
-      wallonia_tmc_oldtimer_amount: 61.5
+    corpus_citation_path: "be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1"
 units:
 - name: EUR
   kind: currency
@@ -56,7 +39,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "64,01 €"
+            excerpt: "64,01 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '64.01'
@@ -73,7 +56,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "128,02 €"
+            excerpt: "128,02 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '128.02'
@@ -90,7 +73,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "515,20 €"
+            excerpt: "515,20 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '515.20'
@@ -107,7 +90,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "902,37 €"
+            excerpt: "902,37 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '902.37'
@@ -124,7 +107,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "1.289,55 €"
+            excerpt: "1.289,55 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '1289.55'
@@ -141,7 +124,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "2.579,10 €"
+            excerpt: "2.579,10 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '2579.10'
@@ -158,7 +141,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "5.159,25 €"
+            excerpt: "5.159,25 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '5159.25'
@@ -174,8 +157,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
-            Finances indexed table
+          excerpt: "Nombre de kilowatts Montant de base en euros De 0 à 70 61,50 De 71 à 85 123,00 De 86 à 100 495,00 De 101 à 110 867,00 De 111 à 120 1 239,00 De 121 à 155 2 478,00 Supérieur à 155 4 957,00"
   versions:
   - effective_from: '2026-07-01'
     formula: '70'
@@ -191,8 +173,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
-            Finances indexed table
+          excerpt: "Nombre de kilowatts Montant de base en euros De 0 à 70 61,50 De 71 à 85 123,00 De 86 à 100 495,00 De 101 à 110 867,00 De 111 à 120 1 239,00 De 121 à 155 2 478,00 Supérieur à 155 4 957,00"
   versions:
   - effective_from: '2026-07-01'
     formula: '85'
@@ -208,8 +189,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
-            Finances indexed table
+          excerpt: "Nombre de kilowatts Montant de base en euros De 0 à 70 61,50 De 71 à 85 123,00 De 86 à 100 495,00 De 101 à 110 867,00 De 111 à 120 1 239,00 De 121 à 155 2 478,00 Supérieur à 155 4 957,00"
   versions:
   - effective_from: '2026-07-01'
     formula: '100'
@@ -225,8 +205,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
-            Finances indexed table
+          excerpt: "Nombre de kilowatts Montant de base en euros De 0 à 70 61,50 De 71 à 85 123,00 De 86 à 100 495,00 De 101 à 110 867,00 De 111 à 120 1 239,00 De 121 à 155 2 478,00 Supérieur à 155 4 957,00"
   versions:
   - effective_from: '2026-07-01'
     formula: '110'
@@ -242,8 +221,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
-            Finances indexed table
+          excerpt: "Nombre de kilowatts Montant de base en euros De 0 à 70 61,50 De 71 à 85 123,00 De 86 à 100 495,00 De 101 à 110 867,00 De 111 à 120 1 239,00 De 121 à 155 2 478,00 Supérieur à 155 4 957,00"
   versions:
   - effective_from: '2026-07-01'
     formula: '120'
@@ -259,8 +237,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 2 A and SPW
-            Finances indexed table
+          excerpt: "Nombre de kilowatts Montant de base en euros De 0 à 70 61,50 De 71 à 85 123,00 De 86 à 100 495,00 De 101 à 110 867,00 De 111 à 120 1 239,00 De 121 à 155 2 478,00 Supérieur à 155 4 957,00"
   versions:
   - effective_from: '2026-07-01'
     formula: '155'
@@ -336,7 +313,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.90'
@@ -351,7 +328,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.80'
@@ -366,7 +343,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "4° 2 478,00 euros pour tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3."
   versions:
   - effective_from: '2025-07-01'
     formula: '4'
@@ -381,7 +358,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.70'
@@ -396,7 +373,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "de véhicules; b) pour les véhicules dont le moteur est alimenté, partiellement ou totalement, au gaz naturel comprimé; c) pour les véhicules automobiles faisant l'objet d'une taxe de circulation forfaitaire de 100 euros en application de l'article 10, § 3. D. Aéronefs définis à l'article 94 La taxe est fixée à : 1° 0,00 euro pour les aéronefs télépilotés visés à l'article 1 er , alinéa 1 er , 4° et 5°, de l'arrêté royal du 10 avril 2016 relatif à l'utilisation des aéronefs télépilotés dans"
   versions:
   - effective_from: '2025-07-01'
     formula: '5'
@@ -411,7 +388,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.60'
@@ -426,7 +403,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "ou 10 p.c. de son montant pour les aéronefs et bateaux visés à l'article 94, 2° et 3°, dont la première immatriculation ou la première lettre de pavillon, soit dans le pays, soit à l'étranger avant leur importation définitive, date respectivement de 1 an à moins de 2 ans, 2 ans à moins de 3 ans, 3 ans à moins de 4 ans, 4 ans à moins de 5 ans, 5 ans à moins de 6 ans, 6 ans à moins de 7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans;"
   versions:
   - effective_from: '2025-07-01'
     formula: '6'
@@ -441,7 +418,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3. La taxe établie au paragraphe 2 est modulée comme suit : 1° le montant de base visé au paragraphe 2, A, 2°, a) : a) est réduit à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 55 p.c., 50 p.c., 45 p.c., 40 p.c., 35 p.c., 30 p.c., 25 p.c., 20 p.c., 15 p.c. ou 10 p.c. de son montant pour les véhicules dont la première immatriculation soit dans le pays, soit à l'étranger avant leur"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.55'
@@ -456,7 +433,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '7'
@@ -471,7 +448,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.50'
@@ -486,7 +463,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '8'
@@ -501,7 +478,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3. La taxe établie au paragraphe 2 est modulée comme suit : 1° le montant de base visé au paragraphe 2, A, 2°, a) : a) est réduit à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 55 p.c., 50 p.c., 45 p.c., 40 p.c., 35 p.c., 30 p.c., 25 p.c., 20 p.c., 15 p.c. ou 10 p.c. de son montant pour les véhicules dont la première immatriculation soit dans le pays, soit à l'étranger avant leur"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.45'
@@ -516,7 +493,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '9'
@@ -531,7 +508,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.40'
@@ -546,7 +523,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c. ou 10 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '10'
@@ -561,7 +538,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3. La taxe établie au paragraphe 2 est modulée comme suit : 1° le montant de base visé au paragraphe 2, A, 2°, a) : a) est réduit à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 55 p.c., 50 p.c., 45 p.c., 40 p.c., 35 p.c., 30 p.c., 25 p.c., 20 p.c., 15 p.c. ou 10 p.c. de son montant pour les véhicules dont la première immatriculation soit dans le pays, soit à l'étranger avant leur"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.35'
@@ -576,7 +553,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '11'
@@ -591,7 +568,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.30'
@@ -606,7 +583,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '12'
@@ -621,7 +598,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3. La taxe établie au paragraphe 2 est modulée comme suit : 1° le montant de base visé au paragraphe 2, A, 2°, a) : a) est réduit à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 55 p.c., 50 p.c., 45 p.c., 40 p.c., 35 p.c., 30 p.c., 25 p.c., 20 p.c., 15 p.c. ou 10 p.c. de son montant pour les véhicules dont la première immatriculation soit dans le pays, soit à l'étranger avant leur"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.25'
@@ -636,7 +613,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '13'
@@ -651,7 +628,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.20'
@@ -666,7 +643,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "7 ans, 7 ans à moins de 8 ans, 8 ans à moins de 9 ans, 9 ans à moins de 10 ans, 10 ans à moins de 11 ans, 11 ans à moins de 12 ans, 12 ans à moins de 13 ans, 13 ans à moins de 14 ans, 14 ans à moins de 15 ans; b) est fixée uniformément à 50,00 euros pour les véhicules dont la pre- mière immatriculation soit dans le pays, soit à l'étranger avant leur importation définitive, date de 15 ans ou plus; c) ne peut jamais être inférieure à 50,00 euros; 3° la taxe fixée au paragraphe 2, D et E : a) est"
   versions:
   - effective_from: '2025-07-01'
     formula: '14'
@@ -681,7 +658,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3. La taxe établie au paragraphe 2 est modulée comme suit : 1° le montant de base visé au paragraphe 2, A, 2°, a) : a) est réduit à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 55 p.c., 50 p.c., 45 p.c., 40 p.c., 35 p.c., 30 p.c., 25 p.c., 20 p.c., 15 p.c. ou 10 p.c. de son montant pour les véhicules dont la première immatriculation soit dans le pays, soit à l'étranger avant leur"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.15'
@@ -696,7 +673,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "3° la taxe fixée au paragraphe 2, D et E : a) est réduite à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 50 p.c., 40 p.c., 30 p.c., 20 p.c. ou 10 p.c."
   versions:
   - effective_from: '2025-07-01'
     formula: '0.10'
@@ -909,7 +886,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "La montant de base ne peut jamais être inférieur à 61,50 € même après application du coefficient de dégressivité."
+            excerpt: "La montant de base ne peut jamais être inférieur à 61,50 € même après application du coefficient de dégressivité."
   versions:
   - effective_from: '2025-07-01'
     formula: '61.50'
@@ -924,7 +901,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon Code des taxes assimilees article 98 paragraph 3 age degressivity
+          excerpt: "tous les autres aéronefs. E. Bateaux définis à l'article 94 La taxe est fixée à 2 478,00 euros pour les bateaux. § 3. La taxe établie au paragraphe 2 est modulée comme suit : 1° le montant de base visé au paragraphe 2, A, 2°, a) : a) est réduit à 90 p.c., 80 p.c., 70 p.c., 60 p.c., 55 p.c., 50 p.c., 45 p.c., 40 p.c., 35 p.c., 30 p.c., 25 p.c., 20 p.c., 15 p.c. ou 10 p.c. de son montant pour les véhicules dont la première immatriculation soit dans le pays, soit à l'étranger avant leur"
   versions:
   - effective_from: '2026-07-01'
     formula: '15'
@@ -960,8 +937,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-          span: X = 136 si les emissions de CO2 de la voiture ont ete mesurees
-            selon la norme WLTP
+          excerpt: "X = 136 si les émissions de CO2 du véhicule sont établies selon la procédure d’essai mondiale harmonisée pour les véhicules légers, dite cycle WLTP*"
   versions:
   - effective_from: '2025-07-01'
     formula: '136'
@@ -976,8 +952,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-          span: X = 115 si les emissions de CO2 de la voiture ont ete mesurees
-            selon la norme NEDC
+          excerpt: "X = 115 si les émissions de CO2 du véhicule sont établies selon la procédure du nouveau cycle européen de conduite, dite cycle NEDC**"
   versions:
   - effective_from: '2025-07-01'
     formula: '115'
@@ -1007,6 +982,17 @@ rules:
   dtype: Count
   source: Walloon Code des taxes assimilees article 98 paragraph 2 A, mass coefficient
     denominator
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
+          excerpt: |-
+            = MMA = masse maximale autorisée du véhicule exprimée en kg divisé par :
+
+            Y = 1838
   versions:
   - effective_from: '2025-07-01'
     formula: '1838'
@@ -1024,6 +1010,14 @@ rules:
   dtype: Rate
   source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
     table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Carburant/Energie Coefficient carburant/ énergie Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26 Essence 1,00 Diesel ou biodiesel 1,00 Gaz de pétrole liquéfié (GPL) 1,00 Gaz naturel compressé (CNG) 1,00 Bioéthanol 1,00 Hybride essence + gaz de pétrole liquéfié 0,80 Hybride essence + gaz naturel compressé 0,80 Hybride essence + électrique ou hydrogène 0,80 Hybride diesel + gaz de pétrole liquéfié 0,80 Hybride diesel + gaz naturel compressé 0,80 Hybride diesel + électrique ou hydrogène 0,80 Hybride gaz de pétrole liquéfié + électrique ou hydrogène 0,80 Hybride gaz naturel compressé + électrique ou hydrogène 0,80 Autres 1,00"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.01'
@@ -1032,6 +1026,14 @@ rules:
   dtype: Rate
   source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
     table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Carburant/Energie Coefficient carburant/ énergie Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26 Essence 1,00 Diesel ou biodiesel 1,00 Gaz de pétrole liquéfié (GPL) 1,00 Gaz naturel compressé (CNG) 1,00 Bioéthanol 1,00 Hybride essence + gaz de pétrole liquéfié 0,80 Hybride essence + gaz naturel compressé 0,80 Hybride essence + électrique ou hydrogène 0,80 Hybride diesel + gaz de pétrole liquéfié 0,80 Hybride diesel + gaz naturel compressé 0,80 Hybride diesel + électrique ou hydrogène 0,80 Hybride gaz de pétrole liquéfié + électrique ou hydrogène 0,80 Hybride gaz naturel compressé + électrique ou hydrogène 0,80 Autres 1,00"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.10'
@@ -1040,6 +1042,14 @@ rules:
   dtype: Rate
   source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
     table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Carburant/Energie Coefficient carburant/ énergie Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26 Essence 1,00 Diesel ou biodiesel 1,00 Gaz de pétrole liquéfié (GPL) 1,00 Gaz naturel compressé (CNG) 1,00 Bioéthanol 1,00 Hybride essence + gaz de pétrole liquéfié 0,80 Hybride essence + gaz naturel compressé 0,80 Hybride essence + électrique ou hydrogène 0,80 Hybride diesel + gaz de pétrole liquéfié 0,80 Hybride diesel + gaz naturel compressé 0,80 Hybride diesel + électrique ou hydrogène 0,80 Hybride gaz de pétrole liquéfié + électrique ou hydrogène 0,80 Hybride gaz naturel compressé + électrique ou hydrogène 0,80 Autres 1,00"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.18'
@@ -1048,6 +1058,14 @@ rules:
   dtype: Rate
   source: Walloon decree of 30 May 2025, article 1, electric/hydrogen coefficient
     table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Carburant/Energie Coefficient carburant/ énergie Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26 Essence 1,00 Diesel ou biodiesel 1,00 Gaz de pétrole liquéfié (GPL) 1,00 Gaz naturel compressé (CNG) 1,00 Bioéthanol 1,00 Hybride essence + gaz de pétrole liquéfié 0,80 Hybride essence + gaz naturel compressé 0,80 Hybride essence + électrique ou hydrogène 0,80 Hybride diesel + gaz de pétrole liquéfié 0,80 Hybride diesel + gaz naturel compressé 0,80 Hybride diesel + électrique ou hydrogène 0,80 Hybride gaz de pétrole liquéfié + électrique ou hydrogène 0,80 Hybride gaz naturel compressé + électrique ou hydrogène 0,80 Autres 1,00"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.26'
@@ -1055,6 +1073,14 @@ rules:
   kind: parameter
   dtype: Rate
   source: Walloon decree of 30 May 2025, article 1, hybrid coefficient table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Carburant/Energie Coefficient carburant/ énergie Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26 Essence 1,00 Diesel ou biodiesel 1,00 Gaz de pétrole liquéfié (GPL) 1,00 Gaz naturel compressé (CNG) 1,00 Bioéthanol 1,00 Hybride essence + gaz de pétrole liquéfié 0,80 Hybride essence + gaz naturel compressé 0,80 Hybride essence + électrique ou hydrogène 0,80 Hybride diesel + gaz de pétrole liquéfié 0,80 Hybride diesel + gaz naturel compressé 0,80 Hybride diesel + électrique ou hydrogène 0,80 Hybride gaz de pétrole liquéfié + électrique ou hydrogène 0,80 Hybride gaz naturel compressé + électrique ou hydrogène 0,80 Autres 1,00"
   versions:
   - effective_from: '2025-07-01'
     formula: '0.80'
@@ -1063,6 +1089,14 @@ rules:
   dtype: Rate
   source: Walloon decree of 30 May 2025, article 1, non-hybrid combustion and other
     coefficient table
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Carburant/Energie Coefficient carburant/ énergie Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26 Essence 1,00 Diesel ou biodiesel 1,00 Gaz de pétrole liquéfié (GPL) 1,00 Gaz naturel compressé (CNG) 1,00 Bioéthanol 1,00 Hybride essence + gaz de pétrole liquéfié 0,80 Hybride essence + gaz naturel compressé 0,80 Hybride essence + électrique ou hydrogène 0,80 Hybride diesel + gaz de pétrole liquéfié 0,80 Hybride diesel + gaz naturel compressé 0,80 Hybride diesel + électrique ou hydrogène 0,80 Hybride gaz de pétrole liquéfié + électrique ou hydrogène 0,80 Hybride gaz naturel compressé + électrique ou hydrogène 0,80 Autres 1,00"
   versions:
   - effective_from: '2025-07-01'
     formula: '1'
@@ -1076,9 +1110,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient
-            table
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26"
   versions:
   - effective_from: '2025-07-01'
     formula: '120'
@@ -1092,9 +1125,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient
-            table
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26"
   versions:
   - effective_from: '2025-07-01'
     formula: '155'
@@ -1108,9 +1140,8 @@ rules:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc/block-1
-          span: Walloon decree of 30 May 2025, article 1, fuel/energy coefficient
-            table
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts inférieure ou égale à 120 kW 0,01 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 120 kW et inférieure ou égale à 155 kW 0,10 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure à 155 kW et inférieure ou égale à 249 kW 0,18 Electrique ou hydrogène d'une puissance du moteur exprimée en kilowatts supérieure ou égale à 250 kW 0,26"
   versions:
   - effective_from: '2025-07-01'
     formula: '249'
@@ -1175,7 +1206,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "Vous pouvez bénéficier d’une réduction pouvant aller jusqu’à 250 € si vous êtes une famille nombreuse ou une famille monoparentale"
+            excerpt: "Vous pouvez bénéficier d’une réduction pouvant aller jusqu’à 250 € si vous êtes une famille nombreuse ou une famille monoparentale"
   versions:
   - effective_from: '2026-07-01'
     formula: '250'
@@ -1183,6 +1214,14 @@ rules:
   kind: parameter
   dtype: Count
   source: Walloon decree of 30 May 2025, article 2, large-family reduction mass floor
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "« 3° lorsque le redevable fait partie d'une famille nombreuse au sens du paragraphe 1 er , 1°, b), le montant de la taxe, calculée conformément au 1°, est réduit de 250 euros, lorsque la masse maximale autorisée du véhicule est supérieure à 1 838 kilogrammes et inférieure à 2 750 kilogrammes."
   versions:
   - effective_from: '2026-07-01'
     formula: '1838'
@@ -1191,6 +1230,14 @@ rules:
   dtype: Count
   source: Walloon decree of 30 May 2025, article 2, large-family and single-parent
     reduction mass ceiling
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
+          excerpt: "« 3° lorsque le redevable fait partie d'une famille nombreuse au sens du paragraphe 1 er , 1°, b), le montant de la taxe, calculée conformément au 1°, est réduit de 250 euros, lorsque la masse maximale autorisée du véhicule est supérieure à 1 838 kilogrammes et inférieure à 2 750 kilogrammes. Lorsque le redevable fait partie d'une famille monoparentale au sens du paragraphe 1 er , 1°, e), le montant de la taxe, calculée conformément au 1°, est réduit de 250 euros, pour autant que la masse maximale autorisée du véhicule soit inférieure à 2 750 kilogrammes."
   versions:
   - effective_from: '2026-07-01'
     formula: '2750'
@@ -1254,7 +1301,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "Le montant à payer ne sera jamais inférieur à 50 € ni supérieur à 9.000 €."
+            excerpt: "Le montant à payer ne sera jamais inférieur à 50 € ni supérieur à 9.000 €."
   versions:
   - effective_from: '2025-07-01'
     formula: '50'
@@ -1271,7 +1318,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027/block-1
-            span: "Le montant à payer ne sera jamais inférieur à 50 € ni supérieur à 9.000 €."
+            excerpt: "Le montant à payer ne sera jamais inférieur à 50 € ni supérieur à 9.000 €."
   versions:
   - effective_from: '2025-07-01'
     formula: '9000'
@@ -1299,7 +1346,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation/block-1
-            span: "la taxe est fixée uniformément à 61,50 euros pour les véhicules qui"
+            excerpt: "la taxe est fixée uniformément à 61,50 euros pour les véhicules qui"
   versions:
   - effective_from: '2025-07-01'
     formula: '61.50'

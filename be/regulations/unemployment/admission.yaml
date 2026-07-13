@@ -8,16 +8,7 @@ module:
     supplied history aggregates. Workday and half-day inputs are assumed to
     already exclude days before any prior admission under articles 30 or 33.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1991/11/25/1991013192/article/30
-      - be/regulation/arrete/1991/11/25/1991013192/article/33
-    values:
-      belgium_unemployment_article_30_required_work_days: 312
-      belgium_unemployment_article_30_reference_period_months: 36
-      belgium_unemployment_article_30_non_ui_profession_extension_min_uninterrupted_months: 3
-      belgium_unemployment_article_30_non_ui_profession_extension_max_months: 180
-      belgium_unemployment_article_33_min_weekly_hours: 12
-      belgium_unemployment_article_33_reference_person_weekly_fraction_denominator: 3
+    corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/30"
 rules:
   - name: belgium_unemployment_article_30_required_work_days
     kind: parameter
@@ -55,6 +46,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Unemployment royal decree of 25 November 1991, article 33 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/33
+              excerpt: "au moins 12 heures de travail par semaine"
     versions:
       - effective_from: '2026-03-01'
         formula: |-
@@ -122,6 +121,14 @@ rules:
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 30
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/30"
+              excerpt: "Pour déterminer le nombre de journées de travail requis, il n'est pas tenu compte des journées de travail ou des journées assimilées précédant une admission antérieure au bénéfice des allocations en application de l'article 30 ou 33."
     versions:
       - effective_from: '2026-03-01'
         formula: |-
@@ -174,6 +181,14 @@ rules:
     dtype: Count
     period: Day
     source: Unemployment royal decree of 25 November 1991, article 33
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/33"
+              excerpt: "Pour déterminer le nombre de journées de travail requis, il n'est pas tenu compte des journées de travail ou des journées assimilées précédant une admission antérieure au bénéfice des allocations en application de l'article 30 ou 33."
     versions:
       - effective_from: '2026-03-01'
         formula: |-

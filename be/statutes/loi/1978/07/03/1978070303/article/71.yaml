@@ -102,6 +102,7 @@ rules:
         kind: condition
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "Art.\n71\n.L'employé engagé ["
   versions:
   - effective_from: '1986-11-01'
     formula: "person_is_employee\nand (\n  (contract_is_fixed_term and contract_fixed_duration_months\
@@ -121,6 +122,7 @@ rules:
         kind: condition
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "Art.\n71\n.L'employé engagé ["
   versions:
   - effective_from: '1986-11-01'
     formula: 'incapacity_results_from_non_professional_disease_or_non_work_accident
@@ -143,6 +145,7 @@ rules:
         kind: predicate
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "Art.\n71\n.L'employé engagé ["
   versions:
   - effective_from: '1986-11-01'
     formula: 'article_71_short_engagement_employee
@@ -161,6 +164,7 @@ rules:
         kind: formula
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/71
+          excerpt: "Art.\n71\n.L'employé engagé ["
   versions:
   - effective_from: '1986-11-01'
     formula: "if article_71_remuneration_entitlement_applies:\n  if incapacity_day_number\

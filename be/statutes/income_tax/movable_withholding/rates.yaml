@@ -14,13 +14,7 @@ module:
     special rates (for example the article 171 1deg reduced rates) remain
     separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-69
-      - be/statute/fisconetplus/cir92/revenus-2025/page-461
-    values:
-      belgium_regulated_savings_deposit_interest_exemption_amount: 1050
-      belgium_movable_withholding_general_rate: 0.30
-      belgium_regulated_savings_deposit_withholding_rate: 0.15
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-69"
 units:
   - name: EUR
     kind: currency
@@ -38,7 +32,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-69
-              span: la première tranche de 1.050 euros (montant indexé) par an des revenus afférents aux dépôts d'épargne
+              excerpt: "la première tranche de 1.050 euros (montant indexé) par an des revenus afférents aux dépôts d'épargne"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -54,7 +48,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-461
-              span: "Le taux du précompte mobilier est fixé: 1° à 30 % pour les revenus de capitaux et biens mobiliers"
+              excerpt: "Le taux du précompte mobilier est fixé: 1° à 30 % pour les revenus de capitaux et biens mobiliers"
     versions:
       - effective_from: '2023-01-01'
         formula: |-
@@ -70,7 +64,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-461
-              span: 2° à 15 % pour les revenus de dépôts d'épargne visés à l'article 21, alinéa 1er, 5°
+              excerpt: "2° à 15 % pour les revenus de dépôts d'épargne visés à l'article 21, alinéa 1er, 5°"
     versions:
       - effective_from: '2023-01-01'
         formula: |-

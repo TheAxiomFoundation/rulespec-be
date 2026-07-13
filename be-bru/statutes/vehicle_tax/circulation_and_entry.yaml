@@ -8,48 +8,7 @@ module:
     the Brussels Fiscality 2026 sheets. Detailed MyTax car and motorcycle TMC
     brackets are encoded in the companion entry_into_service_detailed module.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/justel/code-taxes-assimilees/1965112350
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-7
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-1
-      - be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/justel/code-taxes-assimilees/1965112350
-      rationale: |-
-        The Code des taxes assimilees aux impots sur les revenus is the
-        upstream legal framework and Justel records the Brussels amendments.
-        The current Brussels Fiscality sheets are the official public source
-        for indexed 2026 Brussels amounts after that Code locator is checked.
-    values:
-      brussels_circulation_tax_cv_0_to_4_amount: 107.18
-      brussels_circulation_tax_cv_5_amount: 134.11
-      brussels_circulation_tax_cv_6_amount: 193.91
-      brussels_circulation_tax_cv_7_amount: 253.31
-      brussels_circulation_tax_cv_8_amount: 313.24
-      brussels_circulation_tax_cv_9_amount: 373.16
-      brussels_circulation_tax_cv_10_amount: 432.30
-      brussels_circulation_tax_cv_11_amount: 561.00
-      brussels_circulation_tax_cv_12_amount: 689.70
-      brussels_circulation_tax_cv_13_amount: 818.14
-      brussels_circulation_tax_cv_14_amount: 946.84
-      brussels_circulation_tax_cv_15_amount: 1075.54
-      brussels_circulation_tax_cv_16_amount: 1408.70
-      brussels_circulation_tax_cv_17_amount: 1742.14
-      brussels_circulation_tax_cv_18_amount: 2075.57
-      brussels_circulation_tax_cv_19_amount: 2408.34
-      brussels_circulation_tax_cv_20_amount: 2741.77
-      brussels_circulation_tax_motorcycle_uniform_amount: 76.03
-      brussels_entry_into_service_tax_minimum_amount: 78.88
-      brussels_entry_into_service_tax_maximum_amount: 6357.85
-      brussels_entry_into_service_tax_boat_amount: 3178.28
-      brussels_entry_into_service_tax_paramotor_or_remotely_piloted_aircraft_amount: 793.93
-      brussels_entry_into_service_tax_ultralight_motor_aircraft_amount: 78.88
-      brussels_entry_into_service_tax_other_aircraft_amount: 3178.28
+    corpus_citation_path: "be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-1"
 units:
   - name: EUR
     kind: currency
@@ -60,6 +19,14 @@ rules:
     dtype: Money
     unit: EUR
     source: Brussels Fiscality circulation-tax sheet, motorcycles up to 250 cc owe no circulation tax
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-7
+            excerpt: "Exception : pour les motos pourvues d'un moteur d'une cylindrée de maximum 250 cm³, vous ne devez pas payer de taxe de circulation."
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -68,6 +35,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 0 to 4 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -76,6 +51,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 5 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -84,6 +67,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 6 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -92,6 +83,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 7 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -100,6 +99,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 8 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -108,6 +115,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 9 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -116,6 +131,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 10 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -124,6 +147,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 11 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -132,6 +163,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 12 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -140,6 +179,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 13 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -148,6 +195,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 14 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -156,6 +211,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 15 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -164,6 +227,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 16 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -172,6 +243,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 17 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
+            excerpt: "5 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nTARIFS (1) TARIEVEN (1) CC CV PK € 0 - 0,7 0 – 4 107,18 0,8 - 0,9 5 134,11 1 - 1,1 6 193,91 1,2 - 1,3 7 253,31 1,4 - 1,5 8 313,24 1,6 - 1,7 9 373,16 1,8 - 1,9 10 432,30 2,0 - 2,1 11 561,00 2,2 - 2,3 12 689,70 2,4 - 2,5 13 818,14 2,6 - 2,7 14 946,84 2,8 - 3 15 1.075,54 3,1 - 3,2 16 1.408,70 3,3 - 3,4 17 1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -180,6 +259,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 18 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
+            excerpt: "6 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nCC CV PK € 3,5 - 3,6 18 2.075,57 3,7 - 3,9 19 2.408,34 4 - 4,1 20 2.741,77 4,2 - 4,3 21 2.891,33 4,4 - 4,6 22 3.040,88 4,7 - 4,8 23 3.190,44 4,9 - 5 24 3.340,00 5,1 - 5,2 25 3.489,55 5,3 - 5,5 26 3.639,11 5,6 - 5,7 27 3.788,66 5,8 - 5,9 28 3.938,22 6 - 6,1 29 4.087,78 6,2 - 6,3 30 4.237,33 6,4 - 6,6 31 4.386,89 6,7 - 6,8 32 4.536,44"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -188,6 +275,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 19 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
+            excerpt: "6 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nCC CV PK € 3,5 - 3,6 18 2.075,57 3,7 - 3,9 19 2.408,34 4 - 4,1 20 2.741,77 4,2 - 4,3 21 2.891,33 4,4 - 4,6 22 3.040,88 4,7 - 4,8 23 3.190,44 4,9 - 5 24 3.340,00 5,1 - 5,2 25 3.489,55 5,3 - 5,5 26 3.639,11 5,6 - 5,7 27 3.788,66 5,8 - 5,9 28 3.938,22 6 - 6,1 29 4.087,78 6,2 - 6,3 30 4.237,33 6,4 - 6,6 31 4.386,89 6,7 - 6,8 32 4.536,44"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -196,6 +291,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, passenger-car fiscal-power band 20 CV
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
+            excerpt: "6 Fiche fiscale : taxe de circulation Fiscale fiche: verkeersbelasting\n\nCC CV PK € 3,5 - 3,6 18 2.075,57 3,7 - 3,9 19 2.408,34 4 - 4,1 20 2.741,77 4,2 - 4,3 21 2.891,33 4,4 - 4,6 22 3.040,88 4,7 - 4,8 23 3.190,44 4,9 - 5 24 3.340,00 5,1 - 5,2 25 3.489,55 5,3 - 5,5 26 3.639,11 5,6 - 5,7 27 3.788,66 5,8 - 5,9 28 3.938,22 6 - 6,1 29 4.087,78 6,2 - 6,3 30 4.237,33 6,4 - 6,6 31 4.386,89 6,7 - 6,8 32 4.536,44"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -204,6 +307,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels Fiscality circulation-tax sheet, motorcycle exemption for cylinder capacity of maximum 250 cubic centimeters
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-7
+            excerpt: "Exception : pour les motos pourvues d'un moteur d'une cylindrée de maximum 250 cm³, vous ne devez pas payer de taxe de circulation."
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -220,7 +331,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "107,18"
+              excerpt: "107,18"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -237,7 +348,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "134,11"
+              excerpt: "134,11"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -254,7 +365,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "193,91"
+              excerpt: "193,91"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -271,7 +382,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "253,31"
+              excerpt: "253,31"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -288,7 +399,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "313,24"
+              excerpt: "313,24"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -305,7 +416,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "373,16"
+              excerpt: "373,16"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -322,7 +433,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "432,30"
+              excerpt: "432,30"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -339,7 +450,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "561,00"
+              excerpt: "561,00"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -356,7 +467,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "689,70"
+              excerpt: "689,70"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -373,7 +484,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "818,14"
+              excerpt: "818,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -390,7 +501,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "946,84"
+              excerpt: "946,84"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -407,7 +518,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "1.075,54"
+              excerpt: "1.075,54"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -424,7 +535,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "1.408,70"
+              excerpt: "1.408,70"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -441,7 +552,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-5
-              span: "1.742,14"
+              excerpt: "1.742,14"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -458,7 +569,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
-              span: "2.075,57"
+              excerpt: "2.075,57"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -475,7 +586,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
-              span: "2.408,34"
+              excerpt: "2.408,34"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -492,7 +603,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-6
-              span: "2.741,77"
+              excerpt: "2.741,77"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -571,7 +682,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026/page-7
-              span: "76,03 EUR"
+              excerpt: "76,03 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -602,7 +713,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-              span: "taxe minimale : 78,88 EUR ❖ taxe maximale : 6.357,85 EUR"
+              excerpt: "taxe minimale : 78,88 EUR ❖ taxe maximale : 6.357,85 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -619,7 +730,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-              span: "taxe minimale : 78,88 EUR ❖ taxe maximale : 6.357,85 EUR"
+              excerpt: "taxe minimale : 78,88 EUR ❖ taxe maximale : 6.357,85 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -636,7 +747,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-              span: "bateaux : 3.178,28 EUR"
+              excerpt: "bateaux : 3.178,28 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -653,7 +764,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-              span: "paramoteurs et aéronefs télépilotés : 793,93 EUR"
+              excerpt: "paramoteurs et aéronefs télépilotés : 793,93 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -670,7 +781,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-              span: "aéronefs ultra-légers motorisés : 78,88 EUR"
+              excerpt: "aéronefs ultra-légers motorisés : 78,88 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-
@@ -687,7 +798,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026/page-4
-              span: "autres aéronefs : 3.178,28 EUR"
+              excerpt: "autres aéronefs : 3.178,28 EUR"
     versions:
       - effective_from: '2026-07-01'
         formula: |-

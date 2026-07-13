@@ -48,33 +48,7 @@ module:
     credits, the low-wage work-bonus credit, professional withholding
     tables, treaty allocation, and partial-year cases.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-53
-      - be/statute/fisconetplus/cir92/revenus-2025/page-160
-      - be/statute/fisconetplus/cir92/revenus-2025/page-161
-      - be/statute/fisconetplus/cir92/revenus-2025/page-181
-      - be/statute/fisconetplus/cir92/revenus-2025/page-185
-      - be/statute/loi/1989/01/16/1989021010/article/5-2
-      - be/regulation/arrete/2017/12/19/2017032216/article/1er
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/fisconetplus/cir92/revenus-2025/page-161
-        - be/statute/loi/1989/01/16/1989021010/article/5-2
-      rationale: |-
-        This module reuses parameters and derived rule ids already grounded
-        and proof-atom-covered in joint_assessment.yaml, rate_scale.yaml,
-        tax_free_amount.yaml, tax_free_amount_tax.yaml, and
-        communal_additions.yaml. It introduces no new monetary constants. New
-        proof atoms cover only the two per-spouse Article 6 taxable-income
-        entry rules (each citing the CIR 1992 Article 6 definition of taxable
-        income, page 53) and the two Article 5/2 autonomy-factor rate
-        parameters (the 24.957 percent definitive autonomy factor from the
-        19 December 2017 royal decree and the reduced-State-tax share from the
-        special financing law), which are defined locally with identical
-        values and proofs to the worker pilot to avoid a pipeline-to-pipeline
-        import cycle. Every other formula composes imported rule ids or
-        supplied per-spouse inputs.
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-53"
 rules:
   - name: belgium_pit_couple_article_5_2_autonomy_factor
     kind: parameter
@@ -87,7 +61,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/2017/12/19/2017032216/article/1er
-              span: "Le facteur d'autonomie définitif visé à l'article 5/2, § 1er, alinéas 3 et 4, de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, est, sur la base des rapports de la Cour des comptes visés à l'article 81ter de la même loi spéciale, déterminé à 24,957 %."
+              excerpt: "Le facteur d'autonomie définitif visé à l'article 5/2, § 1er, alinéas 3 et 4, de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, est, sur la base des rapports de la Cour des comptes visés à l'article 81ter de la même loi spéciale, déterminé à 24,957 %."
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -103,7 +77,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1989/01/16/1989021010/article/5-2
-              span: "L'impôt Etat réduit est l'impôt Etat diminué d'un montant égal à l'impôt Etat multiplié par le facteur d'autonomie."
+              excerpt: "L'impôt Etat réduit est l'impôt Etat diminué d'un montant égal à l'impôt Etat multiplié par le facteur d'autonomie."
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -122,7 +96,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
-              span: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
+              excerpt: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -141,7 +115,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
-              span: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
+              excerpt: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

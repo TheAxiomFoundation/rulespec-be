@@ -28,25 +28,7 @@ module:
 
     routing, payment procedure, and eligibility proof to separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/loi/1994/07/14/1994071451/article/86
-    - be/statute/loi/1994/07/14/1994071451/article/113
-    - be/regulation/arrete/1996/07/03/1996022344/article/216
-    - be/regulation/arrete/1996/07/03/1996022344/article/217
-    - be/regulation/arrete/1996/07/03/1996022344/article/219bis
-    - be/regulation/arrete/1996/07/03/1996022344/article/222
-    values:
-      belgium_maternity_article_216_first_30_days_rate: '0.795'
-      belgium_maternity_article_216_after_30_days_rate: '0.75'
-      belgium_maternity_article_216_first_30_days_uncapped_worker_rate: '0.82'
-      belgium_maternity_article_217_unemployment_base_rate: '0.60'
-      belgium_maternity_article_217_first_30_days_supplement_rate: '0.195'
-      belgium_maternity_article_217_after_30_days_supplement_rate: '0.15'
-      belgium_maternity_article_217_alignment_max_months: '6'
-      belgium_maternity_article_219bis_pregnancy_suspension_rate: '0.78237'
-      belgium_maternity_article_219bis_postpartum_breastfeeding_rate: '0.60'
-      belgium_maternity_article_219bis_breastfeeding_max_months_after_birth: '5'
-      belgium_maternity_article_222_converted_leave_rate: '0.60'
+    corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/86"
 units:
 - name: EUR
   kind: currency
@@ -64,7 +46,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/216
-          span: Le taux de l'indemnité de maternité est fixé à 79,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de repos de maternité telle qu'elle est définie aux articles 114 et 115 de la loi coordonnée, et à 75 p.c. de la même rémunération, à partir du trente et unième jour de cette période.
+          excerpt: "Le taux de l'indemnité de maternité est fixé à 79,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de repos de maternité telle qu'elle est définie aux articles 114 et 115 de la loi coordonnée, et à 75 p.c. de la même rémunération, à partir du trente et unième jour de cette période."
   versions:
   - effective_from: '1996-10-06'
     formula: '0.795'
@@ -80,7 +62,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/216
-          span: Le taux de l'indemnité de maternité est fixé à 79,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de repos de maternité telle qu'elle est définie aux articles 114 et 115 de la loi coordonnée, et à 75 p.c. de la même rémunération, à partir du trente et unième jour de cette période.
+          excerpt: "Le taux de l'indemnité de maternité est fixé à 79,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de repos de maternité telle qu'elle est définie aux articles 114 et 115 de la loi coordonnée, et à 75 p.c. de la même rémunération, à partir du trente et unième jour de cette période."
   versions:
   - effective_from: '1996-10-06'
     formula: '0.75'
@@ -96,7 +78,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/216
-          span: Toutefois, pendant les trente premiers jours de la période de (protection de la maternité), les titulaires visées à l'article 86, § 1er, 1°, a) et b), de la loi coordonnée, bénéficient d'une indemnité de maternité s'élevant à 82 p.c. de la rémunération perdue susvisée sans qu'il y ait lieu d'appliquer la limitation de la rémunération prévue à l'article 113, alinéa 3, susvisé.
+          excerpt: "Toutefois, pendant les trente premiers jours de la période de (protection de la maternité), les titulaires visées à l'article 86, § 1er, 1°, a) et b), de la loi coordonnée, bénéficient d'une indemnité de maternité s'élevant à 82 p.c. de la rémunération perdue susvisée sans qu'il y ait lieu d'appliquer la limitation de la rémunération prévue à l'article 113, alinéa 3, susvisé."
   versions:
   - effective_from: '1996-10-06'
     formula: '0.82'
@@ -112,7 +94,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/217
-          span: ont droit à une indemnité de base s'élevant à 60 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée
+          excerpt: "ont droit à une indemnité de base s'élevant à 60 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée"
   versions:
   - effective_from: '1996-10-06'
     formula: '0.60'
@@ -128,7 +110,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/217
-          span: Les titulaires visées à l'alinéa 1er ont droit en outre, à une indemnité complémentaire s'élevant à 19,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de (protection de la maternité) et à 15 p.c. de la même rémunération, à partir du trente et unième jour de cette période.
+          excerpt: "Les titulaires visées à l'alinéa 1er ont droit en outre, à une indemnité complémentaire s'élevant à 19,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de (protection de la maternité) et à 15 p.c. de la même rémunération, à partir du trente et unième jour de cette période."
   versions:
   - effective_from: '1996-10-06'
     formula: '0.195'
@@ -144,7 +126,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/217
-          span: Les titulaires visées à l'alinéa 1er ont droit en outre, à une indemnité complémentaire s'élevant à 19,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de (protection de la maternité) et à 15 p.c. de la même rémunération, à partir du trente et unième jour de cette période.
+          excerpt: "Les titulaires visées à l'alinéa 1er ont droit en outre, à une indemnité complémentaire s'élevant à 19,5 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée, pendant les trente premiers jours de la période de (protection de la maternité) et à 15 p.c. de la même rémunération, à partir du trente et unième jour de cette période."
   versions:
   - effective_from: '1996-10-06'
     formula: '0.15'
@@ -167,7 +149,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/219bis
-          span: La titulaire enceinte dont l'exécution du contrat de travail est suspendue ou qui est dispensée du travail en application des articles 42, § 1er, alinéa 1er, 3° ou 43, § 1er, alinéa 2, 2° de la loi du 16 mars 1971 sur le travail peut prétendre à une indemnité de maternité dont le montant est fixé à 78,237 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée.
+          excerpt: "La titulaire enceinte dont l'exécution du contrat de travail est suspendue ou qui est dispensée du travail en application des articles 42, § 1er, alinéa 1er, 3° ou 43, § 1er, alinéa 2, 2° de la loi du 16 mars 1971 sur le travail peut prétendre à une indemnité de maternité dont le montant est fixé à 78,237 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée."
   versions:
   - effective_from: '2010-01-01'
     formula: '0.78237'
@@ -182,7 +164,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/219bis
-          span: La titulaire accouchée ou allaitante dont l'exécution du contrat de travail est suspendue ou qui est dispensée du travail en application des articles 42, § 1er, alinéa 1er, 3°, 43, § 1er, alinéa 2, 2° et 43bis, alinéa 2, de la loi du 16 mars 1971 sur le travail peut prétendre à une indemnité de maternité dont le montant est fixé à 60 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée.
+          excerpt: "La titulaire accouchée ou allaitante dont l'exécution du contrat de travail est suspendue ou qui est dispensée du travail en application des articles 42, § 1er, alinéa 1er, 3°, 43, § 1er, alinéa 2, 2° et 43bis, alinéa 2, de la loi du 16 mars 1971 sur le travail peut prétendre à une indemnité de maternité dont le montant est fixé à 60 p.c. de la rémunération perdue visée à l'article 113, alinéa 3, de la loi coordonnée."
   versions:
   - effective_from: '2010-01-01'
     formula: '0.60'
@@ -204,7 +186,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/222
-          span: Le titulaire bénéficie, pour chaque jour ouvrable de la période de congé de maternité converti visé au § 1er et pour chaque jour de cette même période assimilé à un jour ouvrable par un règlement du Comité de gestion du Service des indemnités, d'une indemnité dont le taux est fixé à 60 p.c. de la rémunération perdue visée à l'article 87, alinéa 1er, de la loi coordonnée.
+          excerpt: "Le titulaire bénéficie, pour chaque jour ouvrable de la période de congé de maternité converti visé au § 1er et pour chaque jour de cette même période assimilé à un jour ouvrable par un règlement du Comité de gestion du Service des indemnités, d'une indemnité dont le taux est fixé à 60 p.c. de la rémunération perdue visée à l'article 87, alinéa 1er, de la loi coordonnée."
   versions:
   - effective_from: '2014-07-28'
     formula: '0.60'
@@ -275,7 +257,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/216
-          span: pendant les trente premiers jours de la période de repos de maternité telle qu'elle est définie aux articles 114 et 115 de la loi coordonnée
+          excerpt: "pendant les trente premiers jours de la période de repos de maternité telle qu'elle est définie aux articles 114 et 115 de la loi coordonnée"
   versions:
   - effective_from: '1996-10-06'
     formula: '30'
@@ -355,7 +337,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/217
-          span: pendant les trente premiers jours de la période de (protection de la maternité) et à 15 p.c. de la même rémunération, à partir du trente et unième jour de cette période
+          excerpt: "pendant les trente premiers jours de la période de (protection de la maternité) et à 15 p.c. de la même rémunération, à partir du trente et unième jour de cette période"
   versions:
   - effective_from: '1996-10-06'
     formula: '30'

@@ -10,19 +10,7 @@ module:
     rental pass-through, energy-performance reductions, and federal cadastral
     income determinations.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/comment/block-1
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170/block-1
-    values:
-      flanders_immovable_withholding_ordinary_rate: "0.0397"
-      flanders_immovable_withholding_social_housing_rate: "0.0254"
-      flanders_immovable_withholding_woonmaatschappij_lease_rate: "0.024"
-      flanders_immovable_withholding_material_equipment_2026_index_coefficient: "0.5254"
-      flanders_immovable_withholding_material_equipment_2026_rate: "0.0209"
-      flanders_immovable_withholding_modest_dwelling_cadastral_income_cap: 745
-      flanders_immovable_withholding_modest_dwelling_reduction_rate: "0.25"
-      flanders_immovable_withholding_child_reduction_2026_amount: "8.80"
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1"
 units:
   - name: EUR
     kind: currency
@@ -71,7 +59,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
-              span: "Het tarief van de onroerende voorheffing bedraagt 3,97 %."
+              excerpt: "Het tarief van de onroerende voorheffing bedraagt 3,97 %."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -87,7 +75,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
-              span: "In afwijking van paragraaf 1 bedraagt het tarief 2,54 % voor"
+              excerpt: "In afwijking van paragraaf 1 bedraagt het tarief 2,54 % voor"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -103,7 +91,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495/block-1
-              span: "In afwijking van paragraaf 1 bedraagt het tarief 2,4 % voor de eigendommen die door een erkende woonmaatschappij worden gehuurd"
+              excerpt: "In afwijking van paragraaf 1 bedraagt het tarief 2,4 % voor de eigendommen die door een erkende woonmaatschappij worden gehuurd"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -119,7 +107,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/comment/block-1
-              span: "bedraagt voor het aanslagjaar 2026 0,5254"
+              excerpt: "bedraagt voor het aanslagjaar 2026 0,5254"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -135,7 +123,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/comment/block-1
-              span: "bedraagt voor het aanslagjaar 2026 voor het Vlaamse Gewest 2,09%"
+              excerpt: "bedraagt voor het aanslagjaar 2026 voor het Vlaamse Gewest 2,09%"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -152,7 +140,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170/block-1
-              span: "het kadastraal inkomen van zijn gezamenlijke, in het Vlaamse Gewest gelegen, onroerende goederen niet meer bedraagt dan 745 euro"
+              excerpt: "het kadastraal inkomen van zijn gezamenlijke, in het Vlaamse Gewest gelegen, onroerende goederen niet meer bedraagt dan 745 euro"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -168,7 +156,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.5.0.1/version-1521170/block-1
-              span: "Er wordt een vermindering verleend van : 1° 25 % van de onroerende voorheffing"
+              excerpt: "Er wordt een vermindering verleend van : 1° 25 % van de onroerende voorheffing"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -185,7 +173,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1536885/comment/block-1
-              span: "bedraagt voor het aanslagjaar 2026 8,80 euro per kind"
+              excerpt: "bedraagt voor het aanslagjaar 2026 8,80 euro per kind"
     versions:
       - effective_from: '2026-01-01'
         formula: |-

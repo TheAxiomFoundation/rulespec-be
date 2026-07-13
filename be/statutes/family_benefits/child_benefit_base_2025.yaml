@@ -15,149 +15,7 @@ module:
     BE_2025 currently returns zero for German-speaking Community cases, so
     that branch is encoded from statute rather than matched to the live oracle.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-2
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-3
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-5
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-6
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-8
-      - be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
-      - be-wal/statute/decret/2018/02/08/2018201006/article/9
-      - be-wal/statute/decret/2018/02/08/2018201006/article/13
-      - be-wal/statute/decret/2018/02/08/2018201006/article/19
-      - be-wal/statute/decret/2018/02/08/2018201006/article/120
-      - be-wal/statute/decret/2018/02/08/2018201006/article/123
-      - be-wal/statute/decret/2018/02/08/2018201006/article/128
-      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
-      - be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-6
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/210
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/212
-      - be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
-      - be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3
-      - be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-      - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
-        - be-wal/statute/decret/2018/02/08/2018201006/article/9
-        - be-wal/statute/decret/2018/02/08/2018201006/article/13
-        - be-wal/statute/decret/2018/02/08/2018201006/article/19
-        - be-wal/statute/decret/2018/02/08/2018201006/article/120
-        - be-wal/statute/decret/2018/02/08/2018201006/article/123
-        - be-wal/statute/decret/2018/02/08/2018201006/article/128
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/210
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/212
-        - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-        - be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
-      rationale: |-
-        The Brussels ordinance and Walloon decree establish the base child
-        benefit, social-supplement, annual age-supplement, and pre-2020
-        transition structures. Walloon Article 120 keeps LGAF amounts and
-        supplements for pre-2020 children, Article 123 ties the old LGAF
-        social supplement to the first Article 13 ceiling, and Article 128
-        bars cumulation of LGAF supplements with decree supplements. The 2025
-        Iriscare and AVIQ amount tables are official administrative
-        publications used only to ground the indexed amounts in force for the
-        BE_2025 oracle slice after checking those statutory sources. The
-        Flemish Groeipakket decree
-        establishes the current-system base amount, universal participation
-        supplement, old-system rank amounts, and old-system age supplements;
-        the official GPedia 1 September 2024 amount schedule grounds the
-        indexed values EUROMOD BE_2025 applies before the September 2025
-        indexation. The German-speaking Community decree provides the
-        statutory base amount and entitlement boundaries, and the 2025
-        programme-decree amendment freezes indexation for 2025 and sets the
-        2025 annual supplement.
-    values:
-      belgium_family_benefits_child_benefit_region_brussels: 1
-      belgium_family_benefits_child_benefit_region_flanders: 2
-      belgium_family_benefits_child_benefit_region_wallonia: 3
-      belgium_family_benefits_child_benefit_region_german_speaking_community: 4
-      belgium_family_benefits_child_benefit_months_in_year: 12
-      belgium_family_benefits_child_benefit_age_4_years: 4
-      belgium_family_benefits_child_benefit_age_5_years: 5
-      belgium_family_benefits_child_benefit_age_6_years: 6
-      belgium_family_benefits_child_benefit_age_7_years: 7
-      belgium_family_benefits_child_benefit_age_11_years: 11
-      belgium_family_benefits_child_benefit_age_12_years: 12
-      belgium_family_benefits_child_benefit_age_17_years: 17
-      belgium_family_benefits_child_benefit_age_18_years: 18
-      belgium_family_benefits_child_benefit_age_25_years: 25
-      belgium_family_benefits_child_benefit_one_child_count: 1
-      belgium_family_benefits_child_benefit_two_child_count: 2
-      belgium_family_benefits_child_benefit_three_child_count: 3
-      belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount: "186.51"
-      belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount: "198.94"
-      belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount: "211.38"
-      belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction: "12.43"
-      belgium_child_benefit_brussels_article_9_2025_low_income_threshold: "39792.84"
-      belgium_child_benefit_brussels_article_9_2025_middle_income_threshold: "57763.80"
-      belgium_child_benefit_brussels_article_9_2025_low_income_one_child_under_12_monthly_amount: "49.74"
-      belgium_child_benefit_brussels_article_9_2025_low_income_one_child_12_to_24_monthly_amount: "62.17"
-      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_under_12_monthly_amount: "99.47"
-      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount: "87.04"
-      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_12_to_24_monthly_amount: "111.91"
-      belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount: "99.47"
-      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_under_12_monthly_amount: "161.64"
-      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount: "136.77"
-      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_12_to_24_monthly_amount: "174.08"
-      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount: "149.21"
-      belgium_child_benefit_brussels_article_9_2025_middle_income_two_child_monthly_amount: "31.09"
-      belgium_child_benefit_brussels_article_9_2025_middle_income_three_plus_monthly_amount: "89.52"
-      belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount: "24.87"
-      belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount: "37.30"
-      belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount: "62.17"
-      belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount: "99.47"
-      belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount: "119.12"
-      belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement: "20.75"
-      belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement: "31.60"
-      belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement: "36.42"
-      belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement: "56.74"
-      belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement: "79.16"
-      belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement: "105.56"
-      belgium_child_benefit_wallonia_pre_2020_first_child_2025_low_income_monthly_social_supplement: "60.64"
-      belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement_with_low_income_supplement: "41.38"
-      belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement_with_low_income_supplement: "63.23"
-      belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement_with_low_income_supplement: "80.40"
-      belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement_with_low_income_supplement: "77.30"
-      belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement_with_low_income_supplement: "108.22"
-      belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement_with_low_income_supplement: "145.69"
-      belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount: "192.73"
-      belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount: "24.87"
-      belgium_child_benefit_wallonia_article_13_2025_low_income_threshold: "34000.47"
-      belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold: "54867.79"
-      belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement: "68.39"
-      belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement: "31.09"
-      belgium_child_benefit_flanders_article_13_2025_base_monthly_amount: "180.19"
-      belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_0_to_3_annual_amount: "22.52"
-      belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_4_to_11_annual_amount: "39.41"
-      belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_12_to_16_annual_amount: "56.30"
-      belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_17_to_24_annual_amount: "67.56"
-      belgium_child_benefit_flanders_article_210_old_system_first_child_2025_monthly_amount: "103.72"
-      belgium_child_benefit_flanders_article_212_old_system_first_child_6_to_11_2025_monthly_age_supplement: "16.36"
-      belgium_child_benefit_flanders_article_212_old_system_first_child_12_to_17_2025_monthly_age_supplement: "24.92"
-      belgium_child_benefit_flanders_article_212_old_system_first_child_18_to_24_2025_monthly_age_supplement: "28.72"
-      belgium_child_benefit_dg_article_8_2025_base_monthly_amount: "157"
-      belgium_child_benefit_dg_article_117_4_2025_annual_supplement: "62.55"
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/7"
 units:
   - name: EUR
     kind: currency
@@ -215,6 +73,14 @@ rules:
     kind: parameter
     dtype: Integer
     source: Walloon 2025 table first annual-supplement upper age band
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "De 0 à 5 ans inclus"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -271,6 +137,14 @@ rules:
     kind: parameter
     dtype: Integer
     source: Brussels and Walloon family-benefit maximum student-age boundary
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/statute/decret/2018/02/08/2018201006/article/5
+              excerpt: "au plus tard jusqu'à la fin du mois au cours duquel il atteint l'âge de vingt-cinq ans"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -312,7 +186,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-2
-              span: Brussels family-benefits ordinance article 7, indexed amount in force from 1 February 2025; amount 186.51 EUR
+              excerpt: "Enfant unique qui ne bénéficie d'aucun des suppléments visés aux points 2, 3 et 4 186,51 EUR Autres enfants 0 à 11 ans 186,51 EUR 12 à 17 ans 198,94 EUR 18 à 24 ans Inscription dans l'enseignement supérieur 1 au plus tôt le 1 er septembre de l'année de ses 18 ans 211,38 EUR Autre situation 198,94 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -330,7 +204,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-2
-              span: Brussels family-benefits ordinance article 7, indexed amount in force from 1 February 2025; amount 198.94 EUR
+              excerpt: "Enfant unique qui ne bénéficie d'aucun des suppléments visés aux points 2, 3 et 4 186,51 EUR Autres enfants 0 à 11 ans 186,51 EUR 12 à 17 ans 198,94 EUR 18 à 24 ans Inscription dans l'enseignement supérieur 1 au plus tôt le 1 er septembre de l'année de ses 18 ans 211,38 EUR Autre situation 198,94 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -348,7 +222,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-2
-              span: Brussels family-benefits ordinance article 7, indexed amount in force from 1 February 2025; amount 211.38 EUR
+              excerpt: "Enfant unique qui ne bénéficie d'aucun des suppléments visés aux points 2, 3 et 4 186,51 EUR Autres enfants 0 à 11 ans 186,51 EUR 12 à 17 ans 198,94 EUR 18 à 24 ans Inscription dans l'enseignement supérieur 1 au plus tôt le 1 er septembre de l'année de ses 18 ans 211,38 EUR Autre situation 198,94 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -366,7 +240,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-3
-              span: Brussels family-benefits ordinance article 35 transition deduction, indexed amount in force from 1 February 2025; amount 12.43 EUR
+              excerpt: "Montant à déduire 12,43 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -384,7 +258,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-6
-              span: Brussels family-benefits ordinance article 9(1), indexed income ceiling in force from 1 February 2025; amount 39792.84 EUR
+              excerpt: "Premier plafond 39.792,84 EUR Deuxième plafond 57.763,80 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -402,7 +276,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-6
-              span: Brussels family-benefits ordinance article 9(2), indexed income ceiling in force from 1 February 2025; amount 57763.80 EUR
+              excerpt: "Premier plafond 39.792,84 EUR Deuxième plafond 57.763,80 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -420,7 +294,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(a), indexed monthly supplement in force from 1 February 2025; amount 49.74 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -438,7 +312,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(a), indexed monthly supplement in force from 1 February 2025; amount 62.17 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -456,7 +330,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025; amount 99.47 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -474,7 +348,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025; amount 87.04 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -492,7 +366,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025; amount 111.91 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -510,7 +384,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(b), indexed monthly supplement in force from 1 February 2025; amount 99.47 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -528,7 +402,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025; amount 161.64 EUR
+              excerpt: "161,64EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -546,7 +420,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025; amount 136.77 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -564,7 +438,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025; amount 174.08 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus Famille monoparentale Autre famille Famille monoparentale Autre famille 0 à 11 ans 49,74 EUR 99,47 EUR 87,04 EUR 161,64EUR 136,77 EUR 12 à 24 ans 62,17 EUR 111,91 EUR 99,47 EUR 174,08 EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -582,7 +456,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-7
-              span: Brussels family-benefits ordinance article 9(1)(c), indexed monthly supplement in force from 1 February 2025; amount 149.21 EUR
+              excerpt: "EUR 149,21 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -600,7 +474,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-8
-              span: Brussels family-benefits ordinance article 9(2)(a), indexed monthly supplement in force from 1 February 2025; amount 31.09 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus - 31,09 EUR 89,52 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -618,7 +492,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-8
-              span: Brussels family-benefits ordinance article 9(2)(b), indexed monthly supplement in force from 1 February 2025; amount 89.52 EUR
+              excerpt: "Famille d'un enfant Famille de 2 enfants Famille de 3 enfants et plus - 31,09 EUR 89,52 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -636,7 +510,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
-              span: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025; amount 24.87 EUR
+              excerpt: "Les montants visés au point 1 dus pour le mois de juillet sont majorés d'un supplément qui varie selon l'âge de l'enfant (considéré au 01 juillet).\n\n0 à 2 ans 24,87 EUR 3 à 5 ans 24,87 EUR 6 à 11 ans 37,30 EUR 12 à 14 ans Si le droit acquis pour le mois de juillet découle d'une inscription dans l'enseignement supérieur 99,47 EUR Toute autre situation 62,17 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -654,7 +528,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
-              span: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025; amount 37.30 EUR
+              excerpt: "Les montants visés au point 1 dus pour le mois de juillet sont majorés d'un supplément qui varie selon l'âge de l'enfant (considéré au 01 juillet).\n\n0 à 2 ans 24,87 EUR 3 à 5 ans 24,87 EUR 6 à 11 ans 37,30 EUR 12 à 14 ans Si le droit acquis pour le mois de juillet découle d'une inscription dans l'enseignement supérieur 99,47 EUR Toute autre situation 62,17 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -672,7 +546,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
-              span: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025; amount 62.17 EUR
+              excerpt: "Les montants visés au point 1 dus pour le mois de juillet sont majorés d'un supplément qui varie selon l'âge de l'enfant (considéré au 01 juillet).\n\n0 à 2 ans 24,87 EUR 3 à 5 ans 24,87 EUR 6 à 11 ans 37,30 EUR 12 à 14 ans Si le droit acquis pour le mois de juillet découle d'une inscription dans l'enseignement supérieur 99,47 EUR Toute autre situation 62,17 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -690,7 +564,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-12
-              span: Brussels family-benefits ordinance article 15, indexed amount in force from 1 February 2025; amount 99.47 EUR
+              excerpt: "Les montants visés au point 1 dus pour le mois de juillet sont majorés d'un supplément qui varie selon l'âge de l'enfant (considéré au 01 juillet).\n\n0 à 2 ans 24,87 EUR 3 à 5 ans 24,87 EUR 6 à 11 ans 37,30 EUR 12 à 14 ans Si le droit acquis pour le mois de juillet découle d'une inscription dans l'enseignement supérieur 99,47 EUR Toute autre situation 62,17 EUR"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -707,8 +581,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 9, pre-2020 first-child indexed amount in force from 1 February 2025; amount 119.12 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "Montants generaux au 1er fevrier 2025\nRattache a l'indice-pivot 130,67 (base 2013 = 100)\nObjet de la mise a jour :\nplafonds de revenus annuels de l'allocataire/du menage actualises a partir du 01/07/2025\nLes enfants nes avant 2020\n1) Allocations Familiales de base\nEnfant\nMontant\n1er enfant\n2eme enfant\n3eme enfant et les suivants\n119,12 EUR\n220,41 EUR\n329,08 EUR\n2) Supplements d'age mensuels et annuels\nGroupe d'age\nRang\nDe 0 a 5 ans inclus\nDe 6 a 11 ans inclus\nDe 12 a 17 ans inclus\nDe 18 ans a"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -725,8 +599,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 19 transition amount, indexed amount in force from 1 February 2025; amount 20.75 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "Montants generaux au 1er fevrier 2025\nRattache a l'indice-pivot 130,67 (base 2013 = 100)\nObjet de la mise a jour :\nplafonds de revenus annuels de l'allocataire/du menage actualises a partir du 01/07/2025\nLes enfants nes avant 2020\n1) Allocations Familiales de base\nEnfant\nMontant\n1er enfant\n2eme enfant\n3eme enfant et les suivants\n119,12 EUR\n220,41 EUR\n329,08 EUR\n2) Supplements d'age mensuels et annuels\nGroupe d'age\nRang\nDe 0 a 5 ans inclus\nDe 6 a 11 ans inclus\nDe 12 a 17 ans inclus\nDe 18 ans a 24 ans inclus\nSupplement d'age mensuels taux de base\n1er enfant\n-\n20,75 EUR\n31,60 EUR\n36,42 EUR\n2eme enfant et suivants\n-\n41,38 EUR\n63,23 EUR\n80,40 EUR\nSupplement d'age mensuels avec supplement\n-\n-\n41,38 EUR\n63,23 EUR\n80,40 EUR\nSupplements d'age annuels taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3)"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -743,8 +617,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 19 transition amount, indexed amount in force from 1 February 2025; amount 31.60 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "ans inclus\nDe 12 a 17 ans inclus\nDe 18 ans a 24 ans inclus\nSupplement d'age mensuels taux de base\n1er enfant\n-\n20,75 EUR\n31,60 EUR\n36,42 EUR\n2eme enfant et suivants\n-\n41,38 EUR\n63,23 EUR\n80,40 EUR\nSupplement d'age mensuels avec supplement\n-\n-\n41,38 EUR\n63,23 EUR\n80,40 EUR\nSupplements d'age annuels taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019, l'octroi d'un supplement n'est plus lie au statut socio-professionnel mais bien aux revenus bruts"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -761,8 +635,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 19 transition amount, indexed amount in force from 1 February 2025; amount 36.42 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -779,8 +653,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 19 transition annual age supplement, indexed amount in force from 1 February 2025; amount 56.74 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -797,8 +671,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 19 transition annual age supplement, indexed amount in force from 1 February 2025; amount 79.16 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -815,8 +689,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree article 19 transition annual age supplement, indexed amount in force from 1 February 2025; amount 105.56 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -833,8 +707,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF first-child social supplement indexed amount in force from 1 February 2025; amount 60.64 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019, l'octroi d'un supplement n'est plus lie au statut socio-professionnel mais bien aux revenus bruts annuels imposables.\nMontants au 01.02.2025\n1"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -851,8 +725,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF first-child age supplement with social supplement indexed amount in force from 1 February 2025; amount 41.38 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "ans inclus\nDe 12 a 17 ans inclus\nDe 18 ans a 24 ans inclus\nSupplement d'age mensuels taux de base\n1er enfant\n-\n20,75 EUR\n31,60 EUR\n36,42 EUR\n2eme enfant et suivants\n-\n41,38 EUR\n63,23 EUR\n80,40 EUR\nSupplement d'age mensuels avec supplement\n-\n-\n41,38 EUR\n63,23 EUR\n80,40 EUR\nSupplements d'age annuels taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019, l'octroi d'un supplement n'est plus lie au statut socio-professionnel mais bien aux revenus bruts"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -869,8 +743,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF first-child age supplement with social supplement indexed amount in force from 1 February 2025; amount 63.23 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "EUR\n63,23 EUR\n80,40 EUR\nSupplements d'age annuels taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019, l'octroi d'un supplement n'est plus lie au statut socio-professionnel mais bien aux revenus bruts annuels imposables.\nMontants au 01.02.2025\n1"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -887,8 +761,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF first-child age supplement with social supplement indexed amount in force from 1 February 2025; amount 80.40 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "EUR\n63,23 EUR\n80,40 EUR\nSupplements d'age annuels taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019, l'octroi d'un supplement n'est plus lie au statut socio-professionnel mais bien aux revenus bruts annuels imposables.\nMontants au 01.02.2025\n1"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -905,8 +779,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF annual age supplement with social supplement indexed amount in force from 1 February 2025; amount 77.30 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -923,8 +797,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF annual age supplement with social supplement indexed amount in force from 1 February 2025; amount 108.22 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR\nSupplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026\n1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR\n[1]\nDepuis le 01 janvier 2019,"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -941,8 +815,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
-              span: Walloon family-benefits decree articles 120, 123, and 128, legacy LGAF annual age supplement with social supplement indexed amount in force from 1 February 2025; amount 145.69 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-1
+              excerpt: "145,69 EUR\n3) Les supplements aux allocations familiales(1)\nSupplement mensuel par enfants pour les familles a revenus < 34.000,47 EUR/an en 2023 pour un droit du 1er juillet 2025 au 30 juin 2026"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -959,8 +833,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
-              span: Walloon family-benefits decree article 9, indexed amount in force from 1 February 2025; amount 192.73 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-4
+              excerpt: "Les enfants nes a partir de 2020\n1) Allocations familiales de base\nEnfant\nEnfant jusqu'a 18 ans\nEnfant a partir de 18 ans\nMontant\n192,73 EUR\n205,16 EUR\n2) Supplements d'age annuels\nDe 0 a 4 ans inclus\nPar enfant\n24,87 EUR\nDe 5 a 10 ans inclus\n37,30 EUR\nDe 11 a 16 ans inclus\n62,17 EUR\nDe 17 ans a 24 ans inclus\n99,47 EUR\n3) Les supplements aux allocations familiales\nSupplement mensuel par enfant pour les familles a revenus faibles ou moyens\nRevenus < 1er plafond\n68,39 EUR\nRevenus < 2eme plafond\n31,09 EUR\nSupplement mensuel en cas d'invalidite (invalidite de +66%) et revenus faibles ou moyens\nPar enfant\n12,43 EUR\nSupplement mensuel personne handicapee dans le menage\nPar enfant\n80,82 EUR\nSupplement mensuel par enfant pour les familles monoparentales\nRevenus < 1er plafond\n24,87 EUR\nRevenus < 2eme plafond\n12,43 EUR\nSupplement mensuel par enfant pour les familles nombreuses\nRevenus < 1er plafond\n43,52 EUR\nRevenus < 2eme plafond\n24,87 EUR\nSupplement mensuel par enfant orphelin d'un parent ou filiation a l'egard d'un seul (sans condition liee a la remise en menage du parent en vie)\nEnfant jusqu'a 18 ans\n96,37 EUR\nEnfant a partir de 18 ans\n102,58 EUR\nMontants au 01.02.2025\n4"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -977,8 +851,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
-              span: Walloon family-benefits decree article 9 annual age supplement, indexed amount in force from 1 February 2025; amount 24.87 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-4
+              excerpt: "Les enfants nes a partir de 2020\n1) Allocations familiales de base\nEnfant\nEnfant jusqu'a 18 ans\nEnfant a partir de 18 ans\nMontant\n192,73 EUR\n205,16 EUR\n2) Supplements d'age annuels\nDe 0 a 4 ans inclus\nPar enfant\n24,87 EUR\nDe 5 a 10 ans inclus\n37,30 EUR\nDe 11 a 16 ans inclus\n62,17 EUR\nDe 17 ans a 24 ans inclus\n99,47 EUR\n3) Les supplements aux allocations familiales\nSupplement mensuel par enfant pour les familles a revenus faibles ou moyens\nRevenus < 1er plafond\n68,39 EUR\nRevenus < 2eme plafond\n31,09 EUR\nSupplement mensuel en cas d'invalidite (invalidite de +66%) et revenus faibles ou moyens\nPar enfant\n12,43 EUR\nSupplement mensuel personne handicapee dans le menage\nPar enfant\n80,82 EUR\nSupplement mensuel par enfant pour les familles monoparentales\nRevenus < 1er plafond\n24,87 EUR\nRevenus < 2eme plafond\n12,43 EUR\nSupplement mensuel par enfant pour les familles nombreuses\nRevenus < 1er plafond\n43,52 EUR\nRevenus < 2eme plafond\n24,87 EUR\nSupplement mensuel par enfant orphelin d'un parent ou filiation a l'egard d'un seul (sans condition liee a la remise en menage du parent en vie)\nEnfant jusqu'a 18 ans\n96,37 EUR\nEnfant a partir de 18 ans\n102,58 EUR\nMontants au 01.02.2025\n4"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -995,8 +869,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-6
-              span: Walloon family-benefits decree article 13, AVIQ 2025 first social-supplement income ceiling for rights from 1 July 2025; amount 34000.47 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-6
+              excerpt: "34.000,47 EUR en 2023 pour un droit du\n1er juillet 2025 au 30 juin 2026\nDeuxieme plafond\n54.867,79 EUR en 2023 pour un droit du\n1er juillet 2025 au 30 juin 2026"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1013,8 +887,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-6
-              span: Walloon family-benefits decree article 13, AVIQ 2025 second social-supplement income ceiling for rights from 1 July 2025; amount 54867.79 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-6
+              excerpt: "1er juillet 2025 au 30 juin 2026\nDeuxieme plafond\n54.867,79 EUR en 2023 pour un droit du"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1031,8 +905,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
-              span: Walloon family-benefits decree article 13, indexed monthly social supplement for families below the first ceiling from 1 February 2025; amount 68.39 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-4
+              excerpt: "< 1er plafond\n68,39 EUR\nRevenus < 2eme plafond\n31,09 EUR\nSupplement mensuel en cas d'invalidite (invalidite de +66%) et revenus faibles ou moyens\nPar enfant\n12,43 EUR\nSupplement mensuel personne handicapee dans le menage\nPar enfant\n80,82 EUR\nSupplement mensuel par enfant pour les familles monoparentales\nRevenus < 1er plafond\n24,87 EUR\nRevenus < 2eme plafond\n12,43 EUR\nSupplement mensuel par enfant pour les familles nombreuses\nRevenus < 1er plafond\n43,52 EUR\nRevenus < 2eme plafond\n24,87 EUR\nSupplement mensuel par enfant orphelin d'un parent ou filiation a l'egard d'un seul (sans condition liee a la remise en menage du parent en vie)\nEnfant jusqu'a 18 ans\n96,37 EUR\nEnfant a partir de 18 ans\n102,58 EUR\nMontants au 01.02.2025\n4"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1049,8 +923,8 @@ rules:
           - path: versions[0].formula
             kind: parameter
             source:
-              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
-              span: Walloon family-benefits decree article 13, indexed monthly social supplement for families below the second ceiling from 1 February 2025; amount 31.09 EUR
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/consolidated-amount-scale-2025-02/page-4
+              excerpt: "< 1er plafond\n68,39 EUR\nRevenus < 2eme plafond\n31,09 EUR\nSupplement mensuel en cas d'invalidite (invalidite de +66%) et revenus faibles ou moyens\nPar enfant\n12,43 EUR\nSupplement mensuel personne handicapee dans le menage\nPar enfant\n80,82 EUR\nSupplement mensuel par enfant pour les familles monoparentales\nRevenus < 1er plafond\n24,87 EUR\nRevenus < 2eme plafond\n12,43 EUR\nSupplement mensuel par enfant pour les familles nombreuses\nRevenus < 1er plafond\n43,52 EUR\nRevenus < 2eme plafond\n24,87 EUR\nSupplement mensuel par enfant orphelin d'un parent ou filiation a l'egard d'un seul (sans condition liee a la remise en menage du parent en vie)\nEnfant jusqu'a 18 ans\n96,37 EUR\nEnfant a partir de 18 ans\n102,58 EUR\nMontants au 01.02.2025\n4"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1068,7 +942,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
-              span: Flemish Groeipakket decree article 13, indexed amount in force from 1 September 2024; amount 180.19 EUR
+              excerpt: "AGENTSCHAP UITBETALING GROEIPAKKET\n\nBedragen Groeipakket na indexering van toepassing op 01.09.2024\n\nBOEK 2\n\nGEZINSBIJSLAGEN\n\nStartbedrag geboorte of adoptie (eenmalig) € 1.238,78 (Artikel 9 en artikel 11 Groeipakketdecreet)\n\nBasisbedrag (maandelijks) (Artikel 13 € 180,19 Groeipakketdecreet)\n\nSchoolbonus (jaarlijks) (Artikel 19-20-21-22 Groeipakketdecreet)\n\n0-3 jaar € 22,52 411 jaar € 39,41 12-16 jaar € 56,30 17-24 jaar € 67,56\n\nSociale toeslagen (maandelijks) (Artikel 18 Groeipakketdecreet)\n\n< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19\n\n< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06\n\n> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1086,7 +960,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
-              span: Flemish Groeipakket decree articles 19 to 22, indexed amount in force from 1 September 2024; amount 22.52 EUR
+              excerpt: "AGENTSCHAP UITBETALING GROEIPAKKET\n\nBedragen Groeipakket na indexering van toepassing op 01.09.2024\n\nBOEK 2\n\nGEZINSBIJSLAGEN\n\nStartbedrag geboorte of adoptie (eenmalig) € 1.238,78 (Artikel 9 en artikel 11 Groeipakketdecreet)\n\nBasisbedrag (maandelijks) (Artikel 13 € 180,19 Groeipakketdecreet)\n\nSchoolbonus (jaarlijks) (Artikel 19-20-21-22 Groeipakketdecreet)\n\n0-3 jaar € 22,52 411 jaar € 39,41 12-16 jaar € 56,30 17-24 jaar € 67,56\n\nSociale toeslagen (maandelijks) (Artikel 18 Groeipakketdecreet)\n\n< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19\n\n< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06\n\n> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1104,7 +978,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
-              span: Flemish Groeipakket decree articles 19 to 22, indexed amount in force from 1 September 2024; amount 39.41 EUR
+              excerpt: "AGENTSCHAP UITBETALING GROEIPAKKET\n\nBedragen Groeipakket na indexering van toepassing op 01.09.2024\n\nBOEK 2\n\nGEZINSBIJSLAGEN\n\nStartbedrag geboorte of adoptie (eenmalig) € 1.238,78 (Artikel 9 en artikel 11 Groeipakketdecreet)\n\nBasisbedrag (maandelijks) (Artikel 13 € 180,19 Groeipakketdecreet)\n\nSchoolbonus (jaarlijks) (Artikel 19-20-21-22 Groeipakketdecreet)\n\n0-3 jaar € 22,52 411 jaar € 39,41 12-16 jaar € 56,30 17-24 jaar € 67,56\n\nSociale toeslagen (maandelijks) (Artikel 18 Groeipakketdecreet)\n\n< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19\n\n< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06\n\n> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1122,7 +996,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
-              span: Flemish Groeipakket decree articles 19 to 22, indexed amount in force from 1 September 2024; amount 56.30 EUR
+              excerpt: "AGENTSCHAP UITBETALING GROEIPAKKET\n\nBedragen Groeipakket na indexering van toepassing op 01.09.2024\n\nBOEK 2\n\nGEZINSBIJSLAGEN\n\nStartbedrag geboorte of adoptie (eenmalig) € 1.238,78 (Artikel 9 en artikel 11 Groeipakketdecreet)\n\nBasisbedrag (maandelijks) (Artikel 13 € 180,19 Groeipakketdecreet)\n\nSchoolbonus (jaarlijks) (Artikel 19-20-21-22 Groeipakketdecreet)\n\n0-3 jaar € 22,52 411 jaar € 39,41 12-16 jaar € 56,30 17-24 jaar € 67,56\n\nSociale toeslagen (maandelijks) (Artikel 18 Groeipakketdecreet)\n\n< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19\n\n< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06\n\n> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1140,7 +1014,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
-              span: Flemish Groeipakket decree articles 19 to 22, indexed amount in force from 1 September 2024; amount 67.56 EUR
+              excerpt: "AGENTSCHAP UITBETALING GROEIPAKKET\n\nBedragen Groeipakket na indexering van toepassing op 01.09.2024\n\nBOEK 2\n\nGEZINSBIJSLAGEN\n\nStartbedrag geboorte of adoptie (eenmalig) € 1.238,78 (Artikel 9 en artikel 11 Groeipakketdecreet)\n\nBasisbedrag (maandelijks) (Artikel 13 € 180,19 Groeipakketdecreet)\n\nSchoolbonus (jaarlijks) (Artikel 19-20-21-22 Groeipakketdecreet)\n\n0-3 jaar € 22,52 411 jaar € 39,41 12-16 jaar € 56,30 17-24 jaar € 67,56\n\nSociale toeslagen (maandelijks) (Artikel 18 Groeipakketdecreet)\n\n< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19\n\n< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06\n\n> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1158,7 +1032,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3
-              span: Flemish Groeipakket decree article 210 old-system first-child amount, indexed amount in force from 1 September 2024; amount 103.72 EUR
+              excerpt: "AGENTSCHAP\n\nUITBETALING\n\nGROEIPAKKET Gehuwde/zelfstandige/ alleenstaande € 861,32 € 3.948,79 - leerlingen Leerlingen in 3de lj. van 3de graad extern € 338,97 € 1.367,61 € 1.605,78 voltijds technisch of beroeps- intern € 876,02 € 2.248,28 - secundair Alle anderen voltijds secundair extern € 282,37 € 1.139,56 € 1338,01 onderwijs intern € 730,02 € 187351 - Stelsel leren en werken € 237,45 € 649,26 € 837,58 Verpleegkundigen in hoger beroeps- | extern € 1.002,45 € 1.464,48 - onderwijs intern € 1.002,45 € 4398,11 -\n\nBOEK 5 GEZINSBIJSLAGEN\n\nKRAAMGELD Iste kind of meerling € 1.272,52 2° of volgende kind € 957,42\n\nBASISKINDERBIJSLAGEN\n\nGEWONE KINDERBIJSLAG (Artikel 210, §2 Groeipakketdecreet)\n\njongste kind (laag) € 103,72 2de jongste kind (midden) € 191,92 3de jongste en oudere kinderen (hoog) € 259,49 | geen indexering tot\n\naugustus 2025\n\nWEZEN (Artikel 214 Groeipakketdecreet)\n\nper weeskind € 398,39\n\nFORFAITAIRE KINDERBIJSLAG OF FORFAITAIRE € 69,59 BIJZONDERE BIJSLAG VOOR KINDEREN\n\nGEPLAATST BIJ EEN PARTICULIER (Artikel 219 en\n\nartikel 221 Groeipakketdecreet)\n\nSOCIALE TOESLAGEN\n\nTOESLAGEN VOOR EEN RECHTGEVEND KIND DAT RECHT GEEFT OP KINDERBIJSLAG VERMELD IN ARTIKEL 210,§1 OF DE GEWONE WEZENBUSLAG (Artikel 222, §1 Groeipakketdecreet)\n\nkind dat recht geeft op 92,09 EUR € 68,41"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1176,7 +1050,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
-              span: Flemish Groeipakket decree article 212 old-system first-child age supplement, indexed amount in force from 1 September 2024; amount 16.36 EUR
+              excerpt: "§1 AKBW. (Artikel 212, §2 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 16,36 geen indexering tot augustus 2025"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1194,7 +1068,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
-              span: Flemish Groeipakket decree article 212 old-system first-child age supplement, indexed amount in force from 1 September 2024; amount 24.92 EUR
+              excerpt: "kind dat recht geeft op kinderbijslag van 92,09 EUR - artikel 44, §1 AKBW. (Artikel 212, §2 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 16,36 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 24,92 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 28,72 geen indexering tot\n\naugustus 2025\n\nRechtgevende kinderen die recht geven op kinderbijslag zoals vermeld in artikel 210, §1 - artikel 44,§2 AKBW ( Artikel 212,$1 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 32,63 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 49,86 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 63,40 geen indexering tot\n\naugustus 2025\n\nGehandicapten die vddr 1 juli 1966 geboren zijn in toepassing van artikel 213 Groeipakketdecreet\n\nKind van Iste rang die geen supplement voor € 55,02 geen indexering tot eenoudergezin ontvangt augustus 2025 Andere kinderen € 63,40 geen indexering tot\n\naugustus 2025\n\nBIJKOMENDE BIJSLAG VOOR KINDEREN VAN MINDER DAN 21 JAAR MET EEN AANDOENING\n\nOud systeem\n\neen zelfredzaamheidsgraad van 0 - 3 punten € 466,54 een zelfredzaamheidsgraad van 4 - 6 punten € 510,69 een zelfredzaamheidsgraad van 7 - 9 punten € 545,93"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1212,7 +1086,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
-              span: Flemish Groeipakket decree article 212 old-system first-child age supplement, indexed amount in force from 1 September 2024; amount 28.72 EUR
+              excerpt: "kind dat recht geeft op kinderbijslag van 92,09 EUR - artikel 44, §1 AKBW. (Artikel 212, §2 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 16,36 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 24,92 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 28,72 geen indexering tot\n\naugustus 2025\n\nRechtgevende kinderen die recht geven op kinderbijslag zoals vermeld in artikel 210, §1 - artikel 44,§2 AKBW ( Artikel 212,$1 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 32,63 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 49,86 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 63,40 geen indexering tot\n\naugustus 2025\n\nGehandicapten die vddr 1 juli 1966 geboren zijn in toepassing van artikel 213 Groeipakketdecreet\n\nKind van Iste rang die geen supplement voor € 55,02 geen indexering tot eenoudergezin ontvangt augustus 2025 Andere kinderen € 63,40 geen indexering tot\n\naugustus 2025\n\nBIJKOMENDE BIJSLAG VOOR KINDEREN VAN MINDER DAN 21 JAAR MET EEN AANDOENING\n\nOud systeem\n\neen zelfredzaamheidsgraad van 0 - 3 punten € 466,54 een zelfredzaamheidsgraad van 4 - 6 punten € 510,69 een zelfredzaamheidsgraad van 7 - 9 punten € 545,93"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1230,7 +1104,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-              span: German-speaking Community family-benefits decree article 8, with article 117.3 freezing 2025 indexation; amount 157 EUR
+              excerpt: "Abschnitt 2 - Leistungen Unterabschnitt 1 - Basiskindergeld Art. 8 - Basiskindergeld Die Regierung gewährt ein Basiskindergeld, das 157 Euro pro Monat beträgt."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1248,7 +1122,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits/block-1
-              span: German-speaking Community 2025 programme-decree article 117.4 annual supplement; amount 62.55 EUR
+              excerpt: "117.4- Disposition transitoire Pour l'année 2025, le Gouvernement accorde un supplément annuel qui s'élève à 62,55 euros."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1286,6 +1160,14 @@ rules:
     period: Year
     unit: EUR
     source: Brussels family-benefits ordinance article 15, BE_2025 ordinary annual age supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/15"
+              excerpt: "d) 80 euros pour un enfant bénéficiaire qui a atteint l'âge de 12 ans au moins le 1er juillet de l'année civile au cours de laquelle le supplément est dû, si le droit acquis pour le mois de juillet découle d'une inscription dans l'enseignement supérieur, ou 50 euros si cette condition n'est pas remplie par un tel enfant bénéficiaire."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1309,6 +1191,14 @@ rules:
     period: Month
     unit: EUR
     source: Brussels family-benefits ordinance article 9 social supplement, indexed 2025 one-child and statutory family-size branches
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-5"
+              excerpt: "L'allocation familiale visée au point 1 peut être majorée d'un supplément social dont le montant varie en fonction des revenus du ménage, de l'âge de l'enfant, de la taille de la famille et selon que l'enfant est élevé ou non dans une famille monoparentale."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1442,6 +1332,19 @@ rules:
     dtype: Integer
     period: Year
     source: Walloon family-benefits decree articles 120, 123, and 128, pre-2020 LGAF social-supplement branch tied to the first Article 13 income ceiling
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/123"
+              excerpt: "Pour l'octroi des suppléments visés à l'article 42bis, § 2, LGAF, en faveur des enfants nés au plus tard le 31 décembre de l'année qui précède la date fixée par le Gouvernement en vertu de l'article 136, alinéa 1er"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/128"
+              excerpt: "Les suppléments dus dans le cadre de la loi générale relative aux allocations familiales ne se cumulent pas aux suppléments dus dans le cadre du présent décret."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1462,6 +1365,14 @@ rules:
     period: Month
     unit: EUR
     source: Walloon family-benefits decree articles 120, 123, and 128, pre-2020 LGAF first-child monthly amount with social supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/120"
+              excerpt: "S'agissant de nouvelles demandes introduites à partir de la date fixée par le Gouvernement en vertu de l'article 136, alinéa 1er, relatives à des enfants nés au plus tard la veille de cette même date, les conditions d'ouverture du droit seront examinées conformément au présent décret tandis que les montants de base et suppléments seront ceux fixés dans le cadre de la LGAF dans les limites prévues au présent Titre."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1508,6 +1419,14 @@ rules:
     period: Month
     unit: EUR
     source: Walloon family-benefits decree article 13 social supplement, indexed 2025 new-system one-child branch
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/13"
+              excerpt: "L'allocation mensuelle de base visée à l'article 9 est majorée d'un supplément social mensuel de :"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1551,6 +1470,24 @@ rules:
     period: Month
     unit: EUR
     source: Flemish Groeipakket decree articles 13, 210, and 212, BE_2025 one-child ordinary monthly amount
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/13"
+              excerpt: "Het rechtgevende kind, met uitzondering van het kind, vermeld in artikel 210, § 1, of in titel 2 van deel 2 van boek 5, geeft recht op een maandelijks basisbedrag van 160 euro."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/210"
+              excerpt: "Een rechtgevend kind dat geboren is vóór 1 januari 2019 en voor wie het recht op kinderbijslag overeenkomstig de kinderbijslagreglementering is geopend op 31 december 2018, blijft recht geven op kinderbijslag overeenkomstig de kinderbijslagreglementering als aan de voorwaarden, vermeld in artikel 8, is voldaan."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/212"
+              excerpt: "Een rechtgevend kind dat recht geeft op kinderbijslag als vermeld in artikel 210, § 1, zal recht geven op de maandelijkse leeftijdsbijslag, vermeld in artikel 44, § 2, van de Algemene kinderbijslagwet, namelijk:"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1577,6 +1514,29 @@ rules:
     period: Year
     unit: EUR
     source: Flemish Groeipakket decree articles 19 to 22, BE_2025 ordinary annual universal participation supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/19"
+              excerpt: "Het rechtgevende kind geeft vanaf de geboorte en zolang het minder dan vier jaar is op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is, recht op een jaarlijkse universele participatietoeslag van 20 euro."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/20"
+              excerpt: "Het rechtgevende kind geeft vanaf de leeftijd van vier jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan elf jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 35 euro."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/21"
+              excerpt: "Het rechtgevende kind geeft vanaf de leeftijd van elf jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan zeventien jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 50 euro."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/22"
+              excerpt: "Het rechtgevende kind geeft vanaf de leeftijd van zeventien jaar op 31 december van het kalenderjaar voor het kalenderjaar waarin de toeslag verschuldigd is en zolang het minder dan vijfentwintig jaar is op die datum, recht op een jaarlijkse universele participatietoeslag van 60 euro."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -1666,6 +1626,19 @@ rules:
     period: Year
     unit: EUR
     source: Brussels family-benefits ordinance articles 7, 9, 15, and 35, BE_2025 ordinary child benefit plus Article 9 social supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/7"
+              excerpt: "- 170 euros pour un enfant bénéficiaire de 18 à 24 ans, au plus tôt à partir du 1er septembre, s'il est inscrit dans l'enseignement supérieur ou 160 euros si cette dernière condition n'est pas satisfaite."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/9"
+              excerpt: "L'allocation familiale de base visée à l'article 7, b), est majorée d'un supplément social aux conditions suivantes :"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

@@ -18,17 +18,7 @@ module:
     versus external secondary distinction (article 48 section 3) remain
     separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/46
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/47
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/48
-    values:
-      flanders_school_allowance_preschool_amount: '103.70'
-      flanders_school_allowance_primary_minimum_amount: '121.01'
-      flanders_school_allowance_primary_full_amount: '188.19'
-      flanders_school_allowance_primary_exceptional_amount: '244.37'
-      flanders_school_allowance_secondary_independent_minimum_amount: '712.98'
-      flanders_school_allowance_secondary_independent_full_amount: '3268.73'
+    corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/46"
 units:
   - name: EUR
     kind: currency
@@ -102,10 +92,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/46
-              span: >-
-                Voor rechthebbende leerlingen als vermeld in artikel 24, in het
-                kleuteronderwijs bedraagt de selectieve participatietoeslag
-                103,70 euro.
+              excerpt: "Voor rechthebbende leerlingen als vermeld in artikel 24, in het kleuteronderwijs bedraagt de selectieve participatietoeslag 103,70 euro."
     versions:
       - effective_from: '2019-01-01'
         formula: '103.70'
@@ -123,7 +110,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/47
-              span: De minimale selectieve participatietoeslag bedraagt 121,01 euro.
+              excerpt: "De minimale selectieve participatietoeslag bedraagt 121,01 euro."
     versions:
       - effective_from: '2019-01-01'
         formula: '121.01'
@@ -140,10 +127,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/47
-              span: >-
-                Voor rechthebbende leerlingen als vermeld in artikel 24, in het
-                lager onderwijs bedraagt een volledige selectieve
-                participatietoeslag 188,19 euro.
+              excerpt: "Voor rechthebbende leerlingen als vermeld in artikel 24, in het lager onderwijs bedraagt een volledige selectieve participatietoeslag 188,19 euro."
     versions:
       - effective_from: '2019-01-01'
         formula: '188.19'
@@ -160,10 +144,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/47
-              span: >-
-                De uitzonderlijke selectieve participatietoeslag bedraagt voor
-                rechthebbende leerlingen als vermeld in artikel 24, in het lager
-                onderwijs 244,37 euro.
+              excerpt: "De uitzonderlijke selectieve participatietoeslag bedraagt voor rechthebbende leerlingen als vermeld in artikel 24, in het lager onderwijs 244,37 euro."
     versions:
       - effective_from: '2019-01-01'
         formula: '244.37'
@@ -181,7 +162,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/48
-              span: De minimale selectieve participatietoeslag bedraagt 712,98 euro.
+              excerpt: "De minimale selectieve participatietoeslag bedraagt 712,98 euro."
     versions:
       - effective_from: '2019-01-01'
         formula: '712.98'
@@ -198,11 +179,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-vlg/statute/decreet/2018/04/27/2018040369/article/48
-              span: >-
-                Voor gehuwde, zelfstandige of alleenstaande rechthebbende
-                leerlingen als vermeld in artikel 24, in het voltijds secundair
-                onderwijs is het bedrag van de volledige selectieve
-                participatietoeslag gelijk aan 3.268,73 euro.
+              excerpt: "Voor gehuwde, zelfstandige of alleenstaande rechthebbende leerlingen als vermeld in artikel 24, in het voltijds secundair onderwijs is het bedrag van de volledige selectieve participatietoeslag gelijk aan 3.268,73 euro."
     versions:
       - effective_from: '2019-01-01'
         formula: '3268.73'

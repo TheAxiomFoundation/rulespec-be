@@ -6,21 +6,7 @@ module:
     the statutory parameter surface and a mechanical total before shared-custody,
     childcare-reduction, resource, and household-composition limitations.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-181
-      - be/statute/fisconetplus/cir92/revenus-2025/page-182
-    values:
-      belgium_pit_base_tax_free_amount: 10910
-      belgium_pit_taxpayer_disability_tax_free_increase: 1980
-      belgium_pit_one_child_tax_free_increase: 1980
-      belgium_pit_two_children_tax_free_increase: 5110
-      belgium_pit_three_children_tax_free_increase: 11440
-      belgium_pit_four_children_tax_free_increase: 18510
-      belgium_pit_article_132_first_additional_child_count: 4
-      belgium_pit_additional_child_after_four_tax_free_increase: 7070
-      belgium_pit_child_under_3_tax_free_increase: 740
-      belgium_pit_dependent_elderly_tax_free_increase: 5950
-      belgium_pit_other_dependent_tax_free_increase: 1980
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-181"
 units:
   - name: EUR
     kind: currency
@@ -38,7 +24,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'Pour le calcul de l''impôt, un montant de base de 10.910 euros (montant indexé) est exempté d''impôt.'
+            excerpt: "Pour le calcul de l'impôt, un montant de base de 10.910 euros (montant indexé) est exempté d'impôt."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -55,7 +41,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'Ce montant est majoré de 1.980 euros (montant indexé) lorsque le contribuable est atteint d''un handicap.'
+            excerpt: "Ce montant est majoré de 1.980 euros (montant indexé) lorsque le contribuable est atteint d'un handicap."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -72,7 +58,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: 'Le montant de base fixé conformément à l''article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n''ayant pas atteint l''âge de 3 ans'
+            excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -89,7 +75,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: 'Le montant de base fixé conformément à l''article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n''ayant pas atteint l''âge de 3 ans'
+            excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -106,7 +92,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: 'Le montant de base fixé conformément à l''article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n''ayant pas atteint l''âge de 3 ans'
+            excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -123,7 +109,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: 'Le montant de base fixé conformément à l''article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n''ayant pas atteint l''âge de 3 ans'
+            excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -140,7 +126,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: '5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième;'
+            excerpt: "5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -165,7 +151,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: '6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n''ayant pas atteint l''âge de 3 ans au 1er janvier de l''exercice d''imposition'
+            excerpt: "6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans au 1er janvier de l'exercice d'imposition"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -182,7 +168,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: '7° pour chaque personne à charge visée à l''article 136, 2° et 3°, qui est dans une situation de dépendance et qui a atteint l''âge de 66 ans: 5.950 euros (montant indexé);'
+            excerpt: "7° pour chaque personne à charge visée à l'article 136, 2° et 3°, qui est dans une situation de dépendance et qui a atteint l'âge de 66 ans: 5.950 euros (montant indexé);"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -199,7 +185,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            span: '8° pour chaque autre personne à charge: 1.980 euros (montant indexé).'
+            excerpt: "8° pour chaque autre personne à charge: 1.980 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

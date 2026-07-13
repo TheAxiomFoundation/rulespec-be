@@ -1,108 +1,110 @@
+# Exact combined validator and independently executed companion-test failures.
+# CI will replace the bootstrap fingerprints below with authoritative values.
 validate_failures:
   be-bru/regulations/housing/social_housing_rental.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:81d00607355d3ec0c3b88423711c43a9d57c0a140b290fb175545af44bb2858f
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be-bru/statutes/disability/elderly_care_allowance.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:580671f286252af91e67af0191c38d1858dbbfc390cc0bbab6e3d3d809d05ea4
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be-vlg/regulations/social_security/flemish_social_protection/premium.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:fc7cc6ec4cda2cc004bcf400df298ca8c3f00bd98a46324db0d2e126d0b8de5a
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be-vlg/statutes/family_benefits/amounts.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:5285436e213125957159fd3793c34d7a21d595ee87933f6166c0fdc87a85f574
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be-wal/statutes/family_benefits/amounts.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:823828aeb5bc1a9ae507a9a3e5cc3b23a664a59b5c260fe5152babc2e6b1d90c
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be-wal/statutes/family_benefits/eligibility.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:73b9cd074a15a59e631b65bcdebb211950a1c4e4b5030a3fee54b5192a33099b
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be-wal/statutes/vehicle_tax/entry_into_service.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:4627c7d990534e7fd8b4a0294332fa8d0b452044a73542e51dbc3754c54993b5
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/policies/euromod_benefit_income_list.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:2a4d7a75c6ecbfd3a7294612340f469d8c3489d3ff34dd6547d1bbd7208dbc17
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/regulations/career_break/parental_leave/allowance_amounts.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:68bc0e6ea5fa9d5227aba4f4dfe41dff7da0b6f9396f79013b05150ac398c1cd
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/regulations/health_insurance/incapacity/indemnity_rates.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:7ba10449441f1127cabf8f55d9f7e3cb5cfeacda4e4a7458eb06e9732dc15006
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/regulations/unemployment/benefit_amount.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:e8d90f62dcfe886da91f987f07dbd07fabf960c3b721b933e2d9a13bc3cd730b
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/regulations/vat/rates.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:930619580657eabfaed67aecb8dc9d1cf16055b5d8a1ed5bd0931600c644cf87
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/statutes/family_benefits/birth_allowance.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:9642b51118fa1bc65b569ab5045243e9016527da6dfa6d92076974796809e3bb
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/statutes/family_benefits/child_benefit_base_2025.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:3a6e642865583b60660aa0e1bd9218728cce2bc4c48f61207a46feca3bf31c53
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/statutes/family_benefits/lgaf_amounts.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:c42d786999aaaaee68befe8d668a21acdcfdb4507ccf6fb301da45ddb721dfe0
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:7be41e2240cb136c5d75324f281ea05f58776da86c7d48af7105f2bb912e73b5
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/statutes/property_tax/immovable_withholding.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:c625fa46b1261310391a4778c37c83fdcff406bbb8ff354417d7352adec4f0de
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1
       owner: '@MaxGhenis'
   be/statutes/social_integration/payable_amount.yaml:
-    pending:
+    active:
       expires: '2026-10-10'
       fingerprint: sha256:2227e83acd5bcf3266a722c50b4278c5b5ea85e5e2f3af48a5c9557e0dc65aa6
       issue: https://github.com/TheAxiomFoundation/rulespec-be/issues/1

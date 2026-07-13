@@ -16,12 +16,7 @@ module:
     allocation and the non-take-up correction are out of scope for this
     deterministic routing.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/decreet/2007/06/08/2007036095/article/2
-      - be-wal/statute/decret/2021/11/18/2021022504/article/1er
-    values:
-      belgium_study_allowance_region_flanders: '2'
-      belgium_study_allowance_region_wallonia: '3'
+    corpus_citation_path: "be-vlg/statute/decreet/2007/06/08/2007036095/article/2"
 units:
   - name: EUR
     kind: currency
@@ -57,6 +52,14 @@ rules:
       residence: the Flemish Community amount for Flanders and the French-
       Community amount for Wallonia. Flemish and French-Community amounts are
       supplied by their respective encoded surfaces.
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-wal/statute/decret/2021/11/18/2021022504/article/1er"
+              excerpt: "Le Gouvernement accorde une allocation d'études à l'élève qui suit l'enseignement secondaire de plein exercice ou à l'étudiant qui suit l'enseignement supérieur de plein exercice"
     versions:
       - effective_from: '2019-01-01'
         formula: |-

@@ -16,43 +16,7 @@ module:
     elderly income guarantees, allocation/payment-recipient rules, and other
     EUROMOD income-list components remain separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/15
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
-      - be-wal/statute/decret/2018/02/08/2018201006/article/7
-      - be-wal/statute/decret/2018/02/08/2018201006/article/9
-      - be-wal/statute/decret/2018/02/08/2018201006/article/13
-      - be-wal/statute/decret/2018/02/08/2018201006/article/19
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-      - be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
-    upstream_source_check:
-      status: structural_composition_bridge
-      checked_paths:
-        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-        - be-bru/statute/ordonnance/2019/04/25/2019012118/article/16
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/9
-        - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-        - be-wal/statute/decret/2018/02/08/2018201006/article/7
-        - be-wal/statute/decret/2018/02/08/2018201006/article/9
-      rationale: |-
-        The aggregate introduces no new statutory amounts. It adds together
-        family-benefit component outputs whose own modules cite the regional
-        and community statutes, decrees, ordinances, and official amount
-        tables that govern the component calculations.
-    values:
-      belgium_euromod_ils_ben_child_benefit_selector_supplied: 0
-      belgium_euromod_ils_ben_child_benefit_selector_base: 1
-      belgium_euromod_ils_ben_child_benefit_selector_brussels_one_child_social_supplement: 2
-      belgium_euromod_ils_ben_child_benefit_selector_brussels_same_age_household_social_supplement: 3
-      belgium_euromod_ils_ben_child_benefit_selector_wallonia_social_supplement: 4
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/7"
 units:
   - name: EUR
     kind: currency

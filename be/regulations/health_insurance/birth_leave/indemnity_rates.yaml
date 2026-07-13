@@ -13,14 +13,7 @@ module:
     scheduling, average-daily-wage construction, the indexed Article 87 maximum,
     and payment procedure to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1978/07/03/1978070303/article/30
-      - be/regulation/arrete/1996/07/03/1996022344/article/223bis
-    values:
-      belgium_birth_leave_article_30_total_days: "20"
-      belgium_birth_leave_article_30_employer_paid_days: "3"
-      belgium_birth_leave_article_223bis_health_insurance_days: "17"
-      belgium_birth_leave_article_223bis_indemnity_rate: "0.82"
+    corpus_citation_path: "be/statute/loi/1978/07/03/1978070303/article/30"
 units:
   - name: EUR
     kind: currency
@@ -37,7 +30,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
-              span: Le droit à quinze jours de congé de naissance est étendu à vingt jours pour les naissances qui ont lieu à partir du 1er janvier 2023.
+              excerpt: "Le droit à quinze jours de congé de naissance, tel que visé à l'alinéa 1er, est étendu à vingt jours pour les naissances qui ont lieu à partir du 1er janvier 2023.]"
     versions:
       - effective_from: '2023-01-01'
         formula: |-
@@ -53,7 +46,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
-              span: Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération.
+              excerpt: "Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération."
     versions:
       - effective_from: '2002-07-01'
         formula: |-
@@ -69,7 +62,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
-              span: Le travailleur visé a droit à une indemnité pendant les dix-sept derniers jours de congé de naissance.
+              excerpt: "Art.\n223bis\n.<inséré par AR 2002-06-11/34, art. 1;\nEn vigueur :\n01-07-2002> § 1er. Le travailleur visé à l'article 86, § 1er, 1° a) , de la loi coordonnée, à l'exclusion du travailleur qui bénéficie d'une indemnité pour rupture du contrat de travail visée audit article, a droit à une indemnité pendant les [\n3\ndix-sept]\n3\nderniers jours de congé [\n3\n...]\n3\n[\n1\nde naissance ]\n1\n[\n2\n...]\n2\n[\n1\n...]\n1\n.\n[\n2\n[\n3\n...]\n3\n]\n2\nL'indemnité visée [\n2\n[\n3\nà l'alinéa 1er]\n3\n]\n2\nest allouée pour les jours de"
     versions:
       - effective_from: '2023-01-01'
         formula: |-
@@ -85,7 +78,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
-              span: Le taux de l'indemnité est fixé à 82 % de la rémunération perdue.
+              excerpt: "Le taux de l'indemnité est fixé à 82 % de la rémunération perdue (déterminée conformément aux dispositions de l'arrêté royal du 10 juin 2001 établissant la notion uniforme de \"rémunération journalière moyenne\" en application de l'article 39 de la loi du 26 juillet 1996 portant modernisation de la sécurité sociale et assurant la viabilité des régimes légaux des pensions et harmonisant certaines dispositions légales, et sur base des modalités fixées par le règlement visé à l'["
     versions:
       - effective_from: '2002-07-01'
         formula: |-
@@ -126,7 +119,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
-              excerpt: Le travailleur visé a droit à une indemnité pendant les dix-sept derniers jours de congé de naissance; le taux est fixé à 82 % de la rémunération perdue.
+              excerpt: "audit article, a droit à une indemnité pendant les [\n3\ndix-sept]\n3\nderniers jours de congé [\n3\n...]\n3\n[\n1\nde naissance ]\n1\n[\n2\n...]\n2\n[\n1\n...]\n1\n.\n[\n2\n[\n3\n...]\n3\n]\n2\nL'indemnité visée [\n2\n[\n3\nà l'alinéa 1er]\n3\n]\n2\nest allouée pour les jours de congé [\n3\n...]\n3\n[\n1\nde naissance]\n1\ncoïncidant avec des jours au cours desquels le travailleur aurait normalement travaillé, selon son régime de travail. Le taux de l'indemnité est fixé à 82 % de la rémunération perdue (déterminée conformément aux"
     versions:
       - effective_from: '2002-07-01'
         formula: |-
@@ -145,7 +138,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/223bis
-              excerpt: Le travailleur visé a droit à une indemnité pendant les dix-sept derniers jours de congé de naissance; le taux est fixé à 82 % de la rémunération perdue.
+              excerpt: "audit article, a droit à une indemnité pendant les [\n3\ndix-sept]\n3\nderniers jours de congé [\n3\n...]\n3\n[\n1\nde naissance ]\n1\n[\n2\n...]\n2\n[\n1\n...]\n1\n.\n[\n2\n[\n3\n...]\n3\n]\n2\nL'indemnité visée [\n2\n[\n3\nà l'alinéa 1er]\n3\n]\n2\nest allouée pour les jours de congé [\n3\n...]\n3\n[\n1\nde naissance]\n1\ncoïncidant avec des jours au cours desquels le travailleur aurait normalement travaillé, selon son régime de travail. Le taux de l'indemnité est fixé à 82 % de la rémunération perdue (déterminée conformément aux"
     versions:
       - effective_from: '2023-01-01'
         formula: |-
@@ -167,7 +160,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/30
-              excerpt: Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération; le congé de naissance est étendu à vingt jours.
+              excerpt: "Pendant les trois premiers jours d'absence, le travailleur bénéficie du maintien de sa rémunération.\nPendant les [\n4\ndouze jours]"
     versions:
       - effective_from: '2023-01-01'
         formula: |-

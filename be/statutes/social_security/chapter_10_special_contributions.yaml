@@ -17,37 +17,7 @@ module:
     external certification, delegated index factors, and household integration
     to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1981/06/29/1981001048/article/38
-      - be/statute/loi/1981/06/29/1981001048/article/39
-      - be/statute/loi/1981/06/29/1981001048/article/39ter
-      - be/statute/loi/1981/06/29/1981001048/article/39quater
-      - be/statute/loi/1969/06/27/1969062710/article/5-2
-      - be/statute/loi/1980/09/01/1980090102/document
-    values:
-      belgium_article_38_section_3ter_second_pillar_rate: "0.0886"
-      belgium_article_38_section_3septies_profit_premium_rate: "0.1307"
-      belgium_article_38_section_3novies_nonrecurring_employer_rate: "0.33"
-      belgium_article_38_section_3novies_nonrecurring_worker_rate: "0.1307"
-      belgium_article_38_section_3novies_nonrecurring_base_cap: "3169"
-      belgium_article_38_section_3terdecies_wijninckx_rate: "0.125"
-      belgium_article_38_section_3quater_petrol_subtractor: "768"
-      belgium_article_38_section_3quater_diesel_subtractor: "600"
-      belgium_article_38_section_3quater_lpg_gas_subtractor: "990"
-      belgium_article_38_section_3quater_formula_multiplier_per_co2_gram: "9"
-      belgium_article_38_section_3quater_months_in_year: "12"
-      belgium_article_38_section_3quater_new_vehicle_multiplier_2026: "4"
-      belgium_article_38_section_3quater_new_vehicle_minimum_2026: "25.99"
-      belgium_article_38_section_3sexies_economic_unemployment_first_threshold_days: "110"
-      belgium_article_38_section_3sexies_economic_unemployment_second_threshold_days: "130"
-      belgium_article_38_section_3sexies_economic_unemployment_third_threshold_days: "150"
-      belgium_article_38_section_3sexies_economic_unemployment_fourth_threshold_days: "170"
-      belgium_article_38_section_3sexies_economic_unemployment_fifth_threshold_days: "200"
-      belgium_article_38_section_3sexies_economic_unemployment_first_rate: "20"
-      belgium_article_38_section_3sexies_economic_unemployment_second_rate: "40"
-      belgium_article_38_section_3sexies_economic_unemployment_third_rate: "60"
-      belgium_article_38_section_3sexies_economic_unemployment_fourth_rate: "80"
-      belgium_article_38_section_3sexies_economic_unemployment_fifth_rate: "100"
+    corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/38"
 units:
   - name: EUR
     kind: currency
@@ -64,7 +34,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "1° (7,5 p.c.) du montant de sa rémunération, pour les travailleurs soumis au régime des pensions de retraite et de survie des travailleurs salariés"
+              excerpt: "1° (7,5 p.c.) du montant de sa rémunération, (pour les travailleurs soumis) au régime des pensions de retraite et de survie des travailleurs salariés;"
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -80,7 +50,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "2° 1,15 p.c. du montant de sa rémunération pour les travailleurs soumis au régime d'assurance obligatoire contre la maladie et l'invalidité"
+              excerpt: "2° 1,15 p.c. du montant de sa rémunération (pour les travailleurs soumis) au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des indemnités);"
     versions:
       - effective_from: '2003-01-01'
         formula: |-
@@ -96,7 +66,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "3° 0,87 p.c. du montant de sa rémunération pour les travailleurs soumis au régime relatif à l'emploi et au chômage"
+              excerpt: "3° 0,87 p.c. du montant de sa rémunération (pour les travailleurs soumis) au régime relatif à l'emploi et au chômage;"
     versions:
       - effective_from: '1994-03-30'
         formula: |-
@@ -112,7 +82,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "4° (3,55 p.c.) du montant de sa rémunération pour les travailleurs soumis au régime d'assurance obligatoire contre la maladie et l'invalidité"
+              excerpt: "4° (3,55 p.c.) du montant de sa rémunération (pour les travailleurs soumis) au régime d'assurance obligatoire contre la maladie et l'invalidité (secteur des soins de santé)."
     versions:
       - effective_from: '1992-07-01'
         formula: |-
@@ -145,6 +115,14 @@ rules:
     period: Year
     unit: EUR
     source: Law of 29 June 1981 establishing general principles of employee social security, article 39
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/39"
+              excerpt: "Une retenue égale au total des taux de cotisations des travailleurs salariés fixés à l'article 38, § 2, est opérée sur la partie du pécule de vacances légal qui ne correspond pas à la rémunération normale pour les jours de vacances, à l'exception du double pécule de vacances légal à partir du troisième jour de la quatrième semaine de vacances."
     versions:
       - effective_from: '2001-01-01'
         formula: |-
@@ -156,6 +134,14 @@ rules:
     period: Year
     unit: EUR
     source: Law of 29 June 1981 establishing general principles of employee social security, articles 39ter and 39quater
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/39ter"
+              excerpt: "- les organismes fédéraux auxquels s'applique la loi du 28 avril 1958 relative à la pension des membres du personnel de certains organismes d'intérêt public et de leurs ayants droit non visés ci-avant;"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -167,6 +153,14 @@ rules:
     period: Year
     unit: EUR
     source: Law of 29 June 1981 establishing general principles of employee social security, articles 39ter and 39quater
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/39quater"
+              excerpt: "Une retenue égale au total des taux de cotisations fixés à l'article 38, § 2, est opérée pour les membres du personnel nommés à titre définitif des organismes et pouvoirs visés à l'article 39ter."
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -182,7 +176,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Le taux de cette cotisation est fixé à 13,07 % du montant liquidé.
+              excerpt: "Le taux de cette cotisation est fixé à 13,07 % du montant liquidé."
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -209,7 +203,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: A partir du 1er janvier 1989, il est instauré une cotisation spéciale égale à (8,86 p.c.)
+              excerpt: "A partir du 1er janvier 1989, il est instauré une cotisation spéciale égale à (8,86 p.c.)"
     versions:
       - effective_from: '1992-07-01'
         formula: |-
@@ -247,7 +241,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: La cotisation spéciale due par l'organisateur pour le travailleur concerné est égale à 12,50 % de sa quote-part dans le montant de la variation des réserves acquises.
+              excerpt: "La cotisation spéciale due par l'organisateur pour le travailleur concerné est égale à [\n61\n12,50 %]\n61\nde sa quote-part dans le montant de la variation des réserves acquises, ou à défaut de réserves acquises, des réserves afférentes à la pension complémentaire de retraite ou de survie au cours de l'année qui précède l'année de cotisation."
     versions:
       - effective_from: '2025-07-01'
         formula: |-
@@ -311,7 +305,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "Pour les véhicules à essence : ((Y x 9 euros) - 768) : 12"
+              excerpt: "Pour les véhicules à essence : ((Y x 9 euros) - 768) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -328,7 +322,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "Pour les véhicules à essence : ((Y x 9 euros) - 768) : 12"
+              excerpt: "Pour les véhicules à essence : ((Y x 9 euros) - 768) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -345,7 +339,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "Pour les véhicules au diesel : ((Y x 9 euros) - 600) : 12"
+              excerpt: "Pour les véhicules au diesel : ((Y x 9 euros) - 600) : 12"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -362,7 +356,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "Les employeurs qui mettent à disposition des véhicules équipés d'un moteur à allumage commandé fonctionnant au gaz de pétrole liquéfié, au gaz naturel ou méthane, sont soumis une cotisation de solidarité déterminée comme suit : ((Y x 9 euros) - 990) : 12"
+              excerpt: "CO2 du véhicule comme s'il appartenait à la catégorie M1.\n7° Les employeurs qui mettent à disposition des véhicules équipés d'un moteur à allumage commandé fonctionnant au gaz de pétrole liquéfié [\n50\n, au gaz naturel ou méthane]\n50\ninstallé conformément aux dispositions légales en vigueur sont soumis une cotisation de solidarité déterminée comme suit :\n((Y x 9 euros) - 990) : 12;\nY étant le taux d'émission de CO2 en grammes par kilomètre tel que mentionné dans le certificat de conformité ou"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -395,7 +389,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Cette cotisation mensuelle, qui ne peut être inférieure à 20,83 euros, est fixée forfaitairement comme suit
+              excerpt: "Cette cotisation mensuelle, qui ne peut être inférieure à 20,83 euros, est fixée forfaitairement comme suit"
     versions:
       - effective_from: '2005-01-01'
         formula: |-
@@ -419,7 +413,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "la cotisation calculée : multipliée par un facteur de 4,00 à partir du 1er janvier 2026"
+              excerpt: "a) la cotisation calculée : multipliée par un facteur de 2,25 à partir du 1er juillet 2023, par un facteur de 2,75 à partir du 1er janvier 2025, par un facteur de 4,00 à partir du 1er janvier 2026 et par un facteur de 5,50 à partir du 1er janvier 2027 ;"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -436,7 +430,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "la cotisation minimale : passer à 23,41 à partir du 1er janvier 2025, à 25,99 à partir du 1er janvier 2026"
+              excerpt: "la cotisation minimale : passer à 23,41 à partir du 1er janvier 2025, à 25,99 à partir du 1er janvier 2026"
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -554,7 +548,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Y = 20
+              excerpt: "Y = 20"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -571,7 +565,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Y = 40
+              excerpt: "Y = 40"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -588,7 +582,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Y = 60
+              excerpt: "Y = 60"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -605,7 +599,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Y = 80
+              excerpt: "Y = 80"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -622,7 +616,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Y = 100
+              excerpt: "Y = 100"
     versions:
       - effective_from: '2017-01-01'
         formula: |-
@@ -687,7 +681,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: "Une cotisation spéciale de 33 % est due par l'employeur sur le montant des avantages non récurrents liés aux résultats, et cela à concurrence d'un plafond de 3.169 euros par année calendrier par travailleur"
+              excerpt: "Une cotisation spéciale de 33 % est due par l'employeur sur le montant des avantages non récurrents liés aux résultats accordés en application du chapitre II de la loi du 21 décembre 2007 relative à l'exécution de l'accord interprofessionnel 2007-2008, ainsi que du Titre XIII, Chapitre unique \" Mise en place d'un système d'avantages non récurrents liés aux résultats pour les entreprises publiques autonomes \" de la loi du 24 juillet 2008 portant des dispositions diverses (I) et cela à concurrence d'un plafond de [\n25\n3.169 euros]\n25\npar année calendrier par travailleur chez chaque employeur qui l'occupe."
     versions:
       - effective_from: '2016-01-01'
         formula: |-
@@ -703,7 +697,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Une cotisation spéciale de 33 % est due par l'employeur sur le montant des avantages non récurrents liés aux résultats.
+              excerpt: "3novies.\n[\n18\nUne cotisation spéciale de 33 % est due par l'employeur sur le montant des avantages non récurrents liés aux résultats accordés en application du chapitre II de la loi du 21 décembre 2007 relative à l'exécution de l'accord interprofessionnel 2007-2008, ainsi que du Titre XIII, Chapitre unique \" Mise en place d'un système d'avantages non récurrents liés aux résultats pour les entreprises publiques autonomes \" de la loi du 24 juillet 2008 portant des dispositions"
     versions:
       - effective_from: '2012-01-01'
         formula: |-
@@ -719,7 +713,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1981/06/29/1981001048/article/38
-              span: Une cotisation de solidarité de 13,07 % est également due par le travailleur sur le montant visé à l'alinéa 1er.
+              excerpt: "Une cotisation de solidarité de 13,07 % est également due par le travailleur sur le montant visé à l'alinéa 1er et cela à concurrence du même plafond de ["
     versions:
       - effective_from: '2012-01-01'
         formula: |-
@@ -775,6 +769,14 @@ rules:
     period: Year
     unit: EUR
     source: Federal law of 27 June 1969, article 5/2 section 3, collecting the contribution referred to by article 4 of the 1 September 1980 public-sector union-premium law
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1969/06/27/1969062710/article/5-2"
+              excerpt: "L'Office Nationale de Sécurité sociale est également chargé de percevoir la cotisation visée à l'article 4 de la loi du 1er septembre 1980 relative à l'octroi et au paiement d'une prime syndicale à certains membres du personnel du secteur public."
     versions:
       - effective_from: '2017-01-01'
         formula: |-

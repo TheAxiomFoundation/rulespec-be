@@ -10,20 +10,20 @@ module:
     maintenance-right facts. It does not decide CPAS equity, proof, PIIS
     contract contents, or payable revenu d'integration amounts.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/2002/05/26/2002022559/article/3
-      - be/statute/loi/2002/05/26/2002022559/article/4
-      - be/statute/loi/2002/05/26/2002022559/article/7
-      - be/statute/loi/1804/03/21/1804032150/article/488
-      - be/regulation/arrete/2002/07/11/2002022564/article/2
-    values:
-      belgium_social_integration_adult_age_years: 18
-      belgium_social_integration_eu_residence_first_months_excluded: 3
+    corpus_citation_path: "be/statute/loi/2002/05/26/2002022559/article/3"
 rules:
   - name: belgium_social_integration_adult_age_years
     kind: parameter
     dtype: Count
     source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 2, and Civil Code article 488
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/loi/1804/03/21/1804032150/article/488"
+              excerpt: "La majorite est fixee a dix-huit ans accomplis"
     versions:
       - effective_from: '2002-10-01'
         formula: |-
@@ -42,6 +42,14 @@ rules:
     dtype: Count
     period: Day
     source: Royal Decree of 11 July 2002 on the general regulation for social integration, article 2, implementing law article 3 item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/2002/07/11/2002022564/article/2"
+              excerpt: "Est considéré comme ayant sa résidence effective en Belgique au sens de l'article 3, 1°, de la loi, celui qui séjourne habituellement et en permanence sur le territoire du Royaume, même s'il ne dispose pas d'un logement ou s'il n'est pas inscrit dans les registres de la population visés à l'article 1, § 1, 1°, de la loi du 19 juillet 1991 relative aux registres de la population, pour autant qu'il soit autorisé au séjour sur le territoire du Royaume."
     versions:
       - effective_from: '2002-10-01'
         formula: |-
@@ -74,6 +82,19 @@ rules:
     dtype: Count
     period: Day
     source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 2 and article 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2002/05/26/2002022559/article/7"
+              excerpt: "Est assimilée à une personne majeure, la personne mineure d'âge qui soit est émancipée par mariage, soit a un ou plusieurs enfants à sa charge, soit prouve qu'elle est enceinte."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1804/03/21/1804032150/article/488"
+              excerpt: "La majorite est fixee a dix-huit ans accomplis; a cet age, on est capable de tous les actes de la vie civile."
     versions:
       - effective_from: '2002-10-01'
         formula: |-
@@ -87,6 +108,14 @@ rules:
     dtype: Count
     period: Day
     source: Federal law of 26 May 2002 concerning the right to social integration, article 3 item 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2002/05/26/2002022559/article/3"
+              excerpt: "soit bénéficier de la protection subsidiaire au sens de l'article 49/2 de la loi du 15 décembre 1980 sur l'accès au territoire, le séjour, l'établissement et l'éloignement des étrangers;"
     versions:
       - effective_from: '2016-12-01'
         formula: |-
@@ -150,6 +179,14 @@ rules:
     dtype: Count
     period: Day
     source: Federal law of 26 May 2002 concerning the right to social integration, article 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/2002/05/26/2002022559/article/4"
+              excerpt: "Il peut être imposé à l'intéressé de faire valoir ses droits à l'égard des personnes qui lui doivent des aliments, ces dernières étant limitées à : son conjoint ou, le cas échéant, son ex-conjoint;"
     versions:
       - effective_from: '2002-10-01'
         formula: |-

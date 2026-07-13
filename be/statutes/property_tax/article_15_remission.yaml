@@ -15,13 +15,7 @@ module:
     affected cadastral-income shares, and day counts; it excludes application
     procedure, proof, administrative discretion, and Flanders.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-58
-      - be/statute/fisconetplus/cir92/revenus-2025/page-59
-      - be/statute/fisconetplus/cir92/revenus-2025/page-446
-    values:
-      belgium_immovable_withholding_article_15_minimum_days: 90
-      belgium_immovable_withholding_article_15_equipment_or_destroyed_minimum_share: "0.25"
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-58"
 units:
   - name: EUR
     kind: currency
@@ -31,6 +25,14 @@ rules:
     kind: parameter
     dtype: Integer
     source: CIR 1992 article 15 section 1 items 1 and 2, minimum days in the year
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-59
+              excerpt: "est resté inoccupé et improductif pendant au moins 90 jours dans le courant de l'année"
     versions:
       - effective_from: '2022-01-01'
         formula: |-
@@ -46,7 +48,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-59
-              span: une partie de ceux-ci représentant au moins 25 % de leur revenu cadastral
+              excerpt: "une partie de ceux-ci représentant au moins 25 % de leur revenu cadastral"
     versions:
       - effective_from: '2022-01-01'
         formula: |-

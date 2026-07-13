@@ -1,8 +1,7 @@
+# Canonical corpus binding (axiom-encode#1101). This repository consumes
+# exactly one immutable signed corpus release; the shared validate workflow
+# verifies the release object signature, content hash, and waiver-set hash.
 [toolchain]
-axiom_encode_version = "0.2.1188"
-axiom_encode_ref = "a8e70e54517ad90e17e503f6f97f55dc5e0e754a"
-axiom_rules_engine_ref = "c6cc389a8f5e7238019e4fa06849325fad9acd46"
-axiom_corpus_ref = "8e48989c9e46faa6d85a9624b7a2ebda0880656d"
-rulespec_nz_ref = "7d132f7538cc74c69f4df66bd5899a716b8bf569"
-rulespec_uk_ref = "e79d988049deaf5b1f53d3bf23888b97d3e77280"
-rulespec_us_ref = "f33865bb425912461ad5dea642eaa46774e968af"
+axiom_corpus_release = "be-rulespec-2026-07-10"
+axiom_corpus_release_content_sha256 = "c1436c9f99882a819773bc2ccddf8c2a67e41efd24b0d0a408493ba5da39964a"
+validation_waiver_set_sha256 = "258a1b9eae033e2e3cff6982bccc596d755bc5e0094b6d51eba5841f532bed25"
