@@ -25,10 +25,7 @@ rules:
         kind: formula
         source:
           corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93bis
-          excerpt: "Le montant journalier ... aux travailleurs non r\xE9guliers ayant\
-            \ des personnes \xE0 charge ne peut en aucun cas \xEAtre inf\xE9rieur\
-            \ au montant du revenu d'int\xE9gration, \xE9valu\xE9 en jours ouvrables\
-            \ ... \xE0 deux personnes qui cohabitent."
+          excerpt: "En vigueur :\n29-09-1995> (Le montant journalier de l'indemnité d'invalidité minimum qui est octroyé aux travailleurs non réguliers ayant des personnes à charge ne peut en aucun cas être inférieur au montant du revenu d'intégration, évalué en jours ouvrables, octroyé en vertu de la loi du 26 mai 2002 concernant le droit à l'intégration sociale, à deux personnes qui cohabitent.) <L 2002-12-24/31, art. 252, 077;"
       - path: versions[0].formula
         kind: condition
         source:
@@ -53,9 +50,7 @@ rules:
         kind: formula
         source:
           corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/93bis
-          excerpt: "Pour les titulaires n'ayant pas de personne \xE0 charge, ce montant\
-            \ correspond au montant du revenu d'int\xE9gration, \xE9valu\xE9 en jours\
-            \ ouvrables ... \xE0 une personne isol\xE9e."
+          excerpt: "(Pour les titulaires n'ayant pas de personne à charge, ce montant correspond au montant du revenu d'intégration, évalué en jours ouvrables, octroyé en vertu de la même loi à une personne isolée.) <L 2002-12-24/31, art."
   versions:
   - effective_from: '2002-10-01'
     formula: 'if holder_has_no_person_at_charge: daily_revenu_integration_for_isolated_person_evaluated_in_working_days

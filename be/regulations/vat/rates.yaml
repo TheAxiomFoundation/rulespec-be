@@ -16,23 +16,7 @@ module:
 
     and special temporary measures remain separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/regulation/arrete/1970/07/20/1970072012/document
-    - be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-    - be/regulation/fisconetplus/vat/royal-decree-20/TABLEAU A
-    - be/regulation/fisconetplus/vat/royal-decree-20/TABLEAU B
-    - be/regulation/fisconetplus/vat/royal-decree-20/TABLEAU C
-    - be/statute/fisconetplus/vat-code/Article 41
-    - be/statute/fisconetplus/vat-code/Article 44
-    values:
-      belgium_vat_standard_rate: 0.21
-      belgium_vat_reduced_rate: 0.12
-      belgium_vat_super_reduced_rate: 0.06
-      belgium_vat_zero_rate: 0
-      belgium_vat_household_consumption_category_food: 1
-      belgium_vat_household_consumption_category_residential_energy: 3
-      belgium_vat_household_consumption_category_restaurant_catering: 5
-      belgium_vat_household_consumption_category_periodic_publications: 6
+    corpus_citation_path: "be/regulation/arrete/1970/07/20/1970072012/document"
 units:
 - name: EUR
   kind: currency
@@ -49,7 +33,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-          span: "Le taux normal de la taxe sur la valeur ajoutée applicable aux biens et services visés par le Code est fixé à 21 p.c."
+          excerpt: "Le taux normal de la taxe sur la valeur ajoutée applicable aux biens et services visés par le Code est fixé à 21 p.c."
   versions:
   - effective_from: '2012-01-01'
     formula: '0.21'
@@ -64,7 +48,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-          span: "b) 12 p.c. en ce qui concerne les biens et services énumérés au tableau B de l'annexe au présent arrêté."
+          excerpt: "b) 12 p.c. en ce qui concerne les biens et services énumérés au tableau B de l'annexe au présent arrêté."
   versions:
   - effective_from: '2012-01-01'
     formula: '0.12'
@@ -79,7 +63,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-          span: "a) 6 p.c. en ce qui concerne les biens et services énumérés au tableau A de l'annexe au présent arrêté."
+          excerpt: "a) 6 p.c. en ce qui concerne les biens et services énumérés au tableau A de l'annexe au présent arrêté."
   versions:
   - effective_from: '2012-01-01'
     formula: '0.06'
@@ -94,7 +78,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-          span: "c) 0 p.c. en ce qui concerne les biens et services énumérés au tableau C de l'annexe au présent arrêté."
+          excerpt: "c) 0 p.c. en ce qui concerne les biens et services énumérés au tableau C de l'annexe au présent arrêté."
   versions:
   - effective_from: '2019-04-01'
     formula: '0'
@@ -179,7 +163,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-          span: "a) 6 p.c. en ce qui concerne les biens et services énumérés au tableau A de l'annexe au présent arrêté."
+          excerpt: "a) 6 p.c. en ce qui concerne les biens et services énumérés au tableau A de l'annexe au présent arrêté."
   versions:
   - effective_from: '2019-04-01'
     formula: '6'
@@ -194,7 +178,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/fisconetplus/vat/royal-decree-20/Article 1
-          span: "b) 12 p.c. en ce qui concerne les biens et services énumérés au tableau B de l'annexe au présent arrêté."
+          excerpt: "b) 12 p.c. en ce qui concerne les biens et services énumérés au tableau B de l'annexe au présent arrêté."
   versions:
   - effective_from: '2019-04-01'
     formula: '12'

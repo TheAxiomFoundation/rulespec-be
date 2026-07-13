@@ -13,16 +13,7 @@ module:
     does not add other exemptions, special reduced rates, filing rules,
     anti-avoidance rules, or household transaction classification.
   source_verification:
-    corpus_citation_paths:
-      - be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.8.4.1.1/version-1461936
-      - be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72/block-1
-      - be-bru/statute/fisconetplus/registration-code/article-131bis/guid-f7c88ad4-32bc-4599-adcd-2409f7c71192/block-1
-      - be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305/block-1
-      - be-wal/statute/fisconetplus/registration-code/article-131bis/guid-9bac3e5f-2e86-4a74-a79e-6466f91b104d/block-1
-    values:
-      belgium_tax_region_flanders: 0
-      belgium_tax_region_brussels: 1
-      belgium_tax_region_wallonia: 2
+    corpus_citation_path: "be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.8.4.1.1/version-1461936/block-1"
 rules:
   - name: belgium_tax_region_flanders
     kind: parameter

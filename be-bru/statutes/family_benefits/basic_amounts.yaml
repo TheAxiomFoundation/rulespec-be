@@ -6,17 +6,7 @@ module:
     base amount only; orphan, social, disability, placement, and eligibility
     rules remain separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-    values:
-      brussels_family_benefits_unique_child_without_listed_supplement_monthly_amount: "150"
-      brussels_family_benefits_under_12_monthly_amount: "150"
-      brussels_family_benefits_12_to_17_monthly_amount: "160"
-      brussels_family_benefits_18_to_24_higher_education_monthly_amount: "170"
-      brussels_family_benefits_18_to_24_other_monthly_amount: "160"
-      brussels_family_benefits_age_12_years: "12"
-      brussels_family_benefits_age_18_years: "18"
-      brussels_family_benefits_age_24_years: "24"
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/7"
 units:
   - name: EUR
     kind: currency
@@ -34,7 +24,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(a); amount 150 EUR
+              excerpt: "Art.\n7\n.Les allocations familiales de base s'élèvent à :\na) 150 euros pour un enfant bénéficiaire unique qui ne bénéficie pas d'un supplément visé aux articles 8, 9 ou 12 ;"
     versions:
       - effective_from: '2022-01-01'
         formula: |-
@@ -51,7 +41,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b); amount 150 EUR
+              excerpt: "Art.\n7\n.Les allocations familiales de base s'élèvent à :\na) 150 euros pour un enfant bénéficiaire unique qui ne bénéficie pas d'un supplément visé aux articles 8, 9 ou 12 ;"
     versions:
       - effective_from: '2022-01-01'
         formula: |-
@@ -68,7 +58,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b); amount 160 EUR
+              excerpt: "Art.\n7\n.Les allocations familiales de base s'élèvent à :\na) 150 euros pour un enfant bénéficiaire unique qui ne bénéficie pas d'un supplément visé aux articles 8, 9 ou 12 ;\nb) dans les autres cas :\n- 150 euros pour un enfant bénéficiaire de 0 à 11 ans ;\n- 160 euros pour un enfant bénéficiaire de 12 à 17 ans ;\n- 170 euros pour un enfant bénéficiaire de 18 à 24 ans, au plus tôt à partir du 1er septembre, s'il est inscrit dans l'enseignement supérieur ou 160 euros si cette dernière condition n'est"
     versions:
       - effective_from: '2022-01-01'
         formula: |-
@@ -85,7 +75,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b); amount 170 EUR
+              excerpt: "Art.\n7\n.Les allocations familiales de base s'élèvent à :\na) 150 euros pour un enfant bénéficiaire unique qui ne bénéficie pas d'un supplément visé aux articles 8, 9 ou 12 ;\nb) dans les autres cas :\n- 150 euros pour un enfant bénéficiaire de 0 à 11 ans ;\n- 160 euros pour un enfant bénéficiaire de 12 à 17 ans ;\n- 170 euros pour un enfant bénéficiaire de 18 à 24 ans, au plus tôt à partir du 1er septembre, s'il est inscrit dans l'enseignement supérieur ou 160 euros si cette dernière condition n'est"
     versions:
       - effective_from: '2022-01-01'
         formula: |-
@@ -102,7 +92,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-              span: Brussels ordinance of 25 April 2019 regulating family benefits, article 7(b); amount 160 EUR
+              excerpt: "Art.\n7\n.Les allocations familiales de base s'élèvent à :\na) 150 euros pour un enfant bénéficiaire unique qui ne bénéficie pas d'un supplément visé aux articles 8, 9 ou 12 ;\nb) dans les autres cas :\n- 150 euros pour un enfant bénéficiaire de 0 à 11 ans ;\n- 160 euros pour un enfant bénéficiaire de 12 à 17 ans ;\n- 170 euros pour un enfant bénéficiaire de 18 à 24 ans, au plus tôt à partir du 1er septembre, s'il est inscrit dans l'enseignement supérieur ou 160 euros si cette dernière condition n'est"
     versions:
       - effective_from: '2022-01-01'
         formula: |-

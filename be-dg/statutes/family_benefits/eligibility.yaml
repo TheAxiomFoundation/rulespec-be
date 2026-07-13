@@ -12,14 +12,7 @@ module:
     and abducted-child rules, and a final age-25 cap. Delegated residence,
     training, employment, and impairment proof rules remain supplied inputs.
   source_verification:
-    corpus_citation_paths:
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1
-    values:
-      german_speaking_community_family_benefits_standard_age_years: 18
-      german_speaking_community_family_benefits_disability_extension_age_years: 21
-      german_speaking_community_family_benefits_final_age_cap_years: 25
-      german_speaking_community_family_benefits_article_10_extension_months: 12
-      german_speaking_community_family_benefits_disappeared_child_max_months: 60
+    corpus_citation_path: "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1"
 units:
   - name: EUR
     kind: currency

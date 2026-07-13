@@ -13,45 +13,20 @@ module:
     assimilated-day classification, medical recognition, and documentary proof
     to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1994/07/14/1994071451/article/113
-      - be/statute/loi/1994/07/14/1994071451/article/128
-      - be/statute/loi/1994/07/14/1994071451/article/130
-      - be/regulation/arrete/1996/07/03/1996022344/article/203
-      - be/regulation/arrete/1996/07/03/1996022344/article/203-1
-      - be/regulation/arrete/1996/07/03/1996022344/article/205-1
-      - be/regulation/arrete/1996/07/03/1996022344/article/206
-      - be/regulation/arrete/1996/07/03/1996022344/article/206-1
-      - be/regulation/arrete/1996/07/03/1996022344/article/207
-      - be/regulation/arrete/1996/07/03/1996022344/article/207-1
-      - be/regulation/arrete/1996/07/03/1996022344/article/207-2
-    values:
-      belgium_health_incapacity_waiting_reference_months: "12"
-      belgium_health_incapacity_waiting_work_days: "180"
-      belgium_health_incapacity_waiting_part_time_hours: "800"
-      belgium_health_incapacity_waiting_part_time_max_reference_months: "36"
-      belgium_health_maternity_waiting_reference_months: "6"
-      belgium_health_maternity_waiting_work_days: "120"
-      belgium_health_maternity_waiting_part_time_hours: "400"
-      belgium_health_maternity_waiting_part_time_impossible_hours: "133"
-      belgium_health_incapacity_self_employed_transfer_reference_months: "6"
-      belgium_health_incapacity_self_employed_transfer_work_days: "90"
-      belgium_health_incapacity_self_employed_transfer_part_time_hours: "400"
-      belgium_health_incapacity_self_employed_transfer_part_time_max_reference_months: "18"
-      belgium_health_maternity_reentry_one_month_work_days: "20"
-      belgium_health_maternity_reentry_one_month_part_time_hours: "67"
-      belgium_health_maternity_reentry_one_month_part_time_max_reference_months: "3"
-      belgium_health_maternity_reentry_three_month_work_days: "60"
-      belgium_health_maternity_reentry_three_month_part_time_hours: "200"
-      belgium_health_maternity_reentry_three_month_part_time_impossible_hours: "67"
-      belgium_health_entitlement_maintenance_work_days: "120"
-      belgium_health_entitlement_maintenance_part_time_hours: "400"
-      belgium_health_entitlement_maintenance_max_interruption_days: "30"
+    corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/113"
 rules:
   - name: belgium_health_incapacity_waiting_reference_months
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203 first paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203
+              excerpt: "les titulaires doivent totaliser, au cours d'une période de [\n4\ndouze ]\n4\nmois, au moins [\n4\ncent quatre-vingts]\n4\njours de travail"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -60,6 +35,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203 first paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203
+              excerpt: "les titulaires doivent totaliser, au cours d'une période de [\n4\ndouze ]\n4\nmois, au moins [\n4\ncent quatre-vingts]\n4\njours de travail"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -75,7 +58,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203
-              span: "s'ils ont accompli, au cours d'une période de douze mois, huit cents heures de travail"
+              excerpt: "s'ils ont accompli, au cours d'une période de douze mois, huit cents heures de travail"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -84,6 +67,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203 third paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203
+              excerpt: "La période de référence est cependant prolongée jusqu'à un maximum de trente-six mois pour les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -100,6 +91,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203/1 first paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203-1
+              excerpt: "les titulaires doivent totaliser, au cours d'une période de six mois, au moins cent vingt jours de travail"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -108,6 +107,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203/1 second paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203-1
+              excerpt: "les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel accomplissent leur stage s'ils ont accompli, au cours d'une période de six mois, quatre cents heures de travail"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -116,6 +123,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 203/1 second paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/203-1
+              excerpt: "Toutefois, ils accomplissent leur stage d'attente s'ils ont accompli, au cours d'une période de six mois, cent trente-trois heures de travail, à condition qu'ils se trouvent dans l'impossibilité d'accomplir quatre cents heures de travail durant ces six mois en raison de leur régime de travail."
     versions:
       - effective_from: '2022-08-02'
         formula: |-
@@ -132,6 +147,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 206 first paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/206
+              excerpt: "le [\n3\nstage d'attente]\n3\nprévu à l'article 128 de la loi coordonnée est réduit à [\n2\nsix ]\n2\nmois comprenant au moins [\n2\nnonante]\n2\n(jours de travail ou assimilés)"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -147,7 +170,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/206
-              span: "s'ils totalisent, au cours d'une période de six mois, quatre cents heures de travail ou assimilées"
+              excerpt: "art. 37, 063;\nEn vigueur :\n01-01-2003>\nLes travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel accomplissent le [\n3\nstage d'attente]\n3\nréduit s'ils totalisent, au cours d'une période de [\n2\nsix]\n2\nmois, [\n2\nquatre cents]\n2\n(heures de travail ou assimilées). La période de référence est toutefois prolongée jusqu'à [\n2\ndix-huit ]\n2\nmois au maximum pour les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -156,6 +179,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 206 second paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/206
+              excerpt: "La période de référence est toutefois prolongée jusqu'à [\n2\ndix-huit ]\n2\nmois au maximum pour les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -164,6 +195,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 205/1 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/205-1
+              excerpt: "réduit à un mois comprenant au moins vingt jours de travail ou assimilés."
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -172,6 +211,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 205/1 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/205-1
+              excerpt: "Les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel accomplissent le [\n3\nstage d'attente]\n3\nréduit s'ils totalisent, au cours d'une période d'un mois, soixante-sept heures de travail ou assimilées."
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -188,6 +235,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 205/1 section 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/205-1
+              excerpt: "est réduit à trois mois comprenant au moins soixante jours de travail ou assimilés pour le titulaire"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -196,6 +251,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 205/1 section 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/205-1
+              excerpt: "Les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel accomplissent le [\n3\nstage d'attente]\n3\nréduit s'ils totalisent au cours d'une période de trois mois, deux cents heures de travail ou assimilées."
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -204,6 +267,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 205/1 section 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/205-1
+              excerpt: "Toutefois, ils accomplissent leur stage d'attente s'ils ont accompli, au cours d'une période de trois mois, soixante-sept heures de travail ou assimilées, à condition qu'ils se trouvent dans l'impossibilité d'accomplir deux cents heures de travail durant ces trois mois en raison de leur régime de travail."
     versions:
       - effective_from: '2022-08-02'
         formula: |-
@@ -212,6 +283,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, article 207 first paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/207
+              excerpt: "les titulaires doivent conserver, à un titre quelconque, la qualité de titulaire visée à l'article 86, § 1er, de la loi coordonnée pour les deuxième et troisièmes trimestres précédant celui au cours duquel ils font appel aux prestations, pendant cent vingt jours ouvrables."
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -220,6 +299,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Royal Decree of 3 July 1996, articles 207 and 207/1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1996/07/03/1996022344/article/207
+              excerpt: "les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel maintiennent leur droit aux indemnités d'incapacité de travail à condition que, pour les deuxième et troisième trimestres précédant celui au cours duquel ils sollicitent les prestations, d'une part, ils aient totalisé quatre cents heures de travail ou assimilées visées à l'article 203, alinéa 4"
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -301,6 +388,14 @@ rules:
     dtype: Count
     period: Year
     source: Royal Decree of 3 July 1996, article 206/1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/206-1"
+              excerpt: "Pour l'octroi de l'indemnité de maternité visée à l'article 113 de la loi coordonnée, une dispense de stage d'attente est d'application pour la personne qui acquiert la qualité de titulaire au sens de l'article 86, § 1er, 1°, de la loi coordonnée, à condition qu'elle acquière la qualité précitée au plus tard le trentième jour après avoir perdu la qualité de titulaire visée à l'article 3 de l'arrêté royal du 20 juillet 1971 instituant une assurance indemnités et une assurance maternité en faveur des travailleurs indépendants et des conjoints aidants et qu'elle ait accompli le stage d'attente prévu dans ledit régime ou en ait été dispensée."
     versions:
       - effective_from: '2022-08-02'
         formula: |-
@@ -336,6 +431,14 @@ rules:
     dtype: Count
     period: Year
     source: Royal Decree of 3 July 1996, article 205/1 section 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/205-1"
+              excerpt: "Toutefois, ils accomplissent leur stage d'attente s'ils ont accompli, au cours d'une période de trois mois, soixante-sept heures de travail ou assimilées, à condition qu'ils se trouvent dans l'impossibilité d'accomplir deux cents heures de travail durant ces trois mois en raison de leur régime de travail."
     versions:
       - effective_from: '2022-08-02'
         formula: |-
@@ -361,6 +464,19 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law article 128 and Royal Decree of 3 July 1996 articles 203, 205, and 206
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/128"
+              excerpt: "2° fournir la preuve, dans les conditions déterminées par le Roi, que par rapport à cette même période, les cotisations pour le secteur des indemnités ont été effectivement payées, ces cotisations doivent atteindre un montant minimum fixé par le Roi ou doivent, dans les conditions fixées par Lui, être complétées par des cotisations personnelles."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/207-2"
+              excerpt: "il y a lieu d'entendre par jours et heures de travail, les jours et heures de travail effectif normal et de prestations supplémentaires sans repos compensatoire."
     versions:
       - effective_from: '2022-08-02'
         formula: |-
@@ -377,6 +493,24 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law article 113 and Royal Decree of 3 July 1996 articles 203/1, 205/1, and 206/1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/113"
+              excerpt: "(La rémunération perdue est déterminée conformément aux dispositions de l'arrêté royal du 10 juin 2001 établissant la notion uniforme de \" rémunération journalière moyenne \" en application de l'article 39 de la loi du 26 juillet 1996 portant modernisation de la sécurité sociale et assurant la viabilité des régimes légaux des pensions et harmonisant certaines dispositions légales, et sur base des modalités de calcul fixées par le règlement visé à l'["
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/203-1"
+              excerpt: "Toutefois, ils accomplissent leur stage d'attente s'ils ont accompli, au cours d'une période de six mois, cent trente-trois heures de travail, à condition qu'ils se trouvent dans l'impossibilité d'accomplir quatre cents heures de travail durant ces six mois en raison de leur régime de travail."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/207-2"
+              excerpt: "il y a lieu d'entendre par jours et heures de travail, les jours et heures de travail effectif normal et de prestations supplémentaires sans repos compensatoire."
     versions:
       - effective_from: '2022-08-02'
         formula: |-
@@ -393,6 +527,19 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law article 130 and Royal Decree of 3 July 1996 article 207
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/130"
+              excerpt: "Les titulaires visés à l'article précédent peuvent continuer à bénéficier des prestations prévues au titre IV à la condition que, pour les deuxième et troisième trimestres précédant celui au cours duquel ils y font appel, ils fournissent la preuve dans les conditions déterminées par le Roi:"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/207"
+              excerpt: "Par dérogation à l'alinéa premier, les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel maintiennent leur droit aux indemnités d'incapacité de travail à condition que, pour les deuxième et troisième trimestres précédant celui au cours duquel ils sollicitent les prestations, d'une part, ils aient totalisé quatre cents heures de travail ou assimilées visées à l'article 203, alinéa 4, et, d'autre part, ils aient satisfait aux conditions déterminées à l'article 130, alinéa 1er, 2°, de la loi coordonnée."
     versions:
       - effective_from: '2017-05-01'
         formula: |-
@@ -421,6 +568,14 @@ rules:
     dtype: Count
     period: Year
     source: Royal Decree of 3 July 1996, article 207/1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1996/07/03/1996022344/article/207-1"
+              excerpt: "Les travailleurs saisonniers, les travailleurs intermittents et les travailleurs à temps partiel maintiennent leur droit aux indemnités de maternité visées à l'article 113 de la loi coordonnée à condition que pour les deuxième et troisième trimestres précédant celui au cours duquel ils font appel aux prestations, d'une part, ils aient accompli le nombre d'heures de travail ou assimilées visé à l'article 203/1, alinéa 2, et, d'autre part, ils aient satisfait aux conditions déterminées à l'article 116/3, alinéa 1er, 2°, de la loi coordonnée."
     versions:
       - effective_from: '2017-05-01'
         formula: |-

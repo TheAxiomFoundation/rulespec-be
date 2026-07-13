@@ -12,40 +12,7 @@ module:
     assessment, social-insurance disposable-income treatment, withholding, and
     regional/local reductions remain separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-53
-      - be/statute/fisconetplus/cir92/revenus-2025/page-58
-      - be/statute/fisconetplus/cir92/revenus-2025/page-59
-      - be/statute/fisconetplus/cir92/revenus-2025/page-120
-      - be/statute/fisconetplus/cir92/revenus-2025/page-121
-      - be/statute/fisconetplus/cir92/revenus-2025/page-122
-      - be/statute/fisconetplus/cir92/revenus-2025/page-181
-      - be/statute/fisconetplus/cir92/revenus-2025/page-184
-      - be/statute/fisconetplus/cir92/revenus-2025/page-185
-      - be/statute/fisconetplus/cir92/revenus-2025/page-512
-      - be/statute/fisconetplus/cir92/revenus-2025/page-513
-      - be/statute/fisconetplus/cir92/revenus-2025/page-514
-      - be/statute/fisconetplus/cir92/revenus-2025/page-515
-      - be/statute/fisconetplus/cir92/revenus-2025/page-518
-      - be/statute/fisconetplus/cir92/revenus-2025/page-526
-      - be/statute/fisconetplus/cir92/revenus-2025/page-686
-      - be/statute/fisconetplus/cir92/revenus-2025/page-687
-      - be/statute/fisconetplus/cir92/revenus-2025/page-688
-      - be/statute/loi/1989/01/16/1989021010/article/5-2
-      - be/regulation/arrete/2017/12/19/2017032216/article/1er
-      - be/regulation/arrete/2017/12/19/2017032216/article/2
-    upstream_source_check:
-      status: structural_composition_bridge
-      checked_paths:
-        - be/statute/fisconetplus/cir92/revenus-2025/page-53
-        - be/statute/fisconetplus/cir92/revenus-2025/page-120
-        - be/statute/fisconetplus/cir92/revenus-2025/page-181
-        - be/statute/loi/1989/01/16/1989021010/article/5-2
-      rationale: |-
-        The aggregate introduces no new statutory tax amounts. It adds together
-        the encoded worker PIT pilot and supplied placeholder components whose
-        own future modules must cite the upstream legal sources for those
-        component calculations.
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-53"
 units:
   - name: EUR
     kind: currency

@@ -24,63 +24,7 @@ module:
     bonus partial-year and part-time mechanics, treaty allocation, and
     partial-year cases.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1981/06/29/1981001048/article/38
-      - be/statute/loi/1969/06/27/1969062710/article/17
-      - be/regulation/arrete/1969/11/28/1969112813/article/19
-      - be/statute/loi/1999/12/20/2000022052/article/2
-      - be/regulation/arrete/2000/01/17/2000022082/article/1
-      - be/regulation/arrete/2024/03/05/2024002162/article/1er
-      - be/guidance/spf-employment/salairesminimums/cnt-rmmmg-2025-02/block-3
-      - be/guidance/onss/dmfa/2025-2/workbonus/block-6
-      - be/statute/fisconetplus/cir92/revenus-2025/page-53
-      - be/statute/fisconetplus/cir92/revenus-2025/page-58
-      - be/statute/fisconetplus/cir92/revenus-2025/page-59
-      - be/statute/fisconetplus/cir92/revenus-2025/page-120
-      - be/statute/fisconetplus/cir92/revenus-2025/page-121
-      - be/statute/fisconetplus/cir92/revenus-2025/page-122
-      - be/statute/fisconetplus/cir92/revenus-2025/page-181
-      - be/statute/fisconetplus/cir92/revenus-2025/page-184
-      - be/statute/fisconetplus/cir92/revenus-2025/page-185
-      - be/statute/fisconetplus/cir92/revenus-2025/page-512
-      - be/statute/fisconetplus/cir92/revenus-2025/page-513
-      - be/statute/fisconetplus/cir92/revenus-2025/page-514
-      - be/statute/fisconetplus/cir92/revenus-2025/page-515
-      - be/statute/fisconetplus/cir92/revenus-2025/page-518
-      - be/statute/fisconetplus/cir92/revenus-2025/page-526
-      - be/statute/fisconetplus/cir92/revenus-2025/page-686
-      - be/statute/fisconetplus/cir92/revenus-2025/page-687
-      - be/statute/fisconetplus/cir92/revenus-2025/page-688
-      - be/statute/loi/1989/01/16/1989021010/article/5-2
-      - be/regulation/arrete/2017/12/19/2017032216/article/1er
-      - be/regulation/arrete/2017/12/19/2017032216/article/2
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - be/statute/loi/1999/12/20/2000022052/article/2
-        - be/regulation/arrete/2000/01/17/2000022082/article/1
-        - be/regulation/arrete/2024/03/05/2024002162/article/1er
-        - be/statute/loi/1989/01/16/1989021010/article/5-2
-        - be/regulation/arrete/2017/12/19/2017032216/article/1er
-      rationale: |-
-        The imported ONSS work-bonus formula is grounded in the statute and
-        royal decree. The SPF Emploi salaires-minimums database is used only for
-        the CCT 43 monthly RMMMG amount that those legal sources reference.
-        The PIT autonomy factor is grounded in the special financing law and
-        the royal decree fixing the definitive factor.
-    values:
-      belgium_pit_pilot_article_51_employee_forfait_rate: "0.30"
-      belgium_pit_pilot_article_130_first_bracket_rate: "0.25"
-      belgium_pit_pilot_article_130_second_bracket_rate: "0.40"
-      belgium_pit_pilot_article_130_third_bracket_rate: "0.45"
-      belgium_pit_pilot_article_130_top_bracket_rate: "0.50"
-      belgium_pit_pilot_article_134_first_tax_free_amount_rate: "0.25"
-      belgium_pit_pilot_article_134_second_tax_free_amount_rate: "0.30"
-      belgium_pit_pilot_article_134_third_tax_free_amount_rate: "0.40"
-      belgium_pit_pilot_article_134_fourth_tax_free_amount_rate: "0.45"
-      belgium_pit_pilot_article_134_top_tax_free_amount_rate: "0.50"
-      belgium_pit_pilot_article_468_agglomeration_additional_tax_rate_cap: "0.01"
-      belgium_pit_pilot_article_5_2_autonomy_factor: "0.24957"
+    corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/38"
 units:
   - name: EUR
     kind: currency
@@ -313,7 +257,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-              span: '1° pour les rémunérations des travailleurs: 30 %;'
+              excerpt: "1° pour les rémunérations des travailleurs: 30 %;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -330,7 +274,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-              span: 'Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visés à l''alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l''ensemble des revenus visés à l''alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l''ensemble des revenus d''une même catégorie visée à l''alinéa 2, 3° et 4°.'
+              excerpt: "Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visés à l'alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l'ensemble des revenus visés à l'alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visée à l'alinéa 2, 3° et 4°."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -347,7 +291,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -364,7 +308,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -381,7 +325,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -397,7 +341,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -413,7 +357,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -429,7 +373,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -445,7 +389,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -462,7 +406,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              span: 'Pour le calcul de l''impôt, un montant de base de 10.910 euros (montant indexé) est exempté d''impôt.'
+              excerpt: "Pour le calcul de l'impôt, un montant de base de 10.910 euros (montant indexé) est exempté d'impôt."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -479,7 +423,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -496,7 +440,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -513,7 +457,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -530,7 +474,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -546,7 +490,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -562,7 +506,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -578,7 +522,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -594,7 +538,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -610,7 +554,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              span: 'Cet impôt sur la quotité du revenu exemptée d''impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d''impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d''impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d''impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d''impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d''impôt supérieure à 49.840 euros (montant indexé).'
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -626,7 +570,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-687
-              span: 'ce pourcentage ne peut excéder 1 % lorsque la taxe est établie par une agglomération.'
+              excerpt: "ce pourcentage ne peut excéder 1 % lorsque la taxe est établie par une agglomération."
     versions:
       - effective_from: '2015-01-01'
         formula: |-
@@ -642,7 +586,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/2017/12/19/2017032216/article/1er
-              span: 'Le facteur d''autonomie définitif visé à l''article 5/2, § 1er, alinéas 3 et 4, de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, est, sur la base des rapports de la Cour des comptes visés à l''article 81ter de la même loi spéciale, déterminé à 24,957 %.'
+              excerpt: "Le facteur d'autonomie définitif visé à l'article 5/2, § 1er, alinéas 3 et 4, de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, est, sur la base des rapports de la Cour des comptes visés à l'article 81ter de la même loi spéciale, déterminé à 24,957 %."
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -658,7 +602,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1989/01/16/1989021010/article/5-2
-              span: 'L''impôt Etat réduit est l''impôt Etat diminué d''un montant égal à l''impôt Etat multiplié par le facteur d''autonomie.'
+              excerpt: "L'impôt Etat réduit est l'impôt Etat diminué d'un montant égal à l'impôt Etat multiplié par le facteur d'autonomie."
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -674,7 +618,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-              span: 'Le crédit d''impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée'
+              excerpt: "Le crédit d'impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -690,7 +634,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-              span: 'et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée'
+              excerpt: "et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -707,7 +651,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-              span: 'Le crédit d''impôt ne peut excéder par période imposable 1.540 euros (montant indexé).'
+              excerpt: "Le crédit d'impôt ne peut excéder par période imposable 1.540 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -785,6 +729,14 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 6, worker-only pilot taxable income from net professional income
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-53"
+              excerpt: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -850,6 +802,14 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 130 and 134, worker-only pilot federal tax after the base tax-free-amount reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-184"
+              excerpt: "La quotité du revenu exemptée d'impôt comprend le total du montant de base, éventuellement majoré, et des suppléments visés aux articles 132 et 133."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -905,6 +865,24 @@ rules:
     period: Year
     unit: EUR
     source: Special financing law article 5/2 and CIR 1992 articles 289ter/1, 290, and 304, worker-only pilot reduced State tax after fully imputed and refundable work-bonus credit
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/2017/12/19/2017032216/article/2"
+              excerpt: "En ce qui concerne les impôts sur les revenus, le présent arrêté s'applique toutefois à partir de l'exercice d'imposition 2018."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-518"
+              excerpt: "les crédits d'impôt visés aux articles 289bis, § 1er, 289ter et 289ter/1, sont imputés intégralement sur l'impôt."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-526"
+              excerpt: "des crédits d'impôt visés aux articles 289bis, § 1er, 289ter et 289ter/1 et des crédits d'impôt régionaux, est imputé, s'il y a lieu, sur les taxes additionnelles à l'impôt des personnes physiques visées au titre VIII et le surplus est restitué pour autant qu'il atteigne 2,50 euros."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -940,6 +918,19 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 465 to 468, supplied local additions for the worker-only pilot
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-686"
+              excerpt: "Par dérogation à l'article 464, les agglomérations et les communes peuvent établir une taxe additionnelle à l'impôt des personnes physiques."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-688"
+              excerpt: "Le pourcentage de la taxe communale additionnelle à l'impôt des personnes physiques est fixé par un règlement-taxe applicable à partir d'un exercice d'imposition déterminé"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

@@ -16,23 +16,7 @@ module:
     federal rules, delegated current indexation, residual proof predicates, and
     payment interfaces to later modules.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/4
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/7
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/9
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/25
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/8
-      - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
-      - be-wal/statute/decret/2018/02/08/2018201006/article/4
-      - be-wal/statute/decret/2018/02/08/2018201006/article/5
-      - be-wal/statute/decret/2018/02/08/2018201006/article/6
-      - be-wal/statute/decret/2018/02/08/2018201006/article/9
-      - be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
-    values:
-      belgium_family_benefits_region_flanders: 0
-      belgium_family_benefits_region_brussels: 1
-      belgium_family_benefits_region_wallonia: 2
-      belgium_family_benefits_region_german_speaking_community: 3
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/4"
 rules:
   - name: belgium_family_benefits_region_flanders
     kind: parameter

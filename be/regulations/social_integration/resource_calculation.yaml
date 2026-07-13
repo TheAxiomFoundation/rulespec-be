@@ -28,40 +28,7 @@ module:
 
     separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/regulation/arrete/2002/07/11/2002022564/article/22
-    - be/regulation/arrete/2002/07/11/2002022564/article/23
-    - be/regulation/arrete/2002/07/11/2002022564/article/24
-    - be/regulation/arrete/2002/07/11/2002022564/article/25
-    - be/regulation/arrete/2002/07/11/2002022564/article/26
-    - be/regulation/arrete/2002/07/11/2002022564/article/27
-    - be/regulation/arrete/2002/07/11/2002022564/article/28
-    - be/regulation/arrete/2002/07/11/2002022564/article/29
-    - be/regulation/arrete/2002/07/11/2002022564/article/30
-    - be/regulation/arrete/2002/07/11/2002022564/article/31
-    - be/regulation/arrete/2002/07/11/2002022564/article/32
-    - be/regulation/arrete/2002/07/11/2002022564/article/33
-    - be/regulation/arrete/2002/07/11/2002022564/article/34
-    - be/regulation/arrete/2002/07/11/2002022564/article/35
-    values:
-      belgium_social_integration_article_22_ale_cheque_exclusion_cap: 6
-      belgium_social_integration_article_22_category_1_supplemental_exemption: 155
-      belgium_social_integration_article_22_category_2_supplemental_exemption: 250
-      belgium_social_integration_article_22_category_3_supplemental_exemption: 280
-      belgium_social_integration_article_22_category_4_supplemental_exemption: 310
-      belgium_social_integration_article_25_built_property_base_exemption: 750
-      belgium_social_integration_article_25_built_property_child_increment: 125
-      belgium_social_integration_article_25_unbuilt_property_base_exemption: 30
-      belgium_social_integration_article_25_cadastral_income_multiplier: 3
-      belgium_social_integration_article_27_movable_capital_first_threshold: 6200
-      belgium_social_integration_article_27_movable_capital_second_threshold: 12500
-      belgium_social_integration_article_27_movable_capital_first_rate: 0.06
-      belgium_social_integration_article_27_movable_capital_top_rate: 0.1
-      belgium_social_integration_article_28_usufruct_value_fraction: 0.4
-      belgium_social_integration_article_29_transfer_exempt_tranche: 37200
-      belgium_social_integration_article_31_category_1_annual_abatement: 1250
-      belgium_social_integration_article_31_category_2_annual_abatement: 2000
-      belgium_social_integration_article_31_category_3_annual_abatement: 2500
+    corpus_citation_path: "be/regulation/arrete/2002/07/11/2002022564/article/22"
 units:
 - name: EUR
   kind: currency
@@ -80,8 +47,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
-          span: Le montant exonéré ne peut être supérieur à un montant de 6 euros
-            par chèque ALE non invalidé
+          excerpt: "Le montant exonéré ne peut être supérieur à un montant de 6 euros par chèque ALE non invalidé"
   versions:
   - effective_from: '2021-01-01'
     formula: '6'
@@ -98,8 +64,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
-          span: l'intéressé a droit à une exonération supplémentaire de respectivement
-            155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle
+          excerpt: "l'intéressé a droit à une exonération supplémentaire de respectivement 155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle"
   versions:
   - effective_from: '2005-01-01'
     formula: '155'
@@ -116,8 +81,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
-          span: l'intéressé a droit à une exonération supplémentaire de respectivement
-            155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle
+          excerpt: "l'intéressé a droit à une exonération supplémentaire de respectivement 155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle"
   versions:
   - effective_from: '2005-01-01'
     formula: '250'
@@ -134,8 +98,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
-          span: l'intéressé a droit à une exonération supplémentaire de respectivement
-            155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle
+          excerpt: "l'intéressé a droit à une exonération supplémentaire de respectivement 155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle"
   versions:
   - effective_from: '2005-01-01'
     formula: '280'
@@ -152,8 +115,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
-          span: l'intéressé a droit à une exonération supplémentaire de respectivement
-            155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle
+          excerpt: "l'intéressé a droit à une exonération supplémentaire de respectivement 155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle"
   versions:
   - effective_from: '2005-01-01'
     formula: '310'
@@ -170,8 +132,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/25
-          span: 'Par montant exonéré on entend : un montant de 750,00 EUR, majoré
-            de 125,00 EUR pour chaque enfant'
+          excerpt: "Par montant exonéré on entend : un montant de 750,00 EUR, majoré de 125,00 EUR pour chaque enfant"
   versions:
   - effective_from: '2002-10-01'
     formula: '750'
@@ -188,8 +149,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/25
-          span: 'Par montant exonéré on entend : un montant de 750,00 EUR, majoré
-            de 125,00 EUR pour chaque enfant'
+          excerpt: "Par montant exonéré on entend : un montant de 750,00 EUR, majoré de 125,00 EUR pour chaque enfant"
   versions:
   - effective_from: '2002-10-01'
     formula: '125'
@@ -206,8 +166,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/25
-          span: 'Par montant exonéré on entend : un montant de 30,00 EUR multiplié
-            par la fraction exprimant l''importance du droit du demandeur'
+          excerpt: "Par montant exonéré on entend : un montant de 30,00 EUR multiplié par la fraction exprimant l'importance du droit du demandeur"
   versions:
   - effective_from: '2002-10-01'
     formula: '30'
@@ -223,8 +182,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/25
-          span: de la partie du revenu cadastral global qui dépasse le montant exonéré,
-            multiplié par 3
+          excerpt: "de la partie du revenu cadastral global qui dépasse le montant exonéré, multiplié par 3"
   versions:
   - effective_from: '2002-10-01'
     formula: '3'
@@ -241,8 +199,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/27
-          span: il est tenu compte d'une somme égale à 6 pc de la tranche entre 6
-            200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche
+          excerpt: "il est tenu compte d'une somme égale à 6 pc de la tranche entre 6 200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche"
   versions:
   - effective_from: '2002-10-01'
     formula: '6200'
@@ -259,8 +216,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/27
-          span: il est tenu compte d'une somme égale à 6 pc de la tranche entre 6
-            200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche
+          excerpt: "il est tenu compte d'une somme égale à 6 pc de la tranche entre 6 200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche"
   versions:
   - effective_from: '2002-10-01'
     formula: '12500'
@@ -276,8 +232,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/27
-          span: il est tenu compte d'une somme égale à 6 pc de la tranche entre 6
-            200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche
+          excerpt: "il est tenu compte d'une somme égale à 6 pc de la tranche entre 6 200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche"
   versions:
   - effective_from: '2002-10-01'
     formula: '0.06'
@@ -293,8 +248,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/27
-          span: il est tenu compte d'une somme égale à 6 pc de la tranche entre 6
-            200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche
+          excerpt: "il est tenu compte d'une somme égale à 6 pc de la tranche entre 6 200 EUR et 12 500 EUR et à 10 pc des montants supérieurs à cette tranche"
   versions:
   - effective_from: '2002-10-01'
     formula: '0.10'
@@ -310,8 +264,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/28
-          span: En cas de cession de l'usufruit, sa valeur est évaluée à raison de
-            40 %. de la valeur en pleine propriété.
+          excerpt: "En cas de cession de l'usufruit, sa valeur est évaluée à raison de 40 %. de la valeur en pleine propriété."
   versions:
   - effective_from: '2002-10-01'
     formula: '0.40'
@@ -328,7 +281,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/29
-          span: une première tranche de 37 200 EUR de la valeur vénale est immunisée.
+          excerpt: "une première tranche de 37 200 EUR de la valeur vénale est immunisée."
   versions:
   - effective_from: '2005-01-01'
     formula: '37200'
@@ -345,9 +298,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/31
-          span: un abattement annuel de 1 250 EUR, de 2 000 EUR, (...) ou de 2 500
-            EUR selon que le demandeur obtient un revenu d'intégration de la catégorie
-            (1°, 2°, ou 3°)
+          excerpt: "un abattement annuel de 1 250 EUR, de 2 000 EUR, (...) ou de 2 500 EUR selon que le demandeur obtient un revenu d'intégration de la catégorie (1°, 2°, ou 3°)"
   versions:
   - effective_from: '2005-01-01'
     formula: '1250'
@@ -364,9 +315,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/31
-          span: un abattement annuel de 1 250 EUR, de 2 000 EUR, (...) ou de 2 500
-            EUR selon que le demandeur obtient un revenu d'intégration de la catégorie
-            (1°, 2°, ou 3°)
+          excerpt: "un abattement annuel de 1 250 EUR, de 2 000 EUR, (...) ou de 2 500 EUR selon que le demandeur obtient un revenu d'intégration de la catégorie (1°, 2°, ou 3°)"
   versions:
   - effective_from: '2005-01-01'
     formula: '2000'
@@ -383,9 +332,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/31
-          span: un abattement annuel de 1 250 EUR, de 2 000 EUR, (...) ou de 2 500
-            EUR selon que le demandeur obtient un revenu d'intégration de la catégorie
-            (1°, 2°, ou 3°)
+          excerpt: "un abattement annuel de 1 250 EUR, de 2 000 EUR, (...) ou de 2 500 EUR selon que le demandeur obtient un revenu d'intégration de la catégorie (1°, 2°, ou 3°)"
   versions:
   - effective_from: '2005-01-01'
     formula: '2500'
@@ -444,9 +391,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/2002/07/11/2002022564/article/22
-          span: l'intéressé a droit à une exonération supplémentaire de respectivement
-            155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle, selon qu'il
-            appartient à la catégorie 1, 2, 3 ou 4 des bénéficiaires
+          excerpt: "l'intéressé a droit à une exonération supplémentaire de respectivement 155 EUR, 250 EUR, 280 EUR, 310 EUR sur une base annuelle, selon qu'il appartient à la catégorie 1, 2, 3 ou 4 des bénéficiaires"
   versions:
   - effective_from: '2005-01-01'
     formula: '4'

@@ -6,16 +6,7 @@ module:
     indexed federal base-tax brackets before reductions, credits, surcharges,
     regional tax reductions, and communal additions.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-181
-    values:
-      belgium_pit_article_130_first_bracket_upper_threshold: 16320
-      belgium_pit_article_130_second_bracket_upper_threshold: 28800
-      belgium_pit_article_130_third_bracket_upper_threshold: 49840
-      belgium_pit_article_130_first_bracket_rate: 0.25
-      belgium_pit_article_130_second_bracket_rate: 0.40
-      belgium_pit_article_130_third_bracket_rate: 0.45
-      belgium_pit_article_130_top_bracket_rate: 0.50
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-181"
 units:
   - name: EUR
     kind: currency
@@ -33,7 +24,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -50,7 +41,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -67,7 +58,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -83,7 +74,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -99,7 +90,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -115,7 +106,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -131,7 +122,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-            span: 'L''impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé).'
+            excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
     versions:
       - effective_from: '2025-01-01'
         formula: |-

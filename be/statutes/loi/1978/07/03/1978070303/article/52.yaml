@@ -86,7 +86,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
-          excerpt: "dans les huit premi\xE8res semaines"
+          excerpt: "7\nhuit premières semaines]"
   versions:
   - effective_from: '2026-01-01'
     formula: '8'
@@ -132,6 +132,7 @@ rules:
         kind: condition
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er. (En cas d'incapacité de travail résultant d'une maladie autre qu'une maladie professionnelle, ou d'un accident autre qu'un accident du travail ou qu'un accident survenu sur le chemin du travail, l'ouvrier a droit, à charge de son employeur, à sa rémunération normale pendant une période de sept jours et pendant les sept jours suivants à 60 p.c. de la partie de cette rémunération qui ne dépasse pas le plafond pris en considération pour le calcul des prestations de l'assurance maladie-invalidité). <AR465 1986-10-01/30, art. 1, a, 013> <note : les dispositions de cet arrêté ne s'appliquent qu'aux travailleurs dont l'incapacité de travail est survenue après son entrée en vigueur : 01-11-1986>\n[\n1\nalinéa 2 abrogé]\n1\n[\n1\nalinéa 3 abrogé]\n1\n[\n1\nalinéa 4 abrogé, en ce compris l'ancien alinéa 4 déjà abrogé]\n1\nLe droit à la rémunération est subordonné à la condition que l'ouvrier"
   versions:
   - effective_from: '1986-11-01'
     formula: 'worker_has_work_incapacity
@@ -180,8 +181,7 @@ rules:
         kind: exception
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
-          excerpt: "n'est pas due une nouvelle fois lorsqu'une nouvelle incapacit\xE9\
-            \ de travail survient dans les huit premi\xE8res semaines"
+          excerpt: "§ 1er n'est pas due une nouvelle fois lorsqu'une nouvelle incapacité de travail survient dans les [\n7\nhuit premières semaines]"
       - path: versions[0].formula
         kind: import
         import:
@@ -210,6 +210,7 @@ rules:
         kind: exception
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er."
   versions:
   - effective_from: '1986-11-01'
     formula: 'worker_was_injured_during_physical_exercise_in_sporting_competition_or_exhibition
@@ -230,6 +231,7 @@ rules:
         kind: exception
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er. (En cas d'incapacité de travail résultant d'une maladie autre qu'une maladie professionnelle, ou d'un accident autre qu'un accident du travail ou qu'un accident survenu sur le chemin du travail, l'ouvrier a droit, à charge de son employeur, à sa rémunération normale pendant une période de sept jours et pendant les sept jours suivants à 60 p.c. de la partie de cette rémunération qui ne dépasse pas le plafond pris en considération pour le calcul des prestations de l'assurance maladie-invalidité). <AR465 1986-10-01/30, art. 1, a, 013> <note : les dispositions de cet arrêté ne s'appliquent qu'aux travailleurs dont l'incapacité de travail est survenue après son entrée en vigueur : 01-11-1986>\n[\n1\nalinéa 2 abrogé]\n1\n[\n1\nalinéa 3 abrogé]\n1\n[\n1\nalinéa 4 abrogé, en ce compris l'ancien alinéa 4 déjà abrogé]\n1\nLe droit à la rémunération est subordonné à la condition que l'ouvrier"
   versions:
   - effective_from: '1986-11-01'
     formula: incapacity_originates_in_worker_serious_fault
@@ -246,6 +248,7 @@ rules:
         kind: exception
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er."
   versions:
   - effective_from: '2026-01-01'
     formula: 'worker_is_during_execution_period_of_adapted_or_other_work_under_article_100_2
@@ -269,6 +272,7 @@ rules:
         kind: exception
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er."
   versions:
   - effective_from: '2022-01-01'
     formula: 'worker_occupied_under_article_17_specified_categories_and_conditions
@@ -287,6 +291,7 @@ rules:
         kind: formula
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er."
       - path: versions[0].formula
         kind: import
         import:
@@ -398,6 +403,7 @@ rules:
         kind: formula
         source:
           corpus_citation_path: be/statute/loi/1978/07/03/1978070303/article/52
+          excerpt: "Art.\n52\n.§ 1er. (En cas d'incapacité de travail résultant d'une maladie autre qu'une maladie professionnelle, ou d'un accident autre qu'un accident du travail ou qu'un accident survenu sur le chemin du travail, l'ouvrier a droit, à charge de son employeur, à sa rémunération normale pendant une période de sept jours et pendant les sept jours suivants à 60 p.c. de la partie de cette rémunération qui ne dépasse pas le plafond pris en considération pour le calcul des prestations de l'assurance maladie-invalidité). <AR465 1986-10-01/30, art. 1, a, 013> <note : les dispositions de cet arrêté ne s'appliquent qu'aux travailleurs dont l'incapacité de travail est survenue après son entrée en vigueur : 01-11-1986>\n[\n1\nalinéa 2 abrogé]\n1\n[\n1\nalinéa 3 abrogé]\n1\n[\n1\nalinéa 4 abrogé, en ce compris l'ancien alinéa 4 déjà abrogé]\n1\nLe droit à la rémunération est subordonné à la condition que l'ouvrier"
   versions:
   - effective_from: '1986-11-01'
     formula: 'if third_party_responsible_for_accident_referred_to_in_paragraph_1:

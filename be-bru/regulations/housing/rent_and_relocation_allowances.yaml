@@ -19,43 +19,7 @@ module:
 
     recovery, and other Brussels housing aids to separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/165
-    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/166
-    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/166bis
-    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/169
-    - be-bru/statute/ordonnance/2003/07/17/2013A31614/article/170
-    - be-bru/regulation/arrete/2021/07/15/2021032702/article/1er
-    - be-bru/regulation/arrete/2021/07/15/2021032702/article/2
-    - be-bru/regulation/arrete/2021/07/15/2021032702/article/3
-    - be-bru/regulation/arrete/2021/07/15/2021032702/article/4
-    - be-bru/regulation/arrete/2021/07/15/2021032702/article/5
-    - be-bru/regulation/arrete/2021/07/15/2021032702/article/29
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/1er
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/2
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/3
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/4
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/5
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/6
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/7
-    - be-bru/regulation/arrete/2022/10/13/2022033858/article/19
-    values:
-      brussels_housing_rent_allowance_standard_priority_titles_min: 6
-      brussels_housing_rent_allowance_single_parent_priority_titles_min: 2
-      brussels_housing_rent_allowance_standard_base_monthly_amount: 160
-      brussels_housing_rent_allowance_lower_single_parent_base_monthly_amount: 120
-      brussels_housing_rent_allowance_child_monthly_increment: 20
-      brussels_housing_rent_allowance_single_parent_child_monthly_increment: 40
-      brussels_housing_rent_allowance_benefit_period_years: 5
-      brussels_housing_rent_allowance_regular_renewal_count: 1
-      brussels_housing_relocation_recent_move_window_months: 6
-      brussels_housing_relocation_rent_support_period_years: 3
-      brussels_housing_relocation_rent_low_income_base_monthly_amount: 160
-      brussels_housing_relocation_rent_other_base_monthly_amount: 120
-      brussels_housing_relocation_rent_child_monthly_increment: 20
-      brussels_housing_relocation_rent_single_parent_child_monthly_increment: 40
-      brussels_housing_relocation_moving_grant_base_amount: 800
-      brussels_housing_relocation_moving_grant_child_increment: 80
+    corpus_citation_path: "be-bru/statute/ordonnance/2003/07/17/2013A31614/article/165"
 units:
 - name: EUR
   kind: currency
@@ -73,7 +37,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/3
-          span: le demandeur est inscrit comme personne de référence dans la Base de données régionale et bénéficie de minimum 6 titres de priorité
+          excerpt: "le demandeur est inscrit comme personne de référence dans la Base de données régionale et bénéficie de minimum 6 titres de priorité"
   versions:
   - effective_from: '2021-10-11'
     formula: '6'
@@ -89,7 +53,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/3
-          span: le demandeur chef de famille monoparentale doit être inscrit comme personne de référence dans la Base de données régionale et bénéficier de minimum 2 titres de priorité
+          excerpt: "le demandeur chef de famille monoparentale doit être inscrit comme personne de référence dans la Base de données régionale et bénéficier de minimum 2 titres de priorité"
   versions:
   - effective_from: '2021-10-11'
     formula: '2'
@@ -106,7 +70,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/4
-          span: "1° pour les demandeurs visés à l'article 3, § 2, 5°, le montant de base est de 160 euros par mois ;"
+          excerpt: "1° pour les demandeurs visés à l'article 3, § 2, 5°, le montant de base est de 160 euros par mois ;"
   versions:
   - effective_from: '2021-10-11'
     formula: '160'
@@ -123,7 +87,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/4
-          span: "3° pour les demandeurs visés à l'article 3, § 2, 6°, le montant de base est de 120 euros par mois"
+          excerpt: "3° pour les demandeurs visés à l'article 3, § 2, 6°, le montant de base est de 120 euros par mois"
   versions:
   - effective_from: '2021-10-11'
     formula: '120'
@@ -140,7 +104,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/4
-          span: "1° les montants de base visés au précédent paragraphe, sont à majorer de 20 euros par enfant faisant partie du ménage"
+          excerpt: "1° les montants de base visés au précédent paragraphe, sont à majorer de 20 euros par enfant faisant partie du ménage"
   versions:
   - effective_from: '2021-10-11'
     formula: '20'
@@ -157,7 +121,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/4
-          span: "2° en dérogation à la disposition précédente, pour les demandeurs visés à l'article 3, § 2, 6°, la majoration est de 40 euros par enfant faisant partie du ménage"
+          excerpt: "2° en dérogation à la disposition précédente, pour les demandeurs visés à l'article 3, § 2, 6°, la majoration est de 40 euros par enfant faisant partie du ménage"
   versions:
   - effective_from: '2021-10-11'
     formula: '40'
@@ -173,7 +137,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/5
-          span: L'allocation de loyer est octroyée pour une période de cinq ans à partir de la date d'introduction de la demande.
+          excerpt: "L'allocation de loyer est octroyée pour une période de cinq ans à partir de la date d'introduction de la demande."
   versions:
   - effective_from: '2021-10-11'
     formula: '5'
@@ -189,7 +153,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/5
-          span: La période visée au paragraphe 1er est renouvelable une fois pour une même durée
+          excerpt: "La période visée au paragraphe 1er est renouvelable une fois pour une même durée"
   versions:
   - effective_from: '2021-10-11'
     formula: '1'
@@ -205,7 +169,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/3
-          span: le demandeur a déménagé dans son nouveau logement endéans les six mois précédant le jour d'introduction de sa demande
+          excerpt: "le demandeur a déménagé dans son nouveau logement endéans les six mois précédant le jour d'introduction de sa demande"
   versions:
   - effective_from: '2023-02-01'
     formula: '6'
@@ -221,7 +185,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/6
-          span: L'intervention dans le loyer est octroyée pour une période de trois ans à partir de la date d'introduction de la demande.
+          excerpt: "L'intervention dans le loyer est octroyée pour une période de trois ans à partir de la date d'introduction de la demande."
   versions:
   - effective_from: '2023-02-01'
     formula: '3'
@@ -238,7 +202,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/4
-          span: "1° Le montant de base est de 160 euros par mois"
+          excerpt: "1° Le montant de base est de 160 euros par mois"
   versions:
   - effective_from: '2023-02-01'
     formula: '160'
@@ -255,7 +219,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/4
-          span: "2° le montant de base est de 120 euros par mois"
+          excerpt: "2° le montant de base est de 120 euros par mois"
   versions:
   - effective_from: '2023-02-01'
     formula: '120'
@@ -272,7 +236,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/4
-          span: "1° les montants de base visés au précédent paragraphe, sont à majorer de 20 euros par enfant repris dans la composition de ménage"
+          excerpt: "1° les montants de base visés au précédent paragraphe, sont à majorer de 20 euros par enfant repris dans la composition de ménage"
   versions:
   - effective_from: '2023-02-01'
     formula: '20'
@@ -289,7 +253,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/4
-          span: "2° en dérogation au point 1°, pour les demandeurs visés à l'article 1, 8°, la majoration est de 40 euros par enfant repris dans la composition de ménage"
+          excerpt: "2° en dérogation au point 1°, pour les demandeurs visés à l'article 1, 8°, la majoration est de 40 euros par enfant repris dans la composition de ménage"
   versions:
   - effective_from: '2023-02-01'
     formula: '40'
@@ -306,7 +270,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/5
-          span: Le montant de base est de 800 euros.
+          excerpt: "Le montant de base est de 800 euros."
   versions:
   - effective_from: '2023-02-01'
     formula: '800'
@@ -323,7 +287,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/5
-          span: le montant de base visé au précédent paragraphe, est à majorer de 80 euros par enfant repris sur la composition de ménage
+          excerpt: "le montant de base visé au précédent paragraphe, est à majorer de 80 euros par enfant repris sur la composition de ménage"
   versions:
   - effective_from: '2023-02-01'
     formula: '80'
@@ -353,7 +317,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2021/07/15/2021032702/article/3
-          span: le demandeur doit être âgé de 18 ans au moins, être émancipé ou mineur mis en autonomie
+          excerpt: "le demandeur doit être âgé de 18 ans au moins, être émancipé ou mineur mis en autonomie"
   versions:
   - effective_from: '2021-10-11'
     formula: '18'
@@ -504,7 +468,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/2022/10/13/2022033858/article/3
-          span: le demandeur est âgé de 18 ans au moins, ou est émancipé ou est mineur mis en autonomie
+          excerpt: "le demandeur est âgé de 18 ans au moins, ou est émancipé ou est mineur mis en autonomie"
   versions:
   - effective_from: '2023-02-01'
     formula: '18'

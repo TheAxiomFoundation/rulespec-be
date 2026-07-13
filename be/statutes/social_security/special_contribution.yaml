@@ -17,23 +17,7 @@ module:
 
     categories as separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/loi/1994/03/30/1994021117/article/106
-    - be/statute/loi/1994/03/30/1994021117/article/107
-    - be/statute/loi/1994/03/30/1994021117/article/108
-    - be/statute/loi/1994/03/30/1994021117/article/109
-    - be/statute/loi/1994/03/30/1994021117/article/110
-    values:
-      belgium_special_social_security_article_108_first_threshold: '18592.02'
-      belgium_special_social_security_article_108_second_threshold: '21070.96'
-      belgium_special_social_security_article_108_single_third_threshold: '37344.00'
-      belgium_special_social_security_article_108_single_fourth_threshold: '40997.26'
-      belgium_special_social_security_article_108_single_top_threshold: '60181.95'
-      belgium_special_social_security_article_108_joint_plateau_upper_threshold: '74688.00'
-      belgium_special_social_security_article_108_joint_top_threshold: '81944.00'
-      belgium_special_social_security_article_108_maximum_contribution: '731.28'
-      belgium_special_social_security_article_109_monthly_max_withholding: '60.94'
-      belgium_special_social_security_article_110_minimum_assessment_or_refund: '2.50'
+    corpus_citation_path: "be/statute/loi/1994/03/30/1994021117/article/106"
 units:
 - name: EUR
   kind: currency
@@ -51,7 +35,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 18 592,02 euros à 21 070,96 euros : à 5 p.c. sur la partie du revenu du ménage supérieure à 18 592,02 euros"
+            excerpt: "se situe dans la tranche de 18 592,02 euros à 21 070,96 euros : à 5 p.c. sur la partie du revenu du ménage supérieure à 18 592,02 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '18592.02'
@@ -67,7 +51,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 18 592,02 euros à 21 070,96 euros : à 5 p.c. sur la partie du revenu du ménage supérieure à 18 592,02 euros"
+            excerpt: "se situe dans la tranche de 18 592,02 euros à 21 070,96 euros : à 5 p.c. sur la partie du revenu du ménage supérieure à 18 592,02 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '21070.96'
@@ -83,7 +67,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 21 070,97 euros à 37 344,00 euros : à 123,95 euros augmentés de 1,3 p.c. sur la partie du revenu du ménage supérieure à 21 070,96 euros"
+            excerpt: "se situe dans la tranche de 21 070,97 euros à 37 344,00 euros : à 123,95 euros augmentés de 1,3 p.c. sur la partie du revenu du ménage supérieure à 21 070,96 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '37344.00'
@@ -99,7 +83,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 37 344,01 euros à 40 997,26 euros : à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros"
+            excerpt: "du revenu du ménage supérieure à 21 070,96 euros ;\n- se situe dans la tranche de 37 344,01 euros à [\n2\n40 997,26 euros]\n2\n: à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros ;\n- se situe dans la tranche de [\n2\n40 997,27 euros]\n2\nà 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure [\n2\n40 997,26 euros]\n2\n;\n- est supérieur à 60 181,95 euros : à 731,28 euros.\nPar dérogation à l'alinéa 2, la"
   versions:
   - effective_from: '2022-01-01'
     formula: '40997.26'
@@ -115,7 +99,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 40 997,27 euros à 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure 40 997,26 euros"
+            excerpt: "du revenu du ménage supérieure à 21 070,96 euros ;\n- se situe dans la tranche de 37 344,01 euros à [\n2\n40 997,26 euros]\n2\n: à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros ;\n- se situe dans la tranche de [\n2\n40 997,27 euros]\n2\nà 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure [\n2\n40 997,26 euros]\n2\n;\n- est supérieur à 60 181,95 euros : à 731,28 euros.\nPar dérogation à l'alinéa 2, la"
   versions:
   - effective_from: '2022-01-01'
     formula: '60181.95'
@@ -131,7 +115,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 60 181,96 euros à 74 688,00 euros : à 632,39 euros"
+            excerpt: "se situe dans la tranche de 60 181,96 euros à 74 688,00 euros : à 632,39 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '74688.00'
@@ -147,7 +131,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 74 688,01 euros à 81 944,00 euros : à 632.39 euros augmentés de 1,3629 p.c. sur la partie du revenu du ménage supérieure 74 688,00 euros"
+            excerpt: "se situe dans la tranche de 74 688,01 euros à 81 944,00 euros : à 632.39 euros augmentés de 1,3629 p.c. sur la partie du revenu du ménage supérieure 74 688,00 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '81944.00'
@@ -162,7 +146,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 18 592,02 euros à 21 070,96 euros : à 5 p.c. sur la partie du revenu du ménage supérieure à 18 592,02 euros"
+            excerpt: "se situe dans la tranche de 18 592,02 euros à 21 070,96 euros : à 5 p.c. sur la partie du revenu du ménage supérieure à 18 592,02 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '0.05'
@@ -177,7 +161,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 21 070,97 euros à 37 344,00 euros : à 123,95 euros augmentés de 1,3 p.c. sur la partie du revenu du ménage supérieure à 21 070,96 euros"
+            excerpt: "se situe dans la tranche de 21 070,97 euros à 37 344,00 euros : à 123,95 euros augmentés de 1,3 p.c. sur la partie du revenu du ménage supérieure à 21 070,96 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '0.013'
@@ -192,7 +176,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 37 344,01 euros à 40 997,26 euros : à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros"
+            excerpt: "du revenu du ménage supérieure à 21 070,96 euros ;\n- se situe dans la tranche de 37 344,01 euros à [\n2\n40 997,26 euros]\n2\n: à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros ;\n- se situe dans la tranche de [\n2\n40 997,27 euros]\n2\nà 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure [\n2\n40 997,26 euros]\n2\n;\n- est supérieur à 60 181,95 euros : à 731,28 euros.\nPar dérogation à l'alinéa 2, la"
   versions:
   - effective_from: '2022-01-01'
     formula: '0.040090'
@@ -207,7 +191,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 40 997,27 euros à 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure 40 997,26 euros"
+            excerpt: "du revenu du ménage supérieure à 21 070,96 euros ;\n- se situe dans la tranche de 37 344,01 euros à [\n2\n40 997,26 euros]\n2\n: à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros ;\n- se situe dans la tranche de [\n2\n40 997,27 euros]\n2\nà 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure [\n2\n40 997,26 euros]\n2\n;\n- est supérieur à 60 181,95 euros : à 731,28 euros.\nPar dérogation à l'alinéa 2, la"
   versions:
   - effective_from: '2022-01-01'
     formula: '0.012996'
@@ -222,7 +206,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 74 688,01 euros à 81 944,00 euros : à 632.39 euros augmentés de 1,3629 p.c. sur la partie du revenu du ménage supérieure 74 688,00 euros"
+            excerpt: "se situe dans la tranche de 74 688,01 euros à 81 944,00 euros : à 632.39 euros augmentés de 1,3629 p.c. sur la partie du revenu du ménage supérieure 74 688,00 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '0.013629'
@@ -238,7 +222,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 21 070,97 euros à 37 344,00 euros : à 123,95 euros augmentés de 1,3 p.c. sur la partie du revenu du ménage supérieure à 21 070,96 euros"
+            excerpt: "se situe dans la tranche de 21 070,97 euros à 37 344,00 euros : à 123,95 euros augmentés de 1,3 p.c. sur la partie du revenu du ménage supérieure à 21 070,96 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '123.95'
@@ -254,7 +238,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 37 344,01 euros à 40 997,26 euros : à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros"
+            excerpt: "du revenu du ménage supérieure à 21 070,96 euros ;\n- se situe dans la tranche de 37 344,01 euros à [\n2\n40 997,26 euros]\n2\n: à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros ;\n- se situe dans la tranche de [\n2\n40 997,27 euros]\n2\nà 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure [\n2\n40 997,26 euros]\n2\n;\n- est supérieur à 60 181,95 euros : à 731,28 euros.\nPar dérogation à l'alinéa 2, la"
   versions:
   - effective_from: '2022-01-01'
     formula: '335.50'
@@ -270,7 +254,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 40 997,27 euros à 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure 40 997,26 euros"
+            excerpt: "du revenu du ménage supérieure à 21 070,96 euros ;\n- se situe dans la tranche de 37 344,01 euros à [\n2\n40 997,26 euros]\n2\n: à 335,50 euros augmentés de 4,0090 p.c. sur la partie du revenu du ménage supérieure à 37 344,00 euros ;\n- se situe dans la tranche de [\n2\n40 997,27 euros]\n2\nà 60 181,95 euros : à 481,96 euros augmentés de 1,2996 p.c. sur la partie du revenu du ménage supérieure [\n2\n40 997,26 euros]\n2\n;\n- est supérieur à 60 181,95 euros : à 731,28 euros.\nPar dérogation à l'alinéa 2, la"
   versions:
   - effective_from: '2022-01-01'
     formula: '481.96'
@@ -286,7 +270,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "se situe dans la tranche de 60 181,96 euros à 74 688,00 euros : à 632,39 euros"
+            excerpt: "se situe dans la tranche de 60 181,96 euros à 74 688,00 euros : à 632,39 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '632.39'
@@ -302,7 +286,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/108
-            span: "est supérieur à 60 181,95 euros : à 731,28 euros"
+            excerpt: "est supérieur à 60 181,95 euros : à 731,28 euros"
   versions:
   - effective_from: '2022-01-01'
     formula: '731.28'
@@ -318,7 +302,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 5 836,14 euros à 6 570,54 euros: 4,22 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros"
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 5 836,14 euros à 6 570,54 euros: 4,22 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '5836.14'
@@ -334,7 +318,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "Pour les personnes dont le conjoint a également des revenus professionnels et dont le salaire trimestriel à déclarer se situe dans la tranche de 3 285,29 euros à 5 836,14 euros, la retenue est fixée forfaitairement à 5,15 euros par mois"
+            excerpt: "Pour les personnes dont le conjoint a également des revenus professionnels et dont le salaire trimestriel à déclarer se situe dans la tranche de 3 285,29 euros à 5 836,14 euros, la retenue est fixée forfaitairement à 5,15 euros par mois"
   versions:
   - effective_from: '2022-04-01'
     formula: '3285.29'
@@ -350,7 +334,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 5 836,14 euros à 6 570,54 euros: 4,22 p.c. de la partie du salaire mensuel"
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 5 836,14 euros à 6 570,54 euros: 4,22 p.c. de la partie du salaire mensuel"
   versions:
   - effective_from: '2022-04-01'
     formula: '6570.54'
@@ -366,7 +350,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 6 570,55 euros à 11 211,00 euros: 10,33 euros, augmentés de 1,1 p.c."
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 6 570,55 euros à 11 211,00 euros: 10,33 euros, augmentés de 1,1 p.c."
   versions:
   - effective_from: '2022-04-01'
     formula: '11211.00'
@@ -382,7 +366,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 11 211,01 euros à 12 300,00 euros: 27,35 euros, augmentés de 3,38 p.c."
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 11 211,01 euros à 12 300,00 euros: 27,35 euros, augmentés de 3,38 p.c."
   versions:
   - effective_from: '2022-04-01'
     formula: '12300.00'
@@ -398,7 +382,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur est supérieur à 18 116,46 euros: 60,94 euros"
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur est supérieur à 18 116,46 euros: 60,94 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '18116.46'
@@ -414,7 +398,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "4,22 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros, lorsque ce salaire mensuel se situe dans la tranche de 1 945,38 euros à 2 190,18 euros"
+            excerpt: "4,22 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros, lorsque ce salaire mensuel se situe dans la tranche de 1 945,38 euros à 2 190,18 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '1945.38'
@@ -430,7 +414,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "10,33 euros, augmentés de 1,1 p.c. de la partie du salaire mensuel qui excède 2 190,18 euros, lorsque ce salaire mensuel se situe dans la tranche de 2 190,19 euros à 3 737,00 euros"
+            excerpt: "10,33 euros, augmentés de 1,1 p.c. de la partie du salaire mensuel qui excède 2 190,18 euros, lorsque ce salaire mensuel se situe dans la tranche de 2 190,19 euros à 3 737,00 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '2190.18'
@@ -446,7 +430,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "27,35 euros, augmentés de 3,38 p.c. de la partie du salaire mensuel qui excède 3 737,00 euros, lorsque ce salaire mensuel se situe dans la tranche de 3 737,01 euros à 4 100,00 euros"
+            excerpt: "27,35 euros, augmentés de 3,38 p.c. de la partie du salaire mensuel qui excède 3 737,00 euros, lorsque ce salaire mensuel se situe dans la tranche de 3 737,01 euros à 4 100,00 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '3737.00'
@@ -462,7 +446,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "39,61 euros, augmentés de 1,1 p.c. de la partie du salaire mensuel qui excède 4 100,00 euros, lorsque ce salaire mensuel se situe dans la tranche de 4 100,01 euros à 6 038,82 euros"
+            excerpt: "39,61 euros, augmentés de 1,1 p.c. de la partie du salaire mensuel qui excède 4 100,00 euros, lorsque ce salaire mensuel se situe dans la tranche de 4 100,01 euros à 6 038,82 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '4100.00'
@@ -477,7 +461,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "4,22 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros"
+            excerpt: "4,22 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '0.0422'
@@ -492,7 +476,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "10,33 euros, augmentés de 1,1 p.c. de la partie du salaire mensuel qui excède 2 190,18 euros"
+            excerpt: "10,33 euros, augmentés de 1,1 p.c. de la partie du salaire mensuel qui excède 2 190,18 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '0.011'
@@ -507,7 +491,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "27,35 euros, augmentés de 3,38 p.c. de la partie du salaire mensuel qui excède 3 737,00 euros"
+            excerpt: "27,35 euros, augmentés de 3,38 p.c. de la partie du salaire mensuel qui excède 3 737,00 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '0.0338'
@@ -522,7 +506,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "5,90 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros lorsque ce salaire mensuel se situe dans la tranche de 1 945,38 euros à 2 190,18 euros"
+            excerpt: "5,90 p.c. de la partie du salaire mensuel qui excède 1 945,38 euros lorsque ce salaire mensuel se situe dans la tranche de 1 945,38 euros à 2 190,18 euros"
   versions:
   - effective_from: '2022-04-01'
     formula: '0.059'
@@ -538,7 +522,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 6 570,55 euros à 11 211,00 euros: 10,33 euros, augmentés de 1,1 p.c."
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 6 570,55 euros à 11 211,00 euros: 10,33 euros, augmentés de 1,1 p.c."
   versions:
   - effective_from: '2022-04-01'
     formula: '10.33'
@@ -554,7 +538,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 11 211,01 euros à 12 300,00 euros: 27,35 euros, augmentés de 3,38 p.c."
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 11 211,01 euros à 12 300,00 euros: 27,35 euros, augmentés de 3,38 p.c."
   versions:
   - effective_from: '2022-04-01'
     formula: '27.35'
@@ -570,7 +554,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 12 300,01 euros à 18 116,46 euros: 39,61 euros, augmentés de 1,1 p.c."
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur se situe dans la tranche de 12 300,01 euros à 18 116,46 euros: 39,61 euros, augmentés de 1,1 p.c."
   versions:
   - effective_from: '2022-04-01'
     formula: '39.61'
@@ -586,7 +570,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "lorsque le salaire trimestriel à déclarer par travailleur est supérieur à 6 570,54 euros: 14,44 euros, augmentés de 1,1 p.c."
+            excerpt: "lorsque le salaire trimestriel à déclarer par travailleur est supérieur à 6 570,54 euros: 14,44 euros, augmentés de 1,1 p.c."
   versions:
   - effective_from: '2022-04-01'
     formula: '14.44'
@@ -602,7 +586,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "avec un minimum de 5,15 euros par mois pour les personnes dont le conjoint bénéficie également de revenus professionnels"
+            excerpt: "avec un minimum de 5,15 euros par mois pour les personnes dont le conjoint bénéficie également de revenus professionnels"
   versions:
   - effective_from: '2022-04-01'
     formula: '5.15'
@@ -618,7 +602,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "51,64 euros par mois pour les personnes dont le conjoint a également des revenus professionnels"
+            excerpt: "51,64 euros par mois pour les personnes dont le conjoint a également des revenus professionnels"
   versions:
   - effective_from: '2022-04-01'
     formula: '51.64'
@@ -634,7 +618,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-            span: "60,94 euros par mois pour les personnes dont le conjoint n'a pas de revenus professionnels"
+            excerpt: "60,94 euros par mois pour les personnes dont le conjoint n'a pas de revenus professionnels"
   versions:
   - effective_from: '2022-04-01'
     formula: '60.94'
@@ -650,7 +634,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/110
-            span: Les montants inférieurs à (2,50 EUR) ne sont pas portés au rôle.
+            excerpt: "Les montants inférieurs à (2,50 EUR) ne sont pas portés au rôle."
   versions:
   - effective_from: '2002-01-01'
     formula: '2.50'
@@ -763,7 +747,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-          span: il est tenu compte du salaire à 108 % pour l'application des alinéas précédents
+          excerpt: "§ 1, alinéa 2, de l'arrêté royal du 28 novembre 1969 pris en exécution de la loi du 27 juin 1969 revisant l'arrêté-loi du 28 décembre 1944 concernant la sécurité sociale des travailleurs, il est tenu compte du salaire à 108 % pour l'application [\n1\ndes alinéas précédents]"
   versions:
   - effective_from: '2022-04-01'
     formula: '1.08'
@@ -799,7 +783,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/109
-          span: il est tenu compte du salaire à 108 % pour l'application des alinéas précédents
+          excerpt: "§ 1, alinéa 2, de l'arrêté royal du 28 novembre 1969 pris en exécution de la loi du 27 juin 1969 revisant l'arrêté-loi du 28 décembre 1944 concernant la sécurité sociale des travailleurs, il est tenu compte du salaire à 108 % pour l'application [\n1\ndes alinéas précédents]"
   versions:
   - effective_from: '2022-04-01'
     formula: '1.08'

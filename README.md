@@ -21,36 +21,35 @@ An oracle is an executable, pinned external calculator that accepts household-le
 
 ## Layout
 
-- `be/statutes/`: federal Belgium primary law encoded as RuleSpec.
-- `be/regulations/`: federal royal decrees, ministerial orders, and delegated instruments.
-- `be/policies/`: federal agency guidance or rate surfaces when statute/regulation decomposition is not yet complete.
-- `be-bru/statutes/`: Brussels-Capital Region and Common Community Commission ordinances and primary law.
-- `be-bru/regulations/`: Brussels regional and COCOM delegated instruments.
-- `be-bru/policies/`: Brussels agency guidance or rate surfaces after upstream legal source discovery.
-- `be-vlg/statutes/`: Flemish Region and Flemish Community decrees and primary law where competence is integrated in Flemish institutions.
-- `be-vlg/regulations/`: Flemish delegated instruments.
-- `be-vlg/policies/`: Flemish agency guidance or rate surfaces after upstream legal source discovery.
-- `be-wal/statutes/`: Walloon Region decrees and primary law.
-- `be-wal/regulations/`: Walloon delegated instruments.
-- `be-wal/policies/`: Walloon agency guidance or rate surfaces after upstream legal source discovery.
-- `be-dg/statutes/`: German-speaking Community decrees and primary law for promoted community competences.
-- `be-dg/regulations/`: German-speaking Community delegated instruments.
-- `be-dg/policies/`: German-speaking Community agency guidance or rate surfaces after upstream legal source discovery.
-- Other community-specific namespaces beyond `be-vlg` and `be-dg` are added when source manifests promote those competences.
+- Atomic RuleSpec modules live only under
+  `<jurisdiction>/{legislation,policies,regulations,statutes}/`, where the
+  current jurisdictions are `be`, `be-bru`, `be-dg`, `be-vlg`, and `be-wal`.
+- Declarative composition specs live only under
+  `<jurisdiction>/programs/`. They are axiom-compose inputs, not atomic
+  `rulespec/v1` modules, and are excluded from atomic companion-test and
+  encoding-manifest workflows.
+- Content files use the exact `.yaml` extension. Repository-root content trees,
+  singular aliases, and compatibility symlinks are not supported.
 - `data/corpus/`: source inventory, ingestion manifests, provision locators, and future promoted official extracts.
 - `data/coverage/`: tax-benefit coverage backlog and official source map.
 - `data/oracles/`: pinned household-level comparison references.
 
 The first intake map is `data/coverage/tax-benefit-source-map.json`.
 
-## Initial Build Strategy
+## Provenance contract
 
-This first pass is a source-first repo scaffold, not a formula port. The Belgium ELI/Moniteur adapter now exists in `axiom-corpus`, with the first tax-benefit manifest run at `2026-06-30-be-tax-benefit`. RuleSpec modules should cite those corpus artifacts before encoding formulas.
+Every atomic module has exactly one non-empty
+`module.source_verification.corpus_citation_path`. The only optional sibling is
+a lowercase 64-character `source_sha256`. Independently operative secondary
+sources belong on the rules they support as direct proof atoms with an exact
+corpus citation and exact `excerpt`; plural module paths, mutable source
+claims, and compatibility metadata are rejected.
+
+Legacy `axiom-encode/applied-rulespec/v1` manifests are not retained. A future
+manifest format may be introduced only through the trusted v5 signing path.
 
 Durable ids should use `be:<path>#<rule>` for federal rules, `be-bru:<path>#<rule>` for Brussels rules, `be-vlg:<path>#<rule>` for Flemish rules, `be-wal:<path>#<rule>` for Walloon rules, and `be-dg:<path>#<rule>` for German-speaking Community rules.
 
 ## Money proof-atom coverage
 
-Every policy-bearing monetary value — currency parameters, currency parameter-table cells, and currency literals in derived formulas — must carry a proof atom whose source cites a provision. The shared `validate-rulespec` workflow enforces this with `axiom-encode proof-validate --money-atoms-only`, reading the repo-root ratchet `known-missing-money-atoms.yaml`.
-
-`known-missing-money-atoms.yaml` records the current backlog (`total_allowed`, seeded at 323) so CI blocks any *new* atom-less monetary value while the existing debt is burned down. This is a floor to lower, never raise: add `metadata.proof.atoms` to the monetary rules, then regenerate with `axiom-encode proof-validate --emit-ratchet <files> --money-atom-root .` and lower the number. Issue #31 tracks the burn-down. When the count reaches zero, delete the file — an absent ratchet means a strict zero allowance.
+Every policy-bearing monetary value — currency parameters, currency parameter-table cells, and currency literals in derived formulas — must carry a proof atom whose source cites a provision. The shared `validate-rulespec` workflow enforces this with `axiom-encode proof-validate --money-atoms-only` and no allowance file: the repository has 598 obligations and permits zero missing atoms.

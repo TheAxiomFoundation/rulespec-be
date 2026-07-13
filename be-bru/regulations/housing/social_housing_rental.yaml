@@ -24,77 +24,7 @@ module:
 
     definitions, sanctions, and procedure to separate surfaces.'
   source_verification:
-    corpus_citation_paths:
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/2
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/3
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/7
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/8
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/25
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/26
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/30
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/31
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/37
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/40
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/44
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/46
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/48
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/49
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/51
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/54
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/57
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/58
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/60
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/66
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/72
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/80
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/81
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/82
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/83
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/89
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/97
-    - be-bru/regulation/arrete/1996/09/26/1996031386/article/98
-    values:
-      brussels_social_housing_single_admission_base_annual_amount: '21692.84'
-      brussels_social_housing_multi_one_income_admission_base_annual_amount: '24103.17'
-      brussels_social_housing_multi_two_or_more_income_admission_base_annual_amount: '27546.51'
-      brussels_social_housing_dependent_child_admission_increment: '2065.98'
-      brussels_social_housing_adult_disabled_person_admission_increment: '4131.97'
-      brussels_social_housing_priority_convention_income_uplift: '4364.99'
-      brussels_social_housing_reference_income_base_annual_amount: '18791.20'
-      brussels_social_housing_base_rent_minimum_rate: '0.03'
-      brussels_social_housing_base_rent_maximum_rate: '0.10'
-      brussels_social_housing_portfolio_base_rent_minimum_rate: '0.043'
-      brussels_social_housing_portfolio_base_rent_maximum_rate: '0.06'
-      brussels_social_housing_adapted_move_reduction_base_amount: '688.66'
-      brussels_social_housing_overadapted_complement_rate: '0.04'
-      brussels_social_housing_overadapted_complement_base_annual_cap: '603.93'
-      brussels_social_housing_passive_energy_complement_rate: '0.40'
-      brussels_social_housing_low_energy_complement_rate: '0.25'
-      brussels_social_housing_very_low_energy_complement_rate: '0.35'
-      brussels_social_housing_rental_guarantee_base_minimum: '413.42'
-      brussels_social_housing_rental_guarantee_base_maximum: '1240.25'
-      brussels_social_housing_one_bedroom_floor_base_annual_amount: '1375.02'
-      brussels_social_housing_two_bedroom_floor_base_annual_amount: '1680.57'
-      brussels_social_housing_three_bedroom_floor_base_annual_amount: '2138.91'
-      brussels_social_housing_four_plus_bedroom_floor_base_annual_amount: '2444.47'
-      brussels_social_housing_absolute_floor_base_annual_amount: '1032.99'
-      brussels_social_housing_article_61_low_income_cap_rate: '0.20'
-      brussels_social_housing_article_61_middle_income_cap_rate: '0.22'
-      brussels_social_housing_article_61_high_income_cap_rate: '0.24'
-      brussels_social_housing_normal_rental_value_minimum_coefficient: '1.10'
-      brussels_social_housing_normal_rental_value_maximum_coefficient: '3.00'
-      brussels_social_housing_initial_fixed_lease_years: '9'
-      brussels_social_housing_extension_lease_years: '3'
-      brussels_social_housing_lease_termination_notice_months: '6'
-      brussels_social_housing_social_lease_review_income_multiplier: '1.50'
-      brussels_moderate_housing_admission_upper_multiplier: '1.50'
-      brussels_medium_housing_admission_lower_multiplier: '1.50'
-      brussels_medium_housing_admission_upper_multiplier: '2.00'
-      brussels_moderate_housing_lease_extension_multiplier: '2.00'
-      brussels_medium_housing_lease_extension_multiplier: '2.50'
-      brussels_medium_housing_cost_price_rent_cap_rate: '0.065'
+    corpus_citation_path: "be-bru/regulation/arrete/1996/09/26/1996031386/article/2"
 units:
 - name: EUR
   kind: currency
@@ -113,7 +43,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/31
-          span: "les revenus du candidat locataire vivant seul ne peuvent dépasser le montant au 1er janvier 2016 de 21.692,84 euros"
+          excerpt: "les revenus du candidat locataire vivant seul ne peuvent dépasser le montant au 1er janvier 2016 de 21.692,84 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '21692.84'
@@ -130,7 +60,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/31
-          span: "Pour le ménage de plus d'une personne ne disposant que d'un revenu, le montant est porté au 1er janvier 2016 à 24.103,17 euros"
+          excerpt: "Pour le ménage de plus d'une personne ne disposant que d'un revenu, le montant est porté au 1er janvier 2016 à 24.103,17 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '24103.17'
@@ -147,7 +77,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/31
-          span: "Pour les ménages disposant d'au moins deux revenus, le montant est porté au 1er janvier 2016 à 27.546,51 euros"
+          excerpt: "Pour les ménages disposant d'au moins deux revenus, le montant est porté au 1er janvier 2016 à 27.546,51 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '27546.51'
@@ -164,7 +94,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/31
-          span: "Ces montants sont majorés au 1er janvier 2016 de 2.065,98 euros par enfant à charge"
+          excerpt: "Ces montants sont majorés au 1er janvier 2016 de 2.065,98 euros par enfant à charge"
   versions:
   - effective_from: '2016-12-08'
     formula: '2065.98'
@@ -181,7 +111,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/31
-          span: "Ces montants sont majorés au 1er janvier 2016 de 2.065,98 euros par enfant à charge et de 4.131,97 euros par personne majeure reconnue handicapée composant le ménage"
+          excerpt: "Ces montants sont majorés au 1er janvier 2016 de 2.065,98 euros par enfant à charge et de 4.131,97 euros par personne majeure [\n2\nreconnue]\n2\nhandicapée composant le ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '4131.97'
@@ -198,7 +128,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/37
-          span: "les candidats locataires peuvent être admis dans la mesure où leurs revenus ne dépassent pas de plus de 4.364,99 euros au 1er janvier 2024 les revenus visés à l'article 31"
+          excerpt: "les candidats locataires peuvent être admis dans la mesure où leurs revenus ne dépassent pas de plus de 4.364,99 euros au 1er janvier 2024 les revenus visés à l'article 31"
   versions:
   - effective_from: '2024-01-01'
     formula: '4364.99'
@@ -215,7 +145,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/58
-          span: "Le coefficient des revenus est obtenu en divisant les revenus du ménage de l'année de référence par le revenu de référence fixé au 1er janvier 2016 à 18.791,20 euros"
+          excerpt: "Le coefficient des revenus est obtenu en divisant les revenus du ménage de l'année de référence par le revenu de référence fixé au 1er janvier 2016 à 18.791,20 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '18791.20'
@@ -231,7 +161,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/57
-          span: "Le loyer de base établi par la société est le montant annuel calculé sur base d'un pourcentage du prix de revient actualisé du logement, variant entre 3 % et 10 %"
+          excerpt: "Le loyer de base établi par la société est le montant annuel calculé sur base d'un pourcentage du prix de revient actualisé du logement, variant entre 3 % et 10 %"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.03'
@@ -247,7 +177,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/57
-          span: "Le loyer de base établi par la société est le montant annuel calculé sur base d'un pourcentage du prix de revient actualisé du logement, variant entre 3 % et 10 %"
+          excerpt: "Le loyer de base établi par la société est le montant annuel calculé sur base d'un pourcentage du prix de revient actualisé du logement, variant entre 3 % et 10 %"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.10'
@@ -263,7 +193,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/57
-          span: "Le montant total des loyers de base doit être compris entre 4,30 % et 6 % du prix de revient actualisé de l'ensemble des logements sociaux de la société"
+          excerpt: "Le montant total des loyers de base doit être compris entre 4,30 % et 6 % du prix de revient actualisé de l'ensemble des logements sociaux de la société"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.043'
@@ -279,7 +209,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/57
-          span: "Le montant total des loyers de base doit être compris entre 4,30 % et 6 % du prix de revient actualisé de l'ensemble des logements sociaux de la société"
+          excerpt: "Le montant total des loyers de base doit être compris entre 4,30 % et 6 % du prix de revient actualisé de l'ensemble des logements sociaux de la société"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.06'
@@ -296,7 +226,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/57
-          span: "la somme des trois premières mensualités du nouveau loyer à payer est diminuée à concurrence d'un montant forfaitaire fixé au 1er janvier 2016 à 688,66 euros"
+          excerpt: "la somme des trois premières mensualités du nouveau loyer à payer est diminuée à concurrence d'un montant forfaitaire fixé au 1er janvier 2016 à 688,66 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '688.66'
@@ -312,7 +242,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/25
-          span: "Ce complément est de 4 % des revenus annuels du ménage, sans pouvoir dépasser la limite, au 1er janvier 2016, de 603,93 euros par an"
+          excerpt: "Ce complément est de 4 % des revenus annuels du ménage, sans pouvoir dépasser la limite, au 1er janvier 2016, de 603,93 euros par an"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.04'
@@ -329,7 +259,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/25
-          span: "Ce complément est de 4 % des revenus annuels du ménage, sans pouvoir dépasser la limite, au 1er janvier 2016, de 603,93 euros par an"
+          excerpt: "Ce complément est de 4 % des revenus annuels du ménage, sans pouvoir dépasser la limite, au 1er janvier 2016, de 603,93 euros par an"
   versions:
   - effective_from: '2016-12-08'
     formula: '603.93'
@@ -345,7 +275,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/26
-          span: "le pourcentage de 40 % pour les logements passifs, de 25 % pour les logements basse énergie et de 35 % pour les logements très basse énergie"
+          excerpt: "le pourcentage de 40 % pour les logements passifs, de 25 % pour les logements basse énergie et de 35 % pour les logements très basse énergie"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.40'
@@ -361,7 +291,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/26
-          span: "le pourcentage de 40 % pour les logements passifs, de 25 % pour les logements basse énergie et de 35 % pour les logements très basse énergie"
+          excerpt: "le pourcentage de 40 % pour les logements passifs, de 25 % pour les logements basse énergie et de 35 % pour les logements très basse énergie"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.25'
@@ -377,7 +307,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/26
-          span: "le pourcentage de 40 % pour les logements passifs, de 25 % pour les logements basse énergie et de 35 % pour les logements très basse énergie"
+          excerpt: "le pourcentage de 40 % pour les logements passifs, de 25 % pour les logements basse énergie et de 35 % pour les logements très basse énergie"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.35'
@@ -394,7 +324,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/40
-          span: "la garantie locative ne peut être inférieure au 1er janvier 2016 à 413,42 euros ni supérieure à 1.240,25 euros"
+          excerpt: "la garantie locative ne peut être inférieure au 1er janvier 2016 à 413,42 euros ni supérieure à 1.240,25 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '413.42'
@@ -411,7 +341,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/40
-          span: "la garantie locative ne peut être inférieure au 1er janvier 2016 à 413,42 euros ni supérieure à 1.240,25 euros"
+          excerpt: "la garantie locative ne peut être inférieure au 1er janvier 2016 à 413,42 euros ni supérieure à 1.240,25 euros"
   versions:
   - effective_from: '2016-12-08'
     formula: '1240.25'
@@ -428,7 +358,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "1.375,02 euros au 1er janvier 2016 pour les logements comprenant une seule chambre, ainsi que pour les flats ou studios"
+          excerpt: "1.375,02 euros au 1er janvier 2016 pour les logements comprenant une seule chambre, ainsi que pour les flats ou studios"
   versions:
   - effective_from: '2016-12-08'
     formula: '1375.02'
@@ -445,7 +375,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "1.680,57 euros au 1er janvier 2016 pour les logements comprenant deux chambres"
+          excerpt: "1.680,57 euros au 1er janvier 2016 pour les logements comprenant deux chambres"
   versions:
   - effective_from: '2016-12-08'
     formula: '1680.57'
@@ -462,7 +392,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "2.138,91 euros au 1er janvier 2016 pour les logements comprenant trois chambres"
+          excerpt: "2.138,91 euros au 1er janvier 2016 pour les logements comprenant trois chambres"
   versions:
   - effective_from: '2016-12-08'
     formula: '2138.91'
@@ -479,7 +409,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "2.444,47 euros au 1er janvier 2016 pour les logements comprenant quatre chambres ou plus"
+          excerpt: "2.444,47 euros au 1er janvier 2016 pour les logements comprenant quatre chambres ou plus"
   versions:
   - effective_from: '2016-12-08'
     formula: '2444.47'
@@ -496,7 +426,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "en tout cas, inférieur à 1.032,99 euros par an"
+          excerpt: "en tout cas, inférieur à 1.032,99 euros par an"
   versions:
   - effective_from: '2016-12-08'
     formula: '1032.99'
@@ -512,7 +442,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "supérieur à 20 % des revenus du ménage pour autant qu'ils soient inférieurs au revenu de référence"
+          excerpt: "supérieur à 20 % des revenus du ménage pour autant qu'ils soient inférieurs au revenu de référence"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.20'
@@ -528,7 +458,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "supérieur à 22 % des revenus du ménage pour autant qu'ils soient situés entre le revenu de référence et le revenu d'admission"
+          excerpt: "supérieur à 22 % des revenus du ménage pour autant qu'ils soient situés entre le revenu de référence et le revenu d'admission"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.22'
@@ -544,7 +474,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "Le loyer réel, en ce compris la cotisation mensuelle de solidarité, ne peut être supérieur à 24 % des revenus du ménage pour le locataire dont les revenus du ménage sont supérieurs au revenu d'admission"
+          excerpt: "Le loyer réel, en ce compris la cotisation mensuelle de solidarité, ne peut être supérieur à 24 % des revenus du ménage pour le locataire dont les revenus du ménage sont supérieurs au revenu d'admission"
   versions:
   - effective_from: '2023-12-01'
     formula: '0.24'
@@ -560,7 +490,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "la valeur locative normale du logement, établie annuellement sur base d'un coefficient appliqué au loyer de base et variant entre 110 et 300 %"
+          excerpt: "la valeur locative normale du logement, établie annuellement sur base d'un coefficient appliqué au loyer de base et variant entre 110 et 300 %"
   versions:
   - effective_from: '2016-12-08'
     formula: '1.10'
@@ -576,7 +506,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/61
-          span: "la valeur locative normale du logement, établie annuellement sur base d'un coefficient appliqué au loyer de base et variant entre 110 et 300 %"
+          excerpt: "la valeur locative normale du logement, établie annuellement sur base d'un coefficient appliqué au loyer de base et variant entre 110 et 300 %"
   versions:
   - effective_from: '2016-12-08'
     formula: '3.00'
@@ -616,7 +546,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/48
-          span: "dépassent pour les deux années concernées 150 % du revenu d'admission applicable au ménage"
+          excerpt: "dépassent pour les deux années concernées 150 % du revenu d'admission applicable au ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '1.50'
@@ -632,7 +562,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/66
-          span: "Les revenus du candidat locataire inscrit pour un logement modéré doivent être compris entre 100 et 150 % du revenu d'admission applicable pour l'inscription pour un logement social"
+          excerpt: "Les revenus du candidat locataire inscrit pour un logement modéré doivent être compris entre 100 et 150 % du revenu d'admission applicable pour l'inscription pour un logement social"
   versions:
   - effective_from: '2018-03-01'
     formula: '1.50'
@@ -648,7 +578,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/83
-          span: "Les revenus du candidat-locataire inscrit pour un logement moyen doivent être compris entre 150 et 200% du revenu d'admission applicable"
+          excerpt: "Les revenus du candidat-locataire inscrit pour un logement moyen doivent être compris entre 150 et 200% du revenu d'admission applicable"
   versions:
   - effective_from: '2018-03-01'
     formula: '1.50'
@@ -664,7 +594,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/83
-          span: "Les revenus du candidat-locataire inscrit pour un logement moyen doivent être compris entre 150 et 200% du revenu d'admission applicable"
+          excerpt: "Les revenus du candidat-locataire inscrit pour un logement moyen doivent être compris entre 150 et 200% du revenu d'admission applicable"
   versions:
   - effective_from: '2018-03-01'
     formula: '2.00'
@@ -680,7 +610,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/72
-          span: "restent pour les deux années concernées en-dessous de 200 % du revenu d'admission du logement social applicable au ménage"
+          excerpt: "restent pour les deux années concernées en-dessous de 200 % du revenu d'admission du logement social applicable au ménage"
   versions:
   - effective_from: '2018-03-01'
     formula: '2.00'
@@ -696,7 +626,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/89
-          span: "restent pour les deux années concernées en-dessous de 250 % du revenu d'admission du logement social applicable au ménage"
+          excerpt: "restent pour les deux années concernées en-dessous de 250 % du revenu d'admission du logement social applicable au ménage"
   versions:
   - effective_from: '2018-03-01'
     formula: '2.50'
@@ -712,7 +642,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/97
-          span: "Le loyer d'un logement moyen doit être compris entre le loyer applicable au logement modéré et 6,5 % du coût de revient"
+          excerpt: "Le loyer d'un logement moyen doit être compris entre le loyer applicable au logement modéré et 6,5 % du coût de revient"
   versions:
   - effective_from: '2018-03-01'
     formula: '0.065'
@@ -920,7 +850,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/8
-          span: le candidat contraint de quitter son logement bénéficie de cinq titres de priorité
+          excerpt: "Le candidat contraint de quitter son logement, soit par un arrêté d'insalubrité pris par le bourgmestre en application de l'article 135 de la loi communale soit par une décision du Service d'Inspection Régionale instauré par l'ordonnance bénéficie de cinq titres de priorité."
   versions:
   - effective_from: '2016-12-08'
     formula: '5'
@@ -1156,7 +1086,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 50 % du loyer de base pour six enfants ou plus à charge du ménage
+          excerpt: "50 % du loyer de base pour six enfants ou plus à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '6'
@@ -1172,7 +1102,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 50 % du loyer de base pour six enfants ou plus à charge du ménage
+          excerpt: "50 % du loyer de base pour six enfants ou plus à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.50'
@@ -1188,7 +1118,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 40 % du loyer de base pour cinq enfants à charge du ménage
+          excerpt: "40 % du loyer de base pour cinq enfants à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '5'
@@ -1204,7 +1134,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 40 % du loyer de base pour cinq enfants à charge du ménage
+          excerpt: "40 % du loyer de base pour cinq enfants à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.40'
@@ -1220,7 +1150,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 30 % du loyer de base pour quatre enfants à charge du ménage
+          excerpt: "30 % du loyer de base pour quatre enfants à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '4'
@@ -1236,7 +1166,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 30 % du loyer de base pour quatre enfants à charge du ménage
+          excerpt: "30 % du loyer de base pour quatre enfants à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.30'
@@ -1252,7 +1182,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 20 % du loyer de base pour trois enfants à charge du ménage
+          excerpt: "20 % du loyer de base pour trois enfants à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.20'
@@ -1268,7 +1198,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 10 % du loyer de base pour deux enfants à charge du ménage
+          excerpt: "10 % du loyer de base pour deux enfants à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.10'
@@ -1284,7 +1214,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 5 % du loyer de base pour un enfant à charge du ménage
+          excerpt: "5 % du loyer de base pour un enfant à charge du ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.05'
@@ -1402,7 +1332,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-bru/regulation/arrete/1996/09/26/1996031386/article/59
-          span: 20 % du loyer de base par personne majeure reconnue handicapée composant son ménage
+          excerpt: "20 % du loyer de base par personne majeure reconnue handicapée composant son ménage"
   versions:
   - effective_from: '2016-12-08'
     formula: '0.20'

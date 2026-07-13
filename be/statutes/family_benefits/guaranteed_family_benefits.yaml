@@ -24,32 +24,7 @@ module:
 
     and regional post-transfer systems to separate surfaces or supplied inputs.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/loi/1971/07/20/1971072007/article/1
-    - be/statute/loi/1971/07/20/1971072007/article/2
-    - be/statute/loi/1971/07/20/1971072007/article/3
-    - be/statute/loi/1971/07/20/1971072007/article/3bis
-    - be/statute/loi/1971/07/20/1971072007/article/4
-    - be/statute/loi/1971/07/20/1971072007/article/7
-    - be/statute/loi/1971/07/20/1971072007/article/10
-    - be/regulation/arrete/1971/10/25/1971102528/article/3
-    - be/regulation/arrete/1971/10/25/1971102528/article/5
-    - be/regulation/arrete/1971/10/25/1971102528/article/6
-    - be/regulation/arrete/1971/10/25/1971102528/article/7
-    - be/regulation/arrete/1971/10/25/1971102528/article/8
-    - be/statute/loi/1939/12/19/1939121901/article/40
-    - be/statute/loi/1939/12/19/1939121901/article/73bis
-    - be/statute/loi/1939/12/19/1939121901/article/73quater
-    - be/statute/loi/1939/12/19/1939121901/article/76bis
-    values:
-      belgium_guaranteed_family_benefits_principal_maintenance_threshold: 0.5
-      belgium_guaranteed_family_benefits_resource_base_quarterly_ceiling: 3079.06
-      belgium_guaranteed_family_benefits_resource_child_increment_rate: 0.2
-      belgium_guaranteed_family_benefits_special_monthly_allowance_base_amount: 45.91
-      belgium_guaranteed_family_benefits_birth_stillbirth_min_pregnancy_days: 180
-      belgium_guaranteed_family_benefits_retroactive_allowance_claim_months: 12
-      belgium_guaranteed_family_benefits_birth_allowance_claim_months: 12
-      belgium_guaranteed_family_benefits_adoption_premium_claim_months: 12
+    corpus_citation_path: "be/statute/loi/1971/07/20/1971072007/article/1"
 units:
 - name: EUR
   kind: currency
@@ -66,7 +41,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1971/07/20/1971072007/article/1
-          span: cette personne supporte plus de la moitié du coût d'entretien de l'enfant
+          excerpt: "cette personne supporte plus de la moitié du coût d'entretien de l'enfant"
   versions:
   - effective_from: '1998-07-01'
     formula: '0.5'
@@ -84,7 +59,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/6
-            span: les ressources visées à l'article 3, alinéa 2, de la loi ne dépassent pas le montant de (3 079,06 euros) par trimestre
+            excerpt: "les ressources visées à l'article 3, alinéa 2, de la loi ne dépassent pas le montant de (3 079,06 euros) par trimestre"
   versions:
   - effective_from: '2002-01-01'
     formula: '3079.06'
@@ -100,7 +75,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/6
-          span: augmentées de 20 pour cent pour chaque enfant à partir du deuxième
+          excerpt: "augmentées de 20 pour cent pour chaque enfant à partir du deuxième"
   versions:
   - effective_from: '2001-10-01'
     formula: '0.20'
@@ -118,7 +93,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/8
-            span: Le montant mensuel de l'allocation spéciale est fixé à (45,91 EUR)
+            excerpt: "Le montant mensuel de l'allocation spéciale est fixé à (45,91 EUR)"
   versions:
   - effective_from: '2002-01-01'
     formula: '45.91'
@@ -127,6 +102,14 @@ rules:
   dtype: Count
   source: Royal decree of 25 October 1971 implementing the guaranteed family benefits
     law, article 5
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/5
+          excerpt: "après une grossesse d'au moins cent quatre-vingts jours"
   versions:
   - effective_from: '1972-01-01'
     formula: '180'
@@ -362,7 +345,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/regulation/arrete/1971/10/25/1971102528/article/5
-          span: demander l'allocation de naissance à partir du sixième mois de la grossesse
+          excerpt: "demander l'allocation de naissance à partir du sixième mois de la grossesse"
   versions:
   - effective_from: '1989-01-01'
     formula: '6'

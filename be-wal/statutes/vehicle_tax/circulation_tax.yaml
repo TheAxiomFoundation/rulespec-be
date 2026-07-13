@@ -16,17 +16,7 @@ module:
 
     administrative collection rules.'
   source_verification:
-    corpus_citation_paths:
-    - be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1
-    - be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-    values:
-      wallonia_circulation_tax_cv_0_to_4_amount: 107.18
-      wallonia_circulation_tax_cv_20_amount: 2741.77
-      wallonia_circulation_tax_above_20_increment: 149.56
-      wallonia_circulation_tax_lpg_low_power_amount: 89.16
-      wallonia_circulation_tax_lpg_middle_power_amount: 148.68
-      wallonia_circulation_tax_lpg_high_power_amount: 208.2
-      wallonia_circulation_tax_oldtimer_or_minimum_forfait_amount: 48.61
+    corpus_citation_path: "be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current/block-1"
 units:
 - name: EUR
   kind: currency
@@ -45,7 +35,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "107,18 €"
+            excerpt: "107,18 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '107.18'
@@ -61,7 +51,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "134,11 €"
+            excerpt: "134,11 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '134.11'
@@ -77,7 +67,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "193,91 €"
+            excerpt: "193,91 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '193.91'
@@ -93,7 +83,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "253,31 €"
+            excerpt: "253,31 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '253.31'
@@ -109,7 +99,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "313,24 €"
+            excerpt: "313,24 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '313.24'
@@ -125,7 +115,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "373,16 €"
+            excerpt: "373,16 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '373.16'
@@ -141,7 +131,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "432,30 €"
+            excerpt: "432,30 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '432.30'
@@ -157,7 +147,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "561,00 €"
+            excerpt: "561,00 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '561.00'
@@ -173,7 +163,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "689,70 €"
+            excerpt: "689,70 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '689.70'
@@ -189,7 +179,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "818,14 €"
+            excerpt: "818,14 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '818.14'
@@ -205,7 +195,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "946,84 €"
+            excerpt: "946,84 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '946.84'
@@ -221,7 +211,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "1.075,54 €"
+            excerpt: "1.075,54 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '1075.54'
@@ -237,7 +227,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "1.408,70 €"
+            excerpt: "1.408,70 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '1408.70'
@@ -253,7 +243,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "1.742,14 €"
+            excerpt: "1.742,14 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '1742.14'
@@ -269,7 +259,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "2.075,57 €"
+            excerpt: "2.075,57 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '2075.57'
@@ -285,7 +275,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "2.408,34 €"
+            excerpt: "2.408,34 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '2408.34'
@@ -301,7 +291,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "2.741,77 €"
+            excerpt: "2.741,77 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '2741.77'
@@ -318,7 +308,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "149,56 €"
+            excerpt: "149,56 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '149.56'
@@ -333,7 +323,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '4'
@@ -348,7 +338,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '5'
@@ -363,7 +353,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '6'
@@ -378,7 +368,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '7'
@@ -393,7 +383,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '8'
@@ -408,7 +398,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '9'
@@ -423,7 +413,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '10'
@@ -438,7 +428,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '11'
@@ -453,7 +443,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '12'
@@ -468,7 +458,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '13'
@@ -483,7 +473,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '14'
@@ -498,7 +488,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15"
   versions:
   - effective_from: '2026-07-01'
     formula: '15'
@@ -513,7 +503,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Service public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '16'
@@ -528,7 +518,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Service public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '17'
@@ -543,7 +533,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Service public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '18'
@@ -558,7 +548,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Service public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '19'
@@ -573,7 +563,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, passenger cars
+          excerpt: "Service public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '20'
@@ -757,7 +747,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "89,16"
+            excerpt: "89,16"
   versions:
   - effective_from: '2026-07-01'
     formula: '89.16'
@@ -773,7 +763,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "148,68"
+            excerpt: "148,68"
   versions:
   - effective_from: '2026-07-01'
     formula: '148.68'
@@ -790,7 +780,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "208,20"
+            excerpt: "208,20"
   versions:
   - effective_from: '2026-07-01'
     formula: '208.20'
@@ -806,8 +796,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, LPG additional tax not
-            indexed and not subject to additional decime
+          excerpt: "Validité : 01/07/2026 – 30/06/2027 – ces montants sont indexés annuellement au 1er juillet\n\nService public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '7'
@@ -823,8 +812,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-          span: SPW Finances annual circulation-tax table, LPG additional tax not
-            indexed and not subject to additional decime
+          excerpt: "Service public de Wallonie finances - www.finances.wallonie.be\n\nLe des fiches N\n\n1 Montants valables pour les motor-homes assimilés à la catégorie des voitures, voitures mixtes et minibus et immatriculés à partir du 1 janvier 2022 et qui n’ont pas bénéficié du régime utilitaire. Voitures, voitures mixtes et minibus Motor-homes1 Cylindrée (en cc) Chevaux fiscaux (CV) Taxe de circulation en € Taxe de circulation en € <750 4 et moins 107,18 € 48,61 € 751 – 950 5 134,11 € 53,64 € 951 – 1.150 6 193,91 € 77,56 € 1.151 – 1.350 7 253,31 € 101,32 € 1.351 – 1.550 8 313,24 € 125,29 € 1.551 – 1.750 9 373,16 € 149,27 € 1.751 – 1.950 10 432,30 € 172,92 € 1.951 – 2.150 11 561,00 € 224,40 € 2.151 – 2.350 12 689,70 € 275,88 € 2.351 – 2.550 13 818,14 € 327,25 € 2.551 – 2.750 14 946,84 € 378,73 € 2.751 – 3.050 15 1.075,54 € 430,21 € 3.051 – 3.250 16 1.408,70 € 563,48 € 3.251 – 3.450 17 1.742,14 € 696,85 € 3.451 – 3.650 18 2.075,57 € 830,23 € 3.651 – 3.950 19 2.408,34 € 963,34 € 3.951 – 4.150 20 2.741,77 € 1.096,71 € Plus de 20 CV 2.741,77 € + 149,56 € par cheval vapeur 1.096,71 € + 59,82 € par cheval vapeur Taxe de circulation complémentaire (LPG) en € (non indexable et non soumise à décime additionnel) ≤ 7CV 8 CV – 13CV ≥ 14CV 89,16* 148,68* 208,20*"
   versions:
   - effective_from: '2026-07-01'
     formula: '13'
@@ -871,7 +859,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027/page-1
-            span: "48,61 €"
+            excerpt: "48,61 €"
   versions:
   - effective_from: '2026-07-01'
     formula: '48.61'

@@ -21,11 +21,7 @@ module:
     minimum schedules, the two-spouse-lowest-minimum increment, and any
     calendar-date recomputation.
   source_verification:
-    corpus_citation_paths:
-      - be/regulation/arrete/1991/11/25/1991013192/article/111
-      - be/regulation/arrete/1991/11/25/1991013192/article/114
-    values:
-      belgium_unemployment_pilot_months_per_year: 12
+    corpus_citation_path: "be/regulation/arrete/1991/11/25/1991013192/article/111"
 units:
   - name: EUR
     kind: currency
@@ -35,6 +31,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Twelve months per year annualization factor for the unemployment oracle pilot
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/regulation/arrete/1991/11/25/1991013192/article/114
+              excerpt: "acquiert ce droit pour une période de douze mois"
     versions:
       - effective_from: '2026-03-01'
         formula: |-

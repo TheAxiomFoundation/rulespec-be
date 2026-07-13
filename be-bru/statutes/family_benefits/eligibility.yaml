@@ -11,12 +11,7 @@ module:
     already open on 31 August 2025. Delegated proof rules and Article 26 detail
     remain supplied inputs.
   source_verification:
-    corpus_citation_paths:
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/4
-      - be-bru/statute/ordonnance/2019/04/25/2019012118/article/25
-    values:
-      brussels_family_benefits_article_25_unconditional_age_years: 18
-      brussels_family_benefits_article_25_extended_age_limit_years: 25
+    corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/4"
 units:
   - name: EUR
     kind: currency
@@ -26,6 +21,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels family-benefits ordinance article 25 section 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/25"
+              excerpt: "Les allocations familiales sont accordées en faveur de l'enfant jusqu'au 31 août de l'année civile au cours de laquelle il atteint l'âge de 18 ans."
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -34,6 +37,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Brussels family-benefits ordinance article 25 section 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/25"
+              excerpt: "Au-delà de la date fixée par le paragraphe 1er, les allocations familiales sont accordées, aux conditions fixées par le Collège réuni, jusqu'à l'âge de 25 ans en faveur :"
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -44,6 +55,14 @@ rules:
     dtype: Count
     period: Month
     source: Brussels family-benefits ordinance article 25 age and post-18 status conditions
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/25"
+              excerpt: "Le Collège réuni peut également déterminer les périodes et les conditions d'octroi du droit aux allocations familiales en faveur de l'enfant, lorsque le contrat ou l'engagement d'apprentissage est rompu ou fait l'objet d'un refus ou d'un retrait d'agréation ;"
     versions:
       - effective_from: '2020-01-01'
         formula: |-
@@ -63,6 +82,14 @@ rules:
     dtype: Count
     period: Month
     source: Brussels family-benefits ordinance article 4 temporary stay exclusion from 1 September 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/4"
+              excerpt: "Toutefois, l'enfant issu d'un pays tiers, d'un pays de l'Espace économique européen ou de la Suisse, qui est autorisé à séjourner en Belgique pour y poursuivre des études, y suivre une formation professionnelle, y effectuer du bénévolat ou y travailler comme jeune au pair, n'ouvre pas le droit aux prestations familiales."
     versions:
       - effective_from: '2025-09-01'
         formula: |-

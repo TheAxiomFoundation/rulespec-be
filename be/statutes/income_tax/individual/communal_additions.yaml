@@ -9,13 +9,7 @@ module:
     cap, and the household tax amounts when local rates are supplied. It does
     not maintain municipality-specific rate tables or collection allocations.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/fisconetplus/cir92/revenus-2025/page-686
-      - be/statute/fisconetplus/cir92/revenus-2025/page-687
-      - be/statute/fisconetplus/cir92/revenus-2025/page-688
-    values:
-      belgium_pit_article_468_agglomeration_additional_tax_rate_cap: "0.01"
-      belgium_pit_article_469_uniform_collection_rate: "0.067"
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-686"
 units:
   - name: EUR
     kind: currency
@@ -32,7 +26,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-687
-              span: ce pourcentage ne peut excéder 1 % lorsque la taxe est établie par une agglomération
+              excerpt: "ce pourcentage ne peut excéder 1 % lorsque la taxe est établie par une agglomération"
     versions:
       - effective_from: '2015-01-01'
         formula: |-
@@ -48,7 +42,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-688
-              span: le taux total de ces taxes était fixé uniformément à 6,7 %
+              excerpt: "le taux total de ces taxes était fixé uniformément à 6,7 %"
     versions:
       - effective_from: '2014-05-16'
         formula: |-

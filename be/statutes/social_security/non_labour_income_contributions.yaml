@@ -20,63 +20,7 @@ module:
     current delegated floor revaluation factors, and post-2027 supplementary
     capital-withholding procedures to separate surfaces.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1994/03/30/1994021117/article/68
-      - be/statute/loi/1994/03/30/1994021117/article/68ter
-      - be/statute/loi/1994/03/30/1994021117/article/68quinquies
-      - be/statute/loi/1994/07/14/1994071451/article/191
-      - be/regulation/arrete/1982/03/30/1982000477/article/1
-      - be/regulation/arrete/1982/09/24/1982001524/article/3
-      - be/regulation/arrete/1982/09/24/1982001524/article/10
-      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-4
-      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-5
-      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
-      - be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
-    values:
-      belgium_pension_solidarity_article_68_index_pivot: "114.89"
-      belgium_pension_solidarity_article_68_isolated_first_threshold_base: "3225.74"
-      belgium_pension_solidarity_article_68_isolated_second_threshold_base: "3325.48"
-      belgium_pension_solidarity_article_68_isolated_third_threshold_base: "3572.77"
-      belgium_pension_solidarity_article_68_isolated_fourth_threshold_base: "3610.00"
-      belgium_pension_solidarity_article_68_family_first_threshold_base: "3729.35"
-      belgium_pension_solidarity_article_68_family_second_threshold_base: "3844.66"
-      belgium_pension_solidarity_article_68_family_third_threshold_base: "4087.18"
-      belgium_pension_solidarity_article_68_family_fourth_threshold_base: "4129.76"
-      belgium_pension_solidarity_article_68_phase_in_rate: "0.50"
-      belgium_pension_solidarity_article_68_mid_rate: "0.015"
-      belgium_pension_solidarity_article_68_top_rate: "0.02"
-      belgium_pension_solidarity_article_68_isolated_transition_base_amount: "28.44"
-      belgium_pension_solidarity_article_68_family_transition_base_amount: "32.53"
-      belgium_pension_solidarity_article_68_capital_withholding_rate: "0.02"
-      belgium_health_insurance_article_191_pension_withholding_rate: "0.0355"
-      belgium_health_insurance_article_191_isolated_health_floor_lower_monthly: "2037.73"
-      belgium_health_insurance_article_191_isolated_health_floor_upper_monthly: "2112.71"
-      belgium_health_insurance_article_191_family_health_floor_lower_monthly: "2414.98"
-      belgium_health_insurance_article_191_family_health_floor_upper_monthly: "2503.85"
-      belgium_rd33_invalidity_prepension_withholding_rate: "0.035"
-      belgium_rd33_base_monthly_floor_without_family_charge: "938.50"
-      belgium_rd33_family_charge_monthly_floor_increment: "191.94"
-      belgium_rd33_invalidity_daily_floor_divisor: "26"
-    upstream_source_check:
-      status: delegated_parameter_source
-      checked_paths:
-        - be/statute/loi/1994/07/14/1994071451/article/191
-        - be/statute/loi/1994/03/30/1994021117/article/68
-        - be/regulation/arrete/2013/12/08/2013022585/article/1
-      rationale: |-
-        The statutes and executing royal decree are cited and encoded directly
-        for the withholding mechanics, the base tables, and the 3.55 percent
-        health rate. Article 191, 7 of the coordinated Law of 14 July 1994 fixes
-        the health rate and, as executed by the Royal Decree of 8 December 2013,
-        protects low pensions with an exemption floor and phase-in band; article
-        68 section 2 of the Law of 30 March 1994 fixes the solidarity table on a
-        pivot-index base (114.89). Neither primary source states the indexed
-        monetary thresholds in force in 2025: those amounts are produced by the
-        statutory indexation mechanism and published only in administrative
-        tables. The Service federal des Pensions 2025 withholding tables are the
-        official parameter source for the indexed 2025 thresholds, so the 2025
-        floor and threshold values are grounded there while the mechanics, rates,
-        and base tables remain grounded in the statutes and the royal decree.
+    corpus_citation_path: "be/statute/loi/1994/03/30/1994021117/article/68"
 units:
   - name: EUR
     kind: currency
@@ -102,12 +46,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1711.72 EUR
+              excerpt: "19\n[\n20\n§ 5/2. Lorsque l'ensemble des pensions légales et pensions complémentaires visé au paragraphe 2, alinéa 2, ne dépasse pas le montant mensuel de 3225,74 EUR pour un bénéficiaire isolé et de 3729,34 EUR pour un bénéficiaire avec charge de famille, le produit du prélèvement visé au paragraphe 5/1 fait l'objet d'un remboursement par le Service à la personne concernée selon les modalités définies ci-après."
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
-              span: "De 0,01 € à 3 225,74 €"
+              excerpt: "De 0,01 € à 3 225,74 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -127,12 +71,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1764.65 EUR
+              excerpt: "Van/de 0,01 EUR tot/à 1.711,72 EUR\nVan/de 1.711,73 EUR tot/à 1.764,65 EUR"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
-              span: "De 3 225,75 € à 3 325,48 €"
+              excerpt: "De 3 225,75 € à 3 325,48 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -152,12 +96,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1895.87 EUR
+              excerpt: "Van/de 1.764,66 EUR tot/à 1.895,87 EUR"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
-              span: "De 3 325,49 € à 3 572,77 €"
+              excerpt: "De 3 325,49 € à 3 572,77 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -177,12 +121,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 1915.62 EUR
+              excerpt: "Van/de 1.895,88 EUR tot/à 1.915,62 EUR"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-11
-              span: "À partir de 3 610,00 €"
+              excerpt: "À partir de 3 610,00 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -202,12 +146,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 1978.96 EUR
+              excerpt: "= Totaal maandelijks brutobedrag van de pensioenen en andere voordelen:\nP = Montant total mensuel brut de l'ensemble des pensions et autres avantages:\nBedrag van de afhouding in euro\nMontant de la retenue en euro\nVan/de 0,01 EUR tot/à 1.978,96 EUR\nVan/de 1.978,97 EUR tot/à 2.040,15 EUR\nVan/de 2.040,16 EUR tot/à 2.168,84 EUR\nVan/de 2.168,85 EUR tot/à 2.191,43 EUR\nVanaf/à partir de 2.191,44 EUR\n0,00\n(P - 1.978,96) x 50 %\nP x 0,015\n32,53 + [(P - 2.168,84) x 50 %]\nP x 0,02\n]\n10\nLes montants repris dans le tableau sont liés à l'indice-pivot 114,89 et sont adaptés de la même manière que les pensions selon que l'indexation de celles-ci est effectuée conformément aux dispositions de la loi du 2 août 1971 organisant un régime de liaison à l'indice des prix à la consommation des traitements, salaires, pensions, allocations et subventions à charge du Trésor public, de certaines prestations"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
-              span: "De 0,01 € à 3 729,35 €"
+              excerpt: "De 0,01 € à 3 729,35 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -227,12 +171,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 2040.15 EUR
+              excerpt: "= Totaal maandelijks brutobedrag van de pensioenen en andere voordelen:\nP = Montant total mensuel brut de l'ensemble des pensions et autres avantages:\nBedrag van de afhouding in euro\nMontant de la retenue en euro\nVan/de 0,01 EUR tot/à 1.978,96 EUR\nVan/de 1.978,97 EUR tot/à 2.040,15 EUR\nVan/de 2.040,16 EUR tot/à 2.168,84 EUR\nVan/de 2.168,85 EUR tot/à 2.191,43 EUR\nVanaf/à partir de 2.191,44 EUR\n0,00\n(P - 1.978,96) x 50 %\nP x 0,015\n32,53 + [(P - 2.168,84) x 50 %]\nP x 0,02\n]\n10\nLes montants repris dans le tableau sont liés à l'indice-pivot 114,89 et sont adaptés de la même manière que les pensions selon que l'indexation de celles-ci est effectuée conformément aux dispositions de la loi du 2 août 1971 organisant un régime de liaison à l'indice des prix à la consommation des traitements, salaires, pensions, allocations et subventions à charge du Trésor public, de certaines prestations"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
-              span: "De 3 729,36 € à 3 844,66 €"
+              excerpt: "De 3 729,36 € à 3 844,66 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -252,12 +196,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 2168.84 EUR
+              excerpt: "= Totaal maandelijks brutobedrag van de pensioenen en andere voordelen:\nP = Montant total mensuel brut de l'ensemble des pensions et autres avantages:\nBedrag van de afhouding in euro\nMontant de la retenue en euro\nVan/de 0,01 EUR tot/à 1.978,96 EUR\nVan/de 1.978,97 EUR tot/à 2.040,15 EUR\nVan/de 2.040,16 EUR tot/à 2.168,84 EUR\nVan/de 2.168,85 EUR tot/à 2.191,43 EUR\nVanaf/à partir de 2.191,44 EUR\n0,00\n(P - 1.978,96) x 50 %\nP x 0,015\n32,53 + [(P - 2.168,84) x 50 %]\nP x 0,02\n]\n10\nLes montants repris dans le tableau sont liés à l'indice-pivot 114,89 et sont adaptés de la même manière que les pensions selon que l'indexation de celles-ci est effectuée conformément aux dispositions de la loi du 2 août 1971 organisant un régime de liaison à l'indice des prix à la consommation des traitements, salaires, pensions, allocations et subventions à charge du Trésor public, de certaines prestations"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
-              span: "De 3 844,67 € à 4 087,18 €"
+              excerpt: "De 3 844,67 € à 4 087,18 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -277,12 +221,12 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 2191.43 EUR
+              excerpt: "= Totaal maandelijks brutobedrag van de pensioenen en andere voordelen:\nP = Montant total mensuel brut de l'ensemble des pensions et autres avantages:\nBedrag van de afhouding in euro\nMontant de la retenue en euro\nVan/de 0,01 EUR tot/à 1.978,96 EUR\nVan/de 1.978,97 EUR tot/à 2.040,15 EUR\nVan/de 2.040,16 EUR tot/à 2.168,84 EUR\nVan/de 2.168,85 EUR tot/à 2.191,43 EUR\nVanaf/à partir de 2.191,44 EUR\n0,00\n(P - 1.978,96) x 50 %\nP x 0,015\n32,53 + [(P - 2.168,84) x 50 %]\nP x 0,02\n]\n10\nLes montants repris dans le tableau sont liés à l'indice-pivot 114,89 et sont adaptés de la même manière que les pensions selon que l'indexation de celles-ci est effectuée conformément aux dispositions de la loi du 2 août 1971 organisant un régime de liaison à l'indice des prix à la consommation des traitements, salaires, pensions, allocations et subventions à charge du Trésor public, de certaines prestations"
           - path: versions[1].formula
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-12
-              span: "À partir de 4 129,76 €"
+              excerpt: "À partir de 4 129,76 €"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -301,7 +245,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: "(P - 1.711,72) x 50 %"
+              excerpt: "(P - 1.711,72) x 50 %"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -317,7 +261,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: "P x 0,015"
+              excerpt: "P x 0,015"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -333,7 +277,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: "P x 0,02"
+              excerpt: "P x 0,02"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -350,7 +294,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for isolated beneficiaries; amount 28.44 EUR
+              excerpt: "tot/à 1.895,87 EUR\nVan/de 1.895,88 EUR tot/à 1.915,62 EUR\nVanaf/à partir de 1.915,63 EUR\n0,00\n(P - 1.711,72) x 50 %\nP x 0,015\n28,44 + [(P - 1.895,87) x 50 %]\nP x 0,02\nBénéficiaire avec charge de famille\nP = Totaal maandelijks brutobedrag van de pensioenen en andere voordelen:\nP = Montant total mensuel brut de l'ensemble des pensions et autres avantages:\nBedrag van de afhouding in euro\nMontant de la retenue en euro\nVan/de 0,01 EUR tot/à 1.978,96 EUR\nVan/de 1.978,97 EUR tot/à 2.040,15 EUR\nVan/de 2.040,16 EUR tot/à 2.168,84 EUR\nVan/de 2.168,85 EUR tot/à 2.191,43 EUR\nVanaf/à partir de 2.191,44 EUR\n0,00\n(P - 1.978,96) x 50 %\nP x 0,015\n32,53 + [(P - 2.168,84) x 50 %]\nP x 0,02\n]\n10\nLes montants repris dans le tableau sont liés à l'indice-pivot 114,89 et sont adaptés de la même manière que les pensions selon que l'indexation de celles-ci est effectuée conformément aux dispositions de la loi du 2 août 1971 organisant un régime de liaison à l'indice des prix à la consommation des traitements, salaires, pensions, allocations et subventions à charge du Trésor public, de certaines prestations sociales, des limites de rémunération à prendre en considération pour le calcul de certaines cotisations de sécurité sociale des travailleurs, ainsi que des obligations imposées en matière sociale aux travailleurs indépendants, ou de la loi du 1er mars 1977 organisant un régime de liaison à l'indice"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -367,7 +311,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: Law of 30 March 1994 on social provisions, article 68 section 2 table for beneficiaries with family charge; amount 32.53 EUR
+              excerpt: "= Totaal maandelijks brutobedrag van de pensioenen en andere voordelen:\nP = Montant total mensuel brut de l'ensemble des pensions et autres avantages:\nBedrag van de afhouding in euro\nMontant de la retenue en euro\nVan/de 0,01 EUR tot/à 1.978,96 EUR\nVan/de 1.978,97 EUR tot/à 2.040,15 EUR\nVan/de 2.040,16 EUR tot/à 2.168,84 EUR\nVan/de 2.168,85 EUR tot/à 2.191,43 EUR\nVanaf/à partir de 2.191,44 EUR\n0,00\n(P - 1.978,96) x 50 %\nP x 0,015\n32,53 + [(P - 2.168,84) x 50 %]\nP x 0,02\n]\n10\nLes montants repris dans le tableau sont liés à l'indice-pivot 114,89 et sont adaptés de la même manière que les pensions selon que l'indexation de celles-ci est effectuée conformément aux dispositions de la loi du 2 août 1971 organisant un régime de liaison à l'indice des prix à la consommation des traitements, salaires, pensions, allocations et subventions à charge du Trésor public, de certaines prestations"
     versions:
       - effective_from: '2019-03-01'
         formula: |-
@@ -383,7 +327,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/03/30/1994021117/article/68
-              span: "une retenue égale à 2 p.c. du montant brut du capital"
+              excerpt: "une retenue égale à 2 p.c. du montant brut du capital"
     versions:
       - effective_from: '2002-01-01'
         formula: |-
@@ -399,7 +343,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/191
-              span: "le produit d'une retenue de 3,55 % effectuée sur les pensions légales"
+              excerpt: "le produit d'une retenue de 3,55 % effectuée sur les pensions légales"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -416,7 +360,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-4
-              span: "De 2 037,73 € à 2 112,71 €"
+              excerpt: "De 2 037,73 € à 2 112,71 €"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -433,7 +377,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-4
-              span: "De 2 037,73 € à 2 112,71 €"
+              excerpt: "De 2 037,73 € à 2 112,71 €"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -450,7 +394,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-5
-              span: "De 2 414,98 € à 2 503,85 €"
+              excerpt: "De 2 414,98 € à 2 503,85 €"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -467,7 +411,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/guidance/sfp/pension-withholding/2025/ami-and-solidarity-contribution/block-5
-              span: "De 2 414,98 € à 2 503,85 €"
+              excerpt: "De 2 414,98 € à 2 503,85 €"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -511,7 +455,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1982/03/30/1982000477/article/1
-              span: "Une retenue de 3,5 p.c. est effectuée"
+              excerpt: "Une retenue de 3,5 p.c. est effectuée"
     versions:
       - effective_from: '1982-04-01'
         formula: |-
@@ -528,7 +472,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1982/03/30/1982000477/article/1
-              span: Royal Decree No. 33 of 30 March 1982, article 1; amount 938.50 EUR
+              excerpt: "5° sur l'allocation de chômage majorée d'une indemnité complémentaire accordée en application de l'arrêté royal du 19 septembre 1980 relatif au droit aux allocations de chômage et aux indemnités complémentaires des travailleurs frontaliers âgés licenciés ou mis en chômage.\n(Cette retenue ne peut avoir pour effet de réduire le montant des allocations sociales précitées, dans les cas visés à l'alinéa 1er, 3° au 5°, majorées de l'indemnité complémentaire, à un montant inférieur à 938,50 euros par mois, augmenté de 191,94 euros pour les bénéficiaires ayant charge de famille.) <L 2005-12-23/30, art."
     versions:
       - effective_from: '2006-04-01'
         formula: |-
@@ -545,7 +489,7 @@ rules:
             kind: parameter
             source:
               corpus_citation_path: be/regulation/arrete/1982/03/30/1982000477/article/1
-              span: Royal Decree No. 33 of 30 March 1982, article 1; amount 191.94 EUR
+              excerpt: "5° sur l'allocation de chômage majorée d'une indemnité complémentaire accordée en application de l'arrêté royal du 19 septembre 1980 relatif au droit aux allocations de chômage et aux indemnités complémentaires des travailleurs frontaliers âgés licenciés ou mis en chômage.\n(Cette retenue ne peut avoir pour effet de réduire le montant des allocations sociales précitées, dans les cas visés à l'alinéa 1er, 3° au 5°, majorées de l'indemnité complémentaire, à un montant inférieur à 938,50 euros par mois, augmenté de 191,94 euros pour les bénéficiaires ayant charge de famille.) <L 2005-12-23/30, art."
     versions:
       - effective_from: '2006-04-01'
         formula: |-
@@ -719,6 +663,14 @@ rules:
     period: Month
     unit: EUR
     source: Royal Decree No. 33 of 30 March 1982, article 1 and Royal Decree of 24 September 1982, articles 3 and 10
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1982/09/24/1982001524/article/3"
+              excerpt: "La retenue est calculée, compte tenu du plancher journalièr prévu, sur les indemnités d'invalidité qui sont payées pour le mois considéré, en fonction du nombre de journées d'incapacité de travail ou de journées y assimilées."
     versions:
       - effective_from: '2006-04-01'
         formula: |-
@@ -741,6 +693,14 @@ rules:
     period: Month
     unit: EUR
     source: Royal Decree No. 33 of 30 March 1982, article 1 and Royal Decree of 24 September 1982, article 10
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/regulation/arrete/1982/09/24/1982001524/article/10"
+              excerpt: "Le montant de la retenue est calculé sur l'intégralité de la prestation sociale accordée au bénéficiaire, avant toute déduction pour cause de saisie, de cession ou d'application d'un quelconque régime de cotisations sociales ou de précompte."
     versions:
       - effective_from: '2006-04-01'
         formula: |-

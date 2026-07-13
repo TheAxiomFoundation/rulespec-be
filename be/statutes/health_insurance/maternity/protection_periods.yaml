@@ -9,30 +9,20 @@ module:
     maternity-indemnity surface. Delegated indemnity rates are encoded in the
     1996 health-insurance implementing-decree regulation module.
   source_verification:
-    corpus_citation_paths:
-      - be/statute/loi/1994/07/14/1994071451/article/113
-      - be/statute/loi/1994/07/14/1994071451/article/114
-      - be/statute/loi/1994/07/14/1994071451/article/114bis
-      - be/statute/loi/1994/07/14/1994071451/article/116
-      - be/statute/loi/1994/07/14/1994071451/article/116-1
-      - be/statute/loi/1994/07/14/1994071451/article/116-2
-      - be/statute/loi/1994/07/14/1994071451/article/116-3
-      - be/statute/loi/1994/07/14/1994071451/article/116-4
-      - be/statute/loi/1994/07/14/1994071451/article/116-5
-      - be/statute/loi/1994/07/14/1994071451/article/116-6
-    values:
-      belgium_maternity_prenatal_single_birth_earliest_start_days_before_birth: 42
-      belgium_maternity_prenatal_multiple_birth_earliest_start_days_before_birth: 56
-      belgium_maternity_postnatal_base_rest_days: 63
-      belgium_maternity_multiple_birth_extension_max_days: 14
-      belgium_maternity_stillbirth_minimum_gestation_days: 180
-      belgium_maternity_newborn_hospitalization_initial_days_without_extension: 7
-      belgium_maternity_newborn_hospitalization_extension_max_days: 168
+    corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/113"
 rules:
   - name: belgium_maternity_prenatal_single_birth_earliest_start_days_before_birth
     kind: parameter
     dtype: Count
     source: Coordinated health-insurance law of 14 July 1994, article 114, prenatal rest for single birth
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/114
+              excerpt: "Le repos prénatal débute, à la demande de la titulaire, au plus tôt à partir de la sixième semaine qui précède la date présumée de l'accouchement"
     versions:
       - effective_from: '2004-07-01'
         formula: |-
@@ -41,6 +31,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Coordinated health-insurance law of 14 July 1994, article 114, prenatal rest for expected multiple birth
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/114
+              excerpt: "Le repos prénatal débute, à la demande de la titulaire, au plus tôt à partir de la sixième semaine qui précède la date présumée de l'accouchement ou de la huitième semaine, lorsqu'une naissance multiple est prévue."
     versions:
       - effective_from: '2004-07-01'
         formula: |-
@@ -49,6 +47,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Coordinated health-insurance law of 14 July 1994, article 114, postnatal rest period of nine weeks
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/114
+              excerpt: "Le repos postnatal s'étend à une période de neuf semaines qui prend cours le jour de l'accouchement."
     versions:
       - effective_from: '2004-07-01'
         formula: |-
@@ -57,6 +63,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Coordinated health-insurance law of 14 July 1994, article 114, optional multiple-birth postnatal extension of at most two weeks
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/114
+              excerpt: "En cas de naissance multiple, la période de repos postnatal de neuf semaines, éventuellement prolongée conformément aux dispositions de l'alinéa précédent, peut, à la demande de la titulaire, être prolongée d'une période de deux semaines au maximum."
     versions:
       - effective_from: '2004-07-01'
         formula: |-
@@ -65,6 +79,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Coordinated health-insurance law of 14 July 1994, article 114, stillbirth rule for pregnancies lasting at least 180 days from conception
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/114
+              excerpt: "Lorsque la titulaire accouche d'un enfant sans vie, les alinéas 1er à 3 s'appliquent, pour autant que la grossesse ait duré un minimum de cent-quatre-vingts jours à dater de la conception."
     versions:
       - effective_from: '2019-03-31'
         formula: |-
@@ -81,6 +103,14 @@ rules:
     kind: parameter
     dtype: Count
     source: Coordinated health-insurance law of 14 July 1994, article 114, newborn hospitalization extension capped at twenty-four weeks
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1994/07/14/1994071451/article/114
+              excerpt: "La durée de cette prolongation ne peut dépasser vingt-quatre semaines."
     versions:
       - effective_from: '2006-09-01'
         formula: |-
@@ -117,6 +147,14 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law of 14 July 1994, article 114
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/114"
+              excerpt: "En cas de naissance multiple, la période de repos postnatal de neuf semaines, éventuellement prolongée conformément aux dispositions de l'alinéa précédent, peut, à la demande de la titulaire, être prolongée d'une période de deux semaines au maximum."
     versions:
       - effective_from: '2006-09-01'
         formula: |-
@@ -150,6 +188,19 @@ rules:
     dtype: Count
     period: Year
     source: Coordinated health-insurance law of 14 July 1994, article 113, maternity indemnity paid for working days in article 114 and 114bis protection periods
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/113"
+              excerpt: "(La titulaire visée à l'article 112 reçoit, pour chaque jour ouvrable des périodes de protection de la maternité visées aux articles 114 et 114bis et pour chaque jour de ces mêmes périodes assimilé à un jour ouvrable par un règlement du comité de gestion du Service des indemnités, une prestation dite \" indemnité de maternité\"."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/loi/1994/07/14/1994071451/article/114bis"
+              excerpt: "Constitue également une période de protection de la maternité, la période pendant laquelle la travailleuse enceinte, accouchée ou allaitante bénéficie d'une mesure visée aux articles 42, § 1, 43 ou 43bis de la loi du 16 mars 1971 sur le travail."
     versions:
       - effective_from: '1996-10-06'
         formula: |-

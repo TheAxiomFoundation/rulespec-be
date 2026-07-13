@@ -20,47 +20,7 @@ module:
 
     conversion source is ingested.'
   source_verification:
-    corpus_citation_paths:
-    - be/statute/loi/1939/12/19/1939121901/article/40
-    - be/statute/loi/1939/12/19/1939121901/article/41
-    - be/statute/loi/1939/12/19/1939121901/article/42
-    - be/statute/loi/1939/12/19/1939121901/article/42bis
-    - be/statute/loi/1939/12/19/1939121901/article/44
-    - be/statute/loi/1939/12/19/1939121901/article/44ter
-    - be/statute/loi/1939/12/19/1939121901/article/50bis
-    - be/statute/loi/1939/12/19/1939121901/article/73bis
-    - be/statute/loi/1939/12/19/1939121901/article/73quater
-    - be/statute/loi/1939/12/19/1939121901/article/76bis
-    values:
-      belgium_lgaf_index_pivot_1996_base_100: 103.14
-      belgium_lgaf_article_40_first_child_monthly_base_amount: 68.42
-      belgium_lgaf_article_40_second_child_monthly_base_amount: 126.6
-      belgium_lgaf_article_40_third_and_later_child_monthly_base_amount: 189.02
-      belgium_lgaf_article_41_first_child_single_parent_supplement_base_amount: 34.83
-      belgium_lgaf_article_41_second_child_single_parent_supplement_base_amount: 21.59
-      belgium_lgaf_article_41_third_and_later_child_single_parent_supplement_base_amount: 17.41
-      belgium_lgaf_article_42bis_first_child_social_supplement_base_amount: 34.83
-      belgium_lgaf_article_42bis_second_child_social_supplement_base_amount: 21.59
-      belgium_lgaf_article_42bis_third_and_later_child_social_supplement_base_amount: 3.79
-      belgium_lgaf_article_42bis_third_and_later_article_41_allocataire_social_supplement_base_amount: 17.41
-      belgium_lgaf_article_44_low_age_6_monthly_base_amount: 11.92
-      belgium_lgaf_article_44_low_age_12_monthly_base_amount: 18.51
-      belgium_lgaf_article_44_low_age_18_monthly_base_amount: 20.92
-      belgium_lgaf_article_44_high_age_6_monthly_base_amount: 23.77
-      belgium_lgaf_article_44_high_age_12_monthly_base_amount: 36.32
-      belgium_lgaf_article_44_high_age_18_monthly_base_amount: 46.18
-      belgium_lgaf_article_44ter_general_under_5_annual_base_amount: 20.92
-      belgium_lgaf_article_44ter_general_5_to_10_annual_base_amount: 44.4
-      belgium_lgaf_article_44ter_general_11_to_16_annual_base_amount: 62.16
-      belgium_lgaf_article_44ter_general_17_plus_annual_base_amount: 83.68
-      belgium_lgaf_article_44ter_reduced_under_5_annual_base_amount: 15.16
-      belgium_lgaf_article_44ter_reduced_5_to_10_annual_base_amount: 32.59
-      belgium_lgaf_article_44ter_reduced_11_to_16_annual_base_amount: 45.47
-      belgium_lgaf_article_44ter_reduced_17_plus_annual_base_amount: 60.63
-      belgium_lgaf_article_50bis_orphan_monthly_base_amount: 262.84
-      belgium_lgaf_article_73bis_first_birth_allowance_base_amount: 926.95
-      belgium_lgaf_article_73bis_second_birth_allowance_base_amount: 697.42
-      belgium_lgaf_article_73quater_adoption_premium_base_amount: 926.95
+    corpus_citation_path: "be/statute/loi/1939/12/19/1939121901/article/40"
 units:
 - name: EUR
   kind: currency
@@ -77,7 +37,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/76bis
-          span: rattachés à l'indice pivot 103,14 (base 1996 100)
+          excerpt: "rattachés à l'indice pivot 103,14 (base 1996 100)"
   versions:
   - effective_from: '2008-06-16'
     formula: '103.14'
@@ -94,7 +54,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/40
-            span: LGAF article 40 item 1; amount 68.42 EUR
+            excerpt: "Art.\n40\n.<L 1989-12-22/31, art. 49, 021;\nEn vigueur :\n09-01-1990> [\n1\nLes caisse d'allocations familiales]\n1\n, ainsi que les autorités et établissements publics visés à l'article 18, accordent aux enfants bénéficiaires une allocation mensuelle de :\n1° (68,42 EUR) pour le premier enfant; <AR 2001-12-11/42, art. 13, 053;\nEn vigueur :\n01-01-2002>\n2° (126,60 EUR) pour le deuxième enfant; <AR 2001-12-11/42, art. 13, 053;\nEn vigueur :\n01-01-2002>\n3° (189,02 EUR) pour le troisième enfant et pour"
   versions:
   - effective_from: '2002-01-01'
     formula: '68.42'
@@ -111,7 +71,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/40
-            span: LGAF article 40 item 2; amount 126.60 EUR
+            excerpt: "Art.\n40\n.<L 1989-12-22/31, art. 49, 021;\nEn vigueur :\n09-01-1990> [\n1\nLes caisse d'allocations familiales]\n1\n, ainsi que les autorités et établissements publics visés à l'article 18, accordent aux enfants bénéficiaires une allocation mensuelle de :\n1° (68,42 EUR) pour le premier enfant; <AR 2001-12-11/42, art. 13, 053;\nEn vigueur :\n01-01-2002>\n2° (126,60 EUR) pour le deuxième enfant; <AR 2001-12-11/42, art. 13, 053;\nEn vigueur :\n01-01-2002>\n3° (189,02 EUR) pour le troisième enfant et pour"
   versions:
   - effective_from: '2002-01-01'
     formula: '126.60'
@@ -128,7 +88,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/40
-            span: LGAF article 40 item 3; amount 189.02 EUR
+            excerpt: "Art.\n40\n.<L 1989-12-22/31, art. 49, 021;\nEn vigueur :\n09-01-1990> [\n1\nLes caisse d'allocations familiales]\n1\n, ainsi que les autorités et établissements publics visés à l'article 18, accordent aux enfants bénéficiaires une allocation mensuelle de :\n1° (68,42 EUR) pour le premier enfant; <AR 2001-12-11/42, art. 13, 053;\nEn vigueur :\n01-01-2002>\n2° (126,60 EUR) pour le deuxième enfant; <AR 2001-12-11/42, art. 13, 053;\nEn vigueur :\n01-01-2002>\n3° (189,02 EUR) pour le troisième enfant et pour"
   versions:
   - effective_from: '2002-01-01'
     formula: '189.02'
@@ -145,7 +105,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/41
-            span: LGAF article 41; amount 34.83 EUR
+            excerpt: "Art.\n41\n.<Rétabli par L\n2007-04-27/35\n, art. 13, 082;\nEn vigueur :\n01-05-2007> Lorsque l'attributaire ouvre un droit à l'allocation mensuelle visée à l'article 40, celle-ci est majorée d'un supplément (de 34,83 euros pour le premier enfant, 21,59 euros pour le deuxième enfant et 17,41 euros pour le troisième enfant et les suivants, aux conditions cumulatives qui suivent) : <AR\n2008-09-28/32\n, art. 1, 089;\nEn vigueur :\n01-10-2008>\n-l'allocataire ne forme pas un ménage de fait au sens de"
   versions:
   - effective_from: '2008-10-01'
     formula: '34.83'
@@ -162,7 +122,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/41
-            span: LGAF article 41; amount 21.59 EUR
+            excerpt: "Art.\n41\n.<Rétabli par L\n2007-04-27/35\n, art. 13, 082;\nEn vigueur :\n01-05-2007> Lorsque l'attributaire ouvre un droit à l'allocation mensuelle visée à l'article 40, celle-ci est majorée d'un supplément (de 34,83 euros pour le premier enfant, 21,59 euros pour le deuxième enfant et 17,41 euros pour le troisième enfant et les suivants, aux conditions cumulatives qui suivent) : <AR\n2008-09-28/32\n, art. 1, 089;\nEn vigueur :\n01-10-2008>\n-l'allocataire ne forme pas un ménage de fait au sens de"
   versions:
   - effective_from: '2008-10-01'
     formula: '21.59'
@@ -179,7 +139,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/41
-            span: LGAF article 41; amount 17.41 EUR
+            excerpt: "Art.\n41\n.<Rétabli par L\n2007-04-27/35\n, art. 13, 082;\nEn vigueur :\n01-05-2007> Lorsque l'attributaire ouvre un droit à l'allocation mensuelle visée à l'article 40, celle-ci est majorée d'un supplément (de 34,83 euros pour le premier enfant, 21,59 euros pour le deuxième enfant et 17,41 euros pour le troisième enfant et les suivants, aux conditions cumulatives qui suivent) : <AR\n2008-09-28/32\n, art. 1, 089;\nEn vigueur :\n01-10-2008>\n-l'allocataire ne forme pas un ménage de fait au sens de"
   versions:
   - effective_from: '2008-10-01'
     formula: '17.41'
@@ -196,7 +156,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/42bis
-            span: LGAF article 42bis section 2 item 1; amount 34.83 EUR
+            excerpt: "§ 2. En faveur des enfants visés au § 1er, les suppléments s'élèvent à :\n1° 34,83 EUR pour le premier enfant;"
   versions:
   - effective_from: '2007-05-01'
     formula: '34.83'
@@ -213,7 +173,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/42bis
-            span: LGAF article 42bis section 2 item 2; amount 21.59 EUR
+            excerpt: "1° 34,83 EUR pour le premier enfant;\n2° 21,59 EUR pour le deuxième enfant;"
   versions:
   - effective_from: '2007-05-01'
     formula: '21.59'
@@ -230,7 +190,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/42bis
-            span: LGAF article 42bis section 2 item 3; amount 3.79 EUR
+            excerpt: "1° 34,83 EUR pour le premier enfant;\n2° 21,59 EUR pour le deuxième enfant;\n3° 3,79 EUR pour le troisième enfant et pour chacun des suivants."
   versions:
   - effective_from: '2007-05-01'
     formula: '3.79'
@@ -247,7 +207,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/42bis
-            span: LGAF article 42bis section 2 final sentence; amount 17.41 EUR
+            excerpt: "(Toutefois, lorsque le supplément est dû à un allocataire visé à l'article 41, premier et deuxième tirets, le supplément s'élève à 17, 41 EUR.)"
   versions:
   - effective_from: '2007-05-01'
     formula: '17.41'
@@ -264,7 +224,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-            span: LGAF article 44 section 1 item 1; amount 11.92 EUR
+            excerpt: "Art.\n44\n. <AR 1996-12-10/37, art. 4, 037;\nEn vigueur :\n01-01-1997> § 1er. Le montant repris à l'article 40, 1°, est majoré, en ce qui concerne l'enfant non bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter), d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (11,92 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (18,51 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14,"
   versions:
   - effective_from: '2002-01-01'
     formula: '11.92'
@@ -281,7 +241,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-            span: LGAF article 44 section 1 item 2; amount 18.51 EUR
+            excerpt: "Art.\n44\n. <AR 1996-12-10/37, art. 4, 037;\nEn vigueur :\n01-01-1997> § 1er. Le montant repris à l'article 40, 1°, est majoré, en ce qui concerne l'enfant non bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter), d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (11,92 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (18,51 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14,"
   versions:
   - effective_from: '2002-01-01'
     formula: '18.51'
@@ -298,7 +258,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-            span: LGAF article 44 section 1 item 3; amount 20.92 EUR
+            excerpt: "Art.\n44\n. <AR 1996-12-10/37, art. 4, 037;\nEn vigueur :\n01-01-1997> § 1er. Le montant repris à l'article 40, 1°, est majoré, en ce qui concerne l'enfant non bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter), d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (11,92 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (18,51 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (20,92 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n§ 2. Le montant repris à l'article 40, 1°, en ce qui concerne l'enfant bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter) et les montants repris aux articles 40, 2° et 3° et 50bis, sont majorés d'un supplément d'âge de : <L\n2007-04-27/35\n,"
   versions:
   - effective_from: '2002-01-01'
     formula: '20.92'
@@ -315,7 +275,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-            span: LGAF article 44 section 2 item 1; amount 23.77 EUR
+            excerpt: "Art.\n44\n. <AR 1996-12-10/37, art. 4, 037;\nEn vigueur :\n01-01-1997> § 1er. Le montant repris à l'article 40, 1°, est majoré, en ce qui concerne l'enfant non bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter), d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (11,92 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (18,51 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (20,92 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n§ 2. Le montant repris à l'article 40, 1°, en ce qui concerne l'enfant bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter) et les montants repris aux articles 40, 2° et 3° et 50bis, sont majorés d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (23,77 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (36,32 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (46,18 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>"
   versions:
   - effective_from: '2002-01-01'
     formula: '23.77'
@@ -332,7 +292,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-            span: LGAF article 44 section 2 item 2; amount 36.32 EUR
+            excerpt: "Art.\n44\n. <AR 1996-12-10/37, art. 4, 037;\nEn vigueur :\n01-01-1997> § 1er. Le montant repris à l'article 40, 1°, est majoré, en ce qui concerne l'enfant non bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter), d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (11,92 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (18,51 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (20,92 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n§ 2. Le montant repris à l'article 40, 1°, en ce qui concerne l'enfant bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter) et les montants repris aux articles 40, 2° et 3° et 50bis, sont majorés d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (23,77 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (36,32 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (46,18 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>"
   versions:
   - effective_from: '2002-01-01'
     formula: '36.32'
@@ -349,7 +309,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-            span: LGAF article 44 section 2 item 3; amount 46.18 EUR
+            excerpt: "Art.\n44\n. <AR 1996-12-10/37, art. 4, 037;\nEn vigueur :\n01-01-1997> § 1er. Le montant repris à l'article 40, 1°, est majoré, en ce qui concerne l'enfant non bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter), d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (11,92 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (18,51 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (20,92 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n§ 2. Le montant repris à l'article 40, 1°, en ce qui concerne l'enfant bénéficiaire d'un supplément visé à (l'article 41, 42bis, 47 ou 50ter) et les montants repris aux articles 40, 2° et 3° et 50bis, sont majorés d'un supplément d'âge de : <L\n2007-04-27/35\n, art. 15, 082;\nEn vigueur :\n01-05-2007>\n1° (23,77 EUR) pour un enfant de 6 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (36,32 EUR) pour un enfant de 12 ans au moins; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n3° (46,18 EUR) pour un enfant de 18 ans au moins. <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>"
   versions:
   - effective_from: '2002-01-01'
     formula: '46.18'
@@ -366,7 +326,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 1 item a; amount 20.92 EUR
+            excerpt: "Art.\n44ter\n.[\n1\n§ 1er. Les montants visés aux articles 40 et 50bis sont majorés d'un supplément d'âge annuel de :\na) 20,92 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\nb) 44,40 euros pour un enfant âgé de 5 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 11 ans à cette date;\nc) 62,16"
   versions:
   - effective_from: '2013-06-30'
     formula: '20.92'
@@ -383,7 +343,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 1 item b; amount 44.40 EUR
+            excerpt: "Art.\n44ter\n.[\n1\n§ 1er. Les montants visés aux articles 40 et 50bis sont majorés d'un supplément d'âge annuel de :\na) 20,92 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\nb) 44,40 euros pour un enfant âgé de 5 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 11 ans à cette date;\nc) 62,16"
   versions:
   - effective_from: '2013-06-30'
     formula: '44.40'
@@ -400,7 +360,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 1 item c; amount 62.16 EUR
+            excerpt: "Art.\n44ter\n.[\n1\n§ 1er. Les montants visés aux articles 40 et 50bis sont majorés d'un supplément d'âge annuel de :\na) 20,92 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\nb) 44,40 euros pour un enfant âgé de 5 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 11 ans à cette date;\nc) 62,16"
   versions:
   - effective_from: '2013-06-30'
     formula: '62.16'
@@ -417,7 +377,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 1 item d; amount 83.68 EUR
+            excerpt: "Art.\n44ter\n.[\n1\n§ 1er. Les montants visés aux articles 40 et 50bis sont majorés d'un supplément d'âge annuel de :\na) 20,92 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\nb) 44,40 euros pour un enfant âgé de 5 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 11 ans à cette date;\nc) 62,16 euros pour un enfant âgé de 11 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 17 ans à cette date;\nd) 83,68 euros pour un enfant bénéficiaire en vertu de l'article 62 ou de l'article 63 tel que rédigé depuis sa modification par la loi du 27 février 1987, âgé de 17 ans au moins le 31 décembre de"
   versions:
   - effective_from: '2013-06-30'
     formula: '83.68'
@@ -434,7 +394,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 2 item 2 a; amount 15.16 EUR
+            excerpt: "2° A partir de l'année 2014 :\na) 15,16 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;"
   versions:
   - effective_from: '2014-01-01'
     formula: '15.16'
@@ -451,7 +411,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 2 item 2 b; amount 32.59 EUR
+            excerpt: "2° A partir de l'année 2014 :\na) 15,16 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\nb) 32,59 euros pour un enfant âgé de 5 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 11 ans à cette date;"
   versions:
   - effective_from: '2014-01-01'
     formula: '32.59'
@@ -468,7 +428,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 2 item 2 c; amount 45.47 EUR
+            excerpt: "celle au cours de laquelle ce supplément est dû.\n2° A partir de l'année 2014 :\na) 15,16 euros pour un enfant qui n'a pas encore atteint l'âge de 5 ans le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû;\nb) 32,59 euros pour un enfant âgé de 5 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 11 ans à cette date;\nc) 45,47 euros pour un enfant âgé de"
   versions:
   - effective_from: '2014-01-01'
     formula: '45.47'
@@ -485,7 +445,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-            span: LGAF article 44ter section 2 item 2 d; amount 60.63 EUR
+            excerpt: "ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément annuel est dû et qui n'a pas encore atteint l'âge de 17 ans à cette date;\nd) 60,63 euros pour un enfant bénéficiaire en vertu de l'article 62 ou de l'article 63 tel que rédigé depuis sa modification par la loi du 27 février 1987, âgé de 17 ans au moins le 31 décembre de l'année civile précédant celle au cours de laquelle ce supplément est dû.\n§ 3. Les montants visés aux §§ 1er et 2 majorent les"
   versions:
   - effective_from: '2014-01-01'
     formula: '60.63'
@@ -502,7 +462,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/50bis
-            span: LGAF article 50bis; amount 262.84 EUR
+            excerpt: "Art.\n50bis\n. <L 1989-12-22/31, art. 61, 021;\nEn vigueur :\n09-01-1990> L'allocation familiale mensuelle dont bénéfice l'orphelin visé à l'article 56bis, § 1er, s'élève à (262,84 EUR). <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>"
   versions:
   - effective_from: '2002-01-01'
     formula: '262.84'
@@ -518,7 +478,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/73bis
-            span: LGAF article 73bis section 1 item 1; amount 926.95 EUR
+            excerpt: "Art.\n73bis\n.<ARN7 18-4-1967, art. 20> [\n1\nLes caisses d'allocations familiales]\n1\nainsi que les autorités et établissements publics visés à l'article 18 accordent une allocation de naissance à l'occasion de la naissance de tout enfant bénéficiaire d'allocations familiales en vertu [\n1\nde la présente loi]\n1\n.\n(L'allocation de naissance est également accordée s'il n'existe aucun droit aux allocations familiales en vertu [\n1\nde la présente loi]\n1\n, à condition qu'il s'agisse d'un enfant à propos duquel un acte de déclaration d'enfant sans vie a été établi par l'officier de l'état civil.) <L 2002-12-24/31, art. 102, 058;\nEn vigueur :\n01-01-2003>\n(Alinéas 3 à 6 abrogés.) <L 1992-12-30/40, art. 20, 030;\nEn vigueur :\n01-01-1993>\nL'allocation de naissance s' élève à :\n1° (926,95 EUR) pour le premier-né du père ou de la mère; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (697,42"
   versions:
   - effective_from: '2002-01-01'
     formula: '926.95'
@@ -534,7 +494,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/73bis
-            span: LGAF article 73bis section 1 item 2; amount 697.42 EUR
+            excerpt: "Art.\n73bis\n.<ARN7 18-4-1967, art. 20> [\n1\nLes caisses d'allocations familiales]\n1\nainsi que les autorités et établissements publics visés à l'article 18 accordent une allocation de naissance à l'occasion de la naissance de tout enfant bénéficiaire d'allocations familiales en vertu [\n1\nde la présente loi]\n1\n.\n(L'allocation de naissance est également accordée s'il n'existe aucun droit aux allocations familiales en vertu [\n1\nde la présente loi]\n1\n, à condition qu'il s'agisse d'un enfant à propos duquel un acte de déclaration d'enfant sans vie a été établi par l'officier de l'état civil.) <L 2002-12-24/31, art. 102, 058;\nEn vigueur :\n01-01-2003>\n(Alinéas 3 à 6 abrogés.) <L 1992-12-30/40, art. 20, 030;\nEn vigueur :\n01-01-1993>\nL'allocation de naissance s' élève à :\n1° (926,95 EUR) pour le premier-né du père ou de la mère; <AR 2001-12-11/42, art. 14, 053;\nEn vigueur :\n01-01-2002>\n2° (697,42"
   versions:
   - effective_from: '2002-01-01'
     formula: '697.42'
@@ -550,7 +510,7 @@ rules:
           kind: parameter
           source:
             corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/73quater
-            span: LGAF article 73quater section 2; amount 926.95 EUR
+            excerpt: "§ 2. La prime d'adoption s'élève à (926,95 EUR)."
   versions:
   - effective_from: '2002-01-01'
     formula: '926.95'
@@ -631,7 +591,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-          span: pour un enfant de 6 ans au moins
+          excerpt: "pour un enfant de 6 ans au moins"
   versions:
   - effective_from: '2002-01-01'
     formula: '6'
@@ -646,7 +606,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-          span: pour un enfant de 12 ans au moins
+          excerpt: "pour un enfant de 12 ans au moins"
   versions:
   - effective_from: '2002-01-01'
     formula: '12'
@@ -661,7 +621,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44
-          span: pour un enfant de 18 ans au moins
+          excerpt: "pour un enfant de 18 ans au moins"
   versions:
   - effective_from: '2002-01-01'
     formula: '18'
@@ -763,7 +723,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-          span: n'a pas encore atteint l'âge de 5 ans le 31 décembre
+          excerpt: "n'a pas encore atteint l'âge de 5 ans le 31 décembre"
   versions:
   - effective_from: '2014-01-01'
     formula: '5'
@@ -778,7 +738,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-          span: n'a pas encore atteint l'âge de 11 ans à cette date
+          excerpt: "n'a pas encore atteint l'âge de 11 ans à cette date"
   versions:
   - effective_from: '2014-01-01'
     formula: '11'
@@ -793,7 +753,7 @@ rules:
         kind: parameter
         source:
           corpus_citation_path: be/statute/loi/1939/12/19/1939121901/article/44ter
-          span: n'a pas encore atteint l'âge de 17 ans à cette date
+          excerpt: "n'a pas encore atteint l'âge de 17 ans à cette date"
   versions:
   - effective_from: '2014-01-01'
     formula: '17'
