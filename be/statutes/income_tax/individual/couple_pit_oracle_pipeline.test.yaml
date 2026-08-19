@@ -1,4 +1,4 @@
-# These three single-earner inputs are the exact post-uprating gross/reference
+# These three single-earner cases use the exact post-uprating gross/reference
 # values supplied by the axiom-oracles BE_2025 marital-quotient suite. The
 # case labels retain their nominal 30k/45k/60k names.
 - name: single_earner_30k_gross_runs_spouse_worker_stages_and_refundable_credit
@@ -8,10 +8,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_gross_worker_remuneration: 31650.67178502879
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_gross_worker_remuneration: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_supplied_work_bonus_reference_annual_remuneration: 27285.06188364551
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_supplied_work_bonus_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#relation.belgium_pit_couple_spouse_of_tax_unit:
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: true
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: false
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 31650.67178502879
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 27285.06188364551
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: false
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: true
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
@@ -22,13 +27,10 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_agglomeration_additional_tax_rate: 0
   output:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_contribution_before_reductions: "4136.742802303262853"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_work_bonus_reduction: 3062.37
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_ordinary_worker_contribution: "1074.372802303262853"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_51_forfait_professional_expenses: 5930
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_professional_income_after_article_89_exclusions: "24646.298982725527147"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_289ter1_low_wage_work_bonus_credit: 1337.204256
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_tax_free_amount: "14426.1103051823418559"
@@ -46,10 +48,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_gross_worker_remuneration: 47476.00767754318
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_gross_worker_remuneration: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_supplied_work_bonus_reference_annual_remuneration: 40927.59282546826
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_supplied_work_bonus_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#relation.belgium_pit_couple_spouse_of_tax_unit:
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: true
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: false
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 47476.00767754318
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 40927.59282546826
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: false
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: true
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
@@ -60,11 +67,10 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_agglomeration_additional_tax_rate: 0
   output:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_ordinary_worker_contribution: "6205.114203454893626"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_51_forfait_professional_expenses: 5930
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_professional_income_after_article_89_exclusions: "35340.893474088286374"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_tax_free_amount: "11217.7319577735140878"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_tax_free_amount: "10602.2680422264859122"
@@ -79,10 +85,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_gross_worker_remuneration: 63301.34357005758
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_gross_worker_remuneration: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_supplied_work_bonus_reference_annual_remuneration: 54570.12376729102
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_supplied_work_bonus_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#relation.belgium_pit_couple_spouse_of_tax_unit:
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: true
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: false
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 63301.34357005758
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 54570.12376729102
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: false
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: true
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
@@ -93,11 +104,10 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_agglomeration_additional_tax_rate: 0
   output:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_ordinary_worker_contribution: "8273.485604606525706"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_51_forfait_professional_expenses: 5930
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_professional_income_after_article_89_exclusions: "49097.857965451054294"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_tax_free_amount: 10910
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_tax_free_amount: 10910
@@ -115,10 +125,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_gross_worker_remuneration: 30000
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_gross_worker_remuneration: 30000
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_supplied_work_bonus_reference_annual_remuneration: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_supplied_work_bonus_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#relation.belgium_pit_couple_spouse_of_tax_unit:
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: true
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: false
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 30000
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: false
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: true
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 30000
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
@@ -129,11 +144,10 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_agglomeration_additional_tax_rate: 0
   output:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_ordinary_worker_contribution: 1591.35
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_employee_social_security_ordinary_worker_contribution: 1591.35
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 22478.65
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 22478.65
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_289ter1_low_wage_work_bonus_credit: 952.233168
@@ -142,62 +156,24 @@
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding: 1911.3776948
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_federal_and_local_tax_before_withholding: 3822.7553896
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_article_134_joint_assessment_established: "holds"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: "not_holds"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_agglomeration_additional_tax_rate_after_cap: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_130_base_tax: "6543.46"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_134_tax_on_tax_free_amount: "2727.5"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_289ter1_work_bonus_a_tax_credit_base_amount: "1447.08"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_289ter1_work_bonus_b_tax_credit_base_amount: "899.64"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_contribution_base: 30000
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax_base: "1911.3776948"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount: "3815.96"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_net_federal_tax_after_work_bonus_credit: "1911.3776948"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor: "2863.6108628"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_remuneration_after_employee_social_security: "28408.65"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_taxable_income: "22478.65"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_a_amount: "1444.71"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_a_before_cap: "120.59"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_b_amount: "884.94"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_b_before_cap: "74.97"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_february_to_december_2025_a_amount: "1326.49"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_february_to_december_2025_b_amount: "824.67"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_january_2025_a_amount: "118.22"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_january_2025_a_before_cap: "118.22"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_january_2025_b_amount: "60.27"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_january_2025_b_before_cap: "60.27"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_monthly_contribution_before_reduction: "326.75"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_monthly_remuneration: "2500"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_reference_annual_remuneration: "30000"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_agglomeration_additional_tax_rate_after_cap: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_130_base_tax: "6543.46"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_134_tax_on_tax_free_amount: "2727.5"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_289ter1_work_bonus_a_tax_credit_base_amount: "1447.08"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_289ter1_work_bonus_b_tax_credit_base_amount: "899.64"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_51_forfait_professional_expenses: "5930"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_employee_social_security_contribution_base: 30000
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_employee_social_security_contribution_before_reductions: "3921"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_employee_social_security_work_bonus_reduction: "2329.65"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_local_additional_tax: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_local_additional_tax_base: "1911.3776948"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_net_federal_tax_after_tax_free_amount: "3815.96"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_net_federal_tax_after_work_bonus_credit: "1911.3776948"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor: "2863.6108628"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_remuneration_after_employee_social_security: "28408.65"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_taxable_income: "22478.65"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_a_amount: "1444.71"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_a_before_cap: "120.59"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_b_amount: "884.94"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_b_before_cap: "74.97"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_february_to_december_2025_a_amount: "1326.49"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_february_to_december_2025_b_amount: "824.67"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_january_2025_a_amount: "118.22"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_january_2025_a_before_cap: "118.22"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_january_2025_b_amount: "60.27"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_january_2025_b_before_cap: "60.27"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_monthly_contribution_before_reduction: "326.75"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_monthly_remuneration: "2500"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_reference_annual_remuneration: "30000"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_joint_article_132_supplements_tax_free_amount: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_base_tax_free_amount: 10910
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_taxable_income: "22478.65"
@@ -205,8 +181,8 @@
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_b_taxable_income: "22478.65"
 
 # This second worker-derived two-earner regression preserves the old companion
-# test's nonzero local-rate coverage and exercises every zero branch in both
-# spouses' January and February-to-December work-bonus schedules.
+# test's nonzero local-rate coverage while the imported Person pilot retains
+# its own work-bonus branch coverage.
 - name: two_earner_40k_each_matches_worker_local_tax_and_zero_bonus_stages
   period:
     period_kind: custom
@@ -214,10 +190,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_gross_worker_remuneration: 40000
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_gross_worker_remuneration: 40000
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_a_supplied_work_bonus_reference_annual_remuneration: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_spouse_b_supplied_work_bonus_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#relation.belgium_pit_couple_spouse_of_tax_unit:
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: true
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: false
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 40000
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+      - be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_a: false
+        be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_worker_is_spouse_b: true
+        be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 40000
+        be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_convention_exempt_professional_income_not_counted_for_other_tax: 0
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_married_or_legal_cohabiting: true
@@ -228,19 +209,10 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_dissolution_by_death: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0.06
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_agglomeration_additional_tax_rate: 0.01
   output:
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_a_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_b_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_january_2025_a_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_work_bonus_january_2025_b_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_a_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_b_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_january_2025_a_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_work_bonus_january_2025_b_before_cap: 0
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_employee_social_security_ordinary_worker_contribution: 5228
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_employee_social_security_ordinary_worker_contribution: 5228
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 28842
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 28842
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax: "334.27003834"
