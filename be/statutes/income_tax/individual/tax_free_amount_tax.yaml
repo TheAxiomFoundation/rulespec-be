@@ -14,7 +14,7 @@ module:
     spouse credits. It leaves regional reductions, communal additions, and
     treaty-exempt income exclusions to later household modules.
   source_verification:
-    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-181"
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-185"
 units:
   - name: EUR
     kind: currency
@@ -235,6 +235,71 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           max(0, belgium_pit_article_134_base_tax_before_tax_free_amount_reduction - belgium_pit_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_article_134_tax_free_amount_through_child_supplements
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3 ordering through the Article 132 paragraph 1 items 1 through 6 child supplements
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_tax_free_amount_before_child_supplements + belgium_pit_article_134_child_supplements_tax_free_amount
+  - name: belgium_pit_article_134_tax_on_tax_free_amount_before_child_supplements
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3 item 1, tax on the base and non-child supplements ordered before Article 132 paragraph 1 items 1 through 6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
+              excerpt: "la quotité du revenu exemptée d'impôt est censée être constituée consécutivement: - du montant de base de la quotité du revenu exemptée d'impôt visé à l'article 131; - des suppléments visés aux articles 132, alinéa 1er, 7° et 8°, et 133; - des suppléments visés à l'article 132, alinéa 1er, 1° à 6°;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_tax_free_amount_before_child_supplements <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_article_134_tax_free_amount_before_child_supplements * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_article_134_tax_free_amount_before_child_supplements <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_before_child_supplements - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_article_134_tax_free_amount_before_child_supplements <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_before_child_supplements - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_article_134_tax_free_amount_before_child_supplements <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_before_child_supplements - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_before_child_supplements - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_article_134_tax_on_tax_free_amount_through_child_supplements
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, tax through the Article 132 paragraph 1 items 1 through 6 child supplements
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_tax_free_amount_through_child_supplements <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_article_134_tax_free_amount_through_child_supplements * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_article_134_tax_free_amount_through_child_supplements <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_through_child_supplements - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_article_134_tax_free_amount_through_child_supplements <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_through_child_supplements - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_article_134_tax_free_amount_through_child_supplements <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_through_child_supplements - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_through_child_supplements - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
   - name: belgium_pit_article_134_child_tax_credit_cap
     kind: derived
     entity: Person
@@ -275,14 +340,6 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraph 4 items 1 and 2
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-186"
-              excerpt: "Lorsqu'une imposition commune est établie, il est procédé comme suit: 1° la quotité du revenu exemptée d'impôt est fixée par conjoint;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -489,10 +546,21 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraph 3, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
+              excerpt: "La partie de l'impôt calculée conformément au paragraphe 2, alinéa 2, sur la quotité du revenu exemptée d'impôt qui ne peut pas être portée en diminution de l'impôt calculé conformément à l'article 130, est, dans la mesure où elle concerne les suppléments visés à l'article 132, alinéa 1er, 1° à 6°, convertie en un crédit d'impôt remboursable."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(belgium_pit_article_134_unused_tax_free_amount_reduction, belgium_pit_article_134_child_tax_credit_cap)
+          if belgium_pit_article_134_paragraph_3_exclusion_applies:
+              0
+          else:
+              min(max(0, belgium_pit_article_134_tax_on_tax_free_amount_through_child_supplements - max(belgium_pit_article_130_base_tax, belgium_pit_article_134_tax_on_tax_free_amount_before_child_supplements)), belgium_pit_article_134_child_tax_credit_cap)
   - name: belgium_pit_article_134_net_federal_tax_after_refundable_child_credit
     kind: derived
     entity: Person
@@ -500,19 +568,6 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 130 and 134, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-184"
-              excerpt: "La quotité du revenu exemptée d'impôt comprend le total du montant de base, éventuellement majoré, et des suppléments visés aux articles 132 et 133."
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-187"
-              excerpt: "l'impôt calculé conformément à l'article 130 de chaque conjoint est diminué de l'impôt calculé conformément au paragraphe 2, alinéa 2, sur sa quotité du revenu exemptée d'impôt fixée conformément aux 1° à 4°;"
     versions:
       - effective_from: '2025-01-01'
         formula: |-

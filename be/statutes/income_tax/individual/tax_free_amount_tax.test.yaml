@@ -46,6 +46,12 @@
   input:
     be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 60000
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements
+    : 10910
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount
+    : 0
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies
+    : false
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
     : 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis
@@ -65,19 +71,72 @@
     end: '2025-12-31'
   input:
     be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 1000
-    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 16020
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements
+    : 10910
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount
+    : 5110
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies
+    : false
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
     : 2
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis
     : 0
   output:
-    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 7031
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 4233
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_child_tax_credit_cap: 1140
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction: 0
-    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction: 6781
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction: 3983
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 1140
     ? be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_net_federal_tax_after_refundable_child_credit
     : -1140
+- name: article_134_non_child_unused_reduction_is_not_refundable_as_child_credit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 1000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements
+    : 10910
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount
+    : 0
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies
+    : false
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
+    : 1
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis
+    : 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction: 2477.5
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 0
+- name: article_134_orders_child_credit_before_additional_article_133_supplement
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 12600
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 19290
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements
+    : 12890
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount
+    : 5110
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies
+    : false
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
+    : 2
+    ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis
+    : 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_free_amount_through_child_supplements: 18000
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount_before_child_supplements: 3294
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount_through_child_supplements: 4995
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 5511
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 1140
 - name: article_134_joint_assessment_assigns_supplements_to_higher_income_spouse
   period:
     period_kind: custom

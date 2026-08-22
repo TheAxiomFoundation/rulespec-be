@@ -1,0 +1,96 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_dependent_is_child
+  - be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_net_resources_within_applicable_ceiling
+  - be:statutes/income_tax/individual/dependant_household_conditions#belgium_pit_articles_138_139_deemed_household_condition_met
+  - be:statutes/income_tax/individual/dependant_household_conditions#belgium_pit_article_140_household_direction_condition_met
+  - be:statutes/income_tax/individual/dependant_article_145_exclusion#belgium_pit_article_145_dependent_is_not_excluded
+module:
+  summary: |-
+    Person-scoped ordinary dependant eligibility under Articles 136 and 137.
+    The related Person must have a permitted family role, meet the actual or
+    imported deemed 1-January household condition, and meet the net-resource
+    test unless all of a child's taxable income is cumulated with the parents.
+    Imported page-specific predicates apply Articles 138 through 140 and 145
+    without giving this module more than its single Article 136/137 source.
+    Article 132 and Article 132bis classification and counts are downstream.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-188
+rules:
+  - name: belgium_pit_article_136_permitted_dependent_role
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 article 136 items 1 through 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-188
+              excerpt: "1° leurs enfants; 2° leurs ascendants; 3° leurs collatéraux jusqu'au deuxième degré inclusivement; 4° les personnes qui ont assumé la charge exclusive ou principale du contribuable pendant l'enfance de celui-ci."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_articles_136_141_dependent_is_child or belgium_pit_dependent_is_ascendant or belgium_pit_dependent_is_collateral_within_second_degree or belgium_pit_dependent_assumed_exclusive_or_main_support_of_taxpayer_during_childhood
+  - name: belgium_pit_articles_136_138_139_household_condition_met
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 136 actual 1-January membership, together with imported Article 138/139 deemed membership
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-188
+              excerpt: "à condition qu'ils fassent partie de leur ménage au 1er janvier de l'exercice d'imposition"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_is_part_of_taxpayer_household_on_assessment_year_january_1 or belgium_pit_articles_138_139_deemed_household_condition_met
+  - name: belgium_pit_articles_136_137_resources_condition_met
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 136 net-resource test with Article 137 child-income-cumulation override
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-188
+              excerpt: "qu'ils n'aient pas bénéficié personnellement, pendant la période imposable, de ressources d'un montant net supérieur à 4.100 euros (montant indexé)"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-188
+              excerpt: "Les enfants dont tous les revenus imposables sont cumulés avec ceux de leurs parents sont considérés comme étant à charge de ces derniers, quelle que soit l'importance de leurs revenus."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_articles_136_141_net_resources_within_applicable_ceiling or (belgium_pit_articles_136_141_dependent_is_child and belgium_pit_dependent_child_all_taxable_income_is_cumulated_with_parents)
+  - name: belgium_pit_dependent_person_is_eligible
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 136 ordinary dependant conditions, with imported adjacent-provision predicates
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-188
+              excerpt: "Sont considérés comme étant à charge des contribuables, à condition qu'ils fassent partie de leur ménage au 1er janvier de l'exercice d'imposition et qu'ils n'aient pas bénéficié personnellement, pendant la période imposable, de ressources d'un montant net supérieur à 4.100 euros (montant indexé)"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_136_permitted_dependent_role and belgium_pit_articles_136_138_139_household_condition_met and belgium_pit_articles_136_137_resources_condition_met and belgium_pit_article_140_household_direction_condition_met and belgium_pit_article_145_dependent_is_not_excluded

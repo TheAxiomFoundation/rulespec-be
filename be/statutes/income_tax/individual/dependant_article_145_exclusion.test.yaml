@@ -1,0 +1,19 @@
+- name: person_outside_article_145_exclusion_passes_gate
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_article_145_exclusion#input.belgium_pit_dependent_is_excluded_under_article_145: false
+  output:
+    be:statutes/income_tax/individual/dependant_article_145_exclusion#belgium_pit_article_145_dependent_is_not_excluded: holds
+
+- name: article_145_excluded_person_fails_gate
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_article_145_exclusion#input.belgium_pit_dependent_is_excluded_under_article_145: true
+  output:
+    be:statutes/income_tax/individual/dependant_article_145_exclusion#belgium_pit_article_145_dependent_is_not_excluded: not_holds

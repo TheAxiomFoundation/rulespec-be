@@ -5,6 +5,46 @@ imports:
   - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_months_in_year
   - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap
   - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_rate
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_and_business_profit_cap
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
+  - be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate
+  - be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate
+  - be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling
+  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+  - be:statutes/income_tax/individual/regional_autonomy_factor#belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_without_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_with_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_equivalent_count
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_equivalent_count
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_is_eligible
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_one_child_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_two_children_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_three_children_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_four_children_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_first_additional_child_count
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_additional_child_after_four_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_child_under_3_tax_free_increase
+  - be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit
+  - be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit
+  - be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_refundable_article_133_additional_supplement_credit
+  - be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_total_refundable_paragraph_3_credit
 module:
   summary: |-
     This composed pilot module exposes a dense-engine-friendly Person-level
@@ -15,647 +55,30 @@ module:
     tax-free-amount reduction, the special-financing-law Article 5/2 autonomy
     factor, Article 289ter/1 work-bonus credit from the encoded ONSS 2025
     full-year equal-month work-bonus A/B amounts capped by contributions due,
-    and supplied Article
-    465/468 local additions into one
-    module. It deliberately keeps existing public rule ids
-    in other modules unchanged and excludes dependants, joint assessment, other
+    and supplied Article 465/468 local additions into one module. Related
+    Person records now supply the Articles 132 and 136 through 145 dependant
+    ledger, Article 132bis half-shares, the Article 133 isolated-parent
+    supplements, and the Article 134 paragraph 3 refundable credits. It
+    deliberately keeps existing public rule ids in other modules unchanged and
+    excludes joint assessment, other
     income categories, actual-expense proof, replacement-income reductions,
     regional reductions/credits, professional withholding tables, ONSS work-
     bonus partial-year and part-time mechanics, treaty allocation, and
     partial-year cases.
   source_verification:
-    corpus_citation_path: "be/statute/loi/1981/06/29/1981001048/article/38"
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
 units:
   - name: EUR
     kind: currency
     minor_units: 2
 rules:
-  - name: belgium_pit_pilot_source_thousands_dot_hundreds_factor
-    kind: parameter
-    dtype: Decimal
-    source: Belgian indexed PIT source amounts use a dot as thousands separator
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          100
-  - name: belgium_pit_pilot_source_thousands_dot_tens_factor
-    kind: parameter
-    dtype: Decimal
-    source: Belgian indexed PIT source amounts use a dot as thousands separator
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          10
-  - name: belgium_pit_pilot_source_percent_denominator
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 percentage notation
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          100
-  - name: belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 51, income year 2025, assessment year 2026, source text states 5.930 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          5
-  - name: belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 51, income year 2025, assessment year 2026, source text states 5.930 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          93
-  - name: belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 16.320 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          16
-  - name: belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 16.320 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          32
-  - name: belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 28.800 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          28
-  - name: belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 28.800 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          8
-  - name: belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 49.840 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          49
-  - name: belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 130, income year 2025, assessment year 2026, source text states 49.840 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          84
-  - name: belgium_pit_pilot_base_tax_free_amount_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 131, income year 2025, assessment year 2026, source text states 10.910 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          10
-  - name: belgium_pit_pilot_base_tax_free_amount_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 131, income year 2025, assessment year 2026, source text states 10.910 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          91
-  - name: belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 11.460 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          11
-  - name: belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 11.460 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          46
-  - name: belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 16.320 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          16
-  - name: belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 16.320 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          32
-  - name: belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 27.190 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          27
-  - name: belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 27.190 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          19
-  - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 49.840 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          49
-  - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 134, income year 2025, assessment year 2026, source text states 49.840 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          84
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_integer_percent_part
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 289ter/1 states a 33,14 percent rate for work-bonus volet A
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          33
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_fractional_percent_part
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 289ter/1 states a 33,14 percent rate for work-bonus volet A
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          14
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_integer_percent_part
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 289ter/1 states a 52,54 percent rate for work-bonus volet B
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          52
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_fractional_percent_part
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 289ter/1 states a 52,54 percent rate for work-bonus volet B
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          54
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_thousands
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling source text states 1.540 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          1
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_trailing_group
-    kind: parameter
-    dtype: Decimal
-    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling source text states 1.540 euros
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          54
-  - name: belgium_pit_pilot_article_51_employee_forfait_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 51, income year 2025, assessment year 2026, employee remuneration forfait
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-121
-              excerpt: "1° pour les rémunérations des travailleurs: 30 %;"
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.30
-  - name: belgium_pit_pilot_article_51_employee_and_business_profit_cap
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 51, income year 2025, assessment year 2026, cap for employee remuneration and business profits
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
-              excerpt: "Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visés à l'alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l'ensemble des revenus visés à l'alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visée à l'alinéa 2, 3° et 4°."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_51_employee_and_business_profit_cap_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_130_first_bracket_upper_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_130_first_bracket_upper_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_130_second_bracket_upper_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_130_second_bracket_upper_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_hundreds_factor
-  - name: belgium_pit_pilot_article_130_third_bracket_upper_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_130_third_bracket_upper_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_130_first_bracket_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.25
-  - name: belgium_pit_pilot_article_130_second_bracket_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.40
-  - name: belgium_pit_pilot_article_130_third_bracket_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.45
-  - name: belgium_pit_pilot_article_130_top_bracket_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 130, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "L'impôt de base est fixé à: 25 % pour la tranche de revenus de 0,01 euros à 16.320 euros (montant indexé); 40 % pour la tranche de 16.320 euros (montant indexé) à 28.800 euros (montant indexé); 45 % pour la tranche de 28.800 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.50
-  - name: belgium_pit_pilot_base_tax_free_amount
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 131, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
-              excerpt: "Pour le calcul de l'impôt, un montant de base de 10.910 euros (montant indexé) est exempté d'impôt."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_base_tax_free_amount_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_base_tax_free_amount_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_134_first_tax_free_amount_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_first_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_134_second_tax_free_amount_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_second_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_134_third_tax_free_amount_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_third_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
-  - name: belgium_pit_pilot_article_134_first_tax_free_amount_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.25
-  - name: belgium_pit_pilot_article_134_second_tax_free_amount_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.30
-  - name: belgium_pit_pilot_article_134_third_tax_free_amount_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.40
-  - name: belgium_pit_pilot_article_134_fourth_tax_free_amount_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.45
-  - name: belgium_pit_pilot_article_134_top_tax_free_amount_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
-              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          0.50
-  - name: belgium_pit_pilot_article_468_agglomeration_additional_tax_rate_cap
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 468, agglomeration tax may not exceed 1 percent
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-687
-              excerpt: "ce pourcentage ne peut excéder 1 % lorsque la taxe est établie par une agglomération."
-    versions:
-      - effective_from: '2015-01-01'
-        formula: |-
-          0.01
-  - name: belgium_pit_pilot_article_5_2_autonomy_factor
-    kind: parameter
-    dtype: Rate
-    source: Special financing law article 5/2 and 19 December 2017 royal decree article 1, definitive autonomy factor applicable to income taxes from assessment year 2018
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/regulation/arrete/2017/12/19/2017032216/article/1er
-              excerpt: "Le facteur d'autonomie définitif visé à l'article 5/2, § 1er, alinéas 3 et 4, de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, est, sur la base des rapports de la Cour des comptes visés à l'article 81ter de la même loi spéciale, déterminé à 24,957 %."
-    versions:
-      - effective_from: '2018-01-01'
-        formula: |-
-          0.24957
-  - name: belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
-    kind: parameter
-    dtype: Rate
-    source: Special financing law article 5/2 defines reduced State tax as State tax less State tax multiplied by the autonomy factor
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/loi/1989/01/16/1989021010/article/5-2
-              excerpt: "L'impôt Etat réduit est l'impôt Etat diminué d'un montant égal à l'impôt Etat multiplié par le facteur d'autonomie."
-    versions:
-      - effective_from: '2018-01-01'
-        formula: |-
-          1 - belgium_pit_pilot_article_5_2_autonomy_factor
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_a_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 289ter/1, work-bonus credit rate for volet A
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-              excerpt: "Le crédit d'impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_289ter1_work_bonus_a_integer_percent_part / belgium_pit_pilot_source_percent_denominator + belgium_pit_pilot_article_289ter1_work_bonus_a_fractional_percent_part / belgium_pit_pilot_source_percent_denominator / belgium_pit_pilot_source_percent_denominator
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_b_rate
-    kind: parameter
-    dtype: Rate
-    source: CIR 1992 article 289ter/1, work-bonus credit rate for volet B
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-              excerpt: "et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_289ter1_work_bonus_b_integer_percent_part / belgium_pit_pilot_source_percent_denominator + belgium_pit_pilot_article_289ter1_work_bonus_b_fractional_percent_part / belgium_pit_pilot_source_percent_denominator / belgium_pit_pilot_source_percent_denominator
-  - name: belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling
-    kind: parameter
-    dtype: Money
-    unit: EUR
-    source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
-              excerpt: "Le crédit d'impôt ne peut excéder par période imposable 1.540 euros (montant indexé)."
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_thousands * belgium_pit_pilot_source_thousands_dot_hundreds_factor * belgium_pit_pilot_source_thousands_dot_tens_factor + belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling_source_trailing_group * belgium_pit_pilot_source_thousands_dot_tens_factor
+  - name: belgium_pit_pilot_dependent_of_taxpayer
+    kind: data_relation
+    data_relation:
+      predicate: belgium_pit_pilot_dependent_of_taxpayer
+      arity: 2
+      arguments: [Person, Person]
+    source: CIR 1992 articles 132 and 136, related potential dependant Person whose facts feed the taxpayer Person
   - name: belgium_employee_social_security_contribution_base
     kind: derived
     entity: Person
@@ -710,7 +133,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(belgium_pit_pilot_worker_remuneration_after_employee_social_security * belgium_pit_pilot_article_51_employee_forfait_rate, belgium_pit_pilot_article_51_employee_and_business_profit_cap)
+          min(belgium_pit_pilot_worker_remuneration_after_employee_social_security * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)
   - name: belgium_pit_pilot_worker_net_professional_income
     kind: derived
     entity: Person
@@ -741,6 +164,279 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           max(0, belgium_pit_pilot_worker_net_professional_income)
+  - name: belgium_pit_article_132_child_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 articles 132 and 136, eligible non-shared child equivalents rolled up from related Person records
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_pilot_dependent_of_taxpayer, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_without_article_132bis)
+  - name: belgium_pit_article_132bis_shared_custody_child_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 132bis, eligible shared-custody child equivalents rolled up from related Person records
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_pilot_dependent_of_taxpayer, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_with_article_132bis)
+  - name: belgium_pit_children_under_3_without_childcare_reduction_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 132 paragraph 1 item 6 and final paragraph, eligible non-shared under-three child equivalents
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_pilot_dependent_of_taxpayer, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis)
+  - name: belgium_pit_pilot_shared_custody_children_under_3_without_childcare_reduction_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 articles 132 and 132bis, eligible shared-custody under-three child equivalents
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_pilot_dependent_of_taxpayer, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis)
+  - name: belgium_pit_dependent_elderly_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 132 paragraph 1 item 7, eligible elderly dependant equivalents rolled up from related Person records
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_pilot_dependent_of_taxpayer, belgium_pit_dependent_elderly_equivalent_count, belgium_pit_dependent_elderly_is_eligible_for_article_132_7)
+  - name: belgium_pit_other_dependent_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 132 paragraph 1 item 8 and final paragraph, eligible other dependant equivalents rolled up from related Person records
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_pilot_dependent_of_taxpayer, belgium_pit_other_dependent_person_equivalent_count, belgium_pit_other_dependent_person_is_eligible)
+  - name: belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 paragraph 3, non-shared eligible child equivalents including disability doubling
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_132_child_count
+  - name: belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 paragraph 3, shared-custody eligible child equivalents including disability doubling
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_132bis_shared_custody_child_count
+  - name: belgium_pit_pilot_shared_custody_child_ladder_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 132bis, half of the Article 132 child ladder determined separately from other household children
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_132bis_shared_custody_child_count <= 0:
+              0
+          else:
+              if belgium_pit_article_132bis_shared_custody_child_count == 1:
+                  belgium_pit_one_child_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+              else:
+                  if belgium_pit_article_132bis_shared_custody_child_count == 2:
+                      belgium_pit_two_children_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+                  else:
+                      if belgium_pit_article_132bis_shared_custody_child_count == 3:
+                          belgium_pit_three_children_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+                      else:
+                          (belgium_pit_four_children_tax_free_increase + max(0, belgium_pit_article_132bis_shared_custody_child_count - belgium_pit_article_132_first_additional_child_count) * belgium_pit_additional_child_after_four_tax_free_increase) * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+  - name: belgium_pit_pilot_shared_custody_under_3_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 132bis, half under-three supplement for the taxpayer not claiming the childcare reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_shared_custody_children_under_3_without_childcare_reduction_count * belgium_pit_child_under_3_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+  - name: belgium_pit_pilot_article_132_child_supplements_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 132 and 132bis, full and shared child-related supplements used in the Article 134 paragraph 3 ordering ledger
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_132_child_tax_free_increase + belgium_pit_children_under_3_without_childcare_reduction_count * belgium_pit_child_under_3_tax_free_increase + belgium_pit_pilot_shared_custody_child_ladder_tax_free_amount + belgium_pit_pilot_shared_custody_under_3_tax_free_amount
+  - name: belgium_pit_pilot_articles_131_132_family_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 131, 132, and 132bis, base and dependant supplements after shared-custody allocation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_articles_131_132_tax_free_amount_before_limitations + belgium_pit_pilot_shared_custody_child_ladder_tax_free_amount + belgium_pit_pilot_shared_custody_under_3_tax_free_amount
+  - name: belgium_pit_article_133_taxpayer_assessed_separately
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 article 133, pipeline bridge from the supplied separate-assessment fact
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_taxpayer_assessed_separately
+  - name: belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 articles 126 and 133, pipeline bridge from the supplied paragraph 3 exclusion fact
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_134_paragraph_3_exclusion_applies
+  - name: belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: Worker-only pilot excludes the distinct Article 133 marriage-year branch
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          false
+  - name: belgium_pit_article_133_article_126_paragraph_2_item_3_case_in_same_year
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: Worker-only pilot excludes the distinct Article 133 marriage-year branch
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          false
+  - name: belgium_pit_article_133_spouse_net_resources
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Worker-only pilot excludes the distinct Article 133 marriage-year branch
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+  - name: belgium_pit_article_133_only_permitted_household_members_on_january_1
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 article 133, supplied worker-pilot household-composition fact
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1
+  - name: belgium_pit_article_133_taxable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 133, pipeline taxable-income bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_taxable_income)
+  - name: belgium_pit_article_133_qualifying_net_professional_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 133, worker-only qualifying net professional-income bridge
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_worker_net_professional_income
+  - name: belgium_pit_pilot_article_133_ordinary_supplements_before_children
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3 ordering, Article 133 supplements other than the additional low-income isolated-parent supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_133_supplements_before_refundable_credit - belgium_pit_article_133_additional_isolated_parent_supplement
+  - name: belgium_pit_article_134_tax_free_amount_before_child_supplements
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3 ordering before Article 132 paragraph 1 items 1 through 6
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_articles_131_132_family_tax_free_amount - belgium_pit_pilot_article_132_child_supplements_tax_free_amount + belgium_pit_pilot_article_133_ordinary_supplements_before_children
+  - name: belgium_pit_article_134_child_supplements_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3 ordering, Article 132 paragraph 1 items 1 through 6 component
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_132_child_supplements_tax_free_amount
+  - name: belgium_pit_article_134_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 131 through 134, family tax-free amount including the final additional Article 133 supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_articles_131_132_family_tax_free_amount + belgium_pit_article_133_supplements_before_refundable_credit
+  - name: belgium_pit_article_134_paragraph_3_exclusion_applies
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 article 134 paragraph 3, supplied treaty or Article 126 paragraph 2 item 4 exclusion fact
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_134_paragraph_3_exclusion_applies
   - name: belgium_pit_pilot_article_130_base_tax
     kind: derived
     entity: Person
@@ -751,27 +447,27 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          if belgium_pit_taxable_income <= belgium_pit_pilot_article_130_first_bracket_upper_threshold:
-              belgium_pit_taxable_income * belgium_pit_pilot_article_130_first_bracket_rate
+          if belgium_pit_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_taxable_income * belgium_pit_article_130_first_bracket_rate
           else:
-              if belgium_pit_taxable_income <= belgium_pit_pilot_article_130_second_bracket_upper_threshold:
-                  belgium_pit_pilot_article_130_first_bracket_upper_threshold * belgium_pit_pilot_article_130_first_bracket_rate + (belgium_pit_taxable_income - belgium_pit_pilot_article_130_first_bracket_upper_threshold) * belgium_pit_pilot_article_130_second_bracket_rate
+              if belgium_pit_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
               else:
-                  if belgium_pit_taxable_income <= belgium_pit_pilot_article_130_third_bracket_upper_threshold:
-                      belgium_pit_pilot_article_130_first_bracket_upper_threshold * belgium_pit_pilot_article_130_first_bracket_rate + (belgium_pit_pilot_article_130_second_bracket_upper_threshold - belgium_pit_pilot_article_130_first_bracket_upper_threshold) * belgium_pit_pilot_article_130_second_bracket_rate + (belgium_pit_taxable_income - belgium_pit_pilot_article_130_second_bracket_upper_threshold) * belgium_pit_pilot_article_130_third_bracket_rate
+                  if belgium_pit_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
                   else:
-                      belgium_pit_pilot_article_130_first_bracket_upper_threshold * belgium_pit_pilot_article_130_first_bracket_rate + (belgium_pit_pilot_article_130_second_bracket_upper_threshold - belgium_pit_pilot_article_130_first_bracket_upper_threshold) * belgium_pit_pilot_article_130_second_bracket_rate + (belgium_pit_pilot_article_130_third_bracket_upper_threshold - belgium_pit_pilot_article_130_second_bracket_upper_threshold) * belgium_pit_pilot_article_130_third_bracket_rate + (belgium_pit_taxable_income - belgium_pit_pilot_article_130_third_bracket_upper_threshold) * belgium_pit_pilot_article_130_top_bracket_rate
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
   - name: belgium_pit_pilot_tax_free_amount
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 131, base tax-free amount for the single-person worker oracle slice
+    source: CIR 1992 articles 131 through 133, family tax-free amount for the worker oracle slice
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_base_tax_free_amount
+          belgium_pit_article_134_tax_free_amount
   - name: belgium_pit_pilot_article_134_tax_on_tax_free_amount
     kind: derived
     entity: Person
@@ -782,19 +478,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          if belgium_pit_pilot_tax_free_amount <= belgium_pit_pilot_article_134_first_tax_free_amount_threshold:
-              belgium_pit_pilot_tax_free_amount * belgium_pit_pilot_article_134_first_tax_free_amount_rate
-          else:
-              if belgium_pit_pilot_tax_free_amount <= belgium_pit_pilot_article_134_second_tax_free_amount_threshold:
-                  belgium_pit_pilot_article_134_first_tax_free_amount_threshold * belgium_pit_pilot_article_134_first_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_pilot_article_134_first_tax_free_amount_threshold) * belgium_pit_pilot_article_134_second_tax_free_amount_rate
-              else:
-                  if belgium_pit_pilot_tax_free_amount <= belgium_pit_pilot_article_134_third_tax_free_amount_threshold:
-                      belgium_pit_pilot_article_134_first_tax_free_amount_threshold * belgium_pit_pilot_article_134_first_tax_free_amount_rate + (belgium_pit_pilot_article_134_second_tax_free_amount_threshold - belgium_pit_pilot_article_134_first_tax_free_amount_threshold) * belgium_pit_pilot_article_134_second_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_pilot_article_134_second_tax_free_amount_threshold) * belgium_pit_pilot_article_134_third_tax_free_amount_rate
-                  else:
-                      if belgium_pit_pilot_tax_free_amount <= belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold:
-                          belgium_pit_pilot_article_134_first_tax_free_amount_threshold * belgium_pit_pilot_article_134_first_tax_free_amount_rate + (belgium_pit_pilot_article_134_second_tax_free_amount_threshold - belgium_pit_pilot_article_134_first_tax_free_amount_threshold) * belgium_pit_pilot_article_134_second_tax_free_amount_rate + (belgium_pit_pilot_article_134_third_tax_free_amount_threshold - belgium_pit_pilot_article_134_second_tax_free_amount_threshold) * belgium_pit_pilot_article_134_third_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_pilot_article_134_third_tax_free_amount_threshold) * belgium_pit_pilot_article_134_fourth_tax_free_amount_rate
-                      else:
-                          belgium_pit_pilot_article_134_first_tax_free_amount_threshold * belgium_pit_pilot_article_134_first_tax_free_amount_rate + (belgium_pit_pilot_article_134_second_tax_free_amount_threshold - belgium_pit_pilot_article_134_first_tax_free_amount_threshold) * belgium_pit_pilot_article_134_second_tax_free_amount_rate + (belgium_pit_pilot_article_134_third_tax_free_amount_threshold - belgium_pit_pilot_article_134_second_tax_free_amount_threshold) * belgium_pit_pilot_article_134_third_tax_free_amount_rate + (belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold - belgium_pit_pilot_article_134_third_tax_free_amount_threshold) * belgium_pit_pilot_article_134_fourth_tax_free_amount_rate + (belgium_pit_pilot_tax_free_amount - belgium_pit_pilot_article_134_fourth_tax_free_amount_threshold) * belgium_pit_pilot_article_134_top_tax_free_amount_rate
+          belgium_pit_article_134_tax_on_tax_free_amount
   - name: belgium_pit_pilot_net_federal_tax_after_tax_free_amount
     kind: derived
     entity: Person
@@ -802,18 +486,10 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 130 and 134, worker-only pilot federal tax after the base tax-free-amount reduction
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-184"
-              excerpt: "La quotité du revenu exemptée d'impôt comprend le total du montant de base, éventuellement majoré, et des suppléments visés aux articles 132 et 133."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_pilot_article_130_base_tax - belgium_pit_pilot_article_134_tax_on_tax_free_amount)
+          belgium_pit_article_134_tax_after_article_130_base_tax_reduction
   - name: belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
     kind: derived
     entity: Person
@@ -824,7 +500,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount * belgium_pit_pilot_article_289ter1_work_bonus_a_rate + belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount * belgium_pit_pilot_article_289ter1_work_bonus_b_rate, belgium_pit_pilot_article_289ter1_work_bonus_credit_ceiling)
+          min(belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount * belgium_pit_article_289ter1_work_bonus_a_rate + belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount * belgium_pit_article_289ter1_work_bonus_b_rate, belgium_pit_article_289ter1_work_bonus_credit_ceiling)
   - name: belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount
     kind: derived
     entity: Person
@@ -865,28 +541,43 @@ rules:
     period: Year
     unit: EUR
     source: Special financing law article 5/2 and CIR 1992 articles 289ter/1, 290, and 304, worker-only pilot reduced State tax after fully imputed and refundable work-bonus credit
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/regulation/arrete/2017/12/19/2017032216/article/2"
-              excerpt: "En ce qui concerne les impôts sur les revenus, le présent arrêté s'applique toutefois à partir de l'exercice d'imposition 2018."
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-518"
-              excerpt: "les crédits d'impôt visés aux articles 289bis, § 1er, 289ter et 289ter/1, sont imputés intégralement sur l'impôt."
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-526"
-              excerpt: "des crédits d'impôt visés aux articles 289bis, § 1er, 289ter et 289ter/1 et des crédits d'impôt régionaux, est imputé, s'il y a lieu, sur les taxes additionnelles à l'impôt des personnes physiques visées au titre VIII et le surplus est restitué pour autant qu'il atteigne 2,50 euros."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_pilot_reduced_state_tax_after_autonomy_factor - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+  - name: belgium_pit_pilot_article_134_refundable_child_tax_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, unused child tax-free-amount reduction after the statutory cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_refundable_child_tax_credit
+  - name: belgium_pit_pilot_article_134_refundable_article_133_additional_supplement_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, unused tax value of the additional Article 133 isolated-parent supplement
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_refundable_article_133_additional_supplement_credit
+  - name: belgium_pit_pilot_net_federal_tax_after_family_and_work_bonus_credits
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 134 paragraph 3 and 289ter/1, refundable family and work-bonus credits after the reduced State tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_net_federal_tax_after_work_bonus_credit - belgium_pit_article_134_total_refundable_paragraph_3_credit
   - name: belgium_pit_pilot_local_additional_tax_base
     kind: derived
     entity: Person
@@ -900,7 +591,7 @@ rules:
           if belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies:
               max(0, belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
           else:
-              max(0, belgium_pit_pilot_net_federal_tax_after_work_bonus_credit - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+              max(0, belgium_pit_pilot_net_federal_tax_after_family_and_work_bonus_credits - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
   - name: belgium_pit_pilot_agglomeration_additional_tax_rate_after_cap
     kind: derived
     entity: Person
@@ -910,7 +601,7 @@ rules:
     versions:
       - effective_from: '2015-01-01'
         formula: |-
-          min(belgium_pit_agglomeration_additional_tax_rate, belgium_pit_pilot_article_468_agglomeration_additional_tax_rate_cap)
+          min(belgium_pit_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
   - name: belgium_pit_pilot_local_additional_tax
     kind: derived
     entity: Person
@@ -918,19 +609,6 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 465 to 468, supplied local additions for the worker-only pilot
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-686"
-              excerpt: "Par dérogation à l'article 464, les agglomérations et les communes peuvent établir une taxe additionnelle à l'impôt des personnes physiques."
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-688"
-              excerpt: "Le pourcentage de la taxe communale additionnelle à l'impôt des personnes physiques est fixé par un règlement-taxe applicable à partir d'un exercice d'imposition déterminé"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -945,4 +623,4 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_net_federal_tax_after_work_bonus_credit + belgium_pit_pilot_local_additional_tax
+          belgium_pit_pilot_net_federal_tax_after_family_and_work_bonus_credits + belgium_pit_pilot_local_additional_tax
