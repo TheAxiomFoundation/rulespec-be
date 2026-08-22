@@ -1,0 +1,87 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction_attributable_to_article_133_additional_supplement
+module:
+  summary: |-
+    CIR 1992 Article 134 paragraph 3 converts the unused tax value of the
+    additional Article 133 isolated-parent supplement into an imputable and
+    refundable credit. This page-scoped module adds that credit to the child
+    tax-free-amount credit encoded on page 185 and exposes federal tax after
+    both paragraph 3 credits.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-186"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_134_refundable_article_133_additional_supplement_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, refundable unused tax value of the Article 133 additional isolated-parent supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "mesure où elle se rapporte au supplément additionnel visé à l'article 133, alinéa 2, est également convertie en un crédit d'impôt imputable et remboursable;"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_unused_tax_free_amount_reduction_attributable_to_article_133_additional_supplement
+              output: belgium_pit_article_134_unused_tax_free_amount_reduction_attributable_to_article_133_additional_supplement
+              hash: sha256:567651439c4b52848b4ca15a923122a8e514f7465f0c84a9b75e9b23932d25e2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_paragraph_3_exclusion_applies:
+              0
+          else:
+              belgium_pit_article_134_unused_tax_free_amount_reduction_attributable_to_article_133_additional_supplement
+  - name: belgium_pit_article_134_total_refundable_paragraph_3_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, child credit plus the refundable unused Article 133 additional supplement tax value
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit
+              output: belgium_pit_article_134_refundable_child_tax_credit
+              hash: sha256:567651439c4b52848b4ca15a923122a8e514f7465f0c84a9b75e9b23932d25e2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_refundable_child_tax_credit + belgium_pit_article_134_refundable_article_133_additional_supplement_credit
+  - name: belgium_pit_article_134_net_federal_tax_after_all_paragraph_3_credits
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 130, 133, and 134 paragraph 3, tax after all refundable tax-free-amount credits
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+              output: belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+              hash: sha256:567651439c4b52848b4ca15a923122a8e514f7465f0c84a9b75e9b23932d25e2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_tax_after_article_130_base_tax_reduction - belgium_pit_article_134_total_refundable_paragraph_3_credit

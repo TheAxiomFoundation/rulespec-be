@@ -7,6 +7,9 @@
   input:
     be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 60000
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
     be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 20892.5
@@ -33,7 +36,10 @@
     end: '2025-12-31'
   input:
     be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 1000
-    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 16020
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount: 5110
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 2
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
     be:statutes/income_tax/individual/communal_additions#input.belgium_pit_article_466_total_tax_before_communal_additions: 0

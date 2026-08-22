@@ -1,0 +1,27 @@
+- name: deemed_child_and_default_household_direction_hold
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_138_child_is_deemed_part_of_taxpayer_household: true
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_139_nonchild_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_multiple_separately_taxed_taxpayers_are_in_same_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_taxpayer_actually_directs_household: false
+  output:
+    be:statutes/income_tax/individual/dependant_household_conditions#belgium_pit_articles_138_139_deemed_household_condition_met: holds
+    be:statutes/income_tax/individual/dependant_household_conditions#belgium_pit_article_140_household_direction_condition_met: holds
+
+- name: no_deeming_and_nondirecting_taxpayer_fail
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_138_child_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_139_nonchild_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_multiple_separately_taxed_taxpayers_are_in_same_household: true
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_taxpayer_actually_directs_household: false
+  output:
+    be:statutes/income_tax/individual/dependant_household_conditions#belgium_pit_articles_138_139_deemed_household_condition_met: not_holds
+    be:statutes/income_tax/individual/dependant_household_conditions#belgium_pit_article_140_household_direction_condition_met: not_holds

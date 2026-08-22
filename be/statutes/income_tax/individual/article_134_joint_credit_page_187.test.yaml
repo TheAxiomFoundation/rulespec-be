@@ -1,0 +1,22 @@
+- name: article_134_page_187_applies_exception_and_splits_joint_credit_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 40000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_taxable_income: 10000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_with_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit: 1000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit: 500
+  output:
+    be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a: 0
+    be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_spouse_a_refundable_child_credit_after_joint_cap: 760
+    be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_spouse_b_refundable_child_credit_after_joint_cap: 380

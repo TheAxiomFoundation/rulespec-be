@@ -1,0 +1,28 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/regional_autonomy_factor#belgium_pit_pilot_article_5_2_autonomy_factor
+module:
+  summary: |-
+    This document-scoped adapter composes the Article 5/2 reduced-State-tax
+    share from the autonomy factor fixed by the separate royal decree. The
+    statutory operation is proved here; the decree-owned numeric factor stays
+    in its canonical module.
+  source_verification:
+    corpus_citation_path: be/statute/loi/1989/01/16/1989021010/article/5-2
+rules:
+  - name: belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+    kind: parameter
+    dtype: Rate
+    source: Special financing law article 5/2, reduced State tax share after the imported autonomy factor
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/loi/1989/01/16/1989021010/article/5-2
+              excerpt: "L'impôt Etat réduit est l'impôt Etat diminué d'un montant égal à l'impôt Etat multiplié par le facteur d'autonomie."
+    versions:
+      - effective_from: '2018-01-01'
+        formula: |-
+          1 - belgium_pit_pilot_article_5_2_autonomy_factor
