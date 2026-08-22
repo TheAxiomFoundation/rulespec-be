@@ -33,15 +33,20 @@ module:
     forfait. A named boundary chooses industrial, commercial, or agricultural
     business profits (benefices) versus liberal-profession or other profits;
     another named boundary selects justified Article 49 actual expenses in
-    place of the forfait. The result is combined with the imported worker-only
-    net professional-income and work-bonus-credit surfaces for mixed yem/yse
-    cases, then passed through imported 2025 Article 130, Article 131, Article
+    place of the forfait. The result, including a current-period loss, is
+    combined with the imported worker-only net professional-income surface
+    before a supplied prior-period professional loss is fully assigned under
+    Article 23. The net amount and imported work-bonus-credit surface for mixed
+    yem/yse cases are then passed through imported 2025 Article 130, Article 131, Article
     134, autonomy-factor, and Article 468 parameters into State, regional, and
     communal tax surfaces. The composition leaves the self-employed
     contribution reference-year netting inputs, annual Article 14 index factor,
     business-profit-only purchase costs, actual expense amount, regional and communal rates, the refundable low-
-    activity-income credit, and Article 466 separately-taxed-income shares as
-    explicit inputs. It does not reinterpret a bare EUROMOD yse amount as
+    activity-income credit, prior-period professional losses, and Article 466
+    separately-taxed-income shares as explicit inputs. Article 466 local
+    additions are calculated on pre-credit total tax; Article 289ter and
+    289ter/1 refundable credits are imputed afterward, including any Article
+    304 surplus against those additions. It does not reinterpret a bare EUROMOD yse amount as
     either benefices or profits, encode the self-employed activity-income
     credit, correct differing secondary-activity contribution schedules, or
     apply Article 171 tax itself.
@@ -67,13 +72,19 @@ rules:
             source:
               corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-121"
               excerpt: "sont, à défaut de preuves, fixés forfaitairement en pourcentages du montant brut de ces revenus préalablement diminués desdites cotisations et sommes et dudit prix d'achat."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution
+              output: belgium_self_employed_selected_annual_social_contribution
+              hash: sha256:e1202f3d1950a7423a8388e99e6ca605472e133bfff9c677743a5a003f4edcc7
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           if belgium_pit_self_employment_is_business_profit_category:
-              max(0, belgium_self_employed_gross_professional_income - belgium_self_employed_selected_annual_social_contribution - max(0, belgium_pit_self_employment_article_51_business_purchase_costs))
+              belgium_self_employed_gross_professional_income - belgium_self_employed_selected_annual_social_contribution - max(0, belgium_pit_self_employment_article_51_business_purchase_costs)
           else:
-              max(0, belgium_self_employed_gross_professional_income - belgium_self_employed_selected_annual_social_contribution)
+              belgium_self_employed_gross_professional_income - belgium_self_employed_selected_annual_social_contribution
   - name: belgium_pit_article_51_forfait_base_amount
     kind: derived
     entity: Person
@@ -139,18 +150,38 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs - belgium_pit_self_employment_selected_professional_expenses_excluding_social_contribution_and_purchase_costs)
+          belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs - belgium_pit_self_employment_selected_professional_expenses_excluding_social_contribution_and_purchase_costs
+  - name: belgium_pit_self_employment_current_period_worker_and_self_employment_professional_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 23 paragraph 2 item 2, current-period self-employment losses netted against worker professional income before prior-period losses
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income
+              output: belgium_pit_pilot_worker_net_professional_income
+              hash: sha256:1388e420002ce0d4a3a51e45993407c4e8a9052b9c9fb8cadd7ebf75aa71e880
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_worker_net_professional_income + belgium_pit_self_employment_net_professional_income
   - name: belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 Articles 6 and 23, ordinary taxable professional income for the mixed worker and self-employment oracle slice
+    source: CIR 1992 Articles 6 and 23, ordinary taxable professional income after full assignment of the supplied prior-period professional-loss boundary
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_pilot_worker_net_professional_income + belgium_pit_self_employment_net_professional_income)
+          max(0, belgium_pit_self_employment_current_period_worker_and_self_employment_professional_income - max(0, belgium_pit_self_employment_prior_period_professional_losses))
   - name: belgium_pit_self_employment_article_130_base_tax
     kind: derived
     entity: Person
@@ -245,6 +276,15 @@ rules:
     period: Year
     unit: EUR
     source: Imported Article 289ter/1 worker work-bonus credit plus supplied unencoded self-employed low-activity-income credit
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+              output: belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+              hash: sha256:1388e420002ce0d4a3a51e45993407c4e8a9052b9c9fb8cadd7ebf75aa71e880
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -255,7 +295,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: State and regional tax after imported and supplied refundable activity credits
+    source: Special financing law Article 5/3 and CIR 1992 Articles 290 and 304, total State and regional tax after fully imputed imported and supplied refundable activity credits
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -266,17 +306,26 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 Article 466, total-tax base including supplied Article 171 tax and excluding its nonprofessional movable-income tax share
+    source: CIR 1992 Article 466, pre-refundable-credit total-tax base including supplied Article 171 tax and excluding its nonprofessional movable-income tax share
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_self_employment_state_and_regional_tax_after_refundable_activity_credits + max(0, belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total) - max(0, belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income))
+          max(0, belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor + belgium_pit_self_employment_regional_additional_tax + max(0, belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total) - max(0, belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income))
   - name: belgium_pit_self_employment_article_468_agglomeration_additional_tax_rate_after_cap
     kind: derived
     entity: Person
     dtype: Rate
     period: Year
     source: CIR 1992 Article 468, supplied agglomeration rate capped by the imported statutory maximum
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+              output: belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+              hash: sha256:91e5612ea1932ceb692f8012fdf8257defce7e7bc40029e3659cceb49935ba43
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -298,7 +347,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: Composed ordinary State, regional, and local tax before withholding, excluding the separately-taxed-income liability itself
+    source: Special financing law Article 5/3 and CIR 1992 Articles 290, 304, 466, and 468, pre-credit local additions followed by fully imputed refundable activity credits, excluding the separately-taxed-income liability itself
     versions:
       - effective_from: '2025-01-01'
         formula: |-
