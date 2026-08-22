@@ -1,0 +1,414 @@
+# Single-pensioner cases verified against EUROMOD BE_2025 (system BE_2025,
+# dataset configuration BE_2024_c1_2015_03_e2, template BE_training_data,
+# les=4 pensioner rows, drgn1=0 so the regional and municipal layers are off,
+# poa uprating factor probed at exactly 1.0). EUROMOD annual tin_s:
+#   pension 15k -> 0.00, pension 25k -> 1628.5079096531776,
+#   pension 40k -> 6550.639112351934; the encoded pipeline reproduces all
+# three to the cent. tscpe_s matches belgium_pit_pensioner_annual_social_
+# withholding on all cases (0.00 / 547.24 / 2020.00 / 1065.00).
+- name: pension_15k_reduction_consumes_all_remaining_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 1022.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # Monthly pension 1250 sits below both statutory floors: zero branches.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_monthly_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_monthly_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_annual_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_pension: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 1022.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_152_base_reduction_factor: 1
+    # Article 153 cap binds: base 2219.27 plus additional 457.23 exceeds the
+    # remaining articles 130-145 tax of 1022.50, so the reduction zeroes it.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: 1022.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_replacement_reductions: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_reduced_state_tax_after_autonomy_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_local_additional_tax: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 0
+
+- name: zero_income_degenerate_case_exercises_zero_denominators
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # Zero taxable income exercises the zero-denominator branches of the
+    # article 147 ratio and the article 153 cap.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_monthly_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_130_base_tax: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_activity_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_net_income_for_ratio: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_base_reduction_before_limits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_additional_reduction_before_limits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_153_pension_tax_share_cap: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 0
+
+- name: pension_25k_article_191_band_and_partial_additional_reduction
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 25000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 25000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 4605.604
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # Monthly pension 2083.33 sits in the article 191 phase-in band
+    # (2037.73 to 2112.71): the withholding is the excess over the floor.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_annual_social_withholding: "547.2399999999999999999999996"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_pension: 24452.76
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 24452.76
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 4605.604
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: "0.4729224043715846994535519126"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_152_base_reduction_factor: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "2435.504310950819672131147541"
+    # EUROMOD BE_2025 annual tin_s: 1628.5079096531776 (cent-exact match).
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "1628.5079096531763934426229508"
+
+- name: pension_40k_solidarity_band_and_article_152_phaseout
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 10475.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # Monthly pension 3333.33: article 191 full 3.55% (1420.00 per year) and
+    # the article 68 solidarity 1.5% mid band (600.00 per year).
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_monthly_gross_pension: "3333.3333333333333333333333333"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_protected_floor_limit_monthly: 2037.73
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_full_rate_threshold_monthly: 2112.71
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_monthly_withholding: "118.33333333333333333333333333"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_first_threshold: 3225.74
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_second_threshold: 3325.48
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_third_threshold: 3572.77
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_fourth_threshold: 3610
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_transition_base_amount: 53.59155
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_monthly_withholding: 50
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_annual_social_withholding: 2020
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_pension: 37980
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 37980
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_130_base_tax: 13203
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_free_amount: 10910
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_134_tax_on_tax_free_amount: 2727.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 10475.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_net_income_for_ratio: 37980
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_base_reduction_before_limits: 2219.27
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_additional_reduction_before_limits: 457.23
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_replacement_reductions: "8729.180752837618716701413018"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_reduced_state_tax_after_autonomy_factor: "6550.6391123519342135742413711"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_work_bonus_credit: "6550.6391123519342135742413711"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_152_base_reduction_factor: "0.7868890433171183692378966875"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "1746.3192471623812832985869817"
+    # EUROMOD BE_2025 annual tin_s: 6550.639112351934 (cent-exact match).
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "6550.6391123519342135742413711"
+
+- name: mixed_30k_pension_15k_wage_prorates_reductions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 30000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 30000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 8166.699220235831
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 15000
+    # EUROMOD statutory reference: 15000 * 12 / 13.92.
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 12931.034482758621
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_monthly_gross_pension: 2500
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_monthly_withholding: 88.75
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_monthly_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_annual_social_withholding: 1065
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_pension: 28935
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_130_base_tax: 13857.75
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_net_income_for_ratio: 39435
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_base_reduction_before_limits: "1628.3650931913275009509319133"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_additional_reduction_before_limits: "335.48751236211487257512362116"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_replacement_reductions: "9903.789703379290857229104675"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_reduced_state_tax_after_autonomy_factor: "7432.1009071069212379904370213"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_work_bonus_credit: "6403.8118471069212379904370213"
+    # Wage stage: the work-bonus reduction fully offsets the 13.07% employee
+    # contribution at this wage, and the article 51 forfait is 30% of 15000,
+    # so the wage contributes 10500 of taxable income.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 39435
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 11130.25
+    # Legal pension above 28780: no article 147 item 2 b or c exclusion.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: "0.73373906428299733739064283"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_152_base_reduction_factor: "0.7531850822330321982858466528"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "1226.4602966207091427708953246"
+    # EUROMOD BE_2025 annual tin_s: 6051.513079980725. The -352.30 delta
+    # decomposes exactly into (a) +124.26: EUROMOD's il_netYem subtracts the
+    # pension AMI withholding (1065) from the wage forfait base, while
+    # article 51 nets each category by its own article 52 item 7
+    # contributions, shifting taxable income by +319.50 and the phased
+    # article 152 reduction by -21.81; and (b) -476.56: EUROMOD credits the
+    # uncapped volet schedule (162.62 + 120.59 monthly, 1504.85 per year)
+    # while article 289ter/1 credits the reduction "reellement accordee"
+    # capped at contributions due (1028.29) - the dispositioned
+    # be-work-bonus-credit upstream_engine_gap.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "6403.8118471069212379904370213"
+
+- name: family_charge_40k_selects_family_scales
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 10745.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # Family-charge scales: AMI floor 2414.98 (3.55% still due at 3333.33)
+    # but the solidarity first threshold rises to 3729.35, so no solidarity
+    # contribution is due; the annual withholding is 1420 instead of 2020.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_protected_floor_limit_monthly: 2414.98
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_full_rate_threshold_monthly: 2503.85
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_first_threshold: 3729.35
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_second_threshold: 3844.66
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_third_threshold: 4087.18
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_fourth_threshold: 4129.76
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_transition_base_amount: 61.3077
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_monthly_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_annual_social_withholding: 1420
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_pension: 38580
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 38580
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_152_base_reduction_factor: "0.7729905026638869585360203845"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "1715.4746328468844104702339587"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "6776.4019362727125318508223301"
+
+- name: survivor_pension_20k_with_10k_wage_excludes_activity_income
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 4166.296296296296
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 10000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 8620.689655172414
+  output:
+    # Article 147 item 2 b: survivor-pension recipients exclude all activity
+    # income from the net-income denominator, so the ratio stays 1.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: 7000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 27000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: "0.1945355191256830601092896175"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_153_pension_tax_share_cap: "4166.296296296296"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "2308.2174754098360655737704918"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "1801.9400949281967213114754098"
+
+- name: under_retirement_age_18k_pension_12k_wage_no_exclusion
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 3671.25
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 12000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 10344.827586206897
+  output:
+    # Below legal retirement age with a retirement pension: no article 147
+    # item 2 b or c exclusion, so both reductions are prorated by the
+    # net-pension share 18000/26400.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: "0.6818181818181818181818181818"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 26400
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: "0.2601092896174863387978142077"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "1594.2271162444113263785394932"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "2020.2971201567064083457526081"
+
+- name: band_c_24k_pension_8k_wage_partial_activity_exclusion
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 5436.081081081081
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 8000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 6896.551724137931
+  output:
+    # Article 147 item 2 c: legal pension 24000 lies between 19630 and 28780,
+    # so the excluded activity-income part is 5600 * (28780 - 24000) / 9150.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_activity_income: 5600
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: "2925.4644808743169398907103825"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: "0.8997345045724212527450916123"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 29600
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_152_base_reduction_factor: "0.9810053277739170720407690526"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_replacement_reduction_after_limits: "1958.8261101299332923348630353"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "3011.9378171751941594331487324"
+
+- name: article_147_distinguishes_15k_legal_plus_9k_complementary_from_24k_total
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    # Article 34 total pension is 24000, but Article 147 item 2 b tests only
+    # the 15000 legal pension. The 9000 balance is complementary pension.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 5436.081081081081
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 8000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 6896.551724137931
+  output:
+    # The worker slice produces 5600 of activity income. Because legal pension
+    # is below 19630, Article 147 item 2 b excludes the full statutory 5600,
+    # rather than the 2925.46 obtained by incorrectly testing total pension.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_activity_income: 5600
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: 5600
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 1
+
+- name: communal_7pct_and_agglomeration_capped_at_1pct
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 10475.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0.07
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0.015
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_agglomeration_additional_tax_rate_after_cap: 0.01
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_local_additional_tax: "524.05112898815473708593930969"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "7074.6902413400889506601806808"
+
+- name: refundable_work_credit_is_imputed_after_flanders_7_17pct_local_addition
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 30000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 30000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 8166.699220235831
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0.0717
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 15000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 12931.034482758621
+  output:
+    # CIR92 Article 466 applies 7.17% to the pre-credit total tax of
+    # 7432.100907..., then Articles 290/304 impute the 1028.28906 credit.
+    # EUROMOD BE_2025 instead subtracts tintcly_s inside tinfe_be (policy 45,
+    # function order 102) before tinmu_be (policy 46) multiplies tin_s by
+    # 7.17%. The live Flanders rerun returned tintcly_s = 1504.848888, so that
+    # engine-side ordering lowers tinmu_s by exactly
+    # 1504.848888 * 0.0717 = 107.8976652696. On this RuleSpec case's encoded
+    # 1028.28906 credit, the same ordering counterfactual is 73.728325602.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_reduced_state_tax_after_autonomy_factor: "7432.1009071069212379904370213"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_work_bonus_credit: "6403.8118471069212379904370213"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_local_additional_tax: "532.88163503956625276391433443"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "6936.693482146487490754351356"
