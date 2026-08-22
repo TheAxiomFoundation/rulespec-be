@@ -1,0 +1,58 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 Article 171 items 3, 3bis, and 3quater set the 30-percent,
+    20-percent, and 15-percent separate rates for their enumerated income
+    classes for income year 2025. Statutory class eligibility remains outside
+    this page-scoped rate module.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-271"
+rules:
+  - name: belgium_pit_article_171_item_3_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-271
+              excerpt: "3° au taux de 30 %"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.30
+  - name: belgium_pit_article_171_item_3bis_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3bis, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-271
+              excerpt: "3°bis au taux de 20 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.20
+  - name: belgium_pit_article_171_item_3quater_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3quater, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-271
+              excerpt: "3°quater au taux de 15 %"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.15

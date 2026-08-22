@@ -1,0 +1,41 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 Article 171 items 1bis and 2 set the 8-percent and 10-percent
+    separate rates for their enumerated income classes for income year 2025.
+    Statutory class eligibility remains outside this page-scoped rate module.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-269"
+rules:
+  - name: belgium_pit_article_171_item_1bis_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 1bis, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-269
+              excerpt: "1°bis au taux de 8 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.08
+  - name: belgium_pit_article_171_item_2_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 2, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-269
+              excerpt: "2° au taux de 10 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.10

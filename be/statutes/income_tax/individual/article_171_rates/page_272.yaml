@@ -1,0 +1,91 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 Article 171 page 272 states the paired 20-percent and 15-percent
+    item-3sexies classes, the holding-period-dependent 5-percent and 20-percent
+    item-3septies classes, and the 16.5-percent item-4 rate for income year
+    2025. Classification into the applicable item-3sexies source class and all
+    other statutory eligibility remain outside this page-scoped rate module.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-272"
+rules:
+  - name: belgium_pit_article_171_item_3sexies_twenty_percent_class_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3sexies, 20-percent source class, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-272
+              excerpt: "3°sexies au taux de 20 ou 15 %, les dividendes visés à l'article 269, § 2, selon qu'ils sont alloués ou attribués lors de la répartition bénéficiaire du deuxième exercice comptable après celui de l'apport ou plus tard, ou lorsqu'ils sont distribués par une pricaf privée visée à l'article 298 de la loi du 19 avril 2014 relative aux organismes de placement collectif alternatifs et à leurs gestionnaires, à condition et dans la mesure où ils proviennent de dividendes qui peuvent bénéficier du taux visé à l'article 269, § 2, alinéa 2, 1° ou 2°;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.20
+  - name: belgium_pit_article_171_item_3sexies_fifteen_percent_class_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3sexies, 15-percent source class, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-272
+              excerpt: "3°sexies au taux de 20 ou 15 %, les dividendes visés à l'article 269, § 2, selon qu'ils sont alloués ou attribués lors de la répartition bénéficiaire du deuxième exercice comptable après celui de l'apport ou plus tard, ou lorsqu'ils sont distribués par une pricaf privée visée à l'article 298 de la loi du 19 avril 2014 relative aux organismes de placement collectif alternatifs et à leurs gestionnaires, à condition et dans la mesure où ils proviennent de dividendes qui peuvent bénéficier du taux visé à l'article 269, § 2, alinéa 2, 1° ou 2°;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.15
+  - name: belgium_pit_article_171_item_3septies_at_least_five_year_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3septies, reserve held at least five years, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-272
+              excerpt: "3°septies, au taux de 5 ou 20 %, les dividendes, autres que ceux visés à l'article 209, dans la mesure où leur attribution ou mise en paiement résulte d'une diminution des réserves de liquidation visées aux articles 184quater ou 541, ou les dividendes encaissés ou recueillis à l'étranger dans la mesure où leur attribution ou mise en paiement résulte de dispositions analogues ou ayant des effets équivalents prises par un autre Etat membre de l'Espace Economique Européen, et selon que la partie de ces réserves qui est diminuée, a été conservée pendant une période d'au moins 5 ans ou de moins de 5 ans"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.05
+  - name: belgium_pit_article_171_item_3septies_under_five_year_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 3septies, reserve held under five years, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-272
+              excerpt: "3°septies, au taux de 5 ou 20 %, les dividendes, autres que ceux visés à l'article 209, dans la mesure où leur attribution ou mise en paiement résulte d'une diminution des réserves de liquidation visées aux articles 184quater ou 541, ou les dividendes encaissés ou recueillis à l'étranger dans la mesure où leur attribution ou mise en paiement résulte de dispositions analogues ou ayant des effets équivalents prises par un autre Etat membre de l'Espace Economique Européen, et selon que la partie de ces réserves qui est diminuée, a été conservée pendant une période d'au moins 5 ans ou de moins de 5 ans"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.20
+  - name: belgium_pit_article_171_item_4_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 4, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-272
+              excerpt: "4° au taux de 16,5 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.165
