@@ -1,0 +1,274 @@
+# The pure-yse cases use exact gross amounts after neutralizing EUROMOD's
+# input uprating. EUROMOD treats yse as already net of non-SSC business costs,
+# so the Article 49 boundary is true with zero additional actual costs.
+- name: euromod_exact_gross_yse_25000_matches_with_supplied_low_activity_credit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 25000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_51_business_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_actual_professional_expenses_are_justified: true
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_is_business_profit_category: false
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_regional_additional_tax_rate: 0.33257
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_supplied_low_activity_income_refundable_credit: 880
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_communal_additional_tax_rate: 0.0717
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_agglomeration_additional_tax_rate: 0
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 5125
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_article_51_forfait_base_amount: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_51_forfait_professional_expenses: 3152.23
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_selected_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_net_professional_income: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_130_base_tax: 5502
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_131_tax_free_amount: 10910
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_134_tax_on_tax_free_amount: 2727.5
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_tax_before_autonomy_factor: 2774.5
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor: 2082.068035
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_regional_additional_tax: 692.43336639995
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_total_refundable_activity_credits: 880
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_state_and_regional_tax_after_refundable_activity_credits: "1894.50140139995"
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_466_local_additional_tax_base: "1894.50140139995"
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_468_agglomeration_additional_tax_rate_after_cap: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_local_additional_tax: "135.835750480376415"
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_regional_and_local_tax_before_withholding: "2030.337151880326415"
+
+- name: euromod_exact_gross_yse_45000_matches_to_machine_precision
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 45000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_51_business_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_actual_professional_expenses_are_justified: true
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_is_business_profit_category: false
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_regional_additional_tax_rate: 0.33257
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_supplied_low_activity_income_refundable_credit: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_communal_additional_tax_rate: 0.0717
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_agglomeration_additional_tax_rate: 0
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 9225
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income: 35775
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor: 7116.5152975
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_regional_additional_tax: 2366.739492489575
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_local_additional_tax: "679.9493684422525275"
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_regional_and_local_tax_before_withholding: "10163.2041584318275275"
+
+- name: euromod_exact_gross_yse_70000_matches_to_machine_precision
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 70000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_51_business_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_actual_professional_expenses_are_justified: true
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_is_business_profit_category: false
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_regional_additional_tax_rate: 0.33257
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_supplied_low_activity_income_refundable_credit: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_communal_additional_tax_rate: 0.0717
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_agglomeration_additional_tax_rate: 0
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 14350
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income: 55650
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor: 14046.173525
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_regional_additional_tax: 4671.33592920925
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_local_additional_tax: "1342.045427866803225"
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_regional_and_local_tax_before_withholding: "20059.554882076053225"
+
+# This case intentionally retains the existing RuleSpec SSC and worker-module
+# semantics. Its EUROMOD residual is decomposed in LANE_S_REPORT.md.
+- name: mixed_yem_30000_yse_20000_exposes_imported_semantics
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 20000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: true
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 30000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 30000
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_51_business_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_actual_professional_expenses_are_justified: true
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_is_business_profit_category: false
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_regional_additional_tax_rate: 0.33257
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_supplied_low_activity_income_refundable_credit: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_communal_additional_tax_rate: 0.0717
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_agglomeration_additional_tax_rate: 0
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 4100
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income: 22478.65
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 952.233168
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income: 38378.65
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_tax_before_autonomy_factor: 10654.8925
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_regional_and_local_tax_before_withholding: "10398.345773764672415475"
+
+- name: article_51_business_profit_forfait_selected_when_actual_costs_not_justified
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 25000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_51_business_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_actual_professional_expenses_are_justified: false
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_is_business_profit_category: true
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_regional_additional_tax_rate: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_supplied_low_activity_income_refundable_credit: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_agglomeration_additional_tax_rate: 0
+  output:
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_article_51_forfait_base_amount: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_article_51_forfait_professional_expenses: 5930
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_selected_professional_expenses_excluding_social_contribution_and_purchase_costs: 5930
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_net_professional_income: 13945
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_federal_regional_and_local_tax_before_withholding: 569.3887625
+# A purchase-cost value is inapplicable on the profits branch and must be ignored.
+- name: article_51_profit_branch_ignores_business_purchase_cost_input
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_14_index_factor: 4.639439281617473
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_gross_professional_income: 25000
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_expenses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_professional_losses: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_prior_activity_income_taxed_current_year: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_cessation_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_article_28_exclusion_condition_met: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_fiscally_attributed_professional_income: 0
+    be:regulations/social_security/self_employed/contributions#input.belgium_spouse_helper_only_indemnity_sector: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_early_retirement_pension_suspended_for_income_ceiling: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_student: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_secondary_activity: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_has_reached_pension_age: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_receives_retirement_or_survivor_pension: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_spouse_helper: false
+    be:regulations/social_security/self_employed/contributions#input.belgium_self_employed_is_starter_main_activity: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_51_business_purchase_costs: 1000
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_actual_professional_expenses_are_justified: true
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_is_business_profit_category: false
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_regional_additional_tax_rate: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_supplied_low_activity_income_refundable_credit: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#input.belgium_pit_self_employment_agglomeration_additional_tax_rate: 0
+  output:
+    be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution: 5125
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_article_51_forfait_base_amount: 19875
+    be:statutes/income_tax/individual/self_employed_oracle_pipeline#belgium_pit_self_employment_net_professional_income: 19875

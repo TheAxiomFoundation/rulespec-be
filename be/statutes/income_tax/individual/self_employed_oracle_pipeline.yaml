@@ -1,0 +1,305 @@
+format: rulespec/v1
+imports:
+  - be:regulations/social_security/self_employed/contributions#belgium_self_employed_selected_annual_social_contribution
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_profit_forfait_professional_expenses
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_business_profit_forfait_professional_expenses
+  - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income
+  - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+  - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_threshold
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_rate
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_top_tax_free_amount_rate
+  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+module:
+  summary: |-
+    This Person-scoped oracle composition connects supplied gross self-
+    employment income to the existing Royal Decree No. 38 self-employed
+    social-contribution module, then removes those personal contributions
+    before applying the imported CIR 1992 Article 51 business-profit or profit
+    forfait. A named boundary chooses industrial, commercial, or agricultural
+    business profits (benefices) versus liberal-profession or other profits;
+    another named boundary selects justified Article 49 actual expenses in
+    place of the forfait. The result is combined with the imported worker-only
+    net professional-income and work-bonus-credit surfaces for mixed yem/yse
+    cases, then passed through imported 2025 Article 130, Article 131, Article
+    134, autonomy-factor, and Article 468 parameters into State, regional, and
+    communal tax surfaces. The composition leaves the self-employed
+    contribution reference-year netting inputs, annual Article 14 index factor,
+    business-profit-only purchase costs, actual expense amount, regional and communal rates, the refundable low-
+    activity-income credit, and Article 466 separately-taxed-income shares as
+    explicit inputs. It does not reinterpret a bare EUROMOD yse amount as
+    either benefices or profits, encode the self-employed activity-income
+    credit, correct differing secondary-activity contribution schedules, or
+    apply Article 171 tax itself.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-121"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Articles 51 and 52, gross self-employment income after imported personal social contributions and business-profit-only supplied purchase costs
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-121"
+              excerpt: "sont, à défaut de preuves, fixés forfaitairement en pourcentages du montant brut de ces revenus préalablement diminués desdites cotisations et sommes et dudit prix d'achat."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_self_employment_is_business_profit_category:
+              max(0, belgium_self_employed_gross_professional_income - belgium_self_employed_selected_annual_social_contribution - max(0, belgium_pit_self_employment_article_51_business_purchase_costs))
+          else:
+              max(0, belgium_self_employed_gross_professional_income - belgium_self_employed_selected_annual_social_contribution)
+  - name: belgium_pit_article_51_forfait_base_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 51, self-employment forfait base bridge after social contributions and business purchase costs
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs
+  - name: belgium_pit_self_employment_article_51_forfait_professional_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 51, supplied benefices-versus-profits category boundary selecting the imported forfait
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-121"
+              excerpt: "4° pour les profits: a) 28,7 % de la première tranche de 7.540 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_self_employment_is_business_profit_category:
+              belgium_pit_article_51_business_profit_forfait_professional_expenses
+          else:
+              belgium_pit_article_51_profit_forfait_professional_expenses
+  - name: belgium_pit_self_employment_selected_professional_expenses_excluding_social_contribution_and_purchase_costs
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Articles 49 and 51, justified actual professional expenses or the selected forfait
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-121"
+              excerpt: "sont, à défaut de preuves, fixés forfaitairement"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_self_employment_actual_professional_expenses_are_justified:
+              max(0, belgium_pit_self_employment_justified_professional_expenses_excluding_social_contribution_and_purchase_costs)
+          else:
+              belgium_pit_self_employment_article_51_forfait_professional_expenses
+  - name: belgium_pit_self_employment_net_professional_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 23 paragraph 2, self-employment income after social contributions, purchase costs, and selected professional expenses
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_self_employment_income_after_social_contribution_and_business_purchase_costs - belgium_pit_self_employment_selected_professional_expenses_excluding_social_contribution_and_purchase_costs)
+  - name: belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Articles 6 and 23, ordinary taxable professional income for the mixed worker and self-employment oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_pilot_worker_net_professional_income + belgium_pit_self_employment_net_professional_income)
+  - name: belgium_pit_self_employment_article_130_base_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 130, mixed worker and self-employment taxable income through the imported ordinary rate parameters
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_self_employment_combined_worker_and_self_employment_taxable_income - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
+  - name: belgium_pit_self_employment_article_131_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 131, imported base tax-free amount for the single-person oracle slice
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_base_tax_free_amount
+  - name: belgium_pit_self_employment_article_134_tax_on_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 134 paragraph 2, tax on the imported Article 131 base tax-free amount
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_self_employment_article_131_tax_free_amount <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_self_employment_article_131_tax_free_amount * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_self_employment_article_131_tax_free_amount <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_self_employment_article_131_tax_free_amount - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_self_employment_article_131_tax_free_amount <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_self_employment_article_131_tax_free_amount - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_self_employment_article_131_tax_free_amount <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_self_employment_article_131_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_self_employment_article_131_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_self_employment_federal_tax_before_autonomy_factor
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Articles 130, 131, and 134, federal base tax after the tax-free-amount reduction
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_self_employment_article_130_base_tax - belgium_pit_self_employment_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law Article 5/2, reduced State tax using the imported autonomy-factor share
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_self_employment_federal_tax_before_autonomy_factor * belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
+  - name: belgium_pit_self_employment_regional_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Special financing law Article 5/2, supplied regional additional-tax rate on reduced State tax
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor * max(0, belgium_pit_self_employment_regional_additional_tax_rate)
+  - name: belgium_pit_self_employment_total_refundable_activity_credits
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Imported Article 289ter/1 worker work-bonus credit plus supplied unencoded self-employed low-activity-income credit
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit + max(0, belgium_pit_self_employment_supplied_low_activity_income_refundable_credit)
+  - name: belgium_pit_self_employment_state_and_regional_tax_after_refundable_activity_credits
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: State and regional tax after imported and supplied refundable activity credits
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_self_employment_reduced_state_tax_after_autonomy_factor + belgium_pit_self_employment_regional_additional_tax - belgium_pit_self_employment_total_refundable_activity_credits
+  - name: belgium_pit_self_employment_article_466_local_additional_tax_base
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 466, total-tax base including supplied Article 171 tax and excluding its nonprofessional movable-income tax share
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_self_employment_state_and_regional_tax_after_refundable_activity_credits + max(0, belgium_pit_self_employment_article_466_separately_taxed_income_tax_included_in_total) - max(0, belgium_pit_self_employment_article_466_tax_share_on_nonprofessional_movable_income))
+  - name: belgium_pit_self_employment_article_468_agglomeration_additional_tax_rate_after_cap
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: CIR 1992 Article 468, supplied agglomeration rate capped by the imported statutory maximum
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(max(0, belgium_pit_self_employment_agglomeration_additional_tax_rate), belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+  - name: belgium_pit_self_employment_local_additional_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Articles 465 to 468, supplied communal and agglomeration additions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_self_employment_article_466_local_additional_tax_base * max(0, belgium_pit_self_employment_communal_additional_tax_rate) + belgium_pit_self_employment_article_466_local_additional_tax_base * belgium_pit_self_employment_article_468_agglomeration_additional_tax_rate_after_cap
+  - name: belgium_pit_self_employment_federal_regional_and_local_tax_before_withholding
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Composed ordinary State, regional, and local tax before withholding, excluding the separately-taxed-income liability itself
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_self_employment_state_and_regional_tax_after_refundable_activity_credits + belgium_pit_self_employment_local_additional_tax

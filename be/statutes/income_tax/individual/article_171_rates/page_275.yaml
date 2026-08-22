@@ -1,0 +1,42 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 Article 171 items 7 and 8 set the 10.38-percent regional
+    return-to-work-premium rate and the zero-percent Article 155 rate for
+    income year 2025. Statutory class eligibility remains outside this
+    page-scoped rate module.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-275"
+rules:
+  - name: belgium_pit_article_171_item_7_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 7, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-275
+              excerpt: "7° au taux de 10,38 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.1038
+  - name: belgium_pit_article_171_item_8_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 8, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-275
+              excerpt: "8° au taux de 0 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0

@@ -1,0 +1,42 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 Article 171 items 2bis and 2quater set the 15-percent and
+    18-percent separate rates for their enumerated income classes for income
+    year 2025. Statutory class eligibility remains outside this page-scoped
+    rate module.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-270"
+rules:
+  - name: belgium_pit_article_171_item_2bis_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 2bis, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-270
+              excerpt: "2°bis au taux de 15 %:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.15
+  - name: belgium_pit_article_171_item_2quater_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 Article 171 item 2quater, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-270
+              excerpt: "2°quater au taux de 18 %"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.18
