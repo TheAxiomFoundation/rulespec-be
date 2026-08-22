@@ -1,0 +1,9 @@
+- name: article_154_promoted_complementary_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input: {}
+  output:
+    be:statutes/income_tax/individual/replacement_income_complementary_reduction_parameters#belgium_pit_article_154_complementary_reduction_rate: 0.40
