@@ -1,0 +1,11 @@
+- name: imported_canonical_rates_carry_direct_article_68_proofs
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input: {}
+  output:
+    be:statutes/social_security/pension_solidarity_article_68#belgium_pension_article_68_solidarity_phase_in_rate: 0.5
+    be:statutes/social_security/pension_solidarity_article_68#belgium_pension_article_68_solidarity_mid_rate: 0.015
+    be:statutes/social_security/pension_solidarity_article_68#belgium_pension_article_68_solidarity_top_rate: 0.02

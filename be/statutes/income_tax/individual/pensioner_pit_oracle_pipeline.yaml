@@ -1,6 +1,6 @@
 format: rulespec/v1
 imports:
-  - be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_pension_withholding_rate
+  - be:statutes/social_security/pension_health_insurance_article_191#belgium_pension_article_191_ami_withholding_rate
   - be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_isolated_health_floor_lower_monthly
   - be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_isolated_health_floor_upper_monthly
   - be:statutes/social_security/non_labour_income_contributions#belgium_health_insurance_article_191_family_health_floor_lower_monthly
@@ -13,9 +13,9 @@ imports:
   - be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_family_second_threshold_base
   - be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_family_third_threshold_base
   - be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_family_fourth_threshold_base
-  - be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_phase_in_rate
-  - be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_mid_rate
-  - be:statutes/social_security/non_labour_income_contributions#belgium_pension_solidarity_article_68_top_rate
+  - be:statutes/social_security/pension_solidarity_article_68#belgium_pension_article_68_solidarity_phase_in_rate
+  - be:statutes/social_security/pension_solidarity_article_68#belgium_pension_article_68_solidarity_mid_rate
+  - be:statutes/social_security/pension_solidarity_article_68#belgium_pension_article_68_solidarity_top_rate
   - be:statutes/social_security/non_labour_income_contributions#belgium_pensioner_health_and_solidarity_months_in_year
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
@@ -49,7 +49,10 @@ module:
     This composed pilot module exposes a dense-engine-friendly Person-level
     path from gross Article 34 pension income into Belgian PIT for the EUROMOD
     oracle slice, including the Article 146 to 154 reduction machinery for
-    pensions and replacement income. It integrates the
+    pensions and replacement income. The gross Article 34 input remains the
+    total pension income, including complementary pension, while a distinct
+    supplied legal-pension amount governs the Article 147 item 2 b and c
+    activity-income exclusions. It integrates the
     non_labour_income_contributions module by importing that module's Article
     191 health-insurance withholding rate and floors and Article 68
     solidarity-contribution thresholds and rates and re-applying them per
@@ -67,9 +70,12 @@ module:
     (including the Article 147 item 2 b and c activity-income exclusions for
     pensioners past legal retirement age), the Article 151/1 additional-
     reduction phaseout, the Article 152 one-third floor phaseout, and the
-    Article 153 per-category cap, then the special-financing-law Article 5/2
-    autonomy factor, the imported refundable Article 289ter/1 work-bonus
-    credit, and supplied Article 465/468 local additions. Article 154's
+    Article 153 per-category cap through an explicit supplied attribution
+    boundary (the pinned text states the cap but not an allocation formula),
+    then the special-financing-law Article 5/2 autonomy factor, supplied
+    Article 465/468 local additions calculated on the pre-credit total tax,
+    and only afterward the imported refundable Article 289ter/1 work-bonus
+    credit under Articles 290 and 304. Article 154's
     complementary reduction is deliberately excluded: the assessment-year 2026
     text grants it only when the net income includes unemployment benefits,
     which are outside this pensioner slice. Also excluded: dependants and
@@ -132,7 +138,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, per-beneficiary AMI withholding on cumulated monthly gross pensions with the protected floor; the banded shape and amounts are proven in the imported non_labour_income_contributions module against the Service federal des Pensions 2025 tables
+    source: Law on compulsory health-care and indemnity insurance coordinated on 14 July 1994, article 191, 7, per-beneficiary AMI withholding on cumulated monthly gross pensions with the protected floor; the imported article-191 legal-basis adapter carries the direct statute proof for the rate, while the banded amounts are proven in non_labour_income_contributions against the Service federal des Pensions 2025 tables
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -142,7 +148,7 @@ rules:
               if belgium_pit_pensioner_monthly_gross_pension <= belgium_pit_pensioner_article_191_full_rate_threshold_monthly:
                   belgium_pit_pensioner_monthly_gross_pension - belgium_pit_pensioner_article_191_protected_floor_limit_monthly
               else:
-                  belgium_pit_pensioner_monthly_gross_pension * belgium_health_insurance_article_191_pension_withholding_rate
+                  belgium_pit_pensioner_monthly_gross_pension * belgium_pension_article_191_ami_withholding_rate
   - name: belgium_pit_pensioner_article_68_first_threshold
     kind: derived
     entity: Person
@@ -209,14 +215,14 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pensioner_article_68_third_threshold * belgium_pension_solidarity_article_68_mid_rate
+          belgium_pit_pensioner_article_68_third_threshold * belgium_pension_article_68_solidarity_mid_rate
   - name: belgium_pit_pensioner_article_68_monthly_withholding
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: Law of 30 March 1994 on social provisions, article 68 section 2, per-beneficiary solidarity contribution on cumulated monthly gross pensions; the banded shape and amounts are proven in the imported non_labour_income_contributions module against the Service federal des Pensions 2025 tables
+    source: Law of 30 March 1994 on social provisions, article 68 section 2, per-beneficiary solidarity contribution on cumulated monthly gross pensions; the imported article-68 legal-basis adapter carries direct statute proofs for the band rates, while the indexed amounts are proven in non_labour_income_contributions against the Service federal des Pensions 2025 tables
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -224,15 +230,15 @@ rules:
               0
           else:
               if belgium_pit_pensioner_monthly_gross_pension <= belgium_pit_pensioner_article_68_second_threshold:
-                  (belgium_pit_pensioner_monthly_gross_pension - belgium_pit_pensioner_article_68_first_threshold) * belgium_pension_solidarity_article_68_phase_in_rate
+                  (belgium_pit_pensioner_monthly_gross_pension - belgium_pit_pensioner_article_68_first_threshold) * belgium_pension_article_68_solidarity_phase_in_rate
               else:
                   if belgium_pit_pensioner_monthly_gross_pension <= belgium_pit_pensioner_article_68_third_threshold:
-                      belgium_pit_pensioner_monthly_gross_pension * belgium_pension_solidarity_article_68_mid_rate
+                      belgium_pit_pensioner_monthly_gross_pension * belgium_pension_article_68_solidarity_mid_rate
                   else:
                       if belgium_pit_pensioner_monthly_gross_pension <= belgium_pit_pensioner_article_68_fourth_threshold:
-                          belgium_pit_pensioner_article_68_transition_base_amount + (belgium_pit_pensioner_monthly_gross_pension - belgium_pit_pensioner_article_68_third_threshold) * belgium_pension_solidarity_article_68_phase_in_rate
+                          belgium_pit_pensioner_article_68_transition_base_amount + (belgium_pit_pensioner_monthly_gross_pension - belgium_pit_pensioner_article_68_third_threshold) * belgium_pension_article_68_solidarity_phase_in_rate
                       else:
-                          belgium_pit_pensioner_monthly_gross_pension * belgium_pension_solidarity_article_68_top_rate
+                          belgium_pit_pensioner_monthly_gross_pension * belgium_pension_article_68_solidarity_top_rate
   - name: belgium_pit_pensioner_annual_social_withholding
     kind: derived
     entity: Person
@@ -356,7 +362,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 147 first alinea item 2 b and c and third alinea, activity income excluded from the net-income denominator for pensioners past legal retirement age and for survivor-pension or transition-allowance recipients
+    source: CIR 1992 article 147 first alinea item 2 b and c and third alinea, activity income excluded from the net-income denominator for pensioners past legal retirement age according to their distinct supplied legal-pension amount, and for survivor-pension or transition-allowance recipients
     metadata:
       proof:
         atoms:
@@ -371,11 +377,11 @@ rules:
           if belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance:
               belgium_pit_pensioner_activity_income
           else:
-              if belgium_pit_pensioner_has_reached_legal_retirement_age and belgium_pit_pensioner_annual_gross_pension <= belgium_pit_article_1511_additional_phaseout_start:
+              if belgium_pit_pensioner_has_reached_legal_retirement_age and belgium_pit_pensioner_annual_legal_pension <= belgium_pit_article_1511_additional_phaseout_start:
                   belgium_pit_pensioner_activity_income
               else:
-                  if belgium_pit_pensioner_has_reached_legal_retirement_age and belgium_pit_pensioner_annual_gross_pension <= belgium_pit_article_1511_additional_phaseout_end:
-                      belgium_pit_pensioner_activity_income * (belgium_pit_article_1511_additional_phaseout_end - belgium_pit_pensioner_annual_gross_pension) / (belgium_pit_article_1511_additional_phaseout_end - belgium_pit_article_1511_additional_phaseout_start)
+                  if belgium_pit_pensioner_has_reached_legal_retirement_age and belgium_pit_pensioner_annual_legal_pension <= belgium_pit_article_1511_additional_phaseout_end:
+                      belgium_pit_pensioner_activity_income * (belgium_pit_article_1511_additional_phaseout_end - belgium_pit_pensioner_annual_legal_pension) / (belgium_pit_article_1511_additional_phaseout_end - belgium_pit_article_1511_additional_phaseout_start)
                   else:
                       0
   - name: belgium_pit_pensioner_article_147_net_income_for_ratio
@@ -478,14 +484,11 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 153, cap of the reductions at the share of the articles 130 to 145 tax attributable to the pension income for which they are granted
+    source: CIR 1992 article 153, cap of the reductions at the supplied share of the articles 130 to 145 tax attributable to the pension income for which they are granted; page 256 states the cap but supplies no allocation formula, so attribution is an explicit Person input boundary
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          if belgium_pit_pensioner_taxable_income <= 0:
-              0
-          else:
-              min(1, belgium_pit_pensioner_net_pension / belgium_pit_pensioner_taxable_income) * belgium_pit_pensioner_tax_after_tax_free_amount
+          max(0, belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income)
   - name: belgium_pit_pensioner_replacement_reduction_after_limits
     kind: derived
     entity: Person
@@ -546,19 +549,19 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 465 to 468, supplied local additions on the pensioner-slice federal tax; the Article 466 movable-income subtraction and Article 466bis treaty interface are outside this slice
+    source: CIR 1992 articles 465 to 468, supplied local additions calculated on the pensioner-slice pre-credit total tax; Articles 290 and 304 impute the refundable Article 289ter/1 credit only afterward, including any surplus against these additions; the Article 466 movable-income subtraction and Article 466bis treaty interface are outside this slice
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_pensioner_net_federal_tax_after_work_bonus_credit) * (belgium_pit_pensioner_communal_additional_tax_rate + belgium_pit_pensioner_agglomeration_additional_tax_rate_after_cap)
+          max(0, belgium_pit_pensioner_reduced_state_tax_after_autonomy_factor) * (belgium_pit_pensioner_communal_additional_tax_rate + belgium_pit_pensioner_agglomeration_additional_tax_rate_after_cap)
   - name: belgium_pit_pensioner_federal_and_local_tax_before_withholding
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130 to 154 and 465 to 468, composed pensioner-slice final PIT before withholding
+    source: CIR 1992 articles 130 to 154, 290, 304, and 465 to 468, composed pensioner-slice final PIT before withholding with pre-credit total tax plus additions and then the refundable Article 289ter/1 credit
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pensioner_net_federal_tax_after_work_bonus_credit + belgium_pit_pensioner_local_additional_tax
+          belgium_pit_pensioner_reduced_state_tax_after_autonomy_factor + belgium_pit_pensioner_local_additional_tax - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
