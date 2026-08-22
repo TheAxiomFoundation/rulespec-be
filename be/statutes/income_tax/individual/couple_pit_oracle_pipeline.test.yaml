@@ -149,22 +149,22 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_126_survivor_or_heirs_joint_assessment_election_made: false
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_article_87_88_no_tax_increase_condition_met: true
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_communal_additional_tax_rate: 0.07
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#input.belgium_pit_couple_agglomeration_additional_tax_rate: 0
   output:
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 22478.65
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 22478.65
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_289ter1_low_wage_work_bonus_credit: 952.233168
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_289ter1_low_wage_work_bonus_credit: 952.233168
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_federal_and_local_tax_before_withholding: 1911.3776948
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding: 1911.3776948
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_federal_and_local_tax_before_withholding: 3822.7553896
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_federal_and_local_tax_before_withholding: 2111.830455196
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding: 2111.830455196
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_federal_and_local_tax_before_withholding: 4223.660910392
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_article_134_joint_assessment_established: "holds"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_agglomeration_additional_tax_rate_after_cap: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_130_base_tax: "6543.46"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_article_134_tax_on_tax_free_amount: "2727.5"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax: "0"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax_base: "1911.3776948"
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax: "200.452760396"
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_local_additional_tax_base: "2863.6108628"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount: "3815.96"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_net_federal_tax_after_work_bonus_credit: "1911.3776948"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor: "2863.6108628"
@@ -172,8 +172,8 @@
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_agglomeration_additional_tax_rate_after_cap: "0"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_130_base_tax: "6543.46"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_article_134_tax_on_tax_free_amount: "2727.5"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_local_additional_tax: "0"
-    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_local_additional_tax_base: "1911.3776948"
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_local_additional_tax: "200.452760396"
+    be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_local_additional_tax_base: "2863.6108628"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_net_federal_tax_after_tax_free_amount: "3815.96"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_net_federal_tax_after_work_bonus_credit: "1911.3776948"
     be:statutes/income_tax/individual/couple_pit_oracle_pipeline#belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor: "2863.6108628"

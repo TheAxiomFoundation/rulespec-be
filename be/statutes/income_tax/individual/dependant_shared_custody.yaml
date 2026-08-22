@@ -1,4 +1,6 @@
 format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
 module:
   summary: |-
     Person-scoped Article 132bis shared-custody gate. Each legal condition is
@@ -6,6 +8,27 @@ module:
   source_verification:
     corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
 rules:
+  - name: belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 132bis, each taxpayer receives half of the Article 132 child supplements
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Dans ce cas, les suppléments visés à l'article 132, alinéa 1er, 1° à 5°, auxquels ces enfants donnent droit, déterminés abstraction faite de l'existence d'autres enfants dans le ménage dont ils font partie, sont attribués pour moitié à chacun des contribuables."
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Dans le cas visé à l'alinéa 1er, le supplément visé à l'article 132, alinéa 1er, 6°, est attribué pour moitié au contribuable qui ne demande pas la réduction pour garde d'enfant visée à l'article 14535."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_shared_custody_child_tax_credit_multiplier, belgium_pit_article_134_shared_custody_child_tax_credit_multiplier)
   - name: belgium_pit_article_132bis_shared_custody_conditions_met
     kind: derived
     entity: Person

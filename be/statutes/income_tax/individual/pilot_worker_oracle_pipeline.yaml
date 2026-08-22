@@ -6,7 +6,7 @@ imports:
   - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap
   - be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
   - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_rate
-  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_and_business_profit_cap
+  - be:statutes/income_tax/individual/article_51_employee_forfait_cap#belgium_pit_article_51_employee_and_business_profit_cap_from_page_122
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
@@ -14,11 +14,11 @@ imports:
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
-  - be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate
-  - be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate
-  - be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling
-  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
-  - be:statutes/income_tax/individual/regional_autonomy_factor#belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
+  - be:statutes/income_tax/individual/article_289ter1_work_bonus_credit_parameters#belgium_pit_article_289ter1_work_bonus_a_rate_from_page_515
+  - be:statutes/income_tax/individual/article_289ter1_work_bonus_credit_parameters#belgium_pit_article_289ter1_work_bonus_b_rate_from_page_515
+  - be:statutes/income_tax/individual/article_289ter1_work_bonus_credit_parameters#belgium_pit_article_289ter1_work_bonus_credit_ceiling_from_page_515
+  - be:statutes/income_tax/individual/article_468_agglomeration_rate_cap#belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+  - be:statutes/income_tax/individual/article_5_2_state_tax_share#belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
   - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
   - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_without_article_132bis
   - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_with_article_132bis
@@ -29,17 +29,17 @@ imports:
   - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_equivalent_count
   - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_is_eligible
   - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_one_child_tax_free_increase
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_two_children_tax_free_increase
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_three_children_tax_free_increase
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_four_children_tax_free_increase
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_first_additional_child_count
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_additional_child_after_four_tax_free_increase
-  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_child_under_3_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_tax_free_increase_from_page_182
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_one_child_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_two_children_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_three_children_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_four_children_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_first_additional_child_count_from_page_182
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_additional_child_after_four_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_under_3_tax_free_increase
+  - be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
   - be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit
   - be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement
-  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit
@@ -119,6 +119,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 23 paragraph 2 professional-income netting after ordinary employee social-security contribution
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_ordinary_worker_contribution
+              output: belgium_employee_social_security_ordinary_worker_contribution
+              hash: sha256:0d583fffc45b3069b76a37f5dbce55297a492af71f9eec85a1d58798ad5b614f
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -130,10 +139,25 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 51 item 1 and cap paragraph, employee forfait for the worker-only oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_forfait_rate
+              output: belgium_pit_article_51_employee_forfait_rate
+              hash: sha256:daaace3a748703878659f23c9b6989de5bdddd4e9dd9b05279ed0aed51388980
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_51_employee_forfait_cap#belgium_pit_article_51_employee_and_business_profit_cap_from_page_122
+              output: belgium_pit_article_51_employee_and_business_profit_cap_from_page_122
+              hash: sha256:db8e522d96fd20b9b5769bd74c9211edd9d7e194f5d7e1a19d35f7a6dfe6d173
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(belgium_pit_pilot_worker_remuneration_after_employee_social_security * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap)
+          min(belgium_pit_pilot_worker_remuneration_after_employee_social_security * belgium_pit_article_51_employee_forfait_rate, belgium_pit_article_51_employee_and_business_profit_cap_from_page_122)
   - name: belgium_pit_pilot_worker_net_professional_income
     kind: derived
     entity: Person
@@ -170,6 +194,21 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 articles 132 and 136, eligible non-shared child equivalents rolled up from related Person records
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_without_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_without_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -180,6 +219,21 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 article 132bis, eligible shared-custody child equivalents rolled up from related Person records
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_with_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_with_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -190,6 +244,21 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 article 132 paragraph 1 item 6 and final paragraph, eligible non-shared under-three child equivalents
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -200,6 +269,21 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 articles 132 and 132bis, eligible shared-custody under-three child equivalents
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -210,6 +294,21 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 article 132 paragraph 1 item 7, eligible elderly dependant equivalents rolled up from related Person records
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_equivalent_count
+              output: belgium_pit_dependent_elderly_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+              output: belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -220,6 +319,21 @@ rules:
     dtype: Count
     period: Year
     source: CIR 1992 article 132 paragraph 1 item 8 and final paragraph, eligible other dependant equivalents rolled up from related Person records
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_equivalent_count
+              output: belgium_pit_other_dependent_person_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_is_eligible
+              output: belgium_pit_other_dependent_person_is_eligible
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -251,6 +365,51 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 132bis, half of the Article 132 child ladder determined separately from other household children
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_one_child_tax_free_increase
+              output: belgium_pit_article_132_one_child_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_two_children_tax_free_increase
+              output: belgium_pit_article_132_two_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_three_children_tax_free_increase
+              output: belgium_pit_article_132_three_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_four_children_tax_free_increase
+              output: belgium_pit_article_132_four_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_first_additional_child_count_from_page_182
+              output: belgium_pit_article_132_first_additional_child_count_from_page_182
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_additional_child_after_four_tax_free_increase
+              output: belgium_pit_article_132_additional_child_after_four_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+              output: belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+              hash: sha256:441c3d1553b7ac5887a2831245aa15964f1e8fb19d9fdf9fec5be17dbb41ab0e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -258,15 +417,15 @@ rules:
               0
           else:
               if belgium_pit_article_132bis_shared_custody_child_count == 1:
-                  belgium_pit_one_child_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+                  belgium_pit_article_132_one_child_tax_free_increase * belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
               else:
                   if belgium_pit_article_132bis_shared_custody_child_count == 2:
-                      belgium_pit_two_children_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+                      belgium_pit_article_132_two_children_tax_free_increase * belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
                   else:
                       if belgium_pit_article_132bis_shared_custody_child_count == 3:
-                          belgium_pit_three_children_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+                          belgium_pit_article_132_three_children_tax_free_increase * belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
                       else:
-                          (belgium_pit_four_children_tax_free_increase + max(0, belgium_pit_article_132bis_shared_custody_child_count - belgium_pit_article_132_first_additional_child_count) * belgium_pit_additional_child_after_four_tax_free_increase) * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+                          (belgium_pit_article_132_four_children_tax_free_increase + max(0, belgium_pit_article_132bis_shared_custody_child_count - belgium_pit_article_132_first_additional_child_count_from_page_182) * belgium_pit_article_132_additional_child_after_four_tax_free_increase) * belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
   - name: belgium_pit_pilot_shared_custody_under_3_tax_free_amount
     kind: derived
     entity: Person
@@ -274,10 +433,25 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 132bis, half under-three supplement for the taxpayer not claiming the childcare reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_under_3_tax_free_increase
+              output: belgium_pit_article_132_child_under_3_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+              output: belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+              hash: sha256:441c3d1553b7ac5887a2831245aa15964f1e8fb19d9fdf9fec5be17dbb41ab0e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_shared_custody_children_under_3_without_childcare_reduction_count * belgium_pit_child_under_3_tax_free_increase * belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+          belgium_pit_pilot_shared_custody_children_under_3_without_childcare_reduction_count * belgium_pit_article_132_child_under_3_tax_free_increase * belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
   - name: belgium_pit_pilot_article_132_child_supplements_tax_free_amount
     kind: derived
     entity: Person
@@ -285,10 +459,25 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 132 and 132bis, full and shared child-related supplements used in the Article 134 paragraph 3 ordering ledger
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_tax_free_increase_from_page_182
+              output: belgium_pit_article_132_child_tax_free_increase_from_page_182
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_under_3_tax_free_increase
+              output: belgium_pit_article_132_child_under_3_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_article_132_child_tax_free_increase + belgium_pit_children_under_3_without_childcare_reduction_count * belgium_pit_child_under_3_tax_free_increase + belgium_pit_pilot_shared_custody_child_ladder_tax_free_amount + belgium_pit_pilot_shared_custody_under_3_tax_free_amount
+          belgium_pit_article_132_child_tax_free_increase_from_page_182 + belgium_pit_children_under_3_without_childcare_reduction_count * belgium_pit_article_132_child_under_3_tax_free_increase + belgium_pit_pilot_shared_custody_child_ladder_tax_free_amount + belgium_pit_pilot_shared_custody_under_3_tax_free_amount
   - name: belgium_pit_pilot_articles_131_132_family_tax_free_amount
     kind: derived
     entity: Person
@@ -296,6 +485,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 131, 132, and 132bis, base and dependant supplements after shared-custody allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations
+              output: belgium_pit_articles_131_132_tax_free_amount_before_limitations
+              hash: sha256:2360bb12e93392b44fde84a7d4bfc88129ca7c8fca75e69f481d968e5386f2c2
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -315,11 +513,11 @@ rules:
     entity: Person
     dtype: Judgment
     period: Year
-    source: CIR 1992 articles 126 and 133, pipeline bridge from the supplied paragraph 3 exclusion fact
+    source: CIR 1992 articles 126 and 133, pipeline bridge from the distinct supplied Article 126 paragraph 2 first alinea item 4 fact
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_article_134_paragraph_3_exclusion_applies
+          belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies
   - name: belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration
     kind: derived
     entity: Person
@@ -390,6 +588,21 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraph 3 ordering, Article 133 supplements other than the additional low-income isolated-parent supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit
+              output: belgium_pit_article_133_supplements_before_refundable_credit
+              hash: sha256:a42abdb3f89f8878fbd59c5ca74177e7508ebcf47952ae8bbc0e4d27f83a295c
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement
+              output: belgium_pit_article_133_additional_isolated_parent_supplement
+              hash: sha256:a42abdb3f89f8878fbd59c5ca74177e7508ebcf47952ae8bbc0e4d27f83a295c
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -423,6 +636,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 131 through 134, family tax-free amount including the final additional Article 133 supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit
+              output: belgium_pit_article_133_supplements_before_refundable_credit
+              hash: sha256:a42abdb3f89f8878fbd59c5ca74177e7508ebcf47952ae8bbc0e4d27f83a295c
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -432,7 +654,7 @@ rules:
     entity: Person
     dtype: Judgment
     period: Year
-    source: CIR 1992 article 134 paragraph 3, supplied treaty or Article 126 paragraph 2 item 4 exclusion fact
+    source: CIR 1992 article 134 paragraph 3, supplied inapplicability fact for the treaty-exempt taxpayer or the separately taxed spouse described by that paragraph
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -475,6 +697,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraph 2, tax on the pilot tax-free amount
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount
+              output: belgium_pit_article_134_tax_on_tax_free_amount
+              hash: sha256:567651439c4b52848b4ca15a923122a8e514f7465f0c84a9b75e9b23932d25e2
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -486,6 +717,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 130 and 134, worker-only pilot federal tax after the base tax-free-amount reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+              output: belgium_pit_article_134_tax_after_article_130_base_tax_reduction
+              hash: sha256:567651439c4b52848b4ca15a923122a8e514f7465f0c84a9b75e9b23932d25e2
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -497,10 +737,31 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 289ter/1, worker-only pilot low-wage work-bonus credit from encoded ONSS full-year equal-month work-bonus A and B tax-credit bases
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_289ter1_work_bonus_credit_parameters#belgium_pit_article_289ter1_work_bonus_a_rate_from_page_515
+              output: belgium_pit_article_289ter1_work_bonus_a_rate_from_page_515
+              hash: sha256:e70b06f735adbf6f6dad027e170b2a4ef7869cd718da304c686a46e5de79afab
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_289ter1_work_bonus_credit_parameters#belgium_pit_article_289ter1_work_bonus_b_rate_from_page_515
+              output: belgium_pit_article_289ter1_work_bonus_b_rate_from_page_515
+              hash: sha256:e70b06f735adbf6f6dad027e170b2a4ef7869cd718da304c686a46e5de79afab
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_289ter1_work_bonus_credit_parameters#belgium_pit_article_289ter1_work_bonus_credit_ceiling_from_page_515
+              output: belgium_pit_article_289ter1_work_bonus_credit_ceiling_from_page_515
+              hash: sha256:e70b06f735adbf6f6dad027e170b2a4ef7869cd718da304c686a46e5de79afab
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          min(belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount * belgium_pit_article_289ter1_work_bonus_a_rate + belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount * belgium_pit_article_289ter1_work_bonus_b_rate, belgium_pit_article_289ter1_work_bonus_credit_ceiling)
+          min(belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount * belgium_pit_article_289ter1_work_bonus_a_rate_from_page_515 + belgium_pit_pilot_article_289ter1_work_bonus_b_tax_credit_base_amount * belgium_pit_article_289ter1_work_bonus_b_rate_from_page_515, belgium_pit_article_289ter1_work_bonus_credit_ceiling_from_page_515)
   - name: belgium_pit_pilot_article_289ter1_work_bonus_a_tax_credit_base_amount
     kind: derived
     entity: Person
@@ -508,6 +769,33 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 289ter/1 and the statutory work-bonus A formula, worker-only pilot annualized volet A amount limited after volet B by personal contributions due
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap
+              output: belgium_worker_work_bonus_full_year_equal_monthly_a_before_cap
+              hash: sha256:e4c92b55d93faddd274f7de9a95691f98a256cb1e6966d42eeb92aca5a41c47a
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
+              output: belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
+              hash: sha256:e4c92b55d93faddd274f7de9a95691f98a256cb1e6966d42eeb92aca5a41c47a
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_months_in_year
+              output: belgium_worker_work_bonus_months_in_year
+              hash: sha256:e4c92b55d93faddd274f7de9a95691f98a256cb1e6966d42eeb92aca5a41c47a
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions
+              output: belgium_employee_social_security_article_38_contribution_before_reductions
+              hash: sha256:0d583fffc45b3069b76a37f5dbce55297a492af71f9eec85a1d58798ad5b614f
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -519,6 +807,27 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 289ter/1 and the statutory work-bonus B formula, worker-only pilot annualized volet B amount limited first by personal contributions due
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
+              output: belgium_worker_work_bonus_full_year_equal_monthly_b_before_cap
+              hash: sha256:e4c92b55d93faddd274f7de9a95691f98a256cb1e6966d42eeb92aca5a41c47a
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_months_in_year
+              output: belgium_worker_work_bonus_months_in_year
+              hash: sha256:e4c92b55d93faddd274f7de9a95691f98a256cb1e6966d42eeb92aca5a41c47a
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:regulations/social_security/workers/employee_contributions#belgium_employee_social_security_article_38_contribution_before_reductions
+              output: belgium_employee_social_security_article_38_contribution_before_reductions
+              hash: sha256:0d583fffc45b3069b76a37f5dbce55297a492af71f9eec85a1d58798ad5b614f
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -530,10 +839,19 @@ rules:
     period: Year
     unit: EUR
     source: Special financing law article 5/2, worker-only pilot reduced State tax after the autonomy-factor reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_5_2_state_tax_share#belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+              output: belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+              hash: sha256:f10f98a8f0015dab42933d39161af31bf66d4ca333b09befb7954bf1e2046805
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount * belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor)
+          max(0, belgium_pit_pilot_net_federal_tax_after_tax_free_amount * belgium_pit_article_5_2_state_tax_share_after_autonomy_factor)
   - name: belgium_pit_pilot_net_federal_tax_after_work_bonus_credit
     kind: derived
     entity: Person
@@ -552,6 +870,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraph 3, unused child tax-free-amount reduction after the statutory cap
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit
+              output: belgium_pit_article_134_refundable_child_tax_credit
+              hash: sha256:567651439c4b52848b4ca15a923122a8e514f7465f0c84a9b75e9b23932d25e2
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -563,6 +890,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraph 3, unused tax value of the additional Article 133 isolated-parent supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_refundable_article_133_additional_supplement_credit
+              output: belgium_pit_article_134_refundable_article_133_additional_supplement_credit
+              hash: sha256:ed5eca073b2b8e7abe943fc06b33a15ee078afd9de8e9eea85df465774cda037
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -574,6 +910,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 134 paragraph 3 and 289ter/1, refundable family and work-bonus credits after the reduced State tax
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_total_refundable_paragraph_3_credit
+              output: belgium_pit_article_134_total_refundable_paragraph_3_credit
+              hash: sha256:ed5eca073b2b8e7abe943fc06b33a15ee078afd9de8e9eea85df465774cda037
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -584,31 +929,40 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 466 and 466bis, worker-only pilot local-tax base
+    source: CIR 1992 articles 290, 304, 466, and 466bis, worker-only pilot pre-refundable-credit total-tax base
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           if belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies:
               max(0, belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
           else:
-              max(0, belgium_pit_pilot_net_federal_tax_after_family_and_work_bonus_credits - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
+              max(0, belgium_pit_pilot_reduced_state_tax_after_autonomy_factor - belgium_pit_article_466_tax_share_on_nonprofessional_movable_income)
   - name: belgium_pit_pilot_agglomeration_additional_tax_rate_after_cap
     kind: derived
     entity: Person
     dtype: Rate
     period: Year
     source: CIR 1992 article 468, agglomeration rate cap for the worker-only pilot
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_468_agglomeration_rate_cap#belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+              output: belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+              hash: sha256:9426159db6dacd5eb8549e86e1467881ea5fe7e060757d4e829e50009d7e5377
     versions:
       - effective_from: '2015-01-01'
         formula: |-
-          min(belgium_pit_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+          min(belgium_pit_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687)
   - name: belgium_pit_pilot_local_additional_tax
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 465 to 468, supplied local additions for the worker-only pilot
+    source: CIR 1992 articles 465 to 468, supplied local additions on the worker-only pilot pre-credit total tax
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -619,8 +973,8 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130, 134, and 465 to 468, composed worker-only pilot final PIT before withholding
+    source: Special financing law article 5/3 and CIR 1992 articles 130, 134, 290, 304, and 465 to 468, composed worker-only pilot final PIT with local additions on pre-credit total tax and refundable family/work credits imputed afterward
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_pilot_net_federal_tax_after_family_and_work_bonus_credits + belgium_pit_pilot_local_additional_tax
+          belgium_pit_pilot_reduced_state_tax_after_autonomy_factor + belgium_pit_pilot_local_additional_tax - belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit - belgium_pit_article_134_total_refundable_paragraph_3_credit

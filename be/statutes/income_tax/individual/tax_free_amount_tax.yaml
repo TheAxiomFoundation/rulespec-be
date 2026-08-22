@@ -300,6 +300,31 @@ rules:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_through_child_supplements - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
                       else:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount_through_child_supplements - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_article_134_unused_tax_free_amount_reduction_attributable_to_article_133_additional_supplement
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 3, unused tax-free-amount reduction before the page-186 continuation attributes it to the additional Article 133 supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
+              excerpt: "la partie de l'impôt sur la quotité du revenu exemptée d'impôt calculée conformément au paragraphe 2, alinéa 2, qui ne peut être portée en déduction de l'impôt calculé conformément à l'article 130, dans la"
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_base_tax
+              output: belgium_pit_article_130_base_tax
+              hash: sha256:b2ca5612969e9fb1c9f51b05f7284e5a928437d8c7c3cfbca393fb3d8433cdb3
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_134_tax_on_tax_free_amount - max(belgium_pit_article_130_base_tax, belgium_pit_article_134_tax_on_tax_free_amount_through_child_supplements))
   - name: belgium_pit_article_134_child_tax_credit_cap
     kind: derived
     entity: Person
@@ -524,6 +549,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 130 and 134 paragraph 2, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_base_tax
+              output: belgium_pit_article_130_base_tax
+              hash: sha256:b2ca5612969e9fb1c9f51b05f7284e5a928437d8c7c3cfbca393fb3d8433cdb3
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -535,6 +569,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 134 paragraphs 2 and 3, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_base_tax
+              output: belgium_pit_article_130_base_tax
+              hash: sha256:b2ca5612969e9fb1c9f51b05f7284e5a928437d8c7c3cfbca393fb3d8433cdb3
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -554,6 +597,12 @@ rules:
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
               excerpt: "La partie de l'impôt calculée conformément au paragraphe 2, alinéa 2, sur la quotité du revenu exemptée d'impôt qui ne peut pas être portée en diminution de l'impôt calculé conformément à l'article 130, est, dans la mesure où elle concerne les suppléments visés à l'article 132, alinéa 1er, 1° à 6°, convertie en un crédit d'impôt remboursable."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_base_tax
+              output: belgium_pit_article_130_base_tax
+              hash: sha256:b2ca5612969e9fb1c9f51b05f7284e5a928437d8c7c3cfbca393fb3d8433cdb3
     versions:
       - effective_from: '2025-01-01'
         formula: |-

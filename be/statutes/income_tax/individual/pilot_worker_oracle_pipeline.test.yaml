@@ -16,6 +16,7 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
   output:
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_article_133_taxpayer_assessed_separately: not_holds
@@ -58,6 +59,7 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
   output:
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base: 10000
@@ -92,6 +94,7 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
   output:
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_employee_social_security_contribution_base: 0
@@ -121,9 +124,10 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: true
   output:
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: holds
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: not_holds
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_article_134_paragraph_3_exclusion_applies: holds
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_remuneration_after_employee_social_security: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income: 0
@@ -141,13 +145,14 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0.07
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
     be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#relation.belgium_pit_pilot_dependent_of_taxpayer: []
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
   output:
     be:regulations/social_security/workers/work_bonus#belgium_worker_work_bonus_full_year_equal_monthly_a_amount: 1444.71
@@ -163,8 +168,9 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit: 952.233168
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_reduced_state_tax_after_autonomy_factor: 2863.6108628
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_net_federal_tax_after_work_bonus_credit: 1911.3776948
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax: 0
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: 1911.3776948
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax_base: 2863.6108628
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_local_additional_tax: 200.452760396
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: 2111.830455196
 
 - name: single_parent_30k_with_one_dependent_child_gets_article_133_supplements
   period:
@@ -183,8 +189,9 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: true
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: true
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
-    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#relation.belgium_pit_pilot_dependent_of_taxpayer:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#relation.belgium_pit_pilot_dependent_of_taxpayer: &single_parent_30k_dependent_relation
       - be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 0
         be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
         be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
@@ -252,6 +259,34 @@
     : "932.5100211903696498054474707"
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: "932.5100211903696498054474707"
 
+- name: article_133_item_4_exclusion_does_not_trigger_article_134_paragraph_3_exclusion
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 30000
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466_tax_share_on_nonprofessional_movable_income: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_hypothetical_total_tax_if_treaty_exempt_foreign_professional_income_were_belgian: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#relation.belgium_pit_pilot_dependent_of_taxpayer: *single_parent_30k_dependent_relation
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: true
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: true
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
+  output:
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: holds
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_article_134_paragraph_3_exclusion_applies: not_holds
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_isolated_taxpayer_child_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_tax_free_amount: 12890
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding: 1486.2590998
+
 - name: low_earner_18k_with_two_dependent_children_gets_capped_refundable_child_credit
   period:
     period_kind: custom
@@ -269,6 +304,7 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: true
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: true
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#relation.belgium_pit_pilot_dependent_of_taxpayer:
       - be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 0

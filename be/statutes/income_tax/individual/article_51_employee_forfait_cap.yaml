@@ -1,0 +1,33 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/professional_expenses/article_51_forfaits#belgium_pit_article_51_employee_and_business_profit_cap
+module:
+  summary: |-
+    This page-scoped adapter exposes the canonical Article 51 employee and
+    business-profit forfait cap and attaches the direct page-122 proof. It
+    introduces no new numeric value; an idempotent bound preserves the
+    imported executable parameter.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_51_employee_and_business_profit_cap_from_page_122
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 51 cap for employee remuneration and business profits, income year 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-122
+              excerpt: "Le forfait ne peut, en aucun cas, dépasser 5.930 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visés à l'alinéa 2, 1° et 5°, ni 3.130 euros (montant indexé) pour l'ensemble des revenus visés à l'alinéa 2, 2°, ni 5.210 euros (montant indexé) pour l'ensemble des revenus d'une même catégorie visée à l'alinéa 2, 3° et 4°."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_51_employee_and_business_profit_cap, belgium_pit_article_51_employee_and_business_profit_cap)
