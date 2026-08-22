@@ -1,14 +1,16 @@
 format: rulespec/v1
 imports:
-  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_net_federal_tax_after_refundable_child_credit
+  - be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_net_federal_tax_after_all_paragraph_3_credits
   - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_465_466_total_local_additional_tax
   - be:statutes/income_tax/movable_withholding/rates#belgium_general_movable_income_withholding
   - be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_movable_withholding
 module:
   summary: |-
-    This module bridges encoded federal personal income tax after the Article
-    134 refundable child tax credit, Articles 465 to 468 local additions, and
-    encoded movable withholding into a supplied-withholding settlement amount.
+    This module bridges encoded federal personal income tax after all Article
+    134 paragraph 3 refundable credits (the child tax-free-amount credit and
+    the unused additional Article 133 isolated-parent supplement), Articles
+    465 to 468 local additions, and encoded movable withholding into a
+    supplied-withholding settlement amount.
     It does not encode professional withholding tables, broader federal or
     regional reductions and credits, partial-year residency, collection
     procedure, or assessment notices.
@@ -25,7 +27,7 @@ rules:
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_article_134_net_federal_tax_after_refundable_child_credit + belgium_pit_article_465_466_total_local_additional_tax
+          belgium_pit_article_134_net_federal_tax_after_all_paragraph_3_credits + belgium_pit_article_465_466_total_local_additional_tax
   - name: belgium_pit_total_withholding_and_prepayments
     kind: derived
     entity: Person

@@ -15,6 +15,11 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_communal_additional_tax_rate: 0.06
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
     be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#relation.belgium_pit_pilot_dependent_of_taxpayer: []
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_taxpayer_assessed_separately: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_only_article_133_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_pilot_article_134_paragraph_3_exclusion_applies: false
   output:
     be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_pit_component: 5109.55630034
     be:policies/euromod_tax_income_list#belgium_euromod_ils_tax_income_tax_component: 5109.55630034

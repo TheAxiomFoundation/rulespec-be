@@ -1,0 +1,39 @@
+- name: article_134_refunds_article_133_additional_supplement_after_child_credit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 12600
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 19290
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements: 12890
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount: 5110
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 1140
+    be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_refundable_article_133_additional_supplement_credit: 516
+    be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_total_refundable_paragraph_3_credit: 1656
+    be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_net_federal_tax_after_all_paragraph_3_credits: -1656
+
+- name: article_134_paragraph_3_exclusion_blocks_additional_supplement_credit
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 12600
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 19290
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount_before_child_supplements: 12890
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_supplements_tax_free_amount: 5110
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_paragraph_3_exclusion_applies: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 2
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_refundable_child_tax_credit: 0
+    be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_refundable_article_133_additional_supplement_credit: 0
+    be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_total_refundable_paragraph_3_credit: 0
+    be:statutes/income_tax/individual/article_134_additional_supplement_credit#belgium_pit_article_134_net_federal_tax_after_all_paragraph_3_credits: 0

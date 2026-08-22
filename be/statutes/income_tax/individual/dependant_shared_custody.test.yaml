@@ -1,0 +1,47 @@
+- name: all_article_132bis_conditions_hold
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_child_is_dependent_of_one_taxpayer: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_taxpayers_do_not_form_same_household: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_both_taxpayers_meet_civil_code_maintenance_obligation: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_child_accommodation_is_equally_divided: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_qualifying_agreement_or_judicial_decision_exists: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_instrument_was_timely_registered_approved_or_rendered: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_no_maintenance_payment_is_deducted_for_child: true
+  output:
+    be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_conditions_met: holds
+
+- name: deducted_maintenance_payment_blocks_article_132bis
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_child_is_dependent_of_one_taxpayer: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_taxpayers_do_not_form_same_household: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_both_taxpayers_meet_civil_code_maintenance_obligation: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_child_accommodation_is_equally_divided: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_qualifying_agreement_or_judicial_decision_exists: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_instrument_was_timely_registered_approved_or_rendered: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_no_maintenance_payment_is_deducted_for_child: false
+  output:
+    be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_conditions_met: not_holds
+
+- name: child_not_dependent_on_either_taxpayer_blocks_article_132bis
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_child_is_dependent_of_one_taxpayer: false
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_taxpayers_do_not_form_same_household: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_both_taxpayers_meet_civil_code_maintenance_obligation: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_child_accommodation_is_equally_divided: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_qualifying_agreement_or_judicial_decision_exists: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_instrument_was_timely_registered_approved_or_rendered: true
+    be:statutes/income_tax/individual/dependant_shared_custody#input.belgium_pit_article_132bis_no_maintenance_payment_is_deducted_for_child: true
+  output:
+    be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_conditions_met: not_holds
