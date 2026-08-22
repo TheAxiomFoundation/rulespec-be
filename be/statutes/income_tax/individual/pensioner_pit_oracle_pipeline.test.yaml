@@ -1,11 +1,3 @@
-# Single-pensioner cases verified against EUROMOD BE_2025 (system BE_2025,
-# dataset configuration BE_2024_c1_2015_03_e2, template BE_training_data,
-# les=4 pensioner rows, drgn1=0 so the regional and municipal layers are off,
-# poa uprating factor probed at exactly 1.0). EUROMOD annual tin_s:
-#   pension 15k -> 0.00, pension 25k -> 1628.5079096531776,
-#   pension 40k -> 6550.639112351934; the encoded pipeline reproduces all
-# three to the cent. tscpe_s matches belgium_pit_pensioner_annual_social_
-# withholding on all cases (0.00 / 547.24 / 2020.00 / 1065.00).
 - name: pension_15k_reduction_consumes_all_remaining_tax
   period:
     period_kind: custom
@@ -13,6 +5,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 15000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 15000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 1022.5
@@ -24,6 +25,8 @@
     be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
     be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
   output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_sickness_invalidity_ratio: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_ratio: 0
     # Monthly pension 1250 sits below both statutory floors: zero branches.
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_191_monthly_withholding: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_68_monthly_withholding: 0
@@ -49,6 +52,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
@@ -84,6 +96,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 25000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 25000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 4605.604
@@ -115,6 +136,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 40000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 40000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 10475.5
@@ -165,6 +195,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 30000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 30000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 8166.699220235831
@@ -219,6 +258,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 40000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 40000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 10745.5
@@ -255,6 +303,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 20000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 20000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 4166.296296296296
@@ -283,6 +340,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 18000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 18000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 3671.25
@@ -311,6 +377,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 24000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 24000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 5436.081081081081
@@ -340,6 +415,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     # Article 34 total pension is 24000, but Article 147 item 2 b tests only
     # the 15000 legal pension. The 9000 balance is complementary pension.
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 24000
@@ -367,6 +451,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 40000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 40000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 10475.5
@@ -389,6 +482,15 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 30000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 30000
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 8166.699220235831
@@ -412,3 +514,479 @@
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_work_bonus_credit: "6403.8118471069212379904370213"
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_local_additional_tax: "532.88163503956625276391433443"
     be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "6936.693482146487490754351356"
+- name: unemployment_12k_euromod_input_bun_zero_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 272.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 12000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # EUROMOD INPUT bun has no SSC in this case: taxable bun is exactly 12000.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_net_unemployment_benefit: 12000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 12000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 272.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_151_unemployment_base_reduction_factor: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: 272.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 0
+
+- name: unemployment_40k_without_article_151_exception_has_zero_factor
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 11384.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_151_unemployment_base_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: 11384.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+
+- name: sickness_9k_plus_pension_9k_item_10_partial_proration
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 9000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 1012.25
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 1012.25
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 9000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 9000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 0.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_sickness_invalidity_ratio: 0.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_sickness_invalidity_reduction_before_limits: 1488.965
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_153_sickness_invalidity_tax_share_cap: 1012.25
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_sickness_invalidity_reduction_after_limits: 1012.25
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: 0
+
+- name: unemployment_32k_article_151_linear_phaseout
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 7784.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 32000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 32000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_151_unemployment_base_reduction_factor: "0.5496503496503496503496503497"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: "1219.8225314685314685314685316"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: "6564.6774685314685314685314684"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+
+- name: unemployment_40k_article_151_older_seniority_exception
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 11384.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 40000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: true
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # The Article 151 exception preserves the basic reduction above 35930.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_151_unemployment_base_reduction_factor: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: 2219.27
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: 9165.23
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 6877.8635489
+
+- name: mixed_unemployment_12k_pension_12k_article_154_section_3_1
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 12000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 2212.2500000000000000000000000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 2212.2500000000000000000000000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 12000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 12000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_total_net_replacement_income: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_replacement_ratio: 0.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_ratio: 0.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_pension_reduction_after_limits: "1229.0644754098360655737704918"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: "1229.0644754098360655737704918"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_pension_tax_remaining: "983.1855245901639344262295082"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_unemployment_tax_remaining: "983.1855245901639344262295082"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_sickness_invalidity_tax_remaining: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_attributable_tax_remaining: "1966.3710491803278688524590164"
+    # Section 3's 90% excess term exhausts the positive difference at this
+    # income. Section 3/1 consequently allocates zero to both categories.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_section_3_1_pension_allocation: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_section_3_1_unemployment_allocation: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_section_3_1_sickness_invalidity_allocation: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "1475.6238264363934426229508197"
+
+- name: unemployment_18k_euromod_input_bun_zero_tax
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_net_unemployment_benefit: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 0
+
+- name: unemployment_24k_euromod_articles_147_to_153
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 4424.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_net_unemployment_benefit: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 4424.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_base_reduction_before_limits: 2219.27
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_additional_reduction_before_limits: 457.23
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_151_unemployment_base_reduction_factor: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: "0.5224043715846994535519125683"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_153_unemployment_tax_share_cap: 4424.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: "2458.1289508196721311475409836"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: "1966.3710491803278688524590164"
+    # With the supplied illustrative M=20000, section 3's excess exhausts
+    # the complementary base. This is not asserted as Belgium's value of M.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+    # EUROMOD BE_2025 annual tin_s: 1475.623826436394 (cent-exact match).
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "1475.6238264363934426229508197"
+
+- name: unemployment_15k_plus_wage_15k_no_activity_exclusion
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 2955.588235294117647058823530
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 15000
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 12931.034482758621
+  output:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_net_unemployment_benefit: 15000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_activity_income: 10500
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_147_excluded_activity_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 25500
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_unemployment_ratio: "0.5882352941176470588235294118"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_151_unemployment_base_reduction_factor: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_article_1511_additional_reduction_factor: "0.3584699453551912568306010929"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_unemployment_reduction_after_limits: "1401.8665959498553519768563164"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: "3622.6334040501446480231436836"
+    # Wage income makes Article 154 inapplicable.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "1690.2437254013500482160077145"
+
+- name: sickness_18k_euromod_bhl_article_153_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # EUROMOD bhl has no SSC at 18k; the 2977.93 item-9 amount is capped by
+    # Article 153 at the 2024.50 tax attributable to sickness income.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_net_sickness_invalidity_indemnity: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 18000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_sickness_invalidity_ratio: 1
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_147_sickness_invalidity_reduction_before_limits: 2977.93
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_153_sickness_invalidity_tax_share_cap: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_sickness_invalidity_reduction_after_limits: 2024.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 0
+
+- name: unemployment_24k_article_154_section_2_at_supplied_maximum
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 4424.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # At the supplied first-twelve-month maximum, section 2 grants 40% of
+    # the positive tax remaining after Articles 147 to 153.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_tax_after_articles_147_to_153: "1966.3710491803278688524590164"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: "786.54841967213114754098360656"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_replacement_reductions: "1179.8226295081967213114754098"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "885.3742958618360655737704918"
+
+- name: unemployment_24k_article_154_section_3_one_thousand_excess
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 4424.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 24000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 23000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # Section 3 first removes the 1000 benefit excess, then takes 40%.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: "386.54841967213114754098360656"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_net_federal_tax_after_replacement_reductions: "1579.8226295081967213114754098"
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: "1185.5462958618360655737704918"
+
+- name: invalidity_20k_less_supplied_500_social_withholding
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_unemployment_benefits: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_legal_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_article_153_tax_share_attributable_to_pension_income: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_153_tax_share_attributable_to_sickness_invalidity_indemnities: 2624.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_annual_gross_pension: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_sickness_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_gross_invalidity_benefit: 20000
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_annual_invalidity_social_withholding: 500
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_151_older_unemployed_with_seniority_supplement: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_first_twelve_month_maximum_unemployment_benefit: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_replacement_article_154_mixed_replacement_excess_rate: 0.90
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_beneficiary_has_family_charge: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_has_reached_legal_retirement_age: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_receives_survivor_pension_or_transition_allowance: false
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_communal_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#input.belgium_pit_pensioner_agglomeration_additional_tax_rate: 0
+    be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.belgium_pit_article_23_worker_remuneration: 0
+    be:regulations/social_security/workers/work_bonus#input.belgium_worker_work_bonus_supplied_reference_annual_remuneration: 0
+  output:
+    # The invalidity contribution remains a supplied Person-scoped boundary;
+    # this case proves its deduction before Article 23 paragraph 2 PIT.
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_net_sickness_invalidity_indemnity: 19500
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_taxable_income: 19500
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_tax_after_tax_free_amount: 2624.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_sickness_invalidity_reduction_after_limits: 2624.5
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_replacement_article_154_complementary_reduction: 0
+    be:statutes/income_tax/individual/pensioner_pit_oracle_pipeline#belgium_pit_pensioner_federal_and_local_tax_before_withholding: 0

@@ -1,0 +1,26 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module exposes the Article 154 complementary-reduction rate whose
+    verbatim statutory text is available in signed corpus release
+    be-rulespec-2026-07-10. The mixed-income 90 percent excess rate is not
+    included because its source is on unpromoted CIR 1992 page 257.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-256"
+rules:
+  - name: belgium_pit_article_154_complementary_reduction_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 154 sections 2, 3, and 3/1, complementary reduction percentage
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-256"
+              excerpt: "La réduction supplémentaire est égale à 40 % de l'impôt qui subsiste après application des articles 147 à 153, lorsque l'ensemble des revenus nets se compose exclusivement:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.40
