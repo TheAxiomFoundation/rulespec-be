@@ -4,7 +4,7 @@
 
 - Branch: `ledger/child-benefits-full` at the `origin/main` baseline.
 - Campaign rules loaded from `../../LEDGER_CAMPAIGN.md`.
-- Status: final validation and report closeout in progress.
+- Status: implementation, verification, and report complete.
 
 ## Done
 
@@ -24,8 +24,11 @@
 - Confirmed the full composition module in a fresh sibling layout: `ci_pass: true`, `all_passed: true`, no errors.
 - Reconciled the calibrated 432-cell official x64 grid: zero adapter errors and zero formula-to-official differences; 174/216 temporally valid statute cases match to the cent and every Walloon residual is mechanism-dispositioned.
 - Quantified the valid-grid EUR2,070 split: 54.44% missing child-unit construction and 45.56% missing composition; the statutory mean is EUR2,936.02 per actual child.
+- Ran the final four-file pinned companion sweep: 57/57 cases pass across four compiled programs.
+- Ran the final fresh sibling-layout validation sweep: routing and full composition both report `ci_pass: true`; the applied-value layer has only the recorded Flemish signed-release duplicate-ID projection collision at EUR398.39.
+- Confirmed the branch diff contains only the two ledgers and six child-benefit RuleSpec/test files; no forbidden files were touched.
 
 ## Next
 
-1. Run one fresh all-touched companion sweep and sibling-layout validation sweep.
-2. Record the allowed release-frontier failures, final commits, and worktree state in `LANE_CB_REPORT.md`.
+1. Fable registers the 432 cases in axiom-oracles after merge and rewires the population runner in its owned lane.
+2. Promote the full Flemish guidance record projection (and the listed transition pages) into the next signed source release.

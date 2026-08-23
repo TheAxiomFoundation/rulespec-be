@@ -2,7 +2,7 @@
 
 ## State
 
-Implementation is in progress on `ledger/child-benefits-full` from `origin/main` (`b105e2b`). The worktree began clean. No pushes, stashes, workflow edits, toolchain edits, waiver edits, or population-runner changes have been made.
+Implementation and local verification are complete on `ledger/child-benefits-full` from `origin/main` (`b105e2b`). The worktree began clean. No pushes, stashes, workflow edits, toolchain edits, waiver edits, or population-runner changes were made.
 
 ## Binding basis
 
@@ -545,6 +545,33 @@ Each `Case(period="2025")` should be Household-scoped, create N child entities a
 
 Proposed ledger text: **`bch_s` is a mixed unit-construction and encoding-slice mechanism, not solely a population construct. On the temporally valid composition grid, 54.44% of the gap (EUR447,120 of EUR821,241; approximately EUR1.25--1.91B of the observed EUR2.3--3.5B population residual) is the missing-child-unit term caused by emitting one household amount where all beneficiary-child records must be summed. The other 45.56% (EUR374,121; approximately EUR1.05--1.59B) is the base-only encoding slice omitting cohort routing, legacy rank, age/social/single-parent components, and annual premiums; its grid effect is EUR866.02 per actual child above EUR2,070. EUROMOD's Walloon Article 13 cumulation and lone-parent omission are separately dispositioned oracle mechanisms, not silently copied into the statutory surface.**
 
+## Validation and commits
+
+The final pinned-engine sweep compiled four programs and passed all 57 cases: the unchanged backward-compatible base surface (35), cohort router (12), applied amount layer (1), and full composition (9). In a fresh sibling layout at `/private/tmp/lane-cb-final.IMfeRw/layout`:
+
+| Module | `ci_pass` | `all_passed` | Result |
+|---|---:|---:|---|
+| `cohort_routing_2025.yaml` | true | true | no errors |
+| `child_benefit_composition_2025.yaml` | true | true | no errors |
+| `applied_amounts_2025.yaml` | false | false | only `Ungrounded generated numeric literal: 398.39`, the signed-release duplicate-ID projection collision documented above |
+
+This satisfies the campaign's explicit release-frontier exception; nothing was waived. The unchanged `child_benefit_base_2025.yaml` still passes its 35 cases and retains its pre-existing age-4 proof-validation defect when validated independently.
+
+Local coherent-step commits before this closeout commit are:
+
+```text
+fe6dd3b docs: start lane CB progress ledger
+9ecacbe docs: initialize lane CB report
+6aba792 docs: record child benefit transition evidence
+2a441e5 feat: encode child benefit transition routing
+36d5963 feat: add applied 2025 child benefit amounts
+09f1533 docs: record successful EUROMOD child benefit grid
+896cf81 feat: compose full 2025 child benefits
+86cb4be docs: report child benefit composition grid
+```
+
+The branch diff contains only `PROGRESS.md`, this report, and the three new RuleSpec/companion pairs. The worktree was clean before this final report update. No push was attempted.
+
 ## Commands (verbatim)
 
 ```sh
@@ -561,8 +588,17 @@ rg -n "kind: data_relation|sum_where\\(" --glob '*.yaml' .
 /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/child_benefit_base_2025.test.yaml --json
 /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/cohort_routing_2025.test.yaml --json
 /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/applied_amounts_2025.test.yaml --json
+/Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/child_benefit_base_2025.test.yaml be/statutes/family_benefits/cohort_routing_2025.test.yaml be/statutes/family_benefits/applied_amounts_2025.test.yaml be/statutes/family_benefits/child_benefit_composition_2025.test.yaml --json
 AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-applied.jtSiUR/layout/rulespec-be/be/statutes/family_benefits/cohort_routing_2025.yaml --skip-reviewers --json
 AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-applied.jtSiUR/layout/rulespec-be/be/statutes/family_benefits/applied_amounts_2025.yaml --skip-reviewers --json
+mktemp -d /private/tmp/lane-cb-final.XXXXXX
+mkdir -p /private/tmp/lane-cb-final.IMfeRw/layout/rulespec-be
+rsync -a --exclude .git ./ /private/tmp/lane-cb-final.IMfeRw/layout/rulespec-be/
+ln -s /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine /private/tmp/lane-cb-final.IMfeRw/layout/axiom-rules-engine
+AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-final.IMfeRw/layout/rulespec-be/be/statutes/family_benefits/cohort_routing_2025.yaml --skip-reviewers --json
+AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-final.IMfeRw/layout/rulespec-be/be/statutes/family_benefits/applied_amounts_2025.yaml --skip-reviewers --json
+AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-final.IMfeRw/layout/rulespec-be/be/statutes/family_benefits/child_benefit_composition_2025.yaml --skip-reviewers --json
+cd /Users/maxghenis/TheAxiomFoundation/axiom-oracles-be-child-benefit-expanded
 DOTNET_ROOT=/Users/maxghenis/.dotnet-x64 PYTHONNET_RUNTIME=coreclr .venv/bin/python - <<'PY'
 from axiom_oracles.suites import load_suite
 from axiom_oracles.adapters.euromod.runner import EuromodPlatformRunner
@@ -571,10 +607,62 @@ case = next(c for c in cases if c.case_id == 'be-family-child-benefit-base-fland
 runner = EuromodPlatformRunner(model_root='/Users/maxghenis/Downloads/EUROMOD_J2.0/EUROMOD_RELEASES_J2.0+', country='BE', system='BE_2025', dataset='BE_2024_c1_2015_03_e2', template_dataset='BE_training_data', python_executable='/Users/maxghenis/.venvs/axiom-euromod-x64/bin/python', dotnet_root='/Users/maxghenis/.dotnet-x64', timeout=900)
 print(runner.run_cases([case], variables=['bch_s']))
 PY
+DOTNET_ROOT=/Users/maxghenis/.dotnet-x64 PYTHONNET_RUNTIME=coreclr .venv/bin/python - <<'PY'
+import json
+from axiom_oracles.core.case import Case
+from axiom_oracles.suites.be_family_benefits import _child_benefit_base_euromod_inputs
+from axiom_oracles.adapters.euromod.runner import EuromodPlatformRunner
+regions = [('bru', 1), ('vlg', 2), ('wal', 3)]
+cohorts = ('pre', 'post')
+ranks = (1, 2, 3)
+ages = (3, 8, 14, 17)
+incomes = (('low', 30000), ('middle', 45000), ('high', 90000))
+singles = (False, True)
+cases = []
+meta = []
+for region_name, region in regions:
+    for cohort in cohorts:
+        for rank in ranks:
+            for age in ages:
+                for income_band, gross_annual_income in incomes:
+                    for single in singles:
+                        case_id = f'cb-{region_name}-{cohort}-r{rank}-a{age}-{income_band}-sp{int(single)}'
+                        cases.append(Case(case_id=case_id, period='2025', metadata={
+                            'euromod_inputs': _child_benefit_base_euromod_inputs(
+                                region=region, child_age=age, higher_education=False,
+                                employment_income=gross_annual_income / 12,
+                                single_parent=single, child_count=rank,
+                            )
+                        }))
+                        meta.append({
+                            'case_id': case_id, 'region': region_name,
+                            'declared_cohort': cohort, 'rank': rank, 'age': age,
+                            'income_band': income_band,
+                            'gross_annual_income': gross_annual_income,
+                            'single_parent': single,
+                        })
+runner = EuromodPlatformRunner(
+    model_root='/Users/maxghenis/Downloads/EUROMOD_J2.0/EUROMOD_RELEASES_J2.0+',
+    country='BE', system='BE_2025', dataset='BE_2024_c1_2015_03_e2',
+    template_dataset='BE_training_data',
+    python_executable='/Users/maxghenis/.venvs/axiom-euromod-x64/bin/python',
+    dotnet_root='/Users/maxghenis/.dotnet-x64', timeout=900,
+)
+results = runner.run_cases(cases, variables=['bch_s', 'il_bch_means', 'yem'])
+rows = []
+for facts, result in zip(meta, results, strict=True):
+    rows.append(facts | {
+        'euromod_bch_s': result.values.get('bch_s'),
+        'euromod_il_bch_means': result.values.get('il_bch_means'),
+        'euromod_yem': result.values.get('yem'),
+        'errors': list(result.errors),
+    })
+print(json.dumps(rows, separators=(',', ':')))
+PY
 ```
 
 `gitnexus analyze .` could not register its index because the sandbox denied writing `~/.gitnexus/registry.json`; direct `rg`, source reading, and import/caller tracing are being used as the read-only fallback.
 
 The early sibling-layout validation of the unchanged base-only module returned `ci_pass: false` solely for its pre-existing ungrounded numeric age-4 literal. All transition source paths already used by that module resolved in the signed release.
 
-LANE CB IN PROGRESS
+LANE CB DONE
