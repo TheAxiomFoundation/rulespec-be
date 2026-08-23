@@ -1,0 +1,866 @@
+format: rulespec/v1
+imports:
+  - be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies
+  - be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies
+  - be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_region_brussels
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_region_flanders
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_region_wallonia
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_region_german_speaking_community
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_months_in_year
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_4_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_5_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_6_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_11_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_12_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_17_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_age_18_years
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_one_child_count
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_two_child_count
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_family_benefits_child_benefit_three_child_count
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_threshold
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_middle_income_threshold
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_one_child_under_12_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_one_child_12_to_24_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_under_12_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_12_to_24_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_under_12_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_12_to_24_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_middle_income_two_child_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_9_2025_middle_income_three_plus_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_2025_low_income_monthly_social_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement_with_low_income_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement_with_low_income_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement_with_low_income_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement_with_low_income_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement_with_low_income_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement_with_low_income_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_article_13_2025_low_income_threshold
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_article_13_2025_base_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_0_to_3_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_4_to_11_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_12_to_16_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_17_to_24_annual_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_article_210_old_system_first_child_2025_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_article_212_old_system_first_child_6_to_11_2025_monthly_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_article_212_old_system_first_child_12_to_17_2025_monthly_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_flanders_article_212_old_system_first_child_18_to_24_2025_monthly_age_supplement
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_dg_article_8_2025_base_monthly_amount
+  - be:statutes/family_benefits/child_benefit_base_2025#belgium_child_benefit_dg_article_117_4_2025_annual_supplement
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_second_rank_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_third_plus_rank_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_orphan_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_first_rank_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_second_rank_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_third_plus_other_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_third_plus_single_parent_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_high_age_6_to_11_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_high_age_12_to_17_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_legacy_high_age_18_to_24_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_low_income_2025_threshold
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_middle_small_family_2025_threshold
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_middle_large_family_2025_threshold
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_low_small_family_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_low_large_family_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_middle_small_family_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_flanders_social_middle_large_family_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_second_rank_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_third_plus_rank_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_second_rank_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_third_plus_other_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_third_plus_single_parent_social_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_under_6_2025_annual_premium
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_under_6_social_2025_annual_premium
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_legacy_orphan_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_18_to_24_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_5_to_10_2025_annual_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_11_to_16_2025_annual_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_17_to_24_2025_annual_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_single_parent_low_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_single_parent_middle_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_large_family_low_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_large_family_middle_2025_monthly_amount
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_one_parent_orphan_under_18_2025_monthly_supplement
+  - be:statutes/family_benefits/applied_amounts_2025#belgium_child_benefit_wallonia_new_one_parent_orphan_18_to_24_2025_monthly_supplement
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_one_parent_orphan_supplement_rate
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_double_orphan_supplement_rate
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_1_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_2_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_3_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_4_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_5_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_6_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_disability_tier_7_monthly_amount
+  - be-vlg:statutes/family_benefits/amounts#flanders_family_benefits_foster_care_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_double_orphan_base_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_foster_care_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_1_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_2_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_3_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_4_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_5_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_6_monthly_amount
+  - be-wal:statutes/family_benefits/amounts#wallonia_family_benefits_disability_tier_7_monthly_amount
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019
+  - be-dg:statutes/family_benefits/amounts#german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019
+module:
+  summary: |-
+    Child-scoped 2025 composition for Belgian family benefits.  The surface
+    routes Flemish and Walloon children through the preserved or current
+    cohort schedules, composes base, age, income, single-parent, status and
+    annual-participation components, and then rolls beneficiary children to
+    one Household output.  Brussels Article 39 and German-speaking Community
+    Article 111 protections are recipient-level frozen amounts and are
+    therefore applied only after relation aggregation, before current annual
+    premiums.  The separate Brussels comparator reproduces EUROMOD's
+    household max mechanism without changing that statutory selection rule.
+  source_verification:
+    corpus_citation_paths:
+      - "be-vlg/statute/decreet/2018/04/27/2018040369/article/210"
+      - "be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1"
+      - "be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4"
+      - "be-wal/statute/decret/2018/02/08/2018201006/article/120"
+      - "be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1"
+      - "be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4"
+      - "be-bru/statute/ordonnance/2019/04/25/2019012118/article/39"
+      - "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1"
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - "be-vlg/statute/decreet/2018/04/27/2018040369/article/210"
+        - "be-wal/statute/decret/2018/02/08/2018201006/article/120"
+        - "be-bru/statute/ordonnance/2019/04/25/2019012118/article/39"
+        - "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1"
+      rationale: |-
+        The regional statutes establish the component entitlements and the
+        preserved-cohort or recipient-level protection rules.  The official
+        2025 agency schedules are used only for their indexed applied amounts
+        and income ceilings, which the decrees delegate or index.
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_child_benefit_composition_beneficiary_child_of_household
+    kind: data_relation
+    data_relation:
+      predicate: belgium_child_benefit_composition_beneficiary_child_of_household
+      arity: 2
+      arguments: [Household, Child]
+    source: Explicit household-to-beneficiary-child relation used for child-scoped benefit aggregation
+  - name: belgium_child_benefit_composition_zero_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Additive zero expressed from the imported applied monthly schedule
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_flanders_article_13_2025_base_monthly_amount - belgium_child_benefit_flanders_article_13_2025_base_monthly_amount
+  - name: belgium_child_benefit_composition_zero_annual_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Additive zero expressed from the imported applied annual schedule
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_0_to_3_annual_amount - belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_0_to_3_annual_amount
+  - name: belgium_child_benefit_composition_flanders_legacy_social_eligibility
+    kind: derived
+    entity: Child
+    dtype: Judgment
+    period: Year
+    source: Flemish preserved-family social-supplement income and mixed-cohort conditions
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_composition_annual_household_income <= belgium_child_benefit_flanders_social_low_income_2025_threshold or (belgium_child_benefit_composition_flemish_household_has_new_scheme_child and belgium_child_benefit_composition_beneficiary_child_count >= belgium_family_benefits_child_benefit_three_child_count and belgium_child_benefit_composition_annual_household_income <= belgium_child_benefit_flanders_social_middle_large_family_2025_threshold)
+  - name: belgium_child_benefit_composition_wallonia_legacy_social_eligibility
+    kind: derived
+    entity: Child
+    dtype: Judgment
+    period: Year
+    source: Walloon preserved LGAF low-income supplement condition
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_composition_annual_household_income <= belgium_child_benefit_wallonia_article_13_2025_low_income_threshold
+  - name: belgium_child_benefit_composition_monthly_base_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Imported applied regional base schedules selected by region, cohort and frozen legacy rank
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders:
+                  if belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies:
+                      if belgium_child_benefit_composition_is_orphan or belgium_child_benefit_composition_is_full_orphan:
+                          belgium_child_benefit_flanders_legacy_orphan_2025_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_one_child_count:
+                              belgium_child_benefit_flanders_article_210_old_system_first_child_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_two_child_count:
+                                  belgium_child_benefit_flanders_legacy_second_rank_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_flanders_legacy_third_plus_rank_2025_monthly_amount
+                  else:
+                      belgium_child_benefit_flanders_article_13_2025_base_monthly_amount
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      if belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies:
+                          if belgium_child_benefit_composition_is_orphan or belgium_child_benefit_composition_is_full_orphan:
+                              belgium_child_benefit_wallonia_legacy_orphan_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_one_child_count:
+                                  belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount
+                              else:
+                                  if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_two_child_count:
+                                      belgium_child_benefit_wallonia_legacy_second_rank_2025_monthly_amount
+                                  else:
+                                      belgium_child_benefit_wallonia_legacy_third_plus_rank_2025_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_is_full_orphan:
+                              wallonia_family_benefits_double_orphan_base_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                                  belgium_child_benefit_wallonia_new_under_18_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_wallonia_new_18_to_24_2025_monthly_amount
+                  else:
+                      if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_brussels:
+                          if belgium_child_benefit_composition_beneficiary_child_count == belgium_family_benefits_child_benefit_one_child_count or belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                              if belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies:
+                                  belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                              else:
+                                  belgium_child_benefit_brussels_article_7_unique_or_under_12_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_child_age_years >= belgium_family_benefits_child_benefit_age_18_years and belgium_child_benefit_composition_is_in_higher_education:
+                                  if belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies:
+                                      belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                                  else:
+                                      belgium_child_benefit_brussels_article_7_18_to_24_higher_education_2025_monthly_amount
+                              else:
+                                  if belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies:
+                                      belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount - belgium_child_benefit_brussels_article_35_pre_2019_2025_monthly_deduction
+                                  else:
+                                      belgium_child_benefit_brussels_article_7_12_to_17_or_18_to_24_other_2025_monthly_amount
+                      else:
+                          if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_german_speaking_community:
+                              belgium_child_benefit_dg_article_8_2025_base_monthly_amount
+                          else:
+                              belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_age_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Imported legacy LGAF low and high age tracks; current regional age components are annual premiums
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders and belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies:
+                  if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+                      belgium_child_benefit_composition_zero_monthly_amount
+                  else:
+                      if belgium_child_benefit_composition_frozen_legacy_rank >= belgium_family_benefits_child_benefit_two_child_count or belgium_child_benefit_composition_flanders_legacy_social_eligibility:
+                          if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                              belgium_child_benefit_flanders_legacy_high_age_6_to_11_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                                  belgium_child_benefit_flanders_legacy_high_age_12_to_17_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_flanders_legacy_high_age_18_to_24_2025_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                              belgium_child_benefit_flanders_article_212_old_system_first_child_6_to_11_2025_monthly_age_supplement
+                          else:
+                              if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                                  belgium_child_benefit_flanders_article_212_old_system_first_child_12_to_17_2025_monthly_age_supplement
+                              else:
+                                  belgium_child_benefit_flanders_article_212_old_system_first_child_18_to_24_2025_monthly_age_supplement
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia and belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies:
+                      if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+                          belgium_child_benefit_composition_zero_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_frozen_legacy_rank >= belgium_family_benefits_child_benefit_two_child_count or belgium_child_benefit_composition_wallonia_legacy_social_eligibility:
+                              if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                  belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement_with_low_income_supplement
+                              else:
+                                  if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                                      belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement_with_low_income_supplement
+                                  else:
+                                      belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement_with_low_income_supplement
+                          else:
+                              if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                  belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement
+                              else:
+                                  if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                                      belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement
+                                  else:
+                                      belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement
+                  else:
+                      belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_social_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Imported applied income-banded social supplements before separately exposed single-parent increments
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders:
+                  if belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies:
+                      if belgium_child_benefit_composition_flanders_legacy_social_eligibility:
+                          if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_one_child_count:
+                              belgium_child_benefit_flanders_legacy_first_rank_social_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_two_child_count:
+                                  belgium_child_benefit_flanders_legacy_second_rank_social_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_flanders_legacy_third_plus_other_social_2025_monthly_amount
+                      else:
+                          belgium_child_benefit_composition_zero_monthly_amount
+                  else:
+                      if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_flanders_social_low_income_2025_threshold:
+                          if belgium_child_benefit_composition_beneficiary_child_count < belgium_family_benefits_child_benefit_three_child_count:
+                              belgium_child_benefit_flanders_social_low_small_family_2025_monthly_amount
+                          else:
+                              belgium_child_benefit_flanders_social_low_large_family_2025_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_beneficiary_child_count < belgium_family_benefits_child_benefit_three_child_count and belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_flanders_social_middle_small_family_2025_threshold:
+                              belgium_child_benefit_flanders_social_middle_small_family_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_beneficiary_child_count >= belgium_family_benefits_child_benefit_three_child_count and belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_flanders_social_middle_large_family_2025_threshold:
+                                  belgium_child_benefit_flanders_social_middle_large_family_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_composition_zero_monthly_amount
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      if belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies:
+                          if belgium_child_benefit_composition_wallonia_legacy_social_eligibility:
+                              if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_one_child_count:
+                                  belgium_child_benefit_wallonia_pre_2020_first_child_2025_low_income_monthly_social_supplement
+                              else:
+                                  if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_two_child_count:
+                                      belgium_child_benefit_wallonia_legacy_second_rank_social_2025_monthly_amount
+                                  else:
+                                      belgium_child_benefit_wallonia_legacy_third_plus_other_social_2025_monthly_amount
+                          else:
+                              belgium_child_benefit_composition_zero_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_wallonia_article_13_2025_low_income_threshold:
+                              if belgium_child_benefit_composition_beneficiary_child_count >= belgium_family_benefits_child_benefit_three_child_count:
+                                  belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement + belgium_child_benefit_wallonia_new_large_family_low_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_wallonia_article_13_2025_low_income_monthly_social_supplement
+                          else:
+                              if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold:
+                                  if belgium_child_benefit_composition_beneficiary_child_count >= belgium_family_benefits_child_benefit_three_child_count:
+                                      belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement + belgium_child_benefit_wallonia_new_large_family_middle_2025_monthly_amount
+                                  else:
+                                      belgium_child_benefit_wallonia_article_13_2025_middle_income_monthly_social_supplement
+                              else:
+                                  belgium_child_benefit_composition_zero_monthly_amount
+                  else:
+                      if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_brussels and belgium_child_benefit_composition_brussels_cadastral_income_within_cap:
+                          if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_brussels_article_9_2025_low_income_threshold:
+                              if belgium_child_benefit_composition_beneficiary_child_count == belgium_family_benefits_child_benefit_one_child_count:
+                                  if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_one_child_under_12_monthly_amount
+                                  else:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_one_child_12_to_24_monthly_amount
+                              else:
+                                  if belgium_child_benefit_composition_beneficiary_child_count == belgium_family_benefits_child_benefit_two_child_count:
+                                      if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount
+                                      else:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount
+                                  else:
+                                      if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount
+                                      else:
+                                          belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_brussels_article_9_2025_middle_income_threshold:
+                                  if belgium_child_benefit_composition_beneficiary_child_count == belgium_family_benefits_child_benefit_two_child_count:
+                                      belgium_child_benefit_brussels_article_9_2025_middle_income_two_child_monthly_amount
+                                  else:
+                                      if belgium_child_benefit_composition_beneficiary_child_count >= belgium_family_benefits_child_benefit_three_child_count:
+                                          belgium_child_benefit_brussels_article_9_2025_middle_income_three_plus_monthly_amount
+                                      else:
+                                          belgium_child_benefit_composition_zero_monthly_amount
+                              else:
+                                  belgium_child_benefit_composition_zero_monthly_amount
+                      else:
+                          belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_single_parent_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Single-parent increments separated from the ordinary social-supplement component
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child or not belgium_child_benefit_composition_is_single_parent:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders and belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies and belgium_child_benefit_composition_flanders_legacy_social_eligibility and belgium_child_benefit_composition_frozen_legacy_rank >= belgium_family_benefits_child_benefit_three_child_count:
+                  belgium_child_benefit_flanders_legacy_third_plus_single_parent_social_2025_monthly_amount - belgium_child_benefit_flanders_legacy_third_plus_other_social_2025_monthly_amount
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      if belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies:
+                          if belgium_child_benefit_composition_wallonia_legacy_social_eligibility and belgium_child_benefit_composition_frozen_legacy_rank >= belgium_family_benefits_child_benefit_three_child_count:
+                              belgium_child_benefit_wallonia_legacy_third_plus_single_parent_social_2025_monthly_amount - belgium_child_benefit_wallonia_legacy_third_plus_other_social_2025_monthly_amount
+                          else:
+                              belgium_child_benefit_composition_zero_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_wallonia_article_13_2025_low_income_threshold:
+                              belgium_child_benefit_wallonia_new_single_parent_low_2025_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_wallonia_article_13_2025_middle_income_threshold:
+                                  belgium_child_benefit_wallonia_new_single_parent_middle_2025_monthly_amount
+                              else:
+                                  belgium_child_benefit_composition_zero_monthly_amount
+                  else:
+                      if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_brussels and belgium_child_benefit_composition_brussels_cadastral_income_within_cap and belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_brussels_article_9_2025_low_income_threshold:
+                          if belgium_child_benefit_composition_beneficiary_child_count == belgium_family_benefits_child_benefit_two_child_count:
+                              if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                  belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_under_12_monthly_amount - belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_under_12_monthly_amount
+                              else:
+                                  belgium_child_benefit_brussels_article_9_2025_low_income_two_child_single_parent_12_to_24_monthly_amount - belgium_child_benefit_brussels_article_9_2025_low_income_two_child_other_12_to_24_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_beneficiary_child_count >= belgium_family_benefits_child_benefit_three_child_count:
+                                  if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_under_12_monthly_amount - belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_under_12_monthly_amount
+                                  else:
+                                      belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_single_parent_12_to_24_monthly_amount - belgium_child_benefit_brussels_article_9_2025_low_income_three_plus_other_12_to_24_monthly_amount
+                              else:
+                                  belgium_child_benefit_composition_zero_monthly_amount
+                      else:
+                          belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_orphan_status_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Existing regional orphan amount surfaces; legacy orphan schedules replace the base and therefore add no supplement here
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child or (not belgium_child_benefit_composition_is_orphan and not belgium_child_benefit_composition_is_full_orphan):
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders and not belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies:
+                  if belgium_child_benefit_composition_is_full_orphan:
+                      belgium_child_benefit_flanders_article_13_2025_base_monthly_amount * flanders_family_benefits_double_orphan_supplement_rate
+                  else:
+                      belgium_child_benefit_flanders_article_13_2025_base_monthly_amount * flanders_family_benefits_one_parent_orphan_supplement_rate
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia and not belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies and not belgium_child_benefit_composition_is_full_orphan:
+                      if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                          belgium_child_benefit_wallonia_new_one_parent_orphan_under_18_2025_monthly_supplement
+                      else:
+                          belgium_child_benefit_wallonia_new_one_parent_orphan_18_to_24_2025_monthly_supplement
+                  else:
+                      if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_german_speaking_community:
+                          if belgium_child_benefit_composition_is_full_orphan:
+                              german_speaking_community_family_benefits_full_orphan_monthly_supplement_2019
+                          else:
+                              german_speaking_community_family_benefits_half_orphan_monthly_supplement_2019
+                      else:
+                          belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_disability_status_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Existing regional disability tier amount surfaces, selected by the unified local tier input
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child or not belgium_child_benefit_composition_has_disability:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders:
+                  if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_one_child_count:
+                      flanders_family_benefits_disability_tier_1_monthly_amount
+                  else:
+                      if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_two_child_count:
+                          flanders_family_benefits_disability_tier_2_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_three_child_count:
+                              flanders_family_benefits_disability_tier_3_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_4_years:
+                                  flanders_family_benefits_disability_tier_4_monthly_amount
+                              else:
+                                  if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_5_years:
+                                      flanders_family_benefits_disability_tier_5_monthly_amount
+                                  else:
+                                      if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_6_years:
+                                          flanders_family_benefits_disability_tier_6_monthly_amount
+                                      else:
+                                          flanders_family_benefits_disability_tier_7_monthly_amount
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_one_child_count:
+                          wallonia_family_benefits_disability_tier_1_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_two_child_count:
+                              wallonia_family_benefits_disability_tier_2_monthly_amount
+                          else:
+                              if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_three_child_count:
+                                  wallonia_family_benefits_disability_tier_3_monthly_amount
+                              else:
+                                  if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_4_years:
+                                      wallonia_family_benefits_disability_tier_4_monthly_amount
+                                  else:
+                                      if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_5_years:
+                                          wallonia_family_benefits_disability_tier_5_monthly_amount
+                                      else:
+                                          if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_6_years:
+                                              wallonia_family_benefits_disability_tier_6_monthly_amount
+                                          else:
+                                              wallonia_family_benefits_disability_tier_7_monthly_amount
+                  else:
+                      if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_german_speaking_community:
+                          if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_one_child_count:
+                              german_speaking_community_family_benefits_disability_category_1_monthly_supplement_2019
+                          else:
+                              if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_two_child_count:
+                                  german_speaking_community_family_benefits_disability_category_2_monthly_supplement_2019
+                              else:
+                                  if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_three_child_count:
+                                      german_speaking_community_family_benefits_disability_category_3_monthly_supplement_2019
+                                  else:
+                                      if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_4_years:
+                                          german_speaking_community_family_benefits_disability_category_4_monthly_supplement_2019
+                                      else:
+                                          if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_5_years:
+                                              german_speaking_community_family_benefits_disability_category_5_monthly_supplement_2019
+                                          else:
+                                              if belgium_child_benefit_composition_disability_tier == belgium_family_benefits_child_benefit_age_6_years:
+                                                  german_speaking_community_family_benefits_disability_category_6_monthly_supplement_2019
+                                              else:
+                                                  german_speaking_community_family_benefits_disability_category_7_monthly_supplement_2019
+                      else:
+                          belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_foster_status_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Existing regional foster-care amount surfaces
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child or not belgium_child_benefit_composition_is_foster_child:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders:
+                  flanders_family_benefits_foster_care_monthly_amount
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      wallonia_family_benefits_foster_care_monthly_amount
+                  else:
+                      belgium_child_benefit_composition_zero_monthly_amount
+  - name: belgium_child_benefit_composition_monthly_status_supplement
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Composed orphan, disability and foster-care status supplements
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_composition_monthly_orphan_status_supplement + belgium_child_benefit_composition_monthly_disability_status_supplement + belgium_child_benefit_composition_monthly_foster_status_supplement
+  - name: belgium_child_benefit_composition_annual_school_or_age_premium
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Imported annual school, participation and age-premium schedules selected at the age attained before 31 December
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child:
+              belgium_child_benefit_composition_zero_annual_amount
+          else:
+              if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_flanders:
+                  if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_4_years:
+                      belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_0_to_3_annual_amount
+                  else:
+                      if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_12_years:
+                          belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_4_to_11_annual_amount
+                      else:
+                          if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_17_years:
+                              belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_12_to_16_annual_amount
+                          else:
+                              belgium_child_benefit_flanders_articles_19_22_2025_schoolbonus_17_to_24_annual_amount
+              else:
+                  if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_wallonia:
+                      if belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies:
+                          if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_6_years:
+                              if belgium_child_benefit_composition_wallonia_legacy_social_eligibility:
+                                  belgium_child_benefit_wallonia_legacy_under_6_social_2025_annual_premium
+                              else:
+                                  belgium_child_benefit_wallonia_legacy_under_6_2025_annual_premium
+                          else:
+                              if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_12_years:
+                                  if belgium_child_benefit_composition_wallonia_legacy_social_eligibility:
+                                      belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement_with_low_income_supplement
+                                  else:
+                                      belgium_child_benefit_wallonia_pre_2020_6_to_11_2025_annual_age_supplement
+                              else:
+                                  if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_18_years:
+                                      if belgium_child_benefit_composition_wallonia_legacy_social_eligibility:
+                                          belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement_with_low_income_supplement
+                                      else:
+                                          belgium_child_benefit_wallonia_pre_2020_12_to_17_2025_annual_age_supplement
+                                  else:
+                                      if belgium_child_benefit_composition_wallonia_legacy_social_eligibility:
+                                          belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement_with_low_income_supplement
+                                      else:
+                                          belgium_child_benefit_wallonia_pre_2020_18_to_24_2025_annual_age_supplement
+                      else:
+                          if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_5_years:
+                              belgium_child_benefit_wallonia_new_0_to_4_2025_annual_amount
+                          else:
+                              if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_11_years:
+                                  belgium_child_benefit_wallonia_new_5_to_10_2025_annual_amount
+                              else:
+                                  if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_17_years:
+                                      belgium_child_benefit_wallonia_new_11_to_16_2025_annual_amount
+                                  else:
+                                      belgium_child_benefit_wallonia_new_17_to_24_2025_annual_amount
+                  else:
+                      if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_brussels:
+                          if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_6_years:
+                              belgium_child_benefit_brussels_article_15_under_6_2025_annual_amount
+                          else:
+                              if belgium_child_benefit_composition_age_before_december_31_years < belgium_family_benefits_child_benefit_age_12_years:
+                                  belgium_child_benefit_brussels_article_15_6_to_11_2025_annual_amount
+                              else:
+                                  if belgium_child_benefit_composition_age_before_december_31_years >= belgium_family_benefits_child_benefit_age_18_years and belgium_child_benefit_composition_is_in_higher_education:
+                                      belgium_child_benefit_brussels_article_15_18_to_24_higher_education_2025_annual_amount
+                                  else:
+                                      belgium_child_benefit_brussels_article_15_12_to_17_ordinary_2025_annual_amount
+                      else:
+                          if belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_german_speaking_community:
+                              belgium_child_benefit_dg_article_117_4_2025_annual_supplement
+                          else:
+                              belgium_child_benefit_composition_zero_annual_amount
+  - name: belgium_child_benefit_composition_selected_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Per-child selected monthly composition
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_composition_monthly_base_amount + belgium_child_benefit_composition_monthly_age_supplement + belgium_child_benefit_composition_monthly_social_supplement + belgium_child_benefit_composition_monthly_single_parent_supplement + belgium_child_benefit_composition_monthly_status_supplement
+  - name: belgium_child_benefit_composition_selected_annual_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Per-child selected annual amount, monthly composition plus annual premium
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_child_benefit_composition_selected_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_composition_annual_school_or_age_premium
+  - name: belgium_child_benefit_composition_brussels_legacy_comparator_monthly_amount
+    kind: derived
+    entity: Child
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Separate LGAF comparator used only for the EUROMOD Brussels household-max diagnostic
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_child_benefit_composition_is_beneficiary_child or belgium_family_benefits_transition_region != belgium_family_benefits_child_benefit_region_brussels or not belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies:
+              belgium_child_benefit_composition_zero_monthly_amount
+          else:
+              (if belgium_child_benefit_composition_is_orphan or belgium_child_benefit_composition_is_full_orphan:
+                  belgium_child_benefit_wallonia_legacy_orphan_2025_monthly_amount
+              else:
+                  if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_one_child_count:
+                      belgium_child_benefit_wallonia_pre_2020_first_child_2025_base_monthly_amount
+                  else:
+                      if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_two_child_count:
+                          belgium_child_benefit_wallonia_legacy_second_rank_2025_monthly_amount
+                      else:
+                          belgium_child_benefit_wallonia_legacy_third_plus_rank_2025_monthly_amount) +
+              (if belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_brussels_article_9_2025_low_income_threshold:
+                  if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_one_child_count:
+                      belgium_child_benefit_wallonia_pre_2020_first_child_2025_low_income_monthly_social_supplement
+                  else:
+                      if belgium_child_benefit_composition_frozen_legacy_rank == belgium_family_benefits_child_benefit_two_child_count:
+                          belgium_child_benefit_wallonia_legacy_second_rank_social_2025_monthly_amount
+                      else:
+                          if belgium_child_benefit_composition_is_single_parent:
+                              belgium_child_benefit_wallonia_legacy_third_plus_single_parent_social_2025_monthly_amount
+                          else:
+                              belgium_child_benefit_wallonia_legacy_third_plus_other_social_2025_monthly_amount
+              else:
+                  belgium_child_benefit_composition_zero_monthly_amount) +
+              (if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_6_years:
+                  belgium_child_benefit_composition_zero_monthly_amount
+              else:
+                  if belgium_child_benefit_composition_frozen_legacy_rank >= belgium_family_benefits_child_benefit_two_child_count or belgium_child_benefit_composition_annual_household_income < belgium_child_benefit_brussels_article_9_2025_low_income_threshold:
+                      if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                          belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement_with_low_income_supplement
+                      else:
+                          if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                              belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement_with_low_income_supplement
+                          else:
+                              belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement_with_low_income_supplement
+                  else:
+                      if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_12_years:
+                          belgium_child_benefit_wallonia_pre_2020_first_child_6_to_11_2025_monthly_age_supplement
+                      else:
+                          if belgium_child_benefit_composition_child_age_years < belgium_family_benefits_child_benefit_age_18_years:
+                              belgium_child_benefit_wallonia_pre_2020_first_child_12_to_17_2025_monthly_age_supplement
+                          else:
+                              belgium_child_benefit_wallonia_pre_2020_first_child_18_to_24_2025_monthly_age_supplement)
+  - name: belgium_child_benefit_composition_household_current_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Explicit relation rollup of beneficiary-child selected monthly amounts
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_child_benefit_composition_beneficiary_child_of_household, belgium_child_benefit_composition_selected_monthly_amount, belgium_child_benefit_composition_is_beneficiary_child)
+  - name: belgium_child_benefit_composition_household_current_annual_premiums
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Explicit relation rollup of beneficiary-child annual premiums
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_child_benefit_composition_beneficiary_child_of_household, belgium_child_benefit_composition_annual_school_or_age_premium, belgium_child_benefit_composition_is_beneficiary_child)
+  - name: belgium_child_benefit_composition_household_brussels_legacy_comparator_monthly_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Explicit relation rollup for the non-statutory EUROMOD Brussels comparator
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_child_benefit_composition_beneficiary_child_of_household, belgium_child_benefit_composition_brussels_legacy_comparator_monthly_amount, belgium_child_benefit_composition_is_beneficiary_child)
+  - name: belgium_child_benefit_composition_household_selected_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Recipient-level statutory selection of current or frozen monthly amount, followed by current annual premiums
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/39"
+              excerpt: "le paiement des allocations familiales restent d'application lorsque l'attributaire ou le demandeur générait le paiement d'un taux d'allocations familiales pour le mois de décembre 2019"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1"
+              excerpt: "Für alle Kinder, deren nachfolgende Leistungen für Dezember 2018 an dieselbe Person gezahlt werden, wird ein Betrag ermittelt"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_child_benefit_composition_household_region == belgium_family_benefits_child_benefit_region_brussels and belgium_child_benefit_composition_brussels_article_39_household_protection_active:
+              belgium_child_benefit_composition_brussels_frozen_december_2019_monthly_protected_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_composition_household_current_annual_premiums
+          else:
+              if belgium_child_benefit_composition_household_region == belgium_family_benefits_child_benefit_region_german_speaking_community and belgium_child_benefit_composition_german_speaking_community_article_111_household_protection_active:
+                  belgium_child_benefit_composition_german_speaking_community_frozen_december_2018_monthly_protected_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_composition_household_current_annual_premiums
+              else:
+                  belgium_child_benefit_composition_household_current_monthly_amount * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_composition_household_current_annual_premiums
+  - name: belgium_child_benefit_composition_household_euromod_comparator_annual_amount
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Diagnostic EUROMOD Brussels max of its LGAF comparator and ordinance branch; other regions retain the statute-composed result
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_child_benefit_composition_household_region == belgium_family_benefits_child_benefit_region_brussels:
+              max(belgium_child_benefit_composition_household_brussels_legacy_comparator_monthly_amount, belgium_child_benefit_composition_household_current_monthly_amount) * belgium_family_benefits_child_benefit_months_in_year + belgium_child_benefit_composition_household_current_annual_premiums
+          else:
+              belgium_child_benefit_composition_household_selected_annual_amount
