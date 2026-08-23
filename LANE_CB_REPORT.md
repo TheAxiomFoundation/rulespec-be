@@ -40,7 +40,7 @@ The installed `BE_2025` system has three active regional branches and no DG bran
 
 Because EUROMOD has no date-of-birth input here, the requested cross-product contains logically inconsistent cells: in 2025 an age-8, age-14, or age-17 child cannot enter a post-2019/2020 age-proxy branch. Those cells will remain visible and be marked as an EUROMOD age-proxy limitation rather than silently relabelled.
 
-Two sequential x64 smoke runs reached or initialized the native runner but exited before returning result rows. No overlapping EUROMOD processes were started. XML-derived expectations will not be described as connector-verified unless a successful rerun produces outputs.
+The official axiom-oracles subprocess adapter now runs successfully with the x86-64 connector. A known Flemish new-scheme age-0 case returned EUR2,184.80/year. The complete 432-cell cross-product then ran in one x64 worker and returned `bch_s`, `il_bch_means`, and `yem` for every case with zero errors. No more than one EUROMOD worker ran at a time. The final grid below will therefore distinguish connector results from the statutory RuleSpec computation, rather than treating XML inspection as oracle output.
 
 ## Release frontier
 
@@ -80,6 +80,14 @@ rg -n "kind: data_relation|sum_where\\(" --glob '*.yaml' .
 /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/applied_amounts_2025.test.yaml --json
 AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-applied.jtSiUR/layout/rulespec-be/be/statutes/family_benefits/cohort_routing_2025.yaml --skip-reviewers --json
 AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-applied.jtSiUR/layout/rulespec-be/be/statutes/family_benefits/applied_amounts_2025.yaml --skip-reviewers --json
+DOTNET_ROOT=/Users/maxghenis/.dotnet-x64 PYTHONNET_RUNTIME=coreclr .venv/bin/python - <<'PY'
+from axiom_oracles.suites import load_suite
+from axiom_oracles.adapters.euromod.runner import EuromodPlatformRunner
+cases = load_suite('be-family-child-benefit-base')
+case = next(c for c in cases if c.case_id == 'be-family-child-benefit-base-flanders-age-0')
+runner = EuromodPlatformRunner(model_root='/Users/maxghenis/Downloads/EUROMOD_J2.0/EUROMOD_RELEASES_J2.0+', country='BE', system='BE_2025', dataset='BE_2024_c1_2015_03_e2', template_dataset='BE_training_data', python_executable='/Users/maxghenis/.venvs/axiom-euromod-x64/bin/python', dotnet_root='/Users/maxghenis/.dotnet-x64', timeout=900)
+print(runner.run_cases([case], variables=['bch_s']))
+PY
 ```
 
 `gitnexus analyze .` could not register its index because the sandbox denied writing `~/.gitnexus/registry.json`; direct `rg`, source reading, and import/caller tracing are being used as the read-only fallback.

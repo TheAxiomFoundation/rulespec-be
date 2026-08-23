@@ -4,7 +4,7 @@
 
 - Branch: `ledger/child-benefits-full` at the `origin/main` baseline.
 - Campaign rules loaded from `../../LEDGER_CAMPAIGN.md`.
-- Status: transition routing implementation in progress.
+- Status: per-child and household composition implementation in progress.
 
 ## Done
 
@@ -18,10 +18,12 @@
 - Added and verified the Date-based transition router: 12 companion cases pass and its sibling-layout validation reports `ci_pass: true`.
 - Added a parameter-only applied-2025 layer for the missing Flemish and Walloon ranks, social bands, age tracks, and annual amounts. Its 35-output companion case passes.
 - Confirmed a signed-release projection collision on the Flemish amount schedule: pinned full schedule rows are verbatim evidence, while the release resolves duplicate schedule IDs to abbreviated records that omit some old-system/social values.
+- Re-established the official x64 EUROMOD connector through the axiom-oracles subprocess adapter: a known Flemish case returned EUR2,184.80/year with no error.
+- Ran the full requested 432-cell regional/cohort/rank/age/income/single-parent cross-product through one x64 EUROMOD worker. Every cell returned `bch_s`, `il_bch_means`, and `yem`; there were zero connector errors.
 
 ## Next
 
-1. Add applied-2025 component selectors by importing existing amount parameters and the new missing-value layer.
-2. Add the explicit Household-to-Child relation, per-child annual output, household sum, and backward-compatible oracle output.
-3. Run the EUROMOD case-grid harness, classify the age-proxy and statutory residuals, and quantify the composition/unit split.
+1. Finish and test the imported applied-2025 component selectors.
+2. Finish the explicit Household-to-Child relation, per-child annual output, household sum, and backward-compatible oracle output.
+3. Reconcile all 432 successful EUROMOD results against the RuleSpec output, classify every residual, and quantify the composition/unit split.
 4. Run all companion tests and full sibling-layout validation, then finish `LANE_CB_REPORT.md`.
