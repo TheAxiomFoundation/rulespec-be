@@ -4,7 +4,7 @@
 
 - Branch: `ledger/child-benefits-full` at the `origin/main` baseline.
 - Campaign rules loaded from `../../LEDGER_CAMPAIGN.md`.
-- Status: per-child and household composition implementation in progress.
+- Status: final validation and report closeout in progress.
 
 ## Done
 
@@ -20,10 +20,12 @@
 - Confirmed a signed-release projection collision on the Flemish amount schedule: pinned full schedule rows are verbatim evidence, while the release resolves duplicate schedule IDs to abbreviated records that omit some old-system/social values.
 - Re-established the official x64 EUROMOD connector through the axiom-oracles subprocess adapter: a known Flemish case returned EUR2,184.80/year with no error.
 - Ran the full requested 432-cell regional/cohort/rank/age/income/single-parent cross-product through one x64 EUROMOD worker. Every cell returned `bch_s`, `il_bch_means`, and `yem`; there were zero connector errors.
+- Added the full child-scoped composition, explicit Household-to-Child relation, one household rollup, Brussels/DG frozen recipient protections, and a separate EUROMOD comparator. Nine exhaustive-input companion cases pass.
+- Confirmed the full composition module in a fresh sibling layout: `ci_pass: true`, `all_passed: true`, no errors.
+- Reconciled the calibrated 432-cell official x64 grid: zero adapter errors and zero formula-to-official differences; 174/216 temporally valid statute cases match to the cent and every Walloon residual is mechanism-dispositioned.
+- Quantified the valid-grid EUR2,070 split: 54.44% missing child-unit construction and 45.56% missing composition; the statutory mean is EUR2,936.02 per actual child.
 
 ## Next
 
-1. Finish and test the imported applied-2025 component selectors.
-2. Finish the explicit Household-to-Child relation, per-child annual output, household sum, and backward-compatible oracle output.
-3. Reconcile all 432 successful EUROMOD results against the RuleSpec output, classify every residual, and quantify the composition/unit split.
-4. Run all companion tests and full sibling-layout validation, then finish `LANE_CB_REPORT.md`.
+1. Run one fresh all-touched companion sweep and sibling-layout validation sweep.
+2. Record the allowed release-frontier failures, final commits, and worktree state in `LANE_CB_REPORT.md`.
