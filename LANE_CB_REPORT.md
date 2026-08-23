@@ -10,19 +10,41 @@ The lane is using the corpus checkout at `~/TheAxiomFoundation/_cape-prep/corpus
 
 ## Cohort routing
 
-Pinned-corpus investigation is in progress. This section will carry the exact Flemish, Walloon, Brussels, and German-speaking Community transition rule and provision citation.
+The pinned law does not define four parallel child-cohort switches:
+
+| Region | Statutory 2025 route | Pinned evidence | Signed-release status |
+|---|---|---|---|
+| Flanders | Legacy LGAF amounts only when the child was born before 1 January 2019 **and** the entitlement conditions were satisfied on 31 December 2018. Otherwise the child uses the new schedule. The legacy rank is the rank assigned in the 2018 group and remains attached to the child; it is not recomputed from the current household. | Flemish Decree of 27 April 2018, Articles 210 §§1, 2 and 4 and 13: `be-vlg/statute/decreet/2018/04/27/2018040369/article/{210,13}`. Article 210 begins: “Een rechtgevend kind dat geboren is vóór 1 januari 2019 en voor wie het recht op kinderbijslag overeenkomstig de kinderbijslagreglementering is geopend op 31 december 2018, blijft recht geven op kinderbijslag overeenkomstig de kinderbijslagreglementering”. | Both required pages promoted. Article 228 is pinned but absent and is not needed. |
+| Wallonia | Legacy LGAF amounts for a child born before 1 January 2020; the new Walloon schedule for a child born from that date. A newly filed claim does not change the legacy amount route. | Walloon Decree of 8 February 2018, Article 120, `be-wal/statute/decret/2018/02/08/2018201006/article/120`, plus AVIQ 2025 scale pages 1 and 4, `be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-{1,4}`: “Les enfants nés avant 2020” / “Les enfants nés à partir de 2020”. | Required pages promoted. Article 3 is pinned but absent and is not needed. |
+| Brussels | There is no per-child old/new cohort route. Article 39 compares the December-2019 LGAF total and ordinance total **per recipient**, caps the legacy total at its December-2019 level, prevents it from increasing, and permanently ends protection once the ordinance total catches up. Annual premiums are excluded from that comparison and Article 15 premiums are paid. Separately, through 2025, the ordinance schedule deducts €12.43 for a child born before 1 December 2019. | Brussels Ordinance of 25 April 2019, Article 39, `be-bru/statute/ordonnance/2019/04/25/2019012118/article/39`; promoted Iriscare scale blocks 3 and 15, `be-bru/guidance/iriscare/family-benefits/amount-scale-2025-02/block-{3,15}`. | Article 39 is pinned but absent from the signed release. Blocks 3 and 15 are promoted. |
+| German-speaking Community | There is no child birth-cohort split. Article 111 protects a frozen December-2018 total for the same recipient group until the new aggregate is more favorable or the group/recipient changes. | Decree of 23 April 2018, Article 111 in `be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1`: “Dieser Betrag wird ... gezahlt, bis ... die Summe ... vorteilhafter ... [ist]” or the recipient grouping changes. | Promoted whole-law block is sufficient; the article-specific page is absent but unnecessary. |
+
+The implementation therefore takes actual child date of birth, a Flemish 31-December-2018 entitlement fact, a frozen Flemish legacy rank, and explicit Brussels/DG household protection state. It does not manufacture a Brussels or DG child-cohort selector.
 
 ## Composition surface
 
-The existing inventory contains federal LGAF rank, single-parent, social, age, annual-premium and indexation surfaces; current regional amount selectors; and the narrow household-level `child_benefit_base_2025` oracle slice. The new child-scoped composition and explicit household relation rollup are pending.
+The existing inventory contains federal LGAF rank, single-parent, social, age, annual-premium and indexation surfaces; current regional amount selectors; and the narrow household-level `child_benefit_base_2025` oracle slice. The latter duplicates selected 2025 parameters, treats one age as an age-derived cohort, assumes legacy rank 1, and has no heterogeneous-child relation. Its output `belgium_family_benefits_child_benefit_base_2025_annual_amount` is consumed by `be/policies/euromod_benefit_income_list.yaml`.
+
+The new child-scoped composition and explicit household relation rollup are in progress. Monetary values already encoded in LGAF, regional, or applied-2025 rules will be imported; only missing applied values will receive new corpus proofs.
 
 ## EUROMOD `bch_be`
 
-Local BE policy inspection and x64-connector verification are in progress. The final report will include branch notes and the requested case grid with expected, computed, residual, and disposition columns.
+The installed `BE_2025` system has three active regional branches and no DG branch:
+
+- Flanders (`drgn1=2`) pays old rank bases, old social and age supplements, or the new flat base and income/child-count social supplement. Both paths include the universal annual participation premium. The new-child flag is the age proxy `(2025 - dag) >= 2019`.
+- Wallonia (`drgn1=3`) pays old rank, social, age and annual-premium components, or new base, income/child-count/lone-parent supplements and annual age component. Its new-child proxy is `(2025 - dag) >= 2020`.
+- Brussels (`drgn1=1`) calculates an old and a new-equivalent household amount for pre-2020 children and pays their maximum; post-2020 children use the new schedule. It also derives the cohort from age, not date of birth.
+- Child disability tiers and foster supplements are absent from active `bch_be`; orphan flags exist. DG is absent and returns zero, consistent with the existing disposition.
+
+Because EUROMOD has no date-of-birth input here, the requested cross-product contains logically inconsistent cells: in 2025 an age-8, age-14, or age-17 child cannot enter a post-2019/2020 age-proxy branch. Those cells will remain visible and be marked as an EUROMOD age-proxy limitation rather than silently relabelled.
+
+Two sequential x64 smoke runs reached or initialized the native runner but exited before returning result rows. No overlapping EUROMOD processes were started. XML-derived expectations will not be described as connector-verified unless a successful rerun produces outputs.
 
 ## Release frontier
 
-The transition proof paths will be probed early with the sibling-layout validation procedure. Any corpus records present at pin `8e48989c` but absent from `be-rulespec-2026-07-10` will be listed exactly here.
+The signed-release manifest content SHA is `c1436c9f99882a819773bc2ccddf8c2a67e41efd24b0d0a408493ba5da39964a`.
+
+Pinned but absent pages: Flemish Article 228; Walloon Article 3; Brussels Articles 35, 39 and 40; DG article-specific Article 111. The first two and DG article-specific page have promoted substitutes. Brussels Article 39 has no promoted substitute for the comparison, cap, and permanent-loss mechanics, so any rule whose proof depends on that page is an explicit release-frontier block. Iriscare blocks 3 and 15 prove the 2025 birth deduction and existence/cap of transitional old amounts, but not the complete Article 39 state machine.
 
 ## Shortfall accounting and implied average
 
@@ -47,8 +69,13 @@ git log -5 --oneline --decorate
 gitnexus list
 gitnexus status
 gitnexus analyze .
+rg --files be/statutes/family_benefits be-vlg be-wal be-bru be-dg | sort
+rg -n "kind: data_relation|sum_where\\(" --glob '*.yaml' .
+/Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/child_benefit_base_2025.test.yaml --json
 ```
 
 `gitnexus analyze .` could not register its index because the sandbox denied writing `~/.gitnexus/registry.json`; direct `rg`, source reading, and import/caller tracing are being used as the read-only fallback.
+
+The early sibling-layout validation of the unchanged base-only module returned `ci_pass: false` solely for its pre-existing ungrounded numeric age-4 literal. All transition source paths already used by that module resolved in the signed release.
 
 LANE CB IN PROGRESS
