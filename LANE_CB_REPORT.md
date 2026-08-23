@@ -27,6 +27,8 @@ The existing inventory contains federal LGAF rank, single-parent, social, age, a
 
 The new child-scoped composition and explicit household relation rollup are in progress. Monetary values already encoded in LGAF, regional, or applied-2025 rules will be imported; only missing applied values will receive new corpus proofs.
 
+`applied_amounts_2025.yaml` now fills only the absent applied schedule cells: Flemish legacy ranks 2/3, legacy social/high-age tracks and current social bands; Walloon legacy ranks 2/3, social/premium cells and current large-family, lone-parent, older-child and orphan cells. Its parameter companion case checks 35 outputs and passes. It deliberately does not redeclare the Brussels, Flemish, Walloon or DG values already present in `child_benefit_base_2025.yaml`.
+
 ## EUROMOD `bch_be`
 
 The installed `BE_2025` system has three active regional branches and no DG branch:
@@ -44,7 +46,9 @@ Two sequential x64 smoke runs reached or initialized the native runner but exite
 
 The signed-release manifest content SHA is `c1436c9f99882a819773bc2ccddf8c2a67e41efd24b0d0a408493ba5da39964a`.
 
-Pinned but absent pages: Flemish Article 228; Walloon Article 3; Brussels Articles 35, 39 and 40; DG article-specific Article 111. The first two and DG article-specific page have promoted substitutes. Brussels Article 39 has no promoted substitute for the comparison, cap, and permanent-loss mechanics, so any rule whose proof depends on that page is an explicit release-frontier block. Iriscare blocks 3 and 15 prove the 2025 birth deduction and existence/cap of transitional old amounts, but not the complete Article 39 state machine.
+Pinned but absent pages: Flemish Articles 222 and 228; Walloon Article 3; Brussels Articles 35, 39 and 40; DG article-specific Article 111. Article 228, Walloon Article 3 and DG article-specific Article 111 have promoted substitutes and are not used by the router. Flemish Article 222 is needed to connect legacy social supplements to Article 18 conditions. Brussels Article 39 has no promoted substitute for the comparison, cap, and permanent-loss mechanics, so rules whose proofs depend on those two pages are explicit release-frontier blocks. Iriscare blocks 3 and 15 prove the 2025 birth deduction and existence/cap of transitional old amounts, but not the complete Article 39 state machine.
+
+There is also a release-projection collision for the Flemish guidance records `be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-{1,3,4}`. The pinned official full-table records contain the verbatim €398.39 orphan, legacy social/high-age rows, and current social bands. The signed release resolves duplicate record IDs at those paths to later abbreviated records. The sibling-layout validator therefore stops at `Ungrounded generated numeric literal: 398.39` even though the parameter companion suite passes and the literal is verbatim in the pinned full-table record. This is recorded as a release-frontier failure, not waived or replaced with an uncited literal.
 
 ## Shortfall accounting and implied average
 
@@ -72,6 +76,10 @@ gitnexus analyze .
 rg --files be/statutes/family_benefits be-vlg be-wal be-bru be-dg | sort
 rg -n "kind: data_relation|sum_where\\(" --glob '*.yaml' .
 /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/child_benefit_base_2025.test.yaml --json
+/Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/cohort_routing_2025.test.yaml --json
+/Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/family_benefits/applied_amounts_2025.test.yaml --json
+AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-applied.jtSiUR/layout/rulespec-be/be/statutes/family_benefits/cohort_routing_2025.yaml --skip-reviewers --json
+AXIOM_CORPUS_REPO=/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate /private/tmp/lane-cb-applied.jtSiUR/layout/rulespec-be/be/statutes/family_benefits/applied_amounts_2025.yaml --skip-reviewers --json
 ```
 
 `gitnexus analyze .` could not register its index because the sandbox denied writing `~/.gitnexus/registry.json`; direct `rg`, source reading, and import/caller tracing are being used as the read-only fallback.
