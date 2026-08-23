@@ -1,0 +1,125 @@
+- name: article_142_default_expenses_put_general_dependant_within_ceiling
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 5000
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: false
+  output:
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_dependent_is_child: not_holds
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_141_dependent_is_disabled: not_holds
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_143_resources_after_disregards: 5000
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_default_deductible_resource_expenses: 1000
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_deductible_resource_expenses: 1000
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_dependent_net_resources: 4000
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_applicable_net_resources_ceiling: 4100
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_net_resources_within_applicable_ceiling: holds
+
+- name: separately_taxed_taxpayer_child_above_5930_ceiling
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 7500
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: false
+  output:
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_dependent_is_child: holds
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_141_dependent_is_disabled: not_holds
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_dependent_net_resources: 6000
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_applicable_net_resources_ceiling: 5930
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_net_resources_within_applicable_ceiling: not_holds
+
+- name: article_143_disregard_and_disabled_child_ceiling
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 9500
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 1000
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: true
+  output:
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_dependent_is_child: holds
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_141_dependent_is_disabled: holds
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_143_resources_after_disregards: 8500
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_default_deductible_resource_expenses: 1700
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_dependent_net_resources: 6800
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_applicable_net_resources_ceiling: 7520
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_net_resources_within_applicable_ceiling: holds
+
+- name: worker_remuneration_uses_570_minimum_default_expenses
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 2000
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: false
+  output:
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_default_deductible_resource_expenses: 570
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_deductible_resource_expenses: 570
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_dependent_net_resources: 1430
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_applicable_net_resources_ceiling: 4100
+
+- name: probative_expenses_replace_statutory_default
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 5000
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 500
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 1250
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: false
+  output:
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_143_resources_after_disregards: 4500
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_default_deductible_resource_expenses: 900
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_deductible_resource_expenses: 1250
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_142_dependent_net_resources: 3250
+
+- name: separately_taxed_nonchild_keeps_general_ceiling
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: true
+  output:
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_applicable_net_resources_ceiling: 4100
+    be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_net_resources_within_applicable_ceiling: holds

@@ -1,0 +1,103 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_article_132_supplements_assigned_to_spouse_a
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_refundable_child_credit_after_joint_cap
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap
+module:
+  summary: |-
+    This page-scoped adapter exposes Article 134 paragraph 4's lower-income
+    assignment exception and joint refundable-credit allocation under
+    page-187-owned rule ids. It introduces no new numeric values.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 paragraph 4, lower-income-spouse assignment exception
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "Par dérogation à l'alinéa 1er, 2°, les suppléments visés à l'article 132 sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt du conjoint qui a le revenu imposable le plus bas, si de ce fait l'impôt Etat augmenté de l'impôt afférent aux revenus visés aux articles 17, § 1er, 1° à 3° et 90, alinéa 1er, 6° et 9°, et aux plus-values sur valeurs et titres mobiliers imposables sur base de l'article 90, alinéa 1er, 1°, pris ensemble pour les deux conjoints, s'en trouve diminué."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_page_186_joint_article_132_supplements_assigned_to_spouse_a, belgium_pit_article_134_page_186_joint_article_132_supplements_assigned_to_spouse_a)
+  - name: belgium_pit_article_134_page_187_joint_spouse_a_refundable_child_credit_after_joint_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 5 and 6, joint cap and proportional allocation for spouse A
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "5° l'impôt calculé conformément à l'article 130 de chaque conjoint est diminué de l'impôt calculé conformément au paragraphe 2, alinéa 2, sur sa quotité du revenu exemptée d'impôt fixée conformément aux 1° à 4°;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "6° pour chaque conjoint, la partie de l'impôt calculée conformément au paragraphe 2, alinéa 2, sur la quotité du revenu exemptée d'impôt qui ne peut pas être portée en diminution de l'impôt calculé conformément à l'article 130, est, dans la mesure où elle concerne les suppléments visés à l'article 132, alinéa 1er, 1° à 6°, convertie en un crédit d'impôt remboursable."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "Ce crédit d'impôt ne peut excéder le montant maximum déterminé conformément au paragraphe 3, alinéas 2 et 3, pour les deux conjoints ensemble."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "2° le montant maximum est, le cas échéant, réparti proportionnellement en fonction du crédit d'impôt de chaque conjoint dans la somme des crédits d'impôt des deux conjoints."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_joint_spouse_a_refundable_child_credit_after_joint_cap, belgium_pit_article_134_joint_spouse_a_refundable_child_credit_after_joint_cap)
+  - name: belgium_pit_article_134_page_187_joint_spouse_b_refundable_child_credit_after_joint_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 5 and 6, joint cap and proportional allocation for spouse B
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "5° l'impôt calculé conformément à l'article 130 de chaque conjoint est diminué de l'impôt calculé conformément au paragraphe 2, alinéa 2, sur sa quotité du revenu exemptée d'impôt fixée conformément aux 1° à 4°;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "6° pour chaque conjoint, la partie de l'impôt calculée conformément au paragraphe 2, alinéa 2, sur la quotité du revenu exemptée d'impôt qui ne peut pas être portée en diminution de l'impôt calculé conformément à l'article 130, est, dans la mesure où elle concerne les suppléments visés à l'article 132, alinéa 1er, 1° à 6°, convertie en un crédit d'impôt remboursable."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "Ce crédit d'impôt ne peut excéder le montant maximum déterminé conformément au paragraphe 3, alinéas 2 et 3, pour les deux conjoints ensemble."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "2° le montant maximum est, le cas échéant, réparti proportionnellement en fonction du crédit d'impôt de chaque conjoint dans la somme des crédits d'impôt des deux conjoints."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap, belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap)

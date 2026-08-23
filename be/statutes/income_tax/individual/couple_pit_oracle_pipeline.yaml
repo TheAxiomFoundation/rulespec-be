@@ -4,7 +4,7 @@ imports:
   - be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_after_imputation
   - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income
   - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
-  - be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor
+  - be:statutes/income_tax/individual/article_5_2_state_tax_share#belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
@@ -13,6 +13,16 @@ imports:
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
   - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_one_child_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_two_children_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_three_children_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_four_children_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_additional_child_after_four_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_first_additional_child_count_from_page_182
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_under_3_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_dependent_elderly_tax_free_increase
+  - be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_other_dependent_tax_free_increase
+  - be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_threshold
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_threshold
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_threshold
@@ -22,9 +32,21 @@ imports:
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_rate
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_fourth_tax_free_amount_rate
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_top_tax_free_amount_rate
-  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
-  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
-  - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
+  - be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a
+  - be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+  - be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+  - be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_spouse_a_refundable_child_credit_after_joint_cap
+  - be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_spouse_b_refundable_child_credit_after_joint_cap
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_without_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_with_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_equivalent_count
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_equivalent_count
+  - be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_is_eligible
+  - be:statutes/income_tax/individual/article_468_agglomeration_rate_cap#belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
 module:
   summary: |-
     This composed pilot module exposes a relation-backed path from two Person
@@ -51,8 +73,16 @@ module:
     tax_free_amount.yaml, tax_free_amount_tax.yaml, and communal_additions.yaml
     unchanged, imports the worker pilot's grounded Person results and
     Article 5/2 reduced-State-tax share together with the joint
-    tax-free-allocation concepts. It excludes dependants and Article 132
-    supplements, the assisting-spouse Article 86 attribution, the
+    tax-free-allocation concepts. A second TaxUnit-to-Person relation accepts
+    potential dependant records, applies the encoded Articles 136 through 145
+    eligibility and resource conditions at Person scope, and rolls ordinary
+    and Article 132bis shared-custody child equivalents (including disabled-
+    child double counting), under-three children, certified elderly dependants,
+    and other dependant equivalents into the Article 132 supplements before
+    the paragraph 4 spouse allocation. The unused tax value attributable to
+    child supplements is then capped jointly under paragraph 3 and subtracted
+    as a refundable credit. It excludes the assisting-spouse Article 86
+    attribution, the
     Article 129 loss-balance imputation, other income categories, actual-
     expense proof, replacement-income reductions, regional reductions/
     credits other than Article 289ter/1, professional withholding tables,
@@ -69,6 +99,13 @@ rules:
       arity: 2
       arguments: [TaxUnit, Person]
     source: CIR 1992 articles 126 and 87/88, spouses whose Person-scoped worker results feed the joint TaxUnit assessment
+  - name: belgium_pit_couple_dependent_of_tax_unit
+    kind: data_relation
+    data_relation:
+      predicate: belgium_pit_couple_dependent_of_tax_unit
+      arity: 2
+      arguments: [TaxUnit, Person]
+    source: CIR 1992 articles 132 and 136 through 145, related potential dependant Person records whose eligibility results feed the joint TaxUnit assessment
   - name: belgium_pit_spouse_a_professional_income_after_article_89_exclusions
     kind: derived
     entity: TaxUnit
@@ -76,6 +113,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 23, 51, and 89, relation rollup of the Person-scoped worker net professional income assigned to spouse A
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income
+              output: belgium_pit_pilot_worker_net_professional_income
+              hash: sha256:1c0c47e4c9889a1c77ad508461c1974f67115d82a2677224d79f5cbcad75895e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -87,6 +133,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 23, 51, and 89, relation rollup of the Person-scoped worker net professional income assigned to spouse B
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_worker_net_professional_income
+              output: belgium_pit_pilot_worker_net_professional_income
+              hash: sha256:1c0c47e4c9889a1c77ad508461c1974f67115d82a2677224d79f5cbcad75895e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -98,6 +153,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 289ter/1, relation rollup of the Person-scoped refundable work-bonus credit assigned to spouse A
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+              output: belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+              hash: sha256:1c0c47e4c9889a1c77ad508461c1974f67115d82a2677224d79f5cbcad75895e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -109,6 +173,15 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 289ter/1, relation rollup of the Person-scoped refundable work-bonus credit assigned to spouse B
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+              output: belgium_pit_pilot_article_289ter1_low_wage_work_bonus_credit
+              hash: sha256:1c0c47e4c9889a1c77ad508461c1974f67115d82a2677224d79f5cbcad75895e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -128,6 +201,12 @@ rules:
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
               excerpt: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_after_imputation
+              output: belgium_pit_article_87_88_spouse_a_professional_income_after_imputation
+              hash: sha256:08c99451b44ea88c115e02b5b904d631a7a2b2d325bfa5c7638d04eac2139cb0
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -147,6 +226,12 @@ rules:
             source:
               corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-53
               excerpt: "Le revenu imposable est constitué de l'ensemble des revenus nets, diminué des dépenses déductibles."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_b_professional_income_after_imputation
+              output: belgium_pit_article_87_88_spouse_b_professional_income_after_imputation
+              hash: sha256:08c99451b44ea88c115e02b5b904d631a7a2b2d325bfa5c7638d04eac2139cb0
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -190,6 +275,15 @@ rules:
     period: Year
     unit: EUR
     source: Structural bridge from the imported Article 131 base tax-free amount into spouse A's Article 134 paragraph 4 allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+              output: belgium_pit_base_tax_free_amount
+              hash: sha256:2360bb12e93392b44fde84a7d4bfc88129ca7c8fca75e69f481d968e5386f2c2
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -201,21 +295,331 @@ rules:
     period: Year
     unit: EUR
     source: Structural bridge from the imported Article 131 base tax-free amount into spouse B's Article 134 paragraph 4 allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+              output: belgium_pit_base_tax_free_amount
+              hash: sha256:2360bb12e93392b44fde84a7d4bfc88129ca7c8fca75e69f481d968e5386f2c2
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_base_tax_free_amount
+  - name: belgium_pit_couple_article_132_child_count
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132 ordinary dependent-child equivalent count, relation rollup after Articles 136 through 145 eligibility and disabled-child double counting
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_without_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_without_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_couple_dependent_of_tax_unit, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_without_article_132bis)
+  - name: belgium_pit_couple_article_132bis_shared_custody_child_count
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132bis shared-custody dependent-child equivalent count, relation rollup after the statutory conditions and disabled-child double counting
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_with_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_with_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_couple_dependent_of_tax_unit, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_with_article_132bis)
+  - name: belgium_pit_couple_children_under_3_without_childcare_reduction_count
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132 item 6 ordinary under-three child equivalent count after the childcare-reduction exclusion
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_couple_dependent_of_tax_unit, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis)
+  - name: belgium_pit_couple_article_132bis_shared_custody_children_under_3_without_childcare_reduction_count
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 Articles 132 item 6 and 132bis shared-custody under-three child equivalent count after the childcare-reduction exclusion
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_equivalent_count
+              output: belgium_pit_dependent_child_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+              output: belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_couple_dependent_of_tax_unit, belgium_pit_dependent_child_equivalent_count, belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis)
+  - name: belgium_pit_couple_dependent_elderly_count
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132 item 7, relation rollup of certified elderly dependant counts
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_equivalent_count
+              output: belgium_pit_dependent_elderly_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+              output: belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_couple_dependent_of_tax_unit, belgium_pit_dependent_elderly_equivalent_count, belgium_pit_dependent_elderly_is_eligible_for_article_132_7)
+  - name: belgium_pit_couple_other_dependent_count
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132 item 8, relation rollup of other dependant equivalents including disabled-person double counting
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_equivalent_count
+              output: belgium_pit_other_dependent_person_equivalent_count
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_article_132_counts#belgium_pit_other_dependent_person_is_eligible
+              output: belgium_pit_other_dependent_person_is_eligible
+              hash: sha256:a185bc07e1b7acd9ffecb16b953a2c9dce808ee07ddc6393e977473eb9c8ab97
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          sum_where(belgium_pit_couple_dependent_of_tax_unit, belgium_pit_other_dependent_person_equivalent_count, belgium_pit_other_dependent_person_is_eligible)
+  - name: belgium_pit_couple_article_132_child_ladder_tax_free_increase
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 132 items 1 through 5, ordinary dependent-child ladder applied to the relation-backed equivalent count
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_one_child_tax_free_increase
+              output: belgium_pit_article_132_one_child_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_two_children_tax_free_increase
+              output: belgium_pit_article_132_two_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_three_children_tax_free_increase
+              output: belgium_pit_article_132_three_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_four_children_tax_free_increase
+              output: belgium_pit_article_132_four_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_first_additional_child_count_from_page_182
+              output: belgium_pit_article_132_first_additional_child_count_from_page_182
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_additional_child_after_four_tax_free_increase
+              output: belgium_pit_article_132_additional_child_after_four_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_article_132_child_count <= 0:
+              0
+          else:
+              if belgium_pit_couple_article_132_child_count == 1:
+                  belgium_pit_article_132_one_child_tax_free_increase
+              else:
+                  if belgium_pit_couple_article_132_child_count == 2:
+                      belgium_pit_article_132_two_children_tax_free_increase
+                  else:
+                      if belgium_pit_couple_article_132_child_count == 3:
+                          belgium_pit_article_132_three_children_tax_free_increase
+                      else:
+                          belgium_pit_article_132_four_children_tax_free_increase + max(0, belgium_pit_couple_article_132_child_count - belgium_pit_article_132_first_additional_child_count_from_page_182) * belgium_pit_article_132_additional_child_after_four_tax_free_increase
+  - name: belgium_pit_couple_article_132bis_shared_child_ladder_before_half_share
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 132bis, shared children determined separately from other household children before the half allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_one_child_tax_free_increase
+              output: belgium_pit_article_132_one_child_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_two_children_tax_free_increase
+              output: belgium_pit_article_132_two_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_three_children_tax_free_increase
+              output: belgium_pit_article_132_three_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_four_children_tax_free_increase
+              output: belgium_pit_article_132_four_children_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_first_additional_child_count_from_page_182
+              output: belgium_pit_article_132_first_additional_child_count_from_page_182
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_additional_child_after_four_tax_free_increase
+              output: belgium_pit_article_132_additional_child_after_four_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_article_132bis_shared_custody_child_count <= 0:
+              0
+          else:
+              if belgium_pit_couple_article_132bis_shared_custody_child_count == 1:
+                  belgium_pit_article_132_one_child_tax_free_increase
+              else:
+                  if belgium_pit_couple_article_132bis_shared_custody_child_count == 2:
+                      belgium_pit_article_132_two_children_tax_free_increase
+                  else:
+                      if belgium_pit_couple_article_132bis_shared_custody_child_count == 3:
+                          belgium_pit_article_132_three_children_tax_free_increase
+                      else:
+                          belgium_pit_article_132_four_children_tax_free_increase + max(0, belgium_pit_couple_article_132bis_shared_custody_child_count - belgium_pit_article_132_first_additional_child_count_from_page_182) * belgium_pit_article_132_additional_child_after_four_tax_free_increase
   - name: belgium_pit_joint_article_132_supplements_tax_free_amount
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: Couple oracle boundary excludes dependants and Article 132 supplements
+    source: CIR 1992 Articles 132 and 132bis, ordinary child supplements plus one half of separately determined shared-custody child supplements
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_under_3_tax_free_increase
+              output: belgium_pit_article_132_child_under_3_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_dependent_elderly_tax_free_increase
+              output: belgium_pit_article_132_dependent_elderly_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_other_dependent_tax_free_increase
+              output: belgium_pit_article_132_other_dependent_tax_free_increase
+              hash: sha256:e9e0a65aad785a44ee4986289d3f697f49e191c4c95db90e87d3641b60edd959
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+              output: belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+              hash: sha256:441c3d1553b7ac5887a2831245aa15964f1e8fb19d9fdf9fec5be17dbb41ab0e
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_base_tax_free_amount - belgium_pit_base_tax_free_amount
+          belgium_pit_couple_article_132_child_ladder_tax_free_increase + belgium_pit_article_132_child_under_3_tax_free_increase * belgium_pit_couple_children_under_3_without_childcare_reduction_count + belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier * (belgium_pit_couple_article_132bis_shared_child_ladder_before_half_share + belgium_pit_article_132_child_under_3_tax_free_increase * belgium_pit_couple_article_132bis_shared_custody_children_under_3_without_childcare_reduction_count) + belgium_pit_article_132_dependent_elderly_tax_free_increase * belgium_pit_couple_dependent_elderly_count + belgium_pit_article_132_other_dependent_tax_free_increase * belgium_pit_couple_other_dependent_count
   - name: belgium_pit_couple_spouse_a_article_130_base_tax
     kind: derived
     entity: TaxUnit
@@ -263,10 +667,19 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 131 and 134 paragraph 4, spouse A tax-free amount after cross-spouse allocation for the couple oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+              output: belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+              hash: sha256:11f50cdfbb400d1d0c792c9689e05d12c6b854e5378625fa986279dfe9135ec0
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+          belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
   - name: belgium_pit_couple_spouse_b_tax_free_amount
     kind: derived
     entity: TaxUnit
@@ -274,10 +687,19 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 articles 131 and 134 paragraph 4, spouse B tax-free amount after cross-spouse allocation for the couple oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+              output: belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+              hash: sha256:11f50cdfbb400d1d0c792c9689e05d12c6b854e5378625fa986279dfe9135ec0
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+          belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
   - name: belgium_pit_couple_spouse_a_article_134_tax_on_tax_free_amount
     kind: derived
     entity: TaxUnit
@@ -324,6 +746,192 @@ rules:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
                       else:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4, counterfactual spouse A allocation before Article 132 child supplements for paragraph 3 attribution
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a
+              output: belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a
+              hash: sha256:25dd77083c4595ee3bedb7481afa5e3c1c7775ebed7309f63cfa27bbc12d2510
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+              output: belgium_pit_base_tax_free_amount
+              hash: sha256:2360bb12e93392b44fde84a7d4bfc88129ca7c8fca75e69f481d968e5386f2c2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a == 1:
+              belgium_pit_base_tax_free_amount - min(max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_a_taxable_income), max(0, belgium_pit_couple_spouse_b_taxable_income - belgium_pit_base_tax_free_amount)) + max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_b_taxable_income)
+          else:
+              belgium_pit_base_tax_free_amount - max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_a_taxable_income) + min(max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_b_taxable_income), max(0, belgium_pit_couple_spouse_a_taxable_income - belgium_pit_base_tax_free_amount))
+  - name: belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4, counterfactual spouse B allocation before Article 132 child supplements for paragraph 3 attribution
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a
+              output: belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a
+              hash: sha256:25dd77083c4595ee3bedb7481afa5e3c1c7775ebed7309f63cfa27bbc12d2510
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+              output: belgium_pit_base_tax_free_amount
+              hash: sha256:2360bb12e93392b44fde84a7d4bfc88129ca7c8fca75e69f481d968e5386f2c2
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_134_page_187_joint_article_132_supplements_assigned_to_spouse_a == 1:
+              belgium_pit_base_tax_free_amount - max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_b_taxable_income) + min(max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_a_taxable_income), max(0, belgium_pit_couple_spouse_b_taxable_income - belgium_pit_base_tax_free_amount))
+          else:
+              belgium_pit_base_tax_free_amount - min(max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_b_taxable_income), max(0, belgium_pit_couple_spouse_a_taxable_income - belgium_pit_base_tax_free_amount)) + max(0, belgium_pit_base_tax_free_amount - belgium_pit_couple_spouse_a_taxable_income)
+  - name: belgium_pit_couple_spouse_a_article_134_tax_on_base_only_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraphs 2 through 4, tax on spouse A counterfactual tax-free amount before child supplements
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_a_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_couple_spouse_b_article_134_tax_on_base_only_tax_free_amount
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraphs 2 through 4, tax on spouse B counterfactual tax-free amount before child supplements
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_first_tax_free_amount_threshold:
+              belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation * belgium_pit_article_134_first_tax_free_amount_rate
+          else:
+              if belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_second_tax_free_amount_threshold:
+                  belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate
+              else:
+                  if belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_third_tax_free_amount_threshold:
+                      belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate
+                  else:
+                      if belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation <= belgium_pit_article_134_fourth_tax_free_amount_threshold:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
+                      else:
+                          belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_b_base_only_tax_free_amount_after_paragraph_4_allocation - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+  - name: belgium_pit_article_134_joint_child_credit_equivalent_count_without_article_132bis
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 paragraphs 3 and 4, joint ordinary child equivalents
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_article_132_child_count
+  - name: belgium_pit_article_134_joint_child_credit_equivalent_count_with_article_132bis
+    kind: derived
+    entity: TaxUnit
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 paragraphs 3 and 4, joint shared-custody child equivalents
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_article_132bis_shared_custody_child_count
+  - name: belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraphs 3 and 4, spouse A unused tax reduction attributable to child supplements before the joint cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_couple_spouse_a_article_134_tax_on_tax_free_amount - max(belgium_pit_couple_spouse_a_article_130_base_tax, belgium_pit_couple_spouse_a_article_134_tax_on_base_only_tax_free_amount))
+  - name: belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraphs 3 and 4, spouse B unused tax reduction attributable to child supplements before the joint cap
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_couple_spouse_b_article_134_tax_on_tax_free_amount - max(belgium_pit_couple_spouse_b_article_130_base_tax, belgium_pit_couple_spouse_b_article_134_tax_on_base_only_tax_free_amount))
+  - name: belgium_pit_couple_spouse_a_refundable_child_tax_credit
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4, spouse A child credit after the joint paragraph 3 cap allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_spouse_a_refundable_child_credit_after_joint_cap
+              output: belgium_pit_article_134_page_187_joint_spouse_a_refundable_child_credit_after_joint_cap
+              hash: sha256:25dd77083c4595ee3bedb7481afa5e3c1c7775ebed7309f63cfa27bbc12d2510
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_page_187_joint_spouse_a_refundable_child_credit_after_joint_cap
+  - name: belgium_pit_couple_spouse_b_refundable_child_tax_credit
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4, spouse B child credit after the joint paragraph 3 cap allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_134_joint_credit_page_187#belgium_pit_article_134_page_187_joint_spouse_b_refundable_child_credit_after_joint_cap
+              output: belgium_pit_article_134_page_187_joint_spouse_b_refundable_child_credit_after_joint_cap
+              hash: sha256:25dd77083c4595ee3bedb7481afa5e3c1c7775ebed7309f63cfa27bbc12d2510
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_page_187_joint_spouse_b_refundable_child_credit_after_joint_cap
   - name: belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount
     kind: derived
     entity: TaxUnit
@@ -353,10 +961,19 @@ rules:
     period: Year
     unit: EUR
     source: Special financing law article 5/2, spouse A reduced State tax after the autonomy-factor reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_5_2_state_tax_share#belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+              output: belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+              hash: sha256:f10f98a8f0015dab42933d39161af31bf66d4ca333b09befb7954bf1e2046805
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount * belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor)
+          max(0, belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount * belgium_pit_article_5_2_state_tax_share_after_autonomy_factor)
   - name: belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor
     kind: derived
     entity: TaxUnit
@@ -364,10 +981,19 @@ rules:
     period: Year
     unit: EUR
     source: Special financing law article 5/2, spouse B reduced State tax after the autonomy-factor reduction
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_5_2_state_tax_share#belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+              output: belgium_pit_article_5_2_state_tax_share_after_autonomy_factor
+              hash: sha256:f10f98a8f0015dab42933d39161af31bf66d4ca333b09befb7954bf1e2046805
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_couple_spouse_b_net_federal_tax_after_tax_free_amount * belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor)
+          max(0, belgium_pit_couple_spouse_b_net_federal_tax_after_tax_free_amount * belgium_pit_article_5_2_state_tax_share_after_autonomy_factor)
   - name: belgium_pit_couple_spouse_a_net_federal_tax_after_work_bonus_credit
     kind: derived
     entity: TaxUnit
@@ -390,55 +1016,95 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor - belgium_pit_couple_spouse_b_article_289ter1_low_wage_work_bonus_credit
+  - name: belgium_pit_couple_spouse_a_net_federal_tax_after_family_and_work_bonus_credits
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 134 paragraph 3 and 289ter/1, spouse A tax after refundable child and work-bonus credits
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_a_net_federal_tax_after_work_bonus_credit - belgium_pit_couple_spouse_a_refundable_child_tax_credit
+  - name: belgium_pit_couple_spouse_b_net_federal_tax_after_family_and_work_bonus_credits
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 134 paragraph 3 and 289ter/1, spouse B tax after refundable child and work-bonus credits
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_couple_spouse_b_net_federal_tax_after_work_bonus_credit - belgium_pit_couple_spouse_b_refundable_child_tax_credit
   - name: belgium_pit_couple_spouse_a_local_additional_tax_base
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 466 and 466bis, spouse A local-tax base after the refundable work-bonus credit
+    source: CIR 1992 articles 290, 304, 466, and 466bis, spouse A pre-refundable-credit total-tax base
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_couple_spouse_a_net_federal_tax_after_work_bonus_credit)
+          max(0, belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor)
   - name: belgium_pit_couple_spouse_b_local_additional_tax_base
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 466 and 466bis, spouse B local-tax base after the refundable work-bonus credit
+    source: CIR 1992 articles 290, 304, 466, and 466bis, spouse B pre-refundable-credit total-tax base
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          max(0, belgium_pit_couple_spouse_b_net_federal_tax_after_work_bonus_credit)
+          max(0, belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor)
   - name: belgium_pit_couple_spouse_a_agglomeration_additional_tax_rate_after_cap
     kind: derived
     entity: TaxUnit
     dtype: Rate
     period: Year
     source: CIR 1992 article 468, agglomeration rate cap for spouse A in the couple oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_468_agglomeration_rate_cap#belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+              output: belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+              hash: sha256:9426159db6dacd5eb8549e86e1467881ea5fe7e060757d4e829e50009d7e5377
     versions:
       - effective_from: '2015-01-01'
         formula: |-
-          min(belgium_pit_couple_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+          min(belgium_pit_couple_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687)
   - name: belgium_pit_couple_spouse_b_agglomeration_additional_tax_rate_after_cap
     kind: derived
     entity: TaxUnit
     dtype: Rate
     period: Year
     source: CIR 1992 article 468, agglomeration rate cap for spouse B in the couple oracle slice
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: be:statutes/income_tax/individual/article_468_agglomeration_rate_cap#belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+              output: belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687
+              hash: sha256:9426159db6dacd5eb8549e86e1467881ea5fe7e060757d4e829e50009d7e5377
     versions:
       - effective_from: '2015-01-01'
         formula: |-
-          min(belgium_pit_couple_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap)
+          min(belgium_pit_couple_agglomeration_additional_tax_rate, belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687)
   - name: belgium_pit_couple_spouse_a_local_additional_tax
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 465 to 468, supplied local additions on spouse A's post-credit local-tax base in the couple oracle slice
+    source: CIR 1992 articles 465 to 468, supplied local additions on spouse A's pre-credit total-tax base in the couple oracle slice
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -449,7 +1115,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 465 to 468, supplied local additions on spouse B's post-credit local-tax base in the couple oracle slice
+    source: CIR 1992 articles 465 to 468, supplied local additions on spouse B's pre-credit total-tax base in the couple oracle slice
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -460,22 +1126,22 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130, 134, and 465 to 468, spouse A's composed couple oracle federal-plus-local PIT before withholding
+    source: Special financing law article 5/3 and CIR 1992 articles 130, 134, 290, 304, and 465 to 468, spouse A's pre-credit total tax plus local additions with refundable family/work credits imputed afterward
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_couple_spouse_a_net_federal_tax_after_work_bonus_credit + belgium_pit_couple_spouse_a_local_additional_tax
+          belgium_pit_couple_spouse_a_reduced_state_tax_after_autonomy_factor + belgium_pit_couple_spouse_a_local_additional_tax - belgium_pit_couple_spouse_a_article_289ter1_low_wage_work_bonus_credit - belgium_pit_couple_spouse_a_refundable_child_tax_credit
   - name: belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130, 134, and 465 to 468, spouse B's composed couple oracle federal-plus-local PIT before withholding
+    source: Special financing law article 5/3 and CIR 1992 articles 130, 134, 290, 304, and 465 to 468, spouse B's pre-credit total tax plus local additions with refundable family/work credits imputed afterward
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_couple_spouse_b_net_federal_tax_after_work_bonus_credit + belgium_pit_couple_spouse_b_local_additional_tax
+          belgium_pit_couple_spouse_b_reduced_state_tax_after_autonomy_factor + belgium_pit_couple_spouse_b_local_additional_tax - belgium_pit_couple_spouse_b_article_289ter1_low_wage_work_bonus_credit - belgium_pit_couple_spouse_b_refundable_child_tax_credit
   - name: belgium_pit_couple_federal_and_local_tax_before_withholding
     kind: derived
     entity: TaxUnit

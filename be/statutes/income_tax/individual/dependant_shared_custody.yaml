@@ -1,0 +1,69 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_shared_custody_child_tax_credit_multiplier
+module:
+  summary: |-
+    Person-scoped Article 132bis shared-custody gate. Each legal condition is
+    assigned explicitly on the related child Person; all must hold.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+rules:
+  - name: belgium_pit_article_132bis_shared_custody_tax_free_amount_multiplier
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 132bis, each taxpayer receives half of the Article 132 child supplements
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Dans ce cas, les suppléments visés à l'article 132, alinéa 1er, 1° à 5°, auxquels ces enfants donnent droit, déterminés abstraction faite de l'existence d'autres enfants dans le ménage dont ils font partie, sont attribués pour moitié à chacun des contribuables."
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Dans le cas visé à l'alinéa 1er, le supplément visé à l'article 132, alinéa 1er, 6°, est attribué pour moitié au contribuable qui ne demande pas la réduction pour garde d'enfant visée à l'article 14535."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_shared_custody_child_tax_credit_multiplier, belgium_pit_article_134_shared_custody_child_tax_credit_multiplier)
+  - name: belgium_pit_article_132bis_shared_custody_conditions_met
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 article 132bis shared-custody conditions and maintenance-payment exclusion
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "à l'égard d'un ou plusieurs enfants à charge qui donnent droit aux suppléments visés ci-avant"
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Les suppléments visés à l'article 132, alinéa 1er, 1° à 6°, sont répartis entre les deux contribuables qui ne font pas partie du même ménage mais qui remplissent l'obligation d'entretien prévue à l'article 203, § 1er, du Code civil à l'égard d'un ou plusieurs enfants à charge qui donnent droit aux suppléments visés ci-avant et dont l'hébergement est réparti de manière égalitaire entre les deux contribuables"
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "soit sur la base d'une convention enregistrée ou homologuée par un juge dans laquelle il est mentionné explicitement que l'hébergement de ces enfants est réparti de manière égalitaire entre les deux contribuables et qu'ils sont disposés à répartir les suppléments à la quotité du revenu exemptée d'impôt pour ces enfants; - soit sur la base d'une décision judiciaire où il est explicitement mentionné que l'hébergement de ces enfants est réparti de manière égalitaire entre les deux contribuables."
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Le présent article n'est applicable que si, au plus tard au 1er janvier de l'exercice d'imposition, la convention visée à l'alinéa 1er est enregistrée ou homologuée ou la décision judiciaire visée à l'alinéa 1er est rendue."
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "Le présent article n'est pas applicable aux suppléments visés à l'alinéa 1er se rapportant à un enfant pour lequel des rentes alimentaires visées à l'article 104, 1°, sont déduites par un des contribuables susvisés."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_132bis_child_is_dependent_of_one_taxpayer and belgium_pit_article_132bis_taxpayers_do_not_form_same_household and belgium_pit_article_132bis_both_taxpayers_meet_civil_code_maintenance_obligation and belgium_pit_article_132bis_child_accommodation_is_equally_divided and belgium_pit_article_132bis_qualifying_agreement_or_judicial_decision_exists and belgium_pit_article_132bis_instrument_was_timely_registered_approved_or_rendered and belgium_pit_article_132bis_no_maintenance_payment_is_deducted_for_child

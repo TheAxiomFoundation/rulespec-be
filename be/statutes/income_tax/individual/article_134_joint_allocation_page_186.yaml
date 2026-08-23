@@ -1,0 +1,109 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+module:
+  summary: |-
+    This page-scoped adapter exposes the canonical Article 134 paragraph 4
+    joint tax-free-amount assignment and transfer outputs under page-186-owned
+    rule ids. It introduces no new numeric values and keeps the page-187
+    lower-income exception in the page-187 adapter.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_134_page_186_joint_article_132_supplements_assigned_to_spouse_a
+    kind: derived
+    entity: Household
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 paragraph 4 items 1 and 2, ordinary assignment to the higher-income spouse
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "1° la quotité du revenu exemptée d'impôt est fixée par conjoint;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "2° les suppléments visés à l'article 132 sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt du conjoint qui a le revenu imposable le plus élevé;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a, belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a)
+  - name: belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 1 through 4, spouse A allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "1° la quotité du revenu exemptée d'impôt est fixée par conjoint;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "2° les suppléments visés à l'article 132 sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt du conjoint qui a le revenu imposable le plus élevé;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "3° lorsque le revenu imposable du conjoint chez qui les suppléments visés à l'article 132 sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt en application du 2° du présent alinéa ou de l'alinéa 3, est inférieur à sa quotité du revenu exemptée d'impôt, l'excèdent de quotité du revenu exemptée d'impôt, limité, le cas échéant, à la différence positive entre le revenu imposable et la quotité du revenu exemptée d'impôt de l'autre conjoint, est ajouté à la quotité du revenu exemptée d'impôt de l'autre conjoint;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "4° lorsque le revenu imposable du conjoint chez qui les suppléments visés à l'article 132 ne sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt en application du 2° du présent alinéa ou de l'alinéa 3, est inférieur à sa quotité du revenu exemptée d'impôt, la totalité de l'excèdent de quotité du revenu exemptée d'impôt est ajoutée à la quotité du revenu exemptée d'impôt de l'autre conjoint;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation, belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation)
+  - name: belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 items 1 through 4, spouse B allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "1° la quotité du revenu exemptée d'impôt est fixée par conjoint;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "2° les suppléments visés à l'article 132 sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt du conjoint qui a le revenu imposable le plus élevé;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "3° lorsque le revenu imposable du conjoint chez qui les suppléments visés à l'article 132 sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt en application du 2° du présent alinéa ou de l'alinéa 3, est inférieur à sa quotité du revenu exemptée d'impôt, l'excèdent de quotité du revenu exemptée d'impôt, limité, le cas échéant, à la différence positive entre le revenu imposable et la quotité du revenu exemptée d'impôt de l'autre conjoint, est ajouté à la quotité du revenu exemptée d'impôt de l'autre conjoint;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "4° lorsque le revenu imposable du conjoint chez qui les suppléments visés à l'article 132 ne sont ajoutés au montant de base de la quotité du revenu exemptée d'impôt en application du 2° du présent alinéa ou de l'alinéa 3, est inférieur à sa quotité du revenu exemptée d'impôt, la totalité de l'excèdent de quotité du revenu exemptée d'impôt est ajoutée à la quotité du revenu exemptée d'impôt de l'autre conjoint;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation, belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation)
