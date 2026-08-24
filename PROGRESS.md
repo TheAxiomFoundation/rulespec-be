@@ -2,8 +2,10 @@
 
 ## State
 
-In progress on `experiment/computable-core-penal-contract`. The lane is Axiom-only and
-uses only the saved offline sources in `../experiment-penal-contract/sources/`.
+Implementation and local verification are complete on
+`experiment/computable-core-penal-contract`; final report audit is in progress.
+The lane is Axiom-only and uses only the saved offline sources in
+`../experiment-penal-contract/sources/`.
 
 ## Done
 
@@ -28,10 +30,20 @@ uses only the saved offline sources in `../experiment-penal-contract/sources/`.
   explicit-derogation gate.
 - Pinned-engine civil compile and all five civil companion cases passed. The combined
   pinned run passes 16 cases across both modules with zero failures.
+- Replaced the two validation-rejected embedded structural scalars with named
+  structural parameters; both modules recompiled and all companions repassed.
+- Passed all 29 repository-layout tests on the final rule shape.
+- Ran required sibling-layout validation against pinned encoder
+  `3869d66d009f52258be35901edbef370e65a399c`, engine
+  `c6cc389a8f5e7238019e4fa06849325fad9acd46`, and corpus
+  `8e48989c9e46faa6d85a9624b7a2ebda0880656d`.
+- Classified its sole error for each module honestly: the planned citation path
+  resolves to no numeric source text because the governing provisions have not
+  yet been ingested into the pinned corpus. No compile, companion, layout, or
+  oracle mismatch remains.
 
 ## Next
 
-- Run compile, companion tests, and sibling-layout validation; record any release-frontier
-  limitation honestly.
-- Complete `LANE_XP_REPORT.md` with sources, quotes, derivations, oracle tables, commands,
-  commit IDs, limitations, and the required terminal status line.
+- Complete the independent compliance audit and final repository-diff checks.
+- Finalize `LANE_XP_REPORT.md`, add its terminal status line, mark this ledger
+  complete, and commit the final report state.

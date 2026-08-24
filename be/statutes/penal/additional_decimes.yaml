@@ -34,6 +34,17 @@ units:
     kind: currency
     minor_units: 2
 rules:
+  - name: belgium_penal_fine_decime_tenths_per_principal
+    kind: parameter
+    dtype: Count
+    source: >-
+      Structural definition of a decime as one tenth of the principal, used
+      to express the instructed (10 + N) / 10 multiplier without an embedded
+      scalar
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          10
   - name: belgium_penal_fine_article_1_additional_decimes_count
     kind: parameter
     dtype: Count
@@ -104,7 +115,7 @@ rules:
       - effective_from: '2017-01-01'
         formula: |-
           if belgium_penal_fine_articles_1_and_2_decimes_apply == 1:
-              (10 + belgium_penal_fine_article_1_additional_decimes_count) / 10
+              (belgium_penal_fine_decime_tenths_per_principal + belgium_penal_fine_article_1_additional_decimes_count) / belgium_penal_fine_decime_tenths_per_principal
           else:
               1
   - name: belgium_penal_fine_article_1_amount_after_additional_decimes

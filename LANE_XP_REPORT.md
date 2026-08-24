@@ -2,9 +2,16 @@
 
 ## State
 
-Lane XP is in progress on `experiment/computable-core-penal-contract`, based on
-`origin/main` commit `b105e2b`. This lane is Axiom-only. It uses no EUROMOD code,
-data, commands, or comparison results.
+Lane XP implementation and local verification are complete on
+`experiment/computable-core-penal-contract`, based on `origin/main` commit
+`b105e2b`; final audit and documentation are in progress. This lane is
+Axiom-only. It uses no EUROMOD code, data, commands, or comparison results.
+
+Both modules compile and all 16 companion cases pass. Required sibling-layout
+validation reaches, but cannot cross, the certification frontier because the
+planned citation paths resolve to no provision text in the pinned corpus. That
+is the expected corpus-ingestion work item, not a rule compilation or oracle
+failure.
 
 The experiment encodes two non-tax-benefit statutory computations:
 
@@ -90,7 +97,7 @@ Derivation: publication is 30 December; the period starts the next day,
 31 December 2025 (day 1); day 10 is 9 January 2026; the ten-day period expires
 in January; the first day of the following month is **1 February 2026**. This
 independently agrees with consolidated footnote (2). The module effective-date
-field will state `2026-02-01` explicitly.
+field states `2026-02-01` explicitly.
 
 ### Scope and non-computable text
 
@@ -301,7 +308,57 @@ AXIOM_RULESPEC_REPO_ROOTS="$PWD" /Users/maxghenis/TheAxiomFoundation/axiom-encod
 Result: exit 0 and `success: true`; two test files, 16 cases, two compiled
 programs, zero failures.
 
-Sibling-layout validation commands and exact results remain pending.
+Repository-shape check:
+
+```sh
+python3 -m pytest -q tests/test_repository_layout.py
+```
+
+Result on the final rule shape: exit 0; `29 passed in 13.66s`.
+
+Pinned revision capture:
+
+```sh
+git -C /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned rev-parse HEAD
+git -C /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine rev-parse HEAD
+git -C /Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin rev-parse HEAD
+```
+
+Results, in command order:
+
+- encoder: `3869d66d009f52258be35901edbef370e65a399c`;
+- engine: `c6cc389a8f5e7238019e4fa06849325fad9acd46`;
+- pinned corpus: `8e48989c9e46faa6d85a9624b7a2ebda0880656d`.
+
+Required sibling-layout validation:
+
+```sh
+lane_xp_validate_dir="$(mktemp -d /private/tmp/lane-xp-validate.XXXXXX)"
+echo "validate_dir=$lane_xp_validate_dir"
+rsync -a --exclude .git "$PWD/" "$lane_xp_validate_dir/rulespec-be/"
+ln -s /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine "$lane_xp_validate_dir/axiom-rules-engine"
+ln -s /Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin "$lane_xp_validate_dir/corpus-be-pin"
+cd "$lane_xp_validate_dir/rulespec-be"
+AXIOM_CORPUS_REPO="$lane_xp_validate_dir/corpus-be-pin" /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode validate be/statutes/penal/additional_decimes.yaml be/statutes/civil/legal_interest.yaml --skip-reviewers --json
+```
+
+The first run correctly rejected embedded structural scalars in `(10 + N) / 10`
+and percentage-points `/ 100`. Those scalars were promoted to named structural
+parameters, after which both compiles, the 16 cases, and the 29 layout checks
+passed again. The exact-current-state sibling run used
+`/private/tmp/lane-xp-validate.ehauvd` and exited 1. Each module had
+`ci_pass: false`, `all_passed: false`, null reviewer scores because
+`--skip-reviewers` was requested, and the same sole error:
+
+> ci: Numeric source required: RuleSpec defines policy numeric literals but does not provide `source_verification.corpus_citation_path` or `source_verification.corpus_citation_paths` text. `module.summary` is not accepted as source text for numeric grounding.
+
+Both modules do declare canonical planned `corpus_citation_path` values. The
+error means those paths return no text from the pinned corpus; validation stops
+at numeric-source grounding before review or oracle scoring. It is therefore
+honestly classified as the documented corpus-ingestion/promotion frontier.
+After the two source work items are ingested and the corpus pin is promoted,
+the full signed release validation and one-reviewer legal pass still have to be
+run. This lane is executable and exercised, but not certified.
 
 ## Commits
 
@@ -310,25 +367,25 @@ Sibling-layout validation commands and exact results remain pending.
 | `5f97c22` | Start and commit the required `PROGRESS.md` ledger |
 | `4589648` | Record the saved-source evidence and preliminary oracle tables |
 | `b909217` | Encode, compile, and exercise penal additional decimes |
+| `d353e36` | Encode, compile, and exercise statutory legal interest |
 
 ## What this proves / what it does not
 
-If the pending pinned-engine runs succeed, this exhibit will prove that the
-Axiom pipeline can compile and exercise dated statutory computations outside
-tax-benefit law, including amendment selection, legal-scope carve-outs,
-rounding, and a cross-source oracle that owes nothing to EUROMOD. It will be an
-executable, exercised artifact on the certification ladder; it will **not** be
-certified law. Corpus ingestion/promotion and legal review remain pending. The
-scoping document's pilot recipe remains one quarter, one reviewer, and one
-oracle; this experiment does not enlarge that recipe or claim national legal
-coverage.
+This exhibit proves that the Axiom pipeline can compile and exercise dated
+statutory computations outside tax-benefit law, including amendment selection,
+legal-scope carve-outs, rounding, and a cross-source oracle that owes nothing to
+EUROMOD. It is an executable, exercised artifact on the certification ladder;
+it is **not** certified law. Corpus ingestion/promotion and legal review remain
+pending. The scoping document's pilot recipe remains one quarter, one reviewer,
+and one oracle; this experiment does not enlarge that recipe, establish legal
+completeness, or claim national legal coverage.
 
 ## Next
 
-- Finish RuleSpec-shape investigation against the pinned engine and repository
-  contracts.
-- Implement the two atomic modules and exhaustive companion cases.
-- Compile and execute with the pinned engine, then run sibling-layout validate
-  and classify the corpus/release frontier exactly.
+- Ingest and promote the two governing source records listed above, preserving
+  the amendment as linked source evidence.
+- Replace raw-page hashes with promoted provision-text hashes, advance the
+  pinned corpus through the signed release process, and rerun full validation.
+- Obtain the pilot's one legal reviewer and preserve the one-oracle scope.
 
 LANE XP IN PROGRESS
