@@ -105,12 +105,15 @@ Article 2 (`decimes_1952.html:192`) provides two computable exclusions:
 
 > La majoration prévue à l'article 1er n'est applicable ni aux amendes prononcées en vertu de la loi du 29 août 1919 concernant les débits de boissons fermentées, modifiée par l'arrêté-loi du 14 novembre 1939 relatif à la répression du débit illicite de boissons fermentées, ni dans les cas où cette majoration est exclue par une loi particulière.
 
-Both exclusions will be explicit boolean inputs. An excluded fine retains a
+Both exclusions are explicit boolean inputs. An excluded fine retains a
 multiplier of 1 and its unmultiplied amount; it does not become a zero fine.
 
-The second paragraph of Article 1 requires the judgment to record the increased
-amount. The third paragraph requires joint recovery with the principal. Those
-are procedural consequences, not separate numeric rules. Article 1bis is
+Article 1's unchanged-legal-character clause classifies the consequence of the
+increase but creates no additional numeric output. Its second paragraph
+requires the judgment to record the increased amount; its third paragraph
+requires joint recovery with the principal. Those are procedural consequences,
+not separate numeric rules. Amendment Article 1 merely declares the
+constitutional legislative basis and is likewise non-computational. Article 1bis is
 `[abrogé]`, with the note
 `<L 2010-06-06/06, art. 109, 13°, 008; En vigueur : 01-07-2011>`, so it creates
 no current output. Article 3 repeals predecessor enactments and creates no
@@ -176,17 +179,25 @@ The next sentence is a necessary authority boundary:
 
 > Ce taux peut être modifié par arrêté royal délibéré en Conseil des ministres.
 
-The current Article 2 provision will conservatively begin on `2007-01-01`.
+The current Article 2 provision conservatively begins on `2007-01-01`.
 Although its history notes 7% from 1 September 1996 (`<AR 4 août 1996, MB 15
 août 1996>`), extending the current statutory formulation backward would rely
 on that separate decree.
 
-From 1 January 2023, §2/1 begins “Par dérogation au paragraphe 2” for specified
-SPF-Finances-collected or refunded fiscal and non-fiscal claims, subject to its
-regional-tax exception. Because its J-index data and referenced implementing
-order are not supplied, this experiment encodes an explicit `§2 applies`
-predicate and the 7% default, not an invented §2/1 rate. Any other explicit
-fiscal derogation also turns that predicate off.
+Article 2 §2/1 states (`interet_1865_texte.html:192`):
+
+> § 2/1. Par dérogation au paragraphe 2, en ce qui concerne les créances fiscales et non fiscales dont la perception, la restitution ou le recouvrement sont assurés par le Service public fédéral Finances, à l'exception des impôts régionaux visés à l'article 3 de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, et des sanctions administratives y attachées, et ce même si les dispositions qui les régissent renvoient au taux d'intérêt légal en matière civile, et pour autant qu'il n'y soit pas explicitement dérogé dans les dispositions fiscales :
+
+Its version note is:
+
+> (1)\<L 2022-11-20/01, art. 3, 004; En vigueur : 01-01-2023\>
+
+Thus, from 1 January 2023, §2/1 displaces §2 for the specified
+SPF-Finances-collected or refunded fiscal and non-fiscal claims, except the
+named regional taxes and attached sanctions, and only when no other fiscal
+provision explicitly derogates. Because its J-index data and referenced
+implementing order are not supplied, this experiment encodes the §2/1 scope, an
+explicit `§2 applies` predicate, and the 7% default—not an invented §2/1 rate.
 
 ### EURIBOR and published-rate oracle
 
@@ -225,7 +236,7 @@ reference is invented.
 ## Corpus-ingestion worklist
 
 The pinned corpus does not yet hold either governing document. Following the
-dependants-lane “encode now, promote later” precedent, the modules will identify
+dependants-lane “encode now, promote later” precedent, the modules identify
 the Justel numac locators and exact saved-byte hashes now, while certification-
 frontier validation remains blocked until ingestion, legal-source slicing, and
 promotion:
@@ -297,7 +308,8 @@ Result: exit 0 and `success: true`; one test file, five cases, one compiled
 program, zero failures. Every case assigns the EURIBOR input and all three
 fiscal-scope booleans, including explicit `false` values. The 2025 and 2026
 oracles return 0.045; the remaining cases exercise §2/1, its regional-tax/
-attached-sanction exception, and another explicit fiscal derogation.
+attached-sanction exception, and the intersection of §2/1 SPF scope with
+another explicit fiscal derogation.
 
 Combined companion run:
 
@@ -314,7 +326,7 @@ Repository-shape check:
 python3 -m pytest -q tests/test_repository_layout.py
 ```
 
-Result on the final rule shape: exit 0; `29 passed in 13.66s`.
+Result after the independent scope audit: exit 0; `29 passed in 13.18s`.
 
 Pinned revision capture:
 
@@ -345,20 +357,25 @@ AXIOM_CORPUS_REPO="$lane_xp_validate_dir/corpus-be-pin" /Users/maxghenis/TheAxio
 The first run correctly rejected embedded structural scalars in `(10 + N) / 10`
 and percentage-points `/ 100`. Those scalars were promoted to named structural
 parameters, after which both compiles, the 16 cases, and the 29 layout checks
-passed again. The exact-current-state sibling run used
-`/private/tmp/lane-xp-validate.ehauvd` and exited 1. Each module had
+passed again. After correcting the audited §2/1/explicit-derogation
+intersection, both modules and all 16 cases passed once more. The
+exact-current-state sibling run then used
+`/private/tmp/lane-xp-validate.mukjib` and exited 1. Each module had
 `ci_pass: false`, `all_passed: false`, null reviewer scores because
-`--skip-reviewers` was requested, and the same sole error:
+`--skip-reviewers` was requested, and the same sole first-gate error:
 
 > ci: Numeric source required: RuleSpec defines policy numeric literals but does not provide `source_verification.corpus_citation_path` or `source_verification.corpus_citation_paths` text. `module.summary` is not accepted as source text for numeric grounding.
 
 Both modules do declare canonical planned `corpus_citation_path` values. The
 error means those paths return no text from the pinned corpus; validation stops
 at numeric-source grounding before review or oracle scoring. It is therefore
-honestly classified as the documented corpus-ingestion/promotion frontier.
-After the two source work items are ingested and the corpus pin is promoted,
-the full signed release validation and one-reviewer legal pass still have to be
-run. This lane is executable and exercised, but not certified.
+honestly classified as the documented corpus-ingestion/promotion frontier, but
+it does not establish that ingestion alone will make later validation gates
+green. Once the two source work items are ingested, numeric grounding—including
+the word-stated `septante` and `quart de pourcent` values and the structural
+percentage conversion—must be reconciled with the pinned validator. The full
+signed release validation and one-reviewer legal pass must then run. This lane
+is executable and exercised, but not certified.
 
 ## Commits
 
@@ -368,6 +385,7 @@ run. This lane is executable and exercised, but not certified.
 | `4589648` | Record the saved-source evidence and preliminary oracle tables |
 | `b909217` | Encode, compile, and exercise penal additional decimes |
 | `d353e36` | Encode, compile, and exercise statutory legal interest |
+| `3b11699` | Extract structural scalars and record the first corpus-frontier validation |
 
 ## What this proves / what it does not
 

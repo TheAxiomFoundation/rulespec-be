@@ -125,14 +125,23 @@ rules:
     period: Year
     source: >-
       Law of 5 May 1865 Article 2 paragraph 2/1, SPF-Finances claim scope and
-      regional-tax or attached-administrative-sanction exception
+      regional-tax or attached-administrative-sanction exception, provided no
+      other fiscal provision explicitly derogates
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1865-05-05/1865050550/article-2"
+              excerpt: "§ 2/1. Par dérogation au paragraphe 2, en ce qui concerne les créances fiscales et non fiscales dont la perception, la restitution ou le recouvrement sont assurés par le Service public fédéral Finances, à l'exception des impôts régionaux visés à l'article 3 de la loi spéciale du 16 janvier 1989 relative au financement des Communautés et des Régions, et des sanctions administratives y attachées, et ce même si les dispositions qui les régissent renvoient au taux d'intérêt légal en matière civile, et pour autant qu'il n'y soit pas explicitement dérogé dans les dispositions fiscales :"
     versions:
       - effective_from: '2007-01-01'
         formula: |-
           0
       - effective_from: '2023-01-01'
         formula: |-
-          if belgium_legal_interest_fiscal_claim_administered_by_spf_finances and not belgium_legal_interest_fiscal_claim_is_paragraph_2_1_regional_tax_or_attached_sanction_exception:
+          if belgium_legal_interest_fiscal_claim_administered_by_spf_finances and not belgium_legal_interest_fiscal_claim_is_paragraph_2_1_regional_tax_or_attached_sanction_exception and not belgium_legal_interest_fiscal_other_explicit_derogation_applies:
               1
           else:
               0

@@ -71,7 +71,7 @@
     be:statutes/civil/legal_interest#belgium_legal_interest_article_2_paragraph_2_1_derogation_scope_applies: 0
     be:statutes/civil/legal_interest#belgium_legal_interest_article_2_paragraph_2_fiscal_default_applies: 1
 
-- name: other_explicit_fiscal_derogation_displaces_seven_percent_default
+- name: other_explicit_fiscal_derogation_displaces_paragraph_2_1_and_seven_percent_default
   period:
     period_kind: custom
     name: calendar_year
@@ -79,7 +79,7 @@
     end: '2026-12-31'
   input:
     be:statutes/civil/legal_interest#input.belgium_legal_interest_preceding_december_euribor_1y_percentage_points: 2.2671429
-    be:statutes/civil/legal_interest#input.belgium_legal_interest_fiscal_claim_administered_by_spf_finances: false
+    be:statutes/civil/legal_interest#input.belgium_legal_interest_fiscal_claim_administered_by_spf_finances: true
     be:statutes/civil/legal_interest#input.belgium_legal_interest_fiscal_claim_is_paragraph_2_1_regional_tax_or_attached_sanction_exception: false
     be:statutes/civil/legal_interest#input.belgium_legal_interest_fiscal_other_explicit_derogation_applies: true
   output:

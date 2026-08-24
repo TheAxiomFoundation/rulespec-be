@@ -37,10 +37,18 @@ The lane is Axiom-only and uses only the saved offline sources in
   `3869d66d009f52258be35901edbef370e65a399c`, engine
   `c6cc389a8f5e7238019e4fa06849325fad9acd46`, and corpus
   `8e48989c9e46faa6d85a9624b7a2ebda0880656d`.
-- Classified its sole error for each module honestly: the planned citation path
+- Classified its sole first-gate error for each module honestly: the planned citation path
   resolves to no numeric source text because the governing provisions have not
-  yet been ingested into the pinned corpus. No compile, companion, layout, or
-  oracle mismatch remains.
+  yet been ingested into the pinned corpus. Later numeric-grounding and review
+  gates remain unproven; no compile, companion, layout, or exercised-oracle
+  mismatch remains.
+- Independent audit found and corrected the §2/1/explicit-derogation
+  intersection, strengthened its companion case, added the Article 1 scope
+  proof, and identified the correct blocked terminal status under the campaign
+  gate.
+- Recompiled both audited modules, repassed all 16 cases and all 29 layout
+  checks, and reran sibling validation; the same missing-corpus first gate is
+  the only reported validation error for each module.
 
 ## Next
 
