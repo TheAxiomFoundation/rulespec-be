@@ -19,11 +19,14 @@ uses only the saved offline sources in `../experiment-penal-contract/sources/`.
 - Started `LANE_XP_REPORT.md`, including the corpus-ingestion worklist and the saved-source
   limitation that no specific 2025/2026 Moniteur notice reference appears in the supplied
   mediation page.
+- Added the penal additional-decimes module with the 2017 and 2026 effective versions,
+  Article 1 scope, both Article 2 exclusions, multiplier, increase, and final fine.
+- Pinned-engine compile passed and all 11 penal companion cases passed, including the
+  required eight-row amendment grid and three negative scope/carve-out cases.
 
 ## Next
 
-- Inspect established RuleSpec and companion-test patterns.
-- Encode and test the penal fine multiplier and civil/fiscal statutory-interest rules.
+- Encode and test the civil/fiscal statutory-interest rules.
 - Run compile, companion tests, and sibling-layout validation; record any release-frontier
   limitation honestly.
 - Complete `LANE_XP_REPORT.md` with sources, quotes, derivations, oracle tables, commands,

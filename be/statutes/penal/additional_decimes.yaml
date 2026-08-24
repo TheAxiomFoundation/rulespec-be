@@ -1,0 +1,132 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  summary: |-
+    Articles 1 and 2 of the Belgian law of 5 March 1952 apply additional
+    decimes to penal fines pronounced by courts and tribunals. This module
+    encodes the septante-decime window beginning 1 January 2017, the
+    nonante-decime amendment effective 1 February 2026, and the exclusions
+    for the named 1919 fermented-beverages law and any particular law that
+    excludes the increase. Court-recording and collection procedure, repealed
+    Article 1bis, and historical repeal Article 3 are outside the computation.
+    Offline source-verification locators are
+    https://www.ejustice.just.fgov.be/eli/loi/1952/03/05/1952030505/justel
+    and https://www.ejustice.just.fgov.be/eli/loi/2025/12/19/2025009854/justel.
+    The source_sha256 below intentionally pins the raw saved
+    decimes_1952.html bytes until corpus ingestion can replace it with an
+    extracted-provision hash.
+  source_verification:
+    # Offline saved-file SHA-256 ledger (all Lane XP sources):
+    # decimes_1952.html = 2804d91abd1b35ac4c1be59f6b04a883fe4f0b5bde83e1e7cf955d118e663b65
+    # amending_law_2025009854.html = bfc100bc23b93a4b8620c57a7e06eec2c52fb0cc659c882be9a7c4b754380a8f
+    # interet_1865.html = 487dbdf2619e4b2478987178895e2c257fe4a61c7480898d450ed094b3955a0b
+    # interet_1865_texte.html = 6c4516e695f23f89f03e3740e8b7c1a6126f4662ed567268b95fbfebc760c01b
+    # euribor_1y_monthly.csv = ede1ff74f9d96b80f23352bed4391309ae8ec202e5381baca1e3e7d49ac1a3e1
+    # taux_2026_mediation.html = 67bbd508234cb8376d527bad9bafba1af03fee5bda6c7ab13cb4005777ecc0cd
+    corpus_citation_path: "be/statute/justel/loi-1952-03-05/1952030505/article-1"
+    source_sha256: "2804d91abd1b35ac4c1be59f6b04a883fe4f0b5bde83e1e7cf955d118e663b65"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_penal_fine_article_1_additional_decimes_count
+    kind: parameter
+    dtype: Count
+    source: >-
+      Law of 5 March 1952 Article 1, as amended by Law of 19 December
+      2025 Article 2, with the consolidated version notes
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-2025-12-19/2025009854/article-2"
+              excerpt: 'Art. 2. Dans l''article 1er, alinéas 1er et 2, de la loi du 5 mars 1952 relative aux décimes additionnels sur les amendes pénales, modifiés en dernier lieu par la loi du 25 décembre 2016, le mot "septante" est chaque fois remplacé par le mot "nonante".'
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1952-03-05/1952030505/article-1"
+              excerpt: '(1)<L 2016-12-25/01, art. 59, 010; En vigueur : 01-01-2017>'
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-2025-12-19/2025009854/article-2"
+              excerpt: 'Art. 2. Dans l''article 1er, alinéas 1er et 2, de la loi du 5 mars 1952 relative aux décimes additionnels sur les amendes pénales, modifiés en dernier lieu par la loi du 25 décembre 2016, le mot "septante" est chaque fois remplacé par le mot "nonante".'
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1952-03-05/1952030505/article-1"
+              excerpt: '(2)<L 2025-12-19/18, art. 2, 011; En vigueur : 01-02-2026>'
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          70
+      - effective_from: '2026-02-01'
+        formula: |-
+          90
+  - name: belgium_penal_fine_articles_1_and_2_decimes_apply
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Day
+    source: >-
+      Law of 5 March 1952 Articles 1 and 2, penal-fine scope and exclusions
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1952-03-05/1952030505/article-2"
+              excerpt: 'La majoration prévue à l''article 1er n''est applicable ni aux amendes prononcées en vertu de la loi du 29 août 1919 concernant les débits de boissons fermentées, modifiée par l''arrêté-loi du 14 novembre 1939 relatif à la répression du débit illicite de boissons fermentées, ni dans les cas où cette majoration est exclue par une loi particulière.'
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          if belgium_penal_fine_pronounced_by_court_within_article_1_scope and not belgium_penal_fine_pronounced_under_1919_fermented_beverages_law and not belgium_penal_fine_particular_law_excludes_decimes:
+              1
+          else:
+              0
+  - name: belgium_penal_fine_articles_1_and_2_multiplier
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Day
+    source: >-
+      Law of 5 March 1952 Articles 1 and 2, N additional decimes increase a
+      pronounced fine by N tenths when no exclusion applies
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          if belgium_penal_fine_articles_1_and_2_decimes_apply == 1:
+              (10 + belgium_penal_fine_article_1_additional_decimes_count) / 10
+          else:
+              1
+  - name: belgium_penal_fine_article_1_amount_after_additional_decimes
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: >-
+      Law of 5 March 1952 Article 1, pronounced fine after the applicable
+      additional-decimes increase
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_penal_fine_pronounced_statutory_amount * belgium_penal_fine_articles_1_and_2_multiplier
+  - name: belgium_penal_fine_article_1_additional_decimes_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Day
+    unit: EUR
+    source: >-
+      Law of 5 March 1952 Article 1, monetary increase over the pronounced
+      statutory fine
+    versions:
+      - effective_from: '2017-01-01'
+        formula: |-
+          belgium_penal_fine_article_1_amount_after_additional_decimes - belgium_penal_fine_pronounced_statutory_amount

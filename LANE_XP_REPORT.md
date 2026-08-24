@@ -122,10 +122,9 @@ case horizon rather than presented as perpetual legal completeness.
 
 ### Penal oracle grid
 
-These are the saved-law expected values; the verification section will mark
-them engine-exercised after the pinned companion succeeds. Every row cites
-Article 1 of the 1952 law, as amended by Article 2 of the 2025 law; the
-exclusion inputs are false.
+These saved-law values are engine-exercised by the pinned companion. Every row
+cites Article 1 of the 1952 law, as amended by Article 2 of the 2025 law; the
+Article 1 scope input is true and both exclusion inputs are explicitly false.
 
 | Judgment date | Statutory fine | Additional decimes | Multiplier | Fine after decimes | Provision |
 |---|---:|---:|---:|---:|---|
@@ -235,8 +234,29 @@ shasum -a 256 ../experiment-penal-contract/sources/*
 file ../experiment-penal-contract/sources/*.html ../experiment-penal-contract/sources/*.csv
 ```
 
-Compile, companion-test, and sibling-layout validation commands and their exact
-results will be added after the modules exist.
+Penal compile:
+
+```sh
+AXIOM_RULESPEC_REPO_ROOTS="$PWD" /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine/target/release/axiom-rules-engine compile --program "$PWD/be/statutes/penal/additional_decimes.yaml" --output /private/tmp/lane-xp-penal.compiled.json
+```
+
+Result: exit 0; artifact format 1; engine `0.1.0`; four derived outputs;
+evaluation order `decimes_apply` → `multiplier` → `amount_after` →
+`additional_amount`; `fast_path_compatible: true`.
+
+Penal companion:
+
+```sh
+AXIOM_RULESPEC_REPO_ROOTS="$PWD" /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/penal/additional_decimes.test.yaml --json
+```
+
+Result: exit 0 and `success: true`; one test file, 11 cases, one compiled
+program, zero failures. All four local inputs are assigned in every case,
+including explicit `false` values. The eight requested grid rows, both Article
+2 exclusions, and a false Article 1 scope case all pass.
+
+Civil compile/companion and sibling-layout validation commands and exact results
+remain pending.
 
 ## Commits
 
