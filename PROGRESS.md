@@ -2,8 +2,10 @@
 
 ## State
 
-Implementation and local verification are complete on
-`experiment/computable-core-penal-contract`; final report audit is in progress.
+Blocked at the required certification gate on
+`experiment/computable-core-penal-contract`. Implementation, exercise, and the
+final branch audit are complete, but the campaign requires `ci_pass: true`
+before done and the governing provision text is absent from the pinned corpus.
 The lane is Axiom-only and uses only the saved offline sources in
 `../experiment-penal-contract/sources/`.
 
@@ -49,9 +51,17 @@ The lane is Axiom-only and uses only the saved offline sources in
 - Recompiled both audited modules, repassed all 16 cases and all 29 layout
   checks, and reran sibling validation; the same missing-corpus first gate is
   the only reported validation error for each module.
+- Completed the branch audit: exactly the report, progress ledger, two modules,
+  and two companions differ from `origin/main`; prohibited paths are untouched;
+  the diff is whitespace-clean; the stash list is empty; all source hashes
+  re-match; and no push or stash mutation occurred.
+- Finalized `LANE_XP_REPORT.md` with the strict blocked terminal status required
+  by the campaign's `ci_pass: true before done` gate.
 
 ## Next
 
-- Complete the independent compliance audit and final repository-diff checks.
-- Finalize `LANE_XP_REPORT.md`, add its terminal status line, mark this ledger
-  complete, and commit the final report state.
+- Ingest and promote the governing Justel provision records and replace the raw
+  saved-page hashes with promoted provision-text hashes.
+- Reconcile word-stated and structural numeric grounding with the pinned
+  validator, rerun sibling validation to `ci_pass: true`, then complete signed
+  release validation and the pilot's one-reviewer legal pass.

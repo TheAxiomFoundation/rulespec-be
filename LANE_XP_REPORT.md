@@ -2,10 +2,11 @@
 
 ## State
 
-Lane XP implementation and local verification are complete on
+Lane XP implementation, exercise, and final branch audit are complete on
 `experiment/computable-core-penal-contract`, based on `origin/main` commit
-`b105e2b`; final audit and documentation are in progress. This lane is
-Axiom-only. It uses no EUROMOD code, data, commands, or comparison results.
+`b105e2b`. Certification is blocked at required local sibling validation. This
+lane is Axiom-only. It uses no EUROMOD code, data, commands, or comparison
+results.
 
 Both modules compile and all 16 companion cases pass. Required sibling-layout
 validation reaches, but cannot cross, the certification frontier because the
@@ -377,6 +378,30 @@ percentage conversion—must be reconciled with the pinned validator. The full
 signed release validation and one-reviewer legal pass must then run. This lane
 is executable and exercised, but not certified.
 
+The binding campaign rule requires `ci_pass: true` before a lane may be marked
+done. Because the exact-current-state local sibling result is `ci_pass: false`,
+this report closes as blocked on corpus ingestion/promotion and subsequent
+numeric-source validation, even though compilation and every companion oracle
+case are green.
+
+Final branch audit:
+
+```sh
+git status --short --branch
+git diff --check origin/main...HEAD
+git diff --name-status origin/main...HEAD
+git diff --name-only origin/main...HEAD -- .axiom/toolchain.toml .github known-validation-gaps.yaml oracle-coverage-pending.yaml
+git stash list
+shasum -a 256 ../experiment-penal-contract/sources/*
+```
+
+Result before the terminal report commit: the branch was six local commits
+ahead of `origin/main`; the worktree was clean; `git diff --check` emitted
+nothing; the complete branch diff contained exactly this report, `PROGRESS.md`,
+the two modules, and their two companions; the prohibited-path query and stash
+list both emitted nothing; and all six source hashes exactly matched the source
+register above. No push or stash mutation was performed.
+
 ## Commits
 
 | Commit | Coherent step |
@@ -386,6 +411,7 @@ is executable and exercised, but not certified.
 | `b909217` | Encode, compile, and exercise penal additional decimes |
 | `d353e36` | Encode, compile, and exercise statutory legal interest |
 | `3b11699` | Extract structural scalars and record the first corpus-frontier validation |
+| `3bcaa86` | Correct the audited §2/1 explicit-derogation intersection and reverify |
 
 ## What this proves / what it does not
 
@@ -406,4 +432,4 @@ completeness, or claim national legal coverage.
   pinned corpus through the signed release process, and rerun full validation.
 - Obtain the pilot's one legal reviewer and preserve the one-oracle scope.
 
-LANE XP IN PROGRESS
+LANE XP BLOCKED corpus ingestion/promotion required for numeric-source validation
