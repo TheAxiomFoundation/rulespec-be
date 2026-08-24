@@ -23,10 +23,14 @@ uses only the saved offline sources in `../experiment-penal-contract/sources/`.
   Article 1 scope, both Article 2 exclusions, multiplier, increase, and final fine.
 - Pinned-engine compile passed and all 11 penal companion cases passed, including the
   required eight-row amendment grid and three negative scope/carve-out cases.
+- Added the civil legal-interest formula, exact percentage-point EURIBOR data input,
+  fractional rate output, 7% fiscal default, §2/1 scope, regional exception, and other
+  explicit-derogation gate.
+- Pinned-engine civil compile and all five civil companion cases passed. The combined
+  pinned run passes 16 cases across both modules with zero failures.
 
 ## Next
 
-- Encode and test the civil/fiscal statutory-interest rules.
 - Run compile, companion tests, and sibling-layout validation; record any release-frontier
   limitation honestly.
 - Complete `LANE_XP_REPORT.md` with sources, quotes, derivations, oracle tables, commands,

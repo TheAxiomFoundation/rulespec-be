@@ -187,6 +187,9 @@ The data input is ECB series
 `FM.M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA`, titled “Euribor 1-year - Historical close,
 average of observations through period,” unit `PCPA`. The exact relevant CSV
 observations are 2.43605 for `2024-12` and 2.2671429 for `2025-12`.
+Those exact percentage-point observations appear directly in the companion
+inputs; the module produces the fractional `Rate` 0.045 only after applying
+the statute.
 
 The saved mediation page (`taux_2026_mediation.html:479-484`) says:
 
@@ -201,6 +204,9 @@ is not used as this Article 2 oracle.
 |---|---:|---:|---:|---:|---:|---:|
 | 2025 | 2.43605% = 243.605 bp | 2.50% = 250 bp (+6.395 bp) | +2.00 pp = 200 bp | 4.50% = 450 bp | 4.50% = 450 bp | 0 bp |
 | 2026 | 2.2671429% = 226.71429 bp | 2.50% = 250 bp (+23.28571 bp) | +2.00 pp = 200 bp | 4.50% = 450 bp | 4.50% = 450 bp | 0 bp |
+
+Both rows are engine-exercised and match the saved published-rate oracle to
+0 basis points.
 
 The saved mediation HTML contains no specific 2025/2026 Moniteur issue, notice
 number, notice date, or direct Moniteur link. It links only to an SPF Finances
@@ -221,6 +227,14 @@ promotion:
 |---|---:|---|---|
 | Ingest and promote the 1952 consolidated law plus its 2025 amendment source | 1952030505 / 2025009854 | 1952 and 2025 ELI links above | `decimes_1952.html` + `amending_law_2025009854.html` hashes above |
 | Ingest and promote the 1865 Article 2 consolidation | 1865050550 | 1865 ELI link above | `interet_1865_texte.html` hash above |
+
+The repository's singular provenance contract permits only a corpus-style
+`corpus_citation_path` and one `source_sha256`; it rejects a URL as the corpus
+path. Each module therefore uses a planned canonical Justel corpus path, places
+the exact numac URL in its source-verification comments and summary, and uses
+the requested raw saved-file SHA-256. After ingestion, the raw-page hash must
+be replaced by the promoted provision-text hash. This preserves the repository
+shape without pretending the planned corpus record already exists.
 
 ## Verification commands and results
 
@@ -255,14 +269,47 @@ program, zero failures. All four local inputs are assigned in every case,
 including explicit `false` values. The eight requested grid rows, both Article
 2 exclusions, and a false Article 1 scope case all pass.
 
-Civil compile/companion and sibling-layout validation commands and exact results
-remain pending.
+Civil compile:
+
+```sh
+AXIOM_RULESPEC_REPO_ROOTS="$PWD" /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine/target/release/axiom-rules-engine compile --program "$PWD/be/statutes/civil/legal_interest.yaml" --output /private/tmp/lane-xp-civil.compiled.json
+```
+
+Result: exit 0; artifact format 1; engine `0.1.0`; five derived outputs;
+evaluation order is rounded EURIBOR percentage points → civil/commercial rate
+percentage points → fractional rate → §2/1 scope → §2 default applicability;
+`fast_path_compatible: true`.
+
+Civil companion:
+
+```sh
+AXIOM_RULESPEC_REPO_ROOTS="$PWD" /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/civil/legal_interest.test.yaml --json
+```
+
+Result: exit 0 and `success: true`; one test file, five cases, one compiled
+program, zero failures. Every case assigns the EURIBOR input and all three
+fiscal-scope booleans, including explicit `false` values. The 2025 and 2026
+oracles return 0.045; the remaining cases exercise §2/1, its regional-tax/
+attached-sanction exception, and another explicit fiscal derogation.
+
+Combined companion run:
+
+```sh
+AXIOM_RULESPEC_REPO_ROOTS="$PWD" /Users/maxghenis/TheAxiomFoundation/axiom-encode-pinned/.venv/bin/axiom-encode test --root "$PWD" --axiom-rules-engine-path /Users/maxghenis/TheAxiomFoundation/_cape-prep-engine be/statutes/penal/additional_decimes.test.yaml be/statutes/civil/legal_interest.test.yaml --json
+```
+
+Result: exit 0 and `success: true`; two test files, 16 cases, two compiled
+programs, zero failures.
+
+Sibling-layout validation commands and exact results remain pending.
 
 ## Commits
 
 | Commit | Coherent step |
 |---|---|
 | `5f97c22` | Start and commit the required `PROGRESS.md` ledger |
+| `4589648` | Record the saved-source evidence and preliminary oracle tables |
+| `b909217` | Encode, compile, and exercise penal additional decimes |
 
 ## What this proves / what it does not
 

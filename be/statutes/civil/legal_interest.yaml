@@ -1,0 +1,150 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  summary: |-
+    Article 2 of the Belgian law of 5 May 1865 sets the calendar-year civil
+    and commercial legal-interest rate by rounding the preceding December's
+    one-year EURIBOR average upward to a quarter percentage point and adding
+    two percentage points. It also sets a 7% fiscal default unless another
+    fiscal provision derogates, including the Article 2 paragraph 2/1 scope
+    introduced from 1 January 2023. The EURIBOR observation is an external
+    data input in percentage points, never a statutory parameter. The offline
+    source-verification locator is
+    https://www.ejustice.just.fgov.be/eli/loi/1865/05/05/1865050550/justel.
+    The source_sha256 below intentionally pins the raw saved
+    interet_1865_texte.html bytes until corpus ingestion can replace it with
+    an extracted-provision hash.
+  source_verification:
+    # Justel numac locator:
+    # https://www.ejustice.just.fgov.be/eli/loi/1865/05/05/1865050550/justel
+    # Offline saved-file SHA-256 ledger (all Lane XP sources):
+    # decimes_1952.html = 2804d91abd1b35ac4c1be59f6b04a883fe4f0b5bde83e1e7cf955d118e663b65
+    # amending_law_2025009854.html = bfc100bc23b93a4b8620c57a7e06eec2c52fb0cc659c882be9a7c4b754380a8f
+    # interet_1865.html = 487dbdf2619e4b2478987178895e2c257fe4a61c7480898d450ed094b3955a0b
+    # interet_1865_texte.html = 6c4516e695f23f89f03e3740e8b7c1a6126f4662ed567268b95fbfebc760c01b
+    # euribor_1y_monthly.csv = ede1ff74f9d96b80f23352bed4391309ae8ec202e5381baca1e3e7d49ac1a3e1
+    # taux_2026_mediation.html = 67bbd508234cb8376d527bad9bafba1af03fee5bda6c7ab13cb4005777ecc0cd
+    corpus_citation_path: "be/statute/justel/loi-1865-05-05/1865050550/article-2"
+    source_sha256: "6c4516e695f23f89f03e3740e8b7c1a6126f4662ed567268b95fbfebc760c01b"
+rules:
+  - name: belgium_legal_interest_article_2_upward_rounding_quarter_percentage_point
+    kind: parameter
+    dtype: Decimal
+    source: Law of 5 May 1865 Article 2 paragraph 1, upward quarter-percent rounding
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1865-05-05/1865050550/article-2"
+              excerpt: '§ 1er. Chaque année calendrier, le taux de l''intérêt légal en matière civile et en matière commerciale est fixé comme suit : la moyenne du taux d''intérêt EURIBOR à 1 an pendant le mois de décembre de l''année précédente est arrondie vers le haut au quart de pourcent; le taux d''intérêt ainsi obtenu est augmenté de 2 pour cent.'
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          0.25
+  - name: belgium_legal_interest_article_2_addition_percentage_points
+    kind: parameter
+    dtype: Decimal
+    source: Law of 5 May 1865 Article 2 paragraph 1, two-percentage-point addition
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1865-05-05/1865050550/article-2"
+              excerpt: '§ 1er. Chaque année calendrier, le taux de l''intérêt légal en matière civile et en matière commerciale est fixé comme suit : la moyenne du taux d''intérêt EURIBOR à 1 an pendant le mois de décembre de l''année précédente est arrondie vers le haut au quart de pourcent; le taux d''intérêt ainsi obtenu est augmenté de 2 pour cent.'
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          2
+  - name: belgium_legal_interest_article_2_euribor_rounded_percentage_points
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: >-
+      Law of 5 May 1865 Article 2 paragraph 1; the preceding-December EURIBOR
+      monthly average is supplied from ECB series
+      FM.M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA in PCPA percentage points
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          ceil(belgium_legal_interest_preceding_december_euribor_1y_percentage_points / belgium_legal_interest_article_2_upward_rounding_quarter_percentage_point) * belgium_legal_interest_article_2_upward_rounding_quarter_percentage_point
+  - name: belgium_legal_interest_article_2_civil_commercial_rate_percentage_points
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: Law of 5 May 1865 Article 2 paragraph 1
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          belgium_legal_interest_article_2_euribor_rounded_percentage_points + belgium_legal_interest_article_2_addition_percentage_points
+  - name: belgium_legal_interest_article_2_civil_commercial_rate
+    kind: derived
+    entity: Person
+    dtype: Rate
+    period: Year
+    source: Law of 5 May 1865 Article 2 paragraph 1
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          belgium_legal_interest_article_2_civil_commercial_rate_percentage_points / 100
+  - name: belgium_legal_interest_article_2_paragraph_2_fiscal_default_rate
+    kind: parameter
+    dtype: Rate
+    source: Law of 5 May 1865 Article 2 paragraph 2, fiscal default
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: "be/statute/justel/loi-1865-05-05/1865050550/article-2"
+              excerpt: '§ 2. Le taux d''intérêt légal en matière fiscale est fixé à 7 pour cent, même si les dispositions fiscales renvoient au taux d''intérêt légal en matière civile et pour autant qu''il n''y soit pas explicitement dérogé dans les dispositions fiscales.'
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          0.07
+  - name: belgium_legal_interest_article_2_paragraph_2_1_derogation_scope_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: >-
+      Law of 5 May 1865 Article 2 paragraph 2/1, SPF-Finances claim scope and
+      regional-tax or attached-administrative-sanction exception
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          0
+      - effective_from: '2023-01-01'
+        formula: |-
+          if belgium_legal_interest_fiscal_claim_administered_by_spf_finances and not belgium_legal_interest_fiscal_claim_is_paragraph_2_1_regional_tax_or_attached_sanction_exception:
+              1
+          else:
+              0
+  - name: belgium_legal_interest_article_2_paragraph_2_fiscal_default_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: >-
+      Law of 5 May 1865 Article 2 paragraphs 2 and 2/1; the 7% default is
+      displaced by an explicit fiscal derogation or paragraph 2/1
+    versions:
+      - effective_from: '2007-01-01'
+        formula: |-
+          if not belgium_legal_interest_fiscal_other_explicit_derogation_applies:
+              1
+          else:
+              0
+      - effective_from: '2023-01-01'
+        formula: |-
+          if not belgium_legal_interest_fiscal_other_explicit_derogation_applies and belgium_legal_interest_article_2_paragraph_2_1_derogation_scope_applies == 0:
+              1
+          else:
+              0
