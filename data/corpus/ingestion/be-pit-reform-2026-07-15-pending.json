@@ -16,7 +16,7 @@
       "Articles 2-4 are on pages 40196-40197, Articles 5-13 on 40198-40199, Articles 14-26 on 40200-40202, Articles 27-34 on 40202-40206, and Articles 35-42 on 40206-40208.",
       "Articles 57-62 are on page 40212; Articles 89-95 are on pages 40216-40218; Articles 96-97 are on page 40218; Articles 98-102 are on pages 40218-40219; Articles 103-105 are on pages 40219-40220.",
       "French Article 28(s) is on physical page 40203, Article 41 section 4 is on page 40208, and the Article 99 placeholder begins on page 40218.",
-      "The proposal's obsolete sandbox-write blocker was removed: frontier RuleSpec encodings and local commits now exist. The remaining terminal blocker is source ingestion, signed release promotion, and authorized re-pin."
+      "The proposal's obsolete sandbox-write blocker was removed: frontier RuleSpec encodings and local commits now exist. The remaining terminal blockers are source ingestion, signed release promotion, authorized re-pin, and repair of the existing single-source composed-module validation gates recorded below."
     ]
   },
   "source_identity": {
@@ -41,7 +41,7 @@
   "authorization_boundary": {
     "encoding_branch": "ledger/pit-reform-2026-2031",
     "encoding_start_commit": "b105e2b3a3086ddd2de447d58a9b951346870dd1",
-    "last_reviewed_encoding_commit": "7b6f9049500ba90960df5431b3ddab783b8f8e09",
+    "last_reviewed_encoding_commit": "4362489724d7be11e07269d3d85d9d9edde981ae",
     "allowed_here": [
       "Record exact source identity, corrected page map, encoded and held slices, dependencies, discrepancies, acceptance criteria, and promotion workflow.",
       "Retain local M.B. page/article frontier evidence in the encoding branch while proof paths are unavailable."
@@ -73,7 +73,10 @@
     "frontier_rule": "Encoding, compilation, fully assigned companion tests, layout checks, and coherent local commits may exist before promotion. Corpus-backed proof acceptance and ci_pass/all_passed sibling validation may not be claimed until every cited source is in the signed release selected by the authorized toolchain pin.",
     "observed_fail_closed_evidence": {
       "repository_layout": "28 of 29 checks pass at the reviewed encoding commit; the sole failure records 58 new Moniteur parameter atoms awaiting canonical corpus paths.",
+      "tax_free_amount_sibling_validate": "ci_pass false at generated literal 10. The module was already red at the starting commit on a different generated baseline literal; the current first error is the Article 178 rounding value proved from CIR page 279, which is absent from the signed release.",
+      "joint_assessment_sibling_validate": "ci_pass false at generated literal 13,460, exactly the same pre-existing single-source review-anchor error observed at the starting commit.",
       "canonical_work_bonus_sibling_validate": "ci_pass false because the operative existing Article 178 rounding source on CIR page 279 is not in the signed release.",
+      "article_134_sibling_validate": "ci_pass false because the new Article 10(a) formula proof is awaiting ingestion and has no authorized canonical corpus path.",
       "couple_pipeline_sibling_validate": "ci_pass false at the new-law frontier because the Article 10(a)-(b) formula proof has no promoted canonical corpus path.",
       "worker_pilot_non_corpus_gate": "The reform propagation tests and compiles, but sibling validation separately exposes the pre-existing composed-module single-source limitation: the Article 38 review anchor cannot ground the independently proved Article 5/2 autonomy-factor value. Corpus promotion alone does not resolve that RuleSpec composition issue.",
       "new_law_proofs": "All M.B. frontier atoms remain awaiting_ingestion and are non-accepting until promoted; no pseudo-path or waiver was used."
