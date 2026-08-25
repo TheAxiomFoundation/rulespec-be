@@ -26,10 +26,10 @@ In progress. The bilingual statutory audit and existing-module map are complete.
 - Encoded the Article 126 item 4 threshold as the applied Article 131 amount from AY2027 and added the qualifying untaxed scholarship/social-security-rights branch with a strict `>` comparison.
 - Encoded the Article 87/88 ordinary and both-spouses-age statutory cap chains, the age threshold change from 66 to 67, the special Article 178 fixed coefficient, and nearest-EUR-10 applied cap for AY2027 onward. The full both-old phase-out through AY2045 and the replacement Article 87 age gate from AY2046 are retained rather than truncated at the scoring horizon.
 - Preserved the French Article 28(s) `5.680` defect verbatim and used the coherent EUR 5,860 predecessor proved by French Article 27, Dutch Article 28(s), and French Article 30(B)(1°).
-- Added 20 reform companions (four each for AY2027–AY2031): ordinary one-earner, both-spouses-age, no-tax-increase guard, and scholarship-threshold cases. Every reform case explicitly assigns all 40 reachable local/imported inputs. Pinned encoder testing passes all 32 module cases.
+- Added 20 core-horizon reform companions (four each for AY2027–AY2031): ordinary one-earner, both-spouses-age, no-tax-increase guard, and scholarship-threshold cases. Added a companion for every AY2032–AY2045 both-old cap step, two AY2046 replacement-Article-87 cases, both scholarship boundary directions, and a non-unity CPI case that detects ratio inversion plus average/coefficient/cap rounding. Every assessment-year case explicitly assigns all 40 reachable local/imported inputs. Pinned encoder testing passes all 52 module cases.
 - Pinned engine compilation of the joint module closure passes with 37 derived outputs and `generic_bulk` fast-path compatibility.
 - Re-ran repository-layout tests: 28/29 pass. The sole failure contains exactly 41 missing canonical corpus paths: 23 joint-assessment M.B. monetary atoms plus the previously recorded 18 tax-free-amount atoms. No additional repository-contract failure is present.
-- Recorded Article 34 timing and the AY2046 replacement mechanism as exact non-policy evidence. Timing clauses are not mislabeled as value-bearing parameter proof atoms.
+- Recorded every Article 34 assessment-year transition through AY2046 and the replacement Article 87 mechanisms as exact evidence. The AY2046 formula versions now carry verbatim paragraph 1–4 proof atoms. Timing clauses are not mislabeled as value-bearing parameter proof atoms.
 
 ## Next
 

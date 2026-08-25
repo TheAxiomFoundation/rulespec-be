@@ -175,6 +175,23 @@ rules:
           law_article: '28(s)'
           excerpt: "in de bepaling onder 2° wordt het bedrag “5.860 euro” vervangen door het bedrag “5.030 euro”;"
         - disposition: "EUR 5,030 is encoded from French Article 30(B)(1°); the coherent EUR 5,860 predecessor is corroborated by French Article 27 and Dutch Article 28(s). The French 5,680 typo is preserved, not normalized."
+      effective_period_evidence:
+        - versions: [0]
+          mb_page: '40205'
+          law_article: '34, paragraph 1'
+          excerpt: "Les articles 27, 30, A, 32 et 33 sont applicables à partir de l’exercice d’imposition 2027."
+        - versions: [1]
+          mb_page: '40205'
+          law_article: '34, paragraph 2'
+          excerpt: "Les articles 28, a) et s), et 30, B, entrent en vigueur le 31 décembre 2026 et sont applicables à partir de l’exercice d’imposition 2028."
+        - versions: [2]
+          mb_page: '40205'
+          law_article: '34, paragraph 3'
+          excerpt: "Les articles 28, b) et t), et 30, C, entrent en vigueur le 31 décembre 2027 et sont applicables à partir de l’exercice d’imposition 2029."
+        - versions: [3]
+          mb_page: '40205'
+          law_article: '34, paragraph 4'
+          excerpt: "Les articles 28, c) et u), et 30, D, entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -386,6 +403,86 @@ rules:
             source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
             corpus_status: awaiting_ingestion
             excerpt: "dans l’alinéa 2, le montant “670 euros” est remplacé par le montant “335 euros”"
+      shared_value_authority:
+        disposition: "The value-bearing proof atoms select the Article 87 chain in Articles 27/28. Article 30(A–S) enacts the same raw values for Article 88 through AY2045; its parallel transition and Article 34 timing are preserved below."
+        article_88_transition_pages: ['40204', '40205']
+      effective_period_evidence:
+        - versions: [0]
+          mb_page: '40205'
+          law_article: '34, paragraph 1'
+          excerpt: "Les articles 27, 30, A, 32 et 33 sont applicables à partir de l’exercice d’imposition 2027."
+        - versions: [1]
+          mb_page: '40205'
+          law_article: '34, paragraph 2'
+          excerpt: "Les articles 28, a) et s), et 30, B, entrent en vigueur le 31 décembre 2026 et sont applicables à partir de l’exercice d’imposition 2028."
+        - versions: [2]
+          mb_page: '40205'
+          law_article: '34, paragraph 3'
+          excerpt: "Les articles 28, b) et t), et 30, C, entrent en vigueur le 31 décembre 2027 et sont applicables à partir de l’exercice d’imposition 2029."
+        - versions: [3]
+          mb_page: '40205'
+          law_article: '34, paragraph 4'
+          excerpt: "Les articles 28, c) et u), et 30, D, entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
+        - versions: [4]
+          mb_page: '40205'
+          law_article: '34, paragraph 5'
+          excerpt: "Les articles 28, d), et 30, E, entrent en vigueur le 31 décembre 2029 et sont applicables à partir de l’exercice d’imposition 2031."
+        - versions: [5]
+          mb_page: '40205'
+          law_article: '34, paragraph 6'
+          excerpt: "Les articles 28, e), et 30, F, entrent en vigueur le 31 décembre 2030 et sont applicables à partir de l’exercice d’imposition 2032."
+        - versions: [6]
+          mb_page: '40205'
+          law_article: '34, paragraph 7'
+          excerpt: "Les articles 28, f) et 30, G entrent en vigueur le 31 décembre 2031 et sont applicables à partir de l’exercice d’imposition 2033."
+        - versions: [7]
+          mb_page: '40205'
+          law_article: '34, paragraph 8'
+          excerpt: "Les articles 28, g), et 30, H, entrent en vigueur le 31 décembre 2032 et sont applicables à partir de l’exercice d’imposition 2034."
+        - versions: [8]
+          mb_page: '40205'
+          law_article: '34, paragraph 9'
+          excerpt: "Les articles 28, h), et 30, I, entrent en vigueur le 31 décembre 2033 et sont applicables à partir de l’exercice d’imposition 2035."
+        - versions: [9]
+          mb_page: '40205'
+          law_article: '34, paragraph 10'
+          excerpt: "Les articles 28, i), et 30, J, entrent en vigueur le 31 décembre 2034 et sont applicables à partir de l’exercice d’imposition 2036."
+        - versions: [10]
+          mb_page: '40205'
+          law_article: '34, paragraph 11'
+          excerpt: "Les articles 28, j), et 30, K, entrent en vigueur le 31 décembre 2035 et sont applicables à partir de l’exercice d’imposition 2037."
+        - versions: [11]
+          mb_page: '40206'
+          law_article: '34, paragraph 12'
+          excerpt: "Les articles 28, k), et 30, L, entrent en vigueur le 31 décembre 2036 et sont applicables à partir de l’exercice d’imposition 2038."
+        - versions: [12]
+          mb_page: '40206'
+          law_article: '34, paragraph 13'
+          excerpt: "Les articles 28, l), et 30, M, entrent en vigueur le 31 décembre 2037 et sont applicables à partir de l’exercice d’imposition 2039."
+        - versions: [13]
+          mb_page: '40206'
+          law_article: '34, paragraph 14'
+          excerpt: "Les articles 28, m), et 30, N, entrent en vigueur le 31 décembre 2038 et sont applicables à partir de l’exercice d’imposition 2040."
+        - versions: [14]
+          mb_page: '40206'
+          law_article: '34, paragraph 15'
+          excerpt: "Les articles 28, n), et 30, O, entrent en vigueur le 31 décembre 2039 et sont applicables à partir de l’exercice d’imposition 2041."
+        - versions: [15]
+          mb_page: '40206'
+          law_article: '34, paragraph 16'
+          excerpt: "Les articles 28, o), et 30, P , entrent en vigueur le 31 décembre 2040 et sont applicables à partir de l’exercice d’imposition 2042."
+        - versions: [16]
+          mb_page: '40206'
+          law_article: '34, paragraph 17'
+          excerpt: "Les articles 28, p), et 30, Q, entrent en vigueur le 31 décembre 2041 et sont applicables à partir de l’exercice d’imposition 2043."
+        - versions: [17]
+          mb_page: '40206'
+          law_article: '34, paragraph 18'
+          excerpt: "Les articles 28, q), et 30, R, entrent en vigueur le 31 décembre 2042 et sont applicables à partir de l’exercice d’imposition 2044."
+        - versions: [18]
+          mb_page: '40206'
+          law_article: '34, paragraph 19'
+          excerpt: "Les articles 28, r), et 30, S, entrent en vigueur le 31 décembre 2043 et sont applicables à partir de l’exercice d’imposition 2045."
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -464,6 +561,11 @@ rules:
             source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
             corpus_status: awaiting_ingestion
             excerpt: "les mots “66 ans” sont remplacés par les mots “67 ans”"
+      effective_period_evidence:
+        - versions: [1]
+          mb_page: '40205'
+          law_article: '34, paragraph 5'
+          excerpt: "Les articles 28, d), et 30, E, entrent en vigueur le 31 décembre 2029 et sont applicables à partir de l’exercice d’imposition 2031."
     versions:
       - effective_from: '2026-01-01'
         formula: |-
@@ -879,6 +981,16 @@ rules:
             source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
             corpus_status: awaiting_ingestion
             excerpt: "Le présent article est applicable lorsqu’une imposition commune est établie et qu’aucun des conjoints n’a atteint l’âge de 67 ans au 1er janvier de l’exercice d’imposition."
+        - path: versions[1].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40204'
+            law_article: '29, replacement Article 87 paragraph 4'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "La présente disposition ne s’applique pas lorsque l’impôt État augmenté de l’impôt afférent aux revenus visés aux articles 17, § 1er, 1° à 3° et 6°, et 90, alinéa 1er, 6° et 9°, et aux plus-values sur valeurs et titres mobiliers imposables sur la base de l’article 90, alinéa 1er, 1°, pris ensemble pour les deux conjoints, s’en trouve majoré."
       effective_period_evidence:
         - mb_page: '40206'
           law_article: '34, final paragraph'
@@ -924,9 +1036,31 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 87, one-spouse professional-income imputation to spouse A
+    source: CIR 1992 article 87, one-spouse professional-income imputation to spouse A; replacement paragraph 2 from AY2046
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: &article_29_one_earner_proof
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40203'
+              law_article: '29, replacement Article 87 paragraph 2'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "Lorsque qu’un seul des conjoints a perçu des revenus professionnels, une partie de ceux-ci est attribuée à l’autre conjoint. Cette quote-part est égale à 30 p.c. de ces revenus, sans pouvoir excéder 3.350 euros."
     versions:
       - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_a_professional_income_after_article_89_exclusions == 0 and belgium_pit_spouse_b_professional_income_after_article_89_exclusions > 0:
+                  min(belgium_pit_spouse_b_professional_income_after_article_89_exclusions * belgium_pit_article_87_88_spouse_professional_income_share_rate, belgium_pit_article_87_88_spouse_imputation_cap)
+              else:
+                  0
+          else:
+              0
+      - effective_from: '2045-01-01'
         formula: |-
           if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
               if belgium_pit_spouse_a_professional_income_after_article_89_exclusions == 0 and belgium_pit_spouse_b_professional_income_after_article_89_exclusions > 0:
@@ -941,9 +1075,24 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 87, one-spouse professional-income imputation to spouse B
+    source: CIR 1992 article 87, one-spouse professional-income imputation to spouse B; replacement paragraph 2 from AY2046
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: *article_29_one_earner_proof
     versions:
       - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_b_professional_income_after_article_89_exclusions == 0 and belgium_pit_spouse_a_professional_income_after_article_89_exclusions > 0:
+                  min(belgium_pit_spouse_a_professional_income_after_article_89_exclusions * belgium_pit_article_87_88_spouse_professional_income_share_rate, belgium_pit_article_87_88_spouse_imputation_cap)
+              else:
+                  0
+          else:
+              0
+      - effective_from: '2045-01-01'
         formula: |-
           if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
               if belgium_pit_spouse_b_professional_income_after_article_89_exclusions == 0 and belgium_pit_spouse_a_professional_income_after_article_89_exclusions > 0:
@@ -959,8 +1108,33 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 88 through AY2045 and replacement Article 87 paragraph 3 from AY2046, low-earning-spouse professional-income imputation to spouse A
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: &article_29_low_earner_proof
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40204'
+              law_article: '29, replacement Article 87 paragraph 3'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "Lorsque les revenus professionnels d’un conjoint n’atteignent pas 30 p.c. du montant total des revenus professionnels des deux conjoints, il lui est imputé une quote-part des revenus professionnels de l’autre conjoint qui, jointe à ses propres revenus professionnels, lui permet d’atteindre 30 p.c. de ce total, sans pouvoir excéder 3.350 euros."
     versions:
       - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_a_professional_income_after_article_89_exclusions > 0:
+                  if belgium_pit_spouse_a_professional_income_after_article_89_exclusions < belgium_pit_article_87_88_lower_spouse_professional_income_target:
+                      min(belgium_pit_article_87_88_lower_spouse_professional_income_target - belgium_pit_spouse_a_professional_income_after_article_89_exclusions, belgium_pit_article_87_88_spouse_imputation_cap)
+                  else:
+                      0
+              else:
+                  0
+          else:
+              0
+      - effective_from: '2045-01-01'
         formula: |-
           if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
               if belgium_pit_spouse_a_professional_income_after_article_89_exclusions > 0:
@@ -979,8 +1153,26 @@ rules:
     period: Year
     unit: EUR
     source: CIR 1992 article 88 through AY2045 and replacement Article 87 paragraph 3 from AY2046, low-earning-spouse professional-income imputation to spouse B
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: *article_29_low_earner_proof
     versions:
       - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
+              if belgium_pit_spouse_b_professional_income_after_article_89_exclusions > 0:
+                  if belgium_pit_spouse_b_professional_income_after_article_89_exclusions < belgium_pit_article_87_88_lower_spouse_professional_income_target:
+                      min(belgium_pit_article_87_88_lower_spouse_professional_income_target - belgium_pit_spouse_b_professional_income_after_article_89_exclusions, belgium_pit_article_87_88_spouse_imputation_cap)
+                  else:
+                      0
+              else:
+                  0
+          else:
+              0
+      - effective_from: '2045-01-01'
         formula: |-
           if belgium_pit_article_87_88_spouse_imputation_conditions_met == 1:
               if belgium_pit_spouse_b_professional_income_after_article_89_exclusions > 0:
