@@ -4,7 +4,7 @@ Provenance: RuleSpec-BE branch `ledger/pit-reform-2026-2031`; starting commit `b
 
 ## State
 
-In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, Article 87/88 quotient transition, representable Article 134 changes, Article 147 reduction phase-in, and Article 289ter/1 fiscal work-bonus changes are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use direct post-Article-178 targets where the law supplies them. No scoring-only static translation is copied into RuleSpec.
+In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, Article 87/88 quotient transition, representable Article 134 changes, Article 147 reduction phase-in, and Article 289ter/1 fiscal work-bonus changes are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, use direct post-Article-178 targets where the law supplies them, and require the King-modified raw base before resuming Article 178 indexation after AY2031. No scoring-only static translation is copied into RuleSpec.
 
 ## Done
 
@@ -47,8 +47,9 @@ In progress. The bilingual statutory audit and existing-module map are complete.
 - Re-ran repository-layout tests: 28/29 pass. The single failure remains exactly 58 pending Moniteur parameter proof atoms (23 joint, 18 tax-free-amount, 17 Article 147/work-bonus).
 - Ran copied sibling-layout validation for both touched modules. The canonical module reaches the signed-release/source-promotion frontier (`ci_pass: false`, ungrounded generated literal `10` because the operative Article 178 page 279 is absent from the signed release). The pilot advances to its pre-existing duplicated Article 134 baseline diagnostic (`ci_pass: false`, ungrounded trailing group `46` from EUR 11,460); this will be removed by the next canonical-pipeline propagation rather than waived or disguised.
 - Finalized `data/corpus/ingestion/be-pit-reform-2026-07-15-pending.json` from the audited proposal. It records the verified PDF/TXT hashes, corrected physical page map, encoded/partial/held slices, signed-release boundary, required CIR pages 277-280, five printed ambiguities, delegated instruments and CPI observations, proof-acceptance contract, and seven-step authorized promotion workflow. It creates no corpus path, release, waiver, or authorization.
+- Corrected the Article 131 post-horizon mechanism found during scoring cross-check: the direct EUR 15,600 target is confined to AY2031. From AY2032, the encoding requires the explicit King-modified raw base and resumes ordinary Article 178 indexation, as Article 2(7°) requires; it never freezes EUR 15,600 or guesses the delegated base. A synthetic AY2032 companion detects that boundary. Pinned testing passes 9/9 and compilation remains `generic_bulk` compatible.
 
 ## Next
 
 - Replace the pilot's remaining duplicated Article 130/131/134 baseline surfaces with canonical imports and propagate the reform boundaries through the couple oracle pipeline.
-- Finalize the corpus ingestion worklist, run pinned compile/tests/layout/sibling validation, and cross-check every encoded value against the scoring bundle.
+- Run final pinned compile/tests/layout/sibling validation and cross-check every encoded value against the scoring bundle; execute the committed corpus worklist only through the separately authorized corpus/release workflow.

@@ -7,9 +7,11 @@ module:
     15 July 2026 reform's raw statutory bases separately from their Article 178
     application. AY2027-2029 calculate the general Article 178 coefficient
     from explicit CPI-average inputs; AY2030 and AY2031 use the law-fixed
-    post-Article-178 targets. Article 132 calculates its separately enacted
-    coefficient from explicit CPI-average inputs, so the AY2031 future-CPI
-    dependency is not interpolated.
+    post-Article-178 targets. From AY2032 the King-modified raw base is an
+    explicit dependency and ordinary Article 178 indexation resumes, so no
+    delegated amount is guessed or frozen. Article 132 calculates its
+    separately enacted coefficient from explicit CPI-average inputs, so the
+    AY2031 future-CPI dependency is not interpolated.
   source_verification:
     corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-181"
 units:
@@ -239,7 +241,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 131 and 178; applied amount calculated from explicit CPI inputs for AY2027-2029 and direct statutory targets for AY2030-2031
+    source: CIR 1992 articles 131 and 178; applied amount calculated from explicit CPI inputs for AY2027-2029, direct statutory targets for AY2030-2031, and the explicit King-modified raw base from AY2032
     metadata:
       proof:
         atoms:
@@ -276,6 +278,16 @@ rules:
             source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
             corpus_status: awaiting_ingestion
             excerpt: "Le Roi modifie, le cas échéant, le montant visé à l’alinéa 1er, de telle sorte qu’il soit, après application de l’article 178, égal à 15.600 euros pour l’exercice d’imposition 2031."
+        - path: versions[4].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40197'
+            law_article: '2, 7°, Article 131 paragraph 3'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "Sans préjudice de l’application de l’article 178, le montant ainsi modifié est applicable à partir de l’exercice d’imposition 2031."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -289,6 +301,9 @@ rules:
       - effective_from: '2030-01-01'
         formula: |-
           belgium_pit_article_131_post_article_178_target
+      - effective_from: '2031-01-01'
+        formula: |-
+          floor((belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031 * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + 0.5) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_taxpayer_disability_tax_free_increase
     kind: parameter
     dtype: Money
