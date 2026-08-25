@@ -3,6 +3,9 @@ format: rulespec/v1
 imports:
   - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
   - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_178_nearest_ten_rounding_multiple
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_131_132_article_178_half_up_rounding_increment
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_131_132_article_178_hundredth_rounding_scale
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
 module:
   summary: |-
     CIR 1992 article 126 establishes when spouses and legal cohabitants receive
@@ -605,7 +608,7 @@ rules:
     versions:
       - effective_from: '2026-01-01'
         formula: |-
-          floor(((floor(belgium_pit_article_87_88_2024_average_consumer_price_index * 100 + 0.5) / 100) / ((floor(belgium_pit_article_87_88_1988_average_consumer_price_index * 100 + 0.5) / 100) * ((floor(belgium_pit_article_87_88_1997_average_consumer_price_index * 100 + 0.5) / 100) / (floor(belgium_pit_article_87_88_1991_average_consumer_price_index * 100 + 0.5) / 100)))) * 10000 + 0.5) / 10000
+          floor(((floor(belgium_pit_article_87_88_2024_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / ((floor(belgium_pit_article_87_88_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) * ((floor(belgium_pit_article_87_88_1997_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_87_88_1991_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)))) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
   - name: belgium_pit_article_87_88_selected_imputation_cap_statutory_base
     kind: derived
     entity: TaxUnit
@@ -651,7 +654,7 @@ rules:
           13460
       - effective_from: '2026-01-01'
         formula: |-
-          floor((belgium_pit_article_87_88_selected_imputation_cap_statutory_base * belgium_pit_article_87_88_fixed_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + 0.5) * belgium_pit_article_178_nearest_ten_rounding_multiple
+          floor((belgium_pit_article_87_88_selected_imputation_cap_statutory_base * belgium_pit_article_87_88_fixed_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_article_126_year_of_marriage_or_declaration_exception
     kind: derived
     entity: TaxUnit
@@ -1017,10 +1020,10 @@ rules:
               0
       - effective_from: '2045-01-01'
         formula: |-
-          if belgium_pit_spouse_a_age_on_assessment_year_january_1 >= 67:
+          if belgium_pit_spouse_a_age_on_assessment_year_january_1 >= belgium_pit_article_87_88_both_spouses_age_threshold:
               0
           else:
-              if belgium_pit_spouse_b_age_on_assessment_year_january_1 >= 67:
+              if belgium_pit_spouse_b_age_on_assessment_year_january_1 >= belgium_pit_article_87_88_both_spouses_age_threshold:
                   0
               else:
                   if belgium_pit_joint_assessment_established == 1:

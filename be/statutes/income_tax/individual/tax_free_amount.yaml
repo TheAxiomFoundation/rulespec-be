@@ -36,6 +36,68 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           10
+  - name: belgium_pit_article_131_132_article_178_decimal_rounding_base
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 178 section 2, decimal base used to express the enacted half-up rounding instructions without embedded arithmetic literals
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source: &article_131_132_rounding_digits
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "Après application du coefficient, les montants sont, à l'exception de ceux mentionnés aux articles 21, alinéa 1er, 14°, 66bis, alinéa 3, 14535, alinéa 6, du montant de l'indemnité kilométrique visé à l'article 38, § 1er, alinéa 1er, 14°, a, et des montants des réductions visés à l'article 147, arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10
+  - name: belgium_pit_article_131_132_article_178_half_up_rounding_digit_threshold
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 178 section 2, statutory half-up digit threshold
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "selon que le chiffre des unités atteint ou non 5"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5
+  - name: belgium_pit_article_131_132_article_178_half_up_rounding_increment
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2, half-up rounding increment derived from the enacted decimal base and digit threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_131_132_article_178_half_up_rounding_digit_threshold / belgium_pit_article_131_132_article_178_decimal_rounding_base
+  - name: belgium_pit_article_131_132_article_178_hundredth_rounding_scale
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2, scale implementing rounding to one hundredth
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_131_132_article_178_decimal_rounding_base * belgium_pit_article_131_132_article_178_decimal_rounding_base
+  - name: belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2, scale implementing rounding to one ten-thousandth
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_131_132_article_178_hundredth_rounding_scale * belgium_pit_article_131_132_article_178_hundredth_rounding_scale
   - name: belgium_pit_article_178_general_indexation_coefficient
     kind: derived
     entity: Person
@@ -53,7 +115,7 @@ rules:
     versions:
       - effective_from: '2026-01-01'
         formula: |-
-          floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * 100 + 0.5) / 100) / (floor(belgium_pit_article_178_1988_average_consumer_price_index * 100 + 0.5) / 100)) * 10000 + 0.5) / 10000
+          floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
   - name: belgium_pit_article_132_supplement_indexation_coefficient
     kind: derived
     entity: Person
@@ -86,10 +148,10 @@ rules:
     versions:
       - effective_from: '2026-01-01'
         formula: |-
-          floor(((floor(belgium_pit_article_178_2024_average_consumer_price_index * 100 + 0.5) / 100) / (floor(belgium_pit_article_178_1988_average_consumer_price_index * 100 + 0.5) / 100)) * 10000 + 0.5) / 10000
+          floor(((floor(belgium_pit_article_178_2024_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
       - effective_from: '2030-01-01'
         formula: |-
-          floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * 100 + 0.5) / 100) / ((floor(belgium_pit_article_178_1988_average_consumer_price_index * 100 + 0.5) / 100) * ((floor(belgium_pit_article_178_2028_average_consumer_price_index * 100 + 0.5) / 100) / (floor(belgium_pit_article_178_2024_average_consumer_price_index * 100 + 0.5) / 100)))) * 10000 + 0.5) / 10000
+          floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / ((floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) * ((floor(belgium_pit_article_178_2028_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_2024_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)))) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
   - name: belgium_pit_article_131_statutory_base_amount
     kind: parameter
     dtype: Money
@@ -294,7 +356,7 @@ rules:
           10910
       - effective_from: '2026-01-01'
         formula: |-
-          floor((belgium_pit_article_131_statutory_base_amount * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + 0.5) * belgium_pit_article_178_nearest_ten_rounding_multiple
+          floor((belgium_pit_article_131_statutory_base_amount * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
       - effective_from: '2029-01-01'
         formula: |-
           belgium_pit_article_131_post_article_178_target
@@ -303,7 +365,7 @@ rules:
           belgium_pit_article_131_post_article_178_target
       - effective_from: '2031-01-01'
         formula: |-
-          floor((belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031 * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + 0.5) * belgium_pit_article_178_nearest_ten_rounding_multiple
+          floor((belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031 * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_taxpayer_disability_tax_free_increase
     kind: parameter
     dtype: Money
@@ -518,7 +580,7 @@ rules:
           1980
       - effective_from: '2026-01-01'
         formula: |-
-          floor((belgium_pit_article_132_one_child_statutory_supplement * belgium_pit_article_132_supplement_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + 0.5) * belgium_pit_article_178_nearest_ten_rounding_multiple
+          floor((belgium_pit_article_132_one_child_statutory_supplement * belgium_pit_article_132_supplement_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_two_children_tax_free_increase
     kind: derived
     entity: Person
@@ -550,7 +612,7 @@ rules:
           5110
       - effective_from: '2026-01-01'
         formula: |-
-          floor((belgium_pit_article_132_two_children_statutory_supplement * belgium_pit_article_132_supplement_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + 0.5) * belgium_pit_article_178_nearest_ten_rounding_multiple
+          floor((belgium_pit_article_132_two_children_statutory_supplement * belgium_pit_article_132_supplement_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_three_children_tax_free_increase
     kind: parameter
     dtype: Money
