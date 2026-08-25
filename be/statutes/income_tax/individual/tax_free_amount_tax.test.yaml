@@ -5,10 +5,26 @@
     name: calendar_year
     start: '2025-01-01'
     end: '2025-12-31'
-  input:
+  input: &article_134_legacy_complete_input
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction
     : 10000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_with_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_without_article_132bis: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_separately_assessed_under_article_126_section_2_item_4: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_taxable_income: 0
   output:
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount: 2727.5
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_after_tax_free_amount_reduction: 7272.5
@@ -19,6 +35,7 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction
     : 5000
@@ -32,10 +49,13 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
     : 2
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis
     : 1
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
   output:
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_child_tax_credit_cap: 1425
 - name: article_134_reduction_uses_article_130_base_tax
@@ -45,7 +65,9 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
     be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 60000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 10910
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
     : 0
@@ -65,7 +87,9 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
     be:statutes/income_tax/individual/rate_scale#input.belgium_pit_taxable_income: 1000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 23090
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis
     : 2
@@ -86,6 +110,8 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax
     : false
@@ -94,6 +120,7 @@
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
   output:
     ? be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a
     : 1
@@ -120,6 +147,8 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax
     : true
@@ -128,6 +157,7 @@
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
   output:
     ? be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a
     : 0
@@ -149,6 +179,8 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *article_134_legacy_complete_input
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_base_tax_before_tax_free_amount_reduction: 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_without_article_132bis
     : 2
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_child_credit_equivalent_count_with_article_132bis
@@ -157,6 +189,7 @@
     : 1000
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
     : 500
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
   output:
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_child_tax_credit_cap: 1140
     be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_total_uncapped_refundable_child_credit: 1500
@@ -187,7 +220,10 @@
     : 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
     : 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_separately_assessed_under_article_126_section_2_item_4: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 0
@@ -218,7 +254,10 @@
     : 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
     : 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_separately_assessed_under_article_126_section_2_item_4: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 0
@@ -249,7 +288,10 @@
     : 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
     : 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_separately_assessed_under_article_126_section_2_item_4: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 0
@@ -281,7 +323,10 @@
     : 0
     ? be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit
     : 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_spouse_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_tax_free_amount: 0
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_taxpayer_separately_assessed_under_article_126_section_2_item_4: false
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 0
     be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 0
