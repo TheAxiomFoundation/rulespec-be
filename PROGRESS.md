@@ -4,7 +4,7 @@ Provenance: RuleSpec-BE branch `ledger/pit-reform-2026-2031`; starting commit `b
 
 ## State
 
-In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, Article 87/88 quotient transition, and representable Article 134 changes are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use direct post-Article-178 targets where the law supplies them. No scoring-only static translation is copied into RuleSpec.
+In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, Article 87/88 quotient transition, representable Article 134 changes, Article 147 reduction phase-in, and Article 289ter/1 fiscal work-bonus changes are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use direct post-Article-178 targets where the law supplies them. No scoring-only static translation is copied into RuleSpec.
 
 ## Done
 
@@ -38,9 +38,16 @@ In progress. The bilingual statutory audit and existing-module map are complete.
 - Added six complete reform companions covering AY2026 through AY2031; each assigns all 18 local inputs plus the imported taxable-income input. Pinned encoder testing passes all 18 module cases, and pinned compilation passes with 25 derived outputs and `generic_bulk` compatibility.
 - Ran sibling-layout validation for Article 134. It reaches the expected signed-release frontier and reports `ci_pass: false` solely because the new Moniteur proof source lacks an authorized canonical `corpus_citation_path`; no waiver, pseudo-path, corpus edit, or toolchain change was made.
 - Re-ran repository-layout tests against the stable combined worktree: 28/29 pass. The sole failure lists 58 pending Moniteur parameter atoms (23 joint-assessment, 18 tax-free-amount, and 17 Article 147/work-bonus); this Article 134 structural slice adds no unrelated repository-contract failure.
+- Encoded Article 147 paragraph 1 item 1 raw amounts EUR 1,102.44 / 1,089.50 / 1,062.32 / 837.71 / 723.22 and item 9 raw amounts EUR 1,495.10 / 1,482.17 / 1,454.98 / 1,230.46 / 1,115.88 for AY2027–AY2031. AY2030/31 use explicit Royal-Decree-neutralized input amounts, so no delegated value is interpolated.
+- Encoded the special Article 178 coefficient and cent rounding for Article 147, including Articles 104(e)-(f)'s continued inclusion of Article 147 in the special coefficient group. Direct inspection of the pinned PDF corrected every Article 3 proof atom to M.B. p. 40197 and the Article 104/105 atoms to p. 40220.
+- Encoded Article 289ter/1's A rate of 35 percent from AY2029, B rates of 63 percent from AY2027 and 72 percent from AY2029, and the EUR 970 statutory ceiling from AY2027. The pilot imports these canonical rules instead of retaining duplicate policy literals.
+- Completed the ceiling mechanism omitted by the first implementation pass: Article 178 indexation and EUR-10 rounding occur first; Article 174/1 then prorates non-full-year, non-death periods by counted months over 12 and rounds the reduced ceiling to EUR 10. Full-calendar-year and death-shortened periods retain the full indexed ceiling.
+- Added complete Article 147/work-bonus companions for AY2027–AY2031, a cap case, two Article 174/1 boundary cases, and a non-unity CPI case that detects ratio inversion plus CPI-average, coefficient, cent, and EUR-10 rounding. All 28 canonical cases assign all 52 local inputs; all 10 pilot cases assign all six pilot-local inputs and all required imported fiscal-work-bonus inputs. Pinned testing passes 38/38 across the two modules.
+- Pinned compilation passes: the canonical module closure has 45 derived outputs and the pilot closure 101, both `generic_bulk` fast-path compatible.
+- Re-ran repository-layout tests: 28/29 pass. The single failure remains exactly 58 pending Moniteur parameter proof atoms (23 joint, 18 tax-free-amount, 17 Article 147/work-bonus).
+- Ran copied sibling-layout validation for both touched modules. The canonical module reaches the signed-release/source-promotion frontier (`ci_pass: false`, ungrounded generated literal `10` because the operative Article 178 page 279 is absent from the signed release). The pilot advances to its pre-existing duplicated Article 134 baseline diagnostic (`ci_pass: false`, ungrounded trailing group `46` from EUR 11,460); this will be removed by the next canonical-pipeline propagation rather than waived or disguised.
 
 ## Next
 
-- Encode canonical Article 147/work-bonus surfaces and remove pilot duplicates.
-- Propagate the reform boundaries through the couple oracle pipeline without duplicating canonical parameters.
+- Replace the pilot's remaining duplicated Article 130/131/134 baseline surfaces with canonical imports and propagate the reform boundaries through the couple oracle pipeline.
 - Finalize the corpus ingestion worklist, run pinned compile/tests/layout/sibling validation, and cross-check every encoded value against the scoring bundle.
