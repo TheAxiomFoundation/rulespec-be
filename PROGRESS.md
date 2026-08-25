@@ -4,7 +4,7 @@ Provenance: RuleSpec-BE branch `ledger/pit-reform-2026-2031`; starting commit `b
 
 ## State
 
-In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in and the amended Article 132 one-/two-child branches are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use the direct post-Article-178 targets for AY2030/31. No scoring-only static translation is copied into RuleSpec.
+In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, and Article 87/88 quotient transition are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use direct post-Article-178 targets where the law supplies them. No scoring-only static translation is copied into RuleSpec.
 
 ## Done
 
@@ -23,10 +23,16 @@ In progress. The bilingual statutory audit and existing-module map are complete.
 - Ran repository-layout tests: 28/29 pass. The sole failure is the expected source frontier—18 new monetary parameter atoms have exact M.B. excerpts but cannot yet name canonical corpus paths.
 - Preserved Article 4/13 timing clauses verbatim in non-policy `effective_period_evidence`, because the repository's parameter proof gate permits only value-bearing atoms at `versions[N].formula`.
 - Recorded a deliberate Article 132 boundary: Article 104(b) covers all first-paragraph supplements, but the pinned sources prove raw bases only for the amended one-/two-child branches. The remaining Article 132 applied branches and Article 133 coefficient application remain unencoded pending source-backed raw bases/module coverage.
+- Encoded the Article 126 item 4 threshold as the applied Article 131 amount from AY2027 and added the qualifying untaxed scholarship/social-security-rights branch with a strict `>` comparison.
+- Encoded the Article 87/88 ordinary and both-spouses-age statutory cap chains, the age threshold change from 66 to 67, the special Article 178 fixed coefficient, and nearest-EUR-10 applied cap for AY2027 onward. The full both-old phase-out through AY2045 and the replacement Article 87 age gate from AY2046 are retained rather than truncated at the scoring horizon.
+- Preserved the French Article 28(s) `5.680` defect verbatim and used the coherent EUR 5,860 predecessor proved by French Article 27, Dutch Article 28(s), and French Article 30(B)(1°).
+- Added 20 reform companions (four each for AY2027–AY2031): ordinary one-earner, both-spouses-age, no-tax-increase guard, and scholarship-threshold cases. Every reform case explicitly assigns all 40 reachable local/imported inputs. Pinned encoder testing passes all 32 module cases.
+- Pinned engine compilation of the joint module closure passes with 37 derived outputs and `generic_bulk` fast-path compatibility.
+- Re-ran repository-layout tests: 28/29 pass. The sole failure contains exactly 41 missing canonical corpus paths: 23 joint-assessment M.B. monetary atoms plus the previously recorded 18 tax-free-amount atoms. No additional repository-contract failure is present.
+- Recorded Article 34 timing and the AY2046 replacement mechanism as exact non-policy evidence. Timing clauses are not mislabeled as value-bearing parameter proof atoms.
 
 ## Next
 
-- Encode the Article 87/88 age-gated cap chain and Article 126 linkage.
 - Encode canonical Article 147/work-bonus surfaces and remove pilot duplicates.
 - Encode the representable Article 134 structural change; record the unrepresentable remainder and Article 41 defect explicitly.
 - Finalize the corpus ingestion worklist, run pinned compile/tests/layout/sibling validation, and cross-check every encoded value against the scoring bundle.
