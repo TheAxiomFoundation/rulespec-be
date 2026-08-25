@@ -46,6 +46,7 @@ In progress. The bilingual statutory audit and existing-module map are complete.
 - Pinned compilation passes: the canonical module closure has 45 derived outputs and the pilot closure 101, both `generic_bulk` fast-path compatible.
 - Re-ran repository-layout tests: 28/29 pass. The single failure remains exactly 58 pending Moniteur parameter proof atoms (23 joint, 18 tax-free-amount, 17 Article 147/work-bonus).
 - Ran copied sibling-layout validation for both touched modules. The canonical module reaches the signed-release/source-promotion frontier (`ci_pass: false`, ungrounded generated literal `10` because the operative Article 178 page 279 is absent from the signed release). The pilot advances to its pre-existing duplicated Article 134 baseline diagnostic (`ci_pass: false`, ungrounded trailing group `46` from EUR 11,460); this will be removed by the next canonical-pipeline propagation rather than waived or disguised.
+- Finalized `data/corpus/ingestion/be-pit-reform-2026-07-15-pending.json` from the audited proposal. It records the verified PDF/TXT hashes, corrected physical page map, encoded/partial/held slices, signed-release boundary, required CIR pages 277-280, five printed ambiguities, delegated instruments and CPI observations, proof-acceptance contract, and seven-step authorized promotion workflow. It creates no corpus path, release, waiver, or authorization.
 
 ## Next
 
