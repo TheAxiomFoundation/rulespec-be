@@ -103,6 +103,8 @@
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 1
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 1
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 1
+    # Synthetic dependency fixture only: the King-set raw amount is not yet known.
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 8000
   output:
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_convention_exempt_professional_income_threshold: 4950
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_fixed_indexation_coefficient: 1
@@ -123,6 +125,7 @@
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_a_professional_income_after_article_89_exclusions: 49000
     be:statutes/income_tax/individual/joint_assessment#input.belgium_pit_spouse_b_professional_income_after_article_89_exclusions: 1000
   output:
+    be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_126_convention_exempt_professional_income_threshold: 8000
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_selected_imputation_cap_statutory_base: 4690
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_imputation_cap: 4690
     be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_88_spouse_b_low_earner_imputation_received: 4690
