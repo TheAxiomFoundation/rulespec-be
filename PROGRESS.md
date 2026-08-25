@@ -4,7 +4,7 @@ Provenance: RuleSpec-BE branch `ledger/pit-reform-2026-2031`; starting commit `b
 
 ## State
 
-In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, and Article 87/88 quotient transition are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use direct post-Article-178 targets where the law supplies them. No scoring-only static translation is copied into RuleSpec.
+In progress. The bilingual statutory audit and existing-module map are complete. The Article 131 phase-in, amended Article 132 one-/two-child branches, Article 126 threshold/scholarship amendment, Article 87/88 quotient transition, and representable Article 134 changes are encoded and tested. The rules preserve raw bases separately from applied/indexed amounts, calculate the enacted Article 178 coefficient formulas from explicit CPI-average inputs, and use direct post-Article-178 targets where the law supplies them. No scoring-only static translation is copied into RuleSpec.
 
 ## Done
 
@@ -30,9 +30,17 @@ In progress. The bilingual statutory audit and existing-module map are complete.
 - Pinned engine compilation of the joint module closure passes with 37 derived outputs and `generic_bulk` fast-path compatibility.
 - Re-ran repository-layout tests: 28/29 pass. The sole failure contains exactly 41 missing canonical corpus paths: 23 joint-assessment M.B. monetary atoms plus the previously recorded 18 tax-free-amount atoms. No additional repository-contract failure is present.
 - Recorded every Article 34 assessment-year transition through AY2046 and the replacement Article 87 mechanisms as exact evidence. The AY2046 formula versions now carry verbatim paragraph 1–4 proof atoms. Timing clauses are not mislabeled as value-bearing parameter proof atoms.
+- Encoded the Article 134 scholarship exclusion from AY2027, including the taxpayer branch and the spouse-plus-separate-assessment branch, with an explicit AY2026 pre-effective regression.
+- Replaced Article 134's separate five-band tax-free-amount scale with imported Article 130 brackets and rates from AY2030. The AY2030 and AY2031 cases use the enacted Article 131 post-indexation amounts EUR 14,450 and EUR 15,600, so the companions do not present 2025 bracket snapshots as future indexed observations.
+- Corrected the Article 134 module's baseline review anchor from CIR page 181 to the operative Article 134 text on page 185; the untouched HEAD module's sibling validation had otherwise stopped at an existing ungrounded EUR 11,460 diagnostic.
+- Narrowed Article 10(k)-(l) after independent audit: the law removes the per-spouse wording and replaces the proportional-allocation paragraph, so the obsolete spouse-allocation outputs return zero from AY2030 and a new household output applies the single EUR 1,140 cap to the supplied aggregate uncapped credit. The AY2030/31 tests cross that cap boundary.
+- Recorded Article 10(l)'s transferred-tax-free-amount composition priority as an upstream component-attribution obligation. Aggregate inputs cannot prove which portion arose from Article 131, Article 132(7°-8°), or child supplements, so no allocation formula was invented.
+- Added six complete reform companions covering AY2026 through AY2031; each assigns all 18 local inputs plus the imported taxable-income input. Pinned encoder testing passes all 18 module cases, and pinned compilation passes with 25 derived outputs and `generic_bulk` compatibility.
+- Ran sibling-layout validation for Article 134. It reaches the expected signed-release frontier and reports `ci_pass: false` solely because the new Moniteur proof source lacks an authorized canonical `corpus_citation_path`; no waiver, pseudo-path, corpus edit, or toolchain change was made.
+- Re-ran repository-layout tests against the stable combined worktree: 28/29 pass. The sole failure lists 58 pending Moniteur parameter atoms (23 joint-assessment, 18 tax-free-amount, and 17 Article 147/work-bonus); this Article 134 structural slice adds no unrelated repository-contract failure.
 
 ## Next
 
 - Encode canonical Article 147/work-bonus surfaces and remove pilot duplicates.
-- Encode the representable Article 134 structural change; record the unrepresentable remainder and Article 41 defect explicitly.
+- Propagate the reform boundaries through the couple oracle pipeline without duplicating canonical parameters.
 - Finalize the corpus ingestion worklist, run pinned compile/tests/layout/sibling validation, and cross-check every encoded value against the scoring bundle.

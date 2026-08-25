@@ -1,20 +1,36 @@
+# Provenance: Moniteur belge 29 July 2026, pp. 40198-40199; pinned PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5.
 format: rulespec/v1
 imports:
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_base_tax
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_upper_threshold
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_first_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_second_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
+  - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
 module:
   summary: |-
     CIR 1992 article 134 converts the tax-free amount into a tax reduction and
     sets the refundable child tax-credit cap for income year 2025 / assessment
-    year 2026. This module encodes the paragraph 2 tax scale, a mechanical tax
+    year 2026. Through AY2029 this module encodes the paragraph 2 tax scale;
+    from AY2030 it applies the Article 130 scale as enacted by Article 10. It
+    also encodes the AY2027 qualifying-scholarship exclusion, a mechanical tax
     after the tax-free-amount reduction, the paragraph 3 child-credit cap, a
     bridge from the Article 130 base tax to the refundable child credit, and
     the paragraph 4 joint-assessment tax-free-amount allocation for supplied
     spouse incomes, base amounts, and Article 132 supplements, and the
     paragraph 4 joint refundable-credit cap allocation for supplied uncapped
-    spouse credits. It leaves regional reductions, communal additions, and
-    treaty-exempt income exclusions to later household modules.
+    spouse credits through AY2029. From AY2030 the per-spouse allocation is
+    abolished and the module exposes only the capped household credit. The
+    supplied post-reform uncapped components must already reflect Article
+    10(l)'s transferred-tax-free-amount priority; this module cannot derive
+    that composition from aggregate tax-free amounts. It leaves the Article
+    133 branch, component-level child-reduction attribution, regional
+    reductions, communal additions, and treaty-exempt income exclusions to
+    later household modules.
   source_verification:
-    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-181"
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-185"
 units:
   - name: EUR
     kind: currency
@@ -207,7 +223,40 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 2, income year 2025, assessment year 2026
+    source: CIR 1992 article 134 paragraph 2; from AY2030 the Article 130 scale applies under Articles 10(a)-(b) and 13 of the law of 15 July 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-185
+              excerpt: "Cet impôt sur la quotité du revenu exemptée d'impôt est fixé à: 25 % pour la tranche de la quotité du revenu exemptée d'impôt de 0,01 euro à 11.460 euros (montant indexé); 30 % pour la tranche de la quotité du revenu exemptée d'impôt de 11.460 euros (montant indexé) à 16.320 euros (montant indexé); 40 % pour la tranche de la quotité du revenu exemptée d'impôt de 16.320 euros (montant indexé) à 27.190 euros (montant indexé); 45 % pour la tranche de la quotité du revenu exemptée d'impôt de 27.190 euros (montant indexé) à 49.840 euros (montant indexé); 50 % pour la tranche de la quotité du revenu exemptée d'impôt supérieure à 49.840 euros (montant indexé)."
+          - path: versions[1].formula
+            kind: formula
+            source:
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40198'
+              law_article: '10(a), Article 134 section 2 paragraph 1'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "dans le paragraphe 2, l’alinéa 1er est complété par les mots “calculé conformément au même article”"
+          - path: versions[1].formula
+            kind: formula
+            source:
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40198'
+              law_article: '10(b), Article 134 section 2 paragraph 2'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "dans le paragraphe 2, l’alinéa 2 est abrogé"
+      effective_period_evidence:
+        - mb_page: '40199'
+          law_article: '13, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 8, 9, 10, a) à g) et j) à l), 11 et 12 entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -224,6 +273,18 @@ rules:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
                       else:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+      - effective_from: '2029-01-01'
+        formula: |-
+          if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_article_134_tax_free_amount * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_article_134_tax_free_amount <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_article_134_tax_free_amount - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
   - name: belgium_pit_article_134_tax_after_tax_free_amount_reduction
     kind: derived
     entity: Person
@@ -235,17 +296,93 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           max(0, belgium_pit_article_134_base_tax_before_tax_free_amount_reduction - belgium_pit_article_134_tax_on_tax_free_amount)
+  - name: belgium_pit_article_134_qualifying_scholarship_credit_exclusion_applies
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 article 134 section 3 paragraph 6; qualifying-scholarship exclusion inserted by Article 10(h)-(i) of the law of 15 July 2026 from AY2027
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source:
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40199'
+              law_article: '10(h), Article 134 section 3 paragraph 6 second indent'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "– au contribuable qui bénéficie de revenus provenant d’une bourse d’études donnant lieu à l’ouverture de droits, complets ou non, en matière de sécurité sociale, mais qui ne sont pas soumis aux impôts sur les revenus ;"
+          - path: versions[1].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-186
+              excerpt: "au conjoint d'un contribuable visé au premier tiret qui est taxé isolément conformément à l'article 126, § 2, alinéa 1er, 4°"
+          - path: versions[1].formula
+            kind: formula
+            source:
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40199'
+              law_article: '10(i), Article 134 section 3 paragraph 6 third indent'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "dans le deuxième tiret, devenu le troisième tiret, les mots “au premier tiret” sont remplacés par les mots “aux premier et deuxième tirets”"
+      effective_period_evidence:
+        - mb_page: '40199'
+          law_article: '13, paragraph 1'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 5, et 10, h) et i), sont applicables à partir de l’exercice d’imposition 2027."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_pit_article_134_taxpayer_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax:
+              1
+          else:
+              if belgium_pit_article_134_spouse_receives_qualifying_scholarship_income_building_social_security_rights_not_subject_to_income_tax and belgium_pit_article_134_taxpayer_separately_assessed_under_article_126_section_2_item_4:
+                  1
+              else:
+                  0
   - name: belgium_pit_article_134_child_tax_credit_cap
     kind: derived
     entity: Person
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 3, income year 2025, assessment year 2026
+    source: CIR 1992 article 134 paragraph 3; qualifying-scholarship exclusion from AY2027 under Articles 10(h)-(i) and 13 of the law of 15 July 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source:
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40199'
+              law_article: '10(h), Article 134 section 3 paragraph 6 second indent'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "– au contribuable qui bénéficie de revenus provenant d’une bourse d’études donnant lieu à l’ouverture de droits, complets ou non, en matière de sécurité sociale, mais qui ne sont pas soumis aux impôts sur les revenus ;"
+      effective_period_evidence:
+        - mb_page: '40199'
+          law_article: '13, paragraph 1'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 5, et 10, h) et i), sont applicables à partir de l’exercice d’imposition 2027."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_article_134_child_tax_credit_cap_per_child * (belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis + belgium_pit_article_134_shared_custody_child_tax_credit_multiplier * belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis)
+      - effective_from: '2026-01-01'
+        formula: |-
+          if belgium_pit_article_134_qualifying_scholarship_credit_exclusion_applies == 1:
+              0
+          else:
+              belgium_pit_article_134_child_tax_credit_cap_per_child * (belgium_pit_article_134_child_credit_equivalent_count_without_article_132bis + belgium_pit_article_134_shared_custody_child_tax_credit_multiplier * belgium_pit_article_134_child_credit_equivalent_count_with_article_132bis)
   - name: belgium_pit_article_134_joint_article_132_supplements_assigned_to_spouse_a
     kind: derived
     entity: Household
@@ -432,7 +569,35 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 4 item 6 and following proportional cap-allocation rule
+    source: CIR 1992 article 134 paragraph 4 item 6; proportional joint allocation through AY2029, then retired because Article 10(k)-(l) abolishes the per-spouse wording and proportional allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: exception
+            source: &article_10_joint_credit_cap_proof
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40199'
+              law_article: '10(k), Article 134 section 4 paragraph 1 item 6'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "les mots “pour les deux conjoints ensemble” sont abrogés"
+          - path: versions[1].formula
+            kind: exception
+            source: &article_10_joint_credit_priority_proof
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40199'
+              law_article: '10(l), replacement Article 134 section 4 paragraph 2'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "Pour l’application de l’alinéa 1er, 6°, la partie de la quotité du revenu exemptée d’impôt qui est transférée en application de l’alinéa 1er, 3°, est censée être constituée en priorité du montant de base de la quotité du revenu exemptée d’impôt visé à l’article 131 et des suppléments visés aux articles 132, alinéa 1er, 7° et 8°."
+      effective_period_evidence:
+        - mb_page: '40199'
+          law_article: '13, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 8, 9, 10, a) à g) et j) à l), 11 et 12 entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -443,13 +608,30 @@ rules:
                   belgium_pit_article_134_joint_child_tax_credit_cap * belgium_pit_article_134_spouse_a_uncapped_refundable_child_credit / belgium_pit_article_134_joint_total_uncapped_refundable_child_credit
               else:
                   0
+      - effective_from: '2029-01-01'
+        formula: |-
+          0
   - name: belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap
     kind: derived
     entity: Household
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 4 item 6 and following proportional cap-allocation rule
+    source: CIR 1992 article 134 paragraph 4 item 6; proportional joint allocation through AY2029, then retired because Article 10(k)-(l) abolishes the per-spouse wording and proportional allocation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: *article_10_joint_credit_cap_proof
+          - path: versions[1].formula
+            kind: formula
+            source: *article_10_joint_credit_priority_proof
+      effective_period_evidence:
+        - mb_page: '40199'
+          law_article: '13, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 8, 9, 10, a) à g) et j) à l), 11 et 12 entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -460,6 +642,42 @@ rules:
                   belgium_pit_article_134_joint_child_tax_credit_cap * belgium_pit_article_134_spouse_b_uncapped_refundable_child_credit / belgium_pit_article_134_joint_total_uncapped_refundable_child_credit
               else:
                   0
+      - effective_from: '2029-01-01'
+        formula: |-
+          0
+  - name: belgium_pit_article_134_joint_refundable_child_credit_after_cap
+    kind: derived
+    entity: Household
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 134 paragraph 4 item 6; aggregate of the proportional spouse allocations through AY2029 and the single capped household credit from AY2030 under Article 10(k)-(l)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-187
+              excerpt: "Ce crédit d'impôt ne peut excéder le montant maximum déterminé conformément au paragraphe 3, alinéas 2 et 3, pour les deux conjoints ensemble."
+          - path: versions[1].formula
+            kind: formula
+            source: *article_10_joint_credit_cap_proof
+          - path: versions[1].formula
+            kind: formula
+            source: *article_10_joint_credit_priority_proof
+      effective_period_evidence:
+        - mb_page: '40199'
+          law_article: '13, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 8, 9, 10, a) à g) et j) à l), 11 et 12 entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_joint_spouse_a_refundable_child_credit_after_joint_cap + belgium_pit_article_134_joint_spouse_b_refundable_child_credit_after_joint_cap
+      - effective_from: '2029-01-01'
+        formula: |-
+          min(belgium_pit_article_134_joint_total_uncapped_refundable_child_credit, belgium_pit_article_134_joint_child_tax_credit_cap)
   - name: belgium_pit_article_134_tax_after_article_130_base_tax_reduction
     kind: derived
     entity: Person
