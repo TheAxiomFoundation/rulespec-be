@@ -1,3 +1,4 @@
+# Provenance: Moniteur belge 29 July 2026, pp. 40196-40199 and 40219-40220; pinned PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5.
 - name: no_dependants_base_amount
   period:
     period_kind: custom
@@ -5,12 +6,20 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
   output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_131_132_article_178_half_up_rounding_increment: 0.5
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_131_132_article_178_hundredth_rounding_scale: 100
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale: 10000
     be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 0
     be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 10910
 
@@ -21,6 +30,11 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 3
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 1
@@ -37,6 +51,11 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 1
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 5
     be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
@@ -45,3 +64,143 @@
   output:
     be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 25580
     be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 46400
+
+- name: assessment_year_2027_article_131_and_one_child
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_178_general_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_supplement_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount: 9890
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_one_child_tax_free_increase: 1870
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 1870
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 11760
+
+- name: assessment_year_2028_article_131_and_one_child
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2027-01-01'
+    end: '2027-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount: 9980
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_one_child_tax_free_increase: 2010
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 2010
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 11990
+
+- name: assessment_year_2029_article_131_and_two_children_rounding
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount: 10140
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_two_children_tax_free_increase: 4550
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 4550
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 14690
+
+- name: assessment_year_2030_direct_article_131_target_and_one_child
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2029-01-01'
+    end: '2029-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount: 14450
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_one_child_tax_free_increase: 2330
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 2330
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 16780
+
+- name: assessment_year_2031_direct_article_131_target_and_two_children
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2030-01-01'
+    end: '2030-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_supplement_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount: 15600
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_two_children_tax_free_increase: 4650
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_child_tax_free_increase: 4650
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 20250
+
+- name: assessment_year_2032_reindexes_explicit_synthetic_king_modified_article_131_base
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2031-01-01'
+    end: '2031-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2024_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_2028_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2.1
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031: 8000
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_taxpayer_disability_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_article_132_child_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_children_under_3_without_childcare_reduction_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_dependent_elderly_count: 0
+    be:statutes/income_tax/individual/tax_free_amount#input.belgium_pit_other_dependent_count: 0
+  output:
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_178_general_indexation_coefficient: 2.1
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount: 16800
+    be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations: 16800

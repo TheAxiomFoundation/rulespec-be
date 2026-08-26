@@ -1,10 +1,17 @@
+# Provenance: Moniteur belge 29 July 2026, pp. 40196-40199 and 40219-40220; pinned PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5.
 format: rulespec/v1
 module:
   summary: |-
-    CIR 1992 articles 131 and 132 set the indexed tax-free amount and dependant
-    increments for income year 2025 / assessment year 2026. This module encodes
-    the statutory parameter surface and a mechanical total before shared-custody,
-    childcare-reduction, resource, and household-composition limitations.
+    CIR 1992 articles 131 and 132 set the tax-free amount and dependant
+    increments. This module preserves the 2025 indexed baseline and encodes the
+    15 July 2026 reform's raw statutory bases separately from their Article 178
+    application. AY2027-2029 calculate the general Article 178 coefficient
+    from explicit CPI-average inputs; AY2030 and AY2031 use the law-fixed
+    post-Article-178 targets. From AY2032 the King-modified raw base is an
+    explicit dependency and ordinary Article 178 indexation resumes, so no
+    delegated amount is guessed or frozen. Article 132 calculates its
+    separately enacted coefficient from explicit CPI-average inputs, so the
+    AY2031 future-CPI dependency is not interpolated.
   source_verification:
     corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-181"
 units:
@@ -12,11 +19,291 @@ units:
     kind: currency
     minor_units: 2
 rules:
-  - name: belgium_pit_base_tax_free_amount
+  - name: belgium_pit_article_178_nearest_ten_rounding_multiple
     kind: parameter
     dtype: Money
     unit: EUR
-    source: CIR 1992 article 131, income year 2025, assessment year 2026
+    source: CIR 1992 article 178 section 2, nearest-EUR-10 rounding for indexed amounts; consolidated income-year-2025 text
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "Après application du coefficient, les montants sont, à l'exception de ceux mentionnés aux articles 21, alinéa 1er, 14°, 66bis, alinéa 3, 14535, alinéa 6, du montant de l'indemnité kilométrique visé à l'article 38, § 1er, alinéa 1er, 14°, a, et des montants des réductions visés à l'article 147, arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10
+  - name: belgium_pit_article_131_132_article_178_decimal_rounding_base
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 178 section 2, decimal base used to express the enacted half-up rounding instructions without embedded arithmetic literals
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source: &article_131_132_rounding_digits
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "Après application du coefficient, les montants sont, à l'exception de ceux mentionnés aux articles 21, alinéa 1er, 14°, 66bis, alinéa 3, 14535, alinéa 6, du montant de l'indemnité kilométrique visé à l'article 38, § 1er, alinéa 1er, 14°, a, et des montants des réductions visés à l'article 147, arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          10
+  - name: belgium_pit_article_131_132_article_178_half_up_rounding_digit_threshold
+    kind: parameter
+    dtype: Decimal
+    source: CIR 1992 article 178 section 2, statutory half-up digit threshold
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "selon que le chiffre des unités atteint ou non 5"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5
+  - name: belgium_pit_article_131_132_article_178_half_up_rounding_increment
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2, half-up rounding increment derived from the enacted decimal base and digit threshold
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_131_132_article_178_half_up_rounding_digit_threshold / belgium_pit_article_131_132_article_178_decimal_rounding_base
+  - name: belgium_pit_article_131_132_article_178_hundredth_rounding_scale
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2, scale implementing rounding to one hundredth
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_131_132_article_178_decimal_rounding_base * belgium_pit_article_131_132_article_178_decimal_rounding_base
+  - name: belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2, scale implementing rounding to one ten-thousandth
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_131_132_article_178_hundredth_rounding_scale * belgium_pit_article_131_132_article_178_hundredth_rounding_scale
+  - name: belgium_pit_article_178_general_indexation_coefficient
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2; general coefficient and statutory rounding calculated from explicit annual CPI-average inputs
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: formula
+          source:
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "L'adaptation est réalisée à l'aide du coefficient qui est obtenu en divisant la moyenne des indices des prix de l'année qui précède celle des revenus par la moyenne des indices des prix de l'année 1988. Pour le calcul du coefficient, on arrondit de la manière suivante: 1° la moyenne des indices est arrondie au centième supérieur ou inférieur d'un point selon que le chiffre des millièmes d'un point atteint ou non 5; 2° le coefficient est arrondi au dix millième supérieur ou inférieur selon que le chiffre des cent millièmes atteint ou non 5."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
+  - name: belgium_pit_article_132_supplement_indexation_coefficient
+    kind: derived
+    entity: Person
+    dtype: Decimal
+    period: Year
+    source: CIR 1992 article 178 section 2/1 inserted by Article 104(b) of the law of 15 July 2026; explicit CPI-average formula with statutory coefficient rounding
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40219'
+            law_article: '104(b), Article 178 section 2/1, 1°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "1° pour les exercices d’imposition 2027 à 2030 au moyen du coefficient qui est obtenu en divisant la moyenne des indices des prix de l’année 2024 par la moyenne des indices de l’année 1988 ;"
+        - path: versions[1].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40219'
+            law_article: '104(b), Article 178 section 2/1, 2°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "2° pour les exercices d’imposition 2031 et suivants au moyen du coefficient qui est obtenu en divisant la moyenne des indices de l’année qui précède celle des revenus par la moyenne des indices de l’année 1988 multipliée par le rapport entre les moyennes des indices des années 2028 et 2024.”"
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          floor(((floor(belgium_pit_article_178_2024_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
+      - effective_from: '2030-01-01'
+        formula: |-
+          floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / ((floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) * ((floor(belgium_pit_article_178_2028_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_2024_average_consumer_price_index * belgium_pit_article_131_132_article_178_hundredth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_hundredth_rounding_scale)))) * belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale + belgium_pit_article_131_132_article_178_half_up_rounding_increment) / belgium_pit_article_131_132_article_178_ten_thousandth_rounding_scale
+  - name: belgium_pit_article_131_statutory_base_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 131 raw statutory base as amended by law of 15 July 2026, M.B. pp. 40196-40197, Articles 2 and 4
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source: &mb_art2_1
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40196'
+            law_article: '2, 1°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “4.785 euros” est remplacé par le montant “4.945 euros”"
+        - path: versions[1].formula
+          kind: parameter
+          source: *mb_art2_1
+        - path: versions[2].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40196'
+            law_article: '2, 2°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “4.945 euros” est remplacé par le montant “4.990 euros”"
+        - path: versions[3].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40196'
+            law_article: '2, 3°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “4.990 euros” est remplacé par le montant “5.070 euros”"
+        - path: versions[4].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40196'
+            law_article: '2, 4°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “5.070 euros” est remplacé par le montant “5.840 euros”"
+        - path: versions[5].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40196'
+            law_article: '2, 5°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “5.840 euros” est remplacé par le montant “6.230 euros”"
+      effective_period_evidence:
+        - mb_page: '40197'
+          law_article: '4, paragraph 1'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 1°, et 3, a), sont applicables à partir de l’exercice d’imposition 2027."
+        - mb_page: '40197'
+          law_article: '4, paragraph 2'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 2°, et 3, b), entrent en vigueur le 31 décembre 2026 et sont applicables à partir de l’exercice d’imposition 2028."
+        - mb_page: '40197'
+          law_article: '4, paragraph 3'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 3°, et 3, c), entrent en vigueur le 31 décembre 2027 et sont applicables à partir de l’exercice d’imposition 2029."
+        - mb_page: '40197'
+          law_article: '4, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 4° et 6°, et 3, d) et f), entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
+        - mb_page: '40197'
+          law_article: '4, paragraph 5'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 5° et 7°, et 3, e) et g), entrent en vigueur le 31 décembre 2029 et sont applicables à partir de l’exercice d’imposition 2031."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4785
+      - effective_from: '2026-01-01'
+        formula: |-
+          4945
+      - effective_from: '2027-01-01'
+        formula: |-
+          4990
+      - effective_from: '2028-01-01'
+        formula: |-
+          5070
+      - effective_from: '2029-01-01'
+        formula: |-
+          5840
+      - effective_from: '2030-01-01'
+        formula: |-
+          6230
+  - name: belgium_pit_article_131_post_article_178_target
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 131 post-Article-178 target fixed by law of 15 July 2026, M.B. p. 40197, Articles 2 and 4
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40197'
+            law_article: '2, 6°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "Le Roi modifie, le cas échéant, le montant visé à l’alinéa 1er, de telle sorte qu’il soit, après application de l’article 178, égal à 14.450 euros pour l’exercice d’imposition 2030."
+        - path: versions[1].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40197'
+            law_article: '2, 7°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "Le Roi modifie, le cas échéant, le montant visé à l’alinéa 1er, de telle sorte qu’il soit, après application de l’article 178, égal à 15.600 euros pour l’exercice d’imposition 2031."
+      effective_period_evidence:
+        - mb_page: '40197'
+          law_article: '4, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 4° et 6°, et 3, d) et f), entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
+        - mb_page: '40197'
+          law_article: '4, paragraph 5'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 2, 5° et 7°, et 3, e) et g), entrent en vigueur le 31 décembre 2029 et sont applicables à partir de l’exercice d’imposition 2031."
+    versions:
+      - effective_from: '2029-01-01'
+        formula: |-
+          14450
+      - effective_from: '2030-01-01'
+        formula: |-
+          15600
+  - name: belgium_pit_base_tax_free_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 131 and 178; applied amount calculated from explicit CPI inputs for AY2027-2029, direct statutory targets for AY2030-2031, and the explicit King-modified raw base from AY2032
     metadata:
       proof:
         atoms:
@@ -25,10 +312,60 @@ rules:
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-181
             excerpt: "Pour le calcul de l'impôt, un montant de base de 10.910 euros (montant indexé) est exempté d'impôt."
+        - path: versions[1].formula
+          kind: formula
+          source: *mb_art2_1
+        - path: versions[1].formula
+          kind: formula
+          source:
+            corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+            excerpt: "Après application du coefficient, les montants sont, à l'exception de ceux mentionnés aux articles 21, alinéa 1er, 14°, 66bis, alinéa 3, 14535, alinéa 6, du montant de l'indemnité kilométrique visé à l'article 38, § 1er, alinéa 1er, 14°, a, et des montants des réductions visés à l'article 147, arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
+        - path: versions[2].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40197'
+            law_article: '2, 6°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "Le Roi modifie, le cas échéant, le montant visé à l’alinéa 1er, de telle sorte qu’il soit, après application de l’article 178, égal à 14.450 euros pour l’exercice d’imposition 2030."
+        - path: versions[3].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40197'
+            law_article: '2, 7°'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "Le Roi modifie, le cas échéant, le montant visé à l’alinéa 1er, de telle sorte qu’il soit, après application de l’article 178, égal à 15.600 euros pour l’exercice d’imposition 2031."
+        - path: versions[4].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40197'
+            law_article: '2, 7°, Article 131 paragraph 3'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "Sans préjudice de l’application de l’article 178, le montant ainsi modifié est applicable à partir de l’exercice d’imposition 2031."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           10910
+      - effective_from: '2026-01-01'
+        formula: |-
+          floor((belgium_pit_article_131_statutory_base_amount * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
+      - effective_from: '2029-01-01'
+        formula: |-
+          belgium_pit_article_131_post_article_178_target
+      - effective_from: '2030-01-01'
+        formula: |-
+          belgium_pit_article_131_post_article_178_target
+      - effective_from: '2031-01-01'
+        formula: |-
+          floor((belgium_pit_article_131_king_modified_statutory_base_amount_from_assessment_year_2031 * belgium_pit_article_178_general_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_taxpayer_disability_tax_free_increase
     kind: parameter
     dtype: Money
@@ -46,40 +383,236 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           1980
-  - name: belgium_pit_one_child_tax_free_increase
+  - name: belgium_pit_article_132_one_child_statutory_supplement
     kind: parameter
     dtype: Money
     unit: EUR
-    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    source: CIR 1992 article 132, first paragraph, 1°, raw statutory amount as amended by Articles 5-8 and 13 of the law of 15 July 2026
     metadata:
       proof:
         atoms:
         - path: versions[0].formula
           kind: parameter
           source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '5(a)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “870 euros” est remplacé par le montant “935 euros”"
+        - path: versions[1].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '5(a)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “870 euros” est remplacé par le montant “935 euros”"
+        - path: versions[2].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '6(a)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “935 euros” est remplacé par le montant “1.005 euros”"
+        - path: versions[3].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '7(a)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “1.005 euros” est remplacé par le montant “1.075 euros”"
+        - path: versions[4].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '8(a)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “1.075 euros” est remplacé par le montant “1.162,50 euros”"
+      effective_period_evidence: &article_132_effective_period_evidence
+        - mb_page: '40199'
+          law_article: '13, paragraph 1'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 5, et 10, h) et i), sont applicables à partir de l’exercice d’imposition 2027."
+        - mb_page: '40199'
+          law_article: '13, paragraph 2'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "L’article 6 entre en vigueur le 31 décembre 2026 et est applicable à partir de l’exercice d’imposition 2028."
+        - mb_page: '40199'
+          law_article: '13, paragraph 3'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "L’article 7 entre en vigueur le 31 décembre 2027 est applicable à partir de l’exercice d’imposition 2029."
+        - mb_page: '40199'
+          law_article: '13, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 8, 9, 10, a) à g) et j) à l), 11 et 12 entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          870
+      - effective_from: '2026-01-01'
+        formula: |-
+          935
+      - effective_from: '2027-01-01'
+        formula: |-
+          1005
+      - effective_from: '2028-01-01'
+        formula: |-
+          1075
+      - effective_from: '2029-01-01'
+        formula: |-
+          1162.50
+  - name: belgium_pit_article_132_two_children_statutory_supplement
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132, first paragraph, 2°, raw statutory amount as amended by Articles 5-8 and 13 of the law of 15 July 2026
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '5(b)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “2.240 euros” est remplacé par le montant “2.250 euros”"
+        - path: versions[1].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '5(b)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “2.240 euros” est remplacé par le montant “2.250 euros”"
+        - path: versions[2].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '6(b)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “2.250 euros” est remplacé par le montant “2.260 euros”"
+        - path: versions[3].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '7(b)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “2.260 euros” est remplacé par le montant “2.272,50 euros”"
+        - path: versions[4].formula
+          kind: parameter
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40198'
+            law_article: '8(b)'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "le montant “2.272,50 euros” est remplacé par le montant “2.325 euros”"
+      effective_period_evidence: *article_132_effective_period_evidence
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2240
+      - effective_from: '2026-01-01'
+        formula: |-
+          2250
+      - effective_from: '2027-01-01'
+        formula: |-
+          2260
+      - effective_from: '2028-01-01'
+        formula: |-
+          2272.50
+      - effective_from: '2029-01-01'
+        formula: |-
+          2325
+  - name: belgium_pit_one_child_tax_free_increase
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 132 and 178; indexed first-child supplement calculated with the Article 104(b) coefficient
+    metadata:
+      proof:
+        atoms:
+        - path: versions[0].formula
+          kind: formula
+          source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans"
+            excerpt: "1° pour un enfant: 1.980 euros (montant indexé);"
+        - path: versions[1].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40219'
+            law_article: '104(b), Article 178 section 2/1'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "§ 2/1. Par dérogation au paragraphe 2, alinéa 1er, l’adaptation est réalisée en ce qui concerne les montants des suppléments visés aux articles 132, alinéa 1er, et 133, alinéas 1er et 3 :"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           1980
+      - effective_from: '2026-01-01'
+        formula: |-
+          floor((belgium_pit_article_132_one_child_statutory_supplement * belgium_pit_article_132_supplement_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_two_children_tax_free_increase
-    kind: parameter
+    kind: derived
+    entity: Person
     dtype: Money
+    period: Year
     unit: EUR
-    source: CIR 1992 article 132, income year 2025, assessment year 2026
+    source: CIR 1992 articles 132 and 178; indexed two-child supplement calculated with the Article 104(b) coefficient
     metadata:
       proof:
         atoms:
         - path: versions[0].formula
-          kind: parameter
+          kind: formula
           source:
             corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
-            excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième; 6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans"
+            excerpt: "2° pour deux enfants: 5.110 euros (montant indexé);"
+        - path: versions[1].formula
+          kind: formula
+          source:
+            authority: Moniteur belge
+            publication_date: '2026-07-29'
+            mb_page: '40219'
+            law_article: '104(b), Article 178 section 2/1'
+            source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+            corpus_status: awaiting_ingestion
+            excerpt: "§ 2/1. Par dérogation au paragraphe 2, alinéa 1er, l’adaptation est réalisée en ce qui concerne les montants des suppléments visés aux articles 132, alinéa 1er, et 133, alinéas 1er et 3 :"
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           5110
+      - effective_from: '2026-01-01'
+        formula: |-
+          floor((belgium_pit_article_132_two_children_statutory_supplement * belgium_pit_article_132_supplement_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_131_132_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
   - name: belgium_pit_three_children_tax_free_increase
     kind: parameter
     dtype: Money
