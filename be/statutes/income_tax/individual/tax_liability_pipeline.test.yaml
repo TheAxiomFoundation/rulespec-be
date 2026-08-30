@@ -1,4 +1,4 @@
-- name: article_6_taxable_income_flows_to_federal_local_tax_and_withholding
+- name: article_6_taxable_income_flows_to_federal_and_local_tax
   period:
     period_kind: custom
     name: calendar_year
@@ -35,11 +35,6 @@
     be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
     be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_communal_additional_tax_rate: 0.06
     be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0.01
-    be:statutes/income_tax/movable_withholding/rates#input.belgium_general_movable_income_subject_to_withholding: 0
-    be:statutes/income_tax/movable_withholding/rates#input.belgium_regulated_savings_deposit_gross_interest: 0
-    be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_professional_withholding: 5000
-    be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_prepayments: 1000
-    be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_other_withholding_or_creditable_tax: 0
   output:
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_base_tax_before_reductions: 14112
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_tax_after_tax_free_amount_reduction: 11384.5
@@ -48,8 +43,6 @@
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_local_additional_tax_base: 11384.5
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_local_additional_tax: 796.915
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_federal_and_local_tax_before_withholding: 12181.415
-    be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_total_withholding_and_prepayments: 6000
-    be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_net_tax_due_after_withholding_and_prepayments: 6181.415
 
 - name: article_6_pipeline_allows_refundable_child_credit
   period:
@@ -88,14 +81,8 @@
     be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_article_466bis_treaty_exempt_foreign_professional_income_base_applies: false
     be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_communal_additional_tax_rate: 0
     be:statutes/income_tax/individual/communal_additions#input.belgium_pit_agglomeration_additional_tax_rate: 0
-    be:statutes/income_tax/movable_withholding/rates#input.belgium_general_movable_income_subject_to_withholding: 0
-    be:statutes/income_tax/movable_withholding/rates#input.belgium_regulated_savings_deposit_gross_interest: 0
-    be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_professional_withholding: 0
-    be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_prepayments: 0
-    be:statutes/income_tax/individual/tax_liability_pipeline#input.belgium_pit_other_withholding_or_creditable_tax: 0
   output:
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_base_tax_before_reductions: 250
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_refundable_child_tax_credit: 1140
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_net_federal_tax_after_refundable_child_credit: -1140
     be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_local_additional_tax: 0
-    be:statutes/income_tax/individual/tax_liability_pipeline#belgium_pit_article_6_net_tax_due_after_withholding_and_prepayments: -1140

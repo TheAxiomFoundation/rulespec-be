@@ -18,6 +18,31 @@ CORPUS_CITATION_PATH_RE = re.compile(
 )
 SOURCE_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 IGNORED_DIRS = {".git", ".pytest_cache", ".venv", "__pycache__", "_axiom"}
+FORBIDDEN_EXTERNAL_MODEL_BRIDGE_MODULES = {
+    Path("be/policies/euromod_benefit_income_list.yaml"),
+    Path("be/policies/euromod_disposable_income_list.yaml"),
+    Path("be/policies/euromod_tax_income_list.yaml"),
+    Path("be/regulations/unemployment/pilot_oracle_pipeline.yaml"),
+    Path("be/statutes/education/study_allowance_routing.yaml"),
+    Path("be/statutes/income_tax/individual/couple_pit_oracle_pipeline.yaml"),
+    Path("be/statutes/income_tax/individual/pensioner_pit_oracle_pipeline.yaml"),
+    Path("be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml"),
+    Path("be/statutes/income_tax/individual/self_employed_oracle_pipeline.yaml"),
+    Path("be/statutes/family_benefits/regional_routing.yaml"),
+    Path("be/statutes/gift_tax/regional_routing.yaml"),
+    Path("be/statutes/inheritance_tax/regional_routing.yaml"),
+    Path("be/statutes/property_tax/regional_routing.yaml"),
+    Path("be/statutes/property_tax/gross_withholding_and_supplied_centimes.yaml"),
+    Path("be/statutes/vehicle_tax/regional_routing.yaml"),
+}
+NON_DOCUMENTARY_ATOMIC_IDENTITY_RE = re.compile(
+    r"(?:euromod|comparator|oracle(?:s)?|take[_ -]?up|takeup|"
+    r"propensity|elasticit|random|behavio(?:u)?r|be_[0-9]{4}|"
+    r"external runners?|upstream (?:model|dataset)|lane convention|"
+    r"worker slice|regional[_ -]routing|"
+    r"supplied[- ]withholding settlement|settlement bridge)",
+    flags=re.IGNORECASE,
+)
 DISALLOWED_GENERIC_RULE_NAMES = {
     "amount",
     "base",
@@ -214,6 +239,20 @@ def nested_keys(value: object):
     elif isinstance(value, list):
         for nested in value:
             yield from nested_keys(nested)
+
+
+def nested_authored_provenance_values(value: object):
+    """Yield authored provenance strings without scanning quoted source text."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for key, nested in value.items():
+            if key == "excerpt":
+                continue
+            yield from nested_authored_provenance_values(nested)
+    elif isinstance(value, list):
+        for nested in value:
+            yield from nested_authored_provenance_values(nested)
 
 
 def canonical_rule_id(path: Path, rule_name: str) -> str:
@@ -476,6 +515,87 @@ def test_canonical_jurisdiction_layout_is_a_hard_cut() -> None:
     assert problems == []
 
 
+def test_external_model_bridge_modules_do_not_return() -> None:
+    forbidden_paths = set(FORBIDDEN_EXTERNAL_MODEL_BRIDGE_MODULES)
+    forbidden_paths.update(
+        path.with_name(f"{path.stem}.test.yaml")
+        for path in FORBIDDEN_EXTERNAL_MODEL_BRIDGE_MODULES
+    )
+
+    present = sorted(
+        path.as_posix() for path in forbidden_paths if (ROOT / path).exists()
+    )
+
+    assert not present, (
+        "External-model, oracle-pipeline, and unsourced routing bridges are not "
+        f"public-policy concepts and must not return as atomic RuleSpec: {present}"
+    )
+
+
+def test_non_documentary_atomic_identities_are_absent() -> None:
+    matches: dict[Path, list[str]] = {}
+    for path in iter_rulespec_files():
+        relative = path.relative_to(ROOT)
+        payload = yaml.safe_load(path.read_text()) or {}
+        module = payload.get("module") or {}
+        identity_values: list[tuple[str, str]] = [("path", relative.as_posix())]
+        for key in ("id", "name", "title"):
+            value = module.get(key)
+            if isinstance(value, str):
+                identity_values.append((f"module.{key}", value))
+        summary = module.get("summary")
+        if isinstance(summary, str):
+            identity_values.append(("module.summary", summary))
+        for value in nested_authored_provenance_values(
+            module.get("source_verification") or {}
+        ):
+            identity_values.append(("module.source_verification", value))
+        for rule in payload.get("rules") or []:
+            if not isinstance(rule, dict):
+                continue
+            name = rule.get("name")
+            if isinstance(name, str):
+                identity_values.append(("rule.name", name))
+            source = rule.get("source")
+            if isinstance(source, str):
+                identity_values.append(("rule.source", source))
+            metadata = rule.get("metadata") or {}
+            for value in nested_authored_provenance_values(
+                metadata.get("source") or {}
+            ):
+                identity_values.append(("rule.metadata.source", value))
+            proof = metadata.get("proof") or {}
+            for atom in proof.get("atoms") or []:
+                if not isinstance(atom, dict):
+                    continue
+                for value in nested_authored_provenance_values(atom):
+                    identity_values.append(("proof.locator", value))
+
+        path_matches = [
+            f"{field}={value}"
+            for field, value in identity_values
+            if NON_DOCUMENTARY_ATOMIC_IDENTITY_RE.search(value)
+        ]
+        if path_matches:
+            matches[relative] = path_matches
+
+    assert matches == {}, (
+        "Atomic RuleSpec identities and source locators may only name concepts "
+        "found in public-policy documents. Do not add external-model, comparator, "
+        "oracle, model-system alias, external runner, unsourced routing, "
+        "take-up, propensity, elasticity, random, or behavioral "
+        "concepts. Exact matches: "
+        f"{matches}"
+    )
+
+
+def test_non_documentary_identity_guard_excludes_companion_test_fixtures() -> None:
+    # External-comparison names are permitted in test scenarios: companion
+    # fixture labels are validation context, not authored RuleSpec concepts or
+    # provenance. Production-file discovery must continue to exclude them.
+    assert all(not path.name.endswith(".test.yaml") for path in iter_rulespec_files())
+
+
 def test_program_roots_are_declarative_axiom_compose_only() -> None:
     problems: list[str] = []
     for jurisdiction in jurisdiction_dirs():
@@ -626,7 +746,7 @@ def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
     assert euromod_oracle["coverage_inventory"] == (
         "data/coverage/euromod-be-coverage.json"
     )
-    assert euromod_oracle["authority"] == "oracle_pinned_for_pilot_outputs"
+    assert euromod_oracle["authority"] == "external_comparison_oracle_only"
     assert denominator["policy_count"] == len(policies) == 43
     assert denominator["function_count"] == 1171
     assert denominator["parameter_count"] == 8211
@@ -642,7 +762,9 @@ def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
     assert outputs["tscee_s"]["status"] == (
         "live_oracle_verified_for_regular_worker_statutory_slice"
     )
-    assert outputs["tin_s"]["status"] == "prepared_worker_pilot_not_full_household_parity"
+    assert outputs["tin_s"]["status"] == (
+        "not_mapped_non_documentary_composition_removed"
+    )
     assert outputs["ils_dispy"]["status"] == "not_mapped"
 
 

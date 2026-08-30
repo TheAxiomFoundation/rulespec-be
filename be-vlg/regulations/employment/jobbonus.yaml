@@ -1,8 +1,8 @@
 format: rulespec/v1
 module:
   summary: |-
-    This module encodes the Flemish jobbonus for the 2025 EUROMOD-facing
-    annual worker slice. It applies the decree's beneficiary and eligibility
+    This module encodes the Flemish jobbonus for the 2025 annual reference
+    year. It applies the decree's beneficiary and eligibility
     framework and the Flemish Government implementing order's 2025 wage
     thresholds, degressive amount schedule, work-fraction proration,
     small-payment suppression, and fixed 50 euro top-up. It leaves quarterly
@@ -226,7 +226,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: Flemish jobbonus decree articles 3 through 5 and Flemish Government implementing order articles 2, 2/1, and 2/2, final annual jobbonus for the 2025 worker slice
+    source: Flemish jobbonus decree articles 3 through 5 and Flemish Government implementing order articles 2, 2/1, and 2/2, final annual jobbonus payable for 2025
     versions:
       - effective_from: '2025-01-01'
         formula: |-

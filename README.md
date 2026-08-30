@@ -19,6 +19,14 @@ Policy must come from the furthest upstream available source.
 
 An oracle is an executable, pinned external calculator that accepts household-level inputs and returns household-level tax-benefit outputs comparable to Axiom outputs. Aggregate simulators, distributional reports, parameter documentation, and public model summaries are not oracles for RuleSpec parity, even when they are useful as background references.
 
+## Atomic concept boundary
+
+Every concept exported by atomic RuleSpec must be specifically present in a
+public-policy document. External-model comparator or oracle outputs,
+calibration, take-up, propensity, elasticity, randomized assignment, and
+behavior belong outside atomic RuleSpec. Oracle fixtures may remain as external
+test data, but they are never legal authority or exported Axiom concepts.
+
 ## Layout
 
 - Atomic RuleSpec modules live only under
@@ -52,4 +60,4 @@ Durable ids should use `be:<path>#<rule>` for federal rules, `be-bru:<path>#<rul
 
 ## Money proof-atom coverage
 
-Every policy-bearing monetary value — currency parameters, currency parameter-table cells, and currency literals in derived formulas — must carry a proof atom whose source cites a provision. The shared `validate-rulespec` workflow enforces this with `axiom-encode proof-validate --money-atoms-only` and no allowance file: the repository has 598 obligations and permits zero missing atoms.
+Every policy-bearing monetary value — currency parameters, currency parameter-table cells, and currency literals in derived formulas — must carry a proof atom whose source cites a provision. The shared `validate-rulespec` workflow enforces this with `axiom-encode proof-validate --money-atoms-only` and no allowance file, permitting zero missing atoms.

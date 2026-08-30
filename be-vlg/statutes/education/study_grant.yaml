@@ -3,8 +3,7 @@ module:
   summary: >-
     Flemish higher-education study grant (studietoelage hoger onderwijs) under
     the Decree of 8 June 2007 on the funding of studies of the Flemish
-    Community. EUROMOD BE_2025 bed_be models this as the i_bed_fl_be higher-ed
-    branch, output bed_s. Article 42 sets a points system (one point each for
+    Community. Article 42 sets a points system (one point each for
     a fiscally dependent person, a fiscally disabled person, and a qualifying
     leefeenheid category, capped at twenty). Article 43 sets the statutory
     minimum- and maximum-income-grens anchors at zero and twenty points; the
@@ -12,11 +11,10 @@ module:
     under article 43 section 2 and are supplied as inputs, grounded in the
     decree's zero/twenty-point structure. Article 51 sets the full,
     exceptional, and minimum allowance base amounts for kot (residential) and
-    niet-kot (non-residential) students; a supplied index factor bridges the
-    2008 base amounts to the applicable EUROMOD-year amount, mirroring the
-    supplied-current-amount bridge pattern used for federal minimum-income
-    amounts. Article 39 sets the allowance computation: no allowance above the
-    maximum threshold, an exceptional allowance for qualifying low-income or
+    niet-kot (non-residential) students; a supplied statutory index factor
+    applies to the 2008 base amounts. Article 39 sets the allowance
+    computation: no allowance above the maximum threshold, an exceptional
+    allowance for qualifying low-income or
     replacement-income cases at or below one tenth of the maximum threshold,
     a full allowance at or below the minimum threshold, and an intermediate
     allowance elsewhere computed as the full amount times (maximum threshold
@@ -249,8 +247,8 @@ rules:
   # maximuminkomensgrens"). Because that threshold is itself a supplied,
   # point-specific input (article 43 delegates the per-point grid to the
   # Flemish Government), the exceptional-allowance ceiling is likewise a
-  # supplied input rather than a grounded scalar, so the oracle can pass the
-  # applicable-year value. See study_grant_supplied_exceptional_income_ceiling.
+  # supplied input rather than a grounded scalar. See
+  # study_grant_supplied_exceptional_income_ceiling.
   # ---- Indexed amounts (article 51 base amounts times supplied index factor) ----
   - name: study_grant_full_amount
     kind: derived

@@ -474,23 +474,7 @@
     "axiom_encode_ref": "372b74669c9afd04eee15b94fe2b7a5c2fa086d5",
     "rulespec_nz_ref": "7d132f7538cc74c69f4df66bd5899a716b8bf569"
   },
-  "oracle_bridge_modules": [
-    {
-      "id": "be-pit-worker-oracle-pilot",
-      "destination": "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml",
-      "coverage_inventory": "data/coverage/pilot-slice-coverage.json",
-      "entity": "Person",
-      "period": "Year",
-      "oracle_id": "euromod-belgium",
-      "oracle_model": "BE_2025",
-      "oracle_pr": "https://github.com/TheAxiomFoundation/axiom-oracles/pull/73",
-      "target_outputs": [
-        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_taxable_income",
-        "be:statutes/income_tax/individual/pilot_worker_oracle_pipeline#belgium_pit_pilot_federal_and_local_tax_before_withholding"
-      ],
-      "status": "encoded"
-    }
-  ],
+  "oracle_bridge_modules": [],
   "tracks": [
     {
       "track_id": "tax-personal-income",
@@ -768,12 +752,11 @@
           "status": "encoded"
         },
         {
-          "id": "final-federal-local-pit-and-supplied-withholding-settlement",
+          "id": "final-federal-and-local-pit-before-withholding",
           "destination": "be/statutes/income_tax/individual/final_tax.yaml",
           "source_requirements": [
-            "CIR 1992 article 134 final federal tax after refundable child-credit bridge",
-            "CIR 1992 articles 465 to 468 local additions",
-            "CIR 1992 article 269 movable withholding rates"
+            "CIR 1992 article 134 federal tax after refundable child credit",
+            "CIR 1992 articles 465 to 468 local additions"
           ],
           "oracle_checks": [
             "openfisca-belgium:income_tax",
@@ -794,36 +777,18 @@
           "status": "encoded"
         },
         {
-          "id": "article-6-to-final-tax-liability-pipeline",
+          "id": "article-6-to-federal-and-local-tax-before-withholding",
           "destination": "be/statutes/income_tax/individual/tax_liability_pipeline.yaml",
           "source_requirements": [
             "CIR 1992 article 6 taxable-income aggregation",
             "CIR 1992 article 130 ordinary rate scale",
             "CIR 1992 article 134 tax-free-amount reduction and refundable child-credit cap",
-            "CIR 1992 articles 465 to 468 supplied local-rate additions",
-            "CIR 1992 article 269 movable withholding rates"
+            "CIR 1992 articles 465 to 468 supplied local-rate additions"
           ],
           "oracle_checks": [
             "openfisca-belgium:income_tax",
             "fantasi:personal_income_tax"
           ],
-          "status": "encoded"
-        },
-        {
-          "id": "worker-remuneration-to-final-pit-oracle-pilot",
-          "destination": "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml",
-          "source_requirements": [
-            "CIR 1992 article 51 employee forfait parameters",
-            "CIR 1992 article 6 taxable-income concept",
-            "CIR 1992 article 130 ordinary rate scale",
-            "CIR 1992 article 131 base tax-free amount",
-            "CIR 1992 article 134 tax-free-amount reduction",
-            "CIR 1992 articles 465 to 468 supplied local-rate additions"
-          ],
-          "oracle_checks": [
-            "euromod-belgium:BE_2025:tin_s"
-          ],
-          "coverage_inventory": "data/coverage/pilot-slice-coverage.json",
           "status": "encoded"
         }
       ]
@@ -1324,17 +1289,6 @@
           "destination": "be-bru/statutes/family_benefits/eligibility.yaml",
           "source_requirements": [
             "2019 Brussels family-benefits ordinance articles 4 and 25 after upstream Moniteur identification"
-          ],
-          "oracle_checks": [
-            "household-level external calculator or model still required"
-          ],
-          "status": "encoded"
-        },
-        {
-          "id": "belgium-family-benefit-regional-routing",
-          "destination": "be/statutes/family_benefits/regional_routing.yaml",
-          "source_requirements": [
-            "Encoded Brussels, Flemish, Walloon, and German-speaking Community family-benefit amount and core eligibility surfaces"
           ],
           "oracle_checks": [
             "household-level external calculator or model still required"
@@ -1897,12 +1851,10 @@
           "status": "encoded"
         },
         {
-          "id": "unemployment-ordinary-payable-amount-bridge",
+          "id": "unemployment-ordinary-daily-minimum",
           "destination": "be/regulations/unemployment/payable_amount.yaml",
           "source_requirements": [
-            "1991 unemployment royal decree article 110 household status classification",
             "1991 unemployment royal decree article 114 ordinary unemployment daily amount",
-            "1991 unemployment royal decree article 111 wage caps",
             "1991 unemployment royal decree article 115 ordinary minimum daily amounts"
           ],
           "oracle_checks": [
@@ -1911,7 +1863,7 @@
           "status": "encoded"
         },
         {
-          "id": "unemployment-temporary-payable-amount-bridge",
+          "id": "unemployment-temporary-daily-minimum",
           "destination": "be/regulations/unemployment/payable_amount.yaml",
           "source_requirements": [
             "1991 unemployment royal decree article 114 temporary-unemployment daily amount",
@@ -2740,17 +2692,6 @@
             "openfisca-belgium:inheritance_tax"
           ],
           "status": "encoded"
-        },
-        {
-          "id": "belgium-inheritance-tax-regional-routing",
-          "destination": "be/statutes/inheritance_tax/regional_routing.yaml",
-          "source_requirements": [
-            "Encoded Flemish, Brussels-Capital, and Walloon inheritance-tax statutory rate schedules"
-          ],
-          "oracle_checks": [
-            "household-level external calculator or model still required"
-          ],
-          "status": "encoded"
         }
       ]
     },
@@ -2872,17 +2813,6 @@
           ],
           "oracle_checks": [
             "openfisca-belgium:gift_tax"
-          ],
-          "status": "encoded"
-        },
-        {
-          "id": "belgium-gift-tax-regional-routing",
-          "destination": "be/statutes/gift_tax/regional_routing.yaml",
-          "source_requirements": [
-            "Encoded Flemish, Brussels-Capital, and Walloon gift-tax statutory rate schedules"
-          ],
-          "oracle_checks": [
-            "household-level external calculator or model still required"
           ],
           "status": "encoded"
         }
@@ -3101,18 +3031,6 @@
           "status": "encoded"
         },
         {
-          "id": "belgium-immovable-withholding-regional-routing",
-          "destination": "be/statutes/property_tax/regional_routing.yaml",
-          "source_requirements": [
-            "Vlaamse Codex Fiscaliteit articles 2.1.4.0.1 and 2.1.5.0.1 current article-version text",
-            "CIR 1992 articles 15, 255, 256, 257, 258, 259, and 464/1 current FisconetPlus consolidated text"
-          ],
-          "oracle_checks": [
-            "openfisca-belgium:property_tax"
-          ],
-          "status": "encoded"
-        },
-        {
           "id": "brussels-be-home-property-tax-premium",
           "destination": "be-bru/statutes/property_tax/be_home_premium.yaml",
           "source_requirements": [
@@ -3203,17 +3121,6 @@
             "Code des taxes assimilees aux impots sur les revenus checked before Brussels Fiscality MyTax current 1 July 2026 tariff table"
           ],
           "oracle_checks": [],
-          "status": "encoded"
-        },
-        {
-          "id": "belgium-passenger-car-regional-tax-routing",
-          "destination": "be/statutes/vehicle_tax/regional_routing.yaml",
-          "source_requirements": [
-            "Encoded Brussels, Flemish, and Walloon passenger-car annual circulation-tax and entry-into-service tax surfaces"
-          ],
-          "oracle_checks": [
-            "household-level external calculator or model still required"
-          ],
           "status": "encoded"
         }
       ]
