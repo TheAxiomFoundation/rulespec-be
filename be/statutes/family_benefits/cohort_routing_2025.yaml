@@ -16,27 +16,7 @@ module:
     reduction in Article 35 is exposed separately from its Article 39
     household protection.
   source_verification:
-    corpus_citation_paths:
-      - "be-vlg/statute/decreet/2018/04/27/2018040369/article/210"
-      - "be-vlg/statute/decreet/2018/04/27/2018040369/article/13"
-      - "be-wal/statute/decret/2018/02/08/2018201006/article/120"
-      - "be-wal/statute/decret/2018/02/08/2018201006/article/136"
-      - "be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1"
-      - "be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4"
-      - "be-bru/statute/ordonnance/2019/04/25/2019012118/article/35"
-      - "be-bru/statute/ordonnance/2019/04/25/2019012118/article/39"
-      - "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1"
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - "be-wal/statute/decret/2018/02/08/2018201006/article/120"
-        - "be-wal/statute/decret/2018/02/08/2018201006/article/136"
-      rationale: |-
-        Article 120 preserves the LGAF provisions for children born no later
-        than the day before the commencement date, and Article 136 delegates
-        that date to the Government. The official AVIQ 2025 amount scale is
-        therefore used only to resolve the delegated boundary as children
-        born before 2020 versus children born from 2020.
+    corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/210"
   proof_validation:
     required: true
 rules:
@@ -268,59 +248,3 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_german_speaking_community and not belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
-  - name: belgium_family_benefits_transition_selected_child_legacy_lgaf_route_applies
-    kind: derived
-    entity: Child
-    dtype: Judgment
-    period: Year
-    source: Selected child-level LGAF routing judgment for the Flemish and Walloon transition provisions
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/210"
-              excerpt: "Een rechtgevend kind dat geboren is vóór 1 januari 2019 en voor wie het recht op kinderbijslag overeenkomstig de kinderbijslagreglementering is geopend op 31 december 2018, blijft recht geven op kinderbijslag overeenkomstig de kinderbijslagreglementering"
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be-wal/statute/decret/2018/02/08/2018201006/article/120"
-              excerpt: "qui continuent à s'appliquer après cette date pour les enfants nés au plus tard la veille de ladite date fixée par le Gouvernement"
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies or belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies
-  - name: belgium_family_benefits_transition_selected_child_regional_statute_route_applies
-    kind: derived
-    entity: Child
-    dtype: Judgment
-    period: Year
-    source: Selected regional child-level routing judgment; Brussels and the German-speaking Community retain separate household protections
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be-vlg/statute/decreet/2018/04/27/2018040369/article/13"
-              excerpt: "Het rechtgevende kind, met uitzondering van het kind, vermeld in artikel 210, § 1, of in titel 2 van deel 2 van boek 5, geeft recht op een maandelijks basisbedrag van 160 euro."
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4"
-              excerpt: "Les enfants nés à partir de 2020"
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be-bru/statute/ordonnance/2019/04/25/2019012118/article/39"
-              excerpt: "l'allocataire perd définitivement le bénéfice de la présente disposition lorsqu'un montant d'allocations familiales égal ou supérieur lui est dû en vertu de la présente ordonnance."
-          - path: versions[0].formula
-            kind: formula
-            source:
-              corpus_citation_path: "be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits/block-1"
-              excerpt: "Dieser Betrag wird anstelle der in den Artikeln 8, 17, 19, 23 und 25 erwähnten Leistungen gezahlt, bis eine der folgenden Situationen eintritt"
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_brussels or belgium_family_benefits_transition_region == belgium_family_benefits_child_benefit_region_german_speaking_community or belgium_family_benefits_transition_flanders_new_groeipakket_child_route_applies or belgium_family_benefits_transition_wallonia_new_decree_child_route_applies
