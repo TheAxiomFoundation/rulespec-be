@@ -48,9 +48,23 @@ encoded values or expected outputs.
 
 - Failure: the Flemish age boundary `4` is not recognized.
 - Finding: Article 19 states the age boundary as Dutch `vier`, which the pinned
-  parser misses.
+  parser misses. Protected CI records the resulting current failure as
+  `sha256:63f2a631e1b666f7d85aa6006cfb3fa1ba7a431545c7c00a4b7c1028303f1dce`.
 - Judgment: source-present Dutch-number-word limitation, not evidence that the
   encoded boundary or tested benefit output is wrong.
+
+## `be/statutes/family_benefits/birth_allowance.yaml`
+
+- Failure: protected validation still fails after the unsourced region-tag and
+  cross-jurisdiction routing outputs were removed.
+- Finding: the prior region-tag-`4` explanation no longer applies. Protected CI
+  records the contracted module's current failure as
+  `sha256:5d6a5c835d2d3b5fb04bb88f09a7a3a1cde1678a35330f2f31fb6142e4f1fedb`;
+  its pending-to-active waiver transition is blocked by the toolchain/waiver
+  protocol issue tracked in `axiom-encode#1558`.
+- Judgment: unresolved protected validation evidence. Do not infer that the
+  documentary regional amounts are validated, and do not restore an unsourced
+  routing concept to suppress the failure.
 
 ## `be/statutes/family_benefits/lgaf_amounts.yaml`
 
