@@ -1,0 +1,163 @@
+- name: flanders_pre_2019_open_right_routes_to_legacy_lgaf
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 2
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2018-12-31'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: true
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies: holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_new_groeipakket_child_route_applies: not_holds
+- name: flanders_pre_2019_without_open_right_routes_to_groeipakket
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 2
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2018-12-31'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies: not_holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_new_groeipakket_child_route_applies: holds
+- name: flanders_2019_boundary_routes_to_groeipakket
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 2
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2019-01-01'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: true
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_legacy_lgaf_child_route_applies: not_holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_flanders_new_groeipakket_child_route_applies: holds
+- name: wallonia_pre_2020_routes_to_legacy_lgaf
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 3
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2019-12-31'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies: holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_wallonia_new_decree_child_route_applies: not_holds
+- name: wallonia_2020_boundary_routes_to_new_decree
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 3
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2020-01-01'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_wallonia_legacy_lgaf_child_route_applies: not_holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_wallonia_new_decree_child_route_applies: holds
+- name: brussels_pre_december_2019_uses_article_35_deduction_and_article_39_protection
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 1
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2019-11-30'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: true
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies: holds
+- name: brussels_december_2019_boundary_has_no_article_35_deduction
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 1
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2019-12-01'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_article_35_birth_amount_reduction_applies: not_holds
+- name: brussels_article_39_household_protection_route
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 1
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2019-11-30'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: true
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_article_39_household_protection_route_applies: holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_ordinance_household_route_applies: not_holds
+- name: brussels_standard_ordinance_household_route
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 1
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2019-12-01'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_article_39_household_protection_route_applies: not_holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_brussels_ordinance_household_route_applies: holds
+- name: german_speaking_community_article_111_household_protection
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 4
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2018-12-31'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : true
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_route_applies: holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_german_speaking_community_decree_household_route_applies: not_holds
+- name: german_speaking_community_standard_decree_household_route
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_region: 4
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_child_date_of_birth: '2020-01-01'
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_flanders_right_open_on_2018_12_31: false
+    be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_brussels_article_39_household_protection_active: false
+    ? be:statutes/family_benefits/cohort_routing_2025#input.belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_active
+    : false
+  output:
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_german_speaking_community_article_111_household_protection_route_applies: not_holds
+    be:statutes/family_benefits/cohort_routing_2025#belgium_family_benefits_transition_german_speaking_community_decree_household_route_applies: holds

@@ -1,0 +1,646 @@
+format: rulespec/v1
+module:
+  summary: |-
+    This module supplies only the indexed 2025 family-benefit schedule entries
+    that are absent from the existing federal, regional, and base-only 2025
+    amount modules.  It covers the missing Flemish legacy ranks, legacy social
+    and high age tracks, current-scheme social bands, and the missing Walloon
+    legacy ranks, social amounts, annual premiums, and current-scheme family
+    supplements.  Composition remains in a separate child-scoped module.
+  source_verification:
+    corpus_citation_path: "be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_child_benefit_flanders_legacy_second_rank_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 210 indexed legacy second-rank amount in the official schedule applicable during 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3
+              excerpt: "AGENTSCHAP\n\nUITBETALING\n\nGROEIPAKKET Gehuwde/zelfstandige/ alleenstaande € 861,32 € 3.948,79 - leerlingen Leerlingen in 3de lj. van 3de graad extern € 338,97 € 1.367,61 € 1.605,78 voltijds technisch of beroeps- intern € 876,02 € 2.248,28 - secundair Alle anderen voltijds secundair extern € 282,37 € 1.139,56 € 1338,01 onderwijs intern € 730,02 € 187351 - Stelsel leren en werken € 237,45 € 649,26 € 837,58 Verpleegkundigen in hoger beroeps- | extern € 1.002,45 € 1.464,48 - onderwijs intern € 1.002,45 € 4398,11 -\n\nBOEK 5 GEZINSBIJSLAGEN\n\nKRAAMGELD Iste kind of meerling € 1.272,52 2° of volgende kind € 957,42\n\nBASISKINDERBIJSLAGEN\n\nGEWONE KINDERBIJSLAG (Artikel 210, §2 Groeipakketdecreet)\n\njongste kind (laag) € 103,72 2de jongste kind (midden) € 191,92 3de jongste en oudere kinderen (hoog) € 259,49 | geen indexering tot\n\naugustus 2025\n\nWEZEN (Artikel 214 Groeipakketdecreet)\n\nper weeskind € 398,39\n\nFORFAITAIRE KINDERBIJSLAG OF FORFAITAIRE € 69,59 BIJZONDERE BIJSLAG VOOR KINDEREN\n\nGEPLAATST BIJ EEN PARTICULIER (Artikel 219 en\n\nartikel 221 Groeipakketdecreet)\n\nSOCIALE TOESLAGEN\n\nTOESLAGEN VOOR EEN RECHTGEVEND KIND DAT RECHT GEEFT OP KINDERBIJSLAG VERMELD IN ARTIKEL 210,§1 OF DE GEWONE WEZENBUSLAG (Artikel 222, §1 Groeipakketdecreet)\n\nkind dat recht geeft op 92,09 EUR € 68,41"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          191.92
+  - name: belgium_child_benefit_flanders_legacy_third_plus_rank_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 210 indexed legacy third-and-later-rank amount in the official schedule applicable during 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3
+              excerpt: "GEWONE KINDERBIJSLAG (Artikel 210, §2 Groeipakketdecreet)\n\njongste kind (laag) € 103,72 2de jongste kind (midden) € 191,92 3de jongste en oudere kinderen (hoog) € 259,49"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          259.49
+  - name: belgium_child_benefit_flanders_legacy_orphan_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 214 indexed legacy orphan amount in the official schedule applicable during 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3
+              excerpt: "WEZEN (Artikel 214 Groeipakketdecreet)\n\nper weeskind € 398,39"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          398.39
+  - name: belgium_child_benefit_flanders_legacy_first_rank_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 222 indexed legacy first-rank social supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-3
+              excerpt: "TOESLAGEN VOOR EEN RECHTGEVEND KIND DAT RECHT GEEFT OP KINDERBIJSLAG VERMELD IN ARTIKEL 210,§1 OF DE GEWONE WEZENBUSLAG (Artikel 222, §1 Groeipakketdecreet)\n\nkind dat recht geeft op 92,09 EUR € 68,41"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          68.41
+  - name: belgium_child_benefit_flanders_legacy_second_rank_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 222 indexed legacy second-rank social supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
+              excerpt: "kind dat recht geeft op 170,39 EUR € 48,33 kind dat recht geeft op 254,40 EUR € 21,35"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          48.33
+  - name: belgium_child_benefit_flanders_legacy_third_plus_other_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 222 indexed legacy third-and-later ordinary social supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
+              excerpt: "kind dat recht geeft op 170,39 EUR € 48,33 kind dat recht geeft op 254,40 EUR € 21,35"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          21.35
+  - name: belgium_child_benefit_flanders_legacy_third_plus_single_parent_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 222 section 3 indexed legacy third-and-later single-parent social supplement
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
+              excerpt: "TOESLAGEN VOOR EEN RECHTGEVEND ONDER ARTIKEL 222, §3 GROEIPAKKETDECREET kind dat recht geeft op 254,40 EUR € 42,00"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          42.00
+  - name: belgium_child_benefit_flanders_legacy_high_age_6_to_11_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 212 indexed legacy high-track age supplement for ages 6 to 11
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
+              excerpt: "Rechtgevende kinderen die recht geven op kinderbijslag zoals vermeld in artikel 210, §1 - artikel 44,§2 AKBW ( Artikel 212,$1 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 32,63 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 49,86 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 63,40"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          32.63
+  - name: belgium_child_benefit_flanders_legacy_high_age_12_to_17_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 212 indexed legacy high-track age supplement for ages 12 to 17
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
+              excerpt: "Rechtgevende kinderen die recht geven op kinderbijslag zoals vermeld in artikel 210, §1 - artikel 44,§2 AKBW ( Artikel 212,$1 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 32,63 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 49,86 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 63,40"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          49.86
+  - name: belgium_child_benefit_flanders_legacy_high_age_18_to_24_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 212 indexed legacy high-track age supplement for ages 18 to 24
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-4
+              excerpt: "Rechtgevende kinderen die recht geven op kinderbijslag zoals vermeld in artikel 210, §1 - artikel 44,§2 AKBW ( Artikel 212,$1 Groeipakketdecreet)\n\nKind van 6 tot en met 11 jaar € 32,63 geen indexering tot augustus 2025\n\nKind van 12 tot en met 17 jaar € 49,86 geen indexering tot augustus 2025\n\nKind van 18 tot en met 24 jaar € 63,40"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          63.40
+  - name: belgium_child_benefit_flanders_social_low_income_2025_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Article 18 indexed first income ceiling in the official schedule applicable during 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          40187.19
+  - name: belgium_child_benefit_flanders_social_middle_small_family_2025_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Article 18 indexed middle ceiling for one- and two-child families
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          46885.06
+  - name: belgium_child_benefit_flanders_social_middle_large_family_2025_threshold
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Flemish Article 18 indexed middle ceiling for families with at least three children
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          75593.05
+  - name: belgium_child_benefit_flanders_social_low_small_family_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 18 indexed low-income amount for one- and two-child families
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          71.91
+  - name: belgium_child_benefit_flanders_social_low_large_family_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 18 indexed low-income amount for families with at least three children
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "< 3 kinderen €71,91\n\n> 2 kinderen € 105,69\n\nen inkomen onder € 40.187,19"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          105.69
+  - name: belgium_child_benefit_flanders_social_middle_small_family_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 18 indexed middle-income amount for one- and two-child families
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "< 3 kinderen (nieuwe categorie vanaf € 36,41 1/04/2023)\n\nen inkomen tussen € 40.187,19\n\n€ 46.885,06"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          36.41
+  - name: belgium_child_benefit_flanders_social_middle_large_family_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Flemish Article 18 indexed middle-income amount for families with at least three children
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09/schedule-1
+              excerpt: "> 2 kinderen € 83,17\n\nen inkomen tussen € 40.187,19\n\n€ 75.593,05"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          83.17
+  - name: belgium_child_benefit_wallonia_legacy_second_rank_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed legacy second-rank amount at 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "Les enfants nes avant 2020\n1) Allocations Familiales de base\nEnfant\nMontant\n1er enfant\n2eme enfant\n3eme enfant et les suivants\n119,12 EUR\n220,41 EUR\n329,08 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          220.41
+  - name: belgium_child_benefit_wallonia_legacy_third_plus_rank_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed legacy third-and-later-rank amount at 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "Les enfants nes avant 2020\n1) Allocations Familiales de base\nEnfant\nMontant\n1er enfant\n2eme enfant\n3eme enfant et les suivants\n119,12 EUR\n220,41 EUR\n329,08 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          329.08
+  - name: belgium_child_benefit_wallonia_legacy_second_rank_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed legacy second-rank low-income social supplement at 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          37.59
+  - name: belgium_child_benefit_wallonia_legacy_third_plus_other_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed legacy third-and-later low-income social supplement for other families
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          6.60
+  - name: belgium_child_benefit_wallonia_legacy_third_plus_single_parent_social_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed legacy third-and-later low-income social supplement for a single-parent family
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "1er enfant\n2eme enfant\n3eme enfant et suivants\n3eme enfant et suivants dans famille monoparentale\n60,64 EUR\n37,59 EUR\n6,60 EUR\n30,31 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          30.31
+  - name: belgium_child_benefit_wallonia_legacy_under_6_2025_annual_premium
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon indexed legacy ordinary annual premium for ages 0 to 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "Supplements d'age annuels taux de base\n-\n26,39 EUR\n56,74 EUR\n79,16 EUR\n105,56 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          26.39
+  - name: belgium_child_benefit_wallonia_legacy_under_6_social_2025_annual_premium
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon indexed legacy annual premium with a supplement for ages 0 to 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-1
+              excerpt: "Supplements d'age annuels avec supplement\n-\n36,42 EUR\n77,30 EUR\n108,22 EUR\n145,69 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          36.42
+  - name: belgium_child_benefit_wallonia_legacy_orphan_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed legacy orphan monthly amount at 1 February 2025
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-3
+              excerpt: "Avant 2019(4) 457,60 €"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          457.60
+  - name: belgium_child_benefit_wallonia_new_18_to_24_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon Article 9 indexed monthly base for a child from age 18
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Enfant jusqu'a 18 ans\nEnfant a partir de 18 ans\nMontant\n192,73 EUR\n205,16 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          205.16
+  - name: belgium_child_benefit_wallonia_new_5_to_10_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon Article 19 indexed annual age amount for ages 5 to 10 on the statutory reference date
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "De 0 a 4 ans inclus\nPar enfant\n24,87 EUR\nDe 5 a 10 ans inclus\n37,30 EUR\nDe 11 a 16 ans inclus\n62,17 EUR\nDe 17 ans a 24 ans inclus\n99,47 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          37.30
+  - name: belgium_child_benefit_wallonia_new_11_to_16_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon Article 19 indexed annual age amount for ages 11 to 16 on the statutory reference date
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "De 0 a 4 ans inclus\nPar enfant\n24,87 EUR\nDe 5 a 10 ans inclus\n37,30 EUR\nDe 11 a 16 ans inclus\n62,17 EUR\nDe 17 ans a 24 ans inclus\n99,47 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          62.17
+  - name: belgium_child_benefit_wallonia_new_17_to_24_2025_annual_amount
+    kind: parameter
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Walloon Article 19 indexed annual age amount for ages 17 to 24 on the statutory reference date
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "De 0 a 4 ans inclus\nPar enfant\n24,87 EUR\nDe 5 a 10 ans inclus\n37,30 EUR\nDe 11 a 16 ans inclus\n62,17 EUR\nDe 17 ans a 24 ans inclus\n99,47 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          99.47
+  - name: belgium_child_benefit_wallonia_new_single_parent_low_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon Article 13 indexed low-income single-parent supplement per child
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Supplement mensuel par enfant pour les familles monoparentales\nRevenus < 1er plafond\n24,87 EUR\nRevenus < 2eme plafond\n12,43 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          24.87
+  - name: belgium_child_benefit_wallonia_new_single_parent_middle_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon Article 13 indexed middle-income single-parent supplement per child
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Supplement mensuel par enfant pour les familles monoparentales\nRevenus < 1er plafond\n24,87 EUR\nRevenus < 2eme plafond\n12,43 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          12.43
+  - name: belgium_child_benefit_wallonia_new_large_family_low_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon Article 13 indexed low-income large-family supplement per child
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Supplement mensuel par enfant pour les familles nombreuses\nRevenus < 1er plafond\n43,52 EUR\nRevenus < 2eme plafond\n24,87 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          43.52
+  - name: belgium_child_benefit_wallonia_new_large_family_middle_2025_monthly_amount
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon Article 13 indexed middle-income large-family supplement per child
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Supplement mensuel par enfant pour les familles nombreuses\nRevenus < 1er plafond\n43,52 EUR\nRevenus < 2eme plafond\n24,87 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          24.87
+  - name: belgium_child_benefit_wallonia_new_one_parent_orphan_under_18_2025_monthly_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed one-parent-orphan supplement for a child under age 18
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Supplement mensuel par enfant orphelin d'un parent ou filiation a l'egard d'un seul (sans condition liee a la remise en menage du parent en vie)\nEnfant jusqu'a 18 ans\n96,37 EUR\nEnfant a partir de 18 ans\n102,58 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          96.37
+  - name: belgium_child_benefit_wallonia_new_one_parent_orphan_18_to_24_2025_monthly_supplement
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: EUR
+    source: Walloon indexed one-parent-orphan supplement for a child from age 18
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be-wal/guidance/aviq/family-benefits/amount-scale-2025-02/page-4
+              excerpt: "Supplement mensuel par enfant orphelin d'un parent ou filiation a l'egard d'un seul (sans condition liee a la remise en menage du parent en vie)\nEnfant jusqu'a 18 ans\n96,37 EUR\nEnfant a partir de 18 ans\n102,58 EUR"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          102.58
