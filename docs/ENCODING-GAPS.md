@@ -1,8 +1,8 @@
 # Encoding gaps
 
-These findings record the modules that still fail path-anchored numeric
-grounding after source-faithful citation and excerpt fixes. They do not change
-encoded values or expected outputs.
+These findings record source gaps and parser limitations that prevent faithful
+encoding or path-anchored numeric grounding. They do not change encoded values
+or expected outputs.
 
 ## `be/regulations/career_break/parental_leave/allowance_amounts.yaml`
 
@@ -46,25 +46,19 @@ encoded values or expected outputs.
 
 ## `be/statutes/family_benefits/child_benefit_base_2025.yaml`
 
-- Failure: the Flemish age boundary `4` is not recognized.
-- Finding: Article 19 states the age boundary as Dutch `vier`, which the pinned
-  parser misses. Protected CI records the resulting current failure as
-  `sha256:63f2a631e1b666f7d85aa6006cfb3fa1ba7a431545c7c00a4b7c1028303f1dce`.
-- Judgment: source-present Dutch-number-word limitation, not evidence that the
-  encoded boundary or tested benefit output is wrong.
-
-## `be/statutes/family_benefits/birth_allowance.yaml`
-
-- Failure: protected validation still fails after the unsourced region-tag and
-  cross-jurisdiction routing outputs were removed.
-- Finding: the prior region-tag-`4` explanation no longer applies. Protected CI
-  records the contracted module's current failure as
-  `sha256:5d6a5c835d2d3b5fb04bb88f09a7a3a1cde1678a35330f2f31fb6142e4f1fedb`;
-  its pending-to-active waiver transition is blocked by the toolchain/waiver
-  protocol issue tracked in `axiom-encode#1558`.
-- Judgment: unresolved protected validation evidence. Do not infer that the
-  documentary regional amounts are validated, and do not restore an unsourced
-  routing concept to suppress the failure.
+- Gap: the pinned Brussels and Walloon amount schedules take effect on 1
+  February 2025. The preceding schedules needed to encode January amounts are
+  not in the pinned corpus, so January indexed amounts remain unencoded.
+- Gap: several derived selectors require documentary facts absent from the
+  current input surface. Brussels Article 15 needs age on 1 July and whether
+  the July right derives from higher-education enrollment. The Flemish monthly
+  and annual selectors need full Article 8 entitlement, the applicable legacy
+  conditions, and age on the preceding 31 December. The German-speaking
+  Community monthly selector needs the Article 9, 10, 12, and 13 conditions;
+  its annual selector needs actual July 2025 base-benefit entitlement.
+- Judgment: these derived selectors are intentionally unencoded. Their
+  independently proven amount leaves remain available, without substituting
+  generic current-age or enrollment proxies for the missing legal facts.
 
 ## `be/statutes/family_benefits/lgaf_amounts.yaml`
 
