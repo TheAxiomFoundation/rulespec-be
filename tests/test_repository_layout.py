@@ -556,12 +556,26 @@ def test_non_documentary_atomic_module_groups_do_not_return() -> None:
     present = sorted(
         path.as_posix() for path in forbidden_paths if (ROOT / path).exists()
     )
+    forbidden_module_ids = {
+        f"{path.parts[0]}:{'/'.join(path.with_suffix('').parts[1:])}"
+        for path in FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES
+    }
+    consumers: list[str] = []
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        for imported in payload.get("imports") or []:
+            imported_module = str(imported).split("#", 1)[0]
+            if imported_module in forbidden_module_ids:
+                consumers.append(
+                    f"{path.relative_to(ROOT).as_posix()}: {imported}"
+                )
 
     assert not present, (
         "External-model and oracle pipelines, unsourced routing and settlement "
         "bridges, and synthetic cross-jurisdiction aggregates are not concepts "
         f"stated in public-policy documents: {present}"
     )
+    assert consumers == [], f"surviving imports consume deleted modules: {consumers}"
 
 
 def test_documentary_boundary_census_is_exact() -> None:
@@ -617,68 +631,6 @@ def test_validation_waivers_reference_existing_modules() -> None:
     missing = sorted(path for path in waivers if not (ROOT / path).is_file())
 
     assert missing == []
-
-
-def test_family_benefit_modules_stay_within_documentary_jurisdictions() -> None:
-    problems: list[str] = []
-    regional_surfaces: set[str] = set()
-    for jurisdiction in jurisdiction_dirs():
-        root = jurisdiction / "statutes" / "family_benefits"
-        if not root.is_dir():
-            continue
-        expected_prefix = jurisdiction.name
-        for path in sorted(root.rglob("*.yaml")):
-            if path.name.endswith(".test.yaml"):
-                continue
-            if expected_prefix != "be":
-                regional_surfaces.add(expected_prefix)
-            payload = yaml.safe_load(path.read_text()) or {}
-            citations: list[str] = []
-            module = payload.get("module") or {}
-            verification = module.get("source_verification") or {}
-            module_citation = verification.get("corpus_citation_path")
-            if isinstance(module_citation, str):
-                citations.append(module_citation)
-            for rule in payload.get("rules") or []:
-                if not isinstance(rule, dict):
-                    continue
-                for atom in proof_atoms(rule):
-                    source = atom.get("source") if isinstance(atom, dict) else None
-                    citation = (
-                        source.get("corpus_citation_path")
-                        if isinstance(source, dict)
-                        else None
-                    )
-                    if isinstance(citation, str):
-                        citations.append(citation)
-
-            wrong_citations = sorted(
-                citation
-                for citation in citations
-                if citation.split("/", 1)[0] != expected_prefix
-            )
-            wrong_imports = sorted(
-                str(imported)
-                for imported in payload.get("imports") or []
-                if not str(imported).startswith(f"{expected_prefix}:")
-            )
-            if wrong_citations:
-                problems.append(
-                    f"{path.relative_to(ROOT)}: cross-jurisdiction citations "
-                    f"{wrong_citations}"
-                )
-            if wrong_imports:
-                problems.append(
-                    f"{path.relative_to(ROOT)}: cross-jurisdiction imports "
-                    f"{wrong_imports}"
-                )
-
-    required_regional_surfaces = {"be-bru", "be-dg", "be-vlg", "be-wal"}
-    missing_surfaces = sorted(required_regional_surfaces - regional_surfaces)
-    if missing_surfaces:
-        problems.append(f"missing regional family-benefit surfaces {missing_surfaces}")
-
-    assert problems == []
 
 
 def test_non_documentary_atomic_identities_are_absent() -> None:

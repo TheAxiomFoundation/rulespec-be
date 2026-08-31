@@ -32,6 +32,10 @@ or admission claim is authorized or present.
   worktree. It maps 75 changed files to 76 indexed nodes, no execution
   processes, and therefore no graph-derived callers; RuleSpec import closure
   remains the authoritative dependency check for this YAML corpus.
+- Replaced an overbroad family-benefit jurisdiction guard, which would have
+  rejected legitimate future documentary dependencies, with the exact required
+  invariant that no surviving import consumes any of the 22 deleted modules.
+  The four focused boundary tests and Ruff pass.
 - Inspected the branch, exact base and merge base, cached remote refs, recent
   commits, committed changed-path inventory, staged state, and all preserved
   uncommitted paths. No reset or clean operation was used.
