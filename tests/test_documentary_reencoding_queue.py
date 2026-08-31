@@ -168,6 +168,27 @@ def git_tree_entries(ref: str) -> dict[str, tuple[str, str, str]]:
     return entries
 
 
+def atomic_group_paths(
+    entries: dict[str, tuple[str, str, str]],
+) -> tuple[set[str], set[str]]:
+    primaries: set[str] = set()
+    companions: set[str] = set()
+    for path in entries:
+        parts = path.split("/")
+        if (
+            len(parts) < 3
+            or re.fullmatch(r"be(?:-[a-z0-9]+)*", parts[0]) is None
+            or parts[1] not in ATOMIC_ROOTS
+            or not path.endswith(".yaml")
+        ):
+            continue
+        if path.endswith(".test.yaml"):
+            companions.add(path)
+        else:
+            primaries.add(path)
+    return primaries, companions
+
+
 def assert_git_blob_evidence(
     *,
     entries: dict[str, tuple[str, str, str]],
@@ -313,6 +334,16 @@ def test_frozen_rule_groups_are_authenticated_against_git_objects() -> None:
     )
     base_entries = git_tree_entries(base)
     head_entries = git_tree_entries(head)
+    candidate_paths = {item["path"] for item in queue["candidates"]}
+    cleanup_paths = {item["path"] for item in queue["cleanup"]["groups"]}
+    hold_paths = {item["path"] for item in queue["holds"]}
+    base_primaries, base_companions = atomic_group_paths(base_entries)
+    head_primaries, head_companions = atomic_group_paths(head_entries)
+
+    assert base_primaries == candidate_paths | cleanup_paths | hold_paths
+    assert head_primaries == candidate_paths | hold_paths
+    assert base_companions == {companion_path(path) for path in base_primaries}
+    assert head_companions == {companion_path(path) for path in head_primaries}
 
     for item in [*queue["candidates"], *queue["cleanup"]["groups"], *queue["holds"]]:
         path = item["path"]
