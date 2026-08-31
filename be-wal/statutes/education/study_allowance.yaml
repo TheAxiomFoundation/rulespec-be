@@ -20,6 +20,10 @@ units:
   kind: currency
   minor_units: 2
 rules:
+# Review-only, non-admitted expected-output cleanup: the internal dependent-count
+# selector pseudo-concept is omitted while companion cases preserve the numeric
+# four-dependent and fifth-plus branches. Protected v5 regeneration is still
+# required.
 - name: study_allowance_secondary_income_ceiling_0_dependents
   kind: parameter
   dtype: Money
@@ -496,15 +500,6 @@ rules:
   versions:
   - effective_from: '2016-07-01'
     formula: '2096'
-- name: study_allowance_dependent_person_count_fifth_dependent_code
-  kind: parameter
-  dtype: Count
-  source: Internal selector code for the fifth-and-beyond dependent-person-count
-    increment threshold shared by articles 2 and 4 section 2 of the French-Community
-    study-allowance order of 21 September 2016
-  versions:
-  - effective_from: '2016-07-01'
-    formula: '4'
 - name: study_allowance_income_ceiling
   kind: derived
   entity: Person
@@ -522,10 +517,10 @@ rules:
       \       else:\n                if study_allowance_dependent_person_count ==\
       \ 3:\n                    study_allowance_higher_income_ceiling_3_dependents\n\
       \                else:\n                    if study_allowance_dependent_person_count\
-      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \ == 4:\n       \
       \                 study_allowance_higher_income_ceiling_4_dependents\n\
       \                    else:\n                        study_allowance_higher_income_ceiling_4_dependents\
-      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_higher_income_ceiling_increment\n\
       else:\n    if study_allowance_dependent_person_count == 0:\n        study_allowance_secondary_income_ceiling_0_dependents\n\
       \    else:\n        if study_allowance_dependent_person_count == 1:\n     \
@@ -535,20 +530,11 @@ rules:
       \                if study_allowance_dependent_person_count == 3:\n       \
       \             study_allowance_secondary_income_ceiling_3_dependents\n     \
       \           else:\n                    if study_allowance_dependent_person_count\
-      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \ == 4:\n       \
       \                 study_allowance_secondary_income_ceiling_4_dependents\n\
       \                    else:\n                        study_allowance_secondary_income_ceiling_4_dependents\
-      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_secondary_income_ceiling_increment"
-  metadata:
-    proof:
-      atoms:
-      - path: versions[0].formula
-        kind: import
-        import:
-          target: be-wal:statutes/education/study_allowance#study_allowance_dependent_person_count_fifth_dependent_code
-          output: study_allowance_dependent_person_count_fifth_dependent_code
-          hash: sha256:local
 - name: study_allowance_plancher
   kind: derived
   entity: Person
@@ -565,20 +551,11 @@ rules:
       \       study_allowance_plancher_2_dependents\n        else:\n           \
       \ if study_allowance_dependent_person_count == 3:\n                study_allowance_plancher_3_dependents\n\
       \            else:\n                if study_allowance_dependent_person_count\
-      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \ == 4:\n       \
       \             study_allowance_plancher_4_dependents\n      \
       \          else:\n                    study_allowance_plancher_4_dependents\
-      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_plancher_increment"
-  metadata:
-    proof:
-      atoms:
-      - path: versions[0].formula
-        kind: import
-        import:
-          target: be-wal:statutes/education/study_allowance#study_allowance_dependent_person_count_fifth_dependent_code
-          output: study_allowance_dependent_person_count_fifth_dependent_code
-          hash: sha256:local
 - name: study_allowance_max_amount
   kind: derived
   entity: Person

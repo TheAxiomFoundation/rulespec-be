@@ -48,12 +48,20 @@ or admission claim is authorized or present.
 - Confirmed that live PR inspection currently fails at `api.github.com`; no
   title, body, check, or merge-state fact has been fabricated from unavailable
   remote state.
+- Reconciled the three preserved selector-cleanup modules against the exact 11
+  immediate candidates. Kept only
+  `be-vlg/statutes/education/school_allowance.yaml` and
+  `be-wal/statutes/education/study_allowance.yaml`; restored the out-of-scope
+  Flemish family-benefit file byte-for-byte and removed the overbroad identity
+  regex that would have forced repairs across the other 78 candidates.
+- Labeled both retained edits as review-only, non-admitted expected-output
+  cleanup requiring protected v5 regeneration. Expanded their companion cases
+  to cover every changed numeric branch; all 19 cases passed on the available
+  local Axiom engine, and the scoped selector guard passed. This diagnostic is
+  semantic-equivalence evidence only, not admission.
 
 ## Next
 
-- Reconcile the preserved edits to the three retained modules. Keep only
-  boundary-essential selector cleanup with semantic-equivalence tests and an
-  explicit non-admitted/protected-regeneration label.
 - Delete the five newly classified primary-plus-companion groups, then remove
   every exact stale waiver, registry, inventory, prose, and test reference.
 - Update boundary tests and documentation to enforce the exact 116/89/22/5
