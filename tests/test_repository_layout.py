@@ -254,7 +254,9 @@ def iter_rulespec_files() -> list[Path]:
     files: list[Path] = []
     for root in rulespec_content_roots():
         files.extend(
-            path for path in root.rglob("*.yaml") if not path.name.endswith(".test.yaml")
+            path
+            for path in root.rglob("*.yaml")
+            if not path.name.endswith(".test.yaml")
         )
     return sorted(files)
 
@@ -307,9 +309,11 @@ def is_policy_bearing_parameter(rule: dict) -> bool:
         return False
     dtype = rule.get("dtype")
     name = str(rule.get("name", "")).lower()
-    policy_bearing = dtype in POLICY_BEARING_PARAMETER_DTYPES or any(
-        token in name for token in POLICY_BEARING_PARAMETER_NAME_TOKENS
-    ) or "scalar_limit" in name
+    policy_bearing = (
+        dtype in POLICY_BEARING_PARAMETER_DTYPES
+        or any(token in name for token in POLICY_BEARING_PARAMETER_NAME_TOKENS)
+        or "scalar_limit" in name
+    )
     structural = any(token in name for token in STRUCTURAL_PARAMETER_NAME_TOKENS)
     return policy_bearing and (
         not structural
@@ -566,9 +570,7 @@ def test_non_documentary_atomic_module_groups_do_not_return() -> None:
         for imported in payload.get("imports") or []:
             imported_module = str(imported).split("#", 1)[0]
             if imported_module in forbidden_module_ids:
-                consumers.append(
-                    f"{path.relative_to(ROOT).as_posix()}: {imported}"
-                )
+                consumers.append(f"{path.relative_to(ROOT).as_posix()}: {imported}")
 
     assert not present, (
         "External-model and oracle pipelines, unsourced routing and settlement "
@@ -579,19 +581,14 @@ def test_non_documentary_atomic_module_groups_do_not_return() -> None:
 
 
 def test_documentary_boundary_census_is_exact() -> None:
-    current_primaries = {
-        path.relative_to(ROOT)
-        for path in iter_rulespec_files()
-    }
+    current_primaries = {path.relative_to(ROOT) for path in iter_rulespec_files()}
     documentary_candidates = current_primaries - HUMAN_SOURCE_BOUNDARY_HOLDS
 
     assert len(current_primaries) == 94
     assert len(documentary_candidates) == 89
     assert len(HUMAN_SOURCE_BOUNDARY_HOLDS) == 5
     assert HUMAN_SOURCE_BOUNDARY_HOLDS <= current_primaries
-    assert not (
-        FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES & HUMAN_SOURCE_BOUNDARY_HOLDS
-    )
+    assert not (FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES & HUMAN_SOURCE_BOUNDARY_HOLDS)
     assert (
         len(documentary_candidates)
         + len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES)
@@ -756,7 +753,9 @@ def test_source_verification_uses_exact_singular_contract() -> None:
         if not isinstance(citation_path, str) or not citation_path.strip():
             problems.append(f"{relative}: missing singular corpus_citation_path")
         elif CORPUS_CITATION_PATH_RE.fullmatch(citation_path) is None:
-            problems.append(f"{relative}: invalid corpus citation path {citation_path!r}")
+            problems.append(
+                f"{relative}: invalid corpus citation path {citation_path!r}"
+            )
         source_sha256 = verification.get("source_sha256")
         if source_sha256 is not None and (
             not isinstance(source_sha256, str)
@@ -858,7 +857,9 @@ def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
         "n/a": 1,
     }
     assert coverage["coverage_summary"]["rule_percentage"] is None
-    assert coverage["coverage_summary"]["full_household_disposable_income_parity"] is False
+    assert (
+        coverage["coverage_summary"]["full_household_disposable_income_parity"] is False
+    )
     assert coverage["coverage_summary"]["live_verified_oracle_output_targets"] == 1
     assert outputs["tscee_s"]["status"] == (
         "live_oracle_verified_for_regular_worker_statutory_slice"
@@ -954,7 +955,9 @@ def test_source_priority_starts_from_upstream_law() -> None:
 
 
 def test_justel_is_only_a_non_authentic_locator() -> None:
-    justel = next(source for source in source_spine()["sources"] if source["id"] == "justel-eli")
+    justel = next(
+        source for source in source_spine()["sources"] if source["id"] == "justel-eli"
+    )
 
     assert justel["canonical"] is False
     assert justel["source_tier"] == 2
@@ -962,7 +965,7 @@ def test_justel_is_only_a_non_authentic_locator() -> None:
 
 
 def test_no_obsolete_formula_artifacts() -> None:
-    obsolete_ext = ".r" "ac"
+    obsolete_ext = ".rac"
     obsolete = [
         path.relative_to(ROOT).as_posix()
         for path in iter_repo_files()
@@ -1042,13 +1045,19 @@ def test_rulespec_files_use_rulespec_v1_shape() -> None:
             continue
         for index, rule in enumerate(rules):
             if not isinstance(rule, dict):
-                invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] is not a mapping")
+                invalid.append(
+                    f"{path.relative_to(ROOT)}: rules[{index}] is not a mapping"
+                )
                 continue
             for key in ("name", "kind"):
                 if key not in rule:
-                    invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] missing {key}")
+                    invalid.append(
+                        f"{path.relative_to(ROOT)}: rules[{index}] missing {key}"
+                    )
             if rule.get("kind") in {"parameter", "derived"} and "versions" not in rule:
-                invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] missing versions")
+                invalid.append(
+                    f"{path.relative_to(ROOT)}: rules[{index}] missing versions"
+                )
 
     assert invalid == []
 
@@ -1158,10 +1167,7 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                 if formula_path_match is not None:
                     version_index = int(formula_path_match.group(1))
                     versions = rule.get("versions")
-                    if (
-                        not isinstance(versions, list)
-                        or version_index >= len(versions)
-                    ):
+                    if not isinstance(versions, list) or version_index >= len(versions):
                         invalid.append(
                             f"{atom_id}: atom anchors missing version {version_index}"
                         )
@@ -1246,9 +1252,8 @@ def test_rulespec_files_use_corpus_source_locators() -> None:
                 if module.get("source_url"):
                     legacy.append(f"{path.relative_to(ROOT)}: module.source_url")
                 source_verification = module.get("source_verification")
-                if (
-                    isinstance(source_verification, dict)
-                    and source_verification.get("source_url")
+                if isinstance(source_verification, dict) and source_verification.get(
+                    "source_url"
                 ):
                     legacy.append(
                         f"{path.relative_to(ROOT)}: "

@@ -2,8 +2,8 @@
 
 ## State
 
-The superseding full-corpus audit boundary is now applied on
-`fix/documentary-concept-hard-cut`. The exact cached base and merge base remain
+The review tree on `fix/documentary-concept-hard-cut` now represents the
+superseding full-corpus audit boundary. The exact cached base and merge base remain
 `b105e2b3a3086ddd2de447d58a9b951346870dd1`. This resume began from clean local
 commit `5d9b99fea7a0f0232daf1bc3482fafa0079d018d`, exactly eight commits ahead of
 cached draft-PR head `9f86c5eb9ab5471e8011d8bdf991863d8ec2ca73`. The earlier uncommitted selector
