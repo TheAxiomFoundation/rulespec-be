@@ -2,80 +2,68 @@
 
 ## State
 
-Hard cut applied and repository validation complete on
-`fix/documentary-concept-hard-cut`; self-review and remote handoff remain. The
-worktree was clean at
-the start of this review at `9f86c5eb9ab5471e8011d8bdf991863d8ec2ca73`.
-The cached `origin/main` is
-`b105e2b3a3086ddd2de447d58a9b951346870dd1`; network DNS currently prevents a
-fresh fetch or live inspection of draft PR 127.
+The superseding full-corpus audit is being applied on
+`fix/documentary-concept-hard-cut`. The exact base remains
+`b105e2b3a3086ddd2de447d58a9b951346870dd1`; the resume point is local commit
+`d900d25c91e0a8ade4f2ef1575b5d80b8658de1a`, three commits ahead of the
+cached draft-PR branch. Eight pre-existing uncommitted paths were preserved for
+reconciliation. GitHub DNS is currently unavailable, so live draft PR #127
+facts have not yet been refreshed.
 
-The audited immediate scope is exactly 12 retained protected replacements and
-17 exact legacy deletion groups after deleting the two synthetic federal
-family-benefit aggregates. This branch remains non-admitted: no encoder
-manifest, receipt, signing dispatch, or merge is authorized.
+The audit supersedes the former 12-replacement/17-deletion estimate. At the
+exact base there are 116 primary-plus-adjacent-companion groups, classified as
+89 documentary-core candidates, 22 clearly synthetic/derived deletion groups,
+five human/source-boundary holds, and zero admitted groups. The immediate
+reviewed subset is 11 protected-replacement candidates plus 18 deletions.
+
+This branch is a non-admitted review specification. **DO NOT MERGE.** No
+protected v5 regeneration, applied manifest, cleanup receipt, signing dispatch,
+or admission claim is authorized or present.
 
 ## Done
 
-- Read the applicable parent and repository instructions, README, layout
-  contract, toolchain pin, and repository workflow.
-- Confirmed the initial worktree and cached tracking branch were clean and
-  aligned at `9f86c5e`.
-- Inspected the five-commit diff from cached `origin/main`, including all
-  changed-path inventory, retained replacement groups, deletion groups,
-  coverage/docs/tests, and the two synthetic family-benefit modules.
-- Verified that `birth_allowance.yaml` and
-  `child_benefit_base_2025.yaml` combine citations from `be-bru`, `be-vlg`,
-  `be-wal`, and `be-dg`, while the preserved regional modules remain separate
-  jurisdiction surfaces.
-- Located every exact stale path/id reference: four aggregate/companion files,
-  two validation waivers, one encoding-gap section, three Walloon prose
-  references, and the 15-group deletion guard that must become 17.
-- Attempted a fresh origin fetch and live PR 127 query; both are blocked by DNS.
-  No PR facts have been inferred from unavailable remote state.
-- Committed the initial progress journal and its repository-layout allowance as
-  `e41aa90` (`Start documentary hard-cut progress journal`).
-- Deleted the two synthetic federal family-benefit modules and their companion
-  tests, removed both obsolete validation waivers and all exact stale prose,
-  and expanded the exact protected deletion inventory from 15 to 17 groups.
-- Recomputed the waiver-set content hash after removing those two entries and
-  updated the toolchain binding to
-  `73dd1ac66619fc918e66d596a8b5ca8945072923c86482c6020a543404bb4514`.
-- Added a regression check that family-benefit imports and citations stay
-  within their federal, Brussels, Flemish, Walloon, or German-speaking
-  Community documentary jurisdiction.
-- Confirmed the branch diff now contains exactly 12 retained protected
-  replacement modules and 17 deleted production-module/companion-test groups.
-- Parsed all 203 remaining tracked YAML files, verified the waiver bytes match
-  the updated toolchain hash, passed both new boundary tests, passed focused
-  Ruff lint, and found no whitespace errors in the worktree diff.
-- Passed the complete repository suite: 33 tests in 116.01 seconds. Full Ruff
-  lint and the manual repository-layout diagnostic also pass; the latter
-  checked 236 tracked paths with zero schema problems.
-- Ran the local unsigned source-staleness diagnostic. It passed and reported
-  that no module pins `source_sha256`, so there was no stale pin to compare.
-- Ran local money-atom proof validation across all 99 remaining atomic modules:
-  zero missing proof atoms across 540 monetary obligations, with no ratchet
-  allowance.
-- Ran the unsigned generated-file guard as a diagnostic. It failed with exactly
-  52 missing legacy-manifest issues, as expected for the changed and deleted
-  files. No manifest or receipt was created.
-- Ran local standalone validation for all 12 retained replacements. Every file
-  reached the same non-content failure because the available rules engine
-  rejects this checkout's multi-root configuration. The local encoder, engine,
-  and corpus revisions (`427edd81`, `8430cdea`, and `2794b544`) do not match the
-  workflow pins (`b9d37668`, `05eac9d2`, and `644ee891`), so this is diagnostic
-  only and cannot establish admission.
-- Ran the local base proof-tree diagnostic across all 99 atomic modules. The
-  older encoder rejected independently operative secondary proof sources in 61
-  modules; this is likewise a known contract mismatch with the pinned protected
-  path, not admission evidence. The money-only gate and repository source-path
-  tests pass.
-- Confirmed `.axiom/encoding-manifests` is absent and the branch introduces no
-  manifest path; full `git diff --check origin/main...HEAD` passes.
+- Read the applicable foundation and repository instructions and the complete
+  read-only full-manifest migration audit.
+- Inspected the branch, exact base and merge base, cached remote refs, recent
+  commits, committed changed-path inventory, staged state, and all preserved
+  uncommitted paths. No reset or clean operation was used.
+- Preserved the prior branch work, including the reviewed 17 deletion groups,
+  the two corrected federal family-benefit deletions, stale-reference cleanup,
+  jurisdiction-boundary tests, and earlier non-admission diagnostics.
+- Recorded the audit correction that
+  `be/regulations/unemployment/payable_amount.yaml` has zero documentary proof
+  atoms, only feeds the deleted pilot, and must move from replacement to
+  deletion.
+- Recorded the four additional untouched deletion groups:
+  `be/statutes/income_guarantee_for_elderly/payable_amount.yaml`,
+  `be/statutes/social_integration/payable_amount.yaml`,
+  `be/statutes/social_security/pension_health_insurance_article_191.yaml`, and
+  `be/statutes/social_security/pension_solidarity_article_68.yaml`.
+- Recorded the five encoder-queue holds pending split or adjudication:
+  `be/regulations/vat/rates.yaml`,
+  `be/statutes/property_tax/additional_centimes.yaml`,
+  `be/statutes/income_tax/individual/regional_surcharge.yaml`,
+  `be/statutes/social_security/chapter_10_special_contributions.yaml`, and
+  `be/statutes/social_security/workers/contribution_rates.yaml`.
+- Confirmed that live PR inspection currently fails at `api.github.com`; no
+  title, body, check, or merge-state fact has been fabricated from unavailable
+  remote state.
 
 ## Next
 
-- Self-review the full branch diff against the public-document boundary, write
-  the final report file, commit each coherent step, then retry live PR
-  verification, push, and PR-body update. Do not merge or dispatch signing.
+- Reconcile the preserved edits to the three retained modules. Keep only
+  boundary-essential selector cleanup with semantic-equivalence tests and an
+  explicit non-admitted/protected-regeneration label.
+- Delete the five newly classified primary-plus-companion groups, then remove
+  every exact stale waiver, registry, inventory, prose, and test reference.
+- Update boundary tests and documentation to enforce the exact 116/89/22/5
+  census and the five holds.
+- Recompute the waiver-set hash from the exact final waiver bytes and bind the
+  toolchain directly, without the pending-waiver transition mechanism.
+- Run YAML parsing, import closure, exact group census, waiver existence/hash
+  checks, all repository tests, full Ruff, source-boundary diagnostics,
+  generated-guard diagnostics, and `git diff --check`; self-review against the
+  audit.
+- Commit each coherent step, write the final report output, and only after all
+  checks pass retry the draft PR #127 update and push. Never merge or dispatch
+  signing.
