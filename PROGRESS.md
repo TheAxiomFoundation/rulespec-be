@@ -7,9 +7,11 @@ superseding full-corpus audit boundary. The exact cached base and merge base rem
 `b105e2b3a3086ddd2de447d58a9b951346870dd1`. This resume began from clean local
 commit `5d9b99fea7a0f0232daf1bc3482fafa0079d018d`, exactly eight commits ahead of
 cached draft-PR head `9f86c5eb9ab5471e8011d8bdf991863d8ec2ca73`. The earlier uncommitted selector
-work has been reconciled and committed. A fresh live fetch still fails because
-the shell cannot resolve `github.com`, so draft PR #127's live title, body,
-checks, merge state, base, and head have not yet been refreshed or claimed.
+work has been reconciled and committed. The final pre-journal validation
+checkpoint is `13f07da4679118dd05cbd109d252948a3fa9f5d2`. A fresh live fetch still fails
+because the shell cannot resolve `github.com`, so draft PR #127's live title,
+body, checks, merge state, base, and head have not yet been refreshed or
+claimed.
 
 The audit supersedes the former 12-replacement/17-deletion estimate. At the
 exact base there are 116 primary-plus-adjacent-companion groups, classified as
@@ -99,15 +101,45 @@ or admission claim is authorized or present.
   2 and Article 4 proof atoms only to those two formulas; the gate now passes
   with zero missing atoms across 542 obligations. All ten affected companion
   cases still pass. This remains review-only proof cleanup, not admission.
+- Re-proved the whole boundary independently from the immutable base and the
+  audit tables: 116 base groups pair exactly, `116 = 89 + 22 + 5`, the head has
+  94 surviving paired groups, the 11 modified surviving primaries are exactly
+  the starred replacement candidates, and the R17 plus R-to-D sets are exactly
+  the 18 immediate deletions. There are no additions or renames.
+- Parsed all 193 surviving YAML files; verified all 45 imports resolve and no
+  surviving import consumes a deleted module; verified all 13 waiver targets
+  exist and the exact waiver hash; and confirmed the five held primary and
+  companion files are byte-for-byte unchanged from the base.
+- Re-ran the two selector companions in an isolated exact-head worktree. Both
+  compatible pinned engine checkouts (`ffd8213271947b0189a9dd61a055c1e0e78908a0`
+  and `c6cc389a8f5e7238019e4fa06849325fad9acd46`) compiled both programs and passed
+  all 19 cases. The newer local encoder/engine pairing instead fails before
+  compilation because that wrapper does not pass the engine's now-required
+  explicit RuleSpec root; that tooling-contract failure is not content or
+  admission evidence.
+- Passed all 36 repository tests, `ruff check`, `ruff format --check`, and the
+  focused exact-boundary tests. The local money-atom source diagnostic passed
+  542 obligations with zero missing atoms, and the staleness command found no
+  modules that pin `source_sha256`; both are labeled local diagnostics because
+  their available tool revisions differ from CI pins.
+- Ran the full proof-tree and generated-guard diagnostics rather than treating
+  them as gates that had silently passed. The older local proof checker rejects
+  direct secondary proof sources (61 of 94 modules, 864 contract-mismatch
+  issues). The generated guard reports 62 expected missing-manifest issues
+  because the review tree intentionally has no protected v5 manifests or
+  receipts and CI still disables that guard. These remain frozen-review
+  blockers; no artifact was fabricated.
 
 ## Next
 
-- Finish the independent diff self-review and resolve only confirmed in-scope
-  review-boundary defects.
-- Run YAML parsing, import closure, exact group census, waiver existence/hash
-  checks, all repository tests, full Ruff, source-boundary diagnostics,
-  generated-guard diagnostics, and `git diff --check`; self-review against the
-  audit.
-- Commit each coherent step, write the final report output, and only after all
-  checks pass retry the draft PR #127 update and push. Never merge or dispatch
-  signing.
+- Re-run the complete validation suite on the journal commit and verify the
+  final clean diff, unsigned commit list, and exact base/head.
+- Retry live upstream and draft PR #127 inspection. If GitHub DNS recovers,
+  push this review specification and update the draft title/body with prominent
+  **DO NOT MERGE** and zero-admission language; otherwise report the exact
+  unpushed head and unavailable live PR facts.
+- Keep review frozen until every prerequisite in
+  `docs/DOCUMENTARY-BOUNDARY.md` is satisfied, including protected v5
+  regeneration, exact source pins, generated-guard enablement, manifests and
+  receipts, and the unresolved documentary/source-boundary decisions. Never
+  sign, admit, dispatch signing, or merge from this branch.
