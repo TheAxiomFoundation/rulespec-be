@@ -63,15 +63,6 @@ or expected outputs.
 - Judgment: source-present parser limitation; the encoded quarter threshold is
   not judged wrong.
 
-## `be/statutes/social_integration/payable_amount.yaml`
-
-- Failure: the euro-cent rounding denominator `100` is not grounded.
-- Finding: the relevant pinned statute and implementing decree do not mandate
-  this implementation rounding denominator; decimal historical amounts do not
-  prove the algorithm.
-- Judgment: missing source for an implementation constant, not evidence that
-  the statutory entitlement amounts are wrong.
-
 ## `be-bru/regulations/housing/social_housing_rental.yaml`
 
 - Failure: the income-coefficient rounding denominator `100` is not grounded.

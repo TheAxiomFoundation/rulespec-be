@@ -22,6 +22,7 @@ FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES = {
     Path("be/policies/euromod_benefit_income_list.yaml"),
     Path("be/policies/euromod_disposable_income_list.yaml"),
     Path("be/policies/euromod_tax_income_list.yaml"),
+    Path("be/regulations/unemployment/payable_amount.yaml"),
     Path("be/regulations/unemployment/pilot_oracle_pipeline.yaml"),
     Path("be/statutes/education/study_allowance_routing.yaml"),
     Path("be/statutes/family_benefits/birth_allowance.yaml"),
@@ -32,10 +33,36 @@ FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES = {
     Path("be/statutes/income_tax/individual/pensioner_pit_oracle_pipeline.yaml"),
     Path("be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml"),
     Path("be/statutes/income_tax/individual/self_employed_oracle_pipeline.yaml"),
+    Path("be/statutes/income_guarantee_for_elderly/payable_amount.yaml"),
     Path("be/statutes/inheritance_tax/regional_routing.yaml"),
     Path("be/statutes/property_tax/regional_routing.yaml"),
     Path("be/statutes/property_tax/gross_withholding_and_supplied_centimes.yaml"),
+    Path("be/statutes/social_integration/payable_amount.yaml"),
+    Path("be/statutes/social_security/pension_health_insurance_article_191.yaml"),
+    Path("be/statutes/social_security/pension_solidarity_article_68.yaml"),
     Path("be/statutes/vehicle_tax/regional_routing.yaml"),
+}
+HUMAN_SOURCE_BOUNDARY_HOLDS = {
+    Path("be/regulations/vat/rates.yaml"),
+    Path("be/statutes/income_tax/individual/regional_surcharge.yaml"),
+    Path("be/statutes/property_tax/additional_centimes.yaml"),
+    Path("be/statutes/social_security/chapter_10_special_contributions.yaml"),
+    Path("be/statutes/social_security/workers/contribution_rates.yaml"),
+}
+REVIEW_ONLY_IMMEDIATE_SELECTOR_PSEUDO_CONCEPTS = {
+    Path("be-vlg/statutes/education/school_allowance.yaml"): {
+        "flanders_school_level_code_preschool",
+        "flanders_school_level_code_primary",
+        "flanders_school_level_code_secondary",
+        "flanders_school_type_code_none",
+        "flanders_school_type_code_intermediate",
+        "flanders_school_type_code_full",
+        "flanders_school_type_code_exceptional",
+        "flanders_school_allowance_type",
+    },
+    Path("be-wal/statutes/education/study_allowance.yaml"): {
+        "study_allowance_dependent_person_count_fifth_dependent_code",
+    },
 }
 NON_DOCUMENTARY_ATOMIC_IDENTITY_RE = re.compile(
     r"(?:euromod|comparator|oracle(?:s)?|take[_ -]?up|takeup|"
@@ -518,7 +545,7 @@ def test_canonical_jurisdiction_layout_is_a_hard_cut() -> None:
 
 
 def test_non_documentary_atomic_module_groups_do_not_return() -> None:
-    assert len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES) == 17
+    assert len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES) == 22
 
     forbidden_paths = set(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES)
     forbidden_paths.update(
@@ -537,16 +564,65 @@ def test_non_documentary_atomic_module_groups_do_not_return() -> None:
     )
 
 
+def test_documentary_boundary_census_is_exact() -> None:
+    current_primaries = {
+        path.relative_to(ROOT)
+        for path in iter_rulespec_files()
+    }
+    documentary_candidates = current_primaries - HUMAN_SOURCE_BOUNDARY_HOLDS
+
+    assert len(current_primaries) == 94
+    assert len(documentary_candidates) == 89
+    assert len(HUMAN_SOURCE_BOUNDARY_HOLDS) == 5
+    assert HUMAN_SOURCE_BOUNDARY_HOLDS <= current_primaries
+    assert not (
+        FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES & HUMAN_SOURCE_BOUNDARY_HOLDS
+    )
+    assert (
+        len(documentary_candidates)
+        + len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES)
+        + len(HUMAN_SOURCE_BOUNDARY_HOLDS)
+        == 116
+    )
+
+
+def test_immediate_review_selector_pseudo_concepts_do_not_return() -> None:
+    present: dict[str, list[str]] = {}
+    for path, forbidden_names in REVIEW_ONLY_IMMEDIATE_SELECTOR_PSEUDO_CONCEPTS.items():
+        payload = yaml.safe_load((ROOT / path).read_text()) or {}
+        rule_names = {
+            rule.get("name")
+            for rule in payload.get("rules") or []
+            if isinstance(rule, dict)
+        }
+        matches = sorted(forbidden_names & rule_names)
+        if matches:
+            present[path.as_posix()] = matches
+
+    assert present == {}
+
+
+def test_validation_waivers_reference_existing_modules() -> None:
+    payload = yaml.safe_load((ROOT / "known-validation-gaps.yaml").read_text()) or {}
+    waivers = payload.get("validate_failures") or {}
+    missing = sorted(path for path in waivers if not (ROOT / path).is_file())
+
+    assert missing == []
+
+
 def test_family_benefit_modules_stay_within_documentary_jurisdictions() -> None:
     problems: list[str] = []
+    regional_surfaces: set[str] = set()
     for jurisdiction in jurisdiction_dirs():
         root = jurisdiction / "statutes" / "family_benefits"
         if not root.is_dir():
             continue
         expected_prefix = jurisdiction.name
-        for path in sorted(root.glob("*.yaml")):
+        for path in sorted(root.rglob("*.yaml")):
             if path.name.endswith(".test.yaml"):
                 continue
+            if expected_prefix != "be":
+                regional_surfaces.add(expected_prefix)
             payload = yaml.safe_load(path.read_text()) or {}
             citations: list[str] = []
             module = payload.get("module") or {}
@@ -587,6 +663,11 @@ def test_family_benefit_modules_stay_within_documentary_jurisdictions() -> None:
                     f"{path.relative_to(ROOT)}: cross-jurisdiction imports "
                     f"{wrong_imports}"
                 )
+
+    required_regional_surfaces = {"be-bru", "be-dg", "be-vlg", "be-wal"}
+    missing_surfaces = sorted(required_regional_surfaces - regional_surfaces)
+    if missing_surfaces:
+        problems.append(f"missing regional family-benefit surfaces {missing_surfaces}")
 
     assert problems == []
 

@@ -2,7 +2,7 @@
 
 ## State
 
-The superseding full-corpus audit is being applied on
+The superseding full-corpus audit boundary is now applied on
 `fix/documentary-concept-hard-cut`. The exact base remains
 `b105e2b3a3086ddd2de447d58a9b951346870dd1`; the resume point is local commit
 `d900d25c91e0a8ade4f2ef1575b5d80b8658de1a`, three commits ahead of the
@@ -59,11 +59,26 @@ or admission claim is authorized or present.
   to cover every changed numeric branch; all 19 cases passed on the available
   local Axiom engine, and the scoped selector guard passed. This diagnostic is
   semantic-equivalence evidence only, not admission.
+- Deleted the five newly classified primary-plus-companion groups: the
+  unemployment payable bridge, the GRAPA payable bridge, the social-integration
+  payable aggregate, and the Article 191 and Article 68 compatibility adapters.
+  Together with the reviewed 17, the branch now deletes exactly 22 groups (44
+  RuleSpec/companion files).
+- Removed the deleted modules from the EUROMOD inventory and source-map
+  artifacts, removed the obsolete social-integration encoding-gap section and
+  waiver, and retained the earlier cleanup of two stale waivers from the
+  reviewed 17. Exact path and deleted-rule-name scans found no surviving stale
+  reference.
+- Recomputed the waiver hash directly from the final 13-entry waiver file and
+  bound `.axiom/toolchain.toml` to
+  `904514a87f353e22767a3de186257675eacd99a496b71ca35052b9e9aa14543f`.
+  No pending-waiver transition mechanism was used.
+- Added exact boundary regressions for 22 forbidden deletion groups, five
+  explicit holds, 94 surviving groups, and 89 documentary candidates. The
+  current 45 imports all resolve, and none consumes a deleted group.
 
 ## Next
 
-- Delete the five newly classified primary-plus-companion groups, then remove
-  every exact stale waiver, registry, inventory, prose, and test reference.
 - Update boundary tests and documentation to enforce the exact 116/89/22/5
   census and the five holds.
 - Recompute the waiver-set hash from the exact final waiver bytes and bind the

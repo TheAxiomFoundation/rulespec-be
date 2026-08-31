@@ -1716,19 +1716,6 @@
             "belmod:social_assistance"
           ],
           "status": "encoded"
-        },
-        {
-          "id": "ris-article-14-payable-amount-bridge",
-          "destination": "be/statutes/social_integration/payable_amount.yaml",
-          "source_requirements": [
-            "2002 social integration law articles 3, 4, 7, 14, and 15",
-            "2002 social integration implementing royal decree articles 22 through 35"
-          ],
-          "oracle_checks": [
-            "openfisca-belgium:social_integration_income",
-            "belmod:social_assistance"
-          ],
-          "status": "encoded"
         }
       ]
     },
@@ -1844,30 +1831,6 @@
             "1991 unemployment royal decree article 33 voluntary part-time worker admission stage",
             "1991 unemployment royal decree article 114 ordinary unemployment duration, rate, cap-selection, and temporary-unemployment replacement-rate rules",
             "1991 unemployment royal decree article 116 non-running periods, extensions, income-guarantee continuation, and readmission gates"
-          ],
-          "oracle_checks": [
-            "openfisca-belgium:unemployment"
-          ],
-          "status": "encoded"
-        },
-        {
-          "id": "unemployment-ordinary-daily-minimum",
-          "destination": "be/regulations/unemployment/payable_amount.yaml",
-          "source_requirements": [
-            "1991 unemployment royal decree article 114 ordinary unemployment daily amount",
-            "1991 unemployment royal decree article 115 ordinary minimum daily amounts"
-          ],
-          "oracle_checks": [
-            "openfisca-belgium:unemployment"
-          ],
-          "status": "encoded"
-        },
-        {
-          "id": "unemployment-temporary-daily-minimum",
-          "destination": "be/regulations/unemployment/payable_amount.yaml",
-          "source_requirements": [
-            "1991 unemployment royal decree article 114 temporary-unemployment daily amount",
-            "1991 unemployment royal decree article 115 temporary-unemployment minimum daily amounts"
           ],
           "oracle_checks": [
             "openfisca-belgium:unemployment"
@@ -2272,20 +2235,6 @@
           "source_requirements": [
             "2001 GRAPA law articles 7 and 11",
             "delegated Article 11 exemption amount supplied by royal-decree module or input"
-          ],
-          "oracle_checks": [
-            "openfisca-belgium:grapa",
-            "belmod:grapa"
-          ],
-          "status": "encoded"
-        },
-        {
-          "id": "grapa-payable-amount-after-resources",
-          "destination": "be/statutes/income_guarantee_for_elderly/payable_amount.yaml",
-          "source_requirements": [
-            "2001 GRAPA law article 6 maximum amount",
-            "2001 GRAPA law article 7 resource and pension selection",
-            "2001 GRAPA law article 11 resource offset"
           ],
           "oracle_checks": [
             "openfisca-belgium:grapa",
