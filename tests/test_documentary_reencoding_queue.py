@@ -90,14 +90,32 @@ def current_primary_paths() -> set[str]:
     return result
 
 
-def module_dependency_paths(path: str) -> set[str]:
-    payload = yaml.safe_load((ROOT / path).read_text(encoding="utf-8")) or {}
+def dependency_paths_from_payload(payload: object) -> set[str]:
+    if not isinstance(payload, dict):
+        return set()
     result: set[str] = set()
     for raw_import in payload.get("imports") or []:
+        assert isinstance(raw_import, str)
         module = raw_import.split("#", 1)[0]
         jurisdiction, relative = module.split(":", 1)
         result.add(f"{jurisdiction}/{relative}.yaml")
     return result
+
+
+def module_dependency_paths(path: str) -> set[str]:
+    payload = yaml.safe_load((ROOT / path).read_text(encoding="utf-8")) or {}
+    return dependency_paths_from_payload(payload)
+
+
+def frozen_module_dependency_paths(ref: str, path: str) -> set[str]:
+    raw = run_git("cat-file", "blob", f"{ref}:{path}").stdout
+    try:
+        payload = yaml.safe_load(raw.decode("utf-8")) or {}
+    except (UnicodeDecodeError, yaml.YAMLError) as exc:
+        raise AssertionError(
+            f"frozen RuleSpec is not valid UTF-8 YAML: {ref}:{path}"
+        ) from exc
+    return dependency_paths_from_payload(payload)
 
 
 def companion_path(path: str) -> str:
@@ -325,6 +343,13 @@ def test_frozen_rule_groups_are_authenticated_against_git_objects() -> None:
                 sha256((ROOT / test_path).read_bytes())
                 == item["review_head_companion"][1]
             )
+            if "review_changed" in item:
+                expected_changed: list[str] = []
+                if item["base_primary"] != item["review_head_primary"]:
+                    expected_changed.append("primary")
+                if item["base_companion"] != item["review_head_companion"]:
+                    expected_changed.append("companion")
+                assert item["review_changed"] == expected_changed
         else:
             assert path not in head_entries
             assert test_path not in head_entries
@@ -334,6 +359,15 @@ def test_every_source_pin_is_authenticated_against_exact_corpus_bytes() -> None:
     queue = load_queue()
     corpus = exact_corpus_root(queue)
     pins = {item["citation"]: item for item in queue["source_pins"]}
+    candidate_paths_by_citation: dict[str, list[str]] = {}
+    for candidate in queue["candidates"]:
+        candidate_paths_by_citation.setdefault(candidate["citation"], []).append(
+            candidate["path"]
+        )
+    candidate_paths_by_citation = {
+        citation: sorted(paths)
+        for citation, paths in candidate_paths_by_citation.items()
+    }
     artifact_hashes = queue["toolchain"]["corpus_artifact_sha256"]
     corpus_contract = queue["toolchain"]["corpus"]
 
@@ -376,9 +410,13 @@ def test_every_source_pin_is_authenticated_against_exact_corpus_bytes() -> None:
         == 626
     )
 
-    assert len(pins) == 78
+    assert len(queue["source_pins"]) == len(pins) == 78
     assert len(queue["candidates"]) == 89
+    assert pins.keys() == candidate_paths_by_citation.keys()
     for pin in pins.values():
+        expected_candidate_paths = candidate_paths_by_citation[pin["citation"]]
+        assert pin["candidate_paths"] == expected_candidate_paths
+        assert pin["candidate_count"] == len(expected_candidate_paths)
         assert citation_counts[pin["citation"]] == 1
         rows = rows_by_artifact[pin["artifact"]]
         assert 1 <= pin["line"] <= len(rows)
@@ -407,12 +445,23 @@ def test_transition_graph_is_closed_acyclic_and_exactly_layered() -> None:
     cleanup = {item["path"] for item in queue["cleanup"]["groups"]}
     holds = {item["path"] for item in queue["holds"]}
     predecessors = {path: set() for path in candidates}
+    base_ref = queue["census"]["lineage_root_commit"]
+    removed: set[tuple[str, str]] = set()
+    review_added: set[tuple[str, str]] = set()
 
     for path, item in candidates.items():
         desired = set(item["documentary_dependencies"])
+        base_dependencies = frozen_module_dependency_paths(base_ref, path)
+        assert set(item["base_dependencies"]) == base_dependencies
         assert desired == module_dependency_paths(path)
         assert desired <= candidates.keys()
         assert desired.isdisjoint(cleanup | holds)
+        actual_removed = base_dependencies - desired
+        actual_added = desired - base_dependencies
+        assert set(item["removed_legacy_dependencies"]) == actual_removed
+        assert set(item["review_added_dependencies"]) == actual_added
+        removed.update((path, producer) for producer in actual_removed)
+        review_added.update((path, producer) for producer in actual_added)
         predecessors[path].update(desired)
         citation_jurisdiction = item["citation"].split("/", 1)[0]
         assert set(item["required_import_rulespec_paths"]) == {
@@ -426,26 +475,10 @@ def test_transition_graph_is_closed_acyclic_and_exactly_layered() -> None:
             if dependency.split("/", 1)[0] != citation_jurisdiction
         }
 
-    removed = {
-        (consumer, producer)
-        for consumer, item in candidates.items()
-        for producer in item["removed_legacy_dependencies"]
-    }
-    assert removed == {
-        (
-            "be/regulations/social_security/workers/employee_contributions.yaml",
-            "be/regulations/social_security/workers/work_bonus.yaml",
-        ),
-        (
-            "be/statutes/income_tax/individual/final_tax.yaml",
-            "be/statutes/income_tax/movable_withholding/rates.yaml",
-        ),
-        (
-            "be/statutes/income_tax/individual/tax_liability_pipeline.yaml",
-            "be/statutes/income_tax/movable_withholding/rates.yaml",
-        ),
-    }
+    assert len(removed) == 3
+    assert review_added == set()
     for consumer, producer in removed:
+        assert producer in candidates
         predecessors[producer].add(consumer)
 
     assert all(

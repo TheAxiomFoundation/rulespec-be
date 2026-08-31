@@ -163,7 +163,10 @@ The shared CI workflow supplies the pinned checkout at
 `AXIOM_CORPUS_REPO` names a checkout whose `HEAD` is the exact pinned commit.
 The tests recompute every release-artifact hash, parse every recorded JSONL
 line, and independently read every frozen RuleSpec primary and companion from
-Git objects at the lineage root and review head.
+Git objects at the lineage root and review head. They also parse imports from
+all 89 authenticated base blobs, derive removed and review-added dependency
+edges from the base/review difference, and require the 78 source-pin records to
+equal the exact citation usage of all 89 candidates with no unused pin.
 
 Before any later execution, re-check the live PR and refs. If any base, head,
 corpus artifact, encoder commit, workflow commit, waiver bytes, or candidate
