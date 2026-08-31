@@ -3,12 +3,13 @@
 ## State
 
 The superseding full-corpus audit boundary is now applied on
-`fix/documentary-concept-hard-cut`. The exact base remains
-`b105e2b3a3086ddd2de447d58a9b951346870dd1`; the resume point is local commit
-`d900d25c91e0a8ade4f2ef1575b5d80b8658de1a`, three commits ahead of the
-cached draft-PR branch. Eight pre-existing uncommitted paths were preserved for
-reconciliation. GitHub DNS is currently unavailable, so live draft PR #127
-facts have not yet been refreshed.
+`fix/documentary-concept-hard-cut`. The exact cached base and merge base remain
+`b105e2b3a3086ddd2de447d58a9b951346870dd1`. This resume began from clean local
+commit `5d9b99fea7a0f0232daf1bc3482fafa0079d018d`, exactly eight commits ahead of
+cached draft-PR head `9f86c5eb9ab5471e8011d8bdf991863d8ec2ca73`. The earlier uncommitted selector
+work has been reconciled and committed. A fresh live fetch still fails because
+the shell cannot resolve `github.com`, so draft PR #127's live title, body,
+checks, merge state, base, and head have not yet been refreshed or claimed.
 
 The audit supersedes the former 12-replacement/17-deletion estimate. At the
 exact base there are 116 primary-plus-adjacent-companion groups, classified as
@@ -24,6 +25,13 @@ or admission claim is authorized or present.
 
 - Read the applicable foundation and repository instructions and the complete
   read-only full-manifest migration audit.
+- Resumed from a clean worktree, inspected the eight local commits and complete
+  cached-base diff, and retried the required live upstream/PR fetch without
+  substituting cached facts for unavailable live facts.
+- Built a fresh GitNexus index for the resume head in an isolated temporary
+  worktree. It maps 75 changed files to 76 indexed nodes, no execution
+  processes, and therefore no graph-derived callers; RuleSpec import closure
+  remains the authoritative dependency check for this YAML corpus.
 - Inspected the branch, exact base and merge base, cached remote refs, recent
   commits, committed changed-path inventory, staged state, and all preserved
   uncommitted paths. No reset or clean operation was used.
@@ -90,6 +98,8 @@ or admission claim is authorized or present.
 
 ## Next
 
+- Finish the independent diff self-review and resolve only confirmed in-scope
+  review-boundary defects.
 - Run YAML parsing, import closure, exact group census, waiver existence/hash
   checks, all repository tests, full Ruff, source-boundary diagnostics,
   generated-guard diagnostics, and `git diff --check`; self-review against the
