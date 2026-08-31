@@ -66,9 +66,11 @@ Do not weaken the deletion-only receipt contract. The only safe sequence is:
    stack.
 2. Land reviewed non-RuleSpec hygiene for the four data/documentation paths.
 3. Freshly re-encode and sign
-   `be-wal/statutes/family_benefits/amounts.yaml`, preserving the exact
-   module-induced closure for its direct eligibility dependent. Freeze the
-   result as `F_cleanup`.
+   `be-wal/statutes/family_benefits/amounts.yaml`. Its minimum write set is only
+   that primary, companion, and deterministic manifest. Validate the direct
+   eligibility dependent against the new target, and include the dependent
+   group only if the trusted supervisor deterministically regenerates or
+   rewrites it. Freeze the exact resulting write set as `F_cleanup`.
 4. Re-run cleanup planning from `F_cleanup`. Continue only if it proves zero
    surviving references, then publish one signed atomic receipt covering the
    exact 22 groups. Freeze that result as `F1`.
@@ -151,9 +153,17 @@ From the exact review-head checkout:
 
 ```bash
 python3 -m json.tool .axiom/be-documentary-reencoding-queue.v1.json >/dev/null
-python3 -m pytest -q tests/test_documentary_reencoding_queue.py
-python3 -m pytest -q
+AXIOM_CORPUS_REPO=/exact/axiom-corpus/checkout \
+  python3 -m pytest -q tests/test_documentary_reencoding_queue.py
+AXIOM_CORPUS_REPO=/exact/axiom-corpus/checkout python3 -m pytest -q
 ```
+
+The shared CI workflow supplies the pinned checkout at
+`_axiom/axiom-corpus`. Local runs fail clearly unless that directory exists or
+`AXIOM_CORPUS_REPO` names a checkout whose `HEAD` is the exact pinned commit.
+The tests recompute every release-artifact hash, parse every recorded JSONL
+line, and independently read every frozen RuleSpec primary and companion from
+Git objects at the lineage root and review head.
 
 Before any later execution, re-check the live PR and refs. If any base, head,
 corpus artifact, encoder commit, workflow commit, waiver bytes, or candidate

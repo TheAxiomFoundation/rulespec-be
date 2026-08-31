@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import subprocess
 from pathlib import Path
 
 import yaml
@@ -108,6 +110,94 @@ def manifest_path(path: str) -> str:
     return f".axiom/encoding-manifests/{path[:-5]}.json"
 
 
+def run_git(
+    *args: str, allow_failure: bool = False
+) -> subprocess.CompletedProcess[bytes]:
+    try:
+        result = subprocess.run(
+            ["git", *args],
+            cwd=ROOT,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=20,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise AssertionError(
+            f"bounded git command timed out: git {' '.join(args)}"
+        ) from exc
+    if not allow_failure and result.returncode != 0:
+        stderr = result.stderr.decode("utf-8", errors="replace").strip()
+        raise AssertionError(
+            f"required Git object is unavailable: git {' '.join(args)}: {stderr}"
+        )
+    assert len(result.stdout) <= 16 * 1024 * 1024, (
+        f"bounded git output exceeded 16 MiB: git {' '.join(args)}"
+    )
+    return result
+
+
+def git_tree_entries(ref: str) -> dict[str, tuple[str, str, str]]:
+    entries: dict[str, tuple[str, str, str]] = {}
+    raw = run_git("ls-tree", "-r", "-z", ref).stdout
+    for record in raw.split(b"\0"):
+        if not record:
+            continue
+        metadata, raw_path = record.split(b"\t", 1)
+        mode, kind, oid = metadata.decode("ascii").split(" ")
+        entries[raw_path.decode("utf-8")] = (mode, kind, oid)
+    return entries
+
+
+def assert_git_blob_evidence(
+    *,
+    entries: dict[str, tuple[str, str, str]],
+    path: str,
+    expected: list[str],
+) -> None:
+    assert path in entries, f"required frozen Git path is unavailable: {path}"
+    mode, kind, oid = entries[path]
+    assert (mode, kind) == ("100644", "blob"), (
+        f"frozen path is not a regular 0644 blob: {path}: {mode} {kind}"
+    )
+    raw = run_git("cat-file", "blob", oid).stdout
+    assert expected == [oid, sha256(raw)]
+
+
+def exact_corpus_root(queue: dict) -> Path:
+    configured = os.environ.get("AXIOM_CORPUS_REPO")
+    candidates = [Path(configured)] if configured else []
+    candidates.append(ROOT / "_axiom/axiom-corpus")
+    corpus = next((path for path in candidates if path.is_dir()), None)
+    assert corpus is not None, (
+        "exact corpus checkout unavailable; set AXIOM_CORPUS_REPO or provide "
+        "ROOT/_axiom/axiom-corpus at the queue's pinned commit"
+    )
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=corpus,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=20,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise AssertionError("bounded corpus Git identity check timed out") from exc
+    assert result.returncode == 0, (
+        "exact corpus checkout is not a readable Git checkout: "
+        + result.stderr.decode("utf-8", errors="replace").strip()
+    )
+    actual = result.stdout.decode("ascii").strip()
+    assert actual == queue["toolchain"]["corpus"]["commit"], (
+        f"corpus checkout is at {actual}, expected "
+        f"{queue['toolchain']['corpus']['commit']}"
+    )
+    return corpus
+
+
 def test_queue_is_non_authoritative_and_binds_the_exact_frozen_census() -> None:
     queue = load_queue()
     census = queue["census"]
@@ -151,6 +241,7 @@ def test_queue_record_digests_are_canonical_and_reproducible() -> None:
     assert queue["cleanup_records_sha256"] == canonical_record_list_sha256(
         queue["cleanup"]["groups"]
     )
+    assert queue["hold_records_sha256"] == canonical_record_list_sha256(queue["holds"])
     assert queue["source_pin_records_sha256"] == canonical_record_list_sha256(
         queue["source_pins"]
     )
@@ -175,8 +266,8 @@ def test_review_tree_is_exactly_candidates_plus_unchanged_excluded_holds() -> No
         assert hold["excluded"] is True
         primary = ROOT / hold["path"]
         companion = ROOT / companion_path(hold["path"])
-        assert sha256(primary.read_bytes()) == hold["primary_sha256"]
-        assert sha256(companion.read_bytes()) == hold["companion_sha256"]
+        assert sha256(primary.read_bytes()) == hold["review_head_primary"][1]
+        assert sha256(companion.read_bytes()) == hold["review_head_companion"][1]
 
     queued_paths = {
         path
@@ -186,19 +277,119 @@ def test_review_tree_is_exactly_candidates_plus_unchanged_excluded_holds() -> No
     assert holds.isdisjoint(queued_paths)
 
 
-def test_every_candidate_has_one_exact_joinable_source_pin() -> None:
+def test_frozen_rule_groups_are_authenticated_against_git_objects() -> None:
     queue = load_queue()
+    census = queue["census"]
+    base = census["lineage_root_commit"]
+    head = census["review_head_commit"]
+
+    run_git("cat-file", "-e", f"{base}^{{commit}}")
+    run_git("cat-file", "-e", f"{head}^{{commit}}")
+    assert (
+        run_git("rev-parse", f"{base}^{{tree}}").stdout.decode().strip()
+        == census["lineage_root_tree"]
+    )
+    assert (
+        run_git("rev-parse", f"{head}^{{tree}}").stdout.decode().strip()
+        == census["review_head_tree"]
+    )
+    base_entries = git_tree_entries(base)
+    head_entries = git_tree_entries(head)
+
+    for item in [*queue["candidates"], *queue["cleanup"]["groups"], *queue["holds"]]:
+        path = item["path"]
+        test_path = companion_path(path)
+        assert_git_blob_evidence(
+            entries=base_entries,
+            path=path,
+            expected=item["base_primary"],
+        )
+        assert_git_blob_evidence(
+            entries=base_entries,
+            path=test_path,
+            expected=item["base_companion"],
+        )
+        if item["review_head_present"]:
+            assert_git_blob_evidence(
+                entries=head_entries,
+                path=path,
+                expected=item["review_head_primary"],
+            )
+            assert_git_blob_evidence(
+                entries=head_entries,
+                path=test_path,
+                expected=item["review_head_companion"],
+            )
+            assert sha256((ROOT / path).read_bytes()) == item["review_head_primary"][1]
+            assert (
+                sha256((ROOT / test_path).read_bytes())
+                == item["review_head_companion"][1]
+            )
+        else:
+            assert path not in head_entries
+            assert test_path not in head_entries
+
+
+def test_every_source_pin_is_authenticated_against_exact_corpus_bytes() -> None:
+    queue = load_queue()
+    corpus = exact_corpus_root(queue)
     pins = {item["citation"]: item for item in queue["source_pins"]}
     artifact_hashes = queue["toolchain"]["corpus_artifact_sha256"]
+    corpus_contract = queue["toolchain"]["corpus"]
+
+    selector = corpus / corpus_contract["selector"]
+    assert selector.is_file(), f"pinned corpus selector is unavailable: {selector}"
+    selector_raw = selector.read_bytes()
+    assert sha256(selector_raw) == corpus_contract["selector_sha256"]
+    selector_payload = json.loads(selector_raw)
+    assert selector_payload["name"] == corpus_contract["release"]
+    expected_artifacts = {
+        "data/corpus/provisions/"
+        f"{scope['jurisdiction']}/{scope['document_class']}/{scope['version']}.jsonl"
+        for scope in selector_payload["scopes"]
+    }
+    assert len(expected_artifacts) == corpus_contract["scope_count"] == 13
+    assert expected_artifacts == artifact_hashes.keys()
+
+    rows_by_artifact: dict[str, list[dict]] = {}
+    citation_counts: dict[str, int] = {}
+    for artifact, expected_sha in artifact_hashes.items():
+        artifact_path = corpus / artifact
+        assert artifact_path.is_file(), (
+            f"pinned corpus artifact unavailable: {artifact}"
+        )
+        raw = artifact_path.read_bytes()
+        assert len(raw) <= 16 * 1024 * 1024, (
+            f"corpus artifact exceeds bound: {artifact}"
+        )
+        assert sha256(raw) == expected_sha
+        rows = [json.loads(line) for line in raw.splitlines()]
+        rows_by_artifact[artifact] = rows
+        for row in rows:
+            citation = row.get("citation_path")
+            if isinstance(citation, str):
+                citation_counts[citation] = citation_counts.get(citation, 0) + 1
+
+    assert (
+        sum(len(rows) for rows in rows_by_artifact.values())
+        == corpus_contract["row_count"]
+        == 626
+    )
 
     assert len(pins) == 78
     assert len(queue["candidates"]) == 89
     for pin in pins.values():
-        assert re.fullmatch(r"[0-9a-f]{64}", pin["body_sha256"])
-        assert re.fullmatch(r"[0-9a-f]{64}", artifact_hashes[pin["artifact"]])
-        assert pin["line"] > 0
-        assert pin["record_id"]
-        assert pin["source_path"]
+        assert citation_counts[pin["citation"]] == 1
+        rows = rows_by_artifact[pin["artifact"]]
+        assert 1 <= pin["line"] <= len(rows)
+        row = rows[pin["line"] - 1]
+        assert row["citation_path"] == pin["citation"]
+        assert row["id"] == pin["record_id"]
+        assert row["source_path"] == pin["source_path"]
+        assert row["source_as_of"] == pin["source_as_of"]
+        assert row["expression_date"] == pin["expression_date"]
+        assert isinstance(row["body"], str) and row["body"].strip()
+        assert sha256(row["body"].encode("utf-8")) == pin["body_sha256"]
 
     for candidate in queue["candidates"]:
         pin = pins[candidate["citation"]]
