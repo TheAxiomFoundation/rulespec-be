@@ -535,6 +535,19 @@ rules:
       \                    else:\n                        study_allowance_secondary_income_ceiling_4_dependents\
       \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_secondary_income_ceiling_increment"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          excerpt: "42.025,11 EUROS, lorsqu'il y a quatre personnes à charge, ce montant augmentant d'une somme de 5.154,68 EUROS pour chaque personne supplémentaire à charge, à partir de et au-delà de la cinquième"
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          excerpt: "44.483,78 EUROS, lorsqu'il y a quatre personnes à charge, ce montant augmentant d'une somme de 5.256,84 EUROS pour chaque personne supplémentaire à charge, à partir de et au-delà de la cinquième"
 - name: study_allowance_plancher
   kind: derived
   entity: Person
@@ -556,6 +569,14 @@ rules:
       \          else:\n                    study_allowance_plancher_4_dependents\
       \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_plancher_increment"
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          excerpt: "8.599,20 EUROS, lorsqu'il y a quatre personnes à charge, ce montant augmentant d'une somme de 1.121,65 EUROS pour chaque personne supplémentaire à charge, à partir de et au-delà de la cinquième"
 - name: study_allowance_max_amount
   kind: derived
   entity: Person

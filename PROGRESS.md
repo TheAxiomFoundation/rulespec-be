@@ -82,6 +82,11 @@ or admission claim is authorized or present.
   source decisions, and the `axiom-encode#1557`/`#1558`, retired-inventory,
   generated-guard, protected-v5, exact-source-pin, and frozen-base
   prerequisites. README links to it with **DO NOT MERGE** language.
+- The final zero-ratchet money-atom diagnostic initially found two obligations
+  introduced by the retained Walloon literal-`4` cleanup. Added direct Article
+  2 and Article 4 proof atoms only to those two formulas; the gate now passes
+  with zero missing atoms across 542 obligations. All ten affected companion
+  cases still pass. This remains review-only proof cleanup, not admission.
 
 ## Next
 
