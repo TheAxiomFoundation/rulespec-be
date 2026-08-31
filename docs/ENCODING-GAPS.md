@@ -44,22 +44,6 @@ or expected outputs.
   mismatch for raw rate codes. The sourced VAT rates and mappings are not
   judged wrong.
 
-## `be/statutes/family_benefits/child_benefit_base_2025.yaml`
-
-- Gap: the pinned Brussels and Walloon amount schedules take effect on 1
-  February 2025. The preceding schedules needed to encode January amounts are
-  not in the pinned corpus, so January indexed amounts remain unencoded.
-- Gap: several derived selectors require documentary facts absent from the
-  current input surface. Brussels Article 15 needs age on 1 July and whether
-  the July right derives from higher-education enrollment. The Flemish monthly
-  and annual selectors need full Article 8 entitlement, the applicable legacy
-  conditions, and age on the preceding 31 December. The German-speaking
-  Community monthly selector needs the Article 9, 10, 12, and 13 conditions;
-  its annual selector needs actual July 2025 base-benefit entitlement.
-- Judgment: these derived selectors are intentionally unencoded. Their
-  independently proven amount leaves remain available, without substituting
-  generic current-age or enrollment proxies for the missing legal facts.
-
 ## `be/statutes/family_benefits/lgaf_amounts.yaml`
 
 - Failure: the Article 42bis supplement `17.41` is not recognized.

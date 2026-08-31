@@ -2,7 +2,8 @@
 
 ## State
 
-In progress on `fix/documentary-concept-hard-cut`. The worktree was clean at
+Hard cut applied on `fix/documentary-concept-hard-cut`; validation is in
+progress. The worktree was clean at
 the start of this review at `9f86c5eb9ab5471e8011d8bdf991863d8ec2ca73`.
 The cached `origin/main` is
 `b105e2b3a3086ddd2de447d58a9b951346870dd1`; network DNS currently prevents a
@@ -31,14 +32,25 @@ manifest, receipt, signing dispatch, or merge is authorized.
   references, and the 15-group deletion guard that must become 17.
 - Attempted a fresh origin fetch and live PR 127 query; both are blocked by DNS.
   No PR facts have been inferred from unavailable remote state.
+- Committed the initial progress journal and its repository-layout allowance as
+  `e41aa90` (`Start documentary hard-cut progress journal`).
+- Deleted the two synthetic federal family-benefit modules and their companion
+  tests, removed both obsolete validation waivers and all exact stale prose,
+  and expanded the exact protected deletion inventory from 15 to 17 groups.
+- Recomputed the waiver-set content hash after removing those two entries and
+  updated the toolchain binding to
+  `73dd1ac66619fc918e66d596a8b5ca8945072923c86482c6020a543404bb4514`.
+- Added a regression check that family-benefit imports and citations stay
+  within their federal, Brussels, Flemish, Walloon, or German-speaking
+  Community documentary jurisdiction.
+- Confirmed the branch diff now contains exactly 12 retained protected
+  replacement modules and 17 deleted production-module/companion-test groups.
+- Parsed all 203 remaining tracked YAML files, verified the waiver bytes match
+  the updated toolchain hash, passed both new boundary tests, passed focused
+  Ruff lint, and found no whitespace errors in the worktree diff.
 
 ## Next
 
-- Delete both synthetic aggregate groups and update the waiver, documentation,
-  Walloon prose, and exact deletion inventory.
-- Recount the 12 retained replacements and 17 deletion groups and verify that
-  Brussels, Flanders, Wallonia, and German-speaking Community surfaces remain
-  separate.
 - Run YAML/source-path checks, repository tests, locally available
   guard-equivalent diagnostics, lint, and `git diff --check` without signing.
 - Self-review the full branch diff against the public-document boundary, write

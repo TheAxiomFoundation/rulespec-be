@@ -18,18 +18,20 @@ CORPUS_CITATION_PATH_RE = re.compile(
 )
 SOURCE_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 IGNORED_DIRS = {".git", ".pytest_cache", ".venv", "__pycache__", "_axiom"}
-FORBIDDEN_EXTERNAL_MODEL_BRIDGE_MODULES = {
+FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES = {
     Path("be/policies/euromod_benefit_income_list.yaml"),
     Path("be/policies/euromod_disposable_income_list.yaml"),
     Path("be/policies/euromod_tax_income_list.yaml"),
     Path("be/regulations/unemployment/pilot_oracle_pipeline.yaml"),
     Path("be/statutes/education/study_allowance_routing.yaml"),
+    Path("be/statutes/family_benefits/birth_allowance.yaml"),
+    Path("be/statutes/family_benefits/child_benefit_base_2025.yaml"),
+    Path("be/statutes/family_benefits/regional_routing.yaml"),
+    Path("be/statutes/gift_tax/regional_routing.yaml"),
     Path("be/statutes/income_tax/individual/couple_pit_oracle_pipeline.yaml"),
     Path("be/statutes/income_tax/individual/pensioner_pit_oracle_pipeline.yaml"),
     Path("be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml"),
     Path("be/statutes/income_tax/individual/self_employed_oracle_pipeline.yaml"),
-    Path("be/statutes/family_benefits/regional_routing.yaml"),
-    Path("be/statutes/gift_tax/regional_routing.yaml"),
     Path("be/statutes/inheritance_tax/regional_routing.yaml"),
     Path("be/statutes/property_tax/regional_routing.yaml"),
     Path("be/statutes/property_tax/gross_withholding_and_supplied_centimes.yaml"),
@@ -515,11 +517,13 @@ def test_canonical_jurisdiction_layout_is_a_hard_cut() -> None:
     assert problems == []
 
 
-def test_external_model_bridge_modules_do_not_return() -> None:
-    forbidden_paths = set(FORBIDDEN_EXTERNAL_MODEL_BRIDGE_MODULES)
+def test_non_documentary_atomic_module_groups_do_not_return() -> None:
+    assert len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES) == 17
+
+    forbidden_paths = set(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES)
     forbidden_paths.update(
         path.with_name(f"{path.stem}.test.yaml")
-        for path in FORBIDDEN_EXTERNAL_MODEL_BRIDGE_MODULES
+        for path in FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES
     )
 
     present = sorted(
@@ -527,9 +531,64 @@ def test_external_model_bridge_modules_do_not_return() -> None:
     )
 
     assert not present, (
-        "External-model, oracle-pipeline, and unsourced routing bridges are not "
-        f"public-policy concepts and must not return as atomic RuleSpec: {present}"
+        "External-model and oracle pipelines, unsourced routing and settlement "
+        "bridges, and synthetic cross-jurisdiction aggregates are not concepts "
+        f"stated in public-policy documents: {present}"
     )
+
+
+def test_family_benefit_modules_stay_within_documentary_jurisdictions() -> None:
+    problems: list[str] = []
+    for jurisdiction in jurisdiction_dirs():
+        root = jurisdiction / "statutes" / "family_benefits"
+        if not root.is_dir():
+            continue
+        expected_prefix = jurisdiction.name
+        for path in sorted(root.glob("*.yaml")):
+            if path.name.endswith(".test.yaml"):
+                continue
+            payload = yaml.safe_load(path.read_text()) or {}
+            citations: list[str] = []
+            module = payload.get("module") or {}
+            verification = module.get("source_verification") or {}
+            module_citation = verification.get("corpus_citation_path")
+            if isinstance(module_citation, str):
+                citations.append(module_citation)
+            for rule in payload.get("rules") or []:
+                if not isinstance(rule, dict):
+                    continue
+                for atom in proof_atoms(rule):
+                    source = atom.get("source") if isinstance(atom, dict) else None
+                    citation = (
+                        source.get("corpus_citation_path")
+                        if isinstance(source, dict)
+                        else None
+                    )
+                    if isinstance(citation, str):
+                        citations.append(citation)
+
+            wrong_citations = sorted(
+                citation
+                for citation in citations
+                if citation.split("/", 1)[0] != expected_prefix
+            )
+            wrong_imports = sorted(
+                str(imported)
+                for imported in payload.get("imports") or []
+                if not str(imported).startswith(f"{expected_prefix}:")
+            )
+            if wrong_citations:
+                problems.append(
+                    f"{path.relative_to(ROOT)}: cross-jurisdiction citations "
+                    f"{wrong_citations}"
+                )
+            if wrong_imports:
+                problems.append(
+                    f"{path.relative_to(ROOT)}: cross-jurisdiction imports "
+                    f"{wrong_imports}"
+                )
+
+    assert problems == []
 
 
 def test_non_documentary_atomic_identities_are_absent() -> None:
