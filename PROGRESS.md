@@ -11,7 +11,11 @@ work has been reconciled and committed. The final pre-journal validation
 checkpoint is `13f07da4679118dd05cbd109d252948a3fa9f5d2`. A fresh live fetch still fails
 because the shell cannot resolve `github.com`, so draft PR #127's live title,
 body, checks, merge state, base, and head have not yet been refreshed or
-claimed.
+claimed. The complete boundary, test, and diagnostic suite was then rerun on
+committed checkpoint `1810f1b116c7970a6614d20180d705b0d03af608` with a clean
+tree. The final live fetch, PR inspection, and non-force branch push all failed
+at the same DNS boundary; this journal records that frozen handoff without
+claiming a remote update.
 
 The audit supersedes the former 12-replacement/17-deletion estimate. At the
 exact base there are 116 primary-plus-adjacent-companion groups, classified as
@@ -129,15 +133,27 @@ or admission claim is authorized or present.
   because the review tree intentionally has no protected v5 manifests or
   receipts and CI still disables that guard. These remain frozen-review
   blockers; no artifact was fabricated.
+- Re-ran validation on committed checkpoint `1810f1b`: 36 repository tests,
+  both Ruff gates, and `git diff --check` pass; 193 tracked YAML-family files
+  parse; all 45 imports resolve; the 13 waiver targets and exact bound hash
+  match; and the five holds plus companions are unchanged from the base. An
+  independent audit found no unexpected reference among 407 deleted
+  path/prefix/ID needles and 360 deleted rule names, and its ten focused
+  boundary tests passed.
+- Verified all 17 commits from the exact base through `1810f1b` are unsigned
+  and their actual subjects match the local history. The branch was 12 commits
+  ahead of cached `origin/fix/documentary-concept-hard-cut` before the final
+  journal-only update. Live `git fetch`, `gh pr view 127`, the public GitHub
+  page, and non-force `git push` could not resolve GitHub, so no live PR body,
+  base/head, checks, merge state, or successful remote update is asserted.
 
 ## Next
 
-- Re-run the complete validation suite on the journal commit and verify the
-  final clean diff, unsigned commit list, and exact base/head.
-- Retry live upstream and draft PR #127 inspection. If GitHub DNS recovers,
-  push this review specification and update the draft title/body with prominent
-  **DO NOT MERGE** and zero-admission language; otherwise report the exact
-  unpushed head and unavailable live PR facts.
+- When GitHub DNS recovers, fetch before doing anything else, compare the live
+  base and branch tip to the exact local commits, then non-force push this
+  review specification and update draft PR #127 with prominent **DO NOT
+  MERGE**, non-admission, and frozen-blocker language. Verify the resulting PR
+  body and base/head from the live API.
 - Keep review frozen until every prerequisite in
   `docs/DOCUMENTARY-BOUNDARY.md` is satisfied, including protected v5
   regeneration, exact source pins, generated-guard enablement, manifests and
