@@ -76,13 +76,15 @@ or admission claim is authorized or present.
 - Added exact boundary regressions for 22 forbidden deletion groups, five
   explicit holds, 94 surviving groups, and 89 documentary candidates. The
   current 45 imports all resolve, and none consumes a deleted group.
+- Added `docs/DOCUMENTARY-BOUNDARY.md` as the durable non-admitted review
+  specification. It lists all 22 deletions, all 11 immediate candidates, all
+  five holds and their blockers, exact corpus/toolchain bindings, unresolved
+  source decisions, and the `axiom-encode#1557`/`#1558`, retired-inventory,
+  generated-guard, protected-v5, exact-source-pin, and frozen-base
+  prerequisites. README links to it with **DO NOT MERGE** language.
 
 ## Next
 
-- Update boundary tests and documentation to enforce the exact 116/89/22/5
-  census and the five holds.
-- Recompute the waiver-set hash from the exact final waiver bytes and bind the
-  toolchain directly, without the pending-waiver transition mechanism.
 - Run YAML parsing, import closure, exact group census, waiver existence/hash
   checks, all repository tests, full Ruff, source-boundary diagnostics,
   generated-guard diagnostics, and `git diff --check`; self-review against the

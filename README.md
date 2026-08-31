@@ -27,6 +27,12 @@ calibration, take-up, propensity, elasticity, randomized assignment, and
 behavior belong outside atomic RuleSpec. Oracle fixtures may remain as external
 test data, but they are never legal authority or exported Axiom concepts.
 
+The current non-admitted Belgium review boundary is frozen at 116 groups: 89
+documentary-core candidates, 22 deletion groups, and five human/source-boundary
+holds. See [the documentary migration boundary](docs/DOCUMENTARY-BOUNDARY.md)
+for the exact paths and protected-v5 prerequisites. **DO NOT MERGE** that review
+as an admission or infer admission from coverage-registry status.
+
 ## Layout
 
 - Atomic RuleSpec modules live only under

@@ -586,6 +586,15 @@ def test_documentary_boundary_census_is_exact() -> None:
     )
 
 
+def test_documentary_boundary_doc_lists_every_hold() -> None:
+    boundary = (ROOT / "docs/DOCUMENTARY-BOUNDARY.md").read_text()
+
+    assert "**DO NOT MERGE.**" in boundary
+    assert "All current RuleSpec remains unadmitted." in boundary
+    for path in HUMAN_SOURCE_BOUNDARY_HOLDS:
+        assert path.as_posix() in boundary
+
+
 def test_immediate_review_selector_pseudo_concepts_do_not_return() -> None:
     present: dict[str, list[str]] = {}
     for path, forbidden_names in REVIEW_ONLY_IMMEDIATE_SELECTOR_PSEUDO_CONCEPTS.items():
