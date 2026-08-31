@@ -126,3 +126,55 @@
     be-wal:statutes/education/study_allowance#study_allowance_special_allowance_threshold: 16633
     be-wal:statutes/education/study_allowance#study_allowance_max_amount: 2650.76
     be-wal:statutes/education/study_allowance#study_allowance_allocation_amount: '660.70634793333333333333333333'
+
+- name: higher_education_four_dependents_preserves_exact_table_branch
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 4
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 44483.78
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 8599.20
+
+- name: higher_education_five_dependents_preserves_increment_branch
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: true
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 5
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 49740.62
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 9720.85
+
+- name: secondary_four_dependents_preserves_exact_table_branch
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 4
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 42025.11
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 8599.20
+
+- name: secondary_five_dependents_preserves_increment_branch
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be-wal:statutes/education/study_allowance#input.study_allowance_is_higher_education: false
+    be-wal:statutes/education/study_allowance#input.study_allowance_dependent_person_count: 5
+  output:
+    be-wal:statutes/education/study_allowance#study_allowance_income_ceiling: 47179.79
+    be-wal:statutes/education/study_allowance#study_allowance_plancher: 9720.85

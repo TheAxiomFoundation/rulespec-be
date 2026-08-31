@@ -1,17 +1,8 @@
 # Encoding gaps
 
-These findings record the modules that still fail path-anchored numeric
-grounding after source-faithful citation and excerpt fixes. They do not change
-encoded values or expected outputs.
-
-## `be/policies/euromod_benefit_income_list.yaml`
-
-- Failure: the Wallonia social-supplement selector uses the local enum value
-  `4`.
-- Finding: the pinned corpus contains the regional benefit rules but no
-  EUROMOD `ils_ben` crosswalk assigning code `4`.
-- Judgment: missing source for an internal interface tag, not evidence that a
-  policy amount or household output is wrong.
+These findings record source gaps and parser limitations that prevent faithful
+encoding or path-anchored numeric grounding. They do not change encoded values
+or expected outputs.
 
 ## `be/regulations/career_break/parental_leave/allowance_amounts.yaml`
 
@@ -53,26 +44,6 @@ encoded values or expected outputs.
   mismatch for raw rate codes. The sourced VAT rates and mappings are not
   judged wrong.
 
-## `be/statutes/family_benefits/birth_allowance.yaml`
-
-- Failure: German-speaking Community routing uses the local region tag `4`.
-- Finding: the pinned regional law supports the allowance but does not assign
-  jurisdiction code `4`.
-- Judgment: missing source for an internal routing enum, not evidence that the
-  allowance output is wrong.
-
-## `be/statutes/family_benefits/child_benefit_base_2025.yaml`
-
-- Failures: German-speaking Community tag `4`, Flemish age boundary `4`, and
-  the derived transition age `7`.
-- Finding: no provision assigns the local region tag. Article 19 states the
-  age boundary as Dutch `vier`, which the pinned parser misses. The age-seven
-  transition is derived for 2025 from the source's pre-1-January-2019 birth
-  cutoff rather than stated directly as `7`.
-- Judgment: one missing-source internal enum, one parser limitation, and one
-  derived-value grounding limitation. The tested benefit outputs are not
-  judged wrong.
-
 ## `be/statutes/family_benefits/lgaf_amounts.yaml`
 
 - Failure: the Article 42bis supplement `17.41` is not recognized.
@@ -81,15 +52,6 @@ encoded values or expected outputs.
   `17,41` occurrence governs a different condition and cannot be substituted.
 - Judgment: source-present parser limitation; the encoded supplement is not
   judged wrong.
-
-## `be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml`
-
-- Failure: the internal trailing-group helper value `46` is not recognized.
-- Finding: the cited threshold is stated as `11.460 euros`; the source parser
-  correctly reads `11460`, not the helper's internal decomposition fragment
-  `46`. Slicing those digits alone would misrepresent the evidence.
-- Judgment: parser/modeling mismatch in an internal reconstruction helper. The
-  sourced EUR 11,460 threshold and downstream result are not judged wrong.
 
 ## `be/statutes/property_tax/immovable_withholding.yaml`
 
@@ -100,15 +62,6 @@ encoded values or expected outputs.
   same page concerns a different reduction and cannot ground this rule.
 - Judgment: source-present parser limitation; the encoded quarter threshold is
   not judged wrong.
-
-## `be/statutes/social_integration/payable_amount.yaml`
-
-- Failure: the euro-cent rounding denominator `100` is not grounded.
-- Finding: the relevant pinned statute and implementing decree do not mandate
-  this implementation rounding denominator; decimal historical amounts do not
-  prove the algorithm.
-- Judgment: missing source for an implementation constant, not evidence that
-  the statutory entitlement amounts are wrong.
 
 ## `be-bru/regulations/housing/social_housing_rental.yaml`
 

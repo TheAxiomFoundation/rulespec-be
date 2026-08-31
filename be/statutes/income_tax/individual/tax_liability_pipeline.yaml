@@ -11,18 +11,17 @@ imports:
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_tax_on_tax_free_amount
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_child_tax_credit_cap
   - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_after_cap
-  - be:statutes/income_tax/movable_withholding/rates#belgium_general_movable_income_withholding
-  - be:statutes/income_tax/movable_withholding/rates#belgium_regulated_savings_deposit_movable_withholding
 module:
   summary: |-
-    This module provides a source-backed personal-income-tax pipeline from
-    Article 6 taxable income into the encoded Article 130 rate scale, Article
+    This module provides source-backed personal-income-tax rules from
+    Article 6 taxable income through the encoded Article 130 rate scale, Article
     134 tax-free-amount reduction and refundable child-credit cap, supplied
-    Articles 465 to 468 local rates, and supplied withholding/prepayment
-    settlement. It deliberately excludes joint-assessment allocation, regional
-    reductions and credits, replacement-income reductions, professional
-    withholding table calculation, partial-year residency, treaty allocation
-    beyond supplied local-tax inputs, and assessment procedure.
+    Articles 465 to 468 local rates, and federal-plus-local tax before
+    withholding. It deliberately excludes joint-assessment allocation,
+    regional reductions and credits, replacement-income reductions,
+    professional withholding, prepayments and settlement, partial-year
+    residency, treaty allocation beyond supplied local-tax inputs, and
+    assessment procedure.
   source_verification:
     corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-53"
 units:
@@ -36,7 +35,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 6 and 130, Article 6 taxable income through the Article 130 ordinary rate scale
+    source: CIR 1992 articles 6 and 130 taxable income through the Article 130 ordinary rate scale
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -56,7 +55,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130 and 134, Article 6 taxable-income base tax after tax-free-amount reduction
+    source: CIR 1992 articles 130 and 134 taxable-income base tax after tax-free-amount reduction
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -67,7 +66,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraphs 2 and 3, unused tax-free-amount reduction from the Article 6 pipeline
+    source: CIR 1992 article 134 paragraphs 2 and 3 unused tax-free-amount reduction
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -78,7 +77,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 3, refundable child tax credit capped after Article 6 pipeline reduction
+    source: CIR 1992 article 134 paragraph 3 refundable child tax credit cap
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -89,7 +88,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130 and 134, Article 6 pipeline federal tax after refundable child credit
+    source: CIR 1992 articles 130 and 134 federal tax after refundable child credit
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -100,7 +99,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 466 and 466bis, local-tax base from Article 6 pipeline or supplied treaty-exempt hypothetical base
+    source: CIR 1992 articles 466 and 466bis local-tax base or treaty-exempt hypothetical base
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -114,7 +113,7 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 465 to 468, supplied municipal and agglomeration additions to Article 6 pipeline tax
+    source: CIR 1992 articles 465 to 468 municipal and agglomeration additions
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -125,30 +124,8 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 130, 134, and 465 to 468, Article 6 pipeline federal tax plus supplied local additions
+    source: CIR 1992 articles 130, 134, and 465 to 468 federal tax plus local additions
     versions:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_article_6_net_federal_tax_after_refundable_child_credit + belgium_pit_article_6_local_additional_tax
-  - name: belgium_pit_article_6_total_withholding_and_prepayments
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: CIR 1992 article 269 movable withholding plus supplied professional withholding, prepayments, and other creditable tax
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_professional_withholding + belgium_general_movable_income_withholding + belgium_regulated_savings_deposit_movable_withholding + belgium_pit_prepayments + belgium_pit_other_withholding_or_creditable_tax
-  - name: belgium_pit_article_6_net_tax_due_after_withholding_and_prepayments
-    kind: derived
-    entity: Person
-    dtype: Money
-    period: Year
-    unit: EUR
-    source: Settlement bridge after Article 6 pipeline tax and supplied creditable withholding/prepayments
-    versions:
-      - effective_from: '2025-01-01'
-        formula: |-
-          belgium_pit_article_6_federal_and_local_tax_before_withholding - belgium_pit_article_6_total_withholding_and_prepayments

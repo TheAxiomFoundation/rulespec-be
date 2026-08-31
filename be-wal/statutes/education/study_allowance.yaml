@@ -9,9 +9,8 @@ module:
     level, boarding status, and orphan-allowance eligibility, and article 4 sets
     the factor-K proration rule, the minimum-threshold (plancher) amounts, and the
     special-allowance income thresholds and amounts. This module encodes those
-    amount surfaces and the factor-K means-test selector for extern candidates
-    (EUROMOD BE_2025 bed_be i_bed_fr_be), also encoding intern maximum amounts for
-    completeness even though EUROMOD does not model interns. Eligibility beyond
+    amount surfaces and the factor-K means-test selector for extern candidates,
+    as well as the intern maximum amounts. Eligibility beyond
     the means test, application procedure, property disqualification, distance
     supplement, rounding, and payment mechanics remain separate surfaces.'
   source_verification:
@@ -21,6 +20,10 @@ units:
   kind: currency
   minor_units: 2
 rules:
+# Review-only, non-admitted expected-output cleanup: the internal dependent-count
+# selector pseudo-concept is omitted while companion cases preserve the numeric
+# four-dependent and fifth-plus branches. Protected v5 regeneration is still
+# required.
 - name: study_allowance_secondary_income_ceiling_0_dependents
   kind: parameter
   dtype: Money
@@ -497,15 +500,6 @@ rules:
   versions:
   - effective_from: '2016-07-01'
     formula: '2096'
-- name: study_allowance_dependent_person_count_fifth_dependent_code
-  kind: parameter
-  dtype: Count
-  source: Internal selector code for the fifth-and-beyond dependent-person-count
-    increment threshold shared by articles 2 and 4 section 2 of the French-Community
-    study-allowance order of 21 September 2016
-  versions:
-  - effective_from: '2016-07-01'
-    formula: '4'
 - name: study_allowance_income_ceiling
   kind: derived
   entity: Person
@@ -523,10 +517,10 @@ rules:
       \       else:\n                if study_allowance_dependent_person_count ==\
       \ 3:\n                    study_allowance_higher_income_ceiling_3_dependents\n\
       \                else:\n                    if study_allowance_dependent_person_count\
-      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \ == 4:\n       \
       \                 study_allowance_higher_income_ceiling_4_dependents\n\
       \                    else:\n                        study_allowance_higher_income_ceiling_4_dependents\
-      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_higher_income_ceiling_increment\n\
       else:\n    if study_allowance_dependent_person_count == 0:\n        study_allowance_secondary_income_ceiling_0_dependents\n\
       \    else:\n        if study_allowance_dependent_person_count == 1:\n     \
@@ -536,20 +530,24 @@ rules:
       \                if study_allowance_dependent_person_count == 3:\n       \
       \             study_allowance_secondary_income_ceiling_3_dependents\n     \
       \           else:\n                    if study_allowance_dependent_person_count\
-      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \ == 4:\n       \
       \                 study_allowance_secondary_income_ceiling_4_dependents\n\
       \                    else:\n                        study_allowance_secondary_income_ceiling_4_dependents\
-      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_secondary_income_ceiling_increment"
   metadata:
     proof:
       atoms:
       - path: versions[0].formula
-        kind: import
-        import:
-          target: be-wal:statutes/education/study_allowance#study_allowance_dependent_person_count_fifth_dependent_code
-          output: study_allowance_dependent_person_count_fifth_dependent_code
-          hash: sha256:local
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          excerpt: "42.025,11 EUROS, lorsqu'il y a quatre personnes à charge, ce montant augmentant d'une somme de 5.154,68 EUROS pour chaque personne supplémentaire à charge, à partir de et au-delà de la cinquième"
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/2
+          excerpt: "44.483,78 EUROS, lorsqu'il y a quatre personnes à charge, ce montant augmentant d'une somme de 5.256,84 EUROS pour chaque personne supplémentaire à charge, à partir de et au-delà de la cinquième"
 - name: study_allowance_plancher
   kind: derived
   entity: Person
@@ -566,20 +564,19 @@ rules:
       \       study_allowance_plancher_2_dependents\n        else:\n           \
       \ if study_allowance_dependent_person_count == 3:\n                study_allowance_plancher_3_dependents\n\
       \            else:\n                if study_allowance_dependent_person_count\
-      \ == study_allowance_dependent_person_count_fifth_dependent_code:\n       \
+      \ == 4:\n       \
       \             study_allowance_plancher_4_dependents\n      \
       \          else:\n                    study_allowance_plancher_4_dependents\
-      \ + (study_allowance_dependent_person_count - study_allowance_dependent_person_count_fifth_dependent_code)\
+      \ + (study_allowance_dependent_person_count - 4)\
       \ * study_allowance_plancher_increment"
   metadata:
     proof:
       atoms:
       - path: versions[0].formula
-        kind: import
-        import:
-          target: be-wal:statutes/education/study_allowance#study_allowance_dependent_person_count_fifth_dependent_code
-          output: study_allowance_dependent_person_count_fifth_dependent_code
-          hash: sha256:local
+        kind: parameter
+        source:
+          corpus_citation_path: be-wal/regulation/arrete/2016/09/21/2016029498/article/4
+          excerpt: "8.599,20 EUROS, lorsqu'il y a quatre personnes à charge, ce montant augmentant d'une somme de 1.121,65 EUROS pour chaque personne supplémentaire à charge, à partir de et au-delà de la cinquième"
 - name: study_allowance_max_amount
   kind: derived
   entity: Person

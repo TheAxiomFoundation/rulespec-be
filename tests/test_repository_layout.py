@@ -18,6 +18,60 @@ CORPUS_CITATION_PATH_RE = re.compile(
 )
 SOURCE_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 IGNORED_DIRS = {".git", ".pytest_cache", ".venv", "__pycache__", "_axiom"}
+FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES = {
+    Path("be/policies/euromod_benefit_income_list.yaml"),
+    Path("be/policies/euromod_disposable_income_list.yaml"),
+    Path("be/policies/euromod_tax_income_list.yaml"),
+    Path("be/regulations/unemployment/payable_amount.yaml"),
+    Path("be/regulations/unemployment/pilot_oracle_pipeline.yaml"),
+    Path("be/statutes/education/study_allowance_routing.yaml"),
+    Path("be/statutes/family_benefits/birth_allowance.yaml"),
+    Path("be/statutes/family_benefits/child_benefit_base_2025.yaml"),
+    Path("be/statutes/family_benefits/regional_routing.yaml"),
+    Path("be/statutes/gift_tax/regional_routing.yaml"),
+    Path("be/statutes/income_tax/individual/couple_pit_oracle_pipeline.yaml"),
+    Path("be/statutes/income_tax/individual/pensioner_pit_oracle_pipeline.yaml"),
+    Path("be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml"),
+    Path("be/statutes/income_tax/individual/self_employed_oracle_pipeline.yaml"),
+    Path("be/statutes/income_guarantee_for_elderly/payable_amount.yaml"),
+    Path("be/statutes/inheritance_tax/regional_routing.yaml"),
+    Path("be/statutes/property_tax/regional_routing.yaml"),
+    Path("be/statutes/property_tax/gross_withholding_and_supplied_centimes.yaml"),
+    Path("be/statutes/social_integration/payable_amount.yaml"),
+    Path("be/statutes/social_security/pension_health_insurance_article_191.yaml"),
+    Path("be/statutes/social_security/pension_solidarity_article_68.yaml"),
+    Path("be/statutes/vehicle_tax/regional_routing.yaml"),
+}
+HUMAN_SOURCE_BOUNDARY_HOLDS = {
+    Path("be/regulations/vat/rates.yaml"),
+    Path("be/statutes/income_tax/individual/regional_surcharge.yaml"),
+    Path("be/statutes/property_tax/additional_centimes.yaml"),
+    Path("be/statutes/social_security/chapter_10_special_contributions.yaml"),
+    Path("be/statutes/social_security/workers/contribution_rates.yaml"),
+}
+REVIEW_ONLY_IMMEDIATE_SELECTOR_PSEUDO_CONCEPTS = {
+    Path("be-vlg/statutes/education/school_allowance.yaml"): {
+        "flanders_school_level_code_preschool",
+        "flanders_school_level_code_primary",
+        "flanders_school_level_code_secondary",
+        "flanders_school_type_code_none",
+        "flanders_school_type_code_intermediate",
+        "flanders_school_type_code_full",
+        "flanders_school_type_code_exceptional",
+        "flanders_school_allowance_type",
+    },
+    Path("be-wal/statutes/education/study_allowance.yaml"): {
+        "study_allowance_dependent_person_count_fifth_dependent_code",
+    },
+}
+NON_DOCUMENTARY_ATOMIC_IDENTITY_RE = re.compile(
+    r"(?:euromod|comparator|oracle(?:s)?|take[_ -]?up|takeup|"
+    r"propensity|elasticit|random|behavio(?:u)?r|be_[0-9]{4}|"
+    r"external runners?|upstream (?:model|dataset)|lane convention|"
+    r"worker slice|regional[_ -]routing|"
+    r"supplied[- ]withholding settlement|settlement bridge)",
+    flags=re.IGNORECASE,
+)
 DISALLOWED_GENERIC_RULE_NAMES = {
     "amount",
     "base",
@@ -200,7 +254,9 @@ def iter_rulespec_files() -> list[Path]:
     files: list[Path] = []
     for root in rulespec_content_roots():
         files.extend(
-            path for path in root.rglob("*.yaml") if not path.name.endswith(".test.yaml")
+            path
+            for path in root.rglob("*.yaml")
+            if not path.name.endswith(".test.yaml")
         )
     return sorted(files)
 
@@ -214,6 +270,20 @@ def nested_keys(value: object):
     elif isinstance(value, list):
         for nested in value:
             yield from nested_keys(nested)
+
+
+def nested_authored_provenance_values(value: object):
+    """Yield authored provenance strings without scanning quoted source text."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for key, nested in value.items():
+            if key == "excerpt":
+                continue
+            yield from nested_authored_provenance_values(nested)
+    elif isinstance(value, list):
+        for nested in value:
+            yield from nested_authored_provenance_values(nested)
 
 
 def canonical_rule_id(path: Path, rule_name: str) -> str:
@@ -239,9 +309,11 @@ def is_policy_bearing_parameter(rule: dict) -> bool:
         return False
     dtype = rule.get("dtype")
     name = str(rule.get("name", "")).lower()
-    policy_bearing = dtype in POLICY_BEARING_PARAMETER_DTYPES or any(
-        token in name for token in POLICY_BEARING_PARAMETER_NAME_TOKENS
-    ) or "scalar_limit" in name
+    policy_bearing = (
+        dtype in POLICY_BEARING_PARAMETER_DTYPES
+        or any(token in name for token in POLICY_BEARING_PARAMETER_NAME_TOKENS)
+        or "scalar_limit" in name
+    )
     structural = any(token in name for token in STRUCTURAL_PARAMETER_NAME_TOKENS)
     return policy_bearing and (
         not structural
@@ -476,6 +548,152 @@ def test_canonical_jurisdiction_layout_is_a_hard_cut() -> None:
     assert problems == []
 
 
+def test_non_documentary_atomic_module_groups_do_not_return() -> None:
+    assert len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES) == 22
+
+    forbidden_paths = set(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES)
+    forbidden_paths.update(
+        path.with_name(f"{path.stem}.test.yaml")
+        for path in FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES
+    )
+
+    present = sorted(
+        path.as_posix() for path in forbidden_paths if (ROOT / path).exists()
+    )
+    forbidden_module_ids = {
+        f"{path.parts[0]}:{'/'.join(path.with_suffix('').parts[1:])}"
+        for path in FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES
+    }
+    consumers: list[str] = []
+    for path in iter_rulespec_files():
+        payload = yaml.safe_load(path.read_text()) or {}
+        for imported in payload.get("imports") or []:
+            imported_module = str(imported).split("#", 1)[0]
+            if imported_module in forbidden_module_ids:
+                consumers.append(f"{path.relative_to(ROOT).as_posix()}: {imported}")
+
+    assert not present, (
+        "External-model and oracle pipelines, unsourced routing and settlement "
+        "bridges, and synthetic cross-jurisdiction aggregates are not concepts "
+        f"stated in public-policy documents: {present}"
+    )
+    assert consumers == [], f"surviving imports consume deleted modules: {consumers}"
+
+
+def test_documentary_boundary_census_is_exact() -> None:
+    current_primaries = {path.relative_to(ROOT) for path in iter_rulespec_files()}
+    documentary_candidates = current_primaries - HUMAN_SOURCE_BOUNDARY_HOLDS
+
+    assert len(current_primaries) == 94
+    assert len(documentary_candidates) == 89
+    assert len(HUMAN_SOURCE_BOUNDARY_HOLDS) == 5
+    assert HUMAN_SOURCE_BOUNDARY_HOLDS <= current_primaries
+    assert not (FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES & HUMAN_SOURCE_BOUNDARY_HOLDS)
+    assert (
+        len(documentary_candidates)
+        + len(FORBIDDEN_NON_DOCUMENTARY_ATOMIC_MODULES)
+        + len(HUMAN_SOURCE_BOUNDARY_HOLDS)
+        == 116
+    )
+
+
+def test_documentary_boundary_doc_lists_every_hold() -> None:
+    boundary = (ROOT / "docs/DOCUMENTARY-BOUNDARY.md").read_text()
+
+    assert "**DO NOT MERGE.**" in boundary
+    assert "All current RuleSpec remains unadmitted." in boundary
+    for path in HUMAN_SOURCE_BOUNDARY_HOLDS:
+        assert path.as_posix() in boundary
+
+
+def test_immediate_review_selector_pseudo_concepts_do_not_return() -> None:
+    present: dict[str, list[str]] = {}
+    for path, forbidden_names in REVIEW_ONLY_IMMEDIATE_SELECTOR_PSEUDO_CONCEPTS.items():
+        payload = yaml.safe_load((ROOT / path).read_text()) or {}
+        rule_names = {
+            rule.get("name")
+            for rule in payload.get("rules") or []
+            if isinstance(rule, dict)
+        }
+        matches = sorted(forbidden_names & rule_names)
+        if matches:
+            present[path.as_posix()] = matches
+
+    assert present == {}
+
+
+def test_validation_waivers_reference_existing_modules() -> None:
+    payload = yaml.safe_load((ROOT / "known-validation-gaps.yaml").read_text()) or {}
+    waivers = payload.get("validate_failures") or {}
+    missing = sorted(path for path in waivers if not (ROOT / path).is_file())
+
+    assert missing == []
+
+
+def test_non_documentary_atomic_identities_are_absent() -> None:
+    matches: dict[Path, list[str]] = {}
+    for path in iter_rulespec_files():
+        relative = path.relative_to(ROOT)
+        payload = yaml.safe_load(path.read_text()) or {}
+        module = payload.get("module") or {}
+        identity_values: list[tuple[str, str]] = [("path", relative.as_posix())]
+        for key in ("id", "name", "title"):
+            value = module.get(key)
+            if isinstance(value, str):
+                identity_values.append((f"module.{key}", value))
+        summary = module.get("summary")
+        if isinstance(summary, str):
+            identity_values.append(("module.summary", summary))
+        for value in nested_authored_provenance_values(
+            module.get("source_verification") or {}
+        ):
+            identity_values.append(("module.source_verification", value))
+        for rule in payload.get("rules") or []:
+            if not isinstance(rule, dict):
+                continue
+            name = rule.get("name")
+            if isinstance(name, str):
+                identity_values.append(("rule.name", name))
+            source = rule.get("source")
+            if isinstance(source, str):
+                identity_values.append(("rule.source", source))
+            metadata = rule.get("metadata") or {}
+            for value in nested_authored_provenance_values(
+                metadata.get("source") or {}
+            ):
+                identity_values.append(("rule.metadata.source", value))
+            proof = metadata.get("proof") or {}
+            for atom in proof.get("atoms") or []:
+                if not isinstance(atom, dict):
+                    continue
+                for value in nested_authored_provenance_values(atom):
+                    identity_values.append(("proof.locator", value))
+
+        path_matches = [
+            f"{field}={value}"
+            for field, value in identity_values
+            if NON_DOCUMENTARY_ATOMIC_IDENTITY_RE.search(value)
+        ]
+        if path_matches:
+            matches[relative] = path_matches
+
+    assert matches == {}, (
+        "Atomic RuleSpec identities and source locators may only name concepts "
+        "found in public-policy documents. Do not add external-model, comparator, "
+        "oracle, model-system alias, external runner, unsourced routing, "
+        "take-up, propensity, elasticity, random, or behavioral "
+        "concepts. Exact matches: "
+        f"{matches}"
+    )
+
+
+def test_non_documentary_identity_guard_excludes_companion_test_fixtures() -> None:
+    # External-comparison names are permitted in test scenarios: companion
+    # fixture labels are validation context, not authored RuleSpec concepts or
+    # provenance. Production-file discovery must continue to exclude them.
+    assert all(not path.name.endswith(".test.yaml") for path in iter_rulespec_files())
+
+
 def test_program_roots_are_declarative_axiom_compose_only() -> None:
     problems: list[str] = []
     for jurisdiction in jurisdiction_dirs():
@@ -535,7 +753,9 @@ def test_source_verification_uses_exact_singular_contract() -> None:
         if not isinstance(citation_path, str) or not citation_path.strip():
             problems.append(f"{relative}: missing singular corpus_citation_path")
         elif CORPUS_CITATION_PATH_RE.fullmatch(citation_path) is None:
-            problems.append(f"{relative}: invalid corpus citation path {citation_path!r}")
+            problems.append(
+                f"{relative}: invalid corpus citation path {citation_path!r}"
+            )
         source_sha256 = verification.get("source_sha256")
         if source_sha256 is not None and (
             not isinstance(source_sha256, str)
@@ -626,7 +846,7 @@ def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
     assert euromod_oracle["coverage_inventory"] == (
         "data/coverage/euromod-be-coverage.json"
     )
-    assert euromod_oracle["authority"] == "oracle_pinned_for_pilot_outputs"
+    assert euromod_oracle["authority"] == "external_comparison_oracle_only"
     assert denominator["policy_count"] == len(policies) == 43
     assert denominator["function_count"] == 1171
     assert denominator["parameter_count"] == 8211
@@ -637,12 +857,16 @@ def test_euromod_inventory_tracks_current_pilot_oracle_scope() -> None:
         "n/a": 1,
     }
     assert coverage["coverage_summary"]["rule_percentage"] is None
-    assert coverage["coverage_summary"]["full_household_disposable_income_parity"] is False
+    assert (
+        coverage["coverage_summary"]["full_household_disposable_income_parity"] is False
+    )
     assert coverage["coverage_summary"]["live_verified_oracle_output_targets"] == 1
     assert outputs["tscee_s"]["status"] == (
         "live_oracle_verified_for_regular_worker_statutory_slice"
     )
-    assert outputs["tin_s"]["status"] == "prepared_worker_pilot_not_full_household_parity"
+    assert outputs["tin_s"]["status"] == (
+        "not_mapped_non_documentary_composition_removed"
+    )
     assert outputs["ils_dispy"]["status"] == "not_mapped"
 
 
@@ -731,7 +955,9 @@ def test_source_priority_starts_from_upstream_law() -> None:
 
 
 def test_justel_is_only_a_non_authentic_locator() -> None:
-    justel = next(source for source in source_spine()["sources"] if source["id"] == "justel-eli")
+    justel = next(
+        source for source in source_spine()["sources"] if source["id"] == "justel-eli"
+    )
 
     assert justel["canonical"] is False
     assert justel["source_tier"] == 2
@@ -739,7 +965,7 @@ def test_justel_is_only_a_non_authentic_locator() -> None:
 
 
 def test_no_obsolete_formula_artifacts() -> None:
-    obsolete_ext = ".r" "ac"
+    obsolete_ext = ".rac"
     obsolete = [
         path.relative_to(ROOT).as_posix()
         for path in iter_repo_files()
@@ -819,13 +1045,19 @@ def test_rulespec_files_use_rulespec_v1_shape() -> None:
             continue
         for index, rule in enumerate(rules):
             if not isinstance(rule, dict):
-                invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] is not a mapping")
+                invalid.append(
+                    f"{path.relative_to(ROOT)}: rules[{index}] is not a mapping"
+                )
                 continue
             for key in ("name", "kind"):
                 if key not in rule:
-                    invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] missing {key}")
+                    invalid.append(
+                        f"{path.relative_to(ROOT)}: rules[{index}] missing {key}"
+                    )
             if rule.get("kind") in {"parameter", "derived"} and "versions" not in rule:
-                invalid.append(f"{path.relative_to(ROOT)}: rules[{index}] missing versions")
+                invalid.append(
+                    f"{path.relative_to(ROOT)}: rules[{index}] missing versions"
+                )
 
     assert invalid == []
 
@@ -935,10 +1167,7 @@ def test_policy_parameter_proof_atoms_anchor_formula_values() -> None:
                 if formula_path_match is not None:
                     version_index = int(formula_path_match.group(1))
                     versions = rule.get("versions")
-                    if (
-                        not isinstance(versions, list)
-                        or version_index >= len(versions)
-                    ):
+                    if not isinstance(versions, list) or version_index >= len(versions):
                         invalid.append(
                             f"{atom_id}: atom anchors missing version {version_index}"
                         )
@@ -1023,9 +1252,8 @@ def test_rulespec_files_use_corpus_source_locators() -> None:
                 if module.get("source_url"):
                     legacy.append(f"{path.relative_to(ROOT)}: module.source_url")
                 source_verification = module.get("source_verification")
-                if (
-                    isinstance(source_verification, dict)
-                    and source_verification.get("source_url")
+                if isinstance(source_verification, dict) and source_verification.get(
+                    "source_url"
                 ):
                     legacy.append(
                         f"{path.relative_to(ROOT)}: "
