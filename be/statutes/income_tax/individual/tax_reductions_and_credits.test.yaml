@@ -1,10 +1,22 @@
+# Provenance: Moniteur belge 29 July 2026, pp. 40196-40197, 40218, and 40219-40220; pinned PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5; consolidated CIR 1992 pp. 277, 279, and 515 at the pinned corpus revision.
 - name: selected_article_145_reductions_and_credits
   period:
     period_kind: custom
     name: calendar_year
     start: '2025-01-01'
     end: '2025-12-31'
-  input:
+  input: &pit_reform_complete_input
+    <<: &pit_reform_article_147_and_work_bonus_inputs
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_1988_average_consumer_price_index: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_1991_average_consumer_price_index: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_1997_average_consumer_price_index: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_2012_average_consumer_price_index: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_2016_average_consumer_price_index: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_royal_decree_neutralized_basic_replacement_reduction_statutory_amount: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_royal_decree_neutralized_sickness_invalidity_reduction_statutory_amount: 1
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_taxable_period_is_full_calendar_year_or_shortened_by_death: true
+      be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_article_174_1_counted_months: 12
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
     : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: 1400
@@ -108,6 +120,7 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *pit_reform_complete_input
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_uses_higher_pension_savings_ceiling
     : false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_1458_pension_savings_payments: 2000
@@ -128,6 +141,7 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *pit_reform_complete_input
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_net_income_for_replacement_reduction
     : 30000
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_147_pension_and_other_replacement_income
@@ -156,6 +170,7 @@
     start: '2025-01-01'
     end: '2025-12-31'
   input:
+    <<: *pit_reform_complete_input
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_low_activity_credit_conditions_met
     : true
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter_is_assisting_spouse: true
@@ -177,6 +192,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -246,6 +262,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -315,6 +332,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -384,6 +402,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -453,6 +472,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -522,6 +542,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -591,6 +612,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -660,6 +682,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -730,6 +753,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -799,6 +823,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -868,6 +893,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -937,6 +963,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -1006,6 +1033,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -1075,6 +1103,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -1144,6 +1173,7 @@
     start: '2026-01-01'
     end: '2026-12-31'
   input:
+    <<: *pit_reform_article_147_and_work_bonus_inputs
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_conditions_met: false
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14531_home_security_expenses: 0
     ? be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_14532_development_fund_ceded_before_60_months
@@ -1207,3 +1237,214 @@
     be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_taxable_income: 0
   output:
     be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 0
+
+- name: assessment_year_2027_article_147_and_fiscal_work_bonus
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 1000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 1000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_178_half_up_rounding_increment: 0.5
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_178_hundredth_rounding_scale: 100
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_178_ten_thousandth_rounding_scale: 10000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount: 1102.44
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount: 1495.10
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount: 1102.44
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount: 1495.10
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction: 2204.88
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction: 2990.20
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate: 0.3314
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate: 0.63
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_statutory_amount: 970
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 961.4
+
+- name: assessment_year_2028_article_147_and_fiscal_work_bonus
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2027-01-01'
+    end: '2027-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 1000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 1000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount: 1089.50
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount: 1482.17
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount: 1089.50
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount: 1482.17
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction: 2179
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction: 2964.34
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate: 0.3314
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate: 0.63
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 961.4
+
+- name: assessment_year_2029_article_147_and_fiscal_work_bonus
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2028-01-01'
+    end: '2028-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 1000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 1000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount: 1062.32
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount: 1454.98
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount: 1062.32
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount: 1454.98
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction: 2124.64
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction: 2909.96
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate: 0.35
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate: 0.72
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1070
+
+- name: assessment_year_2030_article_147_requires_royal_decree_amounts
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2029-01-01'
+    end: '2029-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 1000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 1000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount: 837.71
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount: 1230.46
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount: 1
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount: 1
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate: 0.35
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate: 0.72
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1070
+
+- name: assessment_year_2031_article_147_requires_royal_decree_amounts
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2030-01-01'
+    end: '2030-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 1000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 1000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount: 723.22
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount: 1115.88
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount: 1
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount: 1
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_indexation_coefficient: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_a_rate: 0.35
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_b_rate: 0.72
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1070
+
+- name: assessment_year_2027_fiscal_work_bonus_obeys_indexed_ceiling
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 4000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 4000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1940
+
+- name: assessment_year_2027_nonunity_cpi_detects_ratio_orientation_and_statutory_rounding
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_1988_average_consumer_price_index: 72.345
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_1991_average_consumer_price_index: 81.274
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_1997_average_consumer_price_index: 96.835
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_2012_average_consumer_price_index: 121.454
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_2016_average_consumer_price_index: 128.765
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 139.455
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 4000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 4000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_indexation_coefficient: 1.5257
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_basic_replacement_reduction: 1681.99
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_147_sickness_invalidity_reduction: 2281.07
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_indexation_coefficient: 1.6177
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178: 1570
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1570
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1570
+
+- name: assessment_year_2027_article_174_1_prorates_and_rounds_work_bonus_ceiling
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_taxable_period_is_full_calendar_year_or_shortened_by_death: false
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_article_174_1_counted_months: 5
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 4000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 4000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 810
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 810
+
+- name: assessment_year_2027_article_174_1_death_exception_keeps_full_work_bonus_ceiling
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    <<: *pit_reform_complete_input
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_178_prior_income_year_average_consumer_price_index: 2
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_taxable_period_is_full_calendar_year_or_shortened_by_death: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_article_174_1_counted_months: 5
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_credit_conditions_met: true
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_a_amount: 4000
+    be:statutes/income_tax/individual/tax_reductions_and_credits#input.belgium_pit_article_289ter1_work_bonus_b_amount: 4000
+  output:
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_work_bonus_credit_ceiling: 1940
+    be:statutes/income_tax/individual/tax_reductions_and_credits#belgium_pit_article_289ter1_low_wage_work_bonus_credit: 1940
