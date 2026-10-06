@@ -1,0 +1,266 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Person-scoped CIR 1992 net-resource calculation for a potential dependant.
+    The module subtracts the supplied Article 143 disregarded resources before
+    applying Article 142 justified expenses or, when evidence is absent, the
+    20-percent default and the 570-euro minimum for worker remuneration or
+    profits. It then selects the 2025-income Article 136/141 ceiling for the
+    related Person and tests the Person's net resources against that ceiling.
+    Household membership, permitted family role, and downstream relation
+    aggregation are intentionally outside this leaf module.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_136_general_net_resources_ceiling
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 articles 136 and 141, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4100
+  - name: belgium_pit_article_141_separately_taxed_taxpayer_child_net_resources_ceiling
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 141, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5930
+  - name: belgium_pit_article_141_separately_taxed_taxpayer_disabled_child_net_resources_ceiling
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 141, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          7520
+  - name: belgium_pit_article_142_default_resource_expense_rate
+    kind: parameter
+    dtype: Rate
+    source: CIR 1992 article 142
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "A défaut d'éléments probants, les frais déductibles sont fixés à 20 % du montant brut desdites ressources."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.20
+  - name: belgium_pit_article_142_worker_remuneration_or_profit_minimum_resource_expenses
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 142, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Quand ces ressources sont constituées par des rémunérations de travailleurs ou de profits, les frais déductibles sont au minimum de 570 euros (montant indexé)."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          570
+  - name: belgium_pit_article_143_resources_after_disregards
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 143, supplied total of resources disregarded by that article
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Pour déterminer le montant net des ressources, il est fait abstraction:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_dependent_gross_resources - belgium_pit_article_143_disregarded_resources)
+  - name: belgium_pit_article_142_default_deductible_resource_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 142 default expenses and remuneration-or-profit minimum
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "A défaut d'éléments probants, les frais déductibles sont fixés à 20 % du montant brut desdites ressources. Quand ces ressources sont constituées par des rémunérations de travailleurs ou de profits, les frais déductibles sont au minimum de 570 euros (montant indexé)."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_dependent_resources_are_worker_remuneration_or_profits:
+              max(belgium_pit_article_143_resources_after_disregards * belgium_pit_article_142_default_resource_expense_rate, belgium_pit_article_142_worker_remuneration_or_profit_minimum_resource_expenses)
+          else:
+              belgium_pit_article_143_resources_after_disregards * belgium_pit_article_142_default_resource_expense_rate
+  - name: belgium_pit_article_142_deductible_resource_expenses
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 142, justified expenses when proved and statutory default otherwise
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant net des ressources s'entend du montant brut diminué des frais que le contribuable justifie avoir faits ou supportés durant la période imposable pour acquérir ou conserver ces ressources. A défaut d'éléments probants, les frais déductibles sont fixés à 20 % du montant brut desdites ressources."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_dependent_has_probative_resource_expense_evidence:
+              max(0, belgium_pit_dependent_justified_resource_expenses)
+          else:
+              belgium_pit_article_142_default_deductible_resource_expenses
+  - name: belgium_pit_article_142_dependent_net_resources
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 142 net resources after Article 143 disregards and deductible expenses
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant net des ressources s'entend du montant brut diminué des frais que le contribuable justifie avoir faits ou supportés durant la période imposable pour acquérir ou conserver ces ressources."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          max(0, belgium_pit_article_143_resources_after_disregards - belgium_pit_article_142_deductible_resource_expenses)
+  - name: belgium_pit_articles_136_141_dependent_is_child
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 136 and 141, supplied child status used to select the applicable resource ceiling
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_is_child
+  - name: belgium_pit_article_141_dependent_is_disabled
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 141, supplied disability status used to select the separately taxed taxpayer's disabled-child ceiling
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_is_disabled
+  - name: belgium_pit_articles_136_141_applicable_net_resources_ceiling
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 articles 136 and 141 ceiling selected for the supplied Person and taxpayer facts
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_taxpayer_is_taxed_separately:
+              if belgium_pit_dependent_is_child:
+                  if belgium_pit_dependent_is_disabled:
+                      belgium_pit_article_141_separately_taxed_taxpayer_disabled_child_net_resources_ceiling
+                  else:
+                      belgium_pit_article_141_separately_taxed_taxpayer_child_net_resources_ceiling
+              else:
+                  belgium_pit_article_136_general_net_resources_ceiling
+          else:
+              belgium_pit_article_136_general_net_resources_ceiling
+  - name: belgium_pit_articles_136_141_net_resources_within_applicable_ceiling
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 articles 136 and 141 net-resource ceiling test for the supplied Person
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-190
+              excerpt: "Le montant de 4.100 euros (montant indexé) visé à l'article 136 est porté à 5.930 euros (montant indexé) pour les enfants à charge d'un contribuable imposé isolément et à 7.520 euros (montant indexé) pour les enfants considérés comme handicapés à charge d'un tel contribuable."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_142_dependent_net_resources <= belgium_pit_articles_136_141_applicable_net_resources_ceiling

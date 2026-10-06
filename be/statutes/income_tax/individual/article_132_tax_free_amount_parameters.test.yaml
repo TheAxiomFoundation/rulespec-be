@@ -1,0 +1,38 @@
+- name: article_132_page_182_adapters_preserve_parameters
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#input.belgium_pit_article_132_child_count: 0
+  output:
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_one_child_tax_free_increase: 1980
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_two_children_tax_free_increase: 5110
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_three_children_tax_free_increase: 11440
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_four_children_tax_free_increase: 18510
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_additional_child_after_four_tax_free_increase: 7070
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_first_additional_child_count_from_page_182: 4
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_under_3_tax_free_increase: 740
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_dependent_elderly_tax_free_increase: 5950
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_other_dependent_tax_free_increase: 1980
+- name: article_132_page_182_child_ladder_additional_child_branch
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#input.belgium_pit_article_132_child_count: 5
+  output:
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_tax_free_increase_from_page_182: 25580
+- name: article_132_page_182_child_ladder_zero_branch
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#input.belgium_pit_article_132_child_count: 0
+  output:
+    be:statutes/income_tax/individual/article_132_tax_free_amount_parameters#belgium_pit_article_132_child_tax_free_increase_from_page_182: 0

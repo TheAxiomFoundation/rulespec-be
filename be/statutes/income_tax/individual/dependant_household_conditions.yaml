@@ -1,0 +1,50 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Person-scoped Article 138/139 deemed-household membership and Article 140
+    household-direction conditions. The underlying legal circumstances are
+    supplied explicitly for each related potential dependant Person.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-189
+rules:
+  - name: belgium_pit_articles_138_139_deemed_household_condition_met
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 138 and 139 deemed 1-January household membership
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-189
+              excerpt: "Un enfant décédé au cours de la période imposable est censé faire partie du ménage du contribuable au 1er janvier de l'exercice d'imposition, à condition qu'il ait déjà été à sa charge pour l'exercice d'imposition antérieur ou qu'il soit né et décédé durant la période imposable."
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-189
+              excerpt: "Lorsqu'une personne visée à l'article 136, 2° à 4°, décède au cours de la période imposable, elle est censée faire partie du ménage du contribuable au 1er janvier de l'exercice d'imposition, à condition qu'elle ait déjà été à charge pour l'exercice d'imposition antérieur."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_138_child_is_deemed_part_of_taxpayer_household or belgium_pit_article_139_nonchild_is_deemed_part_of_taxpayer_household
+  - name: belgium_pit_article_140_household_direction_condition_met
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 140, only the taxpayer directing a household shared by separately taxed taxpayers may claim the dependant
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-189
+              excerpt: "Lorsque plusieurs contribuables imposables distinctement font partie d'un même ménage, les personnes visées à l'article 136 qui font également partie de ce ménage sont considérées comme étant à charge du contribuable qui assume en fait la direction du même ménage."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          not belgium_pit_multiple_separately_taxed_taxpayers_are_in_same_household or belgium_pit_taxpayer_actually_directs_household

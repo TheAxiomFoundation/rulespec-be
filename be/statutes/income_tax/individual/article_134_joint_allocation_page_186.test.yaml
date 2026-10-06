@@ -1,0 +1,36 @@
+- name: article_134_page_186_assigns_supplements_to_higher_income_spouse
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: false
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 40000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_taxable_income: 20000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+  output:
+    be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_article_132_supplements_assigned_to_spouse_a: 1
+    be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation: 13910
+    be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation: 10910
+- name: article_134_page_186_transfers_supplement_recipient_excess
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_assessment_established: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_article_134_joint_lower_income_spouse_supplement_assignment_reduces_joint_state_tax: true
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_taxable_income: 40000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_taxable_income: 10000
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_a_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_spouse_b_base_tax_free_amount: 10910
+    be:statutes/income_tax/individual/tax_free_amount_tax#input.belgium_pit_joint_article_132_supplements_tax_free_amount: 3000
+  output:
+    be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_article_132_supplements_assigned_to_spouse_a: 0
+    be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation: 14820
+    be:statutes/income_tax/individual/article_134_joint_allocation_page_186#belgium_pit_article_134_page_186_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation: 10000
