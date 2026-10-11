@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate:
-    uses: TheAxiomFoundation/.github/.github/workflows/validate-rulespec.yml@842c69d6aa62a0d75a4da850fabc3d0df20701d7
+    uses: TheAxiomFoundation/.github/.github/workflows/validate-rulespec.yml@2b25fc0e54b41786a2ce47f98bb42420b37c7727
     secrets: inherit
     with:
       axiom-encode-ref: b9d376684cfb5e86202daa3451b8fc716703ed19
@@ -16,7 +16,7 @@ jobs:
       axiom-corpus-ref: 644ee891c69b4632b0ce48d5432a6104df255571
       rulespec-us-ref: 0f291b367bf7e15555f9973112278c5cbf221653
       validate-roots: auto
-      run-generated-guard: false
+      run-generated-guard: true
       # Composed-pilot programs/ guarding, as piloted in rulespec-uk and
       # adopted by rulespec-gh (encode#1053).
       guard-programs-root: false
