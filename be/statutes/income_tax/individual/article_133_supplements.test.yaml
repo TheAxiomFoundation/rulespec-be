@@ -1,0 +1,89 @@
+- name: isolated_parent_below_full_amount_threshold
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 1
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_132bis_shared_custody_child_count: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_3_case_in_same_year: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_spouse_net_resources: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_only_permitted_household_members_on_january_1: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_taxable_income: 18000
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_qualifying_net_professional_income: 5000
+  output:
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_isolated_taxpayer_child_supplement: 1980
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_marriage_or_legal_cohabitation_year_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement: 1290
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit: 3270
+
+- name: isolated_parent_addition_phases_out_linearly
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_132bis_shared_custody_child_count: 1
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_3_case_in_same_year: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_spouse_net_resources: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_only_permitted_household_members_on_january_1: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_taxable_income: 22000
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_qualifying_net_professional_income: 4100
+  output:
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_isolated_taxpayer_child_supplement: 1980
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement: "599.82490272373540856031128405"
+
+- name: marriage_year_supplement_and_all_false_isolated_conditions
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: false
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_132bis_shared_custody_child_count: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_3_case_in_same_year: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_spouse_net_resources: 4100
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_only_permitted_household_members_on_january_1: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_taxable_income: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_qualifying_net_professional_income: 0
+  output:
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_isolated_taxpayer_child_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_marriage_or_legal_cohabitation_year_supplement: 1980
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit: 1980
+
+- name: article_126_item_4_exclusion_blocks_dependent_child_branch_on_page_184
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies: true
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 1
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_132bis_shared_custody_child_count: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_article_126_paragraph_2_item_3_case_in_same_year: false
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_spouse_net_resources: 0
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_only_permitted_household_members_on_january_1: true
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_taxable_income: 18000
+    be:statutes/income_tax/individual/article_133_supplements#input.belgium_pit_article_133_qualifying_net_professional_income: 5000
+  output:
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_isolated_taxpayer_child_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_marriage_or_legal_cohabitation_year_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_additional_isolated_parent_supplement: 0
+    be:statutes/income_tax/individual/article_133_supplements#belgium_pit_article_133_supplements_before_refundable_credit: 0

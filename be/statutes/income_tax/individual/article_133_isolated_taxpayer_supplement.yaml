@@ -1,0 +1,53 @@
+format: rulespec/v1
+module:
+  summary: |-
+    CIR 1992 Article 133 page-183 leaf for the indexed supplement granted to
+    a separately assessed taxpayer who has at least one dependent child. The
+    page-184 shared-custody continuation and Article 126 paragraph 2 item 4
+    exclusion are applied only in the downstream page-184 composition.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_133_base_supplement_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 Article 133 paragraph 1 item 1, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "1° 1.980 euros (montant indexé) pour un contribuable imposé isolément et: - qui a un ou plusieurs enfants à charge;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1980
+  - name: belgium_pit_article_133_isolated_taxpayer_dependent_child_branch_before_article_126_exclusion
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 133 paragraph 1 item 1, page-183 dependent-child branch before the page-184 Article 126 exclusion
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-183
+              excerpt: "1° 1.980 euros (montant indexé) pour un contribuable imposé isolément et: - qui a un ou plusieurs enfants à charge;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_133_taxpayer_assessed_separately and belgium_pit_article_132_child_count > 0:
+              belgium_pit_article_133_base_supplement_amount
+          else:
+              0

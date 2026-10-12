@@ -1,0 +1,59 @@
+- name: ordinary_child_meets_article_136_conditions
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: true
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_138_child_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_139_nonchild_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_multiple_separately_taxed_taxpayers_are_in_same_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_taxpayer_actually_directs_household: false
+    be:statutes/income_tax/individual/dependant_article_145_exclusion#input.belgium_pit_dependent_is_excluded_under_article_145: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_is_ascendant: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_is_collateral_within_second_degree: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_assumed_exclusive_or_main_support_of_taxpayer_during_childhood: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_is_part_of_taxpayer_household_on_assessment_year_january_1: true
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_child_all_taxable_income_is_cumulated_with_parents: false
+  output:
+    be:statutes/income_tax/individual/dependants#belgium_pit_article_136_permitted_dependent_role: holds
+    be:statutes/income_tax/individual/dependants#belgium_pit_articles_136_138_139_household_condition_met: holds
+    be:statutes/income_tax/individual/dependants#belgium_pit_articles_136_137_resources_condition_met: holds
+    be:statutes/income_tax/individual/dependants#belgium_pit_dependent_person_is_eligible: holds
+
+- name: article_136_conditions_each_fail_for_unrelated_excluded_high_resource_person
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_gross_resources: 10000
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_article_143_disregarded_resources: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_has_probative_resource_expense_evidence: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_justified_resource_expenses: 0
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_resources_are_worker_remuneration_or_profits: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_taxpayer_is_taxed_separately: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_child: false
+    be:statutes/income_tax/individual/dependant_net_resources#input.belgium_pit_dependent_is_disabled: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_138_child_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_article_139_nonchild_is_deemed_part_of_taxpayer_household: false
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_multiple_separately_taxed_taxpayers_are_in_same_household: true
+    be:statutes/income_tax/individual/dependant_household_conditions#input.belgium_pit_taxpayer_actually_directs_household: false
+    be:statutes/income_tax/individual/dependant_article_145_exclusion#input.belgium_pit_dependent_is_excluded_under_article_145: true
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_is_ascendant: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_is_collateral_within_second_degree: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_assumed_exclusive_or_main_support_of_taxpayer_during_childhood: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_is_part_of_taxpayer_household_on_assessment_year_january_1: false
+    be:statutes/income_tax/individual/dependants#input.belgium_pit_dependent_child_all_taxable_income_is_cumulated_with_parents: false
+  output:
+    be:statutes/income_tax/individual/dependants#belgium_pit_article_136_permitted_dependent_role: not_holds
+    be:statutes/income_tax/individual/dependants#belgium_pit_articles_136_138_139_household_condition_met: not_holds
+    be:statutes/income_tax/individual/dependants#belgium_pit_articles_136_137_resources_condition_met: not_holds
+    be:statutes/income_tax/individual/dependants#belgium_pit_dependent_person_is_eligible: not_holds

@@ -1,0 +1,9 @@
+- name: article_468_page_687_adapter_preserves_agglomeration_rate_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input: {}
+  output:
+    be:statutes/income_tax/individual/article_468_agglomeration_rate_cap#belgium_pit_article_468_agglomeration_additional_tax_rate_cap_from_page_687: 0.01

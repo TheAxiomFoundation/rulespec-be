@@ -1,0 +1,32 @@
+- name: separately_assessed_taxpayer_with_dependent_child_meets_page_183_branch
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 1
+  output:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#belgium_pit_article_133_isolated_taxpayer_dependent_child_branch_before_article_126_exclusion: 1980
+
+- name: separately_assessed_taxpayer_without_dependent_child_does_not_meet_page_183_branch
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: true
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 0
+  output:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#belgium_pit_article_133_isolated_taxpayer_dependent_child_branch_before_article_126_exclusion: 0
+
+- name: jointly_assessed_taxpayer_with_dependent_child_does_not_meet_page_183_branch
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_133_taxpayer_assessed_separately: false
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#input.belgium_pit_article_132_child_count: 1
+  output:
+    be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#belgium_pit_article_133_isolated_taxpayer_dependent_child_branch_before_article_126_exclusion: 0

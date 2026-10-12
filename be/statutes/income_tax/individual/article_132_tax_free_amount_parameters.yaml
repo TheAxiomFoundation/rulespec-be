@@ -1,0 +1,208 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_one_child_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_two_children_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_three_children_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_four_children_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_additional_child_after_four_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_132_first_additional_child_count
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_child_under_3_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_dependent_elderly_tax_free_increase
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_other_dependent_tax_free_increase
+module:
+  summary: |-
+    This page-scoped adapter exposes the canonical Article 132 dependant
+    tax-free-amount parameters under page-182-owned rule ids. It introduces no
+    new numeric values. Idempotent bounds preserve the imported parameters,
+    and the child ladder is composed here so downstream roots import rather
+    than re-literal the sibling-page provision.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_132_one_child_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "1° pour un enfant: 1.980 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_one_child_tax_free_increase, belgium_pit_one_child_tax_free_increase)
+  - name: belgium_pit_article_132_two_children_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "2° pour deux enfants: 5.110 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_two_children_tax_free_increase, belgium_pit_two_children_tax_free_increase)
+  - name: belgium_pit_article_132_three_children_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 3
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "3° pour trois enfants: 11.440 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_three_children_tax_free_increase, belgium_pit_three_children_tax_free_increase)
+  - name: belgium_pit_article_132_four_children_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "4° pour quatre enfants: 18.510 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_four_children_tax_free_increase, belgium_pit_four_children_tax_free_increase)
+  - name: belgium_pit_article_132_additional_child_after_four_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_additional_child_after_four_tax_free_increase, belgium_pit_additional_child_after_four_tax_free_increase)
+  - name: belgium_pit_article_132_first_additional_child_count_from_page_182
+    kind: parameter
+    dtype: Count
+    source: CIR 1992 article 132 first alinea item 5, additional amount starts beyond the fourth child
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "par enfant au-delà du quatrième;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_article_132_first_additional_child_count, belgium_pit_article_132_first_additional_child_count)
+  - name: belgium_pit_article_132_child_under_3_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans au 1er janvier de l'exercice d'imposition"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_child_under_3_tax_free_increase, belgium_pit_child_under_3_tax_free_increase)
+  - name: belgium_pit_article_132_dependent_elderly_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "7° pour chaque personne à charge visée à l'article 136, 2° et 3°, qui est dans une situation de dépendance et qui a atteint l'âge de 66 ans: 5.950 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_dependent_elderly_tax_free_increase, belgium_pit_dependent_elderly_tax_free_increase)
+  - name: belgium_pit_article_132_other_dependent_tax_free_increase
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 132 first alinea item 8
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "8° pour chaque autre personne à charge: 1.980 euros (montant indexé)."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          min(belgium_pit_other_dependent_tax_free_increase, belgium_pit_other_dependent_tax_free_increase)
+  - name: belgium_pit_article_132_child_tax_free_increase_from_page_182
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 132 first alinea items 1 through 5, child ladder
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "Le montant de base fixé conformément à l'article 131 est majoré des suppléments suivants pour personnes à charge: 1° pour un enfant: 1.980 euros (montant indexé); 2° pour deux enfants: 5.110 euros (montant indexé); 3° pour trois enfants: 11.440 euros (montant indexé); 4° pour quatre enfants: 18.510 euros (montant indexé); 5° pour plus de quatre enfants: 18.510 euros (montant indexé) majorés de 7.070 euros (montant indexé) par enfant au-delà du quatrième;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_132_child_count <= 0:
+              0
+          else:
+              if belgium_pit_article_132_child_count == 1:
+                  belgium_pit_article_132_one_child_tax_free_increase
+              else:
+                  if belgium_pit_article_132_child_count == 2:
+                      belgium_pit_article_132_two_children_tax_free_increase
+                  else:
+                      if belgium_pit_article_132_child_count == 3:
+                          belgium_pit_article_132_three_children_tax_free_increase
+                      else:
+                          belgium_pit_article_132_four_children_tax_free_increase + max(0, belgium_pit_article_132_child_count - belgium_pit_article_132_first_additional_child_count_from_page_182) * belgium_pit_article_132_additional_child_after_four_tax_free_increase

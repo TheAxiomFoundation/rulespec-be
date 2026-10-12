@@ -1,0 +1,221 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#belgium_pit_article_133_base_supplement_amount
+  - be:statutes/income_tax/individual/article_133_isolated_taxpayer_supplement#belgium_pit_article_133_isolated_taxpayer_dependent_child_branch_before_article_126_exclusion
+module:
+  summary: |-
+    CIR 1992 article 133 supplements the Article 131 base tax-free amount for
+    an isolated taxpayer with dependent children or an Article 132bis
+    half-share, for a separately assessed taxpayer in the year of marriage or
+    legal cohabitation whose spouse has limited net resources, and for a
+    qualifying low-income isolated parent. It imports the page-183 dependent-
+    child branch before exclusion and indexed base amount, then combines that
+    branch with the page-184 Article 132bis continuation and applies the
+    page-184 Article 126 paragraph 2 item 4 exclusion. The low-income addition is full
+    through the indexed lower bound and phases out linearly to the indexed
+    upper bound. This module leaves child qualification and Article 132bis
+    allocation to the related-Person dependant modules and consumes their
+    supplied equivalent counts.
+  source_verification:
+    corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-184"
+units:
+  - name: EUR
+    kind: currency
+    minor_units: 2
+rules:
+  - name: belgium_pit_article_133_indexed_qualifying_income_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 133, spouse-resource ceiling and minimum qualifying net professional income, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "2° 1.980 euros (montant indexé) lorsqu'une imposition est établie par contribuable pour l'année du mariage ou de la déclaration de cohabitation légale et pour autant que le conjoint n'ait pas bénéficié de ressources d'un montant net supérieur à 4.100 euros (montant indexé)."
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "les revenus professionnels nets du contribuable sont au moins égaux à 4.100 euros (montant indexé), les allocations de chômage, les pensions et les revenus imposables distinctement n'étant pas pris en compte."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          4100
+  - name: belgium_pit_article_133_additional_supplement_full_amount
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 133 paragraph 3, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "lorsque le revenu imposable du contribuable s'élève à 19.250 euros (montant indexé) ou moins: 1.290 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          1290
+  - name: belgium_pit_article_133_additional_supplement_full_income_ceiling
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 133 paragraph 3, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "lorsque le revenu imposable du contribuable s'élève à 19.250 euros (montant indexé) ou moins: 1.290 euros (montant indexé);"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          19250
+  - name: belgium_pit_article_133_additional_supplement_phaseout_income_ceiling
+    kind: parameter
+    dtype: Money
+    unit: EUR
+    source: CIR 1992 article 133 paragraphs 2 and 3, income year 2025, assessment year 2026
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "le revenu imposable du contribuable est inférieur à 24.390 euros (montant indexé);"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "1.290 euros (montant indexé) multipliés par une fraction dont le numérateur est égal à la différence entre 24.390 euros (montant indexé) et le revenu imposable et dont le dénominateur est égal à la différence entre 24.390 euros (montant indexé) et 19.250 euros (montant indexé)."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          24390
+  - name: belgium_pit_article_133_isolated_taxpayer_child_supplement
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 Article 133 paragraph 1 item 1 continuation and final-paragraph Article 126 paragraph 2 item 4 exclusion
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "- à qui la moitié des suppléments à la quotité du revenus exemptée d'impôt visés à l'article 132, alinéa 1er, 1° à 6°, est attribuée en application de l'article 132bis;"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "L'alinéa 1er, 1°, n'est pas applicable dans les cas visés à l'article 126, § 2, alinéa 1er, 4°."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if not belgium_pit_article_133_article_126_paragraph_2_item_4_exclusion_applies and (belgium_pit_article_133_isolated_taxpayer_dependent_child_branch_before_article_126_exclusion > 0 or (belgium_pit_article_133_taxpayer_assessed_separately and belgium_pit_article_132bis_shared_custody_child_count > 0)):
+              belgium_pit_article_133_base_supplement_amount
+          else:
+              0
+  - name: belgium_pit_article_133_marriage_or_legal_cohabitation_year_supplement
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 133 paragraph 1 item 2 and final paragraph
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "2° 1.980 euros (montant indexé) lorsqu'une imposition est établie par contribuable pour l'année du mariage ou de la déclaration de cohabitation légale et pour autant que le conjoint n'ait pas bénéficié de ressources d'un montant net supérieur à 4.100 euros (montant indexé)."
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "L'alinéa 1er, 2°, n'est pas applicable lorsqu'un des cas visés à l'article 126, § 2, alinéa 1er, 3°, se produit durant la même année."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_133_taxpayer_assessed_separately and belgium_pit_article_133_year_of_marriage_or_legal_cohabitation_declaration and not belgium_pit_article_133_article_126_paragraph_2_item_3_case_in_same_year and belgium_pit_article_133_spouse_net_resources <= belgium_pit_article_133_indexed_qualifying_income_amount:
+              belgium_pit_article_133_base_supplement_amount
+          else:
+              0
+  - name: belgium_pit_article_133_additional_isolated_parent_supplement
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 133 paragraphs 2 and 3, qualifying low-income isolated-parent addition and linear phaseout
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "aucune personne autre que les enfants, ascendants et collatéraux jusqu'au deuxième degré inclusivement du contribuable, et les personnes qui ont assumé la charge exclusive ou principale du contribuable pendant l'enfance de celui-ci, ne fait partie du ménage du contribuable au 1er janvier de l'exercice d'imposition;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "les revenus professionnels nets du contribuable sont au moins égaux à 4.100 euros (montant indexé), les allocations de chômage, les pensions et les revenus imposables distinctement n'étant pas pris en compte."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "1.290 euros (montant indexé) multipliés par une fraction dont le numérateur est égal à la différence entre 24.390 euros (montant indexé) et le revenu imposable et dont le dénominateur est égal à la différence entre 24.390 euros (montant indexé) et 19.250 euros (montant indexé)."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_article_133_isolated_taxpayer_child_supplement > 0 and belgium_pit_article_133_only_permitted_household_members_on_january_1 and belgium_pit_article_133_taxable_income < belgium_pit_article_133_additional_supplement_phaseout_income_ceiling and belgium_pit_article_133_qualifying_net_professional_income >= belgium_pit_article_133_indexed_qualifying_income_amount:
+              if belgium_pit_article_133_taxable_income <= belgium_pit_article_133_additional_supplement_full_income_ceiling:
+                  belgium_pit_article_133_additional_supplement_full_amount
+              else:
+                  belgium_pit_article_133_additional_supplement_full_amount * (belgium_pit_article_133_additional_supplement_phaseout_income_ceiling - belgium_pit_article_133_taxable_income) / (belgium_pit_article_133_additional_supplement_phaseout_income_ceiling - belgium_pit_article_133_additional_supplement_full_income_ceiling)
+          else:
+              0
+  - name: belgium_pit_article_133_supplements_before_refundable_credit
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: CIR 1992 article 133, total supplement to the tax-free amount
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "à qui la moitié des suppléments à la quotité du revenus exemptée d'impôt visés à l'article 132, alinéa 1er, 1° à 6°, est attribuée en application de l'article 132bis;"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "2° 1.980 euros (montant indexé) lorsqu'une imposition est établie par contribuable pour l'année du mariage ou de la déclaration de cohabitation légale et pour autant que le conjoint n'ait pas bénéficié de ressources d'un montant net supérieur à 4.100 euros (montant indexé)."
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-184
+              excerpt: "Le montant du supplément visé à l'alinéa 1er, 1°, est majoré lorsqu'il est de plus satisfait aux conditions suivantes:"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_133_isolated_taxpayer_child_supplement + belgium_pit_article_133_marriage_or_legal_cohabitation_year_supplement + belgium_pit_article_133_additional_isolated_parent_supplement

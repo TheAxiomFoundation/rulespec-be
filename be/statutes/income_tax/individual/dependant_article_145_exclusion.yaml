@@ -1,0 +1,26 @@
+format: rulespec/v1
+module:
+  summary: |-
+    Person-scoped Article 145 exclusion gate for a potential dependant. The
+    supplied fact represents the provision's remuneration and control tests.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-192
+rules:
+  - name: belgium_pit_article_145_dependent_is_not_excluded
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 145 exclusion for remuneration that is a professional expense in the specified circumstances
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-192
+              excerpt: "Ne sont pas considérées comme étant à charge, les personnes qui font partie du ménage du contribuable et: 1° qui bénéficient de rémunérations constituant des frais professionnels pour le contribuable; 2° qui bénéficient en tant qu'étudiants-indépendants visés à l'article 5quater de l'arrêté royal n° 38 du 27 juillet 1967 organisant le statut social des travailleurs indépendants de rémunérations de dirigeant d'entreprise qui constituent des frais professionnels pour une société"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          not belgium_pit_dependent_is_excluded_under_article_145

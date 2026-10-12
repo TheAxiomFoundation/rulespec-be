@@ -1,0 +1,234 @@
+format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_articles_136_141_dependent_is_child
+  - be:statutes/income_tax/individual/dependant_net_resources#belgium_pit_article_141_dependent_is_disabled
+  - be:statutes/income_tax/individual/dependants#belgium_pit_article_136_permitted_dependent_role
+  - be:statutes/income_tax/individual/dependants#belgium_pit_articles_136_137_resources_condition_met
+  - be:statutes/income_tax/individual/dependants#belgium_pit_dependent_person_is_eligible
+  - be:statutes/income_tax/individual/dependant_article_145_exclusion#belgium_pit_article_145_dependent_is_not_excluded
+  - be:statutes/income_tax/individual/dependant_shared_custody#belgium_pit_article_132bis_shared_custody_conditions_met
+module:
+  summary: |-
+    Person-scoped Article 132 classification and equivalent counts. Imported
+    Articles 136 through 145 predicates determine eligibility; Article 132bis
+    splits ordinary and shared-custody child branches. Disabled children and
+    other dependants count twice, under-three children exclude childcare claims,
+    and certified elderly dependency is counted separately from other persons.
+  source_verification:
+    corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+rules:
+  - name: belgium_pit_dependent_child_is_eligible_without_article_132bis
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 132 and 136 through 145, ordinary dependent child outside Article 132bis allocation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_person_is_eligible and belgium_pit_articles_136_141_dependent_is_child and not belgium_pit_article_132bis_shared_custody_conditions_met
+  - name: belgium_pit_dependent_child_is_eligible_with_article_132bis
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 132 and 132bis shared-custody child, independently of ordinary household membership
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_136_permitted_dependent_role and belgium_pit_articles_136_141_dependent_is_child and belgium_pit_articles_136_137_resources_condition_met and belgium_pit_article_145_dependent_is_not_excluded and belgium_pit_article_132bis_shared_custody_conditions_met
+  - name: belgium_pit_dependent_child_is_eligible
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 132 and 132bis, child eligible ordinarily or through shared custody
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible_without_article_132bis or belgium_pit_dependent_child_is_eligible_with_article_132bis
+  - name: belgium_pit_dependent_child_is_eligible_without_article_132bis_and_disabled
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 disabled-child double-count predicate outside Article 132bis
+    metadata: &article_132_disabled_proof
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "Pour l'application de l'alinéa 1er, 1° à 6° et 8°, les enfants et autres personnes à charge considérés comme handicapés sont comptés pour deux."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible_without_article_132bis and belgium_pit_article_141_dependent_is_disabled
+  - name: belgium_pit_dependent_child_is_eligible_with_article_132bis_and_disabled
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 132 and 132bis disabled shared-custody child predicate
+    metadata: *article_132_disabled_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible_with_article_132bis and belgium_pit_article_141_dependent_is_disabled
+  - name: belgium_pit_dependent_child_is_eligible_and_disabled
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 disabled-child double-count predicate
+    metadata: *article_132_disabled_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible and belgium_pit_article_141_dependent_is_disabled
+  - name: belgium_pit_dependent_child_equivalent_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132, an eligible disabled child counts twice
+    metadata: *article_132_disabled_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_dependent_child_is_eligible_and_disabled:
+              2
+          else:
+              if belgium_pit_dependent_child_is_eligible:
+                  1
+              else:
+                  0
+  - name: belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 item 6 under-three supplement outside Article 132bis
+    metadata: &article_132_under_3_proof
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "6° un montant supplémentaire de 740 euros (montant indexé) pour chaque enfant n'ayant pas atteint l'âge de 3 ans au 1er janvier de l'exercice d'imposition, étant entendu que ce supplément ne peut s'ajouter à la réduction pour garde d'enfant visée à l'article 14535;"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible_without_article_132bis and belgium_pit_dependent_child_is_under_age_three_on_assessment_year_january_1 and not belgium_pit_taxpayer_claims_childcare_reduction_for_dependent_child
+  - name: belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Articles 132 item 6 and 132bis shared-custody under-three supplement
+    metadata: *article_132_under_3_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible_with_article_132bis and belgium_pit_dependent_child_is_under_age_three_on_assessment_year_january_1 and not belgium_pit_taxpayer_claims_childcare_reduction_for_dependent_child
+  - name: belgium_pit_dependent_child_is_eligible_for_under_3_supplement
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 item 6 under-three supplement predicate
+    metadata: *article_132_under_3_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_child_is_eligible_for_under_3_supplement_without_article_132bis or belgium_pit_dependent_child_is_eligible_for_under_3_supplement_with_article_132bis
+  - name: belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 item 7, eligible ascendant or second-degree collateral aged 66 with at least nine autonomy points and competent certification
+    metadata: &article_132_elderly_proof
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "7° pour chaque personne à charge visée à l'article 136, 2° et 3°, qui est dans une situation de dépendance et qui a atteint l'âge de 66 ans: 5.950 euros (montant indexé);"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "Pour l'application de l'alinéa 1er, 7°, est considérée comme étant en situation de dépendance la personne pour laquelle le degré d'autonomie est évalué à au moins 9 points conformément à l'arrêté ministériel du 30 juillet 1987 fixant les catégories et le guide pour l'évaluation du degré d'autonomie en vue de l'examen du droit à l'allocation d'intégration. La situation de dépendance est constatée par la Direction générale Personnes handicapées du SPF Sécurité sociale, Medex ou le médecin-conseil auprès de la mutualité, ou une institution ou personne similaire d'un autre Etat membre de l'Espace économique européen."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_person_is_eligible and (belgium_pit_dependent_is_ascendant or belgium_pit_dependent_is_collateral_within_second_degree) and belgium_pit_dependent_has_reached_age_66 and belgium_pit_dependent_has_at_least_nine_autonomy_points and belgium_pit_dependent_dependency_is_certified_by_competent_body
+  - name: belgium_pit_dependent_elderly_equivalent_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132 item 7, one count for each qualifying elderly dependant
+    metadata: *article_132_elderly_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_dependent_elderly_is_eligible_for_article_132_7:
+              1
+          else:
+              0
+  - name: belgium_pit_other_dependent_person_is_eligible
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 item 8, eligible nonchild not receiving the item 7 elderly-dependency supplement
+    metadata: &article_132_other_dependent_proof
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "8° pour chaque autre personne à charge: 1.980 euros (montant indexé)."
+          - path: versions[0].formula
+            kind: predicate
+            source:
+              corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-182
+              excerpt: "Pour l'application de l'alinéa 1er, 1° à 6° et 8°, les enfants et autres personnes à charge considérés comme handicapés sont comptés pour deux."
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_dependent_person_is_eligible and not belgium_pit_articles_136_141_dependent_is_child and not belgium_pit_dependent_elderly_is_eligible_for_article_132_7
+  - name: belgium_pit_other_dependent_person_is_eligible_and_disabled
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Year
+    source: CIR 1992 Article 132 disabled other-dependant double-count predicate
+    metadata: *article_132_other_dependent_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_other_dependent_person_is_eligible and belgium_pit_article_141_dependent_is_disabled
+  - name: belgium_pit_other_dependent_person_equivalent_count
+    kind: derived
+    entity: Person
+    dtype: Count
+    period: Year
+    source: CIR 1992 Article 132 item 8 and disabled-person double-count rule
+    metadata: *article_132_other_dependent_proof
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if belgium_pit_other_dependent_person_is_eligible_and_disabled:
+              2
+          else:
+              if belgium_pit_other_dependent_person_is_eligible:
+                  1
+              else:
+                  0

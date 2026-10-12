@@ -1,0 +1,9 @@
+- name: article_51_page_122_adapter_preserves_employee_forfait_cap
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input: {}
+  output:
+    be:statutes/income_tax/individual/article_51_employee_forfait_cap#belgium_pit_article_51_employee_and_business_profit_cap_from_page_122: 5930

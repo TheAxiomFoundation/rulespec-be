@@ -1,0 +1,11 @@
+- name: definitive_regional_autonomy_factor_and_complementary_state_share
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input: {}
+  output:
+    be:statutes/income_tax/individual/regional_autonomy_factor#belgium_pit_pilot_article_5_2_autonomy_percent: 24.957
+    be:statutes/income_tax/individual/regional_autonomy_factor#belgium_pit_pilot_article_5_2_autonomy_factor: 0.24957
+    be:statutes/income_tax/individual/regional_autonomy_factor#belgium_pit_pilot_article_5_2_state_tax_share_after_autonomy_factor: 0.75043

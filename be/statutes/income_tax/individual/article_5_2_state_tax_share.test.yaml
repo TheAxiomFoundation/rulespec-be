@@ -1,0 +1,9 @@
+- name: article_5_2_adapter_composes_reduced_state_tax_share
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input: {}
+  output:
+    be:statutes/income_tax/individual/article_5_2_state_tax_share#belgium_pit_article_5_2_state_tax_share_after_autonomy_factor: 0.75043
