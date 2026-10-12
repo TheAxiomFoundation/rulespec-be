@@ -1,20 +1,19 @@
+# Provenance: Moniteur belge 29 July 2026, pp. 40196-40197, 40218, and 40219-40220; pinned PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5; consolidated CIR 1992 pp. 277, 279, and 515 at the pinned corpus revision.
 format: rulespec/v1
+imports:
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_article_178_nearest_ten_rounding_multiple
 module:
-  summary: 'This module encodes selected federal personal income tax reductions and
-
-    personal credits from current CIR 1992 consolidated text for income year
-
-    2025 / assessment year 2026. It covers arithmetic rates, caps, and selected
-
-    phaseout interfaces for Article 145 tax reductions, Articles 147 to 152
-
-    replacement-income reductions, and Articles 289bis, 289ter, and 289ter/1
-
-    credits. Eligibility, attestations, product classification, joint-
-
-    assessment allocation, regional reductions, and final imputation ordering
-
-    remain separate surfaces.'
+  summary: |-
+    This module encodes selected federal personal income tax reductions and
+    personal credits. It preserves the income-year-2025 / assessment-year-2026
+    baseline and encodes the 15 July 2026 reform through assessment year 2031
+    for the Article 147 base reductions and Article 289ter/1 fiscal work bonus.
+    Article 147 keeps the enacted raw amounts distinct from their Article 178
+    application and requires explicit Royal-Decree-neutralized raw inputs for
+    AY2030 and AY2031; no unissued amount is interpolated. The work-bonus rates
+    and indexed statutory ceiling follow Articles 96-97. Eligibility,
+    attestations, product classification, joint-assessment allocation,
+    regional reductions, and final imputation ordering remain separate.
   source_verification:
     corpus_citation_path: "be/statute/fisconetplus/cir92/revenus-2025/page-193"
 units:
@@ -22,6 +21,63 @@ units:
   kind: currency
   minor_units: 2
 rules:
+- name: belgium_pit_article_178_decimal_rounding_base
+  kind: parameter
+  dtype: Decimal
+  source: CIR 1992 article 178 section 2, decimal base used to express the enacted half-up rounding instructions without embedded arithmetic literals
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source: &article_178_rounding_digits
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+          excerpt: "Après application du coefficient, les montants sont, à l'exception de ceux mentionnés aux articles 21, alinéa 1er, 14°, 66bis, alinéa 3, 14535, alinéa 6, du montant de l'indemnité kilométrique visé à l'article 38, § 1er, alinéa 1er, 14°, a, et des montants des réductions visés à l'article 147, arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '10'
+- name: belgium_pit_article_178_half_up_rounding_digit_threshold
+  kind: parameter
+  dtype: Decimal
+  source: CIR 1992 article 178 section 2, statutory half-up digit threshold
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+          excerpt: "selon que le chiffre des unités atteint ou non 5"
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '5'
+- name: belgium_pit_article_178_half_up_rounding_increment
+  kind: derived
+  entity: Person
+  dtype: Decimal
+  period: Year
+  source: CIR 1992 article 178 section 2, half-up rounding increment derived from the enacted decimal base and digit threshold
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_pit_article_178_half_up_rounding_digit_threshold / belgium_pit_article_178_decimal_rounding_base
+- name: belgium_pit_article_178_hundredth_rounding_scale
+  kind: derived
+  entity: Person
+  dtype: Decimal
+  period: Year
+  source: CIR 1992 article 178 section 2, scale implementing rounding to one hundredth
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_pit_article_178_decimal_rounding_base * belgium_pit_article_178_decimal_rounding_base
+- name: belgium_pit_article_178_ten_thousandth_rounding_scale
+  kind: derived
+  entity: Person
+  dtype: Decimal
+  period: Year
+  source: CIR 1992 article 178 section 2, scale implementing rounding to one ten-thousandth
+  versions:
+  - effective_from: '2025-01-01'
+    formula: belgium_pit_article_178_hundredth_rounding_scale * belgium_pit_article_178_hundredth_rounding_scale
 - name: belgium_pit_article_1452_general_reduction_rate
   kind: parameter
   dtype: Rate
@@ -386,12 +442,308 @@ rules:
   versions:
   - effective_from: '2025-01-01'
     formula: '0.40'
-- name: belgium_pit_article_147_basic_replacement_reduction
+- name: belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount
   kind: parameter
   dtype: Money
   unit: EUR
-  source: CIR 1992 article 147, income year 2025 indexed basic pension and replacement-income
-    reduction
+  source: CIR 1992 article 147 paragraph 1 item 1 raw statutory amount as amended by Articles 3-4 of the law of 15 July 2026
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source: &mb_art3_a_basic
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(a), Article 147 paragraph 1, 1°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 1°, le montant “1.148,93 euros” est remplacé par le montant “1.102,44 euros”"
+      - path: versions[1].formula
+        kind: parameter
+        source: *mb_art3_a_basic
+      - path: versions[2].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(b), Article 147 paragraph 1, 1°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 1°, le montant “1.102,44 euros” est remplacé par le montant “1.089,50 euros”"
+      - path: versions[3].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(c), Article 147 paragraph 1, 1°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 1°, le montant “1.089,50 euros” est remplacé par le montant “1.062,32 euros”"
+      - path: versions[4].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(d), Article 147 paragraph 1, 1°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 1°, le montant “1.062,32 euros” est remplacé par le montant “837,71 euros”"
+      - path: versions[5].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(e), Article 147 paragraph 1, 1°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 1°, le montant “837,71 euros” est remplacé par le montant “723,22 euros”"
+    effective_period_evidence:
+      - mb_page: '40197'
+        law_article: '4, paragraph 1'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 2, 1°, et 3, a), sont applicables à partir de l’exercice d’imposition 2027."
+      - &mb_art4_paragraph_2
+        mb_page: '40197'
+        law_article: '4, paragraph 2'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 2, 2°, et 3, b), entrent en vigueur le 31 décembre 2026 et sont applicables à partir de l’exercice d’imposition 2028."
+      - &mb_art4_paragraph_3
+        mb_page: '40197'
+        law_article: '4, paragraph 3'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 2, 3°, et 3, c), entrent en vigueur le 31 décembre 2027 et sont applicables à partir de l’exercice d’imposition 2029."
+      - &mb_art4_paragraph_4
+        mb_page: '40197'
+        law_article: '4, paragraph 4'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 2, 4° et 6°, et 3, d) et f), entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
+      - &mb_art4_paragraph_5
+        mb_page: '40197'
+        law_article: '4, paragraph 5'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 2, 5° et 7°, et 3, e) et g), entrent en vigueur le 31 décembre 2029 et sont applicables à partir de l’exercice d’imposition 2031."
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1148.93'
+  - effective_from: '2026-01-01'
+    formula: '1102.44'
+  - effective_from: '2027-01-01'
+    formula: '1089.50'
+  - effective_from: '2028-01-01'
+    formula: '1062.32'
+  - effective_from: '2029-01-01'
+    formula: '837.71'
+  - effective_from: '2030-01-01'
+    formula: '723.22'
+- name: belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount
+  kind: parameter
+  dtype: Money
+  unit: EUR
+  source: CIR 1992 article 147 paragraph 1 item 9 raw statutory amount as amended by Articles 3-4 of the law of 15 July 2026
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source: &mb_art3_a_sickness
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(a), Article 147 paragraph 1, 9°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 9°, le montant “1.541,69 euros” est remplacé par le montant “1.495,10 euros”"
+      - path: versions[1].formula
+        kind: parameter
+        source: *mb_art3_a_sickness
+      - path: versions[2].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(b), Article 147 paragraph 1, 9°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 9°, le montant “1.495,10 euros” est remplacé par le montant “1.482,17 euros”"
+      - path: versions[3].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(c), Article 147 paragraph 1, 9°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 9°, le montant “1.482,17 euros” est remplacé par le montant “1.454,98 euros”"
+      - path: versions[4].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(d), Article 147 paragraph 1, 9°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 9°, le montant “1.454,98 euros” est remplacé par le montant “1.230,46 euros”"
+      - path: versions[5].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(e), Article 147 paragraph 1, 9°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 1er, 9°, le montant “1.230,46 euros” est remplacé par le montant “1.115,88 euros”"
+    effective_period_evidence:
+      - mb_page: '40197'
+        law_article: '4, paragraph 1'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 2, 1°, et 3, a), sont applicables à partir de l’exercice d’imposition 2027."
+      - *mb_art4_paragraph_2
+      - *mb_art4_paragraph_3
+      - *mb_art4_paragraph_4
+      - *mb_art4_paragraph_5
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '1541.69'
+  - effective_from: '2026-01-01'
+    formula: '1495.10'
+  - effective_from: '2027-01-01'
+    formula: '1482.17'
+  - effective_from: '2028-01-01'
+    formula: '1454.98'
+  - effective_from: '2029-01-01'
+    formula: '1230.46'
+  - effective_from: '2030-01-01'
+    formula: '1115.88'
+- name: belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 147 raw amount after the Royal Decree neutralization required when Article 131 paragraph 3 changes the tax-free amount
+  metadata:
+    proof:
+      atoms:
+      - path: versions[1].formula
+        kind: formula
+        source: &mb_art3_f
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(f), new Article 147 paragraph 5'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "Dans l’éventualité où le Roi modifie le montant de la quotité du revenu exemptée d’impôt en application de l’article 131, alinéa 3, Il modifie également le montant visé à l’alinéa 1er, 1°, de la réduction de base ainsi que le montant visé à l’alinéa 1er, 9°, afin de neutraliser la différence d’avantage issue de l’augmentation de la quotité du revenu exemptée d’impôt par l’application de l’article 131, alinéa 3."
+      - path: versions[2].formula
+        kind: formula
+        source: &mb_art3_g
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40197'
+          law_article: '3(g), replacement Article 147 paragraph 5'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "Les montants ainsi modifiés restent applicables à partir de l’exercice d’imposition 2031."
+    effective_period_evidence:
+      - *mb_art4_paragraph_4
+      - *mb_art4_paragraph_5
+  versions:
+  - effective_from: '2026-01-01'
+    formula: belgium_pit_article_147_basic_replacement_reduction_enacted_statutory_amount
+  - effective_from: '2029-01-01'
+    formula: belgium_pit_article_147_royal_decree_neutralized_basic_replacement_reduction_statutory_amount
+  - effective_from: '2030-01-01'
+    formula: belgium_pit_article_147_royal_decree_neutralized_basic_replacement_reduction_statutory_amount
+- name: belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 article 147 item 9 raw amount after the Royal Decree neutralization required when Article 131 paragraph 3 changes the tax-free amount
+  metadata:
+    proof:
+      atoms:
+      - path: versions[1].formula
+        kind: formula
+        source: *mb_art3_f
+      - path: versions[2].formula
+        kind: formula
+        source: *mb_art3_g
+    effective_period_evidence:
+      - *mb_art4_paragraph_4
+      - *mb_art4_paragraph_5
+  versions:
+  - effective_from: '2026-01-01'
+    formula: belgium_pit_article_147_sickness_invalidity_reduction_enacted_statutory_amount
+  - effective_from: '2029-01-01'
+    formula: belgium_pit_article_147_royal_decree_neutralized_sickness_invalidity_reduction_statutory_amount
+  - effective_from: '2030-01-01'
+    formula: belgium_pit_article_147_royal_decree_neutralized_sickness_invalidity_reduction_statutory_amount
+- name: belgium_pit_article_147_indexation_coefficient
+  kind: derived
+  entity: Person
+  dtype: Decimal
+  period: Year
+  source: CIR 1992 article 178 section 3, Article 147 coefficient calculated from explicit CPI-average inputs with statutory intermediate rounding
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-280
+          excerpt: "2° pour les exercices d'imposition 2019 et suivants au moyen du coefficient qui est obtenu en divisant la moyenne des indices des prix de l'année qui précède celle des revenus par la moyenne des indices des prix de l'année 1988 multipliée par le rapport entre les moyennes des indices des prix des années 1997 et 1991 et par le rapport entre les moyennes des indices des prix des années 2016 et 2012."
+      - path: versions[0].formula
+        kind: formula
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40220'
+          law_article: '104(e), Article 178 section 3 paragraph 5'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans le paragraphe 3, alinéa 4, devenu l’alinéa 5, les mots “aux articles 147, 151 à 152 et 154” sont remplacés par les mots “aux articles 147 et 151 à 152”"
+      - path: versions[0].formula
+        kind: formula
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40220'
+          law_article: '104(f), Article 178 section 3 paragraph 5'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans le paragraphe 3, alinéa 4, devenu l’alinéa 5, les mots “aux articles 147 et 151 à 152” sont remplacés par les mots “aux articles 147 et 151/1 à 152”"
+    effective_period_evidence:
+      - mb_page: '40220'
+        law_article: '105, paragraph 2'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "Les articles 103, 1° et 2°, et 104, a) à c), e), et g), sont applicables à partir de l’exercice d’imposition 2027."
+      - mb_page: '40220'
+        law_article: '105, paragraph 4'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "L’article 104, f), entre en vigueur le 31 décembre 2028 et est applicable à partir de l’exercice d’imposition 2030."
+  versions:
+  - effective_from: '2026-01-01'
+    formula: |-
+      floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) / ((floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) * ((floor(belgium_pit_article_178_1997_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_1991_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale)) * ((floor(belgium_pit_article_178_2016_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_2012_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale)))) * belgium_pit_article_178_ten_thousandth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_ten_thousandth_rounding_scale
+- name: belgium_pit_article_147_basic_replacement_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 articles 147 and 178, applied basic pension and replacement-income reduction
   metadata:
     proof:
       atoms:
@@ -400,9 +752,17 @@ rules:
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
           excerpt: "une réduction de base de 2.219,27 euros (montant indexé) et une réduction additionnelle de 457,23 euros (montant indexé);"
+      - path: versions[1].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+          excerpt: "les montants des réductions visés à l'article 147 sont arrondis à l'eurocent supérieur au inférieur selon que le chiffre des millièmes atteint ou non 5."
   versions:
   - effective_from: '2025-01-01'
     formula: '2219.27'
+  - effective_from: '2026-01-01'
+    formula: |-
+      floor(belgium_pit_article_147_effective_basic_replacement_reduction_statutory_amount * belgium_pit_article_147_indexation_coefficient * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale
 - name: belgium_pit_article_147_additional_replacement_reduction
   kind: parameter
   dtype: Money
@@ -421,11 +781,12 @@ rules:
   - effective_from: '2025-01-01'
     formula: '457.23'
 - name: belgium_pit_article_147_sickness_invalidity_reduction
-  kind: parameter
+  kind: derived
+  entity: Person
   dtype: Money
+  period: Year
   unit: EUR
-  source: CIR 1992 article 147, income year 2025 indexed sickness or invalidity indemnity
-    reduction
+  source: CIR 1992 articles 147 and 178, applied sickness or invalidity indemnity reduction
   metadata:
     proof:
       atoms:
@@ -434,9 +795,17 @@ rules:
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-253
           excerpt: "lorsque le revenu net se compose exclusivement d'indemnités légales d'assurance en cas de maladie ou d'invalidité: 2.977,93 euros (montant indexé);"
+      - path: versions[1].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+          excerpt: "les montants des réductions visés à l'article 147 sont arrondis à l'eurocent supérieur au inférieur selon que le chiffre des millièmes atteint ou non 5."
   versions:
   - effective_from: '2025-01-01'
     formula: '2977.93'
+  - effective_from: '2026-01-01'
+    formula: |-
+      floor(belgium_pit_article_147_effective_sickness_invalidity_reduction_statutory_amount * belgium_pit_article_147_indexation_coefficient * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale
 - name: belgium_pit_article_151_unemployment_phaseout_start
   kind: parameter
   dtype: Money
@@ -692,7 +1061,7 @@ rules:
 - name: belgium_pit_article_289ter1_work_bonus_a_rate
   kind: parameter
   dtype: Rate
-  source: CIR 1992 article 289ter/1, work-bonus credit rate for volet A
+  source: CIR 1992 article 289ter/1, fiscal work-bonus credit rate for volet A as amended by Articles 96-97 of the law of 15 July 2026
   metadata:
     proof:
       atoms:
@@ -701,13 +1070,30 @@ rules:
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
           excerpt: "Le crédit d'impôt est égal à: - 33,14 % du montant du volet A de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
+      - path: versions[1].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40218'
+          law_article: '96, 1°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 2, premier tiret, le pourcentage “33,14 p.c.” est remplacé par le pourcentage “35 p.c.”"
+    effective_period_evidence:
+      - mb_page: '40218'
+        law_article: '97, paragraph 2'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "L’article 96, 1° et 3°, entre en vigueur le 31 décembre 2027 et est applicable à partir de l’exercice d’imposition 2029."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.3314'
+  - effective_from: '2028-01-01'
+    formula: '0.35'
 - name: belgium_pit_article_289ter1_work_bonus_b_rate
   kind: parameter
   dtype: Rate
-  source: CIR 1992 article 289ter/1, work-bonus credit rate for volet B
+  source: CIR 1992 article 289ter/1, fiscal work-bonus credit rate for volet B as amended by Articles 96-97 of the law of 15 July 2026
   metadata:
     proof:
       atoms:
@@ -716,14 +1102,120 @@ rules:
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
           excerpt: "et - 52,54 % du montant du volet B de la réduction des cotisations personnelles de sécurité sociale réellement accordée"
+      - path: versions[1].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40218'
+          law_article: '96, 2°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 2, deuxième tiret, le pourcentage “52,54 p.c.” est remplacé par le pourcentage “63 p.c.”"
+      - path: versions[2].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40218'
+          law_article: '96, 3°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 2, deuxième tiret, le pourcentage “63 p.c.” est remplacé par le pourcentage “72 p.c.”"
+    effective_period_evidence:
+      - mb_page: '40218'
+        law_article: '97, paragraph 1'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "L’article 96, 2° et 4°, est applicable à partir de l’exercice d’imposition 2027."
+      - mb_page: '40218'
+        law_article: '97, paragraph 2'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "L’article 96, 1° et 3°, entre en vigueur le 31 décembre 2027 et est applicable à partir de l’exercice d’imposition 2029."
   versions:
   - effective_from: '2025-01-01'
     formula: '0.5254'
-- name: belgium_pit_article_289ter1_work_bonus_credit_ceiling
+  - effective_from: '2026-01-01'
+    formula: '0.63'
+  - effective_from: '2028-01-01'
+    formula: '0.72'
+- name: belgium_pit_article_289ter1_work_bonus_credit_ceiling_statutory_amount
   kind: parameter
   dtype: Money
   unit: EUR
-  source: CIR 1992 article 289ter/1, income year 2025 indexed work-bonus credit ceiling
+  source: CIR 1992 article 289ter/1 paragraph 3 raw statutory fiscal work-bonus ceiling as amended by Articles 96-97 of the law of 15 July 2026
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40218'
+          law_article: '96, 4°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 3, le montant “765 euros” est remplacé par le montant “970 euros”"
+      - path: versions[1].formula
+        kind: parameter
+        source:
+          authority: Moniteur belge
+          publication_date: '2026-07-29'
+          mb_page: '40218'
+          law_article: '96, 4°'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          corpus_status: awaiting_ingestion
+          excerpt: "dans l’alinéa 3, le montant “765 euros” est remplacé par le montant “970 euros”"
+    effective_period_evidence:
+      - mb_page: '40218'
+        law_article: '97, paragraph 1'
+        source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+        excerpt: "L’article 96, 2° et 4°, est applicable à partir de l’exercice d’imposition 2027."
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '765'
+  - effective_from: '2026-01-01'
+    formula: '970'
+- name: belgium_pit_article_289ter1_work_bonus_credit_ceiling_indexation_coefficient
+  kind: derived
+  entity: Person
+  dtype: Decimal
+  period: Year
+  source: CIR 1992 article 178 section 3 default coefficient, calculated from explicit CPI-average inputs for Article 289ter/1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+          excerpt: "2° pour les exercices d'imposition 2000 et suivants, au moyen du coefficient qui est obtenu en divisant la moyenne des indices des prix de l'année qui précède celle des revenus par la moyenne des indices des prix de l'année 1988 multipliée par le rapport entre les moyennes des indices des prix des années 1997 et 1991."
+  versions:
+  - effective_from: '2026-01-01'
+    formula: |-
+      floor(((floor(belgium_pit_article_178_prior_income_year_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) / ((floor(belgium_pit_article_178_1988_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) * ((floor(belgium_pit_article_178_1997_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale) / (floor(belgium_pit_article_178_1991_average_consumer_price_index * belgium_pit_article_178_hundredth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_hundredth_rounding_scale)))) * belgium_pit_article_178_ten_thousandth_rounding_scale + belgium_pit_article_178_half_up_rounding_increment) / belgium_pit_article_178_ten_thousandth_rounding_scale
+- name: belgium_pit_article_174_1_months_in_full_calendar_year
+  kind: parameter
+  dtype: Decimal
+  source: CIR 1992 article 174/1 paragraph 1, denominator for taxable-period duration expressed in months
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-277
+          excerpt: "sont réduits en proportion de la durée de la période imposable exprimée en mois par rapport à 12 mois."
+  versions:
+  - effective_from: '2025-01-01'
+    formula: '12'
+- name: belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 articles 178 and 289ter/1, indexed fiscal work-bonus ceiling before any Article 174/1 taxable-period reduction
   metadata:
     proof:
       atoms:
@@ -732,9 +1224,54 @@ rules:
         source:
           corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
           excerpt: "Le crédit d'impôt ne peut excéder par période imposable 1.540 euros (montant indexé)."
+      - path: versions[1].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-279
+          excerpt: "Après application du coefficient, les montants sont, à l'exception de ceux mentionnés aux articles 21, alinéa 1er, 14°, 66bis, alinéa 3, 14535, alinéa 6, du montant de l'indemnité kilométrique visé à l'article 38, § 1er, alinéa 1er, 14°, a, et des montants des réductions visés à l'article 147, arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
   versions:
   - effective_from: '2025-01-01'
     formula: '1540'
+  - effective_from: '2026-01-01'
+    formula: |-
+      floor((belgium_pit_article_289ter1_work_bonus_credit_ceiling_statutory_amount * belgium_pit_article_289ter1_work_bonus_credit_ceiling_indexation_coefficient / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
+- name: belgium_pit_article_289ter1_work_bonus_credit_ceiling
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Year
+  unit: EUR
+  source: CIR 1992 articles 174/1, 178, and 289ter/1, applied fiscal work-bonus credit ceiling after taxable-period proration
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-515
+          excerpt: "Les dispositions des articles 174/1 et 178, § 3, alinéa 1er, 2°, sont applicables à ce montant."
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-277
+          excerpt: "Lorsque la période imposable ne correspond pas à une année civile complète pour une cause autre que le décès"
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-277
+          excerpt: "Pour déterminer la durée de la période imposable exprimée en mois, chaque mois civil dont le quinzième jour appartient à la période imposable, est pris en compte comme un mois entier."
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-277
+          excerpt: "Les montants réduits conformément à l'alinéa 1er sont arrondis au multiple de 10 euros supérieur ou inférieur selon que le chiffre des unités atteint ou non 5."
+  versions:
+  - effective_from: '2025-01-01'
+    formula: |-
+      if belgium_pit_article_289ter1_taxable_period_is_full_calendar_year_or_shortened_by_death:
+          belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178
+      else:
+          floor(((belgium_pit_article_289ter1_work_bonus_credit_ceiling_after_article_178 * belgium_pit_article_289ter1_article_174_1_counted_months / belgium_pit_article_174_1_months_in_full_calendar_year) / belgium_pit_article_178_nearest_ten_rounding_multiple) + belgium_pit_article_178_half_up_rounding_increment) * belgium_pit_article_178_nearest_ten_rounding_multiple
 - name: belgium_pit_article_1458_pension_savings_payment_taken_into_account
   kind: derived
   entity: Person

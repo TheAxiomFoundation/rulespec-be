@@ -1,3 +1,4 @@
+# Provenance: Moniteur belge 29 July 2026, pp. 40196-40199, 40202-40206, and 40218-40220; pinned PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5.
 format: rulespec/v1
 imports:
   - be:statutes/income_tax/individual/joint_assessment#belgium_pit_article_87_88_spouse_a_professional_income_after_imputation
@@ -13,6 +14,8 @@ imports:
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_third_bracket_rate
   - be:statutes/income_tax/individual/rate_scale#belgium_pit_article_130_top_bracket_rate
   - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_base_tax_free_amount
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_articles_131_132_tax_free_amount_before_limitations
+  - be:statutes/income_tax/individual/tax_free_amount#belgium_pit_taxpayer_disability_tax_free_increase
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_first_tax_free_amount_threshold
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_second_tax_free_amount_threshold
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_third_tax_free_amount_threshold
@@ -24,6 +27,7 @@ imports:
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_top_tax_free_amount_rate
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_a_tax_free_amount_after_paragraph_4_allocation
   - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_spouse_b_tax_free_amount_after_paragraph_4_allocation
+  - be:statutes/income_tax/individual/tax_free_amount_tax#belgium_pit_article_134_joint_refundable_child_credit_after_cap
   - be:statutes/income_tax/individual/communal_additions#belgium_pit_article_468_agglomeration_additional_tax_rate_cap
 module:
   summary: |-
@@ -35,11 +39,10 @@ module:
     professional-income surface, and refundable Article 289ter/1 work-bonus
     credit. Explicit spouse-role facts select the two Person results through a
     spouse-of-tax-unit relation before the TaxUnit wires the encoded Article
-    87/88 professional-income imputation from
-    joint_assessment.yaml (single-earner 30-percent imputation capped at
-    13,460 euros indexed, and low-earner imputation up to a 30-percent joint
-    target) into a per-spouse application of the Article 130 rate scale, the
-    Article 131 base tax-free amount, the Article 134 paragraph 4 cross-spouse
+    87/88 professional-income imputation from joint_assessment.yaml, including
+    its year-conditional statutory cap and fixed Article 178 coefficient, into
+    a per-spouse application of the Article 130 rate scale, the canonical
+    Articles 131/132 tax-free amount, the Article 134 paragraph 4 cross-spouse
     tax-free-amount allocation and tax reduction, and the special-financing-law
     Article 5/2 autonomy factor,
     each computed separately on that partner's own post-imputation
@@ -51,8 +54,13 @@ module:
     tax_free_amount.yaml, tax_free_amount_tax.yaml, and communal_additions.yaml
     unchanged, imports the worker pilot's grounded Person results and
     Article 5/2 reduced-State-tax share together with the joint
-    tax-free-allocation concepts. It excludes dependants and Article 132
-    supplements, the assisting-spouse Article 86 attribution, the
+    tax-free-allocation concepts. The household total subtracts the canonical
+    aggregate Article 134 refundable child credit; its supplied uncapped
+    components must already respect Article 10(l)'s transferred-allowance
+    priority, which cannot be reconstructed from aggregate amounts. The
+    companion slice assigns all dependant and taxpayer-disability counts and
+    both uncapped components to zero. It excludes the assisting-spouse Article
+    86 attribution, the
     Article 129 loss-balance imputation, other income categories, actual-
     expense proof, replacement-income reductions, regional reductions/
     credits other than Article 289ter/1, professional withholding tables,
@@ -211,11 +219,11 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: Couple oracle boundary excludes dependants and Article 132 supplements
+    source: Structural bridge from the canonical Articles 131/132 amount to the Article 132 supplements assigned under Article 134 paragraph 4
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_base_tax_free_amount - belgium_pit_base_tax_free_amount
+          max(0, belgium_pit_articles_131_132_tax_free_amount_before_limitations - belgium_pit_base_tax_free_amount - belgium_pit_taxpayer_disability_tax_free_increase * belgium_pit_taxpayer_disability_count)
   - name: belgium_pit_couple_spouse_a_article_130_base_tax
     kind: derived
     entity: TaxUnit
@@ -284,7 +292,35 @@ rules:
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 2, tax on spouse A's tax-free amount for the couple oracle slice
+    source: CIR 1992 article 134 paragraph 2, tax on spouse A's tax-free amount; from AY2030 calculated through the imported Article 130 scale
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: &couple_article_134_article_130_scale_proof
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40198'
+              law_article: '10(a), Article 134 section 2 paragraph 1'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "dans le paragraphe 2, l’alinéa 1er est complété par les mots “calculé conformément au même article”"
+          - path: versions[1].formula
+            kind: formula
+            source: &couple_article_134_old_scale_abrogation_proof
+              authority: Moniteur belge
+              publication_date: '2026-07-29'
+              mb_page: '40198'
+              law_article: '10(b), Article 134 section 2 paragraph 2'
+              source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+              corpus_status: awaiting_ingestion
+              excerpt: "dans le paragraphe 2, l’alinéa 2 est abrogé"
+      effective_period_evidence: &couple_article_134_article_130_timing
+        - mb_page: '40199'
+          law_article: '13, paragraph 4'
+          source_sha256: 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5
+          excerpt: "Les articles 8, 9, 10, a) à g) et j) à l), 11 et 12 entrent en vigueur le 31 décembre 2028 et sont applicables à partir de l’exercice d’imposition 2030."
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -301,13 +337,35 @@ rules:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
                       else:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+      - effective_from: '2029-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_couple_spouse_a_tax_free_amount * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_couple_spouse_a_tax_free_amount <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_couple_spouse_a_tax_free_amount - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
   - name: belgium_pit_couple_spouse_b_article_134_tax_on_tax_free_amount
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 article 134 paragraph 2, tax on spouse B's tax-free amount for the couple oracle slice
+    source: CIR 1992 article 134 paragraph 2, tax on spouse B's tax-free amount; from AY2030 calculated through the imported Article 130 scale
+    metadata:
+      proof:
+        atoms:
+          - path: versions[1].formula
+            kind: formula
+            source: *couple_article_134_article_130_scale_proof
+          - path: versions[1].formula
+            kind: formula
+            source: *couple_article_134_old_scale_abrogation_proof
+      effective_period_evidence: *couple_article_134_article_130_timing
     versions:
       - effective_from: '2025-01-01'
         formula: |-
@@ -324,6 +382,18 @@ rules:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate
                       else:
                           belgium_pit_article_134_first_tax_free_amount_threshold * belgium_pit_article_134_first_tax_free_amount_rate + (belgium_pit_article_134_second_tax_free_amount_threshold - belgium_pit_article_134_first_tax_free_amount_threshold) * belgium_pit_article_134_second_tax_free_amount_rate + (belgium_pit_article_134_third_tax_free_amount_threshold - belgium_pit_article_134_second_tax_free_amount_threshold) * belgium_pit_article_134_third_tax_free_amount_rate + (belgium_pit_article_134_fourth_tax_free_amount_threshold - belgium_pit_article_134_third_tax_free_amount_threshold) * belgium_pit_article_134_fourth_tax_free_amount_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_134_fourth_tax_free_amount_threshold) * belgium_pit_article_134_top_tax_free_amount_rate
+      - effective_from: '2029-01-01'
+        formula: |-
+          if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_130_first_bracket_upper_threshold:
+              belgium_pit_couple_spouse_b_tax_free_amount * belgium_pit_article_130_first_bracket_rate
+          else:
+              if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_130_second_bracket_upper_threshold:
+                  belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate
+              else:
+                  if belgium_pit_couple_spouse_b_tax_free_amount <= belgium_pit_article_130_third_bracket_upper_threshold:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate
+                  else:
+                      belgium_pit_article_130_first_bracket_upper_threshold * belgium_pit_article_130_first_bracket_rate + (belgium_pit_article_130_second_bracket_upper_threshold - belgium_pit_article_130_first_bracket_upper_threshold) * belgium_pit_article_130_second_bracket_rate + (belgium_pit_article_130_third_bracket_upper_threshold - belgium_pit_article_130_second_bracket_upper_threshold) * belgium_pit_article_130_third_bracket_rate + (belgium_pit_couple_spouse_b_tax_free_amount - belgium_pit_article_130_third_bracket_upper_threshold) * belgium_pit_article_130_top_bracket_rate
   - name: belgium_pit_couple_spouse_a_net_federal_tax_after_tax_free_amount
     kind: derived
     entity: TaxUnit
@@ -476,14 +546,25 @@ rules:
       - effective_from: '2025-01-01'
         formula: |-
           belgium_pit_couple_spouse_b_net_federal_tax_after_work_bonus_credit + belgium_pit_couple_spouse_b_local_additional_tax
+  - name: belgium_pit_couple_article_134_joint_refundable_child_credit_after_cap
+    kind: derived
+    entity: TaxUnit
+    dtype: Money
+    period: Year
+    unit: EUR
+    source: Structural bridge to the imported Article 134 aggregate household credit; post-AY2030 component priority under Article 10(l) remains an upstream uncapped-component input obligation
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          belgium_pit_article_134_joint_refundable_child_credit_after_cap
   - name: belgium_pit_couple_federal_and_local_tax_before_withholding
     kind: derived
     entity: TaxUnit
     dtype: Money
     period: Year
     unit: EUR
-    source: CIR 1992 articles 87, 88, 130, 134, and 465 to 468, tax-unit total of both spouses' composed couple oracle federal-plus-local PIT before withholding under joint assessment
+    source: CIR 1992 articles 87, 88, 130, 134, and 465 to 468, tax-unit total of both spouses' composed couple oracle federal-plus-local PIT before withholding under joint assessment, net of the aggregate refundable child credit
     versions:
       - effective_from: '2025-01-01'
         formula: |-
-          belgium_pit_couple_spouse_a_federal_and_local_tax_before_withholding + belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding
+          belgium_pit_couple_spouse_a_federal_and_local_tax_before_withholding + belgium_pit_couple_spouse_b_federal_and_local_tax_before_withholding - belgium_pit_couple_article_134_joint_refundable_child_credit_after_cap

@@ -1,0 +1,535 @@
+{
+  "schema_version": "rulespec_be.corpus_ingestion_worklist.v1",
+  "provenance": "Microcosm-BE: synthetic Belgian population calibrated to Belgian administrative and national-accounts targets (sums of Chronicle facts; surveys validation-only). Support records: US survey donor pool, reweighted; a Belgian donor pool is the planned upgrade. Cross-engine agreement is evidence about the encodings.",
+  "prepared_on": "2026-08-25",
+  "held": true,
+  "status": "frontier_encoding_complete_for_mapped_slices_corpus_ingestion_and_signed_release_promotion_pending",
+  "purpose": "Authorized-maintainer worklist for ingesting the 15 July 2026 personal-income-tax reform and its independent dependencies. This is not a corpus provision, citation path, release manifest, waiver, proof-acceptance record, or authorization to publish.",
+  "proposal_lineage": {
+    "proposal_path": "population-rerun/out/v05e/encoding_handoff/corpus_ingestion_worklist.json",
+    "proposal_sha256": "63ea88f90c83e72da8b6a15e7e3f5e34fbbd99ac0b6ce5bd2917b35ab59cc974",
+    "edit_plan_path": "population-rerun/out/v05e/encoding_handoff/rulespec_edit_plan.json",
+    "edit_plan_sha256": "a7ff148ec079b49f4428120c2074d8028ad71439eb7cbebb579a16670069aaf7",
+    "review_disposition": "The handoff was treated as an untrusted proposal. Values, article boundaries, bilingual discrepancies, and physical printed pages were rechecked locally against the pinned official-publication PDF; no network source was used.",
+    "material_corrections": [
+      "The reform occupies physical M.B. pages 40196 through 40220, not 40195 through 40219; the title begins on page 40196 and Article 105 is on page 40220.",
+      "Articles 2-4 are on pages 40196-40197, Articles 5-13 on 40198-40199, Articles 14-26 on 40200-40202, Articles 27-34 on 40202-40206, and Articles 35-42 on 40206-40208.",
+      "Articles 57-62 are on page 40212; Articles 89-95 are on pages 40216-40218; Articles 96-97 are on page 40218; Articles 98-102 are on pages 40218-40219; Articles 103-105 are on pages 40219-40220.",
+      "French Article 28(s) is on physical page 40203, Article 41 section 4 is on page 40208, and the Article 99 placeholder begins on page 40218.",
+      "The proposal's obsolete sandbox-write blocker was removed: frontier RuleSpec encodings and local commits now exist. The remaining terminal blockers are source ingestion, signed release promotion, authorized re-pin, and repair of the existing single-source composed-module validation gates recorded below."
+    ]
+  },
+  "source_identity": {
+    "title_french": "Loi du 15 juillet 2026 portant réforme de l'impôt des personnes physiques",
+    "title_dutch": "Wet van 15 juli 2026 tot hervorming van de personenbelasting",
+    "publisher": "Service public fédéral Finances / Federale Overheidsdienst Financiën",
+    "publication": "Moniteur belge / Belgisch Staatsblad",
+    "publication_date": "2026-07-29",
+    "physical_printed_pages": "40196-40220",
+    "publication_reference_as_printed": "C - 2026/005724",
+    "local_pdf": "/Users/maxghenis/TheAxiomFoundation/_cape-prep/reform-2026/sources/mb-2026-07-29_1.pdf",
+    "pdf_sha256": "033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5",
+    "local_text_extraction": "/Users/maxghenis/TheAxiomFoundation/_cape-prep/reform-2026/sources/mb-2026-07-29_1.txt",
+    "text_extraction_sha256": "c95eda87835a874fc49cc84f2d65b834c2f372b150e6b65a1732a1b2f485f9d1",
+    "authority": "The pinned PDF is the official-publication image and is the legal source used for this audit. The text extraction is derivative navigation material only.",
+    "page_verification_method": "The PDF SHA-256 was rechecked and the relevant PDF pages were independently extracted in preserved two-column layout. Printed page headers and the French and Dutch columns were inspected together; interleaved plain-text order was not used to assign physical pages.",
+    "language_method": "French is primary for proof excerpts. Dutch is retained as an independent cross-check, especially where the French print is inconsistent or an extraction is doubtful. Printed text must remain verbatim.",
+    "numac": null,
+    "eli_moniteur_url": null,
+    "locator_instruction": "During authorized ingestion, resolve NUMAC and the canonical ELI Moniteur locator from official metadata. The printed C-reference is not to be guessed into a NUMAC or URL."
+  },
+  "authorization_boundary": {
+    "encoding_branch": "ledger/pit-reform-2026-2031",
+    "encoding_start_commit": "b105e2b3a3086ddd2de447d58a9b951346870dd1",
+    "last_reviewed_encoding_commit": "4362489724d7be11e07269d3d85d9d9edde981ae",
+    "allowed_here": [
+      "Record exact source identity, corrected page map, encoded and held slices, dependencies, discrepancies, acceptance criteria, and promotion workflow.",
+      "Retain local M.B. page/article frontier evidence in the encoding branch while proof paths are unavailable."
+    ],
+    "not_authorized_here": [
+      "Write to the corpus repository, create or guess a corpus_citation_path, or change a corpus inventory or provision record.",
+      "Create, sign, publish, or amend a corpus release manifest.",
+      "Change .axiom/toolchain.toml, a validation waiver, a workflow, a known-gap file, or a remote branch.",
+      "Push, upload, edit a public page, or treat the held scoring artifacts as public estimates."
+    ],
+    "required_owners": {
+      "corpus_ingestion": "authorized corpus maintainer",
+      "release_signing_and_publication": "authorized release maintainer using the trusted signing workflow",
+      "rulespec_repin": "authorized RuleSpec integration maintainer",
+      "proof_locator_replacement_and_revalidation": "encoding or integration maintainer after the authorized re-pin"
+    }
+  },
+  "current_frontier": {
+    "corpus_checkout": "/Users/maxghenis/TheAxiomFoundation/_cape-prep/corpus-be-pin",
+    "corpus_commit": "8e48989c9e46faa6d85a9624b7a2ebda0880656d",
+    "reform_law_present_in_checkout": false,
+    "reform_law_checkout_check": "No French or Dutch reform title match exists in the pinned checkout.",
+    "signed_release": "be-rulespec-2026-07-10",
+    "signed_release_content_sha256": "c1436c9f99882a819773bc2ccddf8c2a67e41efd24b0d0a408493ba5da39964a",
+    "signed_release_waiver_set_sha256": "258a1b9eae033e2e3cff6982bccc596d755bc5e0094b6d51eba5841f532bed25",
+    "reform_law_present_in_signed_release": false,
+    "existing_cir_pages_277_280_present_in_checkout": true,
+    "existing_cir_pages_277_280_present_in_signed_release": false,
+    "frontier_rule": "Encoding, compilation, fully assigned companion tests, layout checks, and coherent local commits may exist before promotion. Corpus-backed proof acceptance and ci_pass/all_passed sibling validation may not be claimed until every cited source is in the signed release selected by the authorized toolchain pin.",
+    "observed_fail_closed_evidence": {
+      "repository_layout": "28 of 29 checks pass at the reviewed encoding commit; the sole failure records 58 new Moniteur parameter atoms awaiting canonical corpus paths.",
+      "tax_free_amount_sibling_validate": "ci_pass false at generated literal 10. The module was already red at the starting commit on a different generated baseline literal; the current first error is the Article 178 rounding value proved from CIR page 279, which is absent from the signed release.",
+      "joint_assessment_sibling_validate": "ci_pass false at generated literal 13,460, exactly the same pre-existing single-source review-anchor error observed at the starting commit.",
+      "canonical_work_bonus_sibling_validate": "ci_pass false because the operative existing Article 178 rounding source on CIR page 279 is not in the signed release.",
+      "article_134_sibling_validate": "ci_pass false because the new Article 10(a) formula proof is awaiting ingestion and has no authorized canonical corpus path.",
+      "couple_pipeline_sibling_validate": "ci_pass false at the new-law frontier because the Article 10(a)-(b) formula proof has no promoted canonical corpus path.",
+      "worker_pilot_non_corpus_gate": "The reform propagation tests and compiles, but sibling validation separately exposes the pre-existing composed-module single-source limitation: the Article 38 review anchor cannot ground the independently proved Article 5/2 autonomy-factor value. Corpus promotion alone does not resolve that RuleSpec composition issue.",
+      "new_law_proofs": "All M.B. frontier atoms remain awaiting_ingestion and are non-accepting until promoted; no pseudo-path or waiver was used."
+    }
+  },
+  "physical_mb_page_map": [
+    {
+      "law_articles": "2-4",
+      "physical_pages": "40196-40197",
+      "subjects": ["CIR 131 phase-in and post-Article-178 targets", "CIR 147 item 1 and item 9 raw phase-in and royal neutralization", "timing"]
+    },
+    {
+      "law_articles": "5-13",
+      "physical_pages": "40198-40199",
+      "subjects": ["CIR 132 child supplements", "CIR 133 household condition", "CIR 134 scholarship and structural amendments", "timing"]
+    },
+    {
+      "law_articles": "14-26",
+      "physical_pages": "40200-40202",
+      "subjects": ["pension and replacement-income reduction restructuring", "Article 174/1 technical changes", "timing"]
+    },
+    {
+      "law_articles": "27-34",
+      "physical_pages": "40202-40206",
+      "subjects": ["CIR 87/88 quotient transition", "CIR 126 and 244bis thresholds and scholarships", "timing through AY2046"]
+    },
+    {
+      "law_articles": "35-42",
+      "physical_pages": "40206-40208",
+      "subjects": ["integration-income replacement reductions", "temporary minimum refundable child credit", "timing"]
+    },
+    {
+      "law_articles": "57-62",
+      "physical_pages": "40212",
+      "subjects": ["new CIR 81 entrepreneur deduction", "excluded bases and ordering", "timing"]
+    },
+    {
+      "law_articles": "89-95",
+      "physical_pages": "40216-40218",
+      "subjects": ["separate special social-security contribution", "withholding and timing"]
+    },
+    {
+      "law_articles": "96-97",
+      "physical_pages": "40218",
+      "subjects": ["CIR 289ter/1 fiscal work-bonus rates and ceiling", "timing"]
+    },
+    {
+      "law_articles": "98-102",
+      "physical_pages": "40218-40219",
+      "subjects": ["CIR 466 communal-additional-tax correction factors", "confirmation requirement", "timing"]
+    },
+    {
+      "law_articles": "103-105",
+      "physical_pages": "40219-40220",
+      "subjects": ["technical references", "CIR 178 coefficient regimes", "timing"]
+    }
+  ],
+  "provision_slices": [
+    {
+      "id": "articles_2_4_article_131_and_147",
+      "law_articles": "2-4",
+      "physical_mb_pages": "40196-40197",
+      "ingestion_priority": "blocking_proof_acceptance",
+      "encoding_disposition": "encoded_at_frontier",
+      "mechanisms": [
+        "Article 131 raw base chain for AY2027-AY2031",
+        "Article 131 direct post-Article-178 targets EUR 14,450 for AY2030 and EUR 15,600 for AY2031",
+        "Article 147 item 1 and item 9 raw amount chains",
+        "Article 147 royal neutralization requirement for AY2030 and AY2031",
+        "all five assessment-year timing paragraphs"
+      ],
+      "target_modules": [
+        "be/statutes/income_tax/individual/tax_free_amount.yaml",
+        "be/statutes/income_tax/individual/tax_reductions_and_credits.yaml"
+      ],
+      "ingestion_acceptance": "Create exact French and Dutch article/subdivision slices for Article 2(1°-7°), Article 3(a-g), and all paragraphs of Article 4. Preserve raw bases, post-index targets, delegation wording, and timing separately."
+    },
+    {
+      "id": "articles_5_13_supplements_and_article_134",
+      "law_articles": "5-13",
+      "physical_mb_pages": "40198-40199",
+      "ingestion_priority": "blocking_proof_acceptance_and_held_inventory",
+      "encoding_disposition": "partially_encoded_at_frontier",
+      "encoded_mechanisms": [
+        "Article 132 first-child and second-child raw supplement chains",
+        "Article 134 scholarship-list changes from AY2027",
+        "representable Article 134 AY2030 Article 130 base-tax linkage and single household child-credit cap",
+        "Article 13 timing"
+      ],
+      "held_mechanisms": [
+        "Article 133 isolated-parent household-member condition: no existing Article 133 module",
+        "Article 104 reaches other Article 132 and Article 133 supplements, but their source-backed raw bases are not established by this enactment",
+        "Article 10(e-g) component effects depend on absent Article 133/component decomposition",
+        "Article 10(l) transferred-tax-free-amount composition priority remains an upstream component-attribution obligation because aggregate inputs do not identify legal components"
+      ],
+      "target_modules": [
+        "be/statutes/income_tax/individual/tax_free_amount.yaml",
+        "be/statutes/income_tax/individual/tax_free_amount_tax.yaml",
+        "be/statutes/income_tax/individual/couple_pit_oracle_pipeline.yaml"
+      ],
+      "ingestion_acceptance": "Slice Articles 5-10 by operative subdivision, retain Articles 11-12 technical cross-references, and slice every paragraph of Article 13. Coverage must distinguish encoded branches from held Article 133 and component-attribution work."
+    },
+    {
+      "id": "articles_14_26_replacement_income_restructure",
+      "law_articles": "14-26",
+      "physical_mb_pages": "40200-40202",
+      "ingestion_priority": "held_scope_inventory",
+      "encoding_disposition": "held_outside_named_candidate_surface",
+      "mechanisms": [
+        "CIR 146-154 pension, unemployment, sickness-invalidity, and other replacement-income reduction restructuring",
+        "phase-outs, repeal and insertion transitions, Article 174/1 references, and timing"
+      ],
+      "hold_reason": "The lane encoded Article 147 item 1 and item 9 amounts enacted by Articles 3-4, but did not expand the broader Articles 14-26 replacement-income system. Inventory and map this surface separately before future encoding; do not infer coverage from the Article 3 amount versions.",
+      "ingestion_acceptance": "Ingest the complete bilingual slice even though it is held, because later Article 35-40 and Article 104 references depend on this amended structure."
+    },
+    {
+      "id": "articles_27_34_joint_assessment",
+      "law_articles": "27-34",
+      "physical_mb_pages": "40202-40206",
+      "ingestion_priority": "blocking_proof_acceptance",
+      "encoding_disposition": "partially_encoded_at_frontier",
+      "encoded_mechanisms": [
+        "Article 87/88 ordinary and both-spouses-age cap schedules from AY2027 through AY2045",
+        "age threshold transition from 66 to 67",
+        "AY2046 replacement Article 87 and Article 88 repeal",
+        "Article 126 Article-131 threshold linkage and qualifying scholarship branch",
+        "Article 34 timing"
+      ],
+      "held_mechanisms": [
+        "Article 244bis non-resident analogue in Article 33 is not mapped into the existing joint-assessment module"
+      ],
+      "target_modules": [
+        "be/statutes/income_tax/individual/joint_assessment.yaml",
+        "be/statutes/income_tax/individual/couple_pit_oracle_pipeline.yaml"
+      ],
+      "ingestion_acceptance": "Slice every Article 28 and Article 30 lettered transition and every Article 34 timing paragraph. Preserve the French Article 28(s) print exactly and attach the Dutch/French adjudication as metadata rather than altering the provision."
+    },
+    {
+      "id": "articles_35_40_42_integration_income_reductions",
+      "law_articles": "35-40 and 42",
+      "physical_mb_pages": "40206-40208",
+      "ingestion_priority": "held_scope_inventory",
+      "encoding_disposition": "held_outside_named_candidate_surface",
+      "mechanisms": [
+        "integration-income category additions to pension and replacement-income reductions",
+        "new Article 147 item 5 raw amount chain",
+        "Article 151/1 terminology and Article 42 timing"
+      ],
+      "hold_reason": "Not part of the named candidate surface and not safely representable as a scalar overlay. It requires a separate module and input-flow inventory.",
+      "ingestion_acceptance": "Retain Article 39's independently printed values exactly; do not conflate its Article 147 item 5 EUR 723.21 tail with Article 3's item 1 EUR 723.22 tail."
+    },
+    {
+      "id": "article_41_temporary_child_credit_floor",
+      "law_articles": "41-42",
+      "physical_mb_pages": "40207-40208",
+      "ingestion_priority": "blocking_future_encoding_after_interpretation",
+      "encoding_disposition": "held_authoritative_interpretation_required",
+      "mechanisms": [
+        "AY2027-AY2029 integration-income threshold and child-supplement caps",
+        "full and shared-custody minimum credits",
+        "disabled-child doubling and joint-couple aggregation",
+        "CPI adjustment, Article 174/1 reduction, rounding, and timing"
+      ],
+      "hold_reason": "Article 41 section 4 refers in both languages to section 1 paragraphs 1 and 4 even though those are not the amount-bearing provisions the sentence appears to require. Context suggests section 2, but the lane will not silently rewrite a bilingual enacted cross-reference.",
+      "ingestion_acceptance": "Ingest the exact defective text and any official corrigendum or authoritative interpretive instrument as separate, linked provisions before executable encoding."
+    },
+    {
+      "id": "articles_57_62_entrepreneur_deduction",
+      "law_articles": "57-62",
+      "physical_mb_pages": "40212",
+      "ingestion_priority": "held_existing_module_boundary",
+      "encoding_disposition": "held_no_existing_module",
+      "mechanisms": [
+        "new Article 81 entrepreneur deduction at 10 percent",
+        "EUR 311 raw cap for AY2028-AY2029 and EUR 415 raw cap from AY2030",
+        "excluded bases, joint ordering, and timing"
+      ],
+      "hold_reason": "No Article 81 entrepreneur-deduction module exists at the branch base. The existing-modules-only instruction forbids inventing a new module in this lane.",
+      "ingestion_acceptance": "Ingest the complete Articles 57-62 slice and link technical Article 103(3) so a later authorized module-mapping decision has complete proof."
+    },
+    {
+      "id": "articles_89_95_special_social_security_contribution",
+      "law_articles": "89-95",
+      "physical_mb_pages": "40216-40218",
+      "ingestion_priority": "ambiguity_and_scope_record",
+      "encoding_disposition": "held_distinct_mechanism_and_printed_overlap",
+      "mechanisms": [
+        "person-level special social-security contribution base and brackets",
+        "employer withholding changes, joint settlement, and timing"
+      ],
+      "hold_reason": "This is the separate special social-security contribution, not the employee SSC work bonus. It is outside the requested fiscal-work-bonus slope surface and both languages print an unresolved EUR 41,630/EUR 41,360 bracket overlap.",
+      "ingestion_acceptance": "Preserve both thresholds exactly, record the overlap, and require a corrigendum or authoritative interpretation before any executable bracket adjudication."
+    },
+    {
+      "id": "articles_96_97_fiscal_work_bonus",
+      "law_articles": "96-97",
+      "physical_mb_pages": "40218",
+      "ingestion_priority": "blocking_proof_acceptance",
+      "encoding_disposition": "encoded_at_frontier",
+      "mechanisms": [
+        "Article 289ter/1 A rate 35 percent from AY2029",
+        "B rate 63 percent from AY2027 and 72 percent from AY2029",
+        "EUR 970 statutory ceiling base from AY2027",
+        "timing"
+      ],
+      "target_modules": [
+        "be/statutes/income_tax/individual/tax_reductions_and_credits.yaml",
+        "be/statutes/income_tax/individual/pilot_worker_oracle_pipeline.yaml",
+        "be/statutes/income_tax/individual/couple_pit_oracle_pipeline.yaml"
+      ],
+      "negative_scope_finding": "The full pinned-law search contains no employee-SSC work-bonus slope amendment. No SSC work-bonus schedule change is authorized.",
+      "ingestion_acceptance": "Slice Article 96 by each numbered replacement and both Article 97 timing paragraphs. Keep EUR 970 as a raw base; current CIR Article 289ter/1 and Articles 174/1 and 178 separately prove application and rounding."
+    },
+    {
+      "id": "articles_98_102_communal_factor",
+      "law_articles": "98-102",
+      "physical_mb_pages": "40218-40219",
+      "ingestion_priority": "delegated_dependency",
+      "encoding_disposition": "held_missing_royal_factors",
+      "mechanisms": [
+        "Article 466 factor formula and King-set factors for AY2029, AY2030, and AY2031",
+        "AY2031 persistence, confirmation act requirement, Article 466bis/469 exclusions, and timing"
+      ],
+      "hold_reason": "The enactment specifies the factor formula but not the estimated tax decreases or the King-set factors. Article 99 also contains the printed placeholder '(date de cette loi)'. No factor may be assumed, backsolved from a score, or defaulted to one.",
+      "ingestion_acceptance": "Ingest Articles 98-102 now and later ingest each royal decree and required parliamentary confirmation act as its own authority."
+    },
+    {
+      "id": "articles_103_105_article_178_and_technical_links",
+      "law_articles": "103-105",
+      "physical_mb_pages": "40219-40220",
+      "ingestion_priority": "blocking_proof_acceptance_and_dependency_mapping",
+      "encoding_disposition": "partially_encoded_at_frontier",
+      "encoded_mechanisms": [
+        "Article 178 section 2/1 coefficient for Article 132/133 supplements",
+        "special fixed Article 178 coefficient for Article 87/88 caps",
+        "continued Article 147 special coefficient treatment through Articles 104(e-f)",
+        "applicable Article 105 timing"
+      ],
+      "held_mechanisms": [
+        "Technical Article 103 references whose underlying Article 81, integration-income, or later AY2046 surfaces are outside or only partly mapped"
+      ],
+      "target_modules": [
+        "be/statutes/income_tax/individual/tax_free_amount.yaml",
+        "be/statutes/income_tax/individual/joint_assessment.yaml",
+        "be/statutes/income_tax/individual/tax_reductions_and_credits.yaml"
+      ],
+      "ingestion_acceptance": "Slice every letter of Article 104 and every paragraph of Article 105. Article 104(e), Article 104(f), and their distinct AY2027/AY2030 timing must remain separately addressable."
+    }
+  ],
+  "supporting_existing_cir_dependencies": [
+    {
+      "citation_path": "be/statute/fisconetplus/cir92/revenus-2025/page-277",
+      "subject": "Article 174/1 taxable-period proration, counted-month rule, and post-proration rounding",
+      "present_in_pinned_checkout": true,
+      "present_in_current_signed_release": false,
+      "required_action": "Promote this exact existing provision into the same signed release used for final validation. It proves the 12-month denominator, fifteenth-day counted-month rule, death exception context, and EUR-10/cent rounding distinctions."
+    },
+    {
+      "citation_paths": [
+        "be/statute/fisconetplus/cir92/revenus-2025/page-278",
+        "be/statute/fisconetplus/cir92/revenus-2025/page-279",
+        "be/statute/fisconetplus/cir92/revenus-2025/page-280"
+      ],
+      "subject": "Article 178 baseline annual indexation, default and special coefficient formulas, CPI and coefficient rounding, and money rounding",
+      "present_in_pinned_checkout": true,
+      "present_in_current_signed_release": false,
+      "required_action": "Promote pages 278-280 together. Page 279 contains the general coefficient and nearest-EUR-10/cent rules; page 280 continues the special coefficient regimes. The reform's Article 104 provisions amend but do not replace the need for this consolidated baseline context."
+    },
+    {
+      "citation_path": "be/statute/fisconetplus/cir92/revenus-2025/page-515",
+      "subject": "Article 289ter/1 statement that Articles 174/1 and 178 section 3 paragraph 1 item 2 apply to the work-bonus ceiling",
+      "present_in_pinned_checkout": true,
+      "present_in_current_signed_release": true,
+      "required_action": "Retain this provision in the promoted release and link it with amendment Articles 96-97. The amendment alone proves the new raw ceiling, not the full application order."
+    }
+  ],
+  "source_ambiguities_and_printed_defects": [
+    {
+      "id": "article_28_s_ordinary_cap_predecessor",
+      "physical_mb_page": 40203,
+      "law_article": "28(s)",
+      "french_printed": "dans le 2°, le montant “5.680 euros” est remplacé par le montant “5.030 euros”",
+      "dutch_printed": "in de bepaling onder 2° wordt het bedrag “5.860 euro” vervangen door het bedrag “5.030 euro”",
+      "cross_checks": [
+        "French Article 27 establishes EUR 5,860.",
+        "French and Dutch Article 30(B) continue EUR 5,860 to EUR 5,030."
+      ],
+      "encoding_disposition": "Use the coherent EUR 5,860 to EUR 5,030 chain. Retain both printed excerpts and the adjudication note; never alter the French provision body to EUR 5,860."
+    },
+    {
+      "id": "article_33_historical_amending_act_date",
+      "physical_mb_page": 40205,
+      "law_article": "33 introductory sentence",
+      "dutch_printed": "ingevoegd bij de wet van 28 december 1992",
+      "french_printed": "inséré par la loi du 28 mai 1992",
+      "encoding_disposition": "The operative replacements are not changed by this historical-reference discrepancy. Preserve both strings and verify the referenced historical act from official authority during ingestion; do not normalize one language silently."
+    },
+    {
+      "id": "article_41_section_4_cross_reference",
+      "physical_mb_page": 40208,
+      "law_article": "41 section 4",
+      "french_printed": "Les montants visés au paragraphe 1er, alinéas 1er et 4, et au paragraphe 3, alinéa 1er, sont réduits conformément à l’article 174/1, alinéas 1er et 2, du Code.",
+      "dutch_printed": "De in paragraaf 1, eerste en vierde lid, en paragraaf 3, eerste lid, vermelde bedragen worden verminderd overeenkomstig artikel 174/1, eerste en tweede lid, van het Wetboek.",
+      "issue": "Section 1 contains definitions rather than the amount-bearing section 2 conditions to which the sentence appears to refer. Both languages print section 1, so this is not resolved by bilingual comparison.",
+      "encoding_disposition": "Hold the temporary floor pending an official corrigendum or authoritative interpretation. Do not substitute section 2 in the ingested text or executable rule on contextual inference alone."
+    },
+    {
+      "id": "articles_89_95_special_ssc_threshold_overlap",
+      "physical_mb_page": 40217,
+      "law_article": "91(1°), replacement Article 108 section 1",
+      "printed_middle_band_upper_eur": 41630,
+      "printed_top_band_strictly_above_eur": 41360,
+      "languages": ["fr", "nl"],
+      "encoding_disposition": "The EUR 270 overlap is unresolved. Preserve it, link any official correction separately, and do not silently reorder, truncate, or choose a threshold."
+    },
+    {
+      "id": "article_99_enactment_date_placeholder",
+      "physical_mb_page": 40218,
+      "law_article": "99, inserted Article 466 paragraph 3",
+      "french_printed": "la loi du (date de cette loi) portant réforme de l’impôt des personnes physiques",
+      "dutch_printed": "de wet van (datum van deze wet) tot hervorming van de personenbelasting",
+      "encoding_disposition": "Preserve the placeholder verbatim in the provision. Canonical document metadata may identify the enactment as the 15 July 2026 law, but proof text must not be silently patched; the actual factors remain delegated."
+    }
+  ],
+  "delegated_instruments_and_empirical_data": [
+    {
+      "id": "article_131_royal_adjusted_bases",
+      "priority": "required_to_record_complete_legal_chain",
+      "authority_needed": "Royal decree under Article 131 paragraph 3 for AY2030 and AY2031",
+      "needed_values": [
+        "King-adjusted raw Article 131 base yielding EUR 14,450 after Article 178 for AY2030",
+        "King-adjusted raw Article 131 base yielding EUR 15,600 after Article 178 for AY2031"
+      ],
+      "boundary": "The direct post-Article-178 targets are executable as enacted. Do not backsolve and label an analyst result as the decreed raw base."
+    },
+    {
+      "id": "article_147_royal_neutralization",
+      "priority": "blocking_final_ay2030_2031_article_147",
+      "authority_needed": "Royal decree implementing Article 147 paragraph 5 neutralization after the Article 131 adjustment",
+      "needed_values": [
+        "AY2030 final neutralized raw item 1 and item 9 amounts",
+        "AY2031 persistent final neutralized raw item 1 and item 9 amounts"
+      ],
+      "boundary": "EUR 837.71/EUR 1,230.46 and EUR 723.22/EUR 1,115.88 are enacted pre-neutralization replacements. They are not final decree-adjusted values."
+    },
+    {
+      "id": "article_466_royal_factors",
+      "priority": "blocking_complete_communal_tax",
+      "authority_needed": "Royal decrees under Article 466 paragraph 3 and the confirmation acts required by paragraph 5",
+      "needed_values": ["AY2029 factor", "AY2030 factor", "AY2031 factor persistent thereafter"],
+      "boundary": "Ingest each decree and confirmation act independently. Do not assume factor 1, derive a factor from the scoring bundle, or treat Article 99's formula as supplying its empirical estimated decrease."
+    },
+    {
+      "id": "official_cpi_annual_averages",
+      "priority": "blocking_indexed_outputs",
+      "authority_needed": "Official Belgian consumer-price-index annual-average observations and their publication metadata",
+      "needed_observations": [
+        "I(1988), I(1991), I(1997), I(2012), I(2016), and I(2024)",
+        "the prior-income-year averages needed for AY2027-AY2031, including I(2025)-I(2029)",
+        "I(2028) for the AY2031-plus Article 132/133 denominator regime"
+      ],
+      "use_by_mechanism": {
+        "article_131_general": "I(prior income year) / I(1988) for AY2027-AY2029",
+        "article_132_133": "I(2024) / I(1988) through AY2030, then I(prior income year) / [I(1988) * I(2028)/I(2024)]",
+        "article_87_88": "I(2024) / [I(1988) * I(1997)/I(1991)]",
+        "article_147": "I(prior income year) / [I(1988) * I(1997)/I(1991) * I(2016)/I(2012)]",
+        "article_289ter1": "default Article 178 section 3 coefficient using the applicable prior-income-year average",
+        "article_41": "I(prior income year) / I(2024), if and only if the Article 41 cross-reference defect is authoritatively resolved"
+      },
+      "boundary": "Keep empirical observations separately sourced from statutory formulas. Never interpolate unavailable future averages or reuse static-2025 scoring translations as observations."
+    },
+    {
+      "id": "post_reform_consolidated_cir_expression",
+      "priority": "recommended_after_commencement",
+      "authority_needed": "Official post-amendment CIR 1992 consolidation or equivalent authoritative article text",
+      "needed_coverage": ["Articles 87, 88, 126, 131-134, 147, 174/1, 178, 244bis, 289ter/1, 466, 466bis, and 469"],
+      "boundary": "The original amending law remains the authority for enacted replacements and timing. A later consolidation is additional cross-check evidence, not a substitute for the original publication."
+    }
+  ],
+  "proof_atom_acceptance": {
+    "signed_release_gate": "A citation is accepting only when its canonical corpus_citation_path resolves in the immutable signed release selected by the authorized RuleSpec toolchain pin. Presence in a git checkout alone is insufficient.",
+    "source_identity": "For the new enactment, the promoted source must retain the official-publication PDF SHA-256 033bfdecb456d5b901bdf31e3a10b362a89bfdccc925d816d038a6e727d1c9d5, official authority metadata, publication date, language, physical page, and article/subdivision.",
+    "verbatim": "Every proof excerpt must be an exact substring of the promoted provision body. Do not normalize punctuation, spacing, decimal separators, ligatures, capitalization, spelling, placeholders, or printed defects inside the excerpt.",
+    "source_verification_shape": "Replace frontier locator objects with the repository's accepted canonical source-verification shape: corpus_citation_path plus source_sha256. Do not retain authority/page/article fields as substitutes for a citation path.",
+    "value_atoms": "Every currency parameter, currency table cell, rate, policy-bearing count or age, rounding literal, and policy-bearing derived money literal must have a direct atom or a proved legal import. A timing clause alone cannot prove a value.",
+    "formula_atoms": "Indexation, selection, proration, allocation, ceiling, and rounding formulas require the exact operative mechanism excerpt. Cross-provision formulas must cite or import every independently operative provision.",
+    "timing": "Every effective_from transition must retain the exact applicable/entry-into-force paragraph in effective-period evidence. Assessment-year mapping may not be inferred only from article order.",
+    "delegation": "A decree, confirmation act, CPI observation, corrigendum, or later consolidation receives its own source and proof. The 15 July 2026 law cannot prove a value it delegates or an empirical observation it does not print.",
+    "bilingual_defects": "Keep each defective French or Dutch string unaltered. Put adjudication in metadata and require independent operative support; do not repair the corpus body.",
+    "no_waiver_or_pseudo_path": "No waiver, invented corpus path, scoring artifact, or M.B.-page-only locator can satisfy proof acceptance.",
+    "validation_exit": [
+      "Pinned proof validation reports zero missing money or policy atoms for every touched module.",
+      "Fresh sibling-layout validation against the newly pinned signed release reports ci_pass true and all_passed true for every touched module.",
+      "Companion tests remain fully assigned and passing after temporary frontier locators are replaced."
+    ]
+  },
+  "promotion_workflow": [
+    {
+      "order": 1,
+      "owner": "authorized corpus maintainer",
+      "action": "Reverify the pinned PDF hash, resolve official ELI/NUMAC metadata without inference, and independently extract the physical pages with two-column layout preserved.",
+      "acceptance": "The PDF hash matches; the printed page map above and bilingual article order match the official image; canonical locators come from official metadata."
+    },
+    {
+      "order": 2,
+      "owner": "authorized corpus maintainer",
+      "action": "Run the Belgian official-law adapter and create canonical document metadata and exact French/Dutch article or subdivision provision slices. Let the adapter assign citation paths.",
+      "acceptance": "Every requested encoded and held slice has a unique path, authority metadata, source hash, language, physical page/article locator, exact body, and parent document relationship."
+    },
+    {
+      "order": 3,
+      "owner": "authorized corpus maintainer",
+      "action": "Cross-check all numeric chains and timing clauses between French and Dutch, and record printed discrepancies without altering either provision body.",
+      "acceptance": "Article 28(s), Article 33's date, Article 41 section 4, the special-SSC overlap, and the Article 99 placeholder are explicitly represented with the dispositions in this worklist."
+    },
+    {
+      "order": 4,
+      "owner": "authorized corpus maintainer",
+      "action": "Ingest each issued royal decree, confirmation act, official CPI source, corrigendum, and later consolidation as an independent authority; add inventory and coverage records linking all target modules and held mechanisms.",
+      "acceptance": "The enactment is corpus_ingested rather than locator-only, delegated values never cite the parent law as if printed there, and unresolved dependencies remain explicitly open."
+    },
+    {
+      "order": 5,
+      "owner": "authorized release maintainer",
+      "action": "Create and publish a signed corpus release that contains every new-law proof path plus required existing CIR pages 277-280 and retains page 515; use the trusted signing and release workflow.",
+      "acceptance": "Signature, content hash, waiver-set hash, provision isolation, and release completeness all verify. No source-missing waiver is added."
+    },
+    {
+      "order": 6,
+      "owner": "authorized RuleSpec integration maintainer",
+      "action": "Re-pin RuleSpec mainline to the new signed release through the authorized integration flow, outside this encoding lane branch.",
+      "acceptance": "The toolchain names the immutable release and exact content hash; the encoding branch did not edit the pin, workflow, or waiver set."
+    },
+    {
+      "order": 7,
+      "owner": "encoding or integration maintainer",
+      "action": "Replace every temporary M.B. frontier locator with its promoted canonical path and source hash, preserve exact excerpts and timing evidence, then rerun pinned proof, companion, layout, compile, and sibling validations.",
+      "acceptance": "All touched modules compile and pass fully assigned companions; proof validation has zero missing atoms; sibling validation reports ci_pass true and all_passed true."
+    }
+  ],
+  "release_and_validation_exit_conditions": [
+    "Canonical ELI/NUMAC metadata is resolved from official sources rather than guessed from the printed C-reference.",
+    "All encoded and held provision slices in this worklist are represented in the corpus with exact PDF-hash provenance and bilingual text.",
+    "Every required new-law path and existing CIR page 277-280 path is included in a new signed release; CIR page 515 remains included.",
+    "Authorized RuleSpec mainline is re-pinned without a waiver or lane-local toolchain change.",
+    "All policy values, formulas, and effective transitions resolve to exact promoted text or proved imports.",
+    "All five printed ambiguities remain explicit and are not normalized in provision bodies.",
+    "Royal-decree and CPI dependencies are ingested when issued; affected outputs remain dependency-bound until then.",
+    "Pinned compile, fully assigned companion tests, proof validation, repository layout, and fresh sibling-layout validation all pass for every touched module."
+  ],
+  "non_actions": [
+    "No network acquisition was attempted.",
+    "No corpus repository, release manifest, signed release, toolchain pin, waiver, workflow, scoring artifact, public page, or remote Git state was changed by this worklist.",
+    "No NUMAC, ELI URL, canonical citation path, delegated value, CPI observation, correction, release identifier, or passing validation result was fabricated."
+  ]
+}
