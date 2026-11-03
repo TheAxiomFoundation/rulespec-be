@@ -600,9 +600,13 @@ def encoding_manifest_problems(root: Path = ROOT) -> list[str]:
     manifest, no manifest for a companion test or a program, and no manifest
     root inside a jurisdiction.
 
-    This checks the schema string and the placement only; the generated guard
-    verifies signatures and file hashes. A refused manifest gets one line,
-    for the first problem in the order read, schema, placement, entry, file.
+    This checks the schema string and the placement only. The generated guard
+    verifies the signature and file hashes of each manifest a change adds or
+    edits, but only at an encoder pin outside
+    ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES; manifests_the_guard_skips
+    refuses every manifest at the pins inside it. A refused manifest gets one
+    line, for the first problem in the order read, schema, placement, entry,
+    file.
     """
     jurisdictions = jurisdiction_dirs(root)
     names = {jurisdiction.name for jurisdiction in jurisdictions}
@@ -630,8 +634,11 @@ def encoding_manifest_problem(
 ) -> str | None:
     """Return the first problem with one manifest, or None to admit it."""
     try:
+        # Like the encoder's loader, decode strict UTF-8 before parsing.
         payload = json.loads(
-            (root / ".axiom" / "encoding-manifests" / relative).read_bytes()
+            (root / ".axiom" / "encoding-manifests" / relative)
+            .read_bytes()
+            .decode("utf-8")
         )
     except OSError:
         return "is not a readable file"
@@ -642,7 +649,10 @@ def encoding_manifest_problem(
         return f"schema {schema!r}"
     module = relative.with_suffix(".yaml")
     if (
-        len(module.parts) < 3
+        # The encoder writes <module path> with its suffix swapped for .json,
+        # so a name with no suffix, such as `.json`, maps back to no module.
+        relative.suffix != ".json"
+        or len(module.parts) < 3
         or module.parts[0] not in jurisdictions
         or module.parts[1] not in ATOMIC_CONTENT_DIRS
         or module.name.endswith(".test.yaml")
@@ -666,8 +676,65 @@ def encoding_manifest_problem(
     return None
 
 
+# axiom-encode commits before #1853 (fa0da5e8) return from guard-generated
+# before they read any manifest when a change touches no RuleSpec YAML, so a
+# change that adds or edits only manifests reaches main with no signature
+# check. This lists each such commit the repository has pinned; a re-pin moves
+# to fa0da5e8 or later.
+ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES = frozenset(
+    {"b9d376684cfb5e86202daa3451b8fc716703ed19"}
+)
+FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES = (
+    "fa0da5e834214052cc8d9d381e25ff409dd1062f"
+)
+
+
+def pinned_encoder_ref(root: Path = ROOT) -> str:
+    """Return the axiom-encode commit that CI runs the generated guard from."""
+    workflow = yaml.safe_load(
+        (root / ".github/workflows/repository-checks.yml").read_text()
+    )
+    return workflow["jobs"]["validate"]["with"]["axiom-encode-ref"]
+
+
+def manifests_the_guard_skips(root: Path = ROOT) -> list[str]:
+    """List every manifest under root while the pinned guard skips them.
+
+    At a pin in ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES, the guard admits a
+    change that adds only manifests without reading them, so the tree admits
+    no manifest. At any other pin this returns nothing and leaves each
+    manifest to encoding_manifest_problems and the guard.
+    """
+    manifest_root = root / ".axiom" / "encoding-manifests"
+    encoder_ref = pinned_encoder_ref(root)
+    if encoder_ref not in ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES:
+        return []
+    return [
+        f"{manifest.relative_to(manifest_root).as_posix()}: the pinned encoder "
+        f"{encoder_ref[:8]} does not verify a change that adds only manifests"
+        for manifest in sorted(manifest_root.rglob("*.json"))
+    ]
+
+
 def test_encoding_manifests_sit_where_the_encoder_writes_them() -> None:
     assert encoding_manifest_problems() == []
+
+
+def test_no_manifest_lands_while_the_pinned_guard_skips_manifest_only_changes() -> None:
+    assert manifests_the_guard_skips() == []
+
+
+def test_the_skipping_encoders_are_full_commit_ids() -> None:
+    # The workflow pins full lowercase ids; a short one here would never match.
+    for encoder_ref in (
+        *ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES,
+        FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES,
+    ):
+        assert re.fullmatch(r"[0-9a-f]{40}", encoder_ref), encoder_ref
+    assert (
+        FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES
+        not in ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES
+    )
 
 
 BELGIAN_JURISDICTIONS = ("be", "be-bru", "be-dg", "be-vlg", "be-wal")
@@ -823,6 +890,15 @@ def test_a_manifest_gets_one_line_for_its_first_problem(
             {"manifest": "be/statutes/example/rule.test.json"},
             "mirrors no atomic module path",
         ),
+        # The encoder would write be/statutes/.json.json for this module.
+        (
+            {
+                "manifest": "be/statutes/.json",
+                "applied": ("be/statutes/.json.yaml",),
+                "files": ("be/statutes/.json.yaml",),
+            },
+            "mirrors no atomic module path",
+        ),
         (
             {"applied": (MODULE,), "deleted": (MODULE,)},
             f"both applies and deletes {MODULE}",
@@ -870,6 +946,21 @@ def v5_manifest(applied_files: object) -> bytes:
     [
         pytest.param(b"{", "is not JSON", id="truncated"),
         pytest.param(b"\x80{}", "is not JSON", id="not-utf-8"),
+        pytest.param(
+            v5_manifest([{"path": MODULE}]).decode().encode("utf-16"),
+            "is not JSON",
+            id="utf-16",
+        ),
+        pytest.param(
+            v5_manifest([{"path": MODULE}]).decode().encode("utf-32"),
+            "is not JSON",
+            id="utf-32",
+        ),
+        pytest.param(
+            b"\xef\xbb\xbf" + v5_manifest([{"path": MODULE}]),
+            "is not JSON",
+            id="utf-8-bom",
+        ),
         # Deep enough that the decoder raises RecursionError.
         pytest.param(b"[" * 1_000_000, "is not JSON", id="deep-nesting"),
         pytest.param(b"[]", "schema None", id="list"),
@@ -979,6 +1070,94 @@ def test_problems_do_not_depend_on_the_order_the_filesystem_lists_files(
         ),
     )
     assert encoding_manifest_problems(tmp_path) == listed
+
+
+def write_pinned_encoder(root: Path, encoder_ref: str) -> None:
+    """Write the one repository-checks.yml field pinned_encoder_ref reads."""
+    workflow = root / ".github" / "workflows" / "repository-checks.yml"
+    workflow.parent.mkdir(parents=True, exist_ok=True)
+    workflow.write_text(
+        yaml.safe_dump(
+            {"jobs": {"validate": {"with": {"axiom-encode-ref": encoder_ref}}}}
+        )
+    )
+
+
+# A change that adds only this manifest names an existing module and carries
+# no signature, file hashes or producer.
+UNSIGNED_MODULE = "be/policies/euromod_benefit_income_list.yaml"
+UNSIGNED_MANIFEST = "be/policies/euromod_benefit_income_list.json"
+UNSIGNED_CONTENT = (
+    b'{"schema_version":"axiom-encode/applied-rulespec/v5",'
+    b'"applied_files":[{"path":"be/policies/euromod_benefit_income_list.yaml"}]}'
+)
+
+
+def write_unsigned_manifest_only_change(root: Path, encoder_ref: str) -> None:
+    write_manifest_fixture(
+        root,
+        manifest=UNSIGNED_MANIFEST,
+        applied=(UNSIGNED_MODULE,),
+        files=(UNSIGNED_MODULE, UNSIGNED_MODULE.replace(".yaml", ".test.yaml")),
+    )
+    write_raw_manifest(root, UNSIGNED_MANIFEST, UNSIGNED_CONTENT)
+    write_pinned_encoder(root, encoder_ref)
+
+
+@pytest.mark.parametrize(
+    "encoder_ref", sorted(ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES)
+)
+def test_an_unsigned_manifest_is_refused_while_the_guard_skips_it(
+    tmp_path: Path, encoder_ref: str
+) -> None:
+    write_unsigned_manifest_only_change(tmp_path, encoder_ref)
+    # The placement check admits it; the pin check is what refuses it.
+    assert encoding_manifest_problems(tmp_path) == []
+    assert manifests_the_guard_skips(tmp_path) == [
+        f"{UNSIGNED_MANIFEST}: the pinned encoder {encoder_ref[:8]} does not "
+        "verify a change that adds only manifests"
+    ]
+
+
+def test_a_guard_that_verifies_manifest_only_changes_gets_the_manifest(
+    tmp_path: Path,
+) -> None:
+    write_unsigned_manifest_only_change(
+        tmp_path, FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES
+    )
+    assert manifests_the_guard_skips(tmp_path) == []
+
+
+@pytest.mark.parametrize(
+    "encoder_ref", sorted(ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES)
+)
+def test_every_manifest_gets_a_line_while_the_guard_skips_them(
+    tmp_path: Path, encoder_ref: str
+) -> None:
+    write_manifest_fixture(tmp_path)
+    contents = {
+        "be/statutes/a/rule.json": b"{",
+        "be/statutes/m/rule.json": json.dumps(
+            {"schema_version": "axiom-encode/applied-rulespec/v1"}
+        ).encode(),
+        "be-vlg/statutes/z/rule.json": v5_manifest([{"path": MODULE}]),
+    }
+    for manifest, content in contents.items():
+        write_raw_manifest(tmp_path, manifest, content)
+    write_pinned_encoder(tmp_path, encoder_ref)
+    assert manifests_the_guard_skips(tmp_path) == [
+        f"{manifest}: the pinned encoder {encoder_ref[:8]} does not verify a "
+        "change that adds only manifests"
+        # The check sorts paths part by part, which puts be/ before be-vlg/.
+        for manifest in sorted([MANIFEST, *contents], key=lambda name: Path(name).parts)
+    ]
+
+
+def test_a_tree_without_manifests_passes_while_the_guard_skips_them(
+    tmp_path: Path,
+) -> None:
+    write_pinned_encoder(tmp_path, sorted(ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES)[0])
+    assert manifests_the_guard_skips(tmp_path) == []
 
 
 def test_workflow_toolchain_mirrors_the_validation_workflow() -> None:
