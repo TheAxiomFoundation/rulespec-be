@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
+import subprocess
 import tomllib
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
@@ -600,16 +602,16 @@ def encoding_manifest_problems(root: Path = ROOT) -> list[str]:
     manifest, no manifest for a companion test or a program, and no manifest
     root inside a jurisdiction.
 
-    This checks the schema string and the placement only. The generated guard
-    verifies the signature and file hashes of each manifest a change adds or
-    edits, but only at an encoder pin outside
-    ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES; manifests_the_guard_skips
-    refuses every manifest at the pins inside it. A refused manifest gets one
-    line, for the first problem in the order read, schema, placement, entry,
-    file.
+    This checks schema, placement and applied/deleted module entries. The
+    generated guard verifies signatures and file hashes. At the older pins in
+    ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES, it reads changed manifests only
+    when the change also touches RuleSpec YAML; otherwise it returns without
+    reading them. manifests_the_guard_skips refuses every manifest at those
+    pins to close that gap. A refused manifest gets one line, for the first
+    problem in the order read, schema, placement, entry, file.
     """
     jurisdictions = jurisdiction_dirs(root)
-    names = {jurisdiction.name for jurisdiction in jurisdictions}
+    names = set(BELGIAN_JURISDICTIONS)
     problems = [
         f"co-located manifest root: {nested.relative_to(root).as_posix()}"
         for nested in (
@@ -676,17 +678,25 @@ def encoding_manifest_problem(
     return None
 
 
-# axiom-encode commits before #1853 (fa0da5e8) return from guard-generated
-# before they read any manifest when a change touches no RuleSpec YAML, so a
-# change that adds or edits only manifests reaches main with no signature
-# check. This lists each such commit the repository has pinned; a re-pin moves
-# to fa0da5e8 or later.
+# These historical encoder pins return from guard-generated before reading
+# any manifest when a change touches no RuleSpec YAML. Changes that also touch
+# RuleSpec YAML still verify manifests. axiom-encode#1853 (fa0da5e8) closes the
+# gap; a re-pin to that commit or later needs no test changes.
 ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES = frozenset(
-    {"b9d376684cfb5e86202daa3451b8fc716703ed19"}
+    {
+        "185b2457c16df11bf328fd6257a5b7fbe3fe7534",
+        "b9d376684cfb5e86202daa3451b8fc716703ed19",
+    }
 )
 FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES = (
     "fa0da5e834214052cc8d9d381e25ff409dd1062f"
 )
+
+# Historical evidence, independent of whichever encoder the workflow pins now.
+SKIPPING_ENCODER_PIN_HISTORY = {
+    "185b2457c16df11bf328fd6257a5b7fbe3fe7534": "2966944dffd68e48dbed4a862c127a842f21f83c",
+    "b9d376684cfb5e86202daa3451b8fc716703ed19": "bbf143dd234cf0d3f8ba2acc5404bc239617067b",
+}
 
 
 def pinned_encoder_ref(root: Path = ROOT) -> str:
@@ -735,6 +745,34 @@ def test_the_skipping_encoders_are_full_commit_ids() -> None:
         FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES
         not in ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES
     )
+
+
+def test_the_skipping_encoders_match_the_recorded_historical_pins() -> None:
+    assert ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES == set(SKIPPING_ENCODER_PIN_HISTORY)
+    for repository_commit in SKIPPING_ENCODER_PIN_HISTORY.values():
+        assert re.fullmatch(r"[0-9a-f]{40}", repository_commit), repository_commit
+
+
+def test_the_recorded_encoder_pins_match_repository_history() -> None:
+    shallow = subprocess.check_output(
+        ["git", "rev-parse", "--is-shallow-repository"], cwd=ROOT, text=True
+    ).strip()
+    if shallow == "true":
+        pytest.skip("Historical pin commits are unavailable in a shallow checkout")
+    assert shallow == "false"
+    for encoder_ref, repository_commit in SKIPPING_ENCODER_PIN_HISTORY.items():
+        workflow = yaml.safe_load(
+            subprocess.check_output(
+                [
+                    "git",
+                    "show",
+                    f"{repository_commit}:.github/workflows/repository-checks.yml",
+                ],
+                cwd=ROOT,
+                text=True,
+            )
+        )
+        assert workflow["jobs"]["validate"]["with"]["axiom-encode-ref"] == encoder_ref
 
 
 BELGIAN_JURISDICTIONS = ("be", "be-bru", "be-dg", "be-vlg", "be-wal")
@@ -805,6 +843,25 @@ def test_the_manifests_the_encoder_writes_are_admitted(
     )
     assert encoding_manifest_problems(applied) == []
     assert encoding_manifest_problems(retired) == []
+
+
+@pytest.mark.parametrize("jurisdiction", BELGIAN_JURISDICTIONS)
+def test_retirement_manifests_survive_an_empty_jurisdiction(
+    tmp_path: Path, jurisdiction: str
+) -> None:
+    # be-dg's two modules can both be retired, leaving no jurisdiction directory.
+    for name in ("amounts", "eligibility"):
+        stem = f"{jurisdiction}/statutes/family_benefits/{name}"
+        write_manifest_fixture(
+            tmp_path,
+            manifest=f"{stem}.json",
+            applied=(),
+            deleted=(f"{stem}.yaml", f"{stem}.test.yaml"),
+            files=(),
+        )
+    shutil.rmtree(tmp_path / jurisdiction)
+    assert not (tmp_path / jurisdiction).exists()
+    assert encoding_manifest_problems(tmp_path) == []
 
 
 def test_other_applied_files_and_deleted_paths_do_not_matter(tmp_path: Path) -> None:
@@ -1105,7 +1162,7 @@ def write_unsigned_manifest_only_change(root: Path, encoder_ref: str) -> None:
 
 
 @pytest.mark.parametrize(
-    "encoder_ref", sorted(ENCODERS_THAT_SKIP_MANIFEST_ONLY_CHANGES)
+    "encoder_ref", sorted(SKIPPING_ENCODER_PIN_HISTORY)
 )
 def test_an_unsigned_manifest_is_refused_while_the_guard_skips_it(
     tmp_path: Path, encoder_ref: str
@@ -1119,12 +1176,13 @@ def test_an_unsigned_manifest_is_refused_while_the_guard_skips_it(
     ]
 
 
-def test_a_guard_that_verifies_manifest_only_changes_gets_the_manifest(
-    tmp_path: Path,
+@pytest.mark.parametrize(
+    "encoder_ref", [FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES, "f" * 40]
+)
+def test_an_unlisted_encoder_leaves_manifests_to_the_guard(
+    tmp_path: Path, encoder_ref: str
 ) -> None:
-    write_unsigned_manifest_only_change(
-        tmp_path, FIRST_ENCODER_THAT_CHECKS_MANIFEST_ONLY_CHANGES
-    )
+    write_unsigned_manifest_only_change(tmp_path, encoder_ref)
     assert manifests_the_guard_skips(tmp_path) == []
 
 
